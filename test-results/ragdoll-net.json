@@ -1,0 +1,1105 @@
+{
+  "passed": true,
+  "timeStep": 0.004166666666666667,
+  "iterations": 5,
+  "substeps": 4,
+  "broadphase": "hploc",
+  "broadphaseDecision": {
+    "requested": "auto",
+    "selected": "hploc",
+    "bodyCount": 23617,
+    "cellRatio": 2.008944280435763,
+    "constraintCount": 31200,
+    "thinPlateFraction": 0.3901406064712858,
+    "reason": "Many linked thin plates; the tree avoids empty grid-cell space"
+  },
+  "rigidNet": {
+    "pitch": 0.3000000000000007,
+    "plateWidth": 0.32000000000000073,
+    "seamOverlap": 0.020000000000000018,
+    "neighborExclusion": "eight adjacent plates"
+  },
+  "snapshots": [
+    {
+      "seconds": 0.25,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 0.5,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 0.75,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 1,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 1.25,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 1.5,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 1.75,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 2,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 2.25,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 2.5,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 2.75,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 3,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 3.25,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 3.5,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 3.75,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 4,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 4.25,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 4.5,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 4.75,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 5,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 5.25,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 5.5,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 5.75,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 6,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 6.25,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 6.5,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 6.75,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 7,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 7.25,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 7.5,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 7.75,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 8,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 8.25,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 8.5,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 8.75,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 9,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 9.25,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 9.5,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 9.75,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 10,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 10.25,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 10.5,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 10.75,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 11,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 11.25,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 11.5,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 11.75,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 12,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 12.25,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 12.5,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 12.75,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 13,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 13.25,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 13.5,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 13.75,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 14,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 14.25,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 14.5,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 14.75,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 15,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 15.25,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 15.5,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 15.75,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 16,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 16.25,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 16.5,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 16.75,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 17,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 17.25,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 17.5,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 17.75,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 18,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 18.25,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 18.5,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 18.75,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 19,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 19.25,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 19.5,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 19.75,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 20,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 20.25,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 20.5,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 20.75,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 21,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 21.25,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 21.5,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 21.75,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 22,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 22.25,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 22.5,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 22.75,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 23,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 23.25,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 23.5,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 23.75,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 24,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 24.25,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 24.5,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 24.75,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 25,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 25.25,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 25.5,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 25.75,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 26,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 26.25,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 26.5,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 26.75,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 27,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 27.25,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 27.5,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 27.75,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 28,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 28.25,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 28.5,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 28.75,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 29,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 29.25,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 29.5,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 29.75,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    },
+    {
+      "seconds": 30,
+      "bodiesWhollyBelowVisibleSheet": 0,
+      "ragdollsStraddlingSheet": 0,
+      "limbsPenetratingVisibleSheet": 0,
+      "maxPenetration": 0,
+      "touchingSheet": 0,
+      "worst": []
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,120 @@
+{
+  "passed": true,
+  "results": [
+    {
+      "scene": "2d-sleeping-pile",
+      "passed": true,
+      "stats": {
+        "pairs": 505,
+        "contacts": 513,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 1,
+        "sleeping": 256
+      }
+    },
+    {
+      "scene": "2d-limited-hinges",
+      "passed": true,
+      "stats": {
+        "pairs": 2,
+        "contacts": 2,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 1
+      }
+    },
+    {
+      "scene": "slingshot-impact",
+      "passed": true,
+      "moved": 394,
+      "toppled": 3,
+      "crossings": 1,
+      "broken": 160
+    },
+    {
+      "scene": "slingshot-1000",
+      "passed": true,
+      "quiet": {
+        "bricks": 1000,
+        "bodies": 1113,
+        "finite": true,
+        "bad": 0,
+        "c": {
+          "pairs": 3130,
+          "contacts": 1976,
+          "overflow": 0,
+          "clashes": 0,
+          "colors": 8
+        },
+        "s": {
+          "sleeping": 0,
+          "wakeRequested": false
+        },
+        "errors": [],
+        "baselineMoved": 4
+      },
+      "frameMs": {
+        "median": 16.700000000000728,
+        "p95": 16.799999999999272
+      },
+      "stepsPerSecond": 119.86814504045567
+    },
+    {
+      "scene": "slingshot-5000",
+      "passed": true,
+      "quiet": {
+        "bricks": 5000,
+        "bodies": 5113,
+        "finite": true,
+        "bad": 0,
+        "c": {
+          "pairs": 15127,
+          "contacts": 8670,
+          "overflow": 0,
+          "clashes": 0,
+          "colors": 8
+        },
+        "s": {
+          "sleeping": 0,
+          "wakeRequested": false
+        },
+        "errors": [],
+        "baselineMoved": 12
+      },
+      "frameMs": {
+        "median": 16.700000000000728,
+        "p95": 16.899999999997817
+      },
+      "stepsPerSecond": 119.89209711259892
+    },
+    {
+      "scene": "slingshot-10000",
+      "passed": true,
+      "quiet": {
+        "bricks": 10000,
+        "bodies": 10221,
+        "finite": true,
+        "bad": 0,
+        "c": {
+          "pairs": 30358,
+          "contacts": 16588,
+          "overflow": 0,
+          "clashes": 0,
+          "colors": 9
+        },
+        "s": {
+          "sleeping": 0,
+          "wakeRequested": false
+        },
+        "errors": [],
+        "baselineMoved": 153
+      },
+      "frameMs": {
+        "median": 16.700000000000728,
+        "p95": 16.80000000000291
+      },
+      "stepsPerSecond": 119.88011988011988
+    }
+  ]
+}

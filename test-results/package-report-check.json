@@ -1,0 +1,27 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "width": 1440,
+      "scroll": 1425,
+      "rows": 30,
+      "laptop": true,
+      "links": [
+        "../",
+        "../tests/performance.html",
+        "solver-performance.html"
+      ]
+    },
+    {
+      "width": 390,
+      "scroll": 375,
+      "rows": 30,
+      "laptop": true,
+      "links": [
+        "../",
+        "../tests/performance.html",
+        "solver-performance.html"
+      ]
+    }
+  ]
+}

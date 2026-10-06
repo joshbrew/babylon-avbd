@@ -1,0 +1,29 @@
+{
+  "commit": "b3675dea83c78aba9644b059975f48285bf02a47",
+  "files": [
+    {
+      "path": "src/avbd2d/gpu/sim.ts",
+      "sha": "64240fd8ab80a9cd648aadac9cf147895f32d7d3"
+    },
+    {
+      "path": "src/avbd2d/gpu/solver.ts",
+      "sha": "d8f9bc3ee88126bce4286fc3c168e5837d5edd26"
+    },
+    {
+      "path": "src/avbd2d/gpu/wgsl-collision.ts",
+      "sha": "296a7540d59eb365ea3d1ed9313ca66319fba530"
+    },
+    {
+      "path": "src/avbd2d/gpu/wgsl-solve.ts",
+      "sha": "bd533802ebff1f98b52845c5976de3c9df4be139"
+    },
+    {
+      "path": "src/avbd3d/bench-scenes.ts",
+      "sha": "a4e3561d6c1a8481100efb89b420f42b9822ff8a"
+    },
+    {
+      "path": "src/avbd3d/visuals.ts",
+      "sha": "c16415d7586f785ece2f36531adf8dfde3c03370"
+    }
+  ]
+}

@@ -1,0 +1,1817 @@
+{
+  "adapter": {
+    "vendor": "nvidia",
+    "architecture": "lovelace",
+    "device": "",
+    "description": ""
+  },
+  "graphicsRenderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4070 Laptop GPU (0x00002860) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+  "completed": "2026-10-06T00:55:42.854Z",
+  "repeats": 3,
+  "runs": [
+    {
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "date": "2026-10-06T00:54:48.648Z",
+      "errors": [],
+      "readback": {
+        "bodies": 100000,
+        "mirrored": 5,
+        "fullBytes": 16000000,
+        "selectedBytes": 160,
+        "full": {
+          "mean": 11.400000001986822,
+          "median": 10.300000011920929,
+          "p95": 18.899999976158142,
+          "samples": 30
+        },
+        "selected": {
+          "mean": 3.869999998807907,
+          "median": 3.900000035762787,
+          "p95": 5.199999988079071,
+          "samples": 30
+        },
+        "identicalPoses": true,
+        "measurement": "Elapsed JavaScript time including command encoding, GPU gather/copy, mapping and allocation; excludes mesh updates and rendering. Alternating order; 10 warmups and 30 samples."
+      },
+      "nativeEdits": [
+        {
+          "dimension": 2,
+          "bodies": 100000,
+          "samples": 5,
+          "identicalSelectedRecords": true,
+          "commands": {
+            "cpuSubmitMs": 25.399999976158142,
+            "submitAndWaitMs": 26.099999964237213,
+            "uploadedBytes": 1200000,
+            "path": "packed-velocities"
+          },
+          "objects": {
+            "cpuSubmitMs": 12.600000023841858,
+            "submitAndWaitMs": 14.399999976158142,
+            "uploadedBytes": 1200000,
+            "path": "packed-velocities"
+          },
+          "packed": {
+            "cpuSubmitMs": 2.5,
+            "submitAndWaitMs": 5.300000011920929,
+            "uploadedBytes": 1200000
+          },
+          "timings": {
+            "commands": [
+              {
+                "cpuSubmitMs": 27.400000035762787,
+                "submitAndWaitMs": 30.69999998807907
+              },
+              {
+                "cpuSubmitMs": 25.399999976158142,
+                "submitAndWaitMs": 26.099999964237213
+              },
+              {
+                "cpuSubmitMs": 21.30000001192093,
+                "submitAndWaitMs": 24.100000023841858
+              },
+              {
+                "cpuSubmitMs": 19.299999952316284,
+                "submitAndWaitMs": 22.599999964237213
+              },
+              {
+                "cpuSubmitMs": 29.100000023841858,
+                "submitAndWaitMs": 31.600000023841858
+              }
+            ],
+            "objects": [
+              {
+                "cpuSubmitMs": 19.69999998807907,
+                "submitAndWaitMs": 20
+              },
+              {
+                "cpuSubmitMs": 13.800000011920929,
+                "submitAndWaitMs": 14
+              },
+              {
+                "cpuSubmitMs": 12,
+                "submitAndWaitMs": 14.399999976158142
+              },
+              {
+                "cpuSubmitMs": 9.299999952316284,
+                "submitAndWaitMs": 12.5
+              },
+              {
+                "cpuSubmitMs": 12.600000023841858,
+                "submitAndWaitMs": 17
+              }
+            ],
+            "packed": [
+              {
+                "cpuSubmitMs": 3,
+                "submitAndWaitMs": 6.199999988079071
+              },
+              {
+                "cpuSubmitMs": 1.199999988079071,
+                "submitAndWaitMs": 4.199999988079071
+              },
+              {
+                "cpuSubmitMs": 2.600000023841858,
+                "submitAndWaitMs": 5.300000011920929
+              },
+              {
+                "cpuSubmitMs": 2.5,
+                "submitAndWaitMs": 7
+              },
+              {
+                "cpuSubmitMs": 1.800000011920929,
+                "submitAndWaitMs": 5.100000023841858
+              }
+            ]
+          },
+          "motion": {
+            "objects": {
+              "cpuSubmitMs": 16.5,
+              "submitAndWaitMs": 19.900000035762787,
+              "uploadedBytes": 2000000
+            },
+            "commands": {
+              "cpuSubmitMs": 29.30000001192093,
+              "submitAndWaitMs": 32.30000001192093,
+              "uploadedBytes": 2000000
+            },
+            "packed": {
+              "cpuSubmitMs": 4.399999976158142,
+              "submitAndWaitMs": 7.899999976158142,
+              "uploadedBytes": 2000000
+            },
+            "identicalSelectedRecords": true,
+            "timings": {
+              "objects": [
+                {
+                  "cpuSubmitMs": 27,
+                  "submitAndWaitMs": 30.30000001192093
+                },
+                {
+                  "cpuSubmitMs": 16.5,
+                  "submitAndWaitMs": 19.900000035762787
+                },
+                {
+                  "cpuSubmitMs": 18.899999976158142,
+                  "submitAndWaitMs": 22.19999998807907
+                },
+                {
+                  "cpuSubmitMs": 16.100000023841858,
+                  "submitAndWaitMs": 19.80000001192093
+                },
+                {
+                  "cpuSubmitMs": 15.900000035762787,
+                  "submitAndWaitMs": 19.100000023841858
+                }
+              ],
+              "commands": [
+                {
+                  "cpuSubmitMs": 37.39999997615814,
+                  "submitAndWaitMs": 41.19999998807907
+                },
+                {
+                  "cpuSubmitMs": 34.69999998807907,
+                  "submitAndWaitMs": 37.30000001192093
+                },
+                {
+                  "cpuSubmitMs": 25.399999976158142,
+                  "submitAndWaitMs": 27.80000001192093
+                },
+                {
+                  "cpuSubmitMs": 29.30000001192093,
+                  "submitAndWaitMs": 32.30000001192093
+                },
+                {
+                  "cpuSubmitMs": 25.399999976158142,
+                  "submitAndWaitMs": 28.5
+                }
+              ],
+              "packed": [
+                {
+                  "cpuSubmitMs": 3.800000011920929,
+                  "submitAndWaitMs": 7
+                },
+                {
+                  "cpuSubmitMs": 4.399999976158142,
+                  "submitAndWaitMs": 7.899999976158142
+                },
+                {
+                  "cpuSubmitMs": 5.300000011920929,
+                  "submitAndWaitMs": 9.399999976158142
+                },
+                {
+                  "cpuSubmitMs": 5.5,
+                  "submitAndWaitMs": 9.5
+                },
+                {
+                  "cpuSubmitMs": 3.800000011920929,
+                  "submitAndWaitMs": 6.600000023841858
+                }
+              ]
+            }
+          }
+        },
+        {
+          "dimension": 3,
+          "bodies": 100000,
+          "samples": 5,
+          "identicalSelectedRecords": true,
+          "commands": {
+            "cpuSubmitMs": 39.80000001192093,
+            "submitAndWaitMs": 43.39999997615814,
+            "uploadedBytes": 1600000,
+            "path": "packed-velocities"
+          },
+          "objects": {
+            "cpuSubmitMs": 27,
+            "submitAndWaitMs": 29.900000035762787,
+            "uploadedBytes": 1600000,
+            "path": "packed-velocities"
+          },
+          "packed": {
+            "cpuSubmitMs": 3.699999988079071,
+            "submitAndWaitMs": 6.899999976158142,
+            "uploadedBytes": 1600000
+          },
+          "timings": {
+            "commands": [
+              {
+                "cpuSubmitMs": 50.90000003576279,
+                "submitAndWaitMs": 56.30000001192093
+              },
+              {
+                "cpuSubmitMs": 39.80000001192093,
+                "submitAndWaitMs": 43.39999997615814
+              },
+              {
+                "cpuSubmitMs": 39.69999998807907,
+                "submitAndWaitMs": 42.09999996423721
+              },
+              {
+                "cpuSubmitMs": 44.60000002384186,
+                "submitAndWaitMs": 47.80000001192093
+              },
+              {
+                "cpuSubmitMs": 33.200000047683716,
+                "submitAndWaitMs": 36.10000002384186
+              }
+            ],
+            "objects": [
+              {
+                "cpuSubmitMs": 27,
+                "submitAndWaitMs": 29.900000035762787
+              },
+              {
+                "cpuSubmitMs": 24.899999976158142,
+                "submitAndWaitMs": 27.5
+              },
+              {
+                "cpuSubmitMs": 20,
+                "submitAndWaitMs": 22.400000035762787
+              },
+              {
+                "cpuSubmitMs": 32.30000001192093,
+                "submitAndWaitMs": 34.89999997615814
+              },
+              {
+                "cpuSubmitMs": 31,
+                "submitAndWaitMs": 36
+              }
+            ],
+            "packed": [
+              {
+                "cpuSubmitMs": 6.100000023841858,
+                "submitAndWaitMs": 9.400000035762787
+              },
+              {
+                "cpuSubmitMs": 3.800000011920929,
+                "submitAndWaitMs": 10
+              },
+              {
+                "cpuSubmitMs": 2.5,
+                "submitAndWaitMs": 5.300000011920929
+              },
+              {
+                "cpuSubmitMs": 3.200000047683716,
+                "submitAndWaitMs": 6.700000047683716
+              },
+              {
+                "cpuSubmitMs": 3.699999988079071,
+                "submitAndWaitMs": 6.899999976158142
+              }
+            ]
+          },
+          "motion": {
+            "objects": {
+              "cpuSubmitMs": 42,
+              "submitAndWaitMs": 45.30000001192093,
+              "uploadedBytes": 3200000
+            },
+            "commands": {
+              "cpuSubmitMs": 61.30000001192093,
+              "submitAndWaitMs": 64.80000001192093,
+              "uploadedBytes": 3200000
+            },
+            "packed": {
+              "cpuSubmitMs": 10,
+              "submitAndWaitMs": 13.800000011920929,
+              "uploadedBytes": 3200000
+            },
+            "identicalSelectedRecords": true,
+            "timings": {
+              "objects": [
+                {
+                  "cpuSubmitMs": 43.10000002384186,
+                  "submitAndWaitMs": 46.39999997615814
+                },
+                {
+                  "cpuSubmitMs": 36.10000002384186,
+                  "submitAndWaitMs": 39
+                },
+                {
+                  "cpuSubmitMs": 42.60000002384186,
+                  "submitAndWaitMs": 46
+                },
+                {
+                  "cpuSubmitMs": 42,
+                  "submitAndWaitMs": 45.30000001192093
+                },
+                {
+                  "cpuSubmitMs": 39.5,
+                  "submitAndWaitMs": 43.19999998807907
+                }
+              ],
+              "commands": [
+                {
+                  "cpuSubmitMs": 55.90000003576279,
+                  "submitAndWaitMs": 59.69999998807907
+                },
+                {
+                  "cpuSubmitMs": 61.700000047683716,
+                  "submitAndWaitMs": 64.80000001192093
+                },
+                {
+                  "cpuSubmitMs": 62.5,
+                  "submitAndWaitMs": 66.30000001192093
+                },
+                {
+                  "cpuSubmitMs": 60.60000002384186,
+                  "submitAndWaitMs": 64
+                },
+                {
+                  "cpuSubmitMs": 61.30000001192093,
+                  "submitAndWaitMs": 65.80000001192093
+                }
+              ],
+              "packed": [
+                {
+                  "cpuSubmitMs": 7.699999988079071,
+                  "submitAndWaitMs": 10.599999964237213
+                },
+                {
+                  "cpuSubmitMs": 5,
+                  "submitAndWaitMs": 9.199999988079071
+                },
+                {
+                  "cpuSubmitMs": 19.900000035762787,
+                  "submitAndWaitMs": 24.19999998807907
+                },
+                {
+                  "cpuSubmitMs": 12.300000011920929,
+                  "submitAndWaitMs": 16
+                },
+                {
+                  "cpuSubmitMs": 10,
+                  "submitAndWaitMs": 13.800000011920929
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "nativeOverhead": [
+        {
+          "dimension": 2,
+          "bodies": 10000,
+          "samples": 3,
+          "properties": {
+            "perBodyFlush": {
+              "cpuSubmitMs": 17.299999952316284,
+              "submitAndWaitMs": 36,
+              "writeCalls": 30000,
+              "uploadedBytes": 160000
+            },
+            "oneFlush": {
+              "cpuSubmitMs": 10.5,
+              "submitAndWaitMs": 12.5,
+              "writeCalls": 3,
+              "uploadedBytes": 200000
+            },
+            "identicalSelectedRecords": true,
+            "timings": {
+              "perBodyFlush": [
+                {
+                  "cpuSubmitMs": 17.399999976158142,
+                  "submitAndWaitMs": 41.59999996423721
+                },
+                {
+                  "cpuSubmitMs": 17.299999952316284,
+                  "submitAndWaitMs": 31.5
+                },
+                {
+                  "cpuSubmitMs": 9.899999976158142,
+                  "submitAndWaitMs": 36
+                }
+              ],
+              "oneFlush": [
+                {
+                  "cpuSubmitMs": 10.5,
+                  "submitAndWaitMs": 12.5
+                },
+                {
+                  "cpuSubmitMs": 8.600000023841858,
+                  "submitAndWaitMs": 11.399999976158142
+                },
+                {
+                  "cpuSubmitMs": 10.899999976158142,
+                  "submitAndWaitMs": 14.699999988079071
+                }
+              ]
+            }
+          },
+          "queries": {
+            "count": 64,
+            "individualMs": 209.29999995231628,
+            "batchMs": 3.099999964237213,
+            "identicalHits": true,
+            "timings": {
+              "individual": [
+                197.5,
+                218.39999997615814,
+                209.29999995231628
+              ],
+              "batch": [
+                3.099999964237213,
+                3.900000035762787,
+                3
+              ]
+            }
+          }
+        },
+        {
+          "dimension": 3,
+          "bodies": 10000,
+          "samples": 3,
+          "properties": {
+            "perBodyFlush": {
+              "cpuSubmitMs": 11.199999988079071,
+              "submitAndWaitMs": 32.59999996423721,
+              "writeCalls": 30000,
+              "uploadedBytes": 160000
+            },
+            "oneFlush": {
+              "cpuSubmitMs": 7,
+              "submitAndWaitMs": 9.5,
+              "writeCalls": 3,
+              "uploadedBytes": 200000
+            },
+            "identicalSelectedRecords": true,
+            "timings": {
+              "perBodyFlush": [
+                {
+                  "cpuSubmitMs": 8.5,
+                  "submitAndWaitMs": 30.30000001192093
+                },
+                {
+                  "cpuSubmitMs": 12.699999988079071,
+                  "submitAndWaitMs": 46.5
+                },
+                {
+                  "cpuSubmitMs": 11.199999988079071,
+                  "submitAndWaitMs": 32.59999996423721
+                }
+              ],
+              "oneFlush": [
+                {
+                  "cpuSubmitMs": 7.899999976158142,
+                  "submitAndWaitMs": 12.5
+                },
+                {
+                  "cpuSubmitMs": 7,
+                  "submitAndWaitMs": 7.699999988079071
+                },
+                {
+                  "cpuSubmitMs": 6.5,
+                  "submitAndWaitMs": 9.5
+                }
+              ]
+            }
+          },
+          "queries": {
+            "count": 64,
+            "individualMs": 222,
+            "batchMs": 3.200000047683716,
+            "identicalHits": true,
+            "timings": {
+              "individual": [
+                190.19999998807907,
+                235.60000002384186,
+                222
+              ],
+              "batch": [
+                4.100000023841858,
+                3,
+                3.200000047683716
+              ]
+            }
+          }
+        }
+      ],
+      "sleeping": {
+        "bodies": 16385,
+        "iterations": 10,
+        "settledSteps": 420,
+        "awakeOverhead": {
+          "withoutSleeping": {
+            "mean": 11.218534400000003,
+            "median": 11.835392,
+            "p95": 16.697344,
+            "samples": 20
+          },
+          "withSleeping": {
+            "mean": 10.296524799999998,
+            "median": 10.211328,
+            "p95": 14.452736,
+            "samples": 20
+          },
+          "sleeping": 0
+        },
+        "awakePolicy": {
+          "mean": 7.604394666666668,
+          "median": 7.606272,
+          "p95": 9.923584,
+          "samples": 30
+        },
+        "sleepPolicy": {
+          "mean": 6.386005333333332,
+          "median": 6.662144,
+          "p95": 8.354816,
+          "samples": 30
+        },
+        "sleeping": 16384,
+        "wakeRequested": false,
+        "maxPositionDifference": 0.01896810531616211,
+        "finite": true,
+        "measurement": "GPU elapsed interval around the entire step, including sleep support/wake/quiet passes and queue gaps. Alternating order; 10 warmups and 30 samples. Resting workload, not a paper-comparison result."
+      },
+      "sleeping2D": {
+        "dimension": 2,
+        "bodies": 10001,
+        "iterations": 10,
+        "timeStep": 0.008333333333333333,
+        "settledSteps": 360,
+        "awakeOverhead": {
+          "withoutSleeping": {
+            "mean": 10.306713599999997,
+            "median": 11.235328,
+            "p95": 13.582336,
+            "samples": 20
+          },
+          "withSleeping": {
+            "mean": 10.3345152,
+            "median": 10.322944,
+            "p95": 13.328384,
+            "samples": 20
+          },
+          "sleeping": 0
+        },
+        "awakePolicy": {
+          "mean": 3.375616,
+          "median": 3.436544,
+          "p95": 4.298752,
+          "samples": 30
+        },
+        "sleepPolicy": {
+          "mean": 2.9385728,
+          "median": 2.93376,
+          "p95": 4.2496,
+          "samples": 30
+        },
+        "sleeping": 10000,
+        "wakeRequested": false,
+        "maxPositionDifference": 0.0013976097106933594,
+        "maxAngleDifference": 0.0000011607711201122584,
+        "finite": true,
+        "measurement": "Full GPU interval, including sleep, wake, support checks and queue gaps; drawing excluded. Alternating order; 10 warmups and 30 samples. Ten layers of 1,000 boxes; no paper comparison."
+      }
+    },
+    {
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "date": "2026-10-06T00:55:11.482Z",
+      "errors": [],
+      "readback": {
+        "bodies": 100000,
+        "mirrored": 5,
+        "fullBytes": 16000000,
+        "selectedBytes": 160,
+        "full": {
+          "mean": 15.419999996821085,
+          "median": 15,
+          "p95": 18.69999998807907,
+          "samples": 30
+        },
+        "selected": {
+          "mean": 3.7333333353201548,
+          "median": 3.899999976158142,
+          "p95": 5,
+          "samples": 30
+        },
+        "identicalPoses": true,
+        "measurement": "Elapsed JavaScript time including command encoding, GPU gather/copy, mapping and allocation; excludes mesh updates and rendering. Alternating order; 10 warmups and 30 samples."
+      },
+      "nativeEdits": [
+        {
+          "dimension": 2,
+          "bodies": 100000,
+          "samples": 5,
+          "identicalSelectedRecords": true,
+          "commands": {
+            "cpuSubmitMs": 34.299999952316284,
+            "submitAndWaitMs": 37.30000001192093,
+            "uploadedBytes": 1200000,
+            "path": "packed-velocities"
+          },
+          "objects": {
+            "cpuSubmitMs": 17.899999976158142,
+            "submitAndWaitMs": 20.69999998807907,
+            "uploadedBytes": 1200000,
+            "path": "packed-velocities"
+          },
+          "packed": {
+            "cpuSubmitMs": 2.800000011920929,
+            "submitAndWaitMs": 5.5,
+            "uploadedBytes": 1200000
+          },
+          "timings": {
+            "commands": [
+              {
+                "cpuSubmitMs": 52.39999997615814,
+                "submitAndWaitMs": 56.10000002384186
+              },
+              {
+                "cpuSubmitMs": 34.39999997615814,
+                "submitAndWaitMs": 37.30000001192093
+              },
+              {
+                "cpuSubmitMs": 33.10000002384186,
+                "submitAndWaitMs": 36.40000003576279
+              },
+              {
+                "cpuSubmitMs": 33,
+                "submitAndWaitMs": 36.89999997615814
+              },
+              {
+                "cpuSubmitMs": 34.299999952316284,
+                "submitAndWaitMs": 37.39999997615814
+              }
+            ],
+            "objects": [
+              {
+                "cpuSubmitMs": 29.30000001192093,
+                "submitAndWaitMs": 32.69999998807907
+              },
+              {
+                "cpuSubmitMs": 20.5,
+                "submitAndWaitMs": 24.100000023841858
+              },
+              {
+                "cpuSubmitMs": 16.899999976158142,
+                "submitAndWaitMs": 19.69999998807907
+              },
+              {
+                "cpuSubmitMs": 17.69999998807907,
+                "submitAndWaitMs": 20.69999998807907
+              },
+              {
+                "cpuSubmitMs": 17.899999976158142,
+                "submitAndWaitMs": 20.5
+              }
+            ],
+            "packed": [
+              {
+                "cpuSubmitMs": 2.800000011920929,
+                "submitAndWaitMs": 5.5
+              },
+              {
+                "cpuSubmitMs": 3.100000023841858,
+                "submitAndWaitMs": 6.900000035762787
+              },
+              {
+                "cpuSubmitMs": 3.699999988079071,
+                "submitAndWaitMs": 6.600000023841858
+              },
+              {
+                "cpuSubmitMs": 2.300000011920929,
+                "submitAndWaitMs": 4.800000011920929
+              },
+              {
+                "cpuSubmitMs": 2.100000023841858,
+                "submitAndWaitMs": 5.5
+              }
+            ]
+          },
+          "motion": {
+            "objects": {
+              "cpuSubmitMs": 31.19999998807907,
+              "submitAndWaitMs": 35.19999998807907,
+              "uploadedBytes": 2000000
+            },
+            "commands": {
+              "cpuSubmitMs": 54.5,
+              "submitAndWaitMs": 59.09999996423721,
+              "uploadedBytes": 2000000
+            },
+            "packed": {
+              "cpuSubmitMs": 3.699999988079071,
+              "submitAndWaitMs": 12.399999976158142,
+              "uploadedBytes": 2000000
+            },
+            "identicalSelectedRecords": true,
+            "timings": {
+              "objects": [
+                {
+                  "cpuSubmitMs": 34.30000001192093,
+                  "submitAndWaitMs": 40.59999996423721
+                },
+                {
+                  "cpuSubmitMs": 37.799999952316284,
+                  "submitAndWaitMs": 48.19999998807907
+                },
+                {
+                  "cpuSubmitMs": 30.899999976158142,
+                  "submitAndWaitMs": 33.89999997615814
+                },
+                {
+                  "cpuSubmitMs": 31.19999998807907,
+                  "submitAndWaitMs": 35.19999998807907
+                },
+                {
+                  "cpuSubmitMs": 27.099999964237213,
+                  "submitAndWaitMs": 30
+                }
+              ],
+              "commands": [
+                {
+                  "cpuSubmitMs": 63.80000001192093,
+                  "submitAndWaitMs": 66.40000003576279
+                },
+                {
+                  "cpuSubmitMs": 51.80000001192093,
+                  "submitAndWaitMs": 55
+                },
+                {
+                  "cpuSubmitMs": 53.40000003576279,
+                  "submitAndWaitMs": 57.10000002384186
+                },
+                {
+                  "cpuSubmitMs": 54.5,
+                  "submitAndWaitMs": 59.09999996423721
+                },
+                {
+                  "cpuSubmitMs": 71.80000001192093,
+                  "submitAndWaitMs": 76.19999998807907
+                }
+              ],
+              "packed": [
+                {
+                  "cpuSubmitMs": 3.699999988079071,
+                  "submitAndWaitMs": 19.69999998807907
+                },
+                {
+                  "cpuSubmitMs": 9.100000023841858,
+                  "submitAndWaitMs": 18.69999998807907
+                },
+                {
+                  "cpuSubmitMs": 8.800000011920929,
+                  "submitAndWaitMs": 12.399999976158142
+                },
+                {
+                  "cpuSubmitMs": 2.5,
+                  "submitAndWaitMs": 6
+                },
+                {
+                  "cpuSubmitMs": 3.399999976158142,
+                  "submitAndWaitMs": 6.399999976158142
+                }
+              ]
+            }
+          }
+        },
+        {
+          "dimension": 3,
+          "bodies": 100000,
+          "samples": 5,
+          "identicalSelectedRecords": true,
+          "commands": {
+            "cpuSubmitMs": 47.19999998807907,
+            "submitAndWaitMs": 50.60000002384186,
+            "uploadedBytes": 1600000,
+            "path": "packed-velocities"
+          },
+          "objects": {
+            "cpuSubmitMs": 29.5,
+            "submitAndWaitMs": 32.40000003576279,
+            "uploadedBytes": 1600000,
+            "path": "packed-velocities"
+          },
+          "packed": {
+            "cpuSubmitMs": 5.400000035762787,
+            "submitAndWaitMs": 12,
+            "uploadedBytes": 1600000
+          },
+          "timings": {
+            "commands": [
+              {
+                "cpuSubmitMs": 36.19999998807907,
+                "submitAndWaitMs": 41.69999998807907
+              },
+              {
+                "cpuSubmitMs": 47.19999998807907,
+                "submitAndWaitMs": 50.60000002384186
+              },
+              {
+                "cpuSubmitMs": 41.10000002384186,
+                "submitAndWaitMs": 43.69999998807907
+              },
+              {
+                "cpuSubmitMs": 64.89999997615814,
+                "submitAndWaitMs": 70.79999995231628
+              },
+              {
+                "cpuSubmitMs": 59.19999998807907,
+                "submitAndWaitMs": 63.60000002384186
+              }
+            ],
+            "objects": [
+              {
+                "cpuSubmitMs": 24.100000023841858,
+                "submitAndWaitMs": 26.900000035762787
+              },
+              {
+                "cpuSubmitMs": 35.19999998807907,
+                "submitAndWaitMs": 41.5
+              },
+              {
+                "cpuSubmitMs": 21.099999964237213,
+                "submitAndWaitMs": 28.5
+              },
+              {
+                "cpuSubmitMs": 35.10000002384186,
+                "submitAndWaitMs": 38.60000002384186
+              },
+              {
+                "cpuSubmitMs": 29.5,
+                "submitAndWaitMs": 32.40000003576279
+              }
+            ],
+            "packed": [
+              {
+                "cpuSubmitMs": 2.5,
+                "submitAndWaitMs": 5.800000011920929
+              },
+              {
+                "cpuSubmitMs": 4.300000011920929,
+                "submitAndWaitMs": 7.300000011920929
+              },
+              {
+                "cpuSubmitMs": 7.800000011920929,
+                "submitAndWaitMs": 13.600000023841858
+              },
+              {
+                "cpuSubmitMs": 5.400000035762787,
+                "submitAndWaitMs": 15.200000047683716
+              },
+              {
+                "cpuSubmitMs": 7.200000047683716,
+                "submitAndWaitMs": 12
+              }
+            ]
+          },
+          "motion": {
+            "objects": {
+              "cpuSubmitMs": 40.5,
+              "submitAndWaitMs": 43.5,
+              "uploadedBytes": 3200000
+            },
+            "commands": {
+              "cpuSubmitMs": 55.5,
+              "submitAndWaitMs": 59.5,
+              "uploadedBytes": 3200000
+            },
+            "packed": {
+              "cpuSubmitMs": 8.199999988079071,
+              "submitAndWaitMs": 11.5,
+              "uploadedBytes": 3200000
+            },
+            "identicalSelectedRecords": true,
+            "timings": {
+              "objects": [
+                {
+                  "cpuSubmitMs": 46.39999997615814,
+                  "submitAndWaitMs": 49.59999996423721
+                },
+                {
+                  "cpuSubmitMs": 36.5,
+                  "submitAndWaitMs": 42.19999998807907
+                },
+                {
+                  "cpuSubmitMs": 34.80000001192093,
+                  "submitAndWaitMs": 40.5
+                },
+                {
+                  "cpuSubmitMs": 46,
+                  "submitAndWaitMs": 49.10000002384186
+                },
+                {
+                  "cpuSubmitMs": 40.5,
+                  "submitAndWaitMs": 43.5
+                }
+              ],
+              "commands": [
+                {
+                  "cpuSubmitMs": 55.5,
+                  "submitAndWaitMs": 61.10000002384186
+                },
+                {
+                  "cpuSubmitMs": 55.89999997615814,
+                  "submitAndWaitMs": 59.5
+                },
+                {
+                  "cpuSubmitMs": 52.299999952316284,
+                  "submitAndWaitMs": 55.19999998807907
+                },
+                {
+                  "cpuSubmitMs": 60.10000002384186,
+                  "submitAndWaitMs": 64
+                },
+                {
+                  "cpuSubmitMs": 55,
+                  "submitAndWaitMs": 58.30000001192093
+                }
+              ],
+              "packed": [
+                {
+                  "cpuSubmitMs": 7.300000011920929,
+                  "submitAndWaitMs": 10.900000035762787
+                },
+                {
+                  "cpuSubmitMs": 5.100000023841858,
+                  "submitAndWaitMs": 8.699999988079071
+                },
+                {
+                  "cpuSubmitMs": 9.100000023841858,
+                  "submitAndWaitMs": 19.100000023841858
+                },
+                {
+                  "cpuSubmitMs": 12,
+                  "submitAndWaitMs": 18
+                },
+                {
+                  "cpuSubmitMs": 8.199999988079071,
+                  "submitAndWaitMs": 11.5
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "nativeOverhead": [
+        {
+          "dimension": 2,
+          "bodies": 10000,
+          "samples": 3,
+          "properties": {
+            "perBodyFlush": {
+              "cpuSubmitMs": 14,
+              "submitAndWaitMs": 36.799999952316284,
+              "writeCalls": 30000,
+              "uploadedBytes": 160000
+            },
+            "oneFlush": {
+              "cpuSubmitMs": 11.699999988079071,
+              "submitAndWaitMs": 14.5,
+              "writeCalls": 3,
+              "uploadedBytes": 200000
+            },
+            "identicalSelectedRecords": true,
+            "timings": {
+              "perBodyFlush": [
+                {
+                  "cpuSubmitMs": 11.899999976158142,
+                  "submitAndWaitMs": 36.799999952316284
+                },
+                {
+                  "cpuSubmitMs": 18.799999952316284,
+                  "submitAndWaitMs": 40.299999952316284
+                },
+                {
+                  "cpuSubmitMs": 14,
+                  "submitAndWaitMs": 35.69999998807907
+                }
+              ],
+              "oneFlush": [
+                {
+                  "cpuSubmitMs": 11.699999988079071,
+                  "submitAndWaitMs": 14.5
+                },
+                {
+                  "cpuSubmitMs": 12.600000023841858,
+                  "submitAndWaitMs": 15.699999988079071
+                },
+                {
+                  "cpuSubmitMs": 8.099999964237213,
+                  "submitAndWaitMs": 11.399999976158142
+                }
+              ]
+            }
+          },
+          "queries": {
+            "count": 64,
+            "individualMs": 235,
+            "batchMs": 3.600000023841858,
+            "identicalHits": true,
+            "timings": {
+              "individual": [
+                228.79999995231628,
+                235,
+                235.79999995231628
+              ],
+              "batch": [
+                3.600000023841858,
+                2.899999976158142,
+                5.199999988079071
+              ]
+            }
+          }
+        },
+        {
+          "dimension": 3,
+          "bodies": 10000,
+          "samples": 3,
+          "properties": {
+            "perBodyFlush": {
+              "cpuSubmitMs": 9,
+              "submitAndWaitMs": 31.600000023841858,
+              "writeCalls": 30000,
+              "uploadedBytes": 160000
+            },
+            "oneFlush": {
+              "cpuSubmitMs": 8.199999988079071,
+              "submitAndWaitMs": 11.199999988079071,
+              "writeCalls": 3,
+              "uploadedBytes": 200000
+            },
+            "identicalSelectedRecords": true,
+            "timings": {
+              "perBodyFlush": [
+                {
+                  "cpuSubmitMs": 9,
+                  "submitAndWaitMs": 28.30000001192093
+                },
+                {
+                  "cpuSubmitMs": 13.5,
+                  "submitAndWaitMs": 36.80000001192093
+                },
+                {
+                  "cpuSubmitMs": 8.900000035762787,
+                  "submitAndWaitMs": 31.600000023841858
+                }
+              ],
+              "oneFlush": [
+                {
+                  "cpuSubmitMs": 9.399999976158142,
+                  "submitAndWaitMs": 12.899999976158142
+                },
+                {
+                  "cpuSubmitMs": 5.299999952316284,
+                  "submitAndWaitMs": 8.299999952316284
+                },
+                {
+                  "cpuSubmitMs": 8.199999988079071,
+                  "submitAndWaitMs": 11.199999988079071
+                }
+              ]
+            }
+          },
+          "queries": {
+            "count": 64,
+            "individualMs": 266.89999997615814,
+            "batchMs": 3.199999988079071,
+            "identicalHits": true,
+            "timings": {
+              "individual": [
+                266.89999997615814,
+                275.10000002384186,
+                261.2999999523163
+              ],
+              "batch": [
+                3.100000023841858,
+                4.5,
+                3.199999988079071
+              ]
+            }
+          }
+        }
+      ],
+      "sleeping": {
+        "bodies": 16385,
+        "iterations": 10,
+        "settledSteps": 420,
+        "awakeOverhead": {
+          "withoutSleeping": {
+            "mean": 9.54112,
+            "median": 9.209856,
+            "p95": 17.49504,
+            "samples": 20
+          },
+          "withSleeping": {
+            "mean": 10.0288512,
+            "median": 10.304512,
+            "p95": 15.13984,
+            "samples": 20
+          },
+          "sleeping": 0
+        },
+        "awakePolicy": {
+          "mean": 7.492949333333334,
+          "median": 7.626752,
+          "p95": 9.624576,
+          "samples": 30
+        },
+        "sleepPolicy": {
+          "mean": 6.428398933333335,
+          "median": 7.012352,
+          "p95": 8.467456,
+          "samples": 30
+        },
+        "sleeping": 16384,
+        "wakeRequested": false,
+        "maxPositionDifference": 0.01896810531616211,
+        "finite": true,
+        "measurement": "GPU elapsed interval around the entire step, including sleep support/wake/quiet passes and queue gaps. Alternating order; 10 warmups and 30 samples. Resting workload, not a paper-comparison result."
+      },
+      "sleeping2D": {
+        "dimension": 2,
+        "bodies": 10001,
+        "iterations": 10,
+        "timeStep": 0.008333333333333333,
+        "settledSteps": 360,
+        "awakeOverhead": {
+          "withoutSleeping": {
+            "mean": 5.455257599999999,
+            "median": 5.29408,
+            "p95": 9.716736,
+            "samples": 20
+          },
+          "withSleeping": {
+            "mean": 5.2040192,
+            "median": 4.786176,
+            "p95": 9.58464,
+            "samples": 20
+          },
+          "sleeping": 0
+        },
+        "awakePolicy": {
+          "mean": 3.8425941333333338,
+          "median": 3.806208,
+          "p95": 4.69504,
+          "samples": 30
+        },
+        "sleepPolicy": {
+          "mean": 3.2595626666666666,
+          "median": 3.147776,
+          "p95": 4.202496,
+          "samples": 30
+        },
+        "sleeping": 10000,
+        "wakeRequested": false,
+        "maxPositionDifference": 0.0013976097106933594,
+        "maxAngleDifference": 0.0000011607711201122584,
+        "finite": true,
+        "measurement": "Full GPU interval, including sleep, wake, support checks and queue gaps; drawing excluded. Alternating order; 10 warmups and 30 samples. Ten layers of 1,000 boxes; no paper comparison."
+      }
+    },
+    {
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "date": "2026-10-06T00:55:27.603Z",
+      "errors": [],
+      "readback": {
+        "bodies": 100000,
+        "mirrored": 5,
+        "fullBytes": 16000000,
+        "selectedBytes": 160,
+        "full": {
+          "mean": 11.006666670242945,
+          "median": 10.399999976158142,
+          "p95": 15.300000011920929,
+          "samples": 30
+        },
+        "selected": {
+          "mean": 3.4399999996026356,
+          "median": 3.699999988079071,
+          "p95": 4.400000035762787,
+          "samples": 30
+        },
+        "identicalPoses": true,
+        "measurement": "Elapsed JavaScript time including command encoding, GPU gather/copy, mapping and allocation; excludes mesh updates and rendering. Alternating order; 10 warmups and 30 samples."
+      },
+      "nativeEdits": [
+        {
+          "dimension": 2,
+          "bodies": 100000,
+          "samples": 5,
+          "identicalSelectedRecords": true,
+          "commands": {
+            "cpuSubmitMs": 41.09999996423721,
+            "submitAndWaitMs": 42.19999998807907,
+            "uploadedBytes": 1200000,
+            "path": "packed-velocities"
+          },
+          "objects": {
+            "cpuSubmitMs": 18.19999998807907,
+            "submitAndWaitMs": 21.100000023841858,
+            "uploadedBytes": 1200000,
+            "path": "packed-velocities"
+          },
+          "packed": {
+            "cpuSubmitMs": 2.100000023841858,
+            "submitAndWaitMs": 5.400000035762787,
+            "uploadedBytes": 1200000
+          },
+          "timings": {
+            "commands": [
+              {
+                "cpuSubmitMs": 41.09999996423721,
+                "submitAndWaitMs": 44.09999996423721
+              },
+              {
+                "cpuSubmitMs": 33.19999998807907,
+                "submitAndWaitMs": 35.19999998807907
+              },
+              {
+                "cpuSubmitMs": 43.799999952316284,
+                "submitAndWaitMs": 47.69999998807907
+              },
+              {
+                "cpuSubmitMs": 32.10000002384186,
+                "submitAndWaitMs": 35.19999998807907
+              },
+              {
+                "cpuSubmitMs": 41.89999997615814,
+                "submitAndWaitMs": 42.19999998807907
+              }
+            ],
+            "objects": [
+              {
+                "cpuSubmitMs": 17.899999976158142,
+                "submitAndWaitMs": 20.69999998807907
+              },
+              {
+                "cpuSubmitMs": 18.69999998807907,
+                "submitAndWaitMs": 21.100000023841858
+              },
+              {
+                "cpuSubmitMs": 18.19999998807907,
+                "submitAndWaitMs": 21.5
+              },
+              {
+                "cpuSubmitMs": 17,
+                "submitAndWaitMs": 21
+              },
+              {
+                "cpuSubmitMs": 19.899999976158142,
+                "submitAndWaitMs": 22.80000001192093
+              }
+            ],
+            "packed": [
+              {
+                "cpuSubmitMs": 2.199999988079071,
+                "submitAndWaitMs": 5.400000035762787
+              },
+              {
+                "cpuSubmitMs": 2.899999976158142,
+                "submitAndWaitMs": 6.899999976158142
+              },
+              {
+                "cpuSubmitMs": 2.100000023841858,
+                "submitAndWaitMs": 5.300000011920929
+              },
+              {
+                "cpuSubmitMs": 2.100000023841858,
+                "submitAndWaitMs": 5.400000035762787
+              },
+              {
+                "cpuSubmitMs": 2,
+                "submitAndWaitMs": 4.900000035762787
+              }
+            ]
+          },
+          "motion": {
+            "objects": {
+              "cpuSubmitMs": 30.80000001192093,
+              "submitAndWaitMs": 35,
+              "uploadedBytes": 2000000
+            },
+            "commands": {
+              "cpuSubmitMs": 50.89999997615814,
+              "submitAndWaitMs": 54.5,
+              "uploadedBytes": 2000000
+            },
+            "packed": {
+              "cpuSubmitMs": 2.899999976158142,
+              "submitAndWaitMs": 6.300000011920929,
+              "uploadedBytes": 2000000
+            },
+            "identicalSelectedRecords": true,
+            "timings": {
+              "objects": [
+                {
+                  "cpuSubmitMs": 30.30000001192093,
+                  "submitAndWaitMs": 32.80000001192093
+                },
+                {
+                  "cpuSubmitMs": 27.30000001192093,
+                  "submitAndWaitMs": 29.600000023841858
+                },
+                {
+                  "cpuSubmitMs": 30.80000001192093,
+                  "submitAndWaitMs": 35
+                },
+                {
+                  "cpuSubmitMs": 32.69999998807907,
+                  "submitAndWaitMs": 36
+                },
+                {
+                  "cpuSubmitMs": 34.10000002384186,
+                  "submitAndWaitMs": 36.90000003576279
+                }
+              ],
+              "commands": [
+                {
+                  "cpuSubmitMs": 50.5,
+                  "submitAndWaitMs": 53
+                },
+                {
+                  "cpuSubmitMs": 50.60000002384186,
+                  "submitAndWaitMs": 54.5
+                },
+                {
+                  "cpuSubmitMs": 52.69999998807907,
+                  "submitAndWaitMs": 55.799999952316284
+                },
+                {
+                  "cpuSubmitMs": 50.89999997615814,
+                  "submitAndWaitMs": 54.19999998807907
+                },
+                {
+                  "cpuSubmitMs": 55.19999998807907,
+                  "submitAndWaitMs": 59.10000002384186
+                }
+              ],
+              "packed": [
+                {
+                  "cpuSubmitMs": 5.300000011920929,
+                  "submitAndWaitMs": 9.599999964237213
+                },
+                {
+                  "cpuSubmitMs": 2.899999976158142,
+                  "submitAndWaitMs": 6.300000011920929
+                },
+                {
+                  "cpuSubmitMs": 2.699999988079071,
+                  "submitAndWaitMs": 6.300000011920929
+                },
+                {
+                  "cpuSubmitMs": 4.100000023841858,
+                  "submitAndWaitMs": 8.5
+                },
+                {
+                  "cpuSubmitMs": 2.800000011920929,
+                  "submitAndWaitMs": 6.100000023841858
+                }
+              ]
+            }
+          }
+        },
+        {
+          "dimension": 3,
+          "bodies": 100000,
+          "samples": 5,
+          "identicalSelectedRecords": true,
+          "commands": {
+            "cpuSubmitMs": 39.30000001192093,
+            "submitAndWaitMs": 48.89999997615814,
+            "uploadedBytes": 1600000,
+            "path": "packed-velocities"
+          },
+          "objects": {
+            "cpuSubmitMs": 24.19999998807907,
+            "submitAndWaitMs": 24.69999998807907,
+            "uploadedBytes": 1600000,
+            "path": "packed-velocities"
+          },
+          "packed": {
+            "cpuSubmitMs": 3.099999964237213,
+            "submitAndWaitMs": 6.100000023841858,
+            "uploadedBytes": 1600000
+          },
+          "timings": {
+            "commands": [
+              {
+                "cpuSubmitMs": 39.30000001192093,
+                "submitAndWaitMs": 51.60000002384186
+              },
+              {
+                "cpuSubmitMs": 36.30000001192093,
+                "submitAndWaitMs": 37.40000003576279
+              },
+              {
+                "cpuSubmitMs": 48.90000003576279,
+                "submitAndWaitMs": 51.30000001192093
+              },
+              {
+                "cpuSubmitMs": 35.19999998807907,
+                "submitAndWaitMs": 38.80000001192093
+              },
+              {
+                "cpuSubmitMs": 48.69999998807907,
+                "submitAndWaitMs": 48.89999997615814
+              }
+            ],
+            "objects": [
+              {
+                "cpuSubmitMs": 22.5,
+                "submitAndWaitMs": 24.69999998807907
+              },
+              {
+                "cpuSubmitMs": 20,
+                "submitAndWaitMs": 23
+              },
+              {
+                "cpuSubmitMs": 27.30000001192093,
+                "submitAndWaitMs": 31.19999998807907
+              },
+              {
+                "cpuSubmitMs": 30.100000023841858,
+                "submitAndWaitMs": 34
+              },
+              {
+                "cpuSubmitMs": 24.19999998807907,
+                "submitAndWaitMs": 24.600000023841858
+              }
+            ],
+            "packed": [
+              {
+                "cpuSubmitMs": 2.5,
+                "submitAndWaitMs": 5.900000035762787
+              },
+              {
+                "cpuSubmitMs": 2.5,
+                "submitAndWaitMs": 6.100000023841858
+              },
+              {
+                "cpuSubmitMs": 3.099999964237213,
+                "submitAndWaitMs": 6.099999964237213
+              },
+              {
+                "cpuSubmitMs": 4,
+                "submitAndWaitMs": 7
+              },
+              {
+                "cpuSubmitMs": 4.100000023841858,
+                "submitAndWaitMs": 7.400000035762787
+              }
+            ]
+          },
+          "motion": {
+            "objects": {
+              "cpuSubmitMs": 43.09999996423721,
+              "submitAndWaitMs": 46.299999952316284,
+              "uploadedBytes": 3200000
+            },
+            "commands": {
+              "cpuSubmitMs": 68.29999995231628,
+              "submitAndWaitMs": 68.5,
+              "uploadedBytes": 3200000
+            },
+            "packed": {
+              "cpuSubmitMs": 4.300000011920929,
+              "submitAndWaitMs": 8.800000011920929,
+              "uploadedBytes": 3200000
+            },
+            "identicalSelectedRecords": true,
+            "timings": {
+              "objects": [
+                {
+                  "cpuSubmitMs": 43.09999996423721,
+                  "submitAndWaitMs": 46.299999952316284
+                },
+                {
+                  "cpuSubmitMs": 52.59999996423721,
+                  "submitAndWaitMs": 56
+                },
+                {
+                  "cpuSubmitMs": 38.89999997615814,
+                  "submitAndWaitMs": 42.09999996423721
+                },
+                {
+                  "cpuSubmitMs": 37.69999998807907,
+                  "submitAndWaitMs": 40.19999998807907
+                },
+                {
+                  "cpuSubmitMs": 48.69999998807907,
+                  "submitAndWaitMs": 49
+                }
+              ],
+              "commands": [
+                {
+                  "cpuSubmitMs": 73.30000001192093,
+                  "submitAndWaitMs": 73.5
+                },
+                {
+                  "cpuSubmitMs": 68.29999995231628,
+                  "submitAndWaitMs": 68.5
+                },
+                {
+                  "cpuSubmitMs": 70.19999998807907,
+                  "submitAndWaitMs": 73.69999998807907
+                },
+                {
+                  "cpuSubmitMs": 52,
+                  "submitAndWaitMs": 55.30000001192093
+                },
+                {
+                  "cpuSubmitMs": 62.90000003576279,
+                  "submitAndWaitMs": 67.10000002384186
+                }
+              ],
+              "packed": [
+                {
+                  "cpuSubmitMs": 4.300000011920929,
+                  "submitAndWaitMs": 8.800000011920929
+                },
+                {
+                  "cpuSubmitMs": 4.300000011920929,
+                  "submitAndWaitMs": 7.899999976158142
+                },
+                {
+                  "cpuSubmitMs": 4.199999988079071,
+                  "submitAndWaitMs": 7.899999976158142
+                },
+                {
+                  "cpuSubmitMs": 5.800000011920929,
+                  "submitAndWaitMs": 9.300000011920929
+                },
+                {
+                  "cpuSubmitMs": 6.800000011920929,
+                  "submitAndWaitMs": 10.5
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "nativeOverhead": [
+        {
+          "dimension": 2,
+          "bodies": 10000,
+          "samples": 3,
+          "properties": {
+            "perBodyFlush": {
+              "cpuSubmitMs": 14.900000035762787,
+              "submitAndWaitMs": 41.10000002384186,
+              "writeCalls": 30000,
+              "uploadedBytes": 160000
+            },
+            "oneFlush": {
+              "cpuSubmitMs": 7.799999952316284,
+              "submitAndWaitMs": 11.399999976158142,
+              "writeCalls": 3,
+              "uploadedBytes": 200000
+            },
+            "identicalSelectedRecords": true,
+            "timings": {
+              "perBodyFlush": [
+                {
+                  "cpuSubmitMs": 11.800000011920929,
+                  "submitAndWaitMs": 41.10000002384186
+                },
+                {
+                  "cpuSubmitMs": 14.900000035762787,
+                  "submitAndWaitMs": 39.80000001192093
+                },
+                {
+                  "cpuSubmitMs": 18.5,
+                  "submitAndWaitMs": 41.39999997615814
+                }
+              ],
+              "oneFlush": [
+                {
+                  "cpuSubmitMs": 11.899999976158142,
+                  "submitAndWaitMs": 14.600000023841858
+                },
+                {
+                  "cpuSubmitMs": 7.799999952316284,
+                  "submitAndWaitMs": 11.399999976158142
+                },
+                {
+                  "cpuSubmitMs": 6.400000035762787,
+                  "submitAndWaitMs": 10
+                }
+              ]
+            }
+          },
+          "queries": {
+            "count": 64,
+            "individualMs": 212.19999998807907,
+            "batchMs": 3.100000023841858,
+            "identicalHits": true,
+            "timings": {
+              "individual": [
+                212.19999998807907,
+                215,
+                207.30000001192093
+              ],
+              "batch": [
+                3.100000023841858,
+                3.5,
+                3
+              ]
+            }
+          }
+        },
+        {
+          "dimension": 3,
+          "bodies": 10000,
+          "samples": 3,
+          "properties": {
+            "perBodyFlush": {
+              "cpuSubmitMs": 12.300000011920929,
+              "submitAndWaitMs": 35.80000001192093,
+              "writeCalls": 30000,
+              "uploadedBytes": 160000
+            },
+            "oneFlush": {
+              "cpuSubmitMs": 4.300000011920929,
+              "submitAndWaitMs": 8.5,
+              "writeCalls": 3,
+              "uploadedBytes": 200000
+            },
+            "identicalSelectedRecords": true,
+            "timings": {
+              "perBodyFlush": [
+                {
+                  "cpuSubmitMs": 12.300000011920929,
+                  "submitAndWaitMs": 28.80000001192093
+                },
+                {
+                  "cpuSubmitMs": 12.300000011920929,
+                  "submitAndWaitMs": 35.80000001192093
+                },
+                {
+                  "cpuSubmitMs": 11.799999952316284,
+                  "submitAndWaitMs": 43.19999998807907
+                }
+              ],
+              "oneFlush": [
+                {
+                  "cpuSubmitMs": 4.100000023841858,
+                  "submitAndWaitMs": 7.400000035762787
+                },
+                {
+                  "cpuSubmitMs": 4.300000011920929,
+                  "submitAndWaitMs": 8.5
+                },
+                {
+                  "cpuSubmitMs": 8.399999976158142,
+                  "submitAndWaitMs": 12.5
+                }
+              ]
+            }
+          },
+          "queries": {
+            "count": 64,
+            "individualMs": 207.5,
+            "batchMs": 3.300000011920929,
+            "identicalHits": true,
+            "timings": {
+              "individual": [
+                207,
+                207.5,
+                211
+              ],
+              "batch": [
+                3.300000011920929,
+                4.5,
+                2.699999988079071
+              ]
+            }
+          }
+        }
+      ],
+      "sleeping": {
+        "bodies": 16385,
+        "iterations": 10,
+        "settledSteps": 420,
+        "awakeOverhead": {
+          "withoutSleeping": {
+            "mean": 11.619430400000002,
+            "median": 10.7008,
+            "p95": 22.752256,
+            "samples": 20
+          },
+          "withSleeping": {
+            "mean": 10.765772800000002,
+            "median": 10.579968,
+            "p95": 19.243008,
+            "samples": 20
+          },
+          "sleeping": 0
+        },
+        "awakePolicy": {
+          "mean": 6.3620437333333335,
+          "median": 6.177792,
+          "p95": 8.787968,
+          "samples": 30
+        },
+        "sleepPolicy": {
+          "mean": 5.530111999999999,
+          "median": 5.300224,
+          "p95": 8.403968,
+          "samples": 30
+        },
+        "sleeping": 16384,
+        "wakeRequested": false,
+        "maxPositionDifference": 0.01896810531616211,
+        "finite": true,
+        "measurement": "GPU elapsed interval around the entire step, including sleep support/wake/quiet passes and queue gaps. Alternating order; 10 warmups and 30 samples. Resting workload, not a paper-comparison result."
+      },
+      "sleeping2D": {
+        "dimension": 2,
+        "bodies": 10001,
+        "iterations": 10,
+        "timeStep": 0.008333333333333333,
+        "settledSteps": 360,
+        "awakeOverhead": {
+          "withoutSleeping": {
+            "mean": 4.4652544,
+            "median": 4.356096,
+            "p95": 6.27712,
+            "samples": 20
+          },
+          "withSleeping": {
+            "mean": 4.1723392,
+            "median": 3.913728,
+            "p95": 7.08096,
+            "samples": 20
+          },
+          "sleeping": 0
+        },
+        "awakePolicy": {
+          "mean": 3.320183466666667,
+          "median": 3.484672,
+          "p95": 4.818944,
+          "samples": 30
+        },
+        "sleepPolicy": {
+          "mean": 2.8499967999999996,
+          "median": 3.060736,
+          "p95": 3.928064,
+          "samples": 30
+        },
+        "sleeping": 10000,
+        "wakeRequested": false,
+        "maxPositionDifference": 0.0013976097106933594,
+        "maxAngleDifference": 0.0000011607711201122584,
+        "finite": true,
+        "measurement": "Full GPU interval, including sleep, wake, support checks and queue gaps; drawing excluded. Alternating order; 10 warmups and 30 samples. Ten layers of 1,000 boxes; no paper comparison."
+      }
+    }
+  ],
+  "hardwareLabel": "NVIDIA GeForce RTX 4070 Laptop GPU"
+}

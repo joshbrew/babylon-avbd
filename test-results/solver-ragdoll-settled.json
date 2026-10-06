@@ -1,0 +1,3158 @@
+{
+  "date": "2026-10-05T19:38:14.791Z",
+  "comparisons": [
+    {
+      "scene": "showcase-ragdolls-on-cloth-24k",
+      "variants": [
+        "baseline",
+        "hploc"
+      ],
+      "warmup": 1440,
+      "count": 60,
+      "results": [
+        {
+          "scene": "showcase-ragdolls-on-cloth-24k",
+          "variant": "baseline",
+          "bodyCount": 23617,
+          "jointCount": 31200,
+          "params": {
+            "dt": 0.004166666666666667,
+            "gravity": -10,
+            "iterations": 5,
+            "betaLin": 10000,
+            "betaAng": 100,
+            "alpha": 0.99,
+            "gamma": 0.999,
+            "matchNearest": true,
+            "faceBias": true,
+            "reuseContacts": true,
+            "startAtRest": true,
+            "massPenalty": true,
+            "windSpeed": 0,
+            "windAngle": 0,
+            "windGust": 0.4,
+            "windPressure": 0.72,
+            "up": [
+              0,
+              0,
+              1
+            ]
+          },
+          "verifiedSteps": 1500,
+          "counters": {
+            "pairs": 35612,
+            "contacts": 43492,
+            "manifolds": 26824,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 9
+          },
+          "peakContacts": 59059,
+          "quaternionError": 1.3410393873147797e-7,
+          "finite": true,
+          "rendering": false,
+          "sleeping": false,
+          "samples": [
+            {
+              "step": 1441,
+              "total": 5.818368,
+              "collision": 2.045952,
+              "adjacency": 0.111616,
+              "coloring": 0.126976,
+              "solve": 3.5328,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 48875
+            },
+            {
+              "step": 1442,
+              "total": 3.075072,
+              "collision": 1.470464,
+              "adjacency": 0.113664,
+              "coloring": 0.128,
+              "solve": 1.36192,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 48633
+            },
+            {
+              "step": 1443,
+              "total": 3.058688,
+              "collision": 1.465344,
+              "adjacency": 0.113664,
+              "coloring": 0.126976,
+              "solve": 1.352704,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 48381
+            },
+            {
+              "step": 1444,
+              "total": 3.057664,
+              "collision": 1.483776,
+              "adjacency": 0.111616,
+              "coloring": 0.126976,
+              "solve": 1.335296,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 48200
+            },
+            {
+              "step": 1445,
+              "total": 3.060736,
+              "collision": 1.47968,
+              "adjacency": 0.113664,
+              "coloring": 0.125952,
+              "solve": 1.340416,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 47979
+            },
+            {
+              "step": 1446,
+              "total": 4.760576,
+              "collision": 2.071552,
+              "adjacency": 0.114688,
+              "coloring": 0.130048,
+              "solve": 2.444288,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 47764
+            },
+            {
+              "step": 1447,
+              "total": 4.816896,
+              "collision": 1.460224,
+              "adjacency": 0.10752,
+              "coloring": 0.123904,
+              "solve": 3.125248,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 47541
+            },
+            {
+              "step": 1448,
+              "total": 7.432192,
+              "collision": 2.66752,
+              "adjacency": 0.119808,
+              "coloring": 0.128,
+              "solve": 4.516864,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 47392
+            },
+            {
+              "step": 1449,
+              "total": 3.040256,
+              "collision": 1.455104,
+              "adjacency": 0.106496,
+              "coloring": 0.126976,
+              "solve": 1.35168,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 47194
+            },
+            {
+              "step": 1450,
+              "total": 3.744768,
+              "collision": 2.08896,
+              "adjacency": 0.115712,
+              "coloring": 0.125952,
+              "solve": 1.414144,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 47006
+            },
+            {
+              "step": 1451,
+              "total": 3.084288,
+              "collision": 1.482752,
+              "adjacency": 0.109568,
+              "coloring": 0.126976,
+              "solve": 1.364992,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 46808
+            },
+            {
+              "step": 1452,
+              "total": 3.078144,
+              "collision": 1.487872,
+              "adjacency": 0.11264,
+              "coloring": 0.124928,
+              "solve": 1.352704,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 46623
+            },
+            {
+              "step": 1453,
+              "total": 4.187136,
+              "collision": 2.043904,
+              "adjacency": 0.116736,
+              "coloring": 0.136192,
+              "solve": 1.890304,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 46427
+            },
+            {
+              "step": 1454,
+              "total": 3.060736,
+              "collision": 1.481728,
+              "adjacency": 0.105472,
+              "coloring": 0.131072,
+              "solve": 1.342464,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 46286
+            },
+            {
+              "step": 1455,
+              "total": 3.074048,
+              "collision": 1.471488,
+              "adjacency": 0.110592,
+              "coloring": 0.129024,
+              "solve": 1.362944,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 46160
+            },
+            {
+              "step": 1456,
+              "total": 3.053568,
+              "collision": 1.483776,
+              "adjacency": 0.105472,
+              "coloring": 0.126976,
+              "solve": 1.337344,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 46010
+            },
+            {
+              "step": 1457,
+              "total": 2.999296,
+              "collision": 1.442816,
+              "adjacency": 0.106496,
+              "coloring": 0.118784,
+              "solve": 1.330176,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 45866
+            },
+            {
+              "step": 1458,
+              "total": 3.072,
+              "collision": 1.508352,
+              "adjacency": 0.11264,
+              "coloring": 0.121856,
+              "solve": 1.329152,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 45722
+            },
+            {
+              "step": 1459,
+              "total": 3.934208,
+              "collision": 2.134016,
+              "adjacency": 0.11776,
+              "coloring": 0.283648,
+              "solve": 1.39776,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 45614
+            },
+            {
+              "step": 1460,
+              "total": 6.371328,
+              "collision": 2.065408,
+              "adjacency": 0.110592,
+              "coloring": 0.121856,
+              "solve": 4.073472,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 45514
+            },
+            {
+              "step": 1461,
+              "total": 4.860928,
+              "collision": 1.467392,
+              "adjacency": 0.106496,
+              "coloring": 0.121856,
+              "solve": 3.165184,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 45392
+            },
+            {
+              "step": 1462,
+              "total": 6.578176,
+              "collision": 2.661376,
+              "adjacency": 0.115712,
+              "coloring": 0.124928,
+              "solve": 3.675136,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 45312
+            },
+            {
+              "step": 1463,
+              "total": 3.8656,
+              "collision": 1.534976,
+              "adjacency": 0.110592,
+              "coloring": 0.128,
+              "solve": 2.092032,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 45229
+            },
+            {
+              "step": 1464,
+              "total": 5.506048,
+              "collision": 1.537024,
+              "adjacency": 0.108544,
+              "coloring": 0.120832,
+              "solve": 3.739648,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 45183
+            },
+            {
+              "step": 1465,
+              "total": 5.562368,
+              "collision": 1.54624,
+              "adjacency": 0.109568,
+              "coloring": 0.12288,
+              "solve": 3.78368,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 45114
+            },
+            {
+              "step": 1466,
+              "total": 6.47168,
+              "collision": 2.748416,
+              "adjacency": 0.123904,
+              "coloring": 0.126976,
+              "solve": 3.472384,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 45097
+            },
+            {
+              "step": 1467,
+              "total": 5.07904,
+              "collision": 1.558528,
+              "adjacency": 0.110592,
+              "coloring": 0.123904,
+              "solve": 3.286016,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 45060
+            },
+            {
+              "step": 1468,
+              "total": 6.95296,
+              "collision": 2.106368,
+              "adjacency": 0.116736,
+              "coloring": 0.120832,
+              "solve": 4.609024,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 45000
+            },
+            {
+              "step": 1469,
+              "total": 6.346752,
+              "collision": 2.656256,
+              "adjacency": 0.113664,
+              "coloring": 0.124928,
+              "solve": 3.451904,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 44939
+            },
+            {
+              "step": 1470,
+              "total": 5.718016,
+              "collision": 2.09408,
+              "adjacency": 0.115712,
+              "coloring": 0.125952,
+              "solve": 3.382272,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 44866
+            },
+            {
+              "step": 1471,
+              "total": 4.923392,
+              "collision": 2.410496,
+              "adjacency": 0.113664,
+              "coloring": 0.130048,
+              "solve": 2.269184,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 44796
+            },
+            {
+              "step": 1472,
+              "total": 3.090432,
+              "collision": 1.533952,
+              "adjacency": 0.106496,
+              "coloring": 0.124928,
+              "solve": 1.325056,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 44754
+            },
+            {
+              "step": 1473,
+              "total": 4.759552,
+              "collision": 2.091008,
+              "adjacency": 0.11776,
+              "coloring": 0.123904,
+              "solve": 2.42688,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 44677
+            },
+            {
+              "step": 1474,
+              "total": 3.14368,
+              "collision": 1.534976,
+              "adjacency": 0.109568,
+              "coloring": 0.125952,
+              "solve": 1.373184,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 44586
+            },
+            {
+              "step": 1475,
+              "total": 3.975168,
+              "collision": 2.16576,
+              "adjacency": 0.121856,
+              "coloring": 0.288768,
+              "solve": 1.398784,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 44531
+            },
+            {
+              "step": 1476,
+              "total": 3.126272,
+              "collision": 1.558528,
+              "adjacency": 0.109568,
+              "coloring": 0.12288,
+              "solve": 1.335296,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 44457
+            },
+            {
+              "step": 1477,
+              "total": 4.786176,
+              "collision": 2.113536,
+              "adjacency": 0.119808,
+              "coloring": 0.135168,
+              "solve": 2.417664,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 44394
+            },
+            {
+              "step": 1478,
+              "total": 3.110912,
+              "collision": 1.539072,
+              "adjacency": 0.11264,
+              "coloring": 0.124928,
+              "solve": 1.334272,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 44351
+            },
+            {
+              "step": 1479,
+              "total": 7.684096,
+              "collision": 2.81088,
+              "adjacency": 0.113664,
+              "coloring": 0.125952,
+              "solve": 4.6336,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 44296
+            },
+            {
+              "step": 1480,
+              "total": 3.142656,
+              "collision": 1.549312,
+              "adjacency": 0.109568,
+              "coloring": 0.135168,
+              "solve": 1.348608,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 44257
+            },
+            {
+              "step": 1481,
+              "total": 3.119104,
+              "collision": 1.54112,
+              "adjacency": 0.11776,
+              "coloring": 0.124928,
+              "solve": 1.335296,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 44218
+            },
+            {
+              "step": 1482,
+              "total": 3.115008,
+              "collision": 1.555456,
+              "adjacency": 0.108544,
+              "coloring": 0.12288,
+              "solve": 1.328128,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 44175
+            },
+            {
+              "step": 1483,
+              "total": 3.515392,
+              "collision": 1.846272,
+              "adjacency": 0.12288,
+              "coloring": 0.139264,
+              "solve": 1.406976,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 44101
+            },
+            {
+              "step": 1484,
+              "total": 4.084736,
+              "collision": 2.21696,
+              "adjacency": 0.116736,
+              "coloring": 0.129024,
+              "solve": 1.622016,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 44072
+            },
+            {
+              "step": 1485,
+              "total": 7.04,
+              "collision": 2.172928,
+              "adjacency": 0.113664,
+              "coloring": 0.125952,
+              "solve": 4.627456,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 44034
+            },
+            {
+              "step": 1486,
+              "total": 4.620288,
+              "collision": 1.591296,
+              "adjacency": 0.11264,
+              "coloring": 0.123904,
+              "solve": 2.791424,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 43984
+            },
+            {
+              "step": 1487,
+              "total": 3.091456,
+              "collision": 1.54624,
+              "adjacency": 0.105472,
+              "coloring": 0.12288,
+              "solve": 1.316864,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 43948
+            },
+            {
+              "step": 1488,
+              "total": 6.995968,
+              "collision": 2.771968,
+              "adjacency": 0.116736,
+              "coloring": 0.128,
+              "solve": 3.979264,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 43878
+            },
+            {
+              "step": 1489,
+              "total": 7.6032,
+              "collision": 2.83136,
+              "adjacency": 0.11776,
+              "coloring": 0.137216,
+              "solve": 4.516864,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 43815
+            },
+            {
+              "step": 1490,
+              "total": 4.57216,
+              "collision": 2.128896,
+              "adjacency": 0.115712,
+              "coloring": 0.125952,
+              "solve": 2.2016,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 43753
+            },
+            {
+              "step": 1491,
+              "total": 6.496256,
+              "collision": 2.123776,
+              "adjacency": 0.114688,
+              "coloring": 0.125952,
+              "solve": 4.13184,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 43702
+            },
+            {
+              "step": 1492,
+              "total": 3.10784,
+              "collision": 1.536,
+              "adjacency": 0.116736,
+              "coloring": 0.124928,
+              "solve": 1.330176,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 43683
+            },
+            {
+              "step": 1493,
+              "total": 3.125248,
+              "collision": 1.554432,
+              "adjacency": 0.11264,
+              "coloring": 0.131072,
+              "solve": 1.327104,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 43663
+            },
+            {
+              "step": 1494,
+              "total": 7.537664,
+              "collision": 2.786304,
+              "adjacency": 0.121856,
+              "coloring": 0.12288,
+              "solve": 4.506624,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 43610
+            },
+            {
+              "step": 1495,
+              "total": 6.436864,
+              "collision": 2.64192,
+              "adjacency": 0.114688,
+              "coloring": 0.128,
+              "solve": 3.552256,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 43607
+            },
+            {
+              "step": 1496,
+              "total": 7.186432,
+              "collision": 2.768896,
+              "adjacency": 0.115712,
+              "coloring": 0.121856,
+              "solve": 4.179968,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 43592
+            },
+            {
+              "step": 1497,
+              "total": 3.075072,
+              "collision": 1.517568,
+              "adjacency": 0.115712,
+              "coloring": 0.124928,
+              "solve": 1.316864,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 43569
+            },
+            {
+              "step": 1498,
+              "total": 6.19008,
+              "collision": 1.547264,
+              "adjacency": 1.353728,
+              "coloring": 0.147456,
+              "solve": 3.141632,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 43540
+            },
+            {
+              "step": 1499,
+              "total": 3.057664,
+              "collision": 1.498112,
+              "adjacency": 0.115712,
+              "coloring": 0.123904,
+              "solve": 1.318912,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 43490
+            },
+            {
+              "step": 1500,
+              "total": 3.026944,
+              "collision": 1.471488,
+              "adjacency": 0.105472,
+              "coloring": 0.121856,
+              "solve": 1.327104,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 43492
+            }
+          ],
+          "startup": {
+            "total": 2.137088,
+            "collision": 0.765952,
+            "adjacency": 0.054272,
+            "coloring": 0.221184,
+            "solve": 1.09568,
+            "broadphase": "grid",
+            "bvhRebuilt": false
+          },
+          "broadphase": "grid",
+          "bvh": null,
+          "detailed": false,
+          "scheduling": {
+            "initial": {
+              "colors": 17,
+              "rounds": 16,
+              "minimumColors": 16,
+              "minimumRounds": 16,
+              "primalLanes": [
+                2147483648,
+                32768,
+                4096
+              ]
+            },
+            "final": {
+              "colors": 16,
+              "rounds": 16,
+              "primalLanes": [
+                2147483648,
+                32768,
+                4096
+              ]
+            }
+          },
+          "details": null,
+          "summary": {
+            "total": {
+              "n": 60,
+              "mean": 4.557687466666666,
+              "median": 4.084736,
+              "p95": 7.537664
+            },
+            "collision": {
+              "n": 60,
+              "mean": 1.885952,
+              "median": 1.558528,
+              "p95": 2.786304
+            },
+            "adjacency": {
+              "n": 60,
+              "mean": 0.13395626666666668,
+              "median": 0.113664,
+              "p95": 0.12288
+            },
+            "coloring": {
+              "n": 60,
+              "mean": 0.13204480000000002,
+              "median": 0.125952,
+              "p95": 0.147456
+            },
+            "solve": {
+              "n": 60,
+              "mean": 2.4055808,
+              "median": 1.890304,
+              "p95": 4.609024
+            }
+          }
+        },
+        {
+          "scene": "showcase-ragdolls-on-cloth-24k",
+          "variant": "hploc",
+          "bodyCount": 23617,
+          "jointCount": 31200,
+          "params": {
+            "dt": 0.004166666666666667,
+            "gravity": -10,
+            "iterations": 5,
+            "betaLin": 10000,
+            "betaAng": 100,
+            "alpha": 0.99,
+            "gamma": 0.999,
+            "matchNearest": true,
+            "faceBias": true,
+            "reuseContacts": true,
+            "startAtRest": true,
+            "massPenalty": true,
+            "windSpeed": 0,
+            "windAngle": 0,
+            "windGust": 0.4,
+            "windPressure": 0.72,
+            "up": [
+              0,
+              0,
+              1
+            ]
+          },
+          "verifiedSteps": 1500,
+          "counters": {
+            "pairs": 35612,
+            "contacts": 43492,
+            "manifolds": 26824,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 9
+          },
+          "peakContacts": 59059,
+          "quaternionError": 1.3410393873147797e-7,
+          "finite": true,
+          "rendering": false,
+          "sleeping": false,
+          "samples": [
+            {
+              "step": 1441,
+              "total": 4.740096,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.771072,
+              "adjacency": 0.693248,
+              "coloring": 0.126976,
+              "solve": 3.147776,
+              "contacts": 48875
+            },
+            {
+              "step": 1442,
+              "total": 3.560448,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.789504,
+              "adjacency": 0.124928,
+              "coloring": 0.129024,
+              "solve": 2.516992,
+              "contacts": 48633
+            },
+            {
+              "step": 1443,
+              "total": 3.408896,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 1.396736,
+              "adjacency": 0.128,
+              "coloring": 0.418816,
+              "solve": 1.465344,
+              "contacts": 48381
+            },
+            {
+              "step": 1444,
+              "total": 5.425152,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.758784,
+              "adjacency": 1.352704,
+              "coloring": 0.134144,
+              "solve": 3.17952,
+              "contacts": 48200
+            },
+            {
+              "step": 1445,
+              "total": 3.585024,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.789504,
+              "adjacency": 0.114688,
+              "coloring": 0.126976,
+              "solve": 2.553856,
+              "contacts": 47979
+            },
+            {
+              "step": 1446,
+              "total": 2.381824,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.792576,
+              "adjacency": 0.110592,
+              "coloring": 0.130048,
+              "solve": 1.348608,
+              "contacts": 47764
+            },
+            {
+              "step": 1447,
+              "total": 2.388992,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.790528,
+              "adjacency": 0.11776,
+              "coloring": 0.126976,
+              "solve": 1.353728,
+              "contacts": 47541
+            },
+            {
+              "step": 1448,
+              "total": 4.050944,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 1.347584,
+              "adjacency": 0.116736,
+              "coloring": 0.128,
+              "solve": 2.458624,
+              "contacts": 47392
+            },
+            {
+              "step": 1449,
+              "total": 2.39616,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.794624,
+              "adjacency": 0.114688,
+              "coloring": 0.128,
+              "solve": 1.358848,
+              "contacts": 47194
+            },
+            {
+              "step": 1450,
+              "total": 4.325376,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.945152,
+              "adjacency": 0.11264,
+              "coloring": 0.125952,
+              "solve": 3.140608,
+              "contacts": 47006
+            },
+            {
+              "step": 1451,
+              "total": 2.407424,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.791552,
+              "adjacency": 0.11776,
+              "coloring": 0.129024,
+              "solve": 1.369088,
+              "contacts": 46808
+            },
+            {
+              "step": 1452,
+              "total": 3.006464,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.7424,
+              "adjacency": 0.109568,
+              "coloring": 0.123904,
+              "solve": 2.030592,
+              "contacts": 46623
+            },
+            {
+              "step": 1453,
+              "total": 4.74624,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.791552,
+              "adjacency": 0.113664,
+              "coloring": 0.135168,
+              "solve": 3.705856,
+              "contacts": 46427
+            },
+            {
+              "step": 1454,
+              "total": 2.381824,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.795648,
+              "adjacency": 0.111616,
+              "coloring": 0.130048,
+              "solve": 1.344512,
+              "contacts": 46286
+            },
+            {
+              "step": 1455,
+              "total": 3.60448,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.800768,
+              "adjacency": 0.109568,
+              "coloring": 0.128,
+              "solve": 2.566144,
+              "contacts": 46160
+            },
+            {
+              "step": 1456,
+              "total": 2.381824,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.796672,
+              "adjacency": 0.111616,
+              "coloring": 0.128,
+              "solve": 1.345536,
+              "contacts": 46010
+            },
+            {
+              "step": 1457,
+              "total": 2.368512,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.796672,
+              "adjacency": 0.109568,
+              "coloring": 0.126976,
+              "solve": 1.335296,
+              "contacts": 45866
+            },
+            {
+              "step": 1458,
+              "total": 3.00032,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.750592,
+              "adjacency": 0.11264,
+              "coloring": 0.119808,
+              "solve": 2.016256,
+              "contacts": 45722
+            },
+            {
+              "step": 1459,
+              "total": 3.552256,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.79872,
+              "adjacency": 0.111616,
+              "coloring": 0.129024,
+              "solve": 2.512896,
+              "contacts": 45614
+            },
+            {
+              "step": 1460,
+              "total": 2.352128,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.795648,
+              "adjacency": 0.110592,
+              "coloring": 0.120832,
+              "solve": 1.325056,
+              "contacts": 45514
+            },
+            {
+              "step": 1461,
+              "total": 2.361344,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.795648,
+              "adjacency": 0.108544,
+              "coloring": 0.123904,
+              "solve": 1.333248,
+              "contacts": 45392
+            },
+            {
+              "step": 1462,
+              "total": 2.379776,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.80384,
+              "adjacency": 0.11264,
+              "coloring": 0.123904,
+              "solve": 1.338368,
+              "contacts": 45312
+            },
+            {
+              "step": 1463,
+              "total": 2.362368,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.78848,
+              "adjacency": 0.111616,
+              "coloring": 0.126976,
+              "solve": 1.335296,
+              "contacts": 45229
+            },
+            {
+              "step": 1464,
+              "total": 2.40128,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.794624,
+              "adjacency": 0.114688,
+              "coloring": 0.119808,
+              "solve": 1.371136,
+              "contacts": 45183
+            },
+            {
+              "step": 1465,
+              "total": 2.378752,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.790528,
+              "adjacency": 0.12288,
+              "coloring": 0.12288,
+              "solve": 1.342464,
+              "contacts": 45114
+            },
+            {
+              "step": 1466,
+              "total": 2.359296,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.786432,
+              "adjacency": 0.108544,
+              "coloring": 0.126976,
+              "solve": 1.337344,
+              "contacts": 45097
+            },
+            {
+              "step": 1467,
+              "total": 2.351104,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.784384,
+              "adjacency": 0.116736,
+              "coloring": 0.124928,
+              "solve": 1.325056,
+              "contacts": 45060
+            },
+            {
+              "step": 1468,
+              "total": 2.743296,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 1.11104,
+              "adjacency": 0.119808,
+              "coloring": 0.121856,
+              "solve": 1.390592,
+              "contacts": 45000
+            },
+            {
+              "step": 1469,
+              "total": 2.358272,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.784384,
+              "adjacency": 0.110592,
+              "coloring": 0.124928,
+              "solve": 1.337344,
+              "contacts": 44939
+            },
+            {
+              "step": 1470,
+              "total": 2.368512,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.785408,
+              "adjacency": 0.11264,
+              "coloring": 0.126976,
+              "solve": 1.343488,
+              "contacts": 44866
+            },
+            {
+              "step": 1471,
+              "total": 5.270528,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 1.350656,
+              "adjacency": 0.116736,
+              "coloring": 0.131072,
+              "solve": 3.672064,
+              "contacts": 44796
+            },
+            {
+              "step": 1472,
+              "total": 4.88448,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.799744,
+              "adjacency": 0.115712,
+              "coloring": 0.128,
+              "solve": 3.841024,
+              "contacts": 44754
+            },
+            {
+              "step": 1473,
+              "total": 3.981312,
+              "broadphase": "hploc",
+              "bvhRebuilt": true,
+              "collision": 1.539072,
+              "adjacency": 0.119808,
+              "coloring": 0.123904,
+              "solve": 2.198528,
+              "contacts": 44677
+            },
+            {
+              "step": 1474,
+              "total": 2.328576,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.769024,
+              "adjacency": 0.108544,
+              "coloring": 0.125952,
+              "solve": 1.325056,
+              "contacts": 44586
+            },
+            {
+              "step": 1475,
+              "total": 5.440512,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.818176,
+              "adjacency": 0.11264,
+              "coloring": 0.130048,
+              "solve": 4.379648,
+              "contacts": 44531
+            },
+            {
+              "step": 1476,
+              "total": 2.366464,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.79872,
+              "adjacency": 0.109568,
+              "coloring": 0.123904,
+              "solve": 1.334272,
+              "contacts": 44457
+            },
+            {
+              "step": 1477,
+              "total": 4.859904,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.797696,
+              "adjacency": 0.763904,
+              "coloring": 0.140288,
+              "solve": 3.156992,
+              "contacts": 44394
+            },
+            {
+              "step": 1478,
+              "total": 2.361344,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.800768,
+              "adjacency": 0.108544,
+              "coloring": 0.126976,
+              "solve": 1.325056,
+              "contacts": 44351
+            },
+            {
+              "step": 1479,
+              "total": 4.918272,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.812032,
+              "adjacency": 0.11264,
+              "coloring": 0.126976,
+              "solve": 3.866624,
+              "contacts": 44296
+            },
+            {
+              "step": 1480,
+              "total": 3.738624,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.799744,
+              "adjacency": 0.770048,
+              "coloring": 0.142336,
+              "solve": 2.025472,
+              "contacts": 44257
+            },
+            {
+              "step": 1481,
+              "total": 4.041728,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 1.358848,
+              "adjacency": 0.114688,
+              "coloring": 0.126976,
+              "solve": 2.440192,
+              "contacts": 44218
+            },
+            {
+              "step": 1482,
+              "total": 4.292608,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.816128,
+              "adjacency": 0.11264,
+              "coloring": 0.124928,
+              "solve": 3.238912,
+              "contacts": 44175
+            },
+            {
+              "step": 1483,
+              "total": 3.598336,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.790528,
+              "adjacency": 0.111616,
+              "coloring": 0.139264,
+              "solve": 2.555904,
+              "contacts": 44101
+            },
+            {
+              "step": 1484,
+              "total": 2.364416,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.791552,
+              "adjacency": 0.11264,
+              "coloring": 0.128,
+              "solve": 1.3312,
+              "contacts": 44072
+            },
+            {
+              "step": 1485,
+              "total": 3.511296,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.779264,
+              "adjacency": 0.108544,
+              "coloring": 0.126976,
+              "solve": 2.496512,
+              "contacts": 44034
+            },
+            {
+              "step": 1486,
+              "total": 2.359296,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.792576,
+              "adjacency": 0.108544,
+              "coloring": 0.123904,
+              "solve": 1.334272,
+              "contacts": 43984
+            },
+            {
+              "step": 1487,
+              "total": 2.3552,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.786432,
+              "adjacency": 0.116736,
+              "coloring": 0.126976,
+              "solve": 1.325056,
+              "contacts": 43948
+            },
+            {
+              "step": 1488,
+              "total": 2.35008,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.78848,
+              "adjacency": 0.111616,
+              "coloring": 0.125952,
+              "solve": 1.323008,
+              "contacts": 43878
+            },
+            {
+              "step": 1489,
+              "total": 2.345984,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.774144,
+              "adjacency": 0.110592,
+              "coloring": 0.136192,
+              "solve": 1.325056,
+              "contacts": 43815
+            },
+            {
+              "step": 1490,
+              "total": 2.392064,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.789504,
+              "adjacency": 0.115712,
+              "coloring": 0.126976,
+              "solve": 1.359872,
+              "contacts": 43753
+            },
+            {
+              "step": 1491,
+              "total": 4.2496,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.784384,
+              "adjacency": 0.769024,
+              "coloring": 0.128,
+              "solve": 2.568192,
+              "contacts": 43702
+            },
+            {
+              "step": 1492,
+              "total": 2.351104,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.777216,
+              "adjacency": 0.115712,
+              "coloring": 0.125952,
+              "solve": 1.332224,
+              "contacts": 43683
+            },
+            {
+              "step": 1493,
+              "total": 2.331648,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.772096,
+              "adjacency": 0.11264,
+              "coloring": 0.13312,
+              "solve": 1.313792,
+              "contacts": 43663
+            },
+            {
+              "step": 1494,
+              "total": 2.57536,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.963584,
+              "adjacency": 0.11776,
+              "coloring": 0.124928,
+              "solve": 1.369088,
+              "contacts": 43610
+            },
+            {
+              "step": 1495,
+              "total": 2.345984,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.781312,
+              "adjacency": 0.111616,
+              "coloring": 0.128,
+              "solve": 1.325056,
+              "contacts": 43607
+            },
+            {
+              "step": 1496,
+              "total": 2.332672,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.781312,
+              "adjacency": 0.11264,
+              "coloring": 0.121856,
+              "solve": 1.316864,
+              "contacts": 43592
+            },
+            {
+              "step": 1497,
+              "total": 2.351104,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.787456,
+              "adjacency": 0.116736,
+              "coloring": 0.124928,
+              "solve": 1.321984,
+              "contacts": 43569
+            },
+            {
+              "step": 1498,
+              "total": 5.69856,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 1.34144,
+              "adjacency": 0.111616,
+              "coloring": 0.129024,
+              "solve": 4.115456,
+              "contacts": 43540
+            },
+            {
+              "step": 1499,
+              "total": 2.336768,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.784384,
+              "adjacency": 0.108544,
+              "coloring": 0.124928,
+              "solve": 1.318912,
+              "contacts": 43490
+            },
+            {
+              "step": 1500,
+              "total": 2.956288,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.759808,
+              "adjacency": 0.116736,
+              "coloring": 0.123904,
+              "solve": 1.95584,
+              "contacts": 43492
+            }
+          ],
+          "startup": {
+            "total": 2.34496,
+            "broadphase": "hploc",
+            "bvhRebuilt": true,
+            "collision": 0.955392,
+            "adjacency": 0.055296,
+            "coloring": 0.222208,
+            "solve": 1.11104
+          },
+          "broadphase": "hploc",
+          "bvh": {
+            "builds": 24,
+            "refits": 1476,
+            "nodes": 47233,
+            "extraBytes": 2489032
+          },
+          "detailed": false,
+          "scheduling": {
+            "initial": {
+              "colors": 17,
+              "rounds": 16,
+              "minimumColors": 16,
+              "minimumRounds": 16,
+              "primalLanes": [
+                2147483648,
+                32768,
+                4096
+              ]
+            },
+            "final": {
+              "colors": 16,
+              "rounds": 16,
+              "primalLanes": [
+                2147483648,
+                32768,
+                4096
+              ]
+            }
+          },
+          "details": null,
+          "summary": {
+            "total": {
+              "n": 60,
+              "mean": 3.1569749333333332,
+              "median": 2.40128,
+              "p95": 5.425152
+            },
+            "collision": {
+              "n": 60,
+              "mean": 0.8591189333333331,
+              "median": 0.791552,
+              "p95": 1.358848
+            },
+            "adjacency": {
+              "n": 60,
+              "mean": 0.17662293333333334,
+              "median": 0.11264,
+              "p95": 0.769024
+            },
+            "coloring": {
+              "n": 60,
+              "mean": 0.1323178666666667,
+              "median": 0.126976,
+              "p95": 0.140288
+            },
+            "solve": {
+              "n": 60,
+              "mean": 1.9886933333333332,
+              "median": 1.369088,
+              "p95": 3.866624
+            }
+          }
+        }
+      ],
+      "pairedSavings": {
+        "n": 60,
+        "mean": 22.84334114572848,
+        "median": 24.09479921000659,
+        "p95": 66.40807962529274
+      },
+      "saving": 30.732965864326033,
+      "collisionChange": -0.5444640514003893,
+      "stableCollisionTiming": false,
+      "controlStage": "solve",
+      "controlChange": -0.17330013054089344,
+      "stableControlTiming": false,
+      "method": "Two independent worlds, alternating execution order each fixed step; separate GPU phase timestamps, no drawing or sleeping. Every step checked for contact overflow and coloring conflicts.",
+      "repeat": 0
+    },
+    {
+      "scene": "showcase-ragdolls-on-cloth-24k",
+      "variants": [
+        "baseline",
+        "hploc"
+      ],
+      "warmup": 1440,
+      "count": 60,
+      "results": [
+        {
+          "scene": "showcase-ragdolls-on-cloth-24k",
+          "variant": "baseline",
+          "bodyCount": 23617,
+          "jointCount": 31200,
+          "params": {
+            "dt": 0.004166666666666667,
+            "gravity": -10,
+            "iterations": 5,
+            "betaLin": 10000,
+            "betaAng": 100,
+            "alpha": 0.99,
+            "gamma": 0.999,
+            "matchNearest": true,
+            "faceBias": true,
+            "reuseContacts": true,
+            "startAtRest": true,
+            "massPenalty": true,
+            "windSpeed": 0,
+            "windAngle": 0,
+            "windGust": 0.4,
+            "windPressure": 0.72,
+            "up": [
+              0,
+              0,
+              1
+            ]
+          },
+          "verifiedSteps": 1500,
+          "counters": {
+            "pairs": 35612,
+            "contacts": 43492,
+            "manifolds": 26824,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 9
+          },
+          "peakContacts": 59059,
+          "quaternionError": 1.3410393873147797e-7,
+          "finite": true,
+          "rendering": false,
+          "sleeping": false,
+          "samples": [
+            {
+              "step": 1441,
+              "total": 3.062784,
+              "collision": 1.470464,
+              "adjacency": 0.113664,
+              "coloring": 0.125952,
+              "solve": 1.352704,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 48875
+            },
+            {
+              "step": 1442,
+              "total": 3.063808,
+              "collision": 1.46944,
+              "adjacency": 0.115712,
+              "coloring": 0.129024,
+              "solve": 1.349632,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 48633
+            },
+            {
+              "step": 1443,
+              "total": 3.428352,
+              "collision": 1.763328,
+              "adjacency": 0.120832,
+              "coloring": 0.126976,
+              "solve": 1.417216,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 48381
+            },
+            {
+              "step": 1444,
+              "total": 3.088384,
+              "collision": 1.472512,
+              "adjacency": 0.114688,
+              "coloring": 0.128,
+              "solve": 1.373184,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 48200
+            },
+            {
+              "step": 1445,
+              "total": 4.504576,
+              "collision": 2.024448,
+              "adjacency": 0.114688,
+              "coloring": 0.126976,
+              "solve": 2.238464,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 47979
+            },
+            {
+              "step": 1446,
+              "total": 4.502528,
+              "collision": 2.031616,
+              "adjacency": 0.111616,
+              "coloring": 0.130048,
+              "solve": 2.229248,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 47764
+            },
+            {
+              "step": 1447,
+              "total": 3.035136,
+              "collision": 1.442816,
+              "adjacency": 0.109568,
+              "coloring": 0.125952,
+              "solve": 1.355776,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 47541
+            },
+            {
+              "step": 1448,
+              "total": 6.41536,
+              "collision": 2.704384,
+              "adjacency": 0.114688,
+              "coloring": 0.126976,
+              "solve": 3.469312,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 47392
+            },
+            {
+              "step": 1449,
+              "total": 6.475776,
+              "collision": 2.731008,
+              "adjacency": 0.120832,
+              "coloring": 0.128,
+              "solve": 3.495936,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 47194
+            },
+            {
+              "step": 1450,
+              "total": 3.084288,
+              "collision": 1.491968,
+              "adjacency": 0.114688,
+              "coloring": 0.124928,
+              "solve": 1.35168,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 47006
+            },
+            {
+              "step": 1451,
+              "total": 5.690368,
+              "collision": 1.455104,
+              "adjacency": 0.11264,
+              "coloring": 0.124928,
+              "solve": 3.996672,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 46808
+            },
+            {
+              "step": 1452,
+              "total": 3.869696,
+              "collision": 1.513472,
+              "adjacency": 0.115712,
+              "coloring": 0.123904,
+              "solve": 2.115584,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 46623
+            },
+            {
+              "step": 1453,
+              "total": 3.085312,
+              "collision": 1.487872,
+              "adjacency": 0.111616,
+              "coloring": 0.134144,
+              "solve": 1.35168,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 46427
+            },
+            {
+              "step": 1454,
+              "total": 5.641216,
+              "collision": 1.494016,
+              "adjacency": 0.10752,
+              "coloring": 0.131072,
+              "solve": 3.908608,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 46286
+            },
+            {
+              "step": 1455,
+              "total": 3.0464,
+              "collision": 1.468416,
+              "adjacency": 0.111616,
+              "coloring": 0.126976,
+              "solve": 1.339392,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 46160
+            },
+            {
+              "step": 1456,
+              "total": 6.144,
+              "collision": 1.47456,
+              "adjacency": 0.11264,
+              "coloring": 1.380352,
+              "solve": 3.176448,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 46010
+            },
+            {
+              "step": 1457,
+              "total": 3.054592,
+              "collision": 1.485824,
+              "adjacency": 0.106496,
+              "coloring": 0.126976,
+              "solve": 1.335296,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 45866
+            },
+            {
+              "step": 1458,
+              "total": 6.866944,
+              "collision": 2.067456,
+              "adjacency": 0.109568,
+              "coloring": 0.121856,
+              "solve": 4.56704,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 45722
+            },
+            {
+              "step": 1459,
+              "total": 6.688768,
+              "collision": 2.158592,
+              "adjacency": 0.11264,
+              "coloring": 0.126976,
+              "solve": 4.29056,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 45614
+            },
+            {
+              "step": 1460,
+              "total": 6.827008,
+              "collision": 2.064384,
+              "adjacency": 0.113664,
+              "coloring": 0.12288,
+              "solve": 4.52608,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 45514
+            },
+            {
+              "step": 1461,
+              "total": 3.03104,
+              "collision": 1.470464,
+              "adjacency": 0.110592,
+              "coloring": 0.12288,
+              "solve": 1.327104,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 45392
+            },
+            {
+              "step": 1462,
+              "total": 6.153216,
+              "collision": 1.528832,
+              "adjacency": 0.104448,
+              "coloring": 1.34144,
+              "solve": 3.178496,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 45312
+            },
+            {
+              "step": 1463,
+              "total": 5.61152,
+              "collision": 1.550336,
+              "adjacency": 0.106496,
+              "coloring": 0.125952,
+              "solve": 3.827712,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 45229
+            },
+            {
+              "step": 1464,
+              "total": 6.20032,
+              "collision": 2.158592,
+              "adjacency": 0.109568,
+              "coloring": 0.119808,
+              "solve": 3.812352,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 45183
+            },
+            {
+              "step": 1465,
+              "total": 5.798912,
+              "collision": 2.103296,
+              "adjacency": 0.12288,
+              "coloring": 0.12288,
+              "solve": 3.448832,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 45114
+            },
+            {
+              "step": 1466,
+              "total": 3.093504,
+              "collision": 1.51552,
+              "adjacency": 0.113664,
+              "coloring": 0.125952,
+              "solve": 1.337344,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 45097
+            },
+            {
+              "step": 1467,
+              "total": 5.61664,
+              "collision": 1.547264,
+              "adjacency": 0.113664,
+              "coloring": 0.123904,
+              "solve": 3.831808,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 45060
+            },
+            {
+              "step": 1468,
+              "total": 6.185984,
+              "collision": 1.555456,
+              "adjacency": 1.332224,
+              "coloring": 0.14336,
+              "solve": 3.152896,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 45000
+            },
+            {
+              "step": 1469,
+              "total": 3.13344,
+              "collision": 1.547264,
+              "adjacency": 0.119808,
+              "coloring": 0.124928,
+              "solve": 1.34144,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 44939
+            },
+            {
+              "step": 1470,
+              "total": 3.101696,
+              "collision": 1.52064,
+              "adjacency": 0.104448,
+              "coloring": 0.125952,
+              "solve": 1.350656,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 44866
+            },
+            {
+              "step": 1471,
+              "total": 3.099648,
+              "collision": 1.52064,
+              "adjacency": 0.10752,
+              "coloring": 0.129024,
+              "solve": 1.342464,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 44796
+            },
+            {
+              "step": 1472,
+              "total": 4.734976,
+              "collision": 2.095104,
+              "adjacency": 0.11264,
+              "coloring": 0.125952,
+              "solve": 2.40128,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 44754
+            },
+            {
+              "step": 1473,
+              "total": 7.555072,
+              "collision": 2.743296,
+              "adjacency": 0.124928,
+              "coloring": 0.123904,
+              "solve": 4.562944,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 44677
+            },
+            {
+              "step": 1474,
+              "total": 4.517888,
+              "collision": 1.526784,
+              "adjacency": 0.106496,
+              "coloring": 0.124928,
+              "solve": 2.75968,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 44586
+            },
+            {
+              "step": 1475,
+              "total": 6.870016,
+              "collision": 2.630656,
+              "adjacency": 0.115712,
+              "coloring": 0.129024,
+              "solve": 3.994624,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 44531
+            },
+            {
+              "step": 1476,
+              "total": 3.14368,
+              "collision": 1.540096,
+              "adjacency": 0.113664,
+              "coloring": 0.123904,
+              "solve": 1.366016,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 44457
+            },
+            {
+              "step": 1477,
+              "total": 5.576704,
+              "collision": 1.59232,
+              "adjacency": 0.113664,
+              "coloring": 0.134144,
+              "solve": 3.736576,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 44394
+            },
+            {
+              "step": 1478,
+              "total": 4.441088,
+              "collision": 1.545216,
+              "adjacency": 0.116736,
+              "coloring": 0.124928,
+              "solve": 2.654208,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 44351
+            },
+            {
+              "step": 1479,
+              "total": 3.098624,
+              "collision": 1.534976,
+              "adjacency": 0.114688,
+              "coloring": 0.123904,
+              "solve": 1.323008,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 44296
+            },
+            {
+              "step": 1480,
+              "total": 3.126272,
+              "collision": 1.534976,
+              "adjacency": 0.113664,
+              "coloring": 0.135168,
+              "solve": 1.342464,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 44257
+            },
+            {
+              "step": 1481,
+              "total": 4.790272,
+              "collision": 2.115584,
+              "adjacency": 0.116736,
+              "coloring": 0.124928,
+              "solve": 2.433024,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 44218
+            },
+            {
+              "step": 1482,
+              "total": 4.962304,
+              "collision": 1.55136,
+              "adjacency": 0.116736,
+              "coloring": 0.12288,
+              "solve": 3.171328,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 44175
+            },
+            {
+              "step": 1483,
+              "total": 3.160064,
+              "collision": 1.560576,
+              "adjacency": 0.114688,
+              "coloring": 0.139264,
+              "solve": 1.345536,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 44101
+            },
+            {
+              "step": 1484,
+              "total": 7.023616,
+              "collision": 2.792448,
+              "adjacency": 0.119808,
+              "coloring": 0.128,
+              "solve": 3.98336,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 44072
+            },
+            {
+              "step": 1485,
+              "total": 7.04512,
+              "collision": 2.260992,
+              "adjacency": 0.116736,
+              "coloring": 0.125952,
+              "solve": 4.540416,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 44034
+            },
+            {
+              "step": 1486,
+              "total": 6.524928,
+              "collision": 2.164736,
+              "adjacency": 0.11264,
+              "coloring": 0.12288,
+              "solve": 4.123648,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 43984
+            },
+            {
+              "step": 1487,
+              "total": 3.10272,
+              "collision": 1.54624,
+              "adjacency": 0.115712,
+              "coloring": 0.12288,
+              "solve": 1.316864,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 43948
+            },
+            {
+              "step": 1488,
+              "total": 5.576704,
+              "collision": 1.579008,
+              "adjacency": 0.111616,
+              "coloring": 0.125952,
+              "solve": 3.760128,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 43878
+            },
+            {
+              "step": 1489,
+              "total": 3.142656,
+              "collision": 1.569792,
+              "adjacency": 0.11264,
+              "coloring": 0.136192,
+              "solve": 1.323008,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 43815
+            },
+            {
+              "step": 1490,
+              "total": 3.119104,
+              "collision": 1.559552,
+              "adjacency": 0.11264,
+              "coloring": 0.124928,
+              "solve": 1.321984,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 43753
+            },
+            {
+              "step": 1491,
+              "total": 6.945792,
+              "collision": 2.131968,
+              "adjacency": 0.11776,
+              "coloring": 0.125952,
+              "solve": 4.570112,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 43702
+            },
+            {
+              "step": 1492,
+              "total": 3.084288,
+              "collision": 1.537024,
+              "adjacency": 0.108544,
+              "coloring": 0.123904,
+              "solve": 1.314816,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 43683
+            },
+            {
+              "step": 1493,
+              "total": 3.11808,
+              "collision": 1.55136,
+              "adjacency": 0.108544,
+              "coloring": 0.132096,
+              "solve": 1.325056,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 43663
+            },
+            {
+              "step": 1494,
+              "total": 4.996096,
+              "collision": 1.534976,
+              "adjacency": 0.109568,
+              "coloring": 0.12288,
+              "solve": 3.227648,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 43610
+            },
+            {
+              "step": 1495,
+              "total": 3.0976,
+              "collision": 1.529856,
+              "adjacency": 0.111616,
+              "coloring": 0.128,
+              "solve": 1.328128,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 43607
+            },
+            {
+              "step": 1496,
+              "total": 6.934528,
+              "collision": 2.740224,
+              "adjacency": 0.115712,
+              "coloring": 0.121856,
+              "solve": 3.956736,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 43592
+            },
+            {
+              "step": 1497,
+              "total": 7.579648,
+              "collision": 2.794496,
+              "adjacency": 0.121856,
+              "coloring": 0.125952,
+              "solve": 4.537344,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 43569
+            },
+            {
+              "step": 1498,
+              "total": 7.556096,
+              "collision": 2.782208,
+              "adjacency": 0.115712,
+              "coloring": 0.128,
+              "solve": 4.530176,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 43540
+            },
+            {
+              "step": 1499,
+              "total": 4.890624,
+              "collision": 1.470464,
+              "adjacency": 0.111616,
+              "coloring": 0.124928,
+              "solve": 3.183616,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 43490
+            },
+            {
+              "step": 1500,
+              "total": 3.028992,
+              "collision": 1.478656,
+              "adjacency": 0.110592,
+              "coloring": 0.121856,
+              "solve": 1.317888,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "contacts": 43492
+            }
+          ],
+          "startup": {
+            "total": 1.55648,
+            "collision": 0.641024,
+            "adjacency": 0.036864,
+            "coloring": 0.144384,
+            "solve": 0.734208,
+            "broadphase": "grid",
+            "bvhRebuilt": false
+          },
+          "broadphase": "grid",
+          "bvh": null,
+          "detailed": false,
+          "scheduling": {
+            "initial": {
+              "colors": 17,
+              "rounds": 16,
+              "minimumColors": 16,
+              "minimumRounds": 16,
+              "primalLanes": [
+                2147483648,
+                32768,
+                4096
+              ]
+            },
+            "final": {
+              "colors": 16,
+              "rounds": 16,
+              "primalLanes": [
+                2147483648,
+                32768,
+                4096
+              ]
+            }
+          },
+          "details": null,
+          "summary": {
+            "total": {
+              "n": 60,
+              "mean": 4.755746133333335,
+              "median": 4.734976,
+              "p95": 7.555072
+            },
+            "collision": {
+              "n": 60,
+              "mean": 1.8047488,
+              "median": 1.550336,
+              "p95": 2.782208
+            },
+            "adjacency": {
+              "n": 60,
+              "mean": 0.13373440000000006,
+              "median": 0.113664,
+              "p95": 0.12288
+            },
+            "coloring": {
+              "n": 60,
+              "mean": 0.16790186666666668,
+              "median": 0.125952,
+              "p95": 0.14336
+            },
+            "solve": {
+              "n": 60,
+              "mean": 2.6490538666666668,
+              "median": 2.654208,
+              "p95": 4.562944
+            }
+          }
+        },
+        {
+          "scene": "showcase-ragdolls-on-cloth-24k",
+          "variant": "hploc",
+          "bodyCount": 23617,
+          "jointCount": 31200,
+          "params": {
+            "dt": 0.004166666666666667,
+            "gravity": -10,
+            "iterations": 5,
+            "betaLin": 10000,
+            "betaAng": 100,
+            "alpha": 0.99,
+            "gamma": 0.999,
+            "matchNearest": true,
+            "faceBias": true,
+            "reuseContacts": true,
+            "startAtRest": true,
+            "massPenalty": true,
+            "windSpeed": 0,
+            "windAngle": 0,
+            "windGust": 0.4,
+            "windPressure": 0.72,
+            "up": [
+              0,
+              0,
+              1
+            ]
+          },
+          "verifiedSteps": 1500,
+          "counters": {
+            "pairs": 35612,
+            "contacts": 43492,
+            "manifolds": 26824,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 9
+          },
+          "peakContacts": 59059,
+          "quaternionError": 1.3410393873147797e-7,
+          "finite": true,
+          "rendering": false,
+          "sleeping": false,
+          "samples": [
+            {
+              "step": 1441,
+              "total": 2.651136,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.997376,
+              "adjacency": 0.118784,
+              "coloring": 0.126976,
+              "solve": 1.408,
+              "contacts": 48875
+            },
+            {
+              "step": 1442,
+              "total": 2.323456,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.750592,
+              "adjacency": 0.11264,
+              "coloring": 0.12288,
+              "solve": 1.337344,
+              "contacts": 48633
+            },
+            {
+              "step": 1443,
+              "total": 5.362688,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.781312,
+              "adjacency": 1.276928,
+              "coloring": 0.128,
+              "solve": 3.175424,
+              "contacts": 48381
+            },
+            {
+              "step": 1444,
+              "total": 2.386944,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.789504,
+              "adjacency": 0.114688,
+              "coloring": 0.126976,
+              "solve": 1.355776,
+              "contacts": 48200
+            },
+            {
+              "step": 1445,
+              "total": 4.789248,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 1.405952,
+              "adjacency": 0.118784,
+              "coloring": 0.126976,
+              "solve": 3.137536,
+              "contacts": 47979
+            },
+            {
+              "step": 1446,
+              "total": 2.373632,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.787456,
+              "adjacency": 0.108544,
+              "coloring": 0.131072,
+              "solve": 1.34656,
+              "contacts": 47764
+            },
+            {
+              "step": 1447,
+              "total": 2.373632,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.785408,
+              "adjacency": 0.108544,
+              "coloring": 0.128,
+              "solve": 1.35168,
+              "contacts": 47541
+            },
+            {
+              "step": 1448,
+              "total": 2.371584,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.786432,
+              "adjacency": 0.111616,
+              "coloring": 0.128,
+              "solve": 1.345536,
+              "contacts": 47392
+            },
+            {
+              "step": 1449,
+              "total": 4.246528,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.78848,
+              "adjacency": 0.118784,
+              "coloring": 0.126976,
+              "solve": 3.212288,
+              "contacts": 47194
+            },
+            {
+              "step": 1450,
+              "total": 2.3808,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.781312,
+              "adjacency": 0.108544,
+              "coloring": 0.125952,
+              "solve": 1.364992,
+              "contacts": 47006
+            },
+            {
+              "step": 1451,
+              "total": 5.820416,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 1.34656,
+              "adjacency": 0.115712,
+              "coloring": 0.126976,
+              "solve": 4.231168,
+              "contacts": 46808
+            },
+            {
+              "step": 1452,
+              "total": 2.9184,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 1.1008,
+              "adjacency": 0.119808,
+              "coloring": 0.124928,
+              "solve": 1.572864,
+              "contacts": 46623
+            },
+            {
+              "step": 1453,
+              "total": 5.814272,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 1.355776,
+              "adjacency": 0.114688,
+              "coloring": 0.134144,
+              "solve": 4.209664,
+              "contacts": 46427
+            },
+            {
+              "step": 1454,
+              "total": 6.833152,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 2.036736,
+              "adjacency": 0.121856,
+              "coloring": 0.131072,
+              "solve": 4.543488,
+              "contacts": 46286
+            },
+            {
+              "step": 1455,
+              "total": 2.390016,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.794624,
+              "adjacency": 0.114688,
+              "coloring": 0.126976,
+              "solve": 1.352704,
+              "contacts": 46160
+            },
+            {
+              "step": 1456,
+              "total": 4.65408,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 1.374208,
+              "adjacency": 0.116736,
+              "coloring": 0.129024,
+              "solve": 3.034112,
+              "contacts": 46010
+            },
+            {
+              "step": 1457,
+              "total": 2.37056,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.792576,
+              "adjacency": 0.11264,
+              "coloring": 0.128,
+              "solve": 1.337344,
+              "contacts": 45866
+            },
+            {
+              "step": 1458,
+              "total": 3.816448,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 1.343488,
+              "adjacency": 0.114688,
+              "coloring": 0.123904,
+              "solve": 2.233344,
+              "contacts": 45722
+            },
+            {
+              "step": 1459,
+              "total": 2.366464,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.787456,
+              "adjacency": 0.114688,
+              "coloring": 0.126976,
+              "solve": 1.337344,
+              "contacts": 45614
+            },
+            {
+              "step": 1460,
+              "total": 2.357248,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.7936,
+              "adjacency": 0.114688,
+              "coloring": 0.121856,
+              "solve": 1.327104,
+              "contacts": 45514
+            },
+            {
+              "step": 1461,
+              "total": 2.367488,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.790528,
+              "adjacency": 0.114688,
+              "coloring": 0.12288,
+              "solve": 1.339392,
+              "contacts": 45392
+            },
+            {
+              "step": 1462,
+              "total": 5.62176,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 1.360896,
+              "adjacency": 0.119808,
+              "coloring": 0.124928,
+              "solve": 4.016128,
+              "contacts": 45312
+            },
+            {
+              "step": 1463,
+              "total": 2.361344,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.784384,
+              "adjacency": 0.110592,
+              "coloring": 0.128,
+              "solve": 1.338368,
+              "contacts": 45229
+            },
+            {
+              "step": 1464,
+              "total": 2.3552,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.785408,
+              "adjacency": 0.110592,
+              "coloring": 0.119808,
+              "solve": 1.339392,
+              "contacts": 45183
+            },
+            {
+              "step": 1465,
+              "total": 5.34016,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.787456,
+              "adjacency": 1.282048,
+              "coloring": 0.12288,
+              "solve": 3.146752,
+              "contacts": 45114
+            },
+            {
+              "step": 1466,
+              "total": 2.371584,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.786432,
+              "adjacency": 0.113664,
+              "coloring": 0.128,
+              "solve": 1.343488,
+              "contacts": 45097
+            },
+            {
+              "step": 1467,
+              "total": 2.366464,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.785408,
+              "adjacency": 0.115712,
+              "coloring": 0.123904,
+              "solve": 1.340416,
+              "contacts": 45060
+            },
+            {
+              "step": 1468,
+              "total": 2.331648,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.763904,
+              "adjacency": 0.110592,
+              "coloring": 0.120832,
+              "solve": 1.33632,
+              "contacts": 45000
+            },
+            {
+              "step": 1469,
+              "total": 2.37056,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.78336,
+              "adjacency": 0.111616,
+              "coloring": 0.125952,
+              "solve": 1.349632,
+              "contacts": 44939
+            },
+            {
+              "step": 1470,
+              "total": 4.240384,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 1.410048,
+              "adjacency": 0.123904,
+              "coloring": 0.126976,
+              "solve": 2.579456,
+              "contacts": 44866
+            },
+            {
+              "step": 1471,
+              "total": 3.729408,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 1.435648,
+              "adjacency": 0.119808,
+              "coloring": 0.131072,
+              "solve": 2.04288,
+              "contacts": 44796
+            },
+            {
+              "step": 1472,
+              "total": 2.305024,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.746496,
+              "adjacency": 0.11264,
+              "coloring": 0.123904,
+              "solve": 1.32096,
+              "contacts": 44754
+            },
+            {
+              "step": 1473,
+              "total": 4.32128,
+              "broadphase": "hploc",
+              "bvhRebuilt": true,
+              "collision": 0.958464,
+              "adjacency": 0.115712,
+              "coloring": 0.124928,
+              "solve": 3.122176,
+              "contacts": 44677
+            },
+            {
+              "step": 1474,
+              "total": 2.3808,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.80384,
+              "adjacency": 0.113664,
+              "coloring": 0.126976,
+              "solve": 1.33632,
+              "contacts": 44586
+            },
+            {
+              "step": 1475,
+              "total": 2.381824,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.79872,
+              "adjacency": 0.111616,
+              "coloring": 0.129024,
+              "solve": 1.342464,
+              "contacts": 44531
+            },
+            {
+              "step": 1476,
+              "total": 2.3808,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.802816,
+              "adjacency": 0.111616,
+              "coloring": 0.123904,
+              "solve": 1.342464,
+              "contacts": 44457
+            },
+            {
+              "step": 1477,
+              "total": 2.384896,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.802816,
+              "adjacency": 0.113664,
+              "coloring": 0.134144,
+              "solve": 1.334272,
+              "contacts": 44394
+            },
+            {
+              "step": 1478,
+              "total": 2.934784,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.784384,
+              "adjacency": 0.111616,
+              "coloring": 0.126976,
+              "solve": 1.910784,
+              "contacts": 44351
+            },
+            {
+              "step": 1479,
+              "total": 5.293056,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 1.910784,
+              "adjacency": 0.118784,
+              "coloring": 0.125952,
+              "solve": 3.136512,
+              "contacts": 44296
+            },
+            {
+              "step": 1480,
+              "total": 3.677184,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.792576,
+              "adjacency": 0.110592,
+              "coloring": 0.135168,
+              "solve": 2.638848,
+              "contacts": 44257
+            },
+            {
+              "step": 1481,
+              "total": 5.152768,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 1.36192,
+              "adjacency": 0.115712,
+              "coloring": 0.126976,
+              "solve": 3.54816,
+              "contacts": 44218
+            },
+            {
+              "step": 1482,
+              "total": 4.609024,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 1.3568,
+              "adjacency": 0.113664,
+              "coloring": 0.124928,
+              "solve": 3.013632,
+              "contacts": 44175
+            },
+            {
+              "step": 1483,
+              "total": 3.864576,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 1.383424,
+              "adjacency": 0.11776,
+              "coloring": 0.139264,
+              "solve": 2.224128,
+              "contacts": 44101
+            },
+            {
+              "step": 1484,
+              "total": 5.460992,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 1.411072,
+              "adjacency": 0.120832,
+              "coloring": 0.130048,
+              "solve": 3.79904,
+              "contacts": 44072
+            },
+            {
+              "step": 1485,
+              "total": 4.401152,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.784384,
+              "adjacency": 0.110592,
+              "coloring": 0.726016,
+              "solve": 2.78016,
+              "contacts": 44034
+            },
+            {
+              "step": 1486,
+              "total": 2.369536,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.78848,
+              "adjacency": 0.116736,
+              "coloring": 0.123904,
+              "solve": 1.340416,
+              "contacts": 43984
+            },
+            {
+              "step": 1487,
+              "total": 2.359296,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.786432,
+              "adjacency": 0.109568,
+              "coloring": 0.125952,
+              "solve": 1.337344,
+              "contacts": 43948
+            },
+            {
+              "step": 1488,
+              "total": 6.131712,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 1.352704,
+              "adjacency": 0.11264,
+              "coloring": 0.126976,
+              "solve": 4.538368,
+              "contacts": 43878
+            },
+            {
+              "step": 1489,
+              "total": 4.876288,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.9216,
+              "adjacency": 0.114688,
+              "coloring": 0.137216,
+              "solve": 3.702784,
+              "contacts": 43815
+            },
+            {
+              "step": 1490,
+              "total": 5.4016,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.80384,
+              "adjacency": 0.11264,
+              "coloring": 0.125952,
+              "solve": 4.358144,
+              "contacts": 43753
+            },
+            {
+              "step": 1491,
+              "total": 4.601856,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 1.34656,
+              "adjacency": 0.114688,
+              "coloring": 0.126976,
+              "solve": 3.013632,
+              "contacts": 43702
+            },
+            {
+              "step": 1492,
+              "total": 2.347008,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.78336,
+              "adjacency": 0.111616,
+              "coloring": 0.125952,
+              "solve": 1.32608,
+              "contacts": 43683
+            },
+            {
+              "step": 1493,
+              "total": 5.681152,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 1.338368,
+              "adjacency": 0.113664,
+              "coloring": 0.13312,
+              "solve": 4.096,
+              "contacts": 43663
+            },
+            {
+              "step": 1494,
+              "total": 5.029888,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 1.34144,
+              "adjacency": 0.118784,
+              "coloring": 0.123904,
+              "solve": 3.44576,
+              "contacts": 43610
+            },
+            {
+              "step": 1495,
+              "total": 3.53792,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 1.487872,
+              "adjacency": 0.119808,
+              "coloring": 0.128,
+              "solve": 1.80224,
+              "contacts": 43607
+            },
+            {
+              "step": 1496,
+              "total": 3.759104,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.766976,
+              "adjacency": 0.667648,
+              "coloring": 0.12288,
+              "solve": 2.2016,
+              "contacts": 43592
+            },
+            {
+              "step": 1497,
+              "total": 2.335744,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.77312,
+              "adjacency": 0.106496,
+              "coloring": 0.124928,
+              "solve": 1.3312,
+              "contacts": 43569
+            },
+            {
+              "step": 1498,
+              "total": 2.371584,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.78336,
+              "adjacency": 0.11264,
+              "coloring": 0.129024,
+              "solve": 1.34656,
+              "contacts": 43540
+            },
+            {
+              "step": 1499,
+              "total": 2.352128,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 0.777216,
+              "adjacency": 0.109568,
+              "coloring": 0.124928,
+              "solve": 1.340416,
+              "contacts": 43490
+            },
+            {
+              "step": 1500,
+              "total": 3.8144,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "collision": 1.343488,
+              "adjacency": 0.121856,
+              "coloring": 0.123904,
+              "solve": 2.225152,
+              "contacts": 43492
+            }
+          ],
+          "startup": {
+            "total": 1.660928,
+            "broadphase": "hploc",
+            "bvhRebuilt": true,
+            "collision": 0.738304,
+            "adjacency": 0.037888,
+            "coloring": 0.145408,
+            "solve": 0.738304
+          },
+          "broadphase": "hploc",
+          "bvh": {
+            "builds": 24,
+            "refits": 1476,
+            "nodes": 47233,
+            "extraBytes": 2489032
+          },
+          "detailed": false,
+          "scheduling": {
+            "initial": {
+              "colors": 17,
+              "rounds": 16,
+              "minimumColors": 16,
+              "minimumRounds": 16,
+              "primalLanes": [
+                2147483648,
+                32768,
+                4096
+              ]
+            },
+            "final": {
+              "colors": 16,
+              "rounds": 16,
+              "primalLanes": [
+                2147483648,
+                32768,
+                4096
+              ]
+            }
+          },
+          "details": null,
+          "summary": {
+            "total": {
+              "n": 60,
+              "mean": 3.576234666666666,
+              "median": 2.934784,
+              "p95": 5.820416
+            },
+            "collision": {
+              "n": 60,
+              "mean": 1.0157738666666665,
+              "median": 0.794624,
+              "p95": 1.487872
+            },
+            "adjacency": {
+              "n": 60,
+              "mean": 0.16254293333333333,
+              "median": 0.114688,
+              "p95": 0.667648
+            },
+            "coloring": {
+              "n": 60,
+              "mean": 0.13704533333333335,
+              "median": 0.126976,
+              "p95": 0.137216
+            },
+            "solve": {
+              "n": 60,
+              "mean": 2.2607018666666665,
+              "median": 1.80224,
+              "p95": 4.358144
+            }
+          }
+        }
+      ],
+      "pairedSavings": {
+        "n": 60,
+        "mean": 16.696451538816454,
+        "median": 23.90438247011951,
+        "p95": 65.47172641367932
+      },
+      "saving": 24.801817287920315,
+      "collisionChange": -0.4371660661768184,
+      "stableCollisionTiming": false,
+      "controlStage": "solve",
+      "controlChange": -0.14660026543313287,
+      "stableControlTiming": false,
+      "method": "Two independent worlds, alternating execution order each fixed step; separate GPU phase timestamps, no drawing or sleeping. Every step checked for contact overflow and coloring conflicts.",
+      "repeat": 1
+    }
+  ],
+  "adapter": {
+    "vendor": "nvidia",
+    "architecture": "lovelace"
+  },
+  "errors": []
+}

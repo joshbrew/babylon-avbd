@@ -1,0 +1,31 @@
+# The package.json files list defines the published library and guides.
+# Keep website sources and benchmark assets in the repository, outside npm.
+node_modules/
+.temp/
+.npm-cache/
+.github/
+.codex/
+.agents/
+demo/
+reference/
+scripts/
+src/
+test-results/
+assets/
+tests/**
+!tests/README.md
+*.html
+*.tgz
+*.log
+**/*.map
+tinybuild*.js
+netlify.toml
+package-lock.json
+tsconfig*.json
+
+# Website bundles share dist with the library; publish only library artifacts.
+dist/assets/
+dist/index.*
+dist/demo*
+dist/performance*
+dist/gpu-tests*

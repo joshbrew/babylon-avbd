@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "rings": 1200,
+  "touchingPairs": 1560,
+  "maxRestWireGap": 0.0000034264922677551546,
+  "steps": 361,
+  "stats": {
+    "pairs": 34,
+    "contacts": 15,
+    "manifolds": 15,
+    "overflow": 0,
+    "clashes": 0,
+    "colors": 5
+  },
+  "errors": []
+}

@@ -1,0 +1,42 @@
+{
+  "date": "2026-10-06T02:38:15.946Z",
+  "applied": true,
+  "retained": 227,
+  "removedFiles": 8,
+  "removedBytes": 251238,
+  "removed": [
+    {
+      "path": "screenshots/babylon-readme-example.png",
+      "bytes": 5855
+    },
+    {
+      "path": "screenshots/readme-createBoxPileScene.png",
+      "bytes": 33613
+    },
+    {
+      "path": "screenshots/readme-createBrickWallScene.png",
+      "bytes": 16410
+    },
+    {
+      "path": "screenshots/readme-createHingeExample.png",
+      "bytes": 12121
+    },
+    {
+      "path": "screenshots/readme-createMaterialExamples.png",
+      "bytes": 20794
+    },
+    {
+      "path": "screenshots/readme-createMixedColliderScene.png",
+      "bytes": 34028
+    },
+    {
+      "path": "screenshots/report-390.png",
+      "bytes": 47428
+    },
+    {
+      "path": "screenshots/report.png",
+      "bytes": 80989
+    }
+  ],
+  "removedDirectories": []
+}

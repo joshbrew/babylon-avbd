@@ -1,0 +1,220 @@
+{
+  "passed": true,
+  "snippets": 51,
+  "result": {
+    "steps": 180,
+    "y": 0.4871308505535126,
+    "finite": true,
+    "errors": []
+  },
+  "selection": {
+    "preserved": true,
+    "manual": "optimized",
+    "automatic": "standard",
+    "requested": "auto"
+  },
+  "examples": [
+    {
+      "name": "createMixedColliderScene",
+      "bodies": 31,
+      "finite": true,
+      "counters": {
+        "pairs": 44,
+        "contacts": 102,
+        "manifolds": 35,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 2
+      },
+      "errors": [],
+      "types": [
+        "box",
+        "sphere",
+        "capsule",
+        "cylinder",
+        "convex-hull"
+      ]
+    },
+    {
+      "name": "createBrickWallScene",
+      "bodies": 98,
+      "finite": true,
+      "counters": {
+        "pairs": 197,
+        "contacts": 801,
+        "manifolds": 193,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 6
+      },
+      "errors": [],
+      "types": [
+        "box",
+        "sphere"
+      ]
+    },
+    {
+      "name": "createBoxPileScene",
+      "bodies": 2001,
+      "finite": true,
+      "counters": {
+        "pairs": 2000,
+        "contacts": 8000,
+        "manifolds": 2000,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 3
+      },
+      "errors": [],
+      "types": [
+        "box"
+      ],
+      "instances": 2000
+    },
+    {
+      "name": "createMaterialExamples",
+      "bodies": 7,
+      "finite": true,
+      "counters": {
+        "pairs": 2,
+        "contacts": 5,
+        "manifolds": 2,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 1
+      },
+      "errors": [],
+      "types": [
+        "box",
+        "sphere"
+      ]
+    },
+    {
+      "name": "createHingeExample",
+      "bodies": 3,
+      "finite": true,
+      "counters": {
+        "pairs": 0,
+        "contacts": 0,
+        "manifolds": 0,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 1
+      },
+      "errors": [],
+      "types": [
+        "box"
+      ]
+    },
+    {
+      "kind": "direct-gpu-rendering",
+      "bodies": 4097,
+      "poseReads": 0,
+      "finite": true,
+      "counters": {
+        "pairs": 1377,
+        "contacts": 5508,
+        "manifolds": 1377,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 3
+      },
+      "canvas": [
+        1440,
+        900
+      ]
+    },
+    {
+      "kind": "joints",
+      "bodies": 6,
+      "joints": 3,
+      "broken": 0,
+      "finite": true
+    },
+    {
+      "kind": "rope",
+      "bodies": 14,
+      "joints": 13,
+      "broken": 0,
+      "finite": true
+    },
+    {
+      "kind": "ragdolls",
+      "bodies": 185,
+      "joints": 782,
+      "broken": 0,
+      "finite": true
+    },
+    {
+      "kind": "tearable",
+      "bodies": 1026,
+      "joints": 3906,
+      "broken": 22,
+      "finite": true
+    },
+    {
+      "kind": "2d",
+      "bodies": 5,
+      "joints": 3,
+      "broken": 0,
+      "finite": true
+    },
+    {
+      "kind": "2d-shapes",
+      "bodies": 10,
+      "joints": 0,
+      "broken": 0,
+      "finite": true
+    },
+    {
+      "kind": "2d-policies",
+      "bodies": 66,
+      "joints": 3,
+      "broken": 0,
+      "finite": true
+    },
+    {
+      "name": "portable-body-and-bulk-api",
+      "dimension": 2,
+      "bodies": 264,
+      "finite": true,
+      "selectedFloats": 8,
+      "velocity": [
+        4.026488780975342,
+        -4.546036243438721
+      ],
+      "events": 16
+    },
+    {
+      "name": "portable-body-and-bulk-api",
+      "dimension": 3,
+      "bodies": 260,
+      "finite": true,
+      "selectedFloats": 16,
+      "velocity": [
+        58.58504867553711,
+        2.0514962673187256,
+        0
+      ],
+      "events": 4
+    },
+    {
+      "name": "worker",
+      "type": "checked",
+      "finite": true,
+      "bodies": 98,
+      "steps": 120,
+      "counters": {
+        "pairs": 199,
+        "contacts": 791,
+        "manifolds": 194,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 6
+      },
+      "errors": [],
+      "width": 600,
+      "height": 340
+    }
+  ]
+}

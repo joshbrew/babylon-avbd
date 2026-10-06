@@ -1,0 +1,36 @@
+{
+  "hardware": "NVIDIA GeForce RTX 4070 Laptop GPU",
+  "bodies": 4096,
+  "pairs": 2048,
+  "iterations": 0,
+  "reuseContacts": false,
+  "description": "Collision-only capsule/sphere pairs; fresh narrowphase every step; 500 warm-up steps and 41 samples per run; analytic/hull/hull/analytic order. GPU timing varies with clock and power state; this is not total application FPS.",
+  "runs": [
+    {
+      "analytic": true,
+      "collisionMs": 0.11776,
+      "totalMs": 0.221184,
+      "contacts": 2048
+    },
+    {
+      "analytic": false,
+      "collisionMs": 0.12288,
+      "totalMs": 0.187392,
+      "contacts": 2048
+    },
+    {
+      "analytic": false,
+      "collisionMs": 0.144384,
+      "totalMs": 0.208896,
+      "contacts": 2048
+    },
+    {
+      "analytic": true,
+      "collisionMs": 0.073728,
+      "totalMs": 0.13824,
+      "contacts": 2048
+    }
+  ],
+  "driver": "32.0.16.1714",
+  "identification": "Current Windows GPU name uniquely matched to WebGPU adapter vendor"
+}

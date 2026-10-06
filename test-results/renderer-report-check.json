@@ -1,0 +1,77 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "width": 1440,
+      "scroll": 1425,
+      "cards": 68,
+      "bars": 136,
+      "hardware": true,
+      "navigation": [
+        "../",
+        "../tests/performance.html#renderer-comparison",
+        "solver-performance.html"
+      ],
+      "separate": true,
+      "images": 69
+    },
+    {
+      "width": 390,
+      "scroll": 375,
+      "cards": 68,
+      "bars": 136,
+      "hardware": true,
+      "navigation": [
+        "../",
+        "../tests/performance.html#renderer-comparison",
+        "solver-performance.html"
+      ],
+      "separate": true,
+      "images": 69
+    },
+    {
+      "contactSamples": {
+        "passed": true,
+        "displayedPoints": 2048,
+        "bufferBytes": 32768,
+        "cases": [
+          "known contact positions",
+          "missing points",
+          "whole-region sampling",
+          "completed-buffer switching",
+          "invalid body guard",
+          "body rotation"
+        ]
+      }
+    },
+    {
+      "backToMain": true
+    },
+    {
+      "preview": {
+        "phase": "ready",
+        "scene": "2d-mixed-shapes",
+        "paused": true,
+        "errors": [],
+        "broadphase": "auto",
+        "solverMode": "auto",
+        "renderer": "babylon"
+      },
+      "live": "2d-mixed-shapes",
+      "restored": {
+        "renderer": "babylon",
+        "phase": "ready",
+        "download": true,
+        "running": false
+      }
+    },
+    {
+      "tearPatch": 16,
+      "switched": {
+        "renderer": "babylon",
+        "errors": [],
+        "finite": true
+      }
+    }
+  ]
+}

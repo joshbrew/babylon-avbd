@@ -1,0 +1,515 @@
+{
+  "passed": true,
+  "results": [
+    {
+      "scene": "3d-mixed-sizes-10k",
+      "passed": true,
+      "checkpoints": [
+        {
+          "steps": 121,
+          "bodies": 10001,
+          "broadphase": "hploc",
+          "bvh": {
+            "builds": 2,
+            "refits": 119,
+            "nodes": 20001,
+            "extraBytes": 1062152
+          },
+          "finite": true,
+          "minZ": 0.23833870887756348,
+          "maxZ": 0.5963192582130432,
+          "points": 0,
+          "pinError": 0,
+          "pointRotation": 0,
+          "sag": 0,
+          "rotated": 234,
+          "farCount": 0,
+          "farMoved": 0,
+          "farDropped": 0,
+          "farTilted": 0,
+          "stats": {
+            "pairs": 10100,
+            "contacts": 30067,
+            "manifolds": 10100,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 2
+          },
+          "errors": []
+        },
+        {
+          "steps": 241,
+          "bodies": 10001,
+          "broadphase": "hploc",
+          "bvh": {
+            "builds": 4,
+            "refits": 237,
+            "nodes": 20001,
+            "extraBytes": 1062152
+          },
+          "finite": true,
+          "minZ": 0.23827707767486572,
+          "maxZ": 0.5954416990280151,
+          "points": 0,
+          "pinError": 0,
+          "pointRotation": 0,
+          "sag": 0,
+          "rotated": 367,
+          "farCount": 0,
+          "farMoved": 0,
+          "farDropped": 0,
+          "farTilted": 0,
+          "stats": {
+            "pairs": 10100,
+            "contacts": 30067,
+            "manifolds": 10100,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 2
+          },
+          "errors": []
+        },
+        {
+          "steps": 361,
+          "bodies": 10001,
+          "broadphase": "hploc",
+          "bvh": {
+            "builds": 6,
+            "refits": 355,
+            "nodes": 20001,
+            "extraBytes": 1062152
+          },
+          "finite": true,
+          "minZ": 0.23809123039245605,
+          "maxZ": 0.595352292060852,
+          "points": 0,
+          "pinError": 0,
+          "pointRotation": 0,
+          "sag": 0,
+          "rotated": 428,
+          "farCount": 0,
+          "farMoved": 0,
+          "farDropped": 0,
+          "farTilted": 0,
+          "stats": {
+            "pairs": 10133,
+            "contacts": 30056,
+            "manifolds": 10128,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 2
+          },
+          "errors": []
+        }
+      ]
+    },
+    {
+      "scene": "3d-mixed-sizes-50k",
+      "passed": true,
+      "checkpoints": [
+        {
+          "steps": 121,
+          "bodies": 50001,
+          "broadphase": "hploc",
+          "bvh": {
+            "builds": 2,
+            "refits": 119,
+            "nodes": 100001,
+            "extraBytes": 5253384
+          },
+          "finite": true,
+          "minZ": 0.23833830654621124,
+          "maxZ": 0.6392709016799927,
+          "points": 0,
+          "pinError": 0,
+          "pointRotation": 0,
+          "sag": 0,
+          "rotated": 21,
+          "farCount": 0,
+          "farMoved": 0,
+          "farDropped": 0,
+          "farTilted": 0,
+          "stats": {
+            "pairs": 59143,
+            "contacts": 177392,
+            "manifolds": 59143,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 2
+          },
+          "errors": []
+        },
+        {
+          "steps": 241,
+          "bodies": 50001,
+          "broadphase": "hploc",
+          "bvh": {
+            "builds": 4,
+            "refits": 237,
+            "nodes": 100001,
+            "extraBytes": 5253384
+          },
+          "finite": true,
+          "minZ": 0.2382790893316269,
+          "maxZ": 0.6321253180503845,
+          "points": 0,
+          "pinError": 0,
+          "pointRotation": 0,
+          "sag": 0,
+          "rotated": 30,
+          "farCount": 0,
+          "farMoved": 0,
+          "farDropped": 0,
+          "farTilted": 0,
+          "stats": {
+            "pairs": 59176,
+            "contacts": 177504,
+            "manifolds": 59176,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 2
+          },
+          "errors": []
+        },
+        {
+          "steps": 361,
+          "bodies": 50001,
+          "broadphase": "hploc",
+          "bvh": {
+            "builds": 6,
+            "refits": 355,
+            "nodes": 100001,
+            "extraBytes": 5253384
+          },
+          "finite": true,
+          "minZ": 0.2381005734205246,
+          "maxZ": 0.6302701234817505,
+          "points": 0,
+          "pinError": 0,
+          "pointRotation": 0,
+          "sag": 0,
+          "rotated": 34,
+          "farCount": 0,
+          "farMoved": 0,
+          "farDropped": 0,
+          "farTilted": 0,
+          "stats": {
+            "pairs": 59178,
+            "contacts": 177506,
+            "manifolds": 59178,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 2
+          },
+          "errors": []
+        }
+      ]
+    },
+    {
+      "scene": "showcase-brick-ring-110k",
+      "passed": true,
+      "checkpoints": [
+        {
+          "steps": 121,
+          "bodies": 110442,
+          "broadphase": "hploc",
+          "bvh": {
+            "builds": 2,
+            "refits": 119,
+            "nodes": 220883,
+            "extraBytes": 11585200
+          },
+          "finite": true,
+          "minZ": 0.5328797101974487,
+          "maxZ": 30.084758758544922,
+          "points": 0,
+          "pinError": 0,
+          "pointRotation": 0,
+          "sag": 0,
+          "rotated": 110382,
+          "farCount": 0,
+          "farMoved": 0,
+          "farDropped": 0,
+          "farTilted": 0,
+          "stats": {
+            "pairs": 256140,
+            "contacts": 1209160,
+            "manifolds": 246710,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 15
+          },
+          "errors": []
+        },
+        {
+          "steps": 241,
+          "bodies": 110442,
+          "broadphase": "hploc",
+          "bvh": {
+            "builds": 4,
+            "refits": 237,
+            "nodes": 220883,
+            "extraBytes": 11585200
+          },
+          "finite": true,
+          "minZ": 0.5168213248252869,
+          "maxZ": 19.946443557739258,
+          "points": 0,
+          "pinError": 0,
+          "pointRotation": 0,
+          "sag": 0,
+          "rotated": 110404,
+          "farCount": 0,
+          "farMoved": 0,
+          "farDropped": 0,
+          "farTilted": 0,
+          "stats": {
+            "pairs": 246167,
+            "contacts": 1096764,
+            "manifolds": 236797,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 11
+          },
+          "errors": []
+        },
+        {
+          "steps": 361,
+          "bodies": 110442,
+          "broadphase": "hploc",
+          "bvh": {
+            "builds": 6,
+            "refits": 355,
+            "nodes": 220883,
+            "extraBytes": 11585200
+          },
+          "finite": true,
+          "minZ": 0.4929993152618408,
+          "maxZ": 19.874862670898438,
+          "points": 0,
+          "pinError": 0,
+          "pointRotation": 0,
+          "sag": 0,
+          "rotated": 110405,
+          "farCount": 0,
+          "farMoved": 0,
+          "farDropped": 0,
+          "farTilted": 0,
+          "stats": {
+            "pairs": 262640,
+            "contacts": 1029806,
+            "manifolds": 247104,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 11
+          },
+          "errors": []
+        }
+      ]
+    },
+    {
+      "scene": "showcase-box-columns-100k",
+      "passed": true,
+      "checkpoints": [
+        {
+          "steps": 121,
+          "bodies": 100001,
+          "broadphase": "hploc",
+          "bvh": {
+            "builds": 2,
+            "refits": 119,
+            "nodes": 200001,
+            "extraBytes": 10491560
+          },
+          "finite": true,
+          "minZ": 0.9902053475379944,
+          "maxZ": 9.913362503051758,
+          "points": 0,
+          "pinError": 0,
+          "pointRotation": 0,
+          "sag": 0,
+          "rotated": 0,
+          "farCount": 0,
+          "farMoved": 0,
+          "farDropped": 0,
+          "farTilted": 0,
+          "stats": {
+            "pairs": 100000,
+            "contacts": 400000,
+            "manifolds": 100000,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 3
+          },
+          "errors": []
+        },
+        {
+          "steps": 241,
+          "bodies": 100001,
+          "broadphase": "hploc",
+          "bvh": {
+            "builds": 4,
+            "refits": 237,
+            "nodes": 200001,
+            "extraBytes": 10491560
+          },
+          "finite": true,
+          "minZ": 0.9888246059417725,
+          "maxZ": 9.896381378173828,
+          "points": 0,
+          "pinError": 0,
+          "pointRotation": 0,
+          "sag": 0,
+          "rotated": 0,
+          "farCount": 0,
+          "farMoved": 0,
+          "farDropped": 0,
+          "farTilted": 0,
+          "stats": {
+            "pairs": 100000,
+            "contacts": 400000,
+            "manifolds": 100000,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 3
+          },
+          "errors": []
+        },
+        {
+          "steps": 361,
+          "bodies": 100001,
+          "broadphase": "hploc",
+          "bvh": {
+            "builds": 6,
+            "refits": 355,
+            "nodes": 200001,
+            "extraBytes": 10491560
+          },
+          "finite": true,
+          "minZ": 0.9886430501937866,
+          "maxZ": 9.892919540405273,
+          "points": 0,
+          "pinError": 0,
+          "pointRotation": 0,
+          "sag": 0,
+          "rotated": 0,
+          "farCount": 0,
+          "farMoved": 0,
+          "farDropped": 0,
+          "farTilted": 0,
+          "stats": {
+            "pairs": 100000,
+            "contacts": 400000,
+            "manifolds": 100000,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 3
+          },
+          "errors": []
+        }
+      ]
+    },
+    {
+      "scene": "paper-walls-510k-4",
+      "passed": true,
+      "checkpoints": [
+        {
+          "steps": 121,
+          "bodies": 505923,
+          "broadphase": "hploc",
+          "bvh": {
+            "builds": 2,
+            "refits": 119,
+            "nodes": 1011845,
+            "extraBytes": 53013144
+          },
+          "finite": true,
+          "minZ": 0.3434005379676819,
+          "maxZ": 15.789874076843262,
+          "points": 0,
+          "pinError": 0,
+          "pointRotation": 0,
+          "sag": 0,
+          "rotated": 8138,
+          "farCount": 320280,
+          "farMoved": 58409,
+          "farDropped": 0,
+          "farTilted": 0,
+          "stats": {
+            "pairs": 979292,
+            "contacts": 4014974,
+            "manifolds": 977303,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 9
+          },
+          "errors": []
+        },
+        {
+          "steps": 241,
+          "bodies": 505923,
+          "broadphase": "hploc",
+          "bvh": {
+            "builds": 4,
+            "refits": 237,
+            "nodes": 1011845,
+            "extraBytes": 53013144
+          },
+          "finite": true,
+          "minZ": 0.5416324734687805,
+          "maxZ": 15.400357246398926,
+          "points": 0,
+          "pinError": 0,
+          "pointRotation": 0,
+          "sag": 0,
+          "rotated": 17589,
+          "farCount": 320280,
+          "farMoved": 101888,
+          "farDropped": 0,
+          "farTilted": 0,
+          "stats": {
+            "pairs": 984878,
+            "contacts": 4055281,
+            "manifolds": 980220,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 9
+          },
+          "errors": []
+        },
+        {
+          "steps": 361,
+          "bodies": 505923,
+          "broadphase": "hploc",
+          "bvh": {
+            "builds": 6,
+            "refits": 355,
+            "nodes": 1011845,
+            "extraBytes": 53013144
+          },
+          "finite": true,
+          "minZ": 0.5167466998100281,
+          "maxZ": 15.27932357788086,
+          "points": 0,
+          "pinError": 0,
+          "pointRotation": 0,
+          "sag": 0,
+          "rotated": 26122,
+          "farCount": 320280,
+          "farMoved": 106964,
+          "farDropped": 0,
+          "farTilted": 0,
+          "stats": {
+            "pairs": 993530,
+            "contacts": 4072851,
+            "manifolds": 986269,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 9
+          },
+          "errors": []
+        }
+      ]
+    }
+  ]
+}

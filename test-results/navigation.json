@@ -1,0 +1,46 @@
+{
+  "passed": true,
+  "results": [
+    {
+      "page": "?demo=slingshot",
+      "passed": true
+    },
+    {
+      "page": "?demo=benchmark",
+      "passed": true
+    },
+    {
+      "page": "?demo=showcase",
+      "passed": true
+    },
+    {
+      "page": "?demo=rock",
+      "passed": true
+    },
+    {
+      "page": "?demo=cannon",
+      "passed": true
+    },
+    {
+      "page": "?demo=gpu-stress",
+      "passed": true
+    },
+    {
+      "page": "tests/performance.html",
+      "passed": true
+    },
+    {
+      "page": "test-results/report.html",
+      "passed": true
+    },
+    {
+      "page": "test-results/solver-performance.html",
+      "passed": true
+    },
+    {
+      "page": "tests/gpu.html",
+      "passed": true,
+      "checked": "HTML navigation"
+    }
+  ]
+}

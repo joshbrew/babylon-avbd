@@ -1,0 +1,505 @@
+{
+  "date": "2026-10-06T00:47:25.768Z",
+  "adapter": {
+    "vendor": "nvidia",
+    "description": ""
+  },
+  "scope": "100,000 native velocity edits; 10,000 property edits; 64 shape queries. Excludes solving and rendering.",
+  "results": [
+    {
+      "dimension": 2,
+      "bodies": 100000,
+      "samples": 5,
+      "identicalSelectedRecords": true,
+      "commands": {
+        "cpuSubmitMs": 21,
+        "submitAndWaitMs": 23.900000035762787,
+        "uploadedBytes": 1200000,
+        "path": "packed-velocities"
+      },
+      "objects": {
+        "cpuSubmitMs": 11.800000011920929,
+        "submitAndWaitMs": 15.200000047683716,
+        "uploadedBytes": 1200000,
+        "path": "packed-velocities"
+      },
+      "packed": {
+        "cpuSubmitMs": 3.200000047683716,
+        "submitAndWaitMs": 6.599999964237213,
+        "uploadedBytes": 1200000
+      },
+      "timings": {
+        "commands": [
+          {
+            "cpuSubmitMs": 21.5,
+            "submitAndWaitMs": 23.900000035762787
+          },
+          {
+            "cpuSubmitMs": 21.5,
+            "submitAndWaitMs": 24.400000035762787
+          },
+          {
+            "cpuSubmitMs": 20,
+            "submitAndWaitMs": 23.099999964237213
+          },
+          {
+            "cpuSubmitMs": 21,
+            "submitAndWaitMs": 24.19999998807907
+          },
+          {
+            "cpuSubmitMs": 19.5,
+            "submitAndWaitMs": 22.700000047683716
+          }
+        ],
+        "objects": [
+          {
+            "cpuSubmitMs": 14.699999988079071,
+            "submitAndWaitMs": 18.099999964237213
+          },
+          {
+            "cpuSubmitMs": 12.599999964237213,
+            "submitAndWaitMs": 16.099999964237213
+          },
+          {
+            "cpuSubmitMs": 11.800000011920929,
+            "submitAndWaitMs": 15.200000047683716
+          },
+          {
+            "cpuSubmitMs": 10.100000023841858,
+            "submitAndWaitMs": 13.400000035762787
+          },
+          {
+            "cpuSubmitMs": 8.100000023841858,
+            "submitAndWaitMs": 12.400000035762787
+          }
+        ],
+        "packed": [
+          {
+            "cpuSubmitMs": 6.199999988079071,
+            "submitAndWaitMs": 10.800000011920929
+          },
+          {
+            "cpuSubmitMs": 1.2000000476837158,
+            "submitAndWaitMs": 4.5
+          },
+          {
+            "cpuSubmitMs": 3.5,
+            "submitAndWaitMs": 6.599999964237213
+          },
+          {
+            "cpuSubmitMs": 3.200000047683716,
+            "submitAndWaitMs": 6.900000035762787
+          },
+          {
+            "cpuSubmitMs": 1.399999976158142,
+            "submitAndWaitMs": 5.300000011920929
+          }
+        ]
+      },
+      "motion": {
+        "objects": {
+          "cpuSubmitMs": 15.699999988079071,
+          "submitAndWaitMs": 20,
+          "uploadedBytes": 2000000
+        },
+        "commands": {
+          "cpuSubmitMs": 24.80000001192093,
+          "submitAndWaitMs": 31.5,
+          "uploadedBytes": 2000000
+        },
+        "packed": {
+          "cpuSubmitMs": 4.900000035762787,
+          "submitAndWaitMs": 9.400000035762787,
+          "uploadedBytes": 2000000
+        },
+        "identicalSelectedRecords": true,
+        "timings": {
+          "objects": [
+            {
+              "cpuSubmitMs": 21.100000023841858,
+              "submitAndWaitMs": 24.600000023841858
+            },
+            {
+              "cpuSubmitMs": 18.69999998807907,
+              "submitAndWaitMs": 20
+            },
+            {
+              "cpuSubmitMs": 14.699999988079071,
+              "submitAndWaitMs": 18.19999998807907
+            },
+            {
+              "cpuSubmitMs": 15.699999988079071,
+              "submitAndWaitMs": 20.399999976158142
+            },
+            {
+              "cpuSubmitMs": 15,
+              "submitAndWaitMs": 19.69999998807907
+            }
+          ],
+          "commands": [
+            {
+              "cpuSubmitMs": 39.89999997615814,
+              "submitAndWaitMs": 59
+            },
+            {
+              "cpuSubmitMs": 43.40000003576279,
+              "submitAndWaitMs": 49.40000003576279
+            },
+            {
+              "cpuSubmitMs": 24.80000001192093,
+              "submitAndWaitMs": 28.899999976158142
+            },
+            {
+              "cpuSubmitMs": 23.799999952316284,
+              "submitAndWaitMs": 27.799999952316284
+            },
+            {
+              "cpuSubmitMs": 23.5,
+              "submitAndWaitMs": 31.5
+            }
+          ],
+          "packed": [
+            {
+              "cpuSubmitMs": 7.300000011920929,
+              "submitAndWaitMs": 8.5
+            },
+            {
+              "cpuSubmitMs": 4.900000035762787,
+              "submitAndWaitMs": 11.199999988079071
+            },
+            {
+              "cpuSubmitMs": 6.199999988079071,
+              "submitAndWaitMs": 10.099999964237213
+            },
+            {
+              "cpuSubmitMs": 4.900000035762787,
+              "submitAndWaitMs": 9.400000035762787
+            },
+            {
+              "cpuSubmitMs": 2.699999988079071,
+              "submitAndWaitMs": 5.599999964237213
+            }
+          ]
+        }
+      }
+    },
+    {
+      "dimension": 3,
+      "bodies": 100000,
+      "samples": 5,
+      "identicalSelectedRecords": true,
+      "commands": {
+        "cpuSubmitMs": 70.89999997615814,
+        "submitAndWaitMs": 77.39999997615814,
+        "uploadedBytes": 1600000,
+        "path": "packed-velocities"
+      },
+      "objects": {
+        "cpuSubmitMs": 39.80000001192093,
+        "submitAndWaitMs": 43.69999998807907,
+        "uploadedBytes": 1600000,
+        "path": "packed-velocities"
+      },
+      "packed": {
+        "cpuSubmitMs": 5.199999988079071,
+        "submitAndWaitMs": 9.400000035762787,
+        "uploadedBytes": 1600000
+      },
+      "timings": {
+        "commands": [
+          {
+            "cpuSubmitMs": 72.69999998807907,
+            "submitAndWaitMs": 77.39999997615814
+          },
+          {
+            "cpuSubmitMs": 67.90000003576279,
+            "submitAndWaitMs": 91.10000002384186
+          },
+          {
+            "cpuSubmitMs": 82,
+            "submitAndWaitMs": 90.40000003576279
+          },
+          {
+            "cpuSubmitMs": 62.60000002384186,
+            "submitAndWaitMs": 68.10000002384186
+          },
+          {
+            "cpuSubmitMs": 70.89999997615814,
+            "submitAndWaitMs": 74
+          }
+        ],
+        "objects": [
+          {
+            "cpuSubmitMs": 46.60000002384186,
+            "submitAndWaitMs": 49.60000002384186
+          },
+          {
+            "cpuSubmitMs": 46.5,
+            "submitAndWaitMs": 54.60000002384186
+          },
+          {
+            "cpuSubmitMs": 24.899999976158142,
+            "submitAndWaitMs": 30.299999952316284
+          },
+          {
+            "cpuSubmitMs": 31.400000035762787,
+            "submitAndWaitMs": 36
+          },
+          {
+            "cpuSubmitMs": 39.80000001192093,
+            "submitAndWaitMs": 43.69999998807907
+          }
+        ],
+        "packed": [
+          {
+            "cpuSubmitMs": 7.399999976158142,
+            "submitAndWaitMs": 16.899999976158142
+          },
+          {
+            "cpuSubmitMs": 8.5,
+            "submitAndWaitMs": 17.599999964237213
+          },
+          {
+            "cpuSubmitMs": 3,
+            "submitAndWaitMs": 6
+          },
+          {
+            "cpuSubmitMs": 5.199999988079071,
+            "submitAndWaitMs": 8.099999964237213
+          },
+          {
+            "cpuSubmitMs": 4.199999988079071,
+            "submitAndWaitMs": 9.400000035762787
+          }
+        ]
+      },
+      "motion": {
+        "objects": {
+          "cpuSubmitMs": 60.80000001192093,
+          "submitAndWaitMs": 64.40000003576279,
+          "uploadedBytes": 3200000
+        },
+        "commands": {
+          "cpuSubmitMs": 79.69999998807907,
+          "submitAndWaitMs": 85,
+          "uploadedBytes": 3200000
+        },
+        "packed": {
+          "cpuSubmitMs": 11.599999964237213,
+          "submitAndWaitMs": 16.600000023841858,
+          "uploadedBytes": 3200000
+        },
+        "identicalSelectedRecords": true,
+        "timings": {
+          "objects": [
+            {
+              "cpuSubmitMs": 51.60000002384186,
+              "submitAndWaitMs": 57.69999998807907
+            },
+            {
+              "cpuSubmitMs": 57.69999998807907,
+              "submitAndWaitMs": 62
+            },
+            {
+              "cpuSubmitMs": 66.80000001192093,
+              "submitAndWaitMs": 71.30000001192093
+            },
+            {
+              "cpuSubmitMs": 69.69999998807907,
+              "submitAndWaitMs": 75.89999997615814
+            },
+            {
+              "cpuSubmitMs": 60.80000001192093,
+              "submitAndWaitMs": 64.40000003576279
+            }
+          ],
+          "commands": [
+            {
+              "cpuSubmitMs": 79.69999998807907,
+              "submitAndWaitMs": 85
+            },
+            {
+              "cpuSubmitMs": 75.5,
+              "submitAndWaitMs": 80.69999998807907
+            },
+            {
+              "cpuSubmitMs": 68.20000004768372,
+              "submitAndWaitMs": 72.40000003576279
+            },
+            {
+              "cpuSubmitMs": 91.89999997615814,
+              "submitAndWaitMs": 97.30000001192093
+            },
+            {
+              "cpuSubmitMs": 82.89999997615814,
+              "submitAndWaitMs": 91
+            }
+          ],
+          "packed": [
+            {
+              "cpuSubmitMs": 11.599999964237213,
+              "submitAndWaitMs": 16.19999998807907
+            },
+            {
+              "cpuSubmitMs": 6.5,
+              "submitAndWaitMs": 11.599999964237213
+            },
+            {
+              "cpuSubmitMs": 14.900000035762787,
+              "submitAndWaitMs": 22.600000023841858
+            },
+            {
+              "cpuSubmitMs": 18,
+              "submitAndWaitMs": 23.400000035762787
+            },
+            {
+              "cpuSubmitMs": 5.800000011920929,
+              "submitAndWaitMs": 16.600000023841858
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "overhead": [
+    {
+      "dimension": 2,
+      "bodies": 10000,
+      "samples": 3,
+      "properties": {
+        "perBodyFlush": {
+          "cpuSubmitMs": 18.69999998807907,
+          "submitAndWaitMs": 48.60000002384186,
+          "writeCalls": 30000,
+          "uploadedBytes": 160000
+        },
+        "oneFlush": {
+          "cpuSubmitMs": 9.5,
+          "submitAndWaitMs": 13.400000035762787,
+          "writeCalls": 3,
+          "uploadedBytes": 200000
+        },
+        "identicalSelectedRecords": true,
+        "timings": {
+          "perBodyFlush": [
+            {
+              "cpuSubmitMs": 20.600000023841858,
+              "submitAndWaitMs": 49
+            },
+            {
+              "cpuSubmitMs": 18.69999998807907,
+              "submitAndWaitMs": 48.60000002384186
+            },
+            {
+              "cpuSubmitMs": 13,
+              "submitAndWaitMs": 42.39999997615814
+            }
+          ],
+          "oneFlush": [
+            {
+              "cpuSubmitMs": 13.5,
+              "submitAndWaitMs": 18
+            },
+            {
+              "cpuSubmitMs": 9.5,
+              "submitAndWaitMs": 13.400000035762787
+            },
+            {
+              "cpuSubmitMs": 8.200000047683716,
+              "submitAndWaitMs": 11.800000011920929
+            }
+          ]
+        }
+      },
+      "queries": {
+        "count": 64,
+        "individualMs": 232.30000001192093,
+        "batchMs": 4.100000023841858,
+        "identicalHits": true,
+        "timings": {
+          "individual": [
+            232.60000002384186,
+            232.30000001192093,
+            225.79999995231628
+          ],
+          "batch": [
+            4.5,
+            3,
+            4.100000023841858
+          ]
+        }
+      }
+    },
+    {
+      "dimension": 3,
+      "bodies": 10000,
+      "samples": 3,
+      "properties": {
+        "perBodyFlush": {
+          "cpuSubmitMs": 10.800000011920929,
+          "submitAndWaitMs": 42.69999998807907,
+          "writeCalls": 30000,
+          "uploadedBytes": 160000
+        },
+        "oneFlush": {
+          "cpuSubmitMs": 9.199999988079071,
+          "submitAndWaitMs": 12.899999976158142,
+          "writeCalls": 3,
+          "uploadedBytes": 200000
+        },
+        "identicalSelectedRecords": true,
+        "timings": {
+          "perBodyFlush": [
+            {
+              "cpuSubmitMs": 10.800000011920929,
+              "submitAndWaitMs": 30.399999976158142
+            },
+            {
+              "cpuSubmitMs": 10.5,
+              "submitAndWaitMs": 42.69999998807907
+            },
+            {
+              "cpuSubmitMs": 14.5,
+              "submitAndWaitMs": 44.69999998807907
+            }
+          ],
+          "oneFlush": [
+            {
+              "cpuSubmitMs": 9.199999988079071,
+              "submitAndWaitMs": 12.899999976158142
+            },
+            {
+              "cpuSubmitMs": 10.5,
+              "submitAndWaitMs": 15.300000011920929
+            },
+            {
+              "cpuSubmitMs": 8.5,
+              "submitAndWaitMs": 12.699999988079071
+            }
+          ]
+        }
+      },
+      "queries": {
+        "count": 64,
+        "individualMs": 244.89999997615814,
+        "batchMs": 4.600000023841858,
+        "identicalHits": true,
+        "timings": {
+          "individual": [
+            244.89999997615814,
+            258.5,
+            216.5
+          ],
+          "batch": [
+            4.100000023841858,
+            4.600000023841858,
+            6.699999988079071
+          ]
+        }
+      }
+    }
+  ],
+  "errors": [],
+  "hardwareLabel": "NVIDIA GeForce RTX 4070 Laptop GPU",
+  "driver": "32.0.16.1714"
+}

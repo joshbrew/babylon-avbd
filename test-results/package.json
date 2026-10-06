@@ -1,0 +1,37 @@
+{
+  "passed": true,
+  "name": "avbd-babylon",
+  "files": [
+    "LICENSE",
+    "README.md",
+    "dist/avbd.d.ts",
+    "dist/avbd.global.d.ts",
+    "dist/avbd.global.js",
+    "dist/avbd.js",
+    "dist/babylonAvbd.d.ts",
+    "dist/gpuDevice.d.ts",
+    "dist/native.d.ts",
+    "dist/native.js",
+    "dist/nativeScenes.d.ts",
+    "dist/NOTICE",
+    "docs/BABYLON_API.md",
+    "docs/HPLOC.md",
+    "docs/README.md",
+    "docs/RELEASE.md",
+    "package.json",
+    "tests/README.md"
+  ],
+  "bytes": 354016,
+  "exports": [
+    "AvbdPhysics",
+    "AvbdPhysicsAggregate",
+    "AvbdPhysicsBody",
+    "AvbdPhysicsConstraint",
+    "AvbdPhysicsHinge",
+    "AvbdScene2D",
+    "AvbdScene3D",
+    "AvbdShapeType",
+    "createWebGPUDevice"
+  ],
+  "runtimeDependencies": []
+}

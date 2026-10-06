@@ -1,0 +1,178 @@
+{
+  "baseline": {
+    "steps": 1,
+    "count": 100002
+  },
+  "checkpoints": [
+    {
+      "steps": 60,
+      "moved": 19487,
+      "farMoved": 329,
+      "farCount": 50500,
+      "edgeMoved": 0,
+      "edgeCount": 26000,
+      "maxFarMove": 0.5860382438241168,
+      "rotated": 3154,
+      "finite": true,
+      "maxSpeed": 28.307824821301494,
+      "minZ": 0.40961143374443054,
+      "maxZ": 49.04999923706055,
+      "maxQuatError": 1.315627646825135e-7,
+      "projectile": [
+        0.032405026257038116,
+        0.26258355379104614,
+        18.703441619873047
+      ],
+      "stats": {
+        "pairs": 131878,
+        "contacts": 358194,
+        "manifolds": 108826,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 15,
+        "awake": 27648
+      },
+      "gpuProfile": {
+        "total": 8.000512,
+        "collision": 4.345856,
+        "adjacency": 0.37888,
+        "coloring": 0.354304,
+        "solve": 2.921472,
+        "broadphase": "grid",
+        "bvhRebuilt": false
+      },
+      "physicsMs": 10.617856,
+      "sleepMs": 0.221184,
+      "errors": [],
+      "advanced": 59
+    },
+    {
+      "steps": 180,
+      "moved": 38471,
+      "farMoved": 1400,
+      "farCount": 50500,
+      "edgeMoved": 1,
+      "edgeCount": 26000,
+      "maxFarMove": 0.8915509207696504,
+      "rotated": 22411,
+      "finite": true,
+      "maxSpeed": 27.48679042192361,
+      "minZ": 0.07940509170293808,
+      "maxZ": 49.04999923706055,
+      "maxQuatError": 1.3460115400043549e-7,
+      "projectile": [
+        0.640131950378418,
+        5.5545854568481445,
+        6.10712194442749
+      ],
+      "stats": {
+        "pairs": 167478,
+        "contacts": 432236,
+        "manifolds": 145555,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 15,
+        "awake": 48311
+      },
+      "gpuProfile": {
+        "total": 9.039872,
+        "collision": 4.808704,
+        "adjacency": 0.524288,
+        "coloring": 0.263168,
+        "solve": 3.443712,
+        "broadphase": "grid",
+        "bvhRebuilt": false
+      },
+      "physicsMs": 10.966016,
+      "sleepMs": 0.198656,
+      "errors": [],
+      "advanced": 179
+    },
+    {
+      "steps": 360,
+      "moved": 56722,
+      "farMoved": 9627,
+      "farCount": 50500,
+      "edgeMoved": 18,
+      "edgeCount": 26000,
+      "maxFarMove": 10.087199553300787,
+      "rotated": 52295,
+      "finite": true,
+      "maxSpeed": 19.161985397338867,
+      "minZ": 0.1573108285665512,
+      "maxZ": 49.04999923706055,
+      "maxQuatError": 1.443034680637112e-7,
+      "projectile": [
+        0.7494305968284607,
+        7.866462230682373,
+        5.30936861038208
+      ],
+      "stats": {
+        "pairs": 196672,
+        "contacts": 361162,
+        "manifolds": 172196,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 15,
+        "awake": 63480
+      },
+      "gpuProfile": {
+        "total": 8.315904,
+        "collision": 4.20864,
+        "adjacency": 0.561152,
+        "coloring": 0.273408,
+        "solve": 3.272704,
+        "broadphase": "grid",
+        "bvhRebuilt": false
+      },
+      "physicsMs": 10.359808,
+      "sleepMs": 0.205824,
+      "errors": [],
+      "advanced": 359
+    }
+  ],
+  "timing": {
+    "summary": {
+      "frameMs": {
+        "mean": 16.683999999999997,
+        "median": 16.69999999999891,
+        "p95": 16.900000000001455
+      },
+      "solveMs": {
+        "mean": 11.31373568,
+        "median": 11.209728,
+        "p95": 13.365248
+      },
+      "renderMs": {
+        "mean": 0.9720217599999986,
+        "median": 0.971776,
+        "p95": 0.978944
+      }
+    },
+    "stats": {
+      "pairs": 209282,
+      "contacts": 370680,
+      "manifolds": 182198,
+      "overflow": 0,
+      "clashes": 0,
+      "colors": 18,
+      "awake": 70227
+    },
+    "profile": {
+      "total": 8.648704,
+      "collision": 4.196352,
+      "adjacency": 0.586752,
+      "coloring": 0.24064,
+      "solve": 3.62496,
+      "broadphase": "grid",
+      "bvhRebuilt": false
+    },
+    "adapter": {
+      "vendor": "nvidia",
+      "architecture": "lovelace",
+      "device": "",
+      "description": ""
+    }
+  },
+  "errors": []
+}

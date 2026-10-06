@@ -1,0 +1,61 @@
+{
+  "passed": true,
+  "results": [
+    {
+      "width": 1440,
+      "scroll": 1425,
+      "cards": 4,
+      "sleepCharts": 6,
+      "sleepBars": 12,
+      "images": true,
+      "stages": 16,
+      "namedHardware": true,
+      "explanation": {
+        "plain": true,
+        "localVsPaper": true,
+        "automatic": true,
+        "unambiguous": true,
+        "paperScenes": true,
+        "limits": true,
+        "hiddenHardware": true
+      },
+      "protections": {
+        "comparison": true,
+        "protection": true
+      },
+      "ragdolls": {
+        "charts": 2,
+        "bars": 12,
+        "plain": true
+      }
+    },
+    {
+      "width": 390,
+      "scroll": 375,
+      "cards": 4,
+      "sleepCharts": 6,
+      "sleepBars": 12,
+      "images": true,
+      "stages": 16,
+      "namedHardware": true,
+      "explanation": {
+        "plain": true,
+        "localVsPaper": true,
+        "automatic": true,
+        "unambiguous": true,
+        "paperScenes": true,
+        "limits": true,
+        "hiddenHardware": true
+      },
+      "protections": {
+        "comparison": true,
+        "protection": true
+      },
+      "ragdolls": {
+        "charts": 2,
+        "bars": 12,
+        "plain": true
+      }
+    }
+  ]
+}

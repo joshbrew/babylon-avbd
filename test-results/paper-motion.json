@@ -1,0 +1,266 @@
+{
+  "passed": true,
+  "results": [
+    {
+      "scene": "paper-walls-510k-3",
+      "passed": true,
+      "checkpoints": [
+        {
+          "steps": 121,
+          "bodies": 505923,
+          "broadphase": "grid",
+          "bvh": null,
+          "finite": true,
+          "minZ": 0.4815254807472229,
+          "maxZ": 15.838268280029297,
+          "points": 0,
+          "pinError": 0,
+          "pointRotation": 0,
+          "sag": 0,
+          "rotated": 8262,
+          "farCount": 320280,
+          "farMoved": 46019,
+          "farDropped": 0,
+          "farTilted": 0,
+          "stats": {
+            "pairs": 979317,
+            "contacts": 4063795,
+            "manifolds": 977370,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 10
+          },
+          "errors": []
+        },
+        {
+          "steps": 241,
+          "bodies": 505923,
+          "broadphase": "grid",
+          "bvh": null,
+          "finite": true,
+          "minZ": 0.42993006110191345,
+          "maxZ": 15.626140594482422,
+          "points": 0,
+          "pinError": 0,
+          "pointRotation": 0,
+          "sag": 0,
+          "rotated": 17610,
+          "farCount": 320280,
+          "farMoved": 104051,
+          "farDropped": 0,
+          "farTilted": 0,
+          "stats": {
+            "pairs": 985999,
+            "contacts": 4117473,
+            "manifolds": 981064,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 10
+          },
+          "errors": []
+        },
+        {
+          "steps": 361,
+          "bodies": 505923,
+          "broadphase": "grid",
+          "bvh": null,
+          "finite": true,
+          "minZ": 0.3946860730648041,
+          "maxZ": 15.540149688720703,
+          "points": 0,
+          "pinError": 0,
+          "pointRotation": 0,
+          "sag": 0,
+          "rotated": 26297,
+          "farCount": 320280,
+          "farMoved": 112489,
+          "farDropped": 0,
+          "farTilted": 0,
+          "stats": {
+            "pairs": 994829,
+            "contacts": 4116875,
+            "manifolds": 987563,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 10
+          },
+          "errors": []
+        }
+      ]
+    },
+    {
+      "scene": "paper-walls-510k-4",
+      "passed": true,
+      "checkpoints": [
+        {
+          "steps": 121,
+          "bodies": 505923,
+          "broadphase": "grid",
+          "bvh": null,
+          "finite": true,
+          "minZ": 0.3434005379676819,
+          "maxZ": 15.789874076843262,
+          "points": 0,
+          "pinError": 0,
+          "pointRotation": 0,
+          "sag": 0,
+          "rotated": 8138,
+          "farCount": 320280,
+          "farMoved": 58429,
+          "farDropped": 0,
+          "farTilted": 0,
+          "stats": {
+            "pairs": 979294,
+            "contacts": 4014923,
+            "manifolds": 977305,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 9
+          },
+          "errors": []
+        },
+        {
+          "steps": 241,
+          "bodies": 505923,
+          "broadphase": "grid",
+          "bvh": null,
+          "finite": true,
+          "minZ": 0.5416324734687805,
+          "maxZ": 15.400357246398926,
+          "points": 0,
+          "pinError": 0,
+          "pointRotation": 0,
+          "sag": 0,
+          "rotated": 17589,
+          "farCount": 320280,
+          "farMoved": 101888,
+          "farDropped": 0,
+          "farTilted": 0,
+          "stats": {
+            "pairs": 984883,
+            "contacts": 4055359,
+            "manifolds": 980226,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 9
+          },
+          "errors": []
+        },
+        {
+          "steps": 361,
+          "bodies": 505923,
+          "broadphase": "grid",
+          "bvh": null,
+          "finite": true,
+          "minZ": 0.5167466998100281,
+          "maxZ": 15.27932357788086,
+          "points": 0,
+          "pinError": 0,
+          "pointRotation": 0,
+          "sag": 0,
+          "rotated": 26122,
+          "farCount": 320280,
+          "farMoved": 106967,
+          "farDropped": 0,
+          "farTilted": 0,
+          "stats": {
+            "pairs": 993540,
+            "contacts": 4072952,
+            "manifolds": 986274,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 9
+          },
+          "errors": []
+        }
+      ]
+    },
+    {
+      "scene": "paper-cloth-35k",
+      "passed": true,
+      "checkpoints": [
+        {
+          "steps": 121,
+          "bodies": 45001,
+          "broadphase": "grid",
+          "bvh": null,
+          "finite": true,
+          "minZ": 0.6974528431892395,
+          "maxZ": 11.971226692199707,
+          "points": 10000,
+          "pinError": 0,
+          "pointRotation": 0,
+          "sag": 7.3025471568107605,
+          "rotated": 34878,
+          "farCount": 0,
+          "farMoved": 0,
+          "farDropped": 0,
+          "farTilted": 0,
+          "stats": {
+            "pairs": 97157,
+            "contacts": 177852,
+            "manifolds": 73250,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 13
+          },
+          "errors": []
+        },
+        {
+          "steps": 241,
+          "bodies": 45001,
+          "broadphase": "grid",
+          "bvh": null,
+          "finite": true,
+          "minZ": 3.0141711235046387,
+          "maxZ": 12.40727710723877,
+          "points": 10000,
+          "pinError": 0,
+          "pointRotation": 0,
+          "sag": 4.985828876495361,
+          "rotated": 34708,
+          "farCount": 0,
+          "farMoved": 0,
+          "farDropped": 0,
+          "farTilted": 0,
+          "stats": {
+            "pairs": 98703,
+            "contacts": 148498,
+            "manifolds": 63404,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 13
+          },
+          "errors": []
+        },
+        {
+          "steps": 361,
+          "bodies": 45001,
+          "broadphase": "grid",
+          "bvh": null,
+          "finite": true,
+          "minZ": 1.110556721687317,
+          "maxZ": 12.41642951965332,
+          "points": 10000,
+          "pinError": 0,
+          "pointRotation": 0,
+          "sag": 6.889443278312683,
+          "rotated": 34953,
+          "farCount": 0,
+          "farMoved": 0,
+          "farDropped": 0,
+          "farTilted": 0,
+          "stats": {
+            "pairs": 117376,
+            "contacts": 200743,
+            "manifolds": 76744,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 13
+          },
+          "errors": []
+        }
+      ]
+    }
+  ]
+}

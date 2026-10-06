@@ -1,0 +1,262 @@
+[
+  {
+    "path": "LICENSE",
+    "sha": "e344c042c1bea071472877261e791ff52ae98e81"
+  },
+  {
+    "path": "THIRD_PARTY_NOTICES.md",
+    "sha": "3b3fd4f98d79df8f9170b58087c91cb8785b2f67"
+  },
+  {
+    "path": "src/avbd2d/custom.ts",
+    "sha": "24f193c1217ab7185f9e313a3519a5e44dcde2f2"
+  },
+  {
+    "path": "src/avbd2d/ref/body.ts",
+    "sha": "dcbf577c2c14378917d4d2a6e8b0e04b4526323f"
+  },
+  {
+    "path": "src/avbd2d/ref/collide.ts",
+    "sha": "484e7db3ba44ecfee58f59c0af58570f753fd5e2"
+  },
+  {
+    "path": "src/avbd2d/ref/forces.ts",
+    "sha": "8586c03e112324fa69f20ad0e22944465f68ba7b"
+  },
+  {
+    "path": "src/avbd2d/ref/manifold.ts",
+    "sha": "012023774c48df56f2a930814ccd03fd47c18cc1"
+  },
+  {
+    "path": "src/avbd2d/ref/math.ts",
+    "sha": "d6692e164e2defa9266424097a34eb78ae9c7ade"
+  },
+  {
+    "path": "src/avbd2d/ref/metrics.ts",
+    "sha": "313d958f8f11e5ed86032d88aef6d8589c49f418"
+  },
+  {
+    "path": "src/avbd2d/ref/scenes.ts",
+    "sha": "3fa5db91e1490d4ccabd6d97e93b59cac3f56ae3"
+  },
+  {
+    "path": "src/avbd2d/ref/solver.ts",
+    "sha": "c0946e6ce386e090c43fae8f9111916a3834a877"
+  },
+  {
+    "path": "src/avbd2d/sim.ts",
+    "sha": "7cd4685547446d05ea30b0cf02817ade34a6b8ae"
+  },
+  {
+    "path": "src/avbd2d/soa/broadphase.ts",
+    "sha": "a100f2b7d5bb326d57bf41219efdab3857954efd"
+  },
+  {
+    "path": "src/avbd2d/soa/collide.ts",
+    "sha": "1e4b7b119297f8e07d186bcec881765cea3ab7ee"
+  },
+  {
+    "path": "src/avbd2d/soa/coloring.ts",
+    "sha": "a3e49e17acf92a9410bac0926536f9c629907e4b"
+  },
+  {
+    "path": "src/avbd2d/soa/solver.ts",
+    "sha": "4bc83780623294c2487b42255953f5164ae5d9f3"
+  },
+  {
+    "path": "src/avbd3d/gpu/radii.ts",
+    "sha": "1262ada820c19e430125f093049dd6cf4114e940"
+  },
+  {
+    "path": "src/avbd3d/hull.ts",
+    "sha": "f0df1074c18f5ea29004ee1a9cdc4b74f8b72e00"
+  },
+  {
+    "path": "src/avbd3d/ref/body.ts",
+    "sha": "8147cb418f3bcb961bc22921745660243d945620"
+  },
+  {
+    "path": "src/avbd3d/ref/collide.ts",
+    "sha": "49db1552450ece3310fbc99a3350bca218f80351"
+  },
+  {
+    "path": "src/avbd3d/ref/forces.ts",
+    "sha": "fa1bf8eadcb36ebd7dc81df7a99f142f5332ce98"
+  },
+  {
+    "path": "src/avbd3d/ref/manifold.ts",
+    "sha": "e8c7271c2a60c2d70c6840a61c46c73f353356c7"
+  },
+  {
+    "path": "src/avbd3d/ref/math.ts",
+    "sha": "c31dab874a1f1078b1d7a60501b052366211b304"
+  },
+  {
+    "path": "src/avbd3d/ref/scenes.ts",
+    "sha": "d3c21eb1ad921aeef3f44b4d40fdb7151c774a7b"
+  },
+  {
+    "path": "src/avbd3d/ref/solver.ts",
+    "sha": "be6dcf4dd195b08db53b3701e6ce0829b508965e"
+  },
+  {
+    "path": "tests/avbd2d-behavior.test.ts",
+    "sha": "b960bb79db32b852c595fc1dc272d8de73b681a1"
+  },
+  {
+    "path": "tests/avbd2d-ref.test.ts",
+    "sha": "84d3995b79c2c01d4ef4be2155ce4757297f5921"
+  },
+  {
+    "path": "tests/avbd2d-soa.test.ts",
+    "sha": "9b5fc2154197dabbfa3ab10a0e2e9f74c94fc52e"
+  },
+  {
+    "path": "tests/avbd3d-ref.test.ts",
+    "sha": "c1a8e5ef8db38f849c5a9c440ee5fc810589c4b0"
+  },
+  {
+    "path": "tests/fixtures/oracle2d/scene-0.json",
+    "sha": "741d0ca65ea1584cb8cf885447cc3c907ff33a7e"
+  },
+  {
+    "path": "tests/fixtures/oracle2d/scene-1.json",
+    "sha": "711344cbb2aae65de77e836d7dfb094aac2977c8"
+  },
+  {
+    "path": "tests/fixtures/oracle2d/scene-10.json",
+    "sha": "b6896f9f938e52978014a640f2d385b4d4d8cdbe"
+  },
+  {
+    "path": "tests/fixtures/oracle2d/scene-11.json",
+    "sha": "645a1f1b57b29b47c9eeb4e17e0a548da417be2d"
+  },
+  {
+    "path": "tests/fixtures/oracle2d/scene-12.json",
+    "sha": "f478d0e16058a6e907a2c640d867b8a3bc01c603"
+  },
+  {
+    "path": "tests/fixtures/oracle2d/scene-13.json",
+    "sha": "2f3b87cdb524cc42c2f12b2f714a42d0383c77fc"
+  },
+  {
+    "path": "tests/fixtures/oracle2d/scene-14.json",
+    "sha": "8bc7eb79e7356048063c3c2ff2d4cd3ff178a711"
+  },
+  {
+    "path": "tests/fixtures/oracle2d/scene-15.json",
+    "sha": "31e43a012d5cbda44635f5a1193d6c0db8d7b975"
+  },
+  {
+    "path": "tests/fixtures/oracle2d/scene-16.json",
+    "sha": "c17dd16644ad262ed71c9ed2f995a645f7368684"
+  },
+  {
+    "path": "tests/fixtures/oracle2d/scene-17.json",
+    "sha": "cbb452a45fc0cd2ecd914b625739a7f44d24fe1e"
+  },
+  {
+    "path": "tests/fixtures/oracle2d/scene-18.json",
+    "sha": "a9a1c37c1db22526f8c801d1e024723ad3266624"
+  },
+  {
+    "path": "tests/fixtures/oracle2d/scene-2.json",
+    "sha": "26dba9f96412c1a854dc423d94a6f803ccc5058b"
+  },
+  {
+    "path": "tests/fixtures/oracle2d/scene-3.json",
+    "sha": "a20d16359b0266afdc699325d9f5d39d35774fec"
+  },
+  {
+    "path": "tests/fixtures/oracle2d/scene-4.json",
+    "sha": "ccd987c8fd35e98e48c5815fed477b69d3b5e3a1"
+  },
+  {
+    "path": "tests/fixtures/oracle2d/scene-5.json",
+    "sha": "69597b6c0e283830adf6726ff866d44a1c39bc2a"
+  },
+  {
+    "path": "tests/fixtures/oracle2d/scene-6.json",
+    "sha": "c36536933ae09609d72053101fa34cccea003fe4"
+  },
+  {
+    "path": "tests/fixtures/oracle2d/scene-7.json",
+    "sha": "048b54f85ef766ef1d4fff028c5567cdb6081eda"
+  },
+  {
+    "path": "tests/fixtures/oracle2d/scene-8.json",
+    "sha": "cea13874d451abd5ee6fb1edf5ea548983e2aeca"
+  },
+  {
+    "path": "tests/fixtures/oracle2d/scene-9.json",
+    "sha": "07b59aa59ad693b0da0c37cb0b4a9af6e7396f44"
+  },
+  {
+    "path": "tests/fixtures/oracle3d/scene-0.json",
+    "sha": "741d0ca65ea1584cb8cf885447cc3c907ff33a7e"
+  },
+  {
+    "path": "tests/fixtures/oracle3d/scene-1.json",
+    "sha": "1578cac8853a7ab31c8a43d82cd1c93e69c8f946"
+  },
+  {
+    "path": "tests/fixtures/oracle3d/scene-10.json",
+    "sha": "7a9821e3f5e72e5a75f757f91e8085a52dd0e88d"
+  },
+  {
+    "path": "tests/fixtures/oracle3d/scene-11.json",
+    "sha": "aa601300e044ae3a3383d9238b4c90b69cc7b8ae"
+  },
+  {
+    "path": "tests/fixtures/oracle3d/scene-12.json",
+    "sha": "4b230fddccbdf3e8e0c69db37dd89af6808018c3"
+  },
+  {
+    "path": "tests/fixtures/oracle3d/scene-13.json",
+    "sha": "40ce5365977bf43992ad7f5efa65bd07d4a4b801"
+  },
+  {
+    "path": "tests/fixtures/oracle3d/scene-2.json",
+    "sha": "2e32a7e051f03ca4ad9d9ddb358b203b73501097"
+  },
+  {
+    "path": "tests/fixtures/oracle3d/scene-3.json",
+    "sha": "2de700a90cf1aa8bfb946ef3c49cd492c129cd38"
+  },
+  {
+    "path": "tests/fixtures/oracle3d/scene-4.json",
+    "sha": "d21be1a39ca89c8c439d1e8483447b8b40e8b43c"
+  },
+  {
+    "path": "tests/fixtures/oracle3d/scene-5.json",
+    "sha": "187f4f78ee66eba1e201cd820a9126bb0ffb353f"
+  },
+  {
+    "path": "tests/fixtures/oracle3d/scene-6.json",
+    "sha": "934b9469b8fd12570d38ce3d57e79009a4bb2098"
+  },
+  {
+    "path": "tests/fixtures/oracle3d/scene-7.json",
+    "sha": "af0bc8d3b020fd18c5e71ebdb4f80b714074c0f3"
+  },
+  {
+    "path": "tests/fixtures/oracle3d/scene-8.json",
+    "sha": "3085c1ed6b00382384a67fc605a2446ddd6b6d2c"
+  },
+  {
+    "path": "tests/fixtures/oracle3d/scene-9.json",
+    "sha": "f8f443c8fbf5436c099336fa939113e9ef134a17"
+  },
+  {
+    "path": "tests/hull.test.ts",
+    "sha": "932168a52e9631b99c7f65d9278e415b96748ac4"
+  },
+  {
+    "path": "tests/radii.test.ts",
+    "sha": "dad18820041281950f051c157657a230d90d3732"
+  },
+  {
+    "path": "src/avbd2d/bench-scenes.ts",
+    "sha": "6558e940ebb418b0be9c30838c821e322fa8a17c"
+  }
+]

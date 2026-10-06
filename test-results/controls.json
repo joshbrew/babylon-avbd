@@ -1,0 +1,76 @@
+{
+  "results": [
+    {
+      "control": "box",
+      "passed": true,
+      "shape": 0,
+      "mass": 1543.2098388671875,
+      "stats": {
+        "pairs": 33383,
+        "contacts": 83916,
+        "manifolds": 27645,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 13,
+        "awake": 5619
+      }
+    },
+    {
+      "control": "capsule",
+      "passed": true,
+      "shape": 3,
+      "mass": 1445.309814453125,
+      "stats": {
+        "pairs": 95008,
+        "contacts": 258750,
+        "manifolds": 78550,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 14,
+        "awake": 20690
+      }
+    },
+    {
+      "control": "cylinder",
+      "passed": true,
+      "shape": 3,
+      "mass": 1653.5704345703125,
+      "stats": {
+        "pairs": 111494,
+        "contacts": 311634,
+        "manifolds": 93982,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 14,
+        "awake": 27485
+      }
+    },
+    {
+      "control": "sphere",
+      "passed": true,
+      "shape": 1,
+      "mass": 2727.076904296875,
+      "stats": {
+        "pairs": 110250,
+        "contacts": 317123,
+        "manifolds": 95213,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 13,
+        "awake": 29948
+      }
+    },
+    {
+      "control": "reset",
+      "passed": true,
+      "count": 100002,
+      "steps": 1,
+      "kind": "sphere"
+    },
+    {
+      "control": "launch",
+      "passed": true
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,4490 @@
+{
+  "date": "2026-10-05T19:37:35.631Z",
+  "comparisons": [
+    {
+      "scene": "showcase-ragdolls-on-cloth-24k",
+      "variants": [
+        "baseline-detail",
+        "hploc-detail"
+      ],
+      "warmup": 480,
+      "count": 40,
+      "results": [
+        {
+          "scene": "showcase-ragdolls-on-cloth-24k",
+          "variant": "baseline-detail",
+          "bodyCount": 23617,
+          "jointCount": 31200,
+          "params": {
+            "dt": 0.004166666666666667,
+            "gravity": -10,
+            "iterations": 5,
+            "betaLin": 10000,
+            "betaAng": 100,
+            "alpha": 0.99,
+            "gamma": 0.999,
+            "matchNearest": true,
+            "faceBias": true,
+            "reuseContacts": true,
+            "startAtRest": true,
+            "massPenalty": true,
+            "windSpeed": 0,
+            "windAngle": 0,
+            "windGust": 0.4,
+            "windPressure": 0.72,
+            "up": [
+              0,
+              0,
+              1
+            ]
+          },
+          "verifiedSteps": 520,
+          "counters": {
+            "pairs": 28317,
+            "contacts": 27896,
+            "manifolds": 19316,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 9
+          },
+          "peakContacts": 27896,
+          "quaternionError": 1.449105632156389e-7,
+          "finite": true,
+          "rendering": false,
+          "sleeping": false,
+          "samples": [
+            {
+              "step": 481,
+              "total": 2.627584,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.032768,
+                "broadphaseBuild": 0.0256,
+                "broadphasePairs": 1.140736,
+                "narrowphase": 0.080896,
+                "adjacency": 0.070656,
+                "coloring": 0.13312,
+                "warmStart": 0.041984,
+                "bodySolve": 0.934912,
+                "contactUpdate": 0.159744,
+                "velocities": 0.007168
+              },
+              "collision": 1.28,
+              "adjacency": 0.070656,
+              "coloring": 0.13312,
+              "solve": 1.1438080000000002,
+              "contacts": 20624
+            },
+            {
+              "step": 482,
+              "total": 6.024192,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.026624,
+                "broadphaseBuild": 0.02048,
+                "broadphasePairs": 1.14176,
+                "narrowphase": 0.643072,
+                "adjacency": 0.080896,
+                "coloring": 0.126976,
+                "warmStart": 0.044032,
+                "bodySolve": 3.7447679999999997,
+                "contactUpdate": 0.182272,
+                "velocities": 0.013312
+              },
+              "collision": 1.8319360000000002,
+              "adjacency": 0.080896,
+              "coloring": 0.126976,
+              "solve": 3.9843839999999995,
+              "contacts": 20394
+            },
+            {
+              "step": 483,
+              "total": 4.40832,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.022528,
+                "broadphaseBuild": 0.018432,
+                "broadphasePairs": 1.1264,
+                "narrowphase": 0.671744,
+                "adjacency": 0.088064,
+                "coloring": 0.137216,
+                "warmStart": 0.048128,
+                "bodySolve": 2.1268480000000003,
+                "contactUpdate": 0.161792,
+                "velocities": 0.006144
+              },
+              "collision": 1.8391039999999998,
+              "adjacency": 0.088064,
+              "coloring": 0.137216,
+              "solve": 2.3429119999999997,
+              "contacts": 20373
+            },
+            {
+              "step": 484,
+              "total": 2.576384,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.032768,
+                "broadphaseBuild": 0.0256,
+                "broadphasePairs": 1.125376,
+                "narrowphase": 0.077824,
+                "adjacency": 0.07168,
+                "coloring": 0.126976,
+                "warmStart": 0.043008,
+                "bodySolve": 0.9062399999999999,
+                "contactUpdate": 0.15872,
+                "velocities": 0.007168
+              },
+              "collision": 1.261568,
+              "adjacency": 0.07168,
+              "coloring": 0.126976,
+              "solve": 1.115136,
+              "contacts": 20303
+            },
+            {
+              "step": 485,
+              "total": 6.061056,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.027648,
+                "broadphaseBuild": 0.02048,
+                "broadphasePairs": 1.691648,
+                "narrowphase": 0.06656,
+                "adjacency": 0.072704,
+                "coloring": 0.126976,
+                "warmStart": 0.041984,
+                "bodySolve": 3.195904,
+                "contactUpdate": 0.80896,
+                "velocities": 0.006144
+              },
+              "collision": 1.806336,
+              "adjacency": 0.072704,
+              "coloring": 0.126976,
+              "solve": 4.052992,
+              "contacts": 20419
+            },
+            {
+              "step": 486,
+              "total": 5.108736,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.029696,
+                "broadphaseBuild": 0.019456,
+                "broadphasePairs": 1.31072,
+                "narrowphase": 0.0768,
+                "adjacency": 0.073728,
+                "coloring": 0.129024,
+                "warmStart": 0.041984,
+                "bodySolve": 3.258368,
+                "contactUpdate": 0.161792,
+                "velocities": 0.007168
+              },
+              "collision": 1.4366720000000002,
+              "adjacency": 0.073728,
+              "coloring": 0.129024,
+              "solve": 3.4693119999999995,
+              "contacts": 20378
+            },
+            {
+              "step": 487,
+              "total": 2.547712,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.032768,
+                "broadphaseBuild": 0.023552,
+                "broadphasePairs": 1.101824,
+                "narrowphase": 0.074752,
+                "adjacency": 0.072704,
+                "coloring": 0.125952,
+                "warmStart": 0.04096,
+                "bodySolve": 0.908288,
+                "contactUpdate": 0.159744,
+                "velocities": 0.006144
+              },
+              "collision": 1.2328959999999998,
+              "adjacency": 0.072704,
+              "coloring": 0.125952,
+              "solve": 1.1151359999999997,
+              "contacts": 20540
+            },
+            {
+              "step": 488,
+              "total": 2.568192,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.033792,
+                "broadphaseBuild": 0.024576,
+                "broadphasePairs": 1.123328,
+                "narrowphase": 0.080896,
+                "adjacency": 0.07168,
+                "coloring": 0.121856,
+                "warmStart": 0.043008,
+                "bodySolve": 0.900096,
+                "contactUpdate": 0.160768,
+                "velocities": 0.007168
+              },
+              "collision": 1.2625920000000002,
+              "adjacency": 0.07168,
+              "coloring": 0.121856,
+              "solve": 1.11104,
+              "contacts": 20596
+            },
+            {
+              "step": 489,
+              "total": 4.012032,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.028672,
+                "broadphaseBuild": 0.02048,
+                "broadphasePairs": 1.127424,
+                "narrowphase": 0.075776,
+                "adjacency": 0.07168,
+                "coloring": 0.13824,
+                "warmStart": 0.04096,
+                "bodySolve": 2.320384,
+                "contactUpdate": 0.178176,
+                "velocities": 0.006144
+              },
+              "collision": 1.2523520000000001,
+              "adjacency": 0.07168,
+              "coloring": 0.13824,
+              "solve": 2.545664,
+              "contacts": 20757
+            },
+            {
+              "step": 490,
+              "total": 2.567168,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.032768,
+                "broadphaseBuild": 0.024576,
+                "broadphasePairs": 1.129472,
+                "narrowphase": 0.075776,
+                "adjacency": 0.070656,
+                "coloring": 0.125952,
+                "warmStart": 0.04096,
+                "bodySolve": 0.900096,
+                "contactUpdate": 0.157696,
+                "velocities": 0.006144
+              },
+              "collision": 1.2625920000000002,
+              "adjacency": 0.070656,
+              "coloring": 0.125952,
+              "solve": 1.104896,
+              "contacts": 20954
+            },
+            {
+              "step": 491,
+              "total": 2.587648,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.03072,
+                "broadphaseBuild": 0.0256,
+                "broadphasePairs": 1.122304,
+                "narrowphase": 0.082944,
+                "adjacency": 0.07168,
+                "coloring": 0.132096,
+                "warmStart": 0.041984,
+                "bodySolve": 0.912384,
+                "contactUpdate": 0.160768,
+                "velocities": 0.007168
+              },
+              "collision": 1.2615679999999998,
+              "adjacency": 0.07168,
+              "coloring": 0.132096,
+              "solve": 1.122304,
+              "contacts": 21149
+            },
+            {
+              "step": 492,
+              "total": 2.63168,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.034816,
+                "broadphaseBuild": 0.024576,
+                "broadphasePairs": 1.1264,
+                "narrowphase": 0.083968,
+                "adjacency": 0.07168,
+                "coloring": 0.146432,
+                "warmStart": 0.041984,
+                "bodySolve": 0.932864,
+                "contactUpdate": 0.160768,
+                "velocities": 0.006144
+              },
+              "collision": 1.2697600000000002,
+              "adjacency": 0.07168,
+              "coloring": 0.146432,
+              "solve": 1.1417599999999999,
+              "contacts": 21409
+            },
+            {
+              "step": 493,
+              "total": 5.69344,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.026624,
+                "broadphaseBuild": 0.02048,
+                "broadphasePairs": 1.700864,
+                "narrowphase": 0.084992,
+                "adjacency": 0.124928,
+                "coloring": 0.132096,
+                "warmStart": 0.04096,
+                "bodySolve": 3.336192,
+                "contactUpdate": 0.216064,
+                "velocities": 0.008192
+              },
+              "collision": 1.83296,
+              "adjacency": 0.124928,
+              "coloring": 0.132096,
+              "solve": 3.601408,
+              "contacts": 21737
+            },
+            {
+              "step": 494,
+              "total": 3.621888,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.031744,
+                "broadphaseBuild": 0.023552,
+                "broadphasePairs": 1.693696,
+                "narrowphase": 0.113664,
+                "adjacency": 0.083968,
+                "coloring": 0.131072,
+                "warmStart": 0.048128,
+                "bodySolve": 1.319936,
+                "contactUpdate": 0.16793599999999997,
+                "velocities": 0.007168
+              },
+              "collision": 1.862656,
+              "adjacency": 0.083968,
+              "coloring": 0.131072,
+              "solve": 1.5431679999999999,
+              "contacts": 21982
+            },
+            {
+              "step": 495,
+              "total": 2.58048,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.022528,
+                "broadphaseBuild": 0.018432,
+                "broadphasePairs": 1.13664,
+                "narrowphase": 0.080896,
+                "adjacency": 0.072704,
+                "coloring": 0.120832,
+                "warmStart": 0.033792,
+                "bodySolve": 0.923648,
+                "contactUpdate": 0.162816,
+                "velocities": 0.007168
+              },
+              "collision": 1.258496,
+              "adjacency": 0.072704,
+              "coloring": 0.120832,
+              "solve": 1.1274240000000002,
+              "contacts": 22244
+            },
+            {
+              "step": 496,
+              "total": 2.612224,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.033792,
+                "broadphaseBuild": 0.0256,
+                "broadphasePairs": 1.128448,
+                "narrowphase": 0.084992,
+                "adjacency": 0.075776,
+                "coloring": 0.134144,
+                "warmStart": 0.041984,
+                "bodySolve": 0.9175039999999999,
+                "contactUpdate": 0.162816,
+                "velocities": 0.007168
+              },
+              "collision": 1.272832,
+              "adjacency": 0.075776,
+              "coloring": 0.134144,
+              "solve": 1.129472,
+              "contacts": 22438
+            },
+            {
+              "step": 497,
+              "total": 4.448256,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.018432,
+                "broadphaseBuild": 0.016384,
+                "broadphasePairs": 1.75616,
+                "narrowphase": 0.08704,
+                "adjacency": 0.082944,
+                "coloring": 0.136192,
+                "warmStart": 0.044032,
+                "bodySolve": 1.562624,
+                "contactUpdate": 0.736256,
+                "velocities": 0.007168
+              },
+              "collision": 1.878016,
+              "adjacency": 0.082944,
+              "coloring": 0.136192,
+              "solve": 2.3500799999999997,
+              "contacts": 22697
+            },
+            {
+              "step": 498,
+              "total": 2.627584,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.033792,
+                "broadphaseBuild": 0.024576,
+                "broadphasePairs": 1.1264,
+                "narrowphase": 0.086016,
+                "adjacency": 0.077824,
+                "coloring": 0.135168,
+                "warmStart": 0.04096,
+                "bodySolve": 0.9318399999999999,
+                "contactUpdate": 0.162816,
+                "velocities": 0.006144
+              },
+              "collision": 1.2707840000000001,
+              "adjacency": 0.077824,
+              "coloring": 0.135168,
+              "solve": 1.1417599999999999,
+              "contacts": 22944
+            },
+            {
+              "step": 499,
+              "total": 6.059008,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.028672,
+                "broadphaseBuild": 0.019456,
+                "broadphasePairs": 1.125376,
+                "narrowphase": 0.666624,
+                "adjacency": 0.084992,
+                "coloring": 0.13312,
+                "warmStart": 0.043008,
+                "bodySolve": 3.7765120000000003,
+                "contactUpdate": 0.17100800000000002,
+                "velocities": 0.009216
+              },
+              "collision": 1.840128,
+              "adjacency": 0.084992,
+              "coloring": 0.13312,
+              "solve": 3.9997439999999997,
+              "contacts": 23136
+            },
+            {
+              "step": 500,
+              "total": 5.067776,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.03072,
+                "broadphaseBuild": 0.026624,
+                "broadphasePairs": 1.747968,
+                "narrowphase": 0.090112,
+                "adjacency": 0.083968,
+                "coloring": 0.141312,
+                "warmStart": 0.045056,
+                "bodySolve": 2.14528,
+                "contactUpdate": 0.7485440000000001,
+                "velocities": 0.006144
+              },
+              "collision": 1.895424,
+              "adjacency": 0.083968,
+              "coloring": 0.141312,
+              "solve": 2.945024,
+              "contacts": 23461
+            },
+            {
+              "step": 501,
+              "total": 3.336192,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.034816,
+                "broadphaseBuild": 0.023552,
+                "broadphasePairs": 1.12128,
+                "narrowphase": 0.09216,
+                "adjacency": 0.078848,
+                "coloring": 0.12288,
+                "warmStart": 0.041984,
+                "bodySolve": 1.639424,
+                "contactUpdate": 0.16998400000000002,
+                "velocities": 0.009216
+              },
+              "collision": 1.271808,
+              "adjacency": 0.078848,
+              "coloring": 0.12288,
+              "solve": 1.8606080000000003,
+              "contacts": 23731
+            },
+            {
+              "step": 502,
+              "total": 3.352576,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.034816,
+                "broadphaseBuild": 0.023552,
+                "broadphasePairs": 1.12128,
+                "narrowphase": 0.086016,
+                "adjacency": 0.078848,
+                "coloring": 0.131072,
+                "warmStart": 0.04096,
+                "bodySolve": 1.6537600000000001,
+                "contactUpdate": 0.169984,
+                "velocities": 0.011264
+              },
+              "collision": 1.2656640000000001,
+              "adjacency": 0.078848,
+              "coloring": 0.131072,
+              "solve": 1.875968,
+              "contacts": 23995
+            },
+            {
+              "step": 503,
+              "total": 2.635776,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.034816,
+                "broadphaseBuild": 0.023552,
+                "broadphasePairs": 1.135616,
+                "narrowphase": 0.091136,
+                "adjacency": 0.079872,
+                "coloring": 0.129024,
+                "warmStart": 0.043008,
+                "bodySolve": 0.92672,
+                "contactUpdate": 0.16383999999999999,
+                "velocities": 0.007168
+              },
+              "collision": 1.28512,
+              "adjacency": 0.079872,
+              "coloring": 0.129024,
+              "solve": 1.140736,
+              "contacts": 24232
+            },
+            {
+              "step": 504,
+              "total": 6.114304,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.027648,
+                "broadphaseBuild": 0.019456,
+                "broadphasePairs": 1.714176,
+                "narrowphase": 0.096256,
+                "adjacency": 0.083968,
+                "coloring": 0.14336,
+                "warmStart": 0.041984,
+                "bodySolve": 3.775488,
+                "contactUpdate": 0.205824,
+                "velocities": 0.006144
+              },
+              "collision": 1.8575359999999999,
+              "adjacency": 0.083968,
+              "coloring": 0.14336,
+              "solve": 4.02944,
+              "contacts": 24469
+            },
+            {
+              "step": 505,
+              "total": 3.999744,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.036864,
+                "broadphaseBuild": 0.023552,
+                "broadphasePairs": 1.130496,
+                "narrowphase": 0.105472,
+                "adjacency": 0.08192,
+                "coloring": 0.132096,
+                "warmStart": 0.043008,
+                "bodySolve": 2.26816,
+                "contactUpdate": 0.17203199999999996,
+                "velocities": 0.006144
+              },
+              "collision": 1.296384,
+              "adjacency": 0.08192,
+              "coloring": 0.132096,
+              "solve": 2.489344,
+              "contacts": 24603
+            },
+            {
+              "step": 506,
+              "total": 2.670592,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.034816,
+                "broadphaseBuild": 0.024576,
+                "broadphasePairs": 1.139712,
+                "narrowphase": 0.089088,
+                "adjacency": 0.078848,
+                "coloring": 0.135168,
+                "warmStart": 0.04096,
+                "bodySolve": 0.954368,
+                "contactUpdate": 0.16486399999999998,
+                "velocities": 0.007168
+              },
+              "collision": 1.2881920000000002,
+              "adjacency": 0.078848,
+              "coloring": 0.135168,
+              "solve": 1.16736,
+              "contacts": 24797
+            },
+            {
+              "step": 507,
+              "total": 4.28544,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.028672,
+                "broadphaseBuild": 0.02048,
+                "broadphasePairs": 1.696768,
+                "narrowphase": 0.101376,
+                "adjacency": 0.086016,
+                "coloring": 0.130048,
+                "warmStart": 0.043008,
+                "bodySolve": 1.9660799999999998,
+                "contactUpdate": 0.205824,
+                "velocities": 0.007168
+              },
+              "collision": 1.847296,
+              "adjacency": 0.086016,
+              "coloring": 0.130048,
+              "solve": 2.22208,
+              "contacts": 25066
+            },
+            {
+              "step": 508,
+              "total": 4.299776,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.028672,
+                "broadphaseBuild": 0.02048,
+                "broadphasePairs": 1.697792,
+                "narrowphase": 0.099328,
+                "adjacency": 0.086016,
+                "coloring": 0.129024,
+                "warmStart": 0.041984,
+                "bodySolve": 1.9834880000000001,
+                "contactUpdate": 0.20479999999999998,
+                "velocities": 0.006144
+              },
+              "collision": 1.8462720000000001,
+              "adjacency": 0.086016,
+              "coloring": 0.129024,
+              "solve": 2.236416,
+              "contacts": 25243
+            },
+            {
+              "step": 509,
+              "total": 5.588992,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.021504,
+                "broadphaseBuild": 0.018432,
+                "broadphasePairs": 2.279424,
+                "narrowphase": 0.100352,
+                "adjacency": 0.089088,
+                "coloring": 0.123904,
+                "warmStart": 0.045056,
+                "bodySolve": 2.73408,
+                "contactUpdate": 0.166912,
+                "velocities": 0.007168
+              },
+              "collision": 2.419712,
+              "adjacency": 0.089088,
+              "coloring": 0.123904,
+              "solve": 2.9532160000000003,
+              "contacts": 25265
+            },
+            {
+              "step": 510,
+              "total": 5.204992,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.03072,
+                "broadphaseBuild": 0.027648,
+                "broadphasePairs": 1.759232,
+                "narrowphase": 0.098304,
+                "adjacency": 0.088064,
+                "coloring": 0.132096,
+                "warmStart": 0.044032,
+                "bodySolve": 2.2773760000000003,
+                "contactUpdate": 0.7403520000000001,
+                "velocities": 0.006144
+              },
+              "collision": 1.9159039999999998,
+              "adjacency": 0.088064,
+              "coloring": 0.132096,
+              "solve": 3.0679040000000004,
+              "contacts": 25460
+            },
+            {
+              "step": 511,
+              "total": 4.033536,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.034816,
+                "broadphaseBuild": 0.022528,
+                "broadphasePairs": 1.138688,
+                "narrowphase": 0.094208,
+                "adjacency": 0.079872,
+                "coloring": 0.136192,
+                "warmStart": 0.041984,
+                "bodySolve": 2.301952,
+                "contactUpdate": 0.173056,
+                "velocities": 0.007168
+              },
+              "collision": 1.29024,
+              "adjacency": 0.079872,
+              "coloring": 0.136192,
+              "solve": 2.52416,
+              "contacts": 25659
+            },
+            {
+              "step": 512,
+              "total": 5.067776,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.029696,
+                "broadphaseBuild": 0.019456,
+                "broadphasePairs": 1.150976,
+                "narrowphase": 0.672768,
+                "adjacency": 0.088064,
+                "coloring": 0.132096,
+                "warmStart": 0.041984,
+                "bodySolve": 2.183168,
+                "contactUpdate": 0.7424,
+                "velocities": 0.006144
+              },
+              "collision": 1.8728960000000001,
+              "adjacency": 0.088064,
+              "coloring": 0.132096,
+              "solve": 2.9736960000000003,
+              "contacts": 25840
+            },
+            {
+              "step": 513,
+              "total": 5.13536,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.03584,
+                "broadphaseBuild": 0.023552,
+                "broadphasePairs": 1.147904,
+                "narrowphase": 0.095232,
+                "adjacency": 0.080896,
+                "coloring": 0.134144,
+                "warmStart": 0.043008,
+                "bodySolve": 3.3894399999999996,
+                "contactUpdate": 0.17715200000000003,
+                "velocities": 0.007168
+              },
+              "collision": 1.302528,
+              "adjacency": 0.080896,
+              "coloring": 0.134144,
+              "solve": 3.6167680000000004,
+              "contacts": 26148
+            },
+            {
+              "step": 514,
+              "total": 6.779904,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.028672,
+                "broadphaseBuild": 0.018432,
+                "broadphasePairs": 1.73056,
+                "narrowphase": 0.098304,
+                "adjacency": 0.08704,
+                "coloring": 0.129024,
+                "warmStart": 0.041984,
+                "bodySolve": 4.414464,
+                "contactUpdate": 0.22220800000000002,
+                "velocities": 0.007168
+              },
+              "collision": 1.875968,
+              "adjacency": 0.08704,
+              "coloring": 0.129024,
+              "solve": 4.685823999999999,
+              "contacts": 26423
+            },
+            {
+              "step": 515,
+              "total": 2.69824,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.023552,
+                "broadphaseBuild": 0.018432,
+                "broadphasePairs": 1.159168,
+                "narrowphase": 0.086016,
+                "adjacency": 0.080896,
+                "coloring": 0.131072,
+                "warmStart": 0.033792,
+                "bodySolve": 0.9881599999999999,
+                "contactUpdate": 0.16998400000000002,
+                "velocities": 0.006144
+              },
+              "collision": 1.287168,
+              "adjacency": 0.080896,
+              "coloring": 0.131072,
+              "solve": 1.19808,
+              "contacts": 26665
+            },
+            {
+              "step": 516,
+              "total": 2.760704,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.03584,
+                "broadphaseBuild": 0.024576,
+                "broadphasePairs": 1.161216,
+                "narrowphase": 0.095232,
+                "adjacency": 0.080896,
+                "coloring": 0.140288,
+                "warmStart": 0.043008,
+                "bodySolve": 1.00352,
+                "contactUpdate": 0.16896,
+                "velocities": 0.007168
+              },
+              "collision": 1.316864,
+              "adjacency": 0.080896,
+              "coloring": 0.140288,
+              "solve": 1.222656,
+              "contacts": 26899
+            },
+            {
+              "step": 517,
+              "total": 4.384768,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.029696,
+                "broadphaseBuild": 0.02048,
+                "broadphasePairs": 1.733632,
+                "narrowphase": 0.100352,
+                "adjacency": 0.088064,
+                "coloring": 0.130048,
+                "warmStart": 0.043008,
+                "bodySolve": 2.026496,
+                "contactUpdate": 0.205824,
+                "velocities": 0.006144
+              },
+              "collision": 1.88416,
+              "adjacency": 0.088064,
+              "coloring": 0.130048,
+              "solve": 2.281472,
+              "contacts": 27172
+            },
+            {
+              "step": 518,
+              "total": 2.77504,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.036864,
+                "broadphaseBuild": 0.026624,
+                "broadphasePairs": 1.164288,
+                "narrowphase": 0.096256,
+                "adjacency": 0.084992,
+                "coloring": 0.124928,
+                "warmStart": 0.043008,
+                "bodySolve": 1.019904,
+                "contactUpdate": 0.171008,
+                "velocities": 0.006144
+              },
+              "collision": 1.3240319999999999,
+              "adjacency": 0.084992,
+              "coloring": 0.124928,
+              "solve": 1.2400639999999998,
+              "contacts": 27398
+            },
+            {
+              "step": 519,
+              "total": 5.805056,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.02048,
+                "broadphaseBuild": 0.01536,
+                "broadphasePairs": 2.413568,
+                "narrowphase": 0.110592,
+                "adjacency": 0.090112,
+                "coloring": 0.14336,
+                "warmStart": 0.044032,
+                "bodySolve": 2.787328,
+                "contactUpdate": 0.17408,
+                "velocities": 0.006144
+              },
+              "collision": 2.56,
+              "adjacency": 0.090112,
+              "coloring": 0.14336,
+              "solve": 3.011584,
+              "contacts": 27713
+            },
+            {
+              "step": 520,
+              "total": 5.116928,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.029696,
+                "broadphaseBuild": 0.019456,
+                "broadphasePairs": 1.17248,
+                "narrowphase": 0.678912,
+                "adjacency": 0.08704,
+                "coloring": 0.13312,
+                "warmStart": 0.043008,
+                "bodySolve": 2.200576,
+                "contactUpdate": 0.7454719999999998,
+                "velocities": 0.007168
+              },
+              "collision": 1.900544,
+              "adjacency": 0.08704,
+              "coloring": 0.13312,
+              "solve": 2.996224,
+              "contacts": 27896
+            }
+          ],
+          "startup": {
+            "total": 2.142208,
+            "broadphase": "grid",
+            "bvhRebuilt": false,
+            "details": {
+              "contactCache": 0.244736,
+              "broadphaseBuild": 0.06144,
+              "broadphasePairs": 0.444416,
+              "narrowphase": 0.008192,
+              "adjacency": 0.054272,
+              "coloring": 0.222208,
+              "warmStart": 0.05632,
+              "bodySolve": 0.856064,
+              "contactUpdate": 0.17919999999999997,
+              "velocities": 0.011264
+            },
+            "collision": 0.7587839999999999,
+            "adjacency": 0.054272,
+            "coloring": 0.222208,
+            "solve": 1.1028479999999998
+          },
+          "broadphase": "grid",
+          "bvh": null,
+          "detailed": true,
+          "scheduling": {
+            "initial": {
+              "colors": 17,
+              "rounds": 16,
+              "minimumColors": 16,
+              "minimumRounds": 16,
+              "primalLanes": [
+                2147483648,
+                32768,
+                4096
+              ]
+            },
+            "final": {
+              "colors": 16,
+              "rounds": 16,
+              "primalLanes": [
+                2147483648,
+                32768,
+                4096
+              ]
+            }
+          },
+          "details": {
+            "contactCache": {
+              "n": 40,
+              "mean": 0.030259200000000003,
+              "median": 0.03072,
+              "p95": 0.036864
+            },
+            "broadphaseBuild": {
+              "n": 40,
+              "mean": 0.022067200000000002,
+              "median": 0.023552,
+              "p95": 0.026624
+            },
+            "broadphasePairs": {
+              "n": 40,
+              "mean": 1.36128,
+              "median": 1.147904,
+              "p95": 2.279424
+            },
+            "narrowphase": {
+              "n": 40,
+              "mean": 0.16181760000000006,
+              "median": 0.09216,
+              "p95": 0.672768
+            },
+            "adjacency": {
+              "n": 40,
+              "mean": 0.08135680000000002,
+              "median": 0.080896,
+              "p95": 0.090112
+            },
+            "coloring": {
+              "n": 40,
+              "mean": 0.13194240000000002,
+              "median": 0.132096,
+              "p95": 0.14336
+            },
+            "warmStart": {
+              "n": 40,
+              "mean": 0.0423424,
+              "median": 0.041984,
+              "p95": 0.048128
+            },
+            "bodySolve": {
+              "n": 40,
+              "mean": 1.9612159999999992,
+              "median": 1.9834880000000001,
+              "p95": 3.7765120000000003
+            },
+            "contactUpdate": {
+              "n": 40,
+              "mean": 0.26135040000000004,
+              "median": 0.171008,
+              "p95": 0.7485440000000001
+            },
+            "velocities": {
+              "n": 40,
+              "mean": 0.007116800000000001,
+              "median": 0.007168,
+              "p95": 0.011264
+            }
+          },
+          "summary": {
+            "total": {
+              "n": 40,
+              "mean": 4.061926399999999,
+              "median": 4.033536,
+              "p95": 6.114304
+            },
+            "collision": {
+              "n": 40,
+              "mean": 1.5754239999999997,
+              "median": 1.3240319999999999,
+              "p95": 2.419712
+            },
+            "adjacency": {
+              "n": 40,
+              "mean": 0.08135680000000002,
+              "median": 0.080896,
+              "p95": 0.090112
+            },
+            "coloring": {
+              "n": 40,
+              "mean": 0.13194240000000002,
+              "median": 0.132096,
+              "p95": 0.14336
+            },
+            "solve": {
+              "n": 40,
+              "mean": 2.2720256,
+              "median": 2.281472,
+              "p95": 4.052992
+            }
+          }
+        },
+        {
+          "scene": "showcase-ragdolls-on-cloth-24k",
+          "variant": "hploc-detail",
+          "bodyCount": 23617,
+          "jointCount": 31200,
+          "params": {
+            "dt": 0.004166666666666667,
+            "gravity": -10,
+            "iterations": 5,
+            "betaLin": 10000,
+            "betaAng": 100,
+            "alpha": 0.99,
+            "gamma": 0.999,
+            "matchNearest": true,
+            "faceBias": true,
+            "reuseContacts": true,
+            "startAtRest": true,
+            "massPenalty": true,
+            "windSpeed": 0,
+            "windAngle": 0,
+            "windGust": 0.4,
+            "windPressure": 0.72,
+            "up": [
+              0,
+              0,
+              1
+            ]
+          },
+          "verifiedSteps": 520,
+          "counters": {
+            "pairs": 28317,
+            "contacts": 27896,
+            "manifolds": 19316,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 9
+          },
+          "peakContacts": 27896,
+          "quaternionError": 1.449105632156389e-7,
+          "finite": true,
+          "rendering": false,
+          "sleeping": false,
+          "samples": [
+            {
+              "step": 481,
+              "total": 3.418112,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.029696,
+                "broadphaseBuild": 0.052224,
+                "broadphasePairs": 0.5888,
+                "narrowphase": 0.090112,
+                "adjacency": 0.070656,
+                "coloring": 0.134144,
+                "warmStart": 0.044032,
+                "bodySolve": 1.6107520000000002,
+                "contactUpdate": 0.7864319999999999,
+                "velocities": 0.009216
+              },
+              "collision": 0.760832,
+              "adjacency": 0.070656,
+              "coloring": 0.134144,
+              "solve": 2.450432,
+              "contacts": 20624
+            },
+            {
+              "step": 482,
+              "total": 2.036736,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.029696,
+                "broadphaseBuild": 0.052224,
+                "broadphasePairs": 0.57856,
+                "narrowphase": 0.077824,
+                "adjacency": 0.069632,
+                "coloring": 0.125952,
+                "warmStart": 0.041984,
+                "bodySolve": 0.899072,
+                "contactUpdate": 0.15360000000000001,
+                "velocities": 0.007168
+              },
+              "collision": 0.738304,
+              "adjacency": 0.069632,
+              "coloring": 0.125952,
+              "solve": 1.101824,
+              "contacts": 20394
+            },
+            {
+              "step": 483,
+              "total": 2.048,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.029696,
+                "broadphaseBuild": 0.053248,
+                "broadphasePairs": 0.579584,
+                "narrowphase": 0.079872,
+                "adjacency": 0.070656,
+                "coloring": 0.137216,
+                "warmStart": 0.043008,
+                "bodySolve": 0.892928,
+                "contactUpdate": 0.154624,
+                "velocities": 0.007168
+              },
+              "collision": 0.7424,
+              "adjacency": 0.070656,
+              "coloring": 0.137216,
+              "solve": 1.097728,
+              "contacts": 20373
+            },
+            {
+              "step": 484,
+              "total": 2.543616,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.0256,
+                "broadphaseBuild": 0.04608,
+                "broadphasePairs": 0.915456,
+                "narrowphase": 0.074752,
+                "adjacency": 0.075776,
+                "coloring": 0.128,
+                "warmStart": 0.044032,
+                "bodySolve": 1.071104,
+                "contactUpdate": 0.15360000000000001,
+                "velocities": 0.007168
+              },
+              "collision": 1.061888,
+              "adjacency": 0.075776,
+              "coloring": 0.128,
+              "solve": 1.2759040000000004,
+              "contacts": 20303
+            },
+            {
+              "step": 485,
+              "total": 3.41504,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.027648,
+                "broadphaseBuild": 0.052224,
+                "broadphasePairs": 0.5888,
+                "narrowphase": 0.091136,
+                "adjacency": 0.069632,
+                "coloring": 0.128,
+                "warmStart": 0.04096,
+                "bodySolve": 2.248704,
+                "contactUpdate": 0.156672,
+                "velocities": 0.009216
+              },
+              "collision": 0.7598079999999999,
+              "adjacency": 0.069632,
+              "coloring": 0.128,
+              "solve": 2.455552,
+              "contacts": 20419
+            },
+            {
+              "step": 486,
+              "total": 2.05824,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.028672,
+                "broadphaseBuild": 0.052224,
+                "broadphasePairs": 0.5888,
+                "narrowphase": 0.0768,
+                "adjacency": 0.070656,
+                "coloring": 0.128,
+                "warmStart": 0.043008,
+                "bodySolve": 0.907264,
+                "contactUpdate": 0.15360000000000001,
+                "velocities": 0.008192
+              },
+              "collision": 0.7464959999999999,
+              "adjacency": 0.070656,
+              "coloring": 0.128,
+              "solve": 1.112064,
+              "contacts": 20378
+            },
+            {
+              "step": 487,
+              "total": 2.074624,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.029696,
+                "broadphaseBuild": 0.052224,
+                "broadphasePairs": 0.594944,
+                "narrowphase": 0.080896,
+                "adjacency": 0.070656,
+                "coloring": 0.126976,
+                "warmStart": 0.043008,
+                "bodySolve": 0.9134079999999999,
+                "contactUpdate": 0.155648,
+                "velocities": 0.007168
+              },
+              "collision": 0.75776,
+              "adjacency": 0.070656,
+              "coloring": 0.126976,
+              "solve": 1.119232,
+              "contacts": 20540
+            },
+            {
+              "step": 488,
+              "total": 4.552704,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.018432,
+                "broadphaseBuild": 0.031744,
+                "broadphasePairs": 1.220608,
+                "narrowphase": 0.08192,
+                "adjacency": 0.078848,
+                "coloring": 0.12288,
+                "warmStart": 0.044032,
+                "bodySolve": 2.787328,
+                "contactUpdate": 0.156672,
+                "velocities": 0.007168
+              },
+              "collision": 1.352704,
+              "adjacency": 0.078848,
+              "coloring": 0.12288,
+              "solve": 2.9952000000000005,
+              "contacts": 20596
+            },
+            {
+              "step": 489,
+              "total": 5.491712,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.023552,
+                "broadphaseBuild": 0.044032,
+                "broadphasePairs": 0.605184,
+                "narrowphase": 0.067584,
+                "adjacency": 0.64512,
+                "coloring": 0.144384,
+                "warmStart": 0.043008,
+                "bodySolve": 2.64192,
+                "contactUpdate": 1.263616,
+                "velocities": 0.013312
+              },
+              "collision": 0.740352,
+              "adjacency": 0.64512,
+              "coloring": 0.144384,
+              "solve": 3.9618560000000005,
+              "contacts": 20757
+            },
+            {
+              "step": 490,
+              "total": 4.533248,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.0256,
+                "broadphaseBuild": 0.045056,
+                "broadphasePairs": 0.785408,
+                "narrowphase": 0.080896,
+                "adjacency": 0.072704,
+                "coloring": 0.126976,
+                "warmStart": 0.041984,
+                "bodySolve": 3.1887360000000005,
+                "contactUpdate": 0.157696,
+                "velocities": 0.007168
+              },
+              "collision": 0.9369599999999999,
+              "adjacency": 0.072704,
+              "coloring": 0.126976,
+              "solve": 3.395584000000001,
+              "contacts": 20954
+            },
+            {
+              "step": 491,
+              "total": 4.665344,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.0256,
+                "broadphaseBuild": 0.047104,
+                "broadphasePairs": 1.185792,
+                "narrowphase": 0.080896,
+                "adjacency": 0.074752,
+                "coloring": 0.132096,
+                "warmStart": 0.041984,
+                "bodySolve": 2.868224,
+                "contactUpdate": 0.197632,
+                "velocities": 0.009216
+              },
+              "collision": 1.3393920000000001,
+              "adjacency": 0.074752,
+              "coloring": 0.132096,
+              "solve": 3.1170560000000003,
+              "contacts": 21149
+            },
+            {
+              "step": 492,
+              "total": 2.755584,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.021504,
+                "broadphaseBuild": 0.043008,
+                "broadphasePairs": 0.598016,
+                "narrowphase": 0.077824,
+                "adjacency": 0.069632,
+                "coloring": 0.142336,
+                "warmStart": 0.034816,
+                "bodySolve": 1.5738880000000002,
+                "contactUpdate": 0.181248,
+                "velocities": 0.012288
+              },
+              "collision": 0.740352,
+              "adjacency": 0.069632,
+              "coloring": 0.142336,
+              "solve": 1.80224,
+              "contacts": 21409
+            },
+            {
+              "step": 493,
+              "total": 2.768896,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.029696,
+                "broadphaseBuild": 0.0512,
+                "broadphasePairs": 0.613376,
+                "narrowphase": 0.084992,
+                "adjacency": 0.073728,
+                "coloring": 0.13312,
+                "warmStart": 0.04096,
+                "bodySolve": 1.549312,
+                "contactUpdate": 0.178176,
+                "velocities": 0.012288
+              },
+              "collision": 0.779264,
+              "adjacency": 0.073728,
+              "coloring": 0.13312,
+              "solve": 1.780736,
+              "contacts": 21737
+            },
+            {
+              "step": 494,
+              "total": 2.117632,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.03072,
+                "broadphaseBuild": 0.053248,
+                "broadphasePairs": 0.615424,
+                "narrowphase": 0.08704,
+                "adjacency": 0.075776,
+                "coloring": 0.130048,
+                "warmStart": 0.041984,
+                "bodySolve": 0.918528,
+                "contactUpdate": 0.155648,
+                "velocities": 0.008192
+              },
+              "collision": 0.786432,
+              "adjacency": 0.075776,
+              "coloring": 0.130048,
+              "solve": 1.124352,
+              "contacts": 21982
+            },
+            {
+              "step": 495,
+              "total": 3.136512,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.024576,
+                "broadphaseBuild": 0.044032,
+                "broadphasePairs": 1.199104,
+                "narrowphase": 0.118784,
+                "adjacency": 0.086016,
+                "coloring": 0.125952,
+                "warmStart": 0.044032,
+                "bodySolve": 1.317888,
+                "contactUpdate": 0.16486399999999998,
+                "velocities": 0.008192
+              },
+              "collision": 1.386496,
+              "adjacency": 0.086016,
+              "coloring": 0.125952,
+              "solve": 1.5349759999999997,
+              "contacts": 22244
+            },
+            {
+              "step": 496,
+              "total": 2.089984,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.022528,
+                "broadphaseBuild": 0.043008,
+                "broadphasePairs": 0.617472,
+                "narrowphase": 0.08192,
+                "adjacency": 0.0768,
+                "coloring": 0.130048,
+                "warmStart": 0.034816,
+                "bodySolve": 0.917504,
+                "contactUpdate": 0.157696,
+                "velocities": 0.007168
+              },
+              "collision": 0.764928,
+              "adjacency": 0.0768,
+              "coloring": 0.130048,
+              "solve": 1.117184,
+              "contacts": 22438
+            },
+            {
+              "step": 497,
+              "total": 2.132992,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.031744,
+                "broadphaseBuild": 0.052224,
+                "broadphasePairs": 0.6144,
+                "narrowphase": 0.089088,
+                "adjacency": 0.075776,
+                "coloring": 0.136192,
+                "warmStart": 0.041984,
+                "bodySolve": 0.925696,
+                "contactUpdate": 0.15872,
+                "velocities": 0.007168
+              },
+              "collision": 0.7874559999999999,
+              "adjacency": 0.075776,
+              "coloring": 0.136192,
+              "solve": 1.133568,
+              "contacts": 22697
+            },
+            {
+              "step": 498,
+              "total": 4.374528,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.026624,
+                "broadphaseBuild": 0.04608,
+                "broadphasePairs": 1.199104,
+                "narrowphase": 0.089088,
+                "adjacency": 0.077824,
+                "coloring": 0.135168,
+                "warmStart": 0.041984,
+                "bodySolve": 2.5856,
+                "contactUpdate": 0.161792,
+                "velocities": 0.01024
+              },
+              "collision": 1.360896,
+              "adjacency": 0.077824,
+              "coloring": 0.135168,
+              "solve": 2.7996159999999994,
+              "contacts": 22944
+            },
+            {
+              "step": 499,
+              "total": 2.850816,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.032768,
+                "broadphaseBuild": 0.0512,
+                "broadphasePairs": 0.618496,
+                "narrowphase": 0.088064,
+                "adjacency": 0.077824,
+                "coloring": 0.132096,
+                "warmStart": 0.041984,
+                "bodySolve": 1.622016,
+                "contactUpdate": 0.17408,
+                "velocities": 0.012288
+              },
+              "collision": 0.7905280000000001,
+              "adjacency": 0.077824,
+              "coloring": 0.132096,
+              "solve": 1.8503679999999998,
+              "contacts": 23136
+            },
+            {
+              "step": 500,
+              "total": 2.14528,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.031744,
+                "broadphaseBuild": 0.053248,
+                "broadphasePairs": 0.618496,
+                "narrowphase": 0.088064,
+                "adjacency": 0.080896,
+                "coloring": 0.140288,
+                "warmStart": 0.041984,
+                "bodySolve": 0.92672,
+                "contactUpdate": 0.154624,
+                "velocities": 0.007168
+              },
+              "collision": 0.791552,
+              "adjacency": 0.080896,
+              "coloring": 0.140288,
+              "solve": 1.1304960000000002,
+              "contacts": 23461
+            },
+            {
+              "step": 501,
+              "total": 2.159616,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.03072,
+                "broadphaseBuild": 0.052224,
+                "broadphasePairs": 0.635904,
+                "narrowphase": 0.089088,
+                "adjacency": 0.079872,
+                "coloring": 0.123904,
+                "warmStart": 0.041984,
+                "bodySolve": 0.9379839999999999,
+                "contactUpdate": 0.159744,
+                "velocities": 0.007168
+              },
+              "collision": 0.807936,
+              "adjacency": 0.079872,
+              "coloring": 0.123904,
+              "solve": 1.14688,
+              "contacts": 23731
+            },
+            {
+              "step": 502,
+              "total": 3.765248,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.026624,
+                "broadphaseBuild": 0.047104,
+                "broadphasePairs": 0.635904,
+                "narrowphase": 0.086016,
+                "adjacency": 0.64512,
+                "coloring": 0.132096,
+                "warmStart": 0.043008,
+                "bodySolve": 1.9312639999999999,
+                "contactUpdate": 0.20787199999999997,
+                "velocities": 0.009216
+              },
+              "collision": 0.795648,
+              "adjacency": 0.64512,
+              "coloring": 0.132096,
+              "solve": 2.1913599999999995,
+              "contacts": 23995
+            },
+            {
+              "step": 503,
+              "total": 3.489792,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.03072,
+                "broadphaseBuild": 0.052224,
+                "broadphasePairs": 0.641024,
+                "narrowphase": 0.104448,
+                "adjacency": 0.080896,
+                "coloring": 0.129024,
+                "warmStart": 0.044032,
+                "bodySolve": 2.214912,
+                "contactUpdate": 0.181248,
+                "velocities": 0.009216
+              },
+              "collision": 0.828416,
+              "adjacency": 0.080896,
+              "coloring": 0.129024,
+              "solve": 2.449408,
+              "contacts": 24232
+            },
+            {
+              "step": 504,
+              "total": 2.19648,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.032768,
+                "broadphaseBuild": 0.052224,
+                "broadphasePairs": 0.63488,
+                "narrowphase": 0.099328,
+                "adjacency": 0.08192,
+                "coloring": 0.142336,
+                "warmStart": 0.043008,
+                "bodySolve": 0.945152,
+                "contactUpdate": 0.157696,
+                "velocities": 0.007168
+              },
+              "collision": 0.8191999999999999,
+              "adjacency": 0.08192,
+              "coloring": 0.142336,
+              "solve": 1.153024,
+              "contacts": 24469
+            },
+            {
+              "step": 505,
+              "total": 2.180096,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.032768,
+                "broadphaseBuild": 0.052224,
+                "broadphasePairs": 0.62976,
+                "narrowphase": 0.095232,
+                "adjacency": 0.08192,
+                "coloring": 0.132096,
+                "warmStart": 0.043008,
+                "bodySolve": 0.943104,
+                "contactUpdate": 0.160768,
+                "velocities": 0.007168
+              },
+              "collision": 0.8099839999999999,
+              "adjacency": 0.08192,
+              "coloring": 0.132096,
+              "solve": 1.154048,
+              "contacts": 24603
+            },
+            {
+              "step": 506,
+              "total": 3.617792,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.026624,
+                "broadphaseBuild": 0.04608,
+                "broadphasePairs": 1.185792,
+                "narrowphase": 0.090112,
+                "adjacency": 0.086016,
+                "coloring": 0.137216,
+                "warmStart": 0.041984,
+                "bodySolve": 1.824768,
+                "contactUpdate": 0.171008,
+                "velocities": 0.008192
+              },
+              "collision": 1.348608,
+              "adjacency": 0.086016,
+              "coloring": 0.137216,
+              "solve": 2.045952,
+              "contacts": 24797
+            },
+            {
+              "step": 507,
+              "total": 4.16256,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.032768,
+                "broadphaseBuild": 0.052224,
+                "broadphasePairs": 0.644096,
+                "narrowphase": 0.089088,
+                "adjacency": 0.078848,
+                "coloring": 0.130048,
+                "warmStart": 0.04096,
+                "bodySolve": 2.900992,
+                "contactUpdate": 0.18431999999999998,
+                "velocities": 0.009216
+              },
+              "collision": 0.818176,
+              "adjacency": 0.078848,
+              "coloring": 0.130048,
+              "solve": 3.135487999999999,
+              "contacts": 25066
+            },
+            {
+              "step": 508,
+              "total": 2.194432,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.032768,
+                "broadphaseBuild": 0.052224,
+                "broadphasePairs": 0.648192,
+                "narrowphase": 0.09216,
+                "adjacency": 0.078848,
+                "coloring": 0.128,
+                "warmStart": 0.043008,
+                "bodySolve": 0.9502719999999999,
+                "contactUpdate": 0.161792,
+                "velocities": 0.007168
+              },
+              "collision": 0.825344,
+              "adjacency": 0.078848,
+              "coloring": 0.128,
+              "solve": 1.16224,
+              "contacts": 25243
+            },
+            {
+              "step": 509,
+              "total": 2.199552,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.033792,
+                "broadphaseBuild": 0.0512,
+                "broadphasePairs": 0.65536,
+                "narrowphase": 0.093184,
+                "adjacency": 0.08192,
+                "coloring": 0.123904,
+                "warmStart": 0.041984,
+                "bodySolve": 0.9492480000000001,
+                "contactUpdate": 0.160768,
+                "velocities": 0.007168
+              },
+              "collision": 0.8335360000000002,
+              "adjacency": 0.08192,
+              "coloring": 0.123904,
+              "solve": 1.159168,
+              "contacts": 25265
+            },
+            {
+              "step": 510,
+              "total": 3.13344,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.034816,
+                "broadphaseBuild": 0.043008,
+                "broadphasePairs": 1.204224,
+                "narrowphase": 0.123904,
+                "adjacency": 0.090112,
+                "coloring": 0.13312,
+                "warmStart": 0.043008,
+                "bodySolve": 1.286144,
+                "contactUpdate": 0.16486399999999998,
+                "velocities": 0.008192
+              },
+              "collision": 1.405952,
+              "adjacency": 0.090112,
+              "coloring": 0.13312,
+              "solve": 1.502208,
+              "contacts": 25460
+            },
+            {
+              "step": 511,
+              "total": 2.220032,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.032768,
+                "broadphaseBuild": 0.052224,
+                "broadphasePairs": 0.637952,
+                "narrowphase": 0.091136,
+                "adjacency": 0.08192,
+                "coloring": 0.136192,
+                "warmStart": 0.041984,
+                "bodySolve": 0.97792,
+                "contactUpdate": 0.159744,
+                "velocities": 0.007168
+              },
+              "collision": 0.8140799999999999,
+              "adjacency": 0.08192,
+              "coloring": 0.136192,
+              "solve": 1.186816,
+              "contacts": 25659
+            },
+            {
+              "step": 512,
+              "total": 5.407744,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.027648,
+                "broadphaseBuild": 0.04608,
+                "broadphasePairs": 1.22368,
+                "narrowphase": 0.089088,
+                "adjacency": 0.084992,
+                "coloring": 0.132096,
+                "warmStart": 0.043008,
+                "bodySolve": 3.546112,
+                "contactUpdate": 0.20377599999999998,
+                "velocities": 0.009216
+              },
+              "collision": 1.3864960000000002,
+              "adjacency": 0.084992,
+              "coloring": 0.132096,
+              "solve": 3.8021120000000006,
+              "contacts": 25840
+            },
+            {
+              "step": 513,
+              "total": 2.28864,
+              "broadphase": "hploc",
+              "bvhRebuilt": true,
+              "details": {
+                "contactCache": 0.032768,
+                "broadphaseBuild": 0.228352,
+                "broadphasePairs": 0.523264,
+                "narrowphase": 0.094208,
+                "adjacency": 0.082944,
+                "coloring": 0.135168,
+                "warmStart": 0.043008,
+                "bodySolve": 0.9758720000000001,
+                "contactUpdate": 0.161792,
+                "velocities": 0.008192
+              },
+              "collision": 0.8785919999999999,
+              "adjacency": 0.082944,
+              "coloring": 0.135168,
+              "solve": 1.188864,
+              "contacts": 26148
+            },
+            {
+              "step": 514,
+              "total": 3.728384,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.026624,
+                "broadphaseBuild": 0.04608,
+                "broadphasePairs": 1.081344,
+                "narrowphase": 0.098304,
+                "adjacency": 0.089088,
+                "coloring": 0.129024,
+                "warmStart": 0.043008,
+                "bodySolve": 1.9998719999999999,
+                "contactUpdate": 0.20479999999999998,
+                "velocities": 0.008192
+              },
+              "collision": 1.2523520000000001,
+              "adjacency": 0.089088,
+              "coloring": 0.129024,
+              "solve": 2.2558720000000005,
+              "contacts": 26423
+            },
+            {
+              "step": 515,
+              "total": 2.121728,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.033792,
+                "broadphaseBuild": 0.052224,
+                "broadphasePairs": 0.519168,
+                "narrowphase": 0.094208,
+                "adjacency": 0.083968,
+                "coloring": 0.132096,
+                "warmStart": 0.041984,
+                "bodySolve": 0.9912319999999999,
+                "contactUpdate": 0.16383999999999999,
+                "velocities": 0.008192
+              },
+              "collision": 0.6993919999999999,
+              "adjacency": 0.083968,
+              "coloring": 0.132096,
+              "solve": 1.2052479999999999,
+              "contacts": 26665
+            },
+            {
+              "step": 516,
+              "total": 4.591616,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.02048,
+                "broadphaseBuild": 0.033792,
+                "broadphasePairs": 0.518144,
+                "narrowphase": 0.078848,
+                "adjacency": 0.078848,
+                "coloring": 0.80384,
+                "warmStart": 0.052224,
+                "bodySolve": 2.828288,
+                "contactUpdate": 0.166912,
+                "velocities": 0.007168
+              },
+              "collision": 0.6512640000000001,
+              "adjacency": 0.078848,
+              "coloring": 0.80384,
+              "solve": 3.054592,
+              "contacts": 26899
+            },
+            {
+              "step": 517,
+              "total": 3.8656,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.026624,
+                "broadphaseBuild": 0.045056,
+                "broadphasePairs": 0.52736,
+                "narrowphase": 0.08192,
+                "adjacency": 0.083968,
+                "coloring": 0.130048,
+                "warmStart": 0.04096,
+                "bodySolve": 2.1831679999999998,
+                "contactUpdate": 0.7383040000000002,
+                "velocities": 0.007168
+              },
+              "collision": 0.68096,
+              "adjacency": 0.083968,
+              "coloring": 0.130048,
+              "solve": 2.9696000000000002,
+              "contacts": 27172
+            },
+            {
+              "step": 518,
+              "total": 2.123776,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.033792,
+                "broadphaseBuild": 0.053248,
+                "broadphasePairs": 0.52224,
+                "narrowphase": 0.09728,
+                "adjacency": 0.084992,
+                "coloring": 0.12288,
+                "warmStart": 0.043008,
+                "bodySolve": 0.992256,
+                "contactUpdate": 0.16486399999999998,
+                "velocities": 0.007168
+              },
+              "collision": 0.7065600000000001,
+              "adjacency": 0.084992,
+              "coloring": 0.12288,
+              "solve": 1.2072960000000001,
+              "contacts": 27398
+            },
+            {
+              "step": 519,
+              "total": 2.1504,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.033792,
+                "broadphaseBuild": 0.052224,
+                "broadphasePairs": 0.526336,
+                "narrowphase": 0.093184,
+                "adjacency": 0.084992,
+                "coloring": 0.141312,
+                "warmStart": 0.041984,
+                "bodySolve": 1.0014720000000001,
+                "contactUpdate": 0.16486399999999998,
+                "velocities": 0.007168
+              },
+              "collision": 0.705536,
+              "adjacency": 0.084992,
+              "coloring": 0.141312,
+              "solve": 1.2154880000000001,
+              "contacts": 27713
+            },
+            {
+              "step": 520,
+              "total": 3.13856,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.031744,
+                "broadphaseBuild": 0.048128,
+                "broadphasePairs": 1.092608,
+                "narrowphase": 0.130048,
+                "adjacency": 0.09216,
+                "coloring": 0.13312,
+                "warmStart": 0.043008,
+                "bodySolve": 1.3895679999999997,
+                "contactUpdate": 0.16896,
+                "velocities": 0.008192
+              },
+              "collision": 1.302528,
+              "adjacency": 0.09216,
+              "coloring": 0.13312,
+              "solve": 1.6097280000000003,
+              "contacts": 27896
+            }
+          ],
+          "startup": {
+            "total": 6.740992,
+            "broadphase": "hploc",
+            "bvhRebuilt": true,
+            "details": {
+              "contactCache": 0.258048,
+              "broadphaseBuild": 1.021952,
+              "broadphasePairs": 1.000448,
+              "narrowphase": 0.01024,
+              "adjacency": 0.05632,
+              "coloring": 0.222208,
+              "warmStart": 0.05632,
+              "bodySolve": 3.90656,
+              "contactUpdate": 0.18944,
+              "velocities": 0.01536
+            },
+            "collision": 2.290688,
+            "adjacency": 0.05632,
+            "coloring": 0.222208,
+            "solve": 4.167680000000001
+          },
+          "broadphase": "hploc",
+          "bvh": {
+            "builds": 9,
+            "refits": 511,
+            "nodes": 47233,
+            "extraBytes": 2489032
+          },
+          "detailed": true,
+          "scheduling": {
+            "initial": {
+              "colors": 17,
+              "rounds": 16,
+              "minimumColors": 16,
+              "minimumRounds": 16,
+              "primalLanes": [
+                2147483648,
+                32768,
+                4096
+              ]
+            },
+            "final": {
+              "colors": 16,
+              "rounds": 16,
+              "primalLanes": [
+                2147483648,
+                32768,
+                4096
+              ]
+            }
+          },
+          "details": {
+            "contactCache": {
+              "n": 40,
+              "mean": 0.029004800000000004,
+              "median": 0.029696,
+              "p95": 0.033792
+            },
+            "broadphaseBuild": {
+              "n": 40,
+              "mean": 0.05309440000000002,
+              "median": 0.052224,
+              "p95": 0.053248
+            },
+            "broadphasePairs": {
+              "n": 40,
+              "mean": 0.7403264,
+              "median": 0.62976,
+              "p95": 1.220608
+            },
+            "narrowphase": {
+              "n": 40,
+              "mean": 0.08995840000000002,
+              "median": 0.089088,
+              "p95": 0.123904
+            },
+            "adjacency": {
+              "n": 40,
+              "mean": 0.1074176,
+              "median": 0.079872,
+              "p95": 0.64512
+            },
+            "coloring": {
+              "n": 40,
+              "mean": 0.1486848,
+              "median": 0.132096,
+              "p95": 0.144384
+            },
+            "warmStart": {
+              "n": 40,
+              "mean": 0.042393600000000004,
+              "median": 0.043008,
+              "p95": 0.044032
+            },
+            "bodySolve": {
+              "n": 40,
+              "mean": 1.6034048000000003,
+              "median": 1.317888,
+              "p95": 3.1887360000000005
+            },
+            "contactUpdate": {
+              "n": 40,
+              "mean": 0.22461440000000002,
+              "median": 0.16383999999999999,
+              "p95": 0.7864319999999999
+            },
+            "velocities": {
+              "n": 40,
+              "mean": 0.008371200000000002,
+              "median": 0.008192,
+              "p95": 0.012288
+            }
+          },
+          "summary": {
+            "total": {
+              "n": 40,
+              "mean": 3.0486272,
+              "median": 2.768896,
+              "p95": 5.407744
+            },
+            "collision": {
+              "n": 40,
+              "mean": 0.912384,
+              "median": 0.807936,
+              "p95": 1.3864960000000002
+            },
+            "adjacency": {
+              "n": 40,
+              "mean": 0.1074176,
+              "median": 0.079872,
+              "p95": 0.64512
+            },
+            "coloring": {
+              "n": 40,
+              "mean": 0.1486848,
+              "median": 0.132096,
+              "p95": 0.144384
+            },
+            "solve": {
+              "n": 40,
+              "mean": 1.878784,
+              "median": 1.5349759999999997,
+              "p95": 3.8021120000000006
+            }
+          }
+        }
+      ],
+      "pairedSavings": {
+        "n": 40,
+        "mean": 14.306110867457244,
+        "median": 35.26703499079189,
+        "p95": 64.07636911740077
+      },
+      "saving": 24.946271798523956,
+      "collisionChange": -0.4208644783880402,
+      "stableCollisionTiming": false,
+      "controlStage": "solve",
+      "controlChange": -0.1730797399465922,
+      "stableControlTiming": false,
+      "method": "Two independent worlds, alternating execution order each fixed step; separate GPU phase timestamps, no drawing or sleeping. Every step checked for contact overflow and coloring conflicts.",
+      "repeat": 0
+    },
+    {
+      "scene": "showcase-ragdolls-on-cloth-24k",
+      "variants": [
+        "baseline-detail",
+        "hploc-detail"
+      ],
+      "warmup": 480,
+      "count": 40,
+      "results": [
+        {
+          "scene": "showcase-ragdolls-on-cloth-24k",
+          "variant": "baseline-detail",
+          "bodyCount": 23617,
+          "jointCount": 31200,
+          "params": {
+            "dt": 0.004166666666666667,
+            "gravity": -10,
+            "iterations": 5,
+            "betaLin": 10000,
+            "betaAng": 100,
+            "alpha": 0.99,
+            "gamma": 0.999,
+            "matchNearest": true,
+            "faceBias": true,
+            "reuseContacts": true,
+            "startAtRest": true,
+            "massPenalty": true,
+            "windSpeed": 0,
+            "windAngle": 0,
+            "windGust": 0.4,
+            "windPressure": 0.72,
+            "up": [
+              0,
+              0,
+              1
+            ]
+          },
+          "verifiedSteps": 520,
+          "counters": {
+            "pairs": 28317,
+            "contacts": 27896,
+            "manifolds": 19316,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 9
+          },
+          "peakContacts": 27896,
+          "quaternionError": 1.449105632156389e-7,
+          "finite": true,
+          "rendering": false,
+          "sleeping": false,
+          "samples": [
+            {
+              "step": 481,
+              "total": 2.660352,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.032768,
+                "broadphaseBuild": 0.0256,
+                "broadphasePairs": 1.168384,
+                "narrowphase": 0.08192,
+                "adjacency": 0.072704,
+                "coloring": 0.13312,
+                "warmStart": 0.041984,
+                "bodySolve": 0.9359360000000001,
+                "contactUpdate": 0.15872,
+                "velocities": 0.007168
+              },
+              "collision": 1.308672,
+              "adjacency": 0.072704,
+              "coloring": 0.13312,
+              "solve": 1.1438080000000002,
+              "contacts": 20624
+            },
+            {
+              "step": 482,
+              "total": 3.328,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.034816,
+                "broadphaseBuild": 0.023552,
+                "broadphasePairs": 1.165312,
+                "narrowphase": 0.075776,
+                "adjacency": 0.070656,
+                "coloring": 0.126976,
+                "warmStart": 0.041984,
+                "bodySolve": 1.609728,
+                "contactUpdate": 0.164864,
+                "velocities": 0.011264
+              },
+              "collision": 1.299456,
+              "adjacency": 0.070656,
+              "coloring": 0.126976,
+              "solve": 1.8278399999999997,
+              "contacts": 20394
+            },
+            {
+              "step": 483,
+              "total": 4.301824,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.021504,
+                "broadphaseBuild": 0.018432,
+                "broadphasePairs": 1.468416,
+                "narrowphase": 0.075776,
+                "adjacency": 0.075776,
+                "coloring": 0.13824,
+                "warmStart": 0.033792,
+                "bodySolve": 2.291712,
+                "contactUpdate": 0.166912,
+                "velocities": 0.01024
+              },
+              "collision": 1.584128,
+              "adjacency": 0.075776,
+              "coloring": 0.13824,
+              "solve": 2.502656,
+              "contacts": 20373
+            },
+            {
+              "step": 484,
+              "total": 2.604032,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.032768,
+                "broadphaseBuild": 0.0256,
+                "broadphasePairs": 1.164288,
+                "narrowphase": 0.079872,
+                "adjacency": 0.069632,
+                "coloring": 0.128,
+                "warmStart": 0.041984,
+                "bodySolve": 0.896,
+                "contactUpdate": 0.159744,
+                "velocities": 0.006144
+              },
+              "collision": 1.302528,
+              "adjacency": 0.069632,
+              "coloring": 0.128,
+              "solve": 1.103872,
+              "contacts": 20303
+            },
+            {
+              "step": 485,
+              "total": 4.952064,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.027648,
+                "broadphaseBuild": 0.019456,
+                "broadphasePairs": 1.719296,
+                "narrowphase": 0.0768,
+                "adjacency": 0.075776,
+                "coloring": 0.126976,
+                "warmStart": 0.043008,
+                "bodySolve": 2.69312,
+                "contactUpdate": 0.160768,
+                "velocities": 0.007168
+              },
+              "collision": 1.8432,
+              "adjacency": 0.075776,
+              "coloring": 0.126976,
+              "solve": 2.9040640000000004,
+              "contacts": 20419
+            },
+            {
+              "step": 486,
+              "total": 2.873344,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.034816,
+                "broadphaseBuild": 0.0256,
+                "broadphasePairs": 1.349632,
+                "narrowphase": 0.084992,
+                "adjacency": 0.073728,
+                "coloring": 0.128,
+                "warmStart": 0.044032,
+                "bodySolve": 0.96256,
+                "contactUpdate": 0.162816,
+                "velocities": 0.006144
+              },
+              "collision": 1.49504,
+              "adjacency": 0.073728,
+              "coloring": 0.128,
+              "solve": 1.175552,
+              "contacts": 20378
+            },
+            {
+              "step": 487,
+              "total": 3.770368,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.027648,
+                "broadphaseBuild": 0.019456,
+                "broadphasePairs": 1.135616,
+                "narrowphase": 0.065536,
+                "adjacency": 0.073728,
+                "coloring": 0.126976,
+                "warmStart": 0.04096,
+                "bodySolve": 2.1104640000000003,
+                "contactUpdate": 0.160768,
+                "velocities": 0.006144
+              },
+              "collision": 1.248256,
+              "adjacency": 0.073728,
+              "coloring": 0.126976,
+              "solve": 2.318336,
+              "contacts": 20540
+            },
+            {
+              "step": 488,
+              "total": 5.019648,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.028672,
+                "broadphaseBuild": 0.019456,
+                "broadphasePairs": 1.80736,
+                "narrowphase": 0.075776,
+                "adjacency": 0.0768,
+                "coloring": 0.12288,
+                "warmStart": 0.041984,
+                "bodySolve": 2.674688,
+                "contactUpdate": 0.16383999999999999,
+                "velocities": 0.006144
+              },
+              "collision": 1.931264,
+              "adjacency": 0.0768,
+              "coloring": 0.12288,
+              "solve": 2.8866559999999994,
+              "contacts": 20596
+            },
+            {
+              "step": 489,
+              "total": 2.598912,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.033792,
+                "broadphaseBuild": 0.0256,
+                "broadphasePairs": 1.147904,
+                "narrowphase": 0.079872,
+                "adjacency": 0.073728,
+                "coloring": 0.13824,
+                "warmStart": 0.041984,
+                "bodySolve": 0.8908799999999999,
+                "contactUpdate": 0.159744,
+                "velocities": 0.007168
+              },
+              "collision": 1.2871679999999999,
+              "adjacency": 0.073728,
+              "coloring": 0.13824,
+              "solve": 1.099776,
+              "contacts": 20757
+            },
+            {
+              "step": 490,
+              "total": 3.931136,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.033792,
+                "broadphaseBuild": 0.024576,
+                "broadphasePairs": 1.152,
+                "narrowphase": 0.100352,
+                "adjacency": 0.072704,
+                "coloring": 0.125952,
+                "warmStart": 0.043008,
+                "bodySolve": 1.522688,
+                "contactUpdate": 0.848896,
+                "velocities": 0.006144
+              },
+              "collision": 1.3107199999999999,
+              "adjacency": 0.072704,
+              "coloring": 0.125952,
+              "solve": 2.4207359999999998,
+              "contacts": 20954
+            },
+            {
+              "step": 491,
+              "total": 2.615296,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.033792,
+                "broadphaseBuild": 0.024576,
+                "broadphasePairs": 1.152,
+                "narrowphase": 0.08192,
+                "adjacency": 0.074752,
+                "coloring": 0.132096,
+                "warmStart": 0.04096,
+                "bodySolve": 0.908288,
+                "contactUpdate": 0.159744,
+                "velocities": 0.006144
+              },
+              "collision": 1.2922879999999999,
+              "adjacency": 0.074752,
+              "coloring": 0.132096,
+              "solve": 1.115136,
+              "contacts": 21149
+            },
+            {
+              "step": 492,
+              "total": 2.659328,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.032768,
+                "broadphaseBuild": 0.0256,
+                "broadphasePairs": 1.150976,
+                "narrowphase": 0.086016,
+                "adjacency": 0.074752,
+                "coloring": 0.146432,
+                "warmStart": 0.04096,
+                "bodySolve": 0.9308160000000001,
+                "contactUpdate": 0.161792,
+                "velocities": 0.006144
+              },
+              "collision": 1.29536,
+              "adjacency": 0.074752,
+              "coloring": 0.146432,
+              "solve": 1.139712,
+              "contacts": 21409
+            },
+            {
+              "step": 493,
+              "total": 4.977664,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.026624,
+                "broadphaseBuild": 0.018432,
+                "broadphasePairs": 1.14688,
+                "narrowphase": 0.668672,
+                "adjacency": 0.083968,
+                "coloring": 0.13312,
+                "warmStart": 0.041984,
+                "bodySolve": 2.684928,
+                "contactUpdate": 0.16383999999999999,
+                "velocities": 0.007168
+              },
+              "collision": 1.860608,
+              "adjacency": 0.083968,
+              "coloring": 0.13312,
+              "solve": 2.89792,
+              "contacts": 21737
+            },
+            {
+              "step": 494,
+              "total": 2.981888,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.036864,
+                "broadphaseBuild": 0.0256,
+                "broadphasePairs": 1.401856,
+                "narrowphase": 0.10752,
+                "adjacency": 0.082944,
+                "coloring": 0.131072,
+                "warmStart": 0.045056,
+                "bodySolve": 0.979968,
+                "contactUpdate": 0.16486399999999998,
+                "velocities": 0.006144
+              },
+              "collision": 1.5718400000000001,
+              "adjacency": 0.082944,
+              "coloring": 0.131072,
+              "solve": 1.196032,
+              "contacts": 21982
+            },
+            {
+              "step": 495,
+              "total": 5.562368,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.02048,
+                "broadphaseBuild": 0.018432,
+                "broadphasePairs": 2.311168,
+                "narrowphase": 0.090112,
+                "adjacency": 0.082944,
+                "coloring": 0.125952,
+                "warmStart": 0.044032,
+                "bodySolve": 2.697216,
+                "contactUpdate": 0.16383999999999999,
+                "velocities": 0.006144
+              },
+              "collision": 2.4401919999999997,
+              "adjacency": 0.082944,
+              "coloring": 0.125952,
+              "solve": 2.9112319999999996,
+              "contacts": 22244
+            },
+            {
+              "step": 496,
+              "total": 5.465088,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.026624,
+                "broadphaseBuild": 0.018432,
+                "broadphasePairs": 1.72544,
+                "narrowphase": 0.084992,
+                "adjacency": 0.078848,
+                "coloring": 0.134144,
+                "warmStart": 0.041984,
+                "bodySolve": 3.1815680000000004,
+                "contactUpdate": 0.16383999999999999,
+                "velocities": 0.007168
+              },
+              "collision": 1.855488,
+              "adjacency": 0.078848,
+              "coloring": 0.134144,
+              "solve": 3.39456,
+              "contacts": 22438
+            },
+            {
+              "step": 497,
+              "total": 4.811776,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.029696,
+                "broadphaseBuild": 0.019456,
+                "broadphasePairs": 1.716224,
+                "narrowphase": 0.083968,
+                "adjacency": 0.075776,
+                "coloring": 0.135168,
+                "warmStart": 0.041984,
+                "bodySolve": 2.537472,
+                "contactUpdate": 0.164864,
+                "velocities": 0.006144
+              },
+              "collision": 1.849344,
+              "adjacency": 0.075776,
+              "coloring": 0.135168,
+              "solve": 2.750464,
+              "contacts": 22697
+            },
+            {
+              "step": 498,
+              "total": 2.630656,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.034816,
+                "broadphaseBuild": 0.023552,
+                "broadphasePairs": 1.142784,
+                "narrowphase": 0.08704,
+                "adjacency": 0.0768,
+                "coloring": 0.134144,
+                "warmStart": 0.041984,
+                "bodySolve": 0.91648,
+                "contactUpdate": 0.16383999999999999,
+                "velocities": 0.007168
+              },
+              "collision": 1.288192,
+              "adjacency": 0.0768,
+              "coloring": 0.134144,
+              "solve": 1.129472,
+              "contacts": 22944
+            },
+            {
+              "step": 499,
+              "total": 2.646016,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.034816,
+                "broadphaseBuild": 0.024576,
+                "broadphasePairs": 1.148928,
+                "narrowphase": 0.091136,
+                "adjacency": 0.079872,
+                "coloring": 0.132096,
+                "warmStart": 0.04096,
+                "bodySolve": 0.9226239999999999,
+                "contactUpdate": 0.162816,
+                "velocities": 0.006144
+              },
+              "collision": 1.2994560000000002,
+              "adjacency": 0.079872,
+              "coloring": 0.132096,
+              "solve": 1.1325439999999998,
+              "contacts": 23136
+            },
+            {
+              "step": 500,
+              "total": 2.659328,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.036864,
+                "broadphaseBuild": 0.024576,
+                "broadphasePairs": 1.143808,
+                "narrowphase": 0.088064,
+                "adjacency": 0.079872,
+                "coloring": 0.139264,
+                "warmStart": 0.041984,
+                "bodySolve": 0.933888,
+                "contactUpdate": 0.162816,
+                "velocities": 0.007168
+              },
+              "collision": 1.2933119999999998,
+              "adjacency": 0.079872,
+              "coloring": 0.139264,
+              "solve": 1.1458560000000002,
+              "contacts": 23461
+            },
+            {
+              "step": 501,
+              "total": 5.019648,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.027648,
+                "broadphaseBuild": 0.018432,
+                "broadphasePairs": 1.736704,
+                "narrowphase": 0.086016,
+                "adjacency": 0.083968,
+                "coloring": 0.124928,
+                "warmStart": 0.041984,
+                "bodySolve": 2.152448,
+                "contactUpdate": 0.739328,
+                "velocities": 0.007168
+              },
+              "collision": 1.8688,
+              "adjacency": 0.083968,
+              "coloring": 0.124928,
+              "solve": 2.940928,
+              "contacts": 23731
+            },
+            {
+              "step": 502,
+              "total": 4.257792,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.031744,
+                "broadphaseBuild": 0.02048,
+                "broadphasePairs": 1.70496,
+                "narrowphase": 0.09216,
+                "adjacency": 0.08704,
+                "coloring": 0.131072,
+                "warmStart": 0.043008,
+                "bodySolve": 1.931264,
+                "contactUpdate": 0.207872,
+                "velocities": 0.007168
+              },
+              "collision": 1.849344,
+              "adjacency": 0.08704,
+              "coloring": 0.131072,
+              "solve": 2.1893119999999997,
+              "contacts": 23995
+            },
+            {
+              "step": 503,
+              "total": 2.994176,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.03584,
+                "broadphaseBuild": 0.0256,
+                "broadphasePairs": 1.39776,
+                "narrowphase": 0.104448,
+                "adjacency": 0.08704,
+                "coloring": 0.131072,
+                "warmStart": 0.045056,
+                "bodySolve": 0.9881599999999999,
+                "contactUpdate": 0.167936,
+                "velocities": 0.007168
+              },
+              "collision": 1.563648,
+              "adjacency": 0.08704,
+              "coloring": 0.131072,
+              "solve": 1.20832,
+              "contacts": 24232
+            },
+            {
+              "step": 504,
+              "total": 2.686976,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.034816,
+                "broadphaseBuild": 0.024576,
+                "broadphasePairs": 1.163264,
+                "narrowphase": 0.089088,
+                "adjacency": 0.082944,
+                "coloring": 0.142336,
+                "warmStart": 0.041984,
+                "bodySolve": 0.934912,
+                "contactUpdate": 0.165888,
+                "velocities": 0.007168
+              },
+              "collision": 1.3117440000000002,
+              "adjacency": 0.082944,
+              "coloring": 0.142336,
+              "solve": 1.149952,
+              "contacts": 24469
+            },
+            {
+              "step": 505,
+              "total": 4.281344,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.03072,
+                "broadphaseBuild": 0.019456,
+                "broadphasePairs": 1.15712,
+                "narrowphase": 0.083968,
+                "adjacency": 0.08192,
+                "coloring": 0.13312,
+                "warmStart": 0.04096,
+                "bodySolve": 2.528256,
+                "contactUpdate": 0.198656,
+                "velocities": 0.006144
+              },
+              "collision": 1.291264,
+              "adjacency": 0.08192,
+              "coloring": 0.13312,
+              "solve": 2.774016,
+              "contacts": 24603
+            },
+            {
+              "step": 506,
+              "total": 2.692096,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.03584,
+                "broadphaseBuild": 0.022528,
+                "broadphasePairs": 1.150976,
+                "narrowphase": 0.095232,
+                "adjacency": 0.082944,
+                "coloring": 0.135168,
+                "warmStart": 0.041984,
+                "bodySolve": 0.953344,
+                "contactUpdate": 0.166912,
+                "velocities": 0.006144
+              },
+              "collision": 1.304576,
+              "adjacency": 0.082944,
+              "coloring": 0.135168,
+              "solve": 1.168384,
+              "contacts": 24797
+            },
+            {
+              "step": 507,
+              "total": 4.50048,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.028672,
+                "broadphaseBuild": 0.018432,
+                "broadphasePairs": 1.830912,
+                "narrowphase": 0.100352,
+                "adjacency": 0.088064,
+                "coloring": 0.129024,
+                "warmStart": 0.044032,
+                "bodySolve": 2.046976,
+                "contactUpdate": 0.207872,
+                "velocities": 0.006144
+              },
+              "collision": 1.9783680000000001,
+              "adjacency": 0.088064,
+              "coloring": 0.129024,
+              "solve": 2.305024,
+              "contacts": 25066
+            },
+            {
+              "step": 508,
+              "total": 2.702336,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.036864,
+                "broadphaseBuild": 0.024576,
+                "broadphasePairs": 1.155072,
+                "narrowphase": 0.09216,
+                "adjacency": 0.082944,
+                "coloring": 0.128,
+                "warmStart": 0.041984,
+                "bodySolve": 0.96768,
+                "contactUpdate": 0.16486399999999998,
+                "velocities": 0.006144
+              },
+              "collision": 1.308672,
+              "adjacency": 0.082944,
+              "coloring": 0.128,
+              "solve": 1.180672,
+              "contacts": 25243
+            },
+            {
+              "step": 509,
+              "total": 5.050368,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.034816,
+                "broadphaseBuild": 0.024576,
+                "broadphasePairs": 1.736704,
+                "narrowphase": 0.099328,
+                "adjacency": 0.08704,
+                "coloring": 0.123904,
+                "warmStart": 0.04096,
+                "bodySolve": 2.147328,
+                "contactUpdate": 0.745472,
+                "velocities": 0.006144
+              },
+              "collision": 1.895424,
+              "adjacency": 0.08704,
+              "coloring": 0.123904,
+              "solve": 2.9399040000000003,
+              "contacts": 25265
+            },
+            {
+              "step": 510,
+              "total": 2.712576,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.036864,
+                "broadphaseBuild": 0.023552,
+                "broadphasePairs": 1.154048,
+                "narrowphase": 0.09216,
+                "adjacency": 0.084992,
+                "coloring": 0.132096,
+                "warmStart": 0.04096,
+                "bodySolve": 0.9728,
+                "contactUpdate": 0.16588799999999998,
+                "velocities": 0.006144
+              },
+              "collision": 1.306624,
+              "adjacency": 0.084992,
+              "coloring": 0.132096,
+              "solve": 1.1857920000000002,
+              "contacts": 25460
+            },
+            {
+              "step": 511,
+              "total": 3.597312,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.019456,
+                "broadphaseBuild": 0.01536,
+                "broadphasePairs": 1.165312,
+                "narrowphase": 0.723968,
+                "adjacency": 0.093184,
+                "coloring": 0.135168,
+                "warmStart": 0.048128,
+                "bodySolve": 1.2185599999999999,
+                "contactUpdate": 0.171008,
+                "velocities": 0.007168
+              },
+              "collision": 1.9240959999999998,
+              "adjacency": 0.093184,
+              "coloring": 0.135168,
+              "solve": 1.444864,
+              "contacts": 25659
+            },
+            {
+              "step": 512,
+              "total": 6.260736,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.03584,
+                "broadphaseBuild": 0.0256,
+                "broadphasePairs": 2.3808,
+                "narrowphase": 0.104448,
+                "adjacency": 0.088064,
+                "coloring": 0.13312,
+                "warmStart": 0.044032,
+                "bodySolve": 2.69824,
+                "contactUpdate": 0.7424000000000001,
+                "velocities": 0.007168
+              },
+              "collision": 2.546688,
+              "adjacency": 0.088064,
+              "coloring": 0.13312,
+              "solve": 3.49184,
+              "contacts": 25840
+            },
+            {
+              "step": 513,
+              "total": 3.381248,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.03584,
+                "broadphaseBuild": 0.024576,
+                "broadphasePairs": 1.17248,
+                "narrowphase": 0.090112,
+                "adjacency": 0.08192,
+                "coloring": 0.136192,
+                "warmStart": 0.041984,
+                "bodySolve": 1.60256,
+                "contactUpdate": 0.18841600000000003,
+                "velocities": 0.006144
+              },
+              "collision": 1.323008,
+              "adjacency": 0.08192,
+              "coloring": 0.136192,
+              "solve": 1.839104,
+              "contacts": 26148
+            },
+            {
+              "step": 514,
+              "total": 2.765824,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.036864,
+                "broadphaseBuild": 0.024576,
+                "broadphasePairs": 1.186816,
+                "narrowphase": 0.096256,
+                "adjacency": 0.08192,
+                "coloring": 0.129024,
+                "warmStart": 0.041984,
+                "bodySolve": 0.992256,
+                "contactUpdate": 0.166912,
+                "velocities": 0.007168
+              },
+              "collision": 1.344512,
+              "adjacency": 0.08192,
+              "coloring": 0.129024,
+              "solve": 1.20832,
+              "contacts": 26423
+            },
+            {
+              "step": 515,
+              "total": 4.388864,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.031744,
+                "broadphaseBuild": 0.02048,
+                "broadphasePairs": 1.734656,
+                "narrowphase": 0.101376,
+                "adjacency": 0.088064,
+                "coloring": 0.13312,
+                "warmStart": 0.044032,
+                "bodySolve": 2.021376,
+                "contactUpdate": 0.20684799999999998,
+                "velocities": 0.007168
+              },
+              "collision": 1.888256,
+              "adjacency": 0.088064,
+              "coloring": 0.13312,
+              "solve": 2.279424,
+              "contacts": 26665
+            },
+            {
+              "step": 516,
+              "total": 2.798592,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.036864,
+                "broadphaseBuild": 0.022528,
+                "broadphasePairs": 1.193984,
+                "narrowphase": 0.09216,
+                "adjacency": 0.08192,
+                "coloring": 0.141312,
+                "warmStart": 0.041984,
+                "bodySolve": 1.011712,
+                "contactUpdate": 0.16998400000000002,
+                "velocities": 0.006144
+              },
+              "collision": 1.3455359999999998,
+              "adjacency": 0.08192,
+              "coloring": 0.141312,
+              "solve": 1.229824,
+              "contacts": 26899
+            },
+            {
+              "step": 517,
+              "total": 5.814272,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.031744,
+                "broadphaseBuild": 0.019456,
+                "broadphasePairs": 1.754112,
+                "narrowphase": 0.088064,
+                "adjacency": 0.086016,
+                "coloring": 0.130048,
+                "warmStart": 0.041984,
+                "bodySolve": 3.4652160000000003,
+                "contactUpdate": 0.18944,
+                "velocities": 0.006144
+              },
+              "collision": 1.8933759999999997,
+              "adjacency": 0.086016,
+              "coloring": 0.130048,
+              "solve": 3.702784,
+              "contacts": 27172
+            },
+            {
+              "step": 518,
+              "total": 3.040256,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.038912,
+                "broadphaseBuild": 0.024576,
+                "broadphasePairs": 1.391616,
+                "narrowphase": 0.096256,
+                "adjacency": 0.089088,
+                "coloring": 0.124928,
+                "warmStart": 0.041984,
+                "bodySolve": 1.0516480000000001,
+                "contactUpdate": 0.173056,
+                "velocities": 0.007168
+              },
+              "collision": 1.5513599999999999,
+              "adjacency": 0.089088,
+              "coloring": 0.124928,
+              "solve": 1.2738559999999999,
+              "contacts": 27398
+            },
+            {
+              "step": 519,
+              "total": 4.429824,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.033792,
+                "broadphaseBuild": 0.022528,
+                "broadphasePairs": 1.7664,
+                "narrowphase": 0.100352,
+                "adjacency": 0.091136,
+                "coloring": 0.141312,
+                "warmStart": 0.043008,
+                "bodySolve": 2.050048,
+                "contactUpdate": 0.17203200000000002,
+                "velocities": 0.007168
+              },
+              "collision": 1.923072,
+              "adjacency": 0.091136,
+              "coloring": 0.141312,
+              "solve": 2.272256,
+              "contacts": 27713
+            },
+            {
+              "step": 520,
+              "total": 4.260864,
+              "broadphase": "grid",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.033792,
+                "broadphaseBuild": 0.02048,
+                "broadphasePairs": 1.770496,
+                "narrowphase": 0.098304,
+                "adjacency": 0.090112,
+                "coloring": 0.132096,
+                "warmStart": 0.041984,
+                "bodySolve": 1.8892799999999998,
+                "contactUpdate": 0.176128,
+                "velocities": 0.007168
+              },
+              "collision": 1.9230720000000001,
+              "adjacency": 0.090112,
+              "coloring": 0.132096,
+              "solve": 2.11456,
+              "contacts": 27896
+            }
+          ],
+          "startup": {
+            "total": 1.586176,
+            "broadphase": "grid",
+            "bvhRebuilt": false,
+            "details": {
+              "contactCache": 0.278528,
+              "broadphaseBuild": 0.06144,
+              "broadphasePairs": 0.280576,
+              "narrowphase": 0.007168,
+              "adjacency": 0.037888,
+              "coloring": 0.145408,
+              "warmStart": 0.043008,
+              "bodySolve": 0.589824,
+              "contactUpdate": 0.13312,
+              "velocities": 0.006144
+            },
+            "collision": 0.6277119999999999,
+            "adjacency": 0.037888,
+            "coloring": 0.145408,
+            "solve": 0.7720960000000001
+          },
+          "broadphase": "grid",
+          "bvh": null,
+          "detailed": true,
+          "scheduling": {
+            "initial": {
+              "colors": 17,
+              "rounds": 16,
+              "minimumColors": 16,
+              "minimumRounds": 16,
+              "primalLanes": [
+                2147483648,
+                32768,
+                4096
+              ]
+            },
+            "final": {
+              "colors": 16,
+              "rounds": 16,
+              "primalLanes": [
+                2147483648,
+                32768,
+                4096
+              ]
+            }
+          },
+          "details": {
+            "contactCache": {
+              "n": 40,
+              "mean": 0.032256,
+              "median": 0.033792,
+              "p95": 0.036864
+            },
+            "broadphaseBuild": {
+              "n": 40,
+              "mean": 0.022323199999999998,
+              "median": 0.023552,
+              "p95": 0.0256
+            },
+            "broadphasePairs": {
+              "n": 40,
+              "mean": 1.4255616,
+              "median": 1.193984,
+              "p95": 2.311168
+            },
+            "narrowphase": {
+              "n": 40,
+              "mean": 0.119808,
+              "median": 0.090112,
+              "p95": 0.668672
+            },
+            "adjacency": {
+              "n": 40,
+              "mean": 0.081152,
+              "median": 0.08192,
+              "p95": 0.091136
+            },
+            "coloring": {
+              "n": 40,
+              "mean": 0.1321472,
+              "median": 0.132096,
+              "p95": 0.142336
+            },
+            "warmStart": {
+              "n": 40,
+              "mean": 0.04226560000000001,
+              "median": 0.041984,
+              "p95": 0.045056
+            },
+            "bodySolve": {
+              "n": 40,
+              "mean": 1.6726271999999998,
+              "median": 1.60256,
+              "p95": 3.1815680000000004
+            },
+            "contactUpdate": {
+              "n": 40,
+              "mean": 0.23065599999999997,
+              "median": 0.165888,
+              "p95": 0.745472
+            },
+            "velocities": {
+              "n": 40,
+              "mean": 0.006835200000000002,
+              "median": 0.007168,
+              "p95": 0.01024
+            }
+          },
+          "summary": {
+            "total": {
+              "n": 40,
+              "mean": 3.7671167999999993,
+              "median": 3.597312,
+              "p95": 5.814272
+            },
+            "collision": {
+              "n": 40,
+              "mean": 1.5999488000000004,
+              "median": 1.5513599999999999,
+              "p95": 2.4401919999999997
+            },
+            "adjacency": {
+              "n": 40,
+              "mean": 0.081152,
+              "median": 0.08192,
+              "p95": 0.091136
+            },
+            "coloring": {
+              "n": 40,
+              "mean": 0.1321472,
+              "median": 0.132096,
+              "p95": 0.142336
+            },
+            "solve": {
+              "n": 40,
+              "mean": 1.952384,
+              "median": 1.839104,
+              "p95": 3.49184
+            }
+          }
+        },
+        {
+          "scene": "showcase-ragdolls-on-cloth-24k",
+          "variant": "hploc-detail",
+          "bodyCount": 23617,
+          "jointCount": 31200,
+          "params": {
+            "dt": 0.004166666666666667,
+            "gravity": -10,
+            "iterations": 5,
+            "betaLin": 10000,
+            "betaAng": 100,
+            "alpha": 0.99,
+            "gamma": 0.999,
+            "matchNearest": true,
+            "faceBias": true,
+            "reuseContacts": true,
+            "startAtRest": true,
+            "massPenalty": true,
+            "windSpeed": 0,
+            "windAngle": 0,
+            "windGust": 0.4,
+            "windPressure": 0.72,
+            "up": [
+              0,
+              0,
+              1
+            ]
+          },
+          "verifiedSteps": 520,
+          "counters": {
+            "pairs": 28317,
+            "contacts": 27896,
+            "manifolds": 19316,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 9
+          },
+          "peakContacts": 27896,
+          "quaternionError": 1.449105632156389e-7,
+          "finite": true,
+          "rendering": false,
+          "sleeping": false,
+          "samples": [
+            {
+              "step": 481,
+              "total": 2.930688,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.026624,
+                "broadphaseBuild": 0.048128,
+                "broadphasePairs": 1.16736,
+                "narrowphase": 0.10752,
+                "adjacency": 0.080896,
+                "coloring": 0.135168,
+                "warmStart": 0.044032,
+                "bodySolve": 1.153024,
+                "contactUpdate": 0.160768,
+                "velocities": 0.007168
+              },
+              "collision": 1.349632,
+              "adjacency": 0.080896,
+              "coloring": 0.135168,
+              "solve": 1.364992,
+              "contacts": 20624
+            },
+            {
+              "step": 482,
+              "total": 3.462144,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.022528,
+                "broadphaseBuild": 0.043008,
+                "broadphasePairs": 0.579584,
+                "narrowphase": 0.063488,
+                "adjacency": 0.069632,
+                "coloring": 0.123904,
+                "warmStart": 0.043008,
+                "bodySolve": 1.774592,
+                "contactUpdate": 0.15872,
+                "velocities": 0.580608
+              },
+              "collision": 0.708608,
+              "adjacency": 0.069632,
+              "coloring": 0.123904,
+              "solve": 2.556928,
+              "contacts": 20394
+            },
+            {
+              "step": 483,
+              "total": 2.074624,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.0256,
+                "broadphaseBuild": 0.049152,
+                "broadphasePairs": 0.581632,
+                "narrowphase": 0.068608,
+                "adjacency": 0.072704,
+                "coloring": 0.137216,
+                "warmStart": 0.043008,
+                "bodySolve": 0.927744,
+                "contactUpdate": 0.160768,
+                "velocities": 0.008192
+              },
+              "collision": 0.7249920000000001,
+              "adjacency": 0.072704,
+              "coloring": 0.137216,
+              "solve": 1.139712,
+              "contacts": 20373
+            },
+            {
+              "step": 484,
+              "total": 2.050048,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.029696,
+                "broadphaseBuild": 0.0512,
+                "broadphasePairs": 0.590848,
+                "narrowphase": 0.078848,
+                "adjacency": 0.07168,
+                "coloring": 0.128,
+                "warmStart": 0.04096,
+                "bodySolve": 0.892928,
+                "contactUpdate": 0.157696,
+                "velocities": 0.007168
+              },
+              "collision": 0.750592,
+              "adjacency": 0.07168,
+              "coloring": 0.128,
+              "solve": 1.098752,
+              "contacts": 20303
+            },
+            {
+              "step": 485,
+              "total": 3.355648,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.031744,
+                "broadphaseBuild": 0.050176,
+                "broadphasePairs": 0.586752,
+                "narrowphase": 0.079872,
+                "adjacency": 0.668672,
+                "coloring": 0.14848,
+                "warmStart": 0.0512,
+                "bodySolve": 1.559552,
+                "contactUpdate": 0.16793599999999997,
+                "velocities": 0.008192
+              },
+              "collision": 0.7485440000000001,
+              "adjacency": 0.668672,
+              "coloring": 0.14848,
+              "solve": 1.78688,
+              "contacts": 20419
+            },
+            {
+              "step": 486,
+              "total": 2.066432,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.03072,
+                "broadphaseBuild": 0.049152,
+                "broadphasePairs": 0.589824,
+                "narrowphase": 0.078848,
+                "adjacency": 0.07168,
+                "coloring": 0.129024,
+                "warmStart": 0.041984,
+                "bodySolve": 0.9093119999999999,
+                "contactUpdate": 0.15872,
+                "velocities": 0.007168
+              },
+              "collision": 0.7485440000000001,
+              "adjacency": 0.07168,
+              "coloring": 0.129024,
+              "solve": 1.117184,
+              "contacts": 20378
+            },
+            {
+              "step": 487,
+              "total": 2.06848,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.028672,
+                "broadphaseBuild": 0.050176,
+                "broadphasePairs": 0.592896,
+                "narrowphase": 0.078848,
+                "adjacency": 0.07168,
+                "coloring": 0.128,
+                "warmStart": 0.041984,
+                "bodySolve": 0.9093119999999999,
+                "contactUpdate": 0.15872,
+                "velocities": 0.007168
+              },
+              "collision": 0.750592,
+              "adjacency": 0.07168,
+              "coloring": 0.128,
+              "solve": 1.117184,
+              "contacts": 20540
+            },
+            {
+              "step": 488,
+              "total": 4.895744,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.023552,
+                "broadphaseBuild": 0.043008,
+                "broadphasePairs": 1.175552,
+                "narrowphase": 0.077824,
+                "adjacency": 0.077824,
+                "coloring": 0.123904,
+                "warmStart": 0.041984,
+                "bodySolve": 3.163136,
+                "contactUpdate": 0.159744,
+                "velocities": 0.007168
+              },
+              "collision": 1.3199359999999998,
+              "adjacency": 0.077824,
+              "coloring": 0.123904,
+              "solve": 3.3720320000000004,
+              "contacts": 20596
+            },
+            {
+              "step": 489,
+              "total": 2.072576,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.029696,
+                "broadphaseBuild": 0.0512,
+                "broadphasePairs": 0.60416,
+                "narrowphase": 0.078848,
+                "adjacency": 0.073728,
+                "coloring": 0.139264,
+                "warmStart": 0.041984,
+                "bodySolve": 0.8857600000000001,
+                "contactUpdate": 0.156672,
+                "velocities": 0.008192
+              },
+              "collision": 0.763904,
+              "adjacency": 0.073728,
+              "coloring": 0.139264,
+              "solve": 1.092608,
+              "contacts": 20757
+            },
+            {
+              "step": 490,
+              "total": 3.295232,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.024576,
+                "broadphaseBuild": 0.045056,
+                "broadphasePairs": 0.60928,
+                "narrowphase": 0.077824,
+                "adjacency": 0.07168,
+                "coloring": 0.124928,
+                "warmStart": 0.043008,
+                "bodySolve": 2.084864,
+                "contactUpdate": 0.20172800000000002,
+                "velocities": 0.012288
+              },
+              "collision": 0.7567360000000001,
+              "adjacency": 0.07168,
+              "coloring": 0.124928,
+              "solve": 2.341888,
+              "contacts": 20954
+            },
+            {
+              "step": 491,
+              "total": 3.316736,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.0256,
+                "broadphaseBuild": 0.045056,
+                "broadphasePairs": 0.60928,
+                "narrowphase": 0.077824,
+                "adjacency": 0.073728,
+                "coloring": 0.132096,
+                "warmStart": 0.041984,
+                "bodySolve": 1.5308800000000002,
+                "contactUpdate": 0.768,
+                "velocities": 0.012288
+              },
+              "collision": 0.7577600000000001,
+              "adjacency": 0.073728,
+              "coloring": 0.132096,
+              "solve": 2.3531519999999997,
+              "contacts": 21149
+            },
+            {
+              "step": 492,
+              "total": 2.809856,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.03072,
+                "broadphaseBuild": 0.048128,
+                "broadphasePairs": 0.606208,
+                "narrowphase": 0.08704,
+                "adjacency": 0.073728,
+                "coloring": 0.145408,
+                "warmStart": 0.041984,
+                "bodySolve": 1.580032,
+                "contactUpdate": 0.185344,
+                "velocities": 0.011264
+              },
+              "collision": 0.772096,
+              "adjacency": 0.073728,
+              "coloring": 0.145408,
+              "solve": 1.818624,
+              "contacts": 21409
+            },
+            {
+              "step": 493,
+              "total": 3.88096,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.026624,
+                "broadphaseBuild": 0.045056,
+                "broadphasePairs": 0.6144,
+                "narrowphase": 0.075776,
+                "adjacency": 0.078848,
+                "coloring": 0.132096,
+                "warmStart": 0.043008,
+                "bodySolve": 2.1125119999999997,
+                "contactUpdate": 0.7434240000000001,
+                "velocities": 0.007168
+              },
+              "collision": 0.7618559999999999,
+              "adjacency": 0.078848,
+              "coloring": 0.132096,
+              "solve": 2.9061119999999994,
+              "contacts": 21737
+            },
+            {
+              "step": 494,
+              "total": 2.127872,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.03072,
+                "broadphaseBuild": 0.050176,
+                "broadphasePairs": 0.617472,
+                "narrowphase": 0.086016,
+                "adjacency": 0.075776,
+                "coloring": 0.129024,
+                "warmStart": 0.041984,
+                "bodySolve": 0.9246719999999999,
+                "contactUpdate": 0.161792,
+                "velocities": 0.008192
+              },
+              "collision": 0.784384,
+              "adjacency": 0.075776,
+              "coloring": 0.129024,
+              "solve": 1.1366399999999999,
+              "contacts": 21982
+            },
+            {
+              "step": 495,
+              "total": 2.128896,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.029696,
+                "broadphaseBuild": 0.050176,
+                "broadphasePairs": 0.617472,
+                "narrowphase": 0.089088,
+                "adjacency": 0.075776,
+                "coloring": 0.124928,
+                "warmStart": 0.041984,
+                "bodySolve": 0.928768,
+                "contactUpdate": 0.162816,
+                "velocities": 0.008192
+              },
+              "collision": 0.786432,
+              "adjacency": 0.075776,
+              "coloring": 0.124928,
+              "solve": 1.1417599999999999,
+              "contacts": 22244
+            },
+            {
+              "step": 496,
+              "total": 2.134016,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.03072,
+                "broadphaseBuild": 0.050176,
+                "broadphasePairs": 0.622592,
+                "narrowphase": 0.09216,
+                "adjacency": 0.075776,
+                "coloring": 0.134144,
+                "warmStart": 0.041984,
+                "bodySolve": 0.920576,
+                "contactUpdate": 0.15872,
+                "velocities": 0.007168
+              },
+              "collision": 0.795648,
+              "adjacency": 0.075776,
+              "coloring": 0.134144,
+              "solve": 1.1284480000000001,
+              "contacts": 22438
+            },
+            {
+              "step": 497,
+              "total": 3.781632,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.026624,
+                "broadphaseBuild": 0.045056,
+                "broadphasePairs": 1.191936,
+                "narrowphase": 0.089088,
+                "adjacency": 0.077824,
+                "coloring": 0.135168,
+                "warmStart": 0.041984,
+                "bodySolve": 1.9968,
+                "contactUpdate": 0.166912,
+                "velocities": 0.007168
+              },
+              "collision": 1.3527040000000001,
+              "adjacency": 0.077824,
+              "coloring": 0.135168,
+              "solve": 2.212864,
+              "contacts": 22697
+            },
+            {
+              "step": 498,
+              "total": 4.161536,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.034816,
+                "broadphaseBuild": 0.0512,
+                "broadphasePairs": 0.627712,
+                "narrowphase": 0.089088,
+                "adjacency": 0.676864,
+                "coloring": 0.135168,
+                "warmStart": 0.047104,
+                "bodySolve": 2.318336,
+                "contactUpdate": 0.173056,
+                "velocities": 0.007168
+              },
+              "collision": 0.802816,
+              "adjacency": 0.676864,
+              "coloring": 0.135168,
+              "solve": 2.545664,
+              "contacts": 22944
+            },
+            {
+              "step": 499,
+              "total": 4.340736,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.026624,
+                "broadphaseBuild": 0.045056,
+                "broadphasePairs": 1.197056,
+                "narrowphase": 0.08704,
+                "adjacency": 0.077824,
+                "coloring": 0.131072,
+                "warmStart": 0.041984,
+                "bodySolve": 2.56,
+                "contactUpdate": 0.16383999999999999,
+                "velocities": 0.009216
+              },
+              "collision": 1.3557759999999999,
+              "adjacency": 0.077824,
+              "coloring": 0.131072,
+              "solve": 2.77504,
+              "contacts": 23136
+            },
+            {
+              "step": 500,
+              "total": 2.147328,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.029696,
+                "broadphaseBuild": 0.048128,
+                "broadphasePairs": 0.621568,
+                "narrowphase": 0.091136,
+                "adjacency": 0.080896,
+                "coloring": 0.140288,
+                "warmStart": 0.04096,
+                "bodySolve": 0.9205760000000001,
+                "contactUpdate": 0.162816,
+                "velocities": 0.007168
+              },
+              "collision": 0.790528,
+              "adjacency": 0.080896,
+              "coloring": 0.140288,
+              "solve": 1.13152,
+              "contacts": 23461
+            },
+            {
+              "step": 501,
+              "total": 2.356224,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.0256,
+                "broadphaseBuild": 0.044032,
+                "broadphasePairs": 0.800768,
+                "narrowphase": 0.078848,
+                "adjacency": 0.08704,
+                "coloring": 0.124928,
+                "warmStart": 0.041984,
+                "bodySolve": 0.978944,
+                "contactUpdate": 0.16383999999999999,
+                "velocities": 0.007168
+              },
+              "collision": 0.9492480000000001,
+              "adjacency": 0.08704,
+              "coloring": 0.124928,
+              "solve": 1.191936,
+              "contacts": 23731
+            },
+            {
+              "step": 502,
+              "total": 2.156544,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.019456,
+                "broadphaseBuild": 0.034816,
+                "broadphasePairs": 0.644096,
+                "narrowphase": 0.072704,
+                "adjacency": 0.078848,
+                "coloring": 0.123904,
+                "warmStart": 0.033792,
+                "bodySolve": 0.937984,
+                "contactUpdate": 0.20377599999999998,
+                "velocities": 0.007168
+              },
+              "collision": 0.771072,
+              "adjacency": 0.078848,
+              "coloring": 0.123904,
+              "solve": 1.18272,
+              "contacts": 23995
+            },
+            {
+              "step": 503,
+              "total": 4.631552,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.029696,
+                "broadphaseBuild": 0.0512,
+                "broadphasePairs": 0.641024,
+                "narrowphase": 0.73728,
+                "adjacency": 0.096256,
+                "coloring": 0.129024,
+                "warmStart": 0.04608,
+                "bodySolve": 2.726912,
+                "contactUpdate": 0.166912,
+                "velocities": 0.007168
+              },
+              "collision": 1.4592,
+              "adjacency": 0.096256,
+              "coloring": 0.129024,
+              "solve": 2.947072,
+              "contacts": 24232
+            },
+            {
+              "step": 504,
+              "total": 2.18112,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.031744,
+                "broadphaseBuild": 0.049152,
+                "broadphasePairs": 0.63488,
+                "narrowphase": 0.091136,
+                "adjacency": 0.083968,
+                "coloring": 0.142336,
+                "warmStart": 0.041984,
+                "bodySolve": 0.9349120000000001,
+                "contactUpdate": 0.161792,
+                "velocities": 0.007168
+              },
+              "collision": 0.806912,
+              "adjacency": 0.083968,
+              "coloring": 0.142336,
+              "solve": 1.145856,
+              "contacts": 24469
+            },
+            {
+              "step": 505,
+              "total": 4.784128,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.029696,
+                "broadphaseBuild": 0.049152,
+                "broadphasePairs": 1.206272,
+                "narrowphase": 0.093184,
+                "adjacency": 0.083968,
+                "coloring": 0.13312,
+                "warmStart": 0.043008,
+                "bodySolve": 2.16064,
+                "contactUpdate": 0.976896,
+                "velocities": 0.007168
+              },
+              "collision": 1.378304,
+              "adjacency": 0.083968,
+              "coloring": 0.13312,
+              "solve": 3.187712,
+              "contacts": 24603
+            },
+            {
+              "step": 506,
+              "total": 3.049472,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.03584,
+                "broadphaseBuild": 0.0512,
+                "broadphasePairs": 1.260544,
+                "narrowphase": 0.094208,
+                "adjacency": 0.086016,
+                "coloring": 0.135168,
+                "warmStart": 0.044032,
+                "bodySolve": 1.16736,
+                "contactUpdate": 0.16793599999999997,
+                "velocities": 0.007168
+              },
+              "collision": 1.4417920000000002,
+              "adjacency": 0.086016,
+              "coloring": 0.135168,
+              "solve": 1.3864960000000002,
+              "contacts": 24797
+            },
+            {
+              "step": 507,
+              "total": 3.974144,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.026624,
+                "broadphaseBuild": 0.044032,
+                "broadphasePairs": 0.646144,
+                "narrowphase": 0.077824,
+                "adjacency": 0.08192,
+                "coloring": 0.129024,
+                "warmStart": 0.041984,
+                "bodySolve": 2.747392,
+                "contactUpdate": 0.17203200000000002,
+                "velocities": 0.007168
+              },
+              "collision": 0.7946240000000001,
+              "adjacency": 0.08192,
+              "coloring": 0.129024,
+              "solve": 2.9685760000000005,
+              "contacts": 25066
+            },
+            {
+              "step": 508,
+              "total": 2.953216,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.033792,
+                "broadphaseBuild": 0.049152,
+                "broadphasePairs": 0.651264,
+                "narrowphase": 0.091136,
+                "adjacency": 0.08192,
+                "coloring": 0.128,
+                "warmStart": 0.041984,
+                "bodySolve": 1.697792,
+                "contactUpdate": 0.166912,
+                "velocities": 0.01024
+              },
+              "collision": 0.825344,
+              "adjacency": 0.08192,
+              "coloring": 0.128,
+              "solve": 1.9169280000000002,
+              "contacts": 25243
+            },
+            {
+              "step": 509,
+              "total": 2.80064,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.026624,
+                "broadphaseBuild": 0.050176,
+                "broadphasePairs": 0.657408,
+                "narrowphase": 0.082944,
+                "adjacency": 0.082944,
+                "coloring": 0.12288,
+                "warmStart": 0.043008,
+                "bodySolve": 1.5575040000000002,
+                "contactUpdate": 0.166912,
+                "velocities": 0.007168
+              },
+              "collision": 0.817152,
+              "adjacency": 0.082944,
+              "coloring": 0.12288,
+              "solve": 1.7745920000000002,
+              "contacts": 25265
+            },
+            {
+              "step": 510,
+              "total": 2.21184,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.032768,
+                "broadphaseBuild": 0.049152,
+                "broadphasePairs": 0.641024,
+                "narrowphase": 0.08704,
+                "adjacency": 0.083968,
+                "coloring": 0.131072,
+                "warmStart": 0.041984,
+                "bodySolve": 0.9728000000000001,
+                "contactUpdate": 0.164864,
+                "velocities": 0.007168
+              },
+              "collision": 0.809984,
+              "adjacency": 0.083968,
+              "coloring": 0.131072,
+              "solve": 1.186816,
+              "contacts": 25460
+            },
+            {
+              "step": 511,
+              "total": 3.867648,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.03072,
+                "broadphaseBuild": 0.049152,
+                "broadphasePairs": 0.641024,
+                "narrowphase": 0.652288,
+                "adjacency": 0.094208,
+                "coloring": 0.135168,
+                "warmStart": 0.044032,
+                "bodySolve": 2.008064,
+                "contactUpdate": 0.202752,
+                "velocities": 0.009216
+              },
+              "collision": 1.373184,
+              "adjacency": 0.094208,
+              "coloring": 0.135168,
+              "solve": 2.2640639999999994,
+              "contacts": 25659
+            },
+            {
+              "step": 512,
+              "total": 2.470912,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.03584,
+                "broadphaseBuild": 0.050176,
+                "broadphasePairs": 0.831488,
+                "narrowphase": 0.098304,
+                "adjacency": 0.086016,
+                "coloring": 0.13312,
+                "warmStart": 0.043008,
+                "bodySolve": 1.0158079999999998,
+                "contactUpdate": 0.16896,
+                "velocities": 0.007168
+              },
+              "collision": 1.015808,
+              "adjacency": 0.086016,
+              "coloring": 0.13312,
+              "solve": 1.2349440000000003,
+              "contacts": 25840
+            },
+            {
+              "step": 513,
+              "total": 2.302976,
+              "broadphase": "hploc",
+              "bvhRebuilt": true,
+              "details": {
+                "contactCache": 0.033792,
+                "broadphaseBuild": 0.239616,
+                "broadphasePairs": 0.521216,
+                "narrowphase": 0.096256,
+                "adjacency": 0.082944,
+                "coloring": 0.135168,
+                "warmStart": 0.041984,
+                "bodySolve": 0.978944,
+                "contactUpdate": 0.16383999999999999,
+                "velocities": 0.007168
+              },
+              "collision": 0.89088,
+              "adjacency": 0.082944,
+              "coloring": 0.135168,
+              "solve": 1.1919359999999999,
+              "contacts": 26148
+            },
+            {
+              "step": 514,
+              "total": 2.89792,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.027648,
+                "broadphaseBuild": 0.044032,
+                "broadphasePairs": 0.695296,
+                "narrowphase": 0.08192,
+                "adjacency": 0.089088,
+                "coloring": 0.128,
+                "warmStart": 0.041984,
+                "bodySolve": 1.6117759999999999,
+                "contactUpdate": 0.16998400000000002,
+                "velocities": 0.007168
+              },
+              "collision": 0.848896,
+              "adjacency": 0.089088,
+              "coloring": 0.128,
+              "solve": 1.830912,
+              "contacts": 26423
+            },
+            {
+              "step": 515,
+              "total": 3.295232,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.027648,
+                "broadphaseBuild": 0.044032,
+                "broadphasePairs": 0.519168,
+                "narrowphase": 0.082944,
+                "adjacency": 0.083968,
+                "coloring": 0.132096,
+                "warmStart": 0.041984,
+                "bodySolve": 1.609728,
+                "contactUpdate": 0.7444480000000001,
+                "velocities": 0.007168
+              },
+              "collision": 0.673792,
+              "adjacency": 0.083968,
+              "coloring": 0.132096,
+              "solve": 2.403328,
+              "contacts": 26665
+            },
+            {
+              "step": 516,
+              "total": 2.143232,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.033792,
+                "broadphaseBuild": 0.049152,
+                "broadphasePairs": 0.524288,
+                "narrowphase": 0.095232,
+                "adjacency": 0.08192,
+                "coloring": 0.140288,
+                "warmStart": 0.043008,
+                "bodySolve": 1.001472,
+                "contactUpdate": 0.16486399999999998,
+                "velocities": 0.007168
+              },
+              "collision": 0.702464,
+              "adjacency": 0.08192,
+              "coloring": 0.140288,
+              "solve": 1.216512,
+              "contacts": 26899
+            },
+            {
+              "step": 517,
+              "total": 3.550208,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.031744,
+                "broadphaseBuild": 0.0512,
+                "broadphasePairs": 1.133568,
+                "narrowphase": 0.101376,
+                "adjacency": 0.089088,
+                "coloring": 0.131072,
+                "warmStart": 0.043008,
+                "bodySolve": 1.7889279999999999,
+                "contactUpdate": 0.173056,
+                "velocities": 0.007168
+              },
+              "collision": 1.3178879999999997,
+              "adjacency": 0.089088,
+              "coloring": 0.131072,
+              "solve": 2.01216,
+              "contacts": 27172
+            },
+            {
+              "step": 518,
+              "total": 2.120704,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.033792,
+                "broadphaseBuild": 0.049152,
+                "broadphasePairs": 0.519168,
+                "narrowphase": 0.093184,
+                "adjacency": 0.082944,
+                "coloring": 0.124928,
+                "warmStart": 0.041984,
+                "bodySolve": 0.999424,
+                "contactUpdate": 0.16588799999999998,
+                "velocities": 0.007168
+              },
+              "collision": 0.695296,
+              "adjacency": 0.082944,
+              "coloring": 0.124928,
+              "solve": 1.2144640000000002,
+              "contacts": 27398
+            },
+            {
+              "step": 519,
+              "total": 3.438592,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.031744,
+                "broadphaseBuild": 0.0512,
+                "broadphasePairs": 0.528384,
+                "narrowphase": 0.096256,
+                "adjacency": 0.083968,
+                "coloring": 0.140288,
+                "warmStart": 0.043008,
+                "bodySolve": 2.255872,
+                "contactUpdate": 0.19456,
+                "velocities": 0.012288
+              },
+              "collision": 0.707584,
+              "adjacency": 0.083968,
+              "coloring": 0.140288,
+              "solve": 2.505728,
+              "contacts": 27713
+            },
+            {
+              "step": 520,
+              "total": 2.123776,
+              "broadphase": "hploc",
+              "bvhRebuilt": false,
+              "details": {
+                "contactCache": 0.033792,
+                "broadphaseBuild": 0.050176,
+                "broadphasePairs": 0.524288,
+                "narrowphase": 0.094208,
+                "adjacency": 0.082944,
+                "coloring": 0.131072,
+                "warmStart": 0.041984,
+                "bodySolve": 0.987136,
+                "contactUpdate": 0.16896,
+                "velocities": 0.007168
+              },
+              "collision": 0.702464,
+              "adjacency": 0.082944,
+              "coloring": 0.131072,
+              "solve": 1.205248,
+              "contacts": 27896
+            }
+          ],
+          "startup": {
+            "total": 1.662976,
+            "broadphase": "hploc",
+            "bvhRebuilt": true,
+            "details": {
+              "contactCache": 0.262144,
+              "broadphaseBuild": 0.25088,
+              "broadphasePairs": 0.222208,
+              "narrowphase": 0.006144,
+              "adjacency": 0.038912,
+              "coloring": 0.146432,
+              "warmStart": 0.044032,
+              "bodySolve": 0.567296,
+              "contactUpdate": 0.116736,
+              "velocities": 0.007168
+            },
+            "collision": 0.7413759999999999,
+            "adjacency": 0.038912,
+            "coloring": 0.146432,
+            "solve": 0.735232
+          },
+          "broadphase": "hploc",
+          "bvh": {
+            "builds": 9,
+            "refits": 511,
+            "nodes": 47233,
+            "extraBytes": 2489032
+          },
+          "detailed": true,
+          "scheduling": {
+            "initial": {
+              "colors": 17,
+              "rounds": 16,
+              "minimumColors": 16,
+              "minimumRounds": 16,
+              "primalLanes": [
+                2147483648,
+                32768,
+                4096
+              ]
+            },
+            "final": {
+              "colors": 16,
+              "rounds": 16,
+              "primalLanes": [
+                2147483648,
+                32768,
+                4096
+              ]
+            }
+          },
+          "details": {
+            "contactCache": {
+              "n": 40,
+              "mean": 0.029440000000000004,
+              "median": 0.029696,
+              "p95": 0.03584
+            },
+            "broadphaseBuild": {
+              "n": 40,
+              "mean": 0.05271039999999998,
+              "median": 0.049152,
+              "p95": 0.0512
+            },
+            "broadphasePairs": {
+              "n": 40,
+              "mean": 0.7156224,
+              "median": 0.622592,
+              "p95": 1.206272
+            },
+            "narrowphase": {
+              "n": 40,
+              "mean": 0.11632640000000001,
+              "median": 0.08704,
+              "p95": 0.652288
+            },
+            "adjacency": {
+              "n": 40,
+              "mean": 0.1100288,
+              "median": 0.08192,
+              "p95": 0.668672
+            },
+            "coloring": {
+              "n": 40,
+              "mean": 0.13219840000000005,
+              "median": 0.132096,
+              "p95": 0.145408
+            },
+            "warmStart": {
+              "n": 40,
+              "mean": 0.042598399999999995,
+              "median": 0.041984,
+              "p95": 0.047104
+            },
+            "bodySolve": {
+              "n": 40,
+              "mean": 1.5048192,
+              "median": 1.5308800000000002,
+              "p95": 2.747392
+            },
+            "contactUpdate": {
+              "n": 40,
+              "mean": 0.23293440000000004,
+              "median": 0.166912,
+              "p95": 0.768
+            },
+            "velocities": {
+              "n": 40,
+              "mean": 0.022297600000000004,
+              "median": 0.007168,
+              "p95": 0.012288
+            }
+          },
+          "summary": {
+            "total": {
+              "n": 40,
+              "mean": 2.9602815999999996,
+              "median": 2.89792,
+              "p95": 4.784128
+            },
+            "collision": {
+              "n": 40,
+              "mean": 0.9140992000000001,
+              "median": 0.7946240000000001,
+              "p95": 1.4417920000000002
+            },
+            "adjacency": {
+              "n": 40,
+              "mean": 0.1100288,
+              "median": 0.08192,
+              "p95": 0.668672
+            },
+            "coloring": {
+              "n": 40,
+              "mean": 0.13219840000000005,
+              "median": 0.132096,
+              "p95": 0.145408
+            },
+            "solve": {
+              "n": 40,
+              "mean": 1.8026496,
+              "median": 1.7745920000000002,
+              "p95": 3.187712
+            }
+          }
+        }
+      ],
+      "pairedSavings": {
+        "n": 40,
+        "mean": 15.990905657152718,
+        "median": 21.40881038518834,
+        "p95": 60.951845606145774
+      },
+      "saving": 21.417844012694264,
+      "collisionChange": -0.42866971743095783,
+      "stableCollisionTiming": false,
+      "controlStage": "solve",
+      "controlChange": -0.0766931095522192,
+      "stableControlTiming": true,
+      "method": "Two independent worlds, alternating execution order each fixed step; separate GPU phase timestamps, no drawing or sleeping. Every step checked for contact overflow and coloring conflicts.",
+      "repeat": 1
+    }
+  ],
+  "adapter": {
+    "vendor": "nvidia",
+    "architecture": "lovelace"
+  },
+  "errors": []
+}

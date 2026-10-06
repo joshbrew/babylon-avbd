@@ -1,0 +1,98 @@
+{
+  "results": [
+    {
+      "name": "Mixed gallery",
+      "rotated": 245,
+      "minY": 0.12902739644050598,
+      "maxQuaternionError": 1.1066557670247334e-7,
+      "meshSync": {
+        "maxCenterError": 1.1102230246251565e-16,
+        "maxSphereRadiusError": 1.8743257168551963e-8,
+        "resting": [
+          {
+            "height": 0.39003801345825195,
+            "radius": 0.4000000059604645,
+            "verticalSpeed": -0.00002503394898667466
+          },
+          {
+            "height": 0.3900398015975952,
+            "radius": 0.4000000059604645,
+            "verticalSpeed": -0.000026822088329936378
+          },
+          {
+            "height": 0.39002546668052673,
+            "radius": 0.4000000059604645,
+            "verticalSpeed": -0.00005185603731661104
+          },
+          {
+            "height": 0.3900151252746582,
+            "radius": 0.4000000059604645,
+            "verticalSpeed": -0.00001072883515007561
+          },
+          {
+            "height": 0.3900515139102936,
+            "radius": 0.4000000059604645,
+            "verticalSpeed": -0.00003397464388399385
+          },
+          {
+            "height": 0.3900308907032013,
+            "radius": 0.4000000059604645,
+            "verticalSpeed": -0.00002145767030015122
+          },
+          {
+            "height": 0.3900202810764313,
+            "radius": 0.4000000059604645,
+            "verticalSpeed": -0.000014305113836599048
+          },
+          {
+            "height": 0.3900388181209564,
+            "radius": 0.4000000059604645,
+            "verticalSpeed": -0.00002503394898667466
+          }
+        ]
+      },
+      "counters": {
+        "pairs": 653,
+        "contacts": 1396,
+        "manifolds": 527,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 6
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "name": "GPU collision sprites",
+      "targetCount": 2000,
+      "triangles": 20,
+      "alive": 2000,
+      "hits": 14,
+      "collisionMs": 0.095232,
+      "sprites": true,
+      "frame": 163,
+      "errors": [],
+      "rects": [
+        [
+          390,
+          0,
+          1050,
+          900
+        ],
+        [
+          390,
+          0,
+          1050,
+          900
+        ]
+      ],
+      "passed": true
+    },
+    {
+      "name": "Enhanced / benchmark rendering modes",
+      "errors": [],
+      "passed": true
+    }
+  ],
+  "errors": []
+}

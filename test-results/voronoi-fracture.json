@@ -1,0 +1,96 @@
+{
+  "passed": true,
+  "geometry": {
+    "cells": 216,
+    "volume": 144
+  },
+  "checkpoints": [
+    {
+      "steps": 120,
+      "bodies": 222,
+      "pieces": 216,
+      "bonds": 607,
+      "broken": 0,
+      "moved": 0,
+      "rotated": 0,
+      "maxQuatError": 1.050370027622094e-7,
+      "minZ": 0.4268247187137604,
+      "stats": {
+        "pairs": 115,
+        "contacts": 0,
+        "manifolds": 0,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 6,
+        "brokenBonds": 0
+      },
+      "errors": []
+    },
+    {
+      "steps": 480,
+      "bodies": 222,
+      "pieces": 216,
+      "bonds": 607,
+      "broken": 128,
+      "moved": 91,
+      "rotated": 13,
+      "maxQuatError": 1.024383174952348e-7,
+      "minZ": 0.4367215037345886,
+      "stats": {
+        "pairs": 200,
+        "contacts": 172,
+        "manifolds": 57,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 6,
+        "brokenBonds": 128
+      },
+      "errors": []
+    },
+    {
+      "steps": 1440,
+      "bodies": 222,
+      "pieces": 216,
+      "bonds": 607,
+      "broken": 129,
+      "moved": 53,
+      "rotated": 14,
+      "maxQuatError": 1.248623944238858e-7,
+      "minZ": 0.3591555655002594,
+      "stats": {
+        "pairs": 203,
+        "contacts": 343,
+        "manifolds": 90,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 6,
+        "brokenBonds": 129
+      },
+      "errors": []
+    },
+    {
+      "steps": 2400,
+      "bodies": 222,
+      "pieces": 216,
+      "bonds": 607,
+      "broken": 129,
+      "moved": 54,
+      "rotated": 14,
+      "maxQuatError": 1.0279703011040198e-7,
+      "minZ": 0.2915569543838501,
+      "stats": {
+        "pairs": 197,
+        "contacts": 347,
+        "manifolds": 88,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 6,
+        "brokenBonds": 129
+      },
+      "errors": []
+    }
+  ],
+  "reset": true,
+  "repeatSwing": true,
+  "errors": []
+}

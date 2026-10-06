@@ -1,0 +1,51 @@
+{
+  "results": [
+    {
+      "scene": "showcase-brick-ring-28k",
+      "steps": 360,
+      "bodies": 28114,
+      "finite": true,
+      "moved": 20439,
+      "rotated": 10622,
+      "maxQuatError": 1.309569632734764e-7,
+      "minZ": 0.6393647193908691,
+      "maxZ": 12.148261070251465,
+      "belowFloor": 0,
+      "escapedFloor": 0,
+      "stats": {
+        "pairs": 73840,
+        "contacts": 272528,
+        "manifolds": 70466,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 10
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "scene": "showcase-ragdolls-on-cloth-24k",
+      "steps": 1440,
+      "bodies": 23617,
+      "finite": true,
+      "moved": 23594,
+      "rotated": 18355,
+      "maxQuatError": 1.421683319957623e-7,
+      "minZ": 5.9027886390686035,
+      "maxZ": 7.9681243896484375,
+      "belowFloor": 0,
+      "escapedFloor": 0,
+      "stats": {
+        "pairs": 38785,
+        "contacts": 49139,
+        "manifolds": 29418,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 9
+      },
+      "errors": [],
+      "passed": true
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,335 @@
+{
+  "passed": true,
+  "inputs": [
+    "reference/three-avbd/src/avbd3d/ref/math.ts",
+    "reference/three-avbd/src/avbd3d/ref/body.ts",
+    "reference/three-avbd/src/avbd3d/ref/collide.ts",
+    "reference/three-avbd/src/avbd3d/ref/manifold.ts",
+    "reference/three-avbd/src/avbd3d/ref/solver.ts",
+    "reference/three-avbd/src/avbd3d/hull.ts",
+    "reference/three-avbd/src/avbd3d/shapes.ts",
+    "reference/three-avbd/src/avbd2d/gpu/layout.ts",
+    "reference/three-avbd/src/avbd2d/gpu/scan.ts",
+    "reference/three-avbd/src/avbd2d/gpu/wgsl-topology.ts",
+    "reference/three-avbd/src/avbd3d/ref/forces.ts",
+    "reference/three-avbd/src/avbd3d/gpu/layout.ts",
+    "reference/three-avbd/src/avbd3d/gpu/wgsl-hull.ts",
+    "reference/three-avbd/src/avbd3d/gpu/wgsl-collision.ts",
+    "reference/three-avbd/src/avbd3d/gpu/wgsl-solve.ts",
+    "reference/three-avbd/src/avbd3d/gpu/radii.ts",
+    "reference/three-avbd/src/avbd3d/gpu/solver.ts",
+    "src/gpu/gpuSolverKernels.js",
+    "src/gpu/constraintFrames.wgsl",
+    "src/gpu/worldSleeping.wgsl",
+    "src/gpu/bufferEdits.js",
+    "src/gpu/worldSleeping.js",
+    "src/gpu/springMaterial.js",
+    "src/gpu/solverPolicy.js",
+    "src/gpu/hplocpp.wgsl",
+    "src/gpu/hplocSort.wgsl",
+    "src/gpu/gpuHploc.js",
+    "src/gpu/gpuSolverStep.js",
+    "src/gpu/gpuTopologyKernels.js",
+    "src/gpu/sensors.js",
+    "src/gpu/restitution.js",
+    "src/gpu/angularConstraints.js",
+    "src/gpu/angularFrames.wgsl",
+    "src/gpu/capsuleShape.js",
+    "src/gpu/capsuleCollision.wgsl",
+    "src/gpu/capsuleCollision.js",
+    "src/gpu/shapeQueries.wgsl",
+    "src/gpu/shapeQueries.js",
+    "src/gpu/passConstants.js",
+    "src/gpu/appGpuSolver3D.js",
+    "src/gpu/device.js",
+    "src/babylon/babylonAvbd.wgsl",
+    "src/native/velocityBatch.js",
+    "src/gpu/gpuSolverOptions.js",
+    "src/babylon/constraints.js",
+    "src/gpu/bodyReadback.js",
+    "src/vendor/three-avbd-lib/contacts.ts",
+    "src/babylon/babylonAvbd.js",
+    "reference/three-avbd/src/avbd2d/ref/body.ts",
+    "reference/three-avbd/src/avbd2d/ref/math.ts",
+    "reference/three-avbd/src/avbd2d/ref/forces.ts",
+    "reference/three-avbd/src/avbd2d/ref/collide.ts",
+    "reference/three-avbd/src/avbd2d/ref/manifold.ts",
+    "reference/three-avbd/src/avbd2d/ref/solver.ts",
+    "reference/three-avbd/src/avbd2d/soa/broadphase.ts",
+    "reference/three-avbd/src/avbd2d/soa/collide.ts",
+    "reference/three-avbd/src/avbd2d/soa/coloring.ts",
+    "reference/three-avbd/src/avbd2d/soa/solver.ts",
+    "reference/three-avbd/src/avbd2d/gpu/wgsl-collision.ts",
+    "reference/three-avbd/src/avbd2d/gpu/wgsl-solve.ts",
+    "reference/three-avbd/src/avbd2d/gpu/solver.ts",
+    "src/gpu/restitution2D.js",
+    "src/gpu/protectStep2D.js",
+    "src/gpu/sleeping2D.wgsl",
+    "src/gpu/sleeping2D.js",
+    "src/gpu/gpuSolverStep2D.ts",
+    "src/gpu/angularLimits2D.js",
+    "src/gpu/contacts2D.wgsl",
+    "src/gpu/shapes2D.js",
+    "src/gpu/bodyCommands2D.wgsl",
+    "src/gpu/bodyCommands2D.js",
+    "src/gpu/appGpuSolver2D.js",
+    "src/native/runtime.js",
+    "src/native/solver2D.js",
+    "src/native/bodyCommands3D.wgsl",
+    "src/native/solver3D.js",
+    "src/gpu/gpuClothSolver.js",
+    "src/native/scenes.js",
+    "src/index.js"
+  ],
+  "output": {
+    "dist/avbd.js": {
+      "imports": [],
+      "exports": [
+        "AvbdPhysics",
+        "AvbdPhysicsAggregate",
+        "AvbdPhysicsBody",
+        "AvbdPhysicsConstraint",
+        "AvbdPhysicsHinge",
+        "AvbdScene2D",
+        "AvbdScene3D",
+        "AvbdShapeType",
+        "createWebGPUDevice"
+      ],
+      "entryPoint": "src/index.js",
+      "inputs": {
+        "reference/three-avbd/src/avbd3d/ref/math.ts": {
+          "bytesInOutput": 3983
+        },
+        "reference/three-avbd/src/avbd3d/ref/body.ts": {
+          "bytesInOutput": 1169
+        },
+        "reference/three-avbd/src/avbd3d/ref/collide.ts": {
+          "bytesInOutput": 4283
+        },
+        "reference/three-avbd/src/avbd3d/ref/manifold.ts": {
+          "bytesInOutput": 2505
+        },
+        "reference/three-avbd/src/avbd3d/ref/solver.ts": {
+          "bytesInOutput": 2586
+        },
+        "reference/three-avbd/src/avbd3d/hull.ts": {
+          "bytesInOutput": 7455
+        },
+        "reference/three-avbd/src/avbd3d/shapes.ts": {
+          "bytesInOutput": 728
+        },
+        "reference/three-avbd/src/avbd2d/gpu/layout.ts": {
+          "bytesInOutput": 5411
+        },
+        "reference/three-avbd/src/avbd2d/gpu/scan.ts": {
+          "bytesInOutput": 3048
+        },
+        "reference/three-avbd/src/avbd2d/gpu/wgsl-topology.ts": {
+          "bytesInOutput": 11454
+        },
+        "reference/three-avbd/src/avbd3d/ref/forces.ts": {
+          "bytesInOutput": 4280
+        },
+        "reference/three-avbd/src/avbd3d/gpu/layout.ts": {
+          "bytesInOutput": 5917
+        },
+        "reference/three-avbd/src/avbd3d/gpu/wgsl-hull.ts": {
+          "bytesInOutput": 13752
+        },
+        "reference/three-avbd/src/avbd3d/gpu/wgsl-collision.ts": {
+          "bytesInOutput": 28081
+        },
+        "reference/three-avbd/src/avbd3d/gpu/wgsl-solve.ts": {
+          "bytesInOutput": 22549
+        },
+        "reference/three-avbd/src/avbd3d/gpu/radii.ts": {
+          "bytesInOutput": 346
+        },
+        "reference/three-avbd/src/avbd3d/gpu/solver.ts": {
+          "bytesInOutput": 31243
+        },
+        "src/gpu/gpuSolverKernels.js": {
+          "bytesInOutput": 2739
+        },
+        "src/gpu/constraintFrames.wgsl": {
+          "bytesInOutput": 1478
+        },
+        "src/gpu/worldSleeping.wgsl": {
+          "bytesInOutput": 3196
+        },
+        "src/gpu/bufferEdits.js": {
+          "bytesInOutput": 2812
+        },
+        "src/gpu/worldSleeping.js": {
+          "bytesInOutput": 3339
+        },
+        "src/gpu/springMaterial.js": {
+          "bytesInOutput": 1434
+        },
+        "src/gpu/solverPolicy.js": {
+          "bytesInOutput": 1004
+        },
+        "src/gpu/hplocpp.wgsl": {
+          "bytesInOutput": 7816
+        },
+        "src/gpu/hplocSort.wgsl": {
+          "bytesInOutput": 1625
+        },
+        "src/gpu/gpuHploc.js": {
+          "bytesInOutput": 7595
+        },
+        "src/gpu/gpuSolverStep.js": {
+          "bytesInOutput": 3891
+        },
+        "src/gpu/gpuTopologyKernels.js": {
+          "bytesInOutput": 971
+        },
+        "src/gpu/sensors.js": {
+          "bytesInOutput": 1507
+        },
+        "src/gpu/restitution.js": {
+          "bytesInOutput": 6929
+        },
+        "src/gpu/angularConstraints.js": {
+          "bytesInOutput": 3578
+        },
+        "src/gpu/angularFrames.wgsl": {
+          "bytesInOutput": 1371
+        },
+        "src/gpu/capsuleShape.js": {
+          "bytesInOutput": 503
+        },
+        "src/gpu/capsuleCollision.wgsl": {
+          "bytesInOutput": 5874
+        },
+        "src/gpu/capsuleCollision.js": {
+          "bytesInOutput": 3820
+        },
+        "src/gpu/shapeQueries.wgsl": {
+          "bytesInOutput": 10217
+        },
+        "src/gpu/shapeQueries.js": {
+          "bytesInOutput": 4576
+        },
+        "src/gpu/passConstants.js": {
+          "bytesInOutput": 1073
+        },
+        "src/gpu/appGpuSolver3D.js": {
+          "bytesInOutput": 17031
+        },
+        "src/gpu/device.js": {
+          "bytesInOutput": 949
+        },
+        "src/babylon/babylonAvbd.wgsl": {
+          "bytesInOutput": 1526
+        },
+        "src/native/velocityBatch.js": {
+          "bytesInOutput": 6917
+        },
+        "src/gpu/gpuSolverOptions.js": {
+          "bytesInOutput": 160
+        },
+        "src/babylon/constraints.js": {
+          "bytesInOutput": 5757
+        },
+        "src/gpu/bodyReadback.js": {
+          "bytesInOutput": 2876
+        },
+        "src/vendor/three-avbd-lib/contacts.ts": {
+          "bytesInOutput": 7981
+        },
+        "src/babylon/babylonAvbd.js": {
+          "bytesInOutput": 22467
+        },
+        "src/index.js": {
+          "bytesInOutput": 0
+        },
+        "reference/three-avbd/src/avbd2d/ref/body.ts": {
+          "bytesInOutput": 726
+        },
+        "reference/three-avbd/src/avbd2d/ref/math.ts": {
+          "bytesInOutput": 253
+        },
+        "reference/three-avbd/src/avbd2d/ref/forces.ts": {
+          "bytesInOutput": 2839
+        },
+        "reference/three-avbd/src/avbd2d/ref/solver.ts": {
+          "bytesInOutput": 217
+        },
+        "reference/three-avbd/src/avbd2d/soa/broadphase.ts": {
+          "bytesInOutput": 2070
+        },
+        "reference/three-avbd/src/avbd2d/soa/collide.ts": {
+          "bytesInOutput": 2322
+        },
+        "reference/three-avbd/src/avbd2d/soa/coloring.ts": {
+          "bytesInOutput": 1928
+        },
+        "reference/three-avbd/src/avbd2d/soa/solver.ts": {
+          "bytesInOutput": 15165
+        },
+        "reference/three-avbd/src/avbd2d/gpu/wgsl-collision.ts": {
+          "bytesInOutput": 16329
+        },
+        "reference/three-avbd/src/avbd2d/gpu/wgsl-solve.ts": {
+          "bytesInOutput": 13801
+        },
+        "reference/three-avbd/src/avbd2d/gpu/solver.ts": {
+          "bytesInOutput": 18446
+        },
+        "src/gpu/restitution2D.js": {
+          "bytesInOutput": 4096
+        },
+        "src/gpu/protectStep2D.js": {
+          "bytesInOutput": 672
+        },
+        "src/gpu/sleeping2D.wgsl": {
+          "bytesInOutput": 4768
+        },
+        "src/gpu/sleeping2D.js": {
+          "bytesInOutput": 3586
+        },
+        "src/gpu/gpuSolverStep2D.ts": {
+          "bytesInOutput": 3305
+        },
+        "src/gpu/angularLimits2D.js": {
+          "bytesInOutput": 2191
+        },
+        "src/gpu/contacts2D.wgsl": {
+          "bytesInOutput": 8166
+        },
+        "src/gpu/shapes2D.js": {
+          "bytesInOutput": 3581
+        },
+        "src/gpu/bodyCommands2D.wgsl": {
+          "bytesInOutput": 1631
+        },
+        "src/gpu/bodyCommands2D.js": {
+          "bytesInOutput": 6262
+        },
+        "src/gpu/appGpuSolver2D.js": {
+          "bytesInOutput": 21796
+        },
+        "src/native/runtime.js": {
+          "bytesInOutput": 7292
+        },
+        "src/native/solver2D.js": {
+          "bytesInOutput": 74
+        },
+        "src/native/bodyCommands3D.wgsl": {
+          "bytesInOutput": 2883
+        },
+        "src/native/solver3D.js": {
+          "bytesInOutput": 6220
+        },
+        "src/gpu/gpuClothSolver.js": {
+          "bytesInOutput": 2365
+        },
+        "src/native/scenes.js": {
+          "bytesInOutput": 14755
+        }
+      },
+      "bytes": 459749
+    }
+  }
+}

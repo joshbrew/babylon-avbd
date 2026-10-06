@@ -1,0 +1,857 @@
+{
+  "done": true,
+  "passed": 203,
+  "failed": 0,
+  "cases": [
+    {
+      "name": "AVBD shader compilation",
+      "passed": true
+    },
+    {
+      "name": "AVBD analytic free flight at 1 iterations",
+      "passed": true
+    },
+    {
+      "name": "AVBD analytic free flight at 20 iterations",
+      "passed": true
+    },
+    {
+      "name": "AVBD floor resting height and frictionless tangent",
+      "passed": true
+    },
+    {
+      "name": "AVBD static and inactive slots stay fixed",
+      "passed": true
+    },
+    {
+      "name": "AVBD collider pair 0/0 separates symmetrically",
+      "passed": true
+    },
+    {
+      "name": "AVBD collider pair 0/1 separates symmetrically",
+      "passed": true
+    },
+    {
+      "name": "AVBD collider pair 0/3 separates symmetrically",
+      "passed": true
+    },
+    {
+      "name": "AVBD collider pair 1/1 separates symmetrically",
+      "passed": true
+    },
+    {
+      "name": "AVBD collider pair 1/3 separates symmetrically",
+      "passed": true
+    },
+    {
+      "name": "AVBD collider pair 3/3 separates symmetrically",
+      "passed": true
+    },
+    {
+      "name": "AVBD capacity growth preserves packed bodies and contacts",
+      "passed": true
+    },
+    {
+      "name": "AVBD body-range update preserves adjacent records",
+      "passed": true
+    },
+    {
+      "name": "AVBD warm-start reset clears every pair and world slot",
+      "passed": true
+    },
+    {
+      "name": "AVBD repeated runs are deterministic after reset",
+      "passed": true
+    },
+    {
+      "name": "AVBD Jacobi contacts synchronize across multiple workgroups",
+      "passed": true
+    },
+    {
+      "name": "GPU broadphase matches mixed-shape brute force on all axes",
+      "passed": true
+    },
+    {
+      "name": "GPU broadphase reports overflow and clears stale slots",
+      "passed": true
+    },
+    {
+      "name": "stress renderer compiles with rotational body layout",
+      "passed": true
+    },
+    {
+      "name": "stress rotated boxes match canonical SAT across 300 seeded pairs",
+      "passed": true
+    },
+    {
+      "name": "stress narrowphase 0/0 symmetric contact and separation",
+      "passed": true
+    },
+    {
+      "name": "stress narrowphase 0/1 symmetric contact and separation",
+      "passed": true
+    },
+    {
+      "name": "stress narrowphase 0/2 symmetric contact and separation",
+      "passed": true
+    },
+    {
+      "name": "stress narrowphase 1/1 symmetric contact and separation",
+      "passed": true
+    },
+    {
+      "name": "stress narrowphase 1/2 symmetric contact and separation",
+      "passed": true
+    },
+    {
+      "name": "stress narrowphase 2/2 symmetric contact and separation",
+      "passed": true
+    },
+    {
+      "name": "stress aligned face contacts have an unbiased patch centroid",
+      "passed": true
+    },
+    {
+      "name": "stress capsule hits a thin obstacle between endpoints",
+      "passed": true
+    },
+    {
+      "name": "stress rotated OBB rejects an AABB-only overlap",
+      "passed": true
+    },
+    {
+      "name": "stress box inertia agrees with analytic dimensions",
+      "passed": true
+    },
+    {
+      "name": "stress free spin changes a normalized quaternion",
+      "passed": true
+    },
+    {
+      "name": "stress static body remains fixed under gravity and contacts",
+      "passed": true
+    },
+    {
+      "name": "stress large projectile contact is reciprocal beyond adjacent cells",
+      "passed": true
+    },
+    {
+      "name": "stress penetration repair does not create kinetic energy",
+      "passed": true
+    },
+    {
+      "name": "stress support removal wakes only the unsupported region",
+      "passed": true
+    },
+    {
+      "name": "stress warm contacts preserve momentum without adding kinetic energy",
+      "passed": true
+    },
+    {
+      "name": "stress contact cache obeys Coulomb limits and releases a removed contact",
+      "passed": true
+    },
+    {
+      "name": "stress cache overflow is reported and excess contacts still solve",
+      "passed": true
+    },
+    {
+      "name": "stress falling sphere, box and capsule settle without oscillation",
+      "passed": true
+    },
+    {
+      "name": "stress 10-box stack retains height and settles",
+      "passed": true
+    },
+    {
+      "name": "stress 100K wall impact stays local and rotates debris",
+      "passed": true
+    },
+    {
+      "name": "canonical GPU world joint pulls and releases a body",
+      "passed": true
+    },
+    {
+      "name": "canonical GPU resting contact respects the floor contact margin",
+      "passed": true
+    },
+    {
+      "name": "GPU sleeping batches passes without changing impact or support state",
+      "passed": true
+    },
+    {
+      "name": "GPU sleeping preserves poses and real masses, then wakes reciprocal impact bodies",
+      "passed": true
+    },
+    {
+      "name": "GPU sleeping wakes a dependent when a support moves away",
+      "passed": true
+    },
+    {
+      "name": "GPU sleeping rejects an unsupported initial configuration",
+      "passed": true
+    },
+    {
+      "name": "Optimized canonical GPU world joint pulls and releases a body",
+      "passed": true
+    },
+    {
+      "name": "Optimized canonical GPU resting contact respects the floor contact margin",
+      "passed": true
+    },
+    {
+      "name": "Optimized GPU sleeping batches passes without changing impact or support state",
+      "passed": true
+    },
+    {
+      "name": "Optimized GPU sleeping preserves poses and real masses, then wakes reciprocal impact bodies",
+      "passed": true
+    },
+    {
+      "name": "Optimized GPU sleeping wakes a dependent when a support moves away",
+      "passed": true
+    },
+    {
+      "name": "Optimized GPU sleeping rejects an unsupported initial configuration",
+      "passed": true
+    },
+    {
+      "name": "Parallel points canonical GPU world joint pulls and releases a body",
+      "passed": true
+    },
+    {
+      "name": "Parallel points canonical GPU resting contact respects the floor contact margin",
+      "passed": true
+    },
+    {
+      "name": "Parallel points GPU sleeping batches passes without changing impact or support state",
+      "passed": true
+    },
+    {
+      "name": "Parallel points GPU sleeping preserves poses and real masses, then wakes reciprocal impact bodies",
+      "passed": true
+    },
+    {
+      "name": "Parallel points GPU sleeping wakes a dependent when a support moves away",
+      "passed": true
+    },
+    {
+      "name": "Parallel points GPU sleeping rejects an unsupported initial configuration",
+      "passed": true
+    },
+    {
+      "name": "GPU cached adjacency preserves short and long contact lists and joints",
+      "passed": true
+    },
+    {
+      "name": "GPU step protection leaves valid physics unchanged",
+      "passed": true
+    },
+    {
+      "name": "GPU overflow holds poses, velocities and joints until capacity recovers",
+      "passed": true
+    },
+    {
+      "name": "GPU clashes holds poses, velocities and joints until capacity recovers",
+      "passed": true
+    },
+    {
+      "name": "parallel contact points preserve free fall and adaptive warm starts",
+      "passed": true
+    },
+    {
+      "name": "parallel contact points preserve friction, rotation and kinematic velocities",
+      "passed": true
+    },
+    {
+      "name": "parallel-point GPU solve remains finite with a heavy slab on a light thin box",
+      "passed": true
+    },
+    {
+      "name": "H-PLOC canonical GPU world joint pulls and releases a body",
+      "passed": true
+    },
+    {
+      "name": "H-PLOC canonical GPU resting contact respects the floor contact margin",
+      "passed": true
+    },
+    {
+      "name": "H-PLOC GPU sleeping batches passes without changing impact or support state",
+      "passed": true
+    },
+    {
+      "name": "H-PLOC GPU sleeping preserves poses and real masses, then wakes reciprocal impact bodies",
+      "passed": true
+    },
+    {
+      "name": "H-PLOC GPU sleeping wakes a dependent when a support moves away",
+      "passed": true
+    },
+    {
+      "name": "H-PLOC GPU sleeping rejects an unsupported initial configuration",
+      "passed": true
+    },
+    {
+      "name": "H-PLOC handles empty, singleton and partial treelets",
+      "passed": true
+    },
+    {
+      "name": "H-PLOC preserves duplicate Morton keys and coincident bodies",
+      "passed": true
+    },
+    {
+      "name": "H-PLOC matches grid for rotated mixed shapes, large statics and masks",
+      "passed": true
+    },
+    {
+      "name": "H-PLOC refits teleports and rotations beyond the initial world bounds",
+      "passed": true
+    },
+    {
+      "name": "H-PLOC rebuilds after adding bodies to a live scene",
+      "passed": true
+    },
+    {
+      "name": "H-PLOC overflow holds motion and recovers",
+      "passed": true
+    },
+    {
+      "name": "H-PLOC clashes holds motion and recovers",
+      "passed": true
+    },
+    {
+      "name": "Detailed GPU timing preserves valid solver state",
+      "passed": true
+    },
+    {
+      "name": "GPU solver mode switches preserve live state and moving-platform contacts",
+      "passed": true
+    },
+    {
+      "name": "GPU automatic solver reselects for appended bodies and released or reused joints",
+      "passed": true
+    },
+    {
+      "name": "canonical 2D GPU stack stays standing for ten seconds",
+      "passed": true
+    },
+    {
+      "name": "canonical 2D GPU pyramid settles without collapsing",
+      "passed": true
+    },
+    {
+      "name": "canonical 2D GPU static friction holds the thirty degree slope",
+      "passed": true
+    },
+    {
+      "name": "canonical 2D GPU dynamic friction decreases stopping distance with friction",
+      "passed": true
+    },
+    {
+      "name": "canonical 2D GPU dynamic friction recovers Coulomb distance",
+      "passed": true
+    },
+    {
+      "name": "canonical 2D GPU motor reaches its angular speed under torque limit",
+      "passed": true
+    },
+    {
+      "name": "canonical 2D GPU cantilever recovers after its initial sag",
+      "passed": true
+    },
+    {
+      "name": "canonical 2D GPU heavy rope retains hard anchors",
+      "passed": true
+    },
+    {
+      "name": "canonical 2D GPU fracture releases joints under falling load",
+      "passed": true
+    },
+    {
+      "name": "canonical 2D GPU supports spawned bodies, cursor joints and release",
+      "passed": true
+    },
+    {
+      "name": "Babylon scene-style aggregate, automatic stepping and disposal",
+      "passed": true
+    },
+    {
+      "name": "Babylon aggregate preserves mass and GPU velocity / angular commands",
+      "passed": true
+    },
+    {
+      "name": "Babylon command batches reuse storage, auto-pack velocities and exclude stale records",
+      "passed": true
+    },
+    {
+      "name": "Babylon motion, properties, sleeping and bounce share one physics submission",
+      "passed": true
+    },
+    {
+      "name": "Babylon impulses combine on GPU without stale pose uploads",
+      "passed": true
+    },
+    {
+      "name": "Babylon teleport, collision filters and aggregate disposal preserve other slots",
+      "passed": true
+    },
+    {
+      "name": "Babylon off-centre impulses use the live GPU position without readback",
+      "passed": true
+    },
+    {
+      "name": "Babylon convex aggregate maintains the mesh centre and principal inertia frame",
+      "passed": true
+    },
+    {
+      "name": "Babylon API validates restitution and mesh synchronization at scale",
+      "passed": true
+    },
+    {
+      "name": "Projected contact kernel matches baseline on one step and settles a spinning mixed stack",
+      "passed": true
+    },
+    {
+      "name": "GPU 3D zero-torque motor leaves free angular motion unchanged",
+      "passed": true
+    },
+    {
+      "name": "GPU 2D raycasts and circle casts handle rotated boxes, rounded corners, masks and sensors",
+      "passed": true
+    },
+    {
+      "name": "GPU 3D sphere casts use rounded faces, edges and hulls rather than inflated boxes",
+      "passed": true
+    },
+    {
+      "name": "GPU analytic capsules support hull contacts and exact rounded raycasts",
+      "passed": true
+    },
+    {
+      "name": "GPU analytic capsule collision benchmark against tessellated capsules",
+      "passed": true
+    },
+    {
+      "name": "GPU analytic capsules detect segment crossings, rounded corners and stable floor support",
+      "passed": true
+    },
+    {
+      "name": "GPU 2D triggers preserve motion, honor masks and emit one entry/exit per face",
+      "passed": true
+    },
+    {
+      "name": "GPU native 3D hinge and motor initialize their angular records before the first step",
+      "passed": true
+    },
+    {
+      "name": "GPU 2D restitution rebounds at the requested speed without face-point amplification",
+      "passed": true
+    },
+    {
+      "name": "GPU 3D hinge permits axial rotation and enforces angle stops with a torque-limited motor",
+      "passed": true
+    },
+    {
+      "name": "Selected pose gathering supports half-million-body selections",
+      "passed": true
+    },
+    {
+      "name": "GPU restitution obeys a sphere's bounce coefficient and zero skips bounce passes",
+      "passed": true
+    },
+    {
+      "name": "GPU elastic sphere collision conserves momentum and kinetic energy",
+      "passed": true
+    },
+    {
+      "name": "GPU triggers report entry/exit, honor masks, and never deflect motion",
+      "passed": true
+    },
+    {
+      "name": "GPU sleep eligibility is per body and explicit opt-in enables the policy",
+      "passed": true
+    },
+    {
+      "name": "Package rotated weld preserves its rest orientation without pose readback",
+      "passed": true
+    },
+    {
+      "name": "Package live weld captures GPU rotation and joint slots are reused",
+      "passed": true
+    },
+    {
+      "name": "Package movable world anchor, springs and breakable welds execute on GPU",
+      "passed": true
+    },
+    {
+      "name": "Babylon springs stretch and return, fracture in tension, and survive compression",
+      "passed": true
+    },
+    {
+      "name": "Package compact pose gathering copies only requested meshes and preserves order",
+      "passed": true
+    },
+    {
+      "name": "Package rays use live GPU poses, filters, ignored bodies and convex surfaces",
+      "passed": true
+    },
+    {
+      "name": "Package contact events begin/end without full pose downloads",
+      "passed": true
+    },
+    {
+      "name": "Package sleeping wakes for impulses and support removal",
+      "passed": true
+    },
+    {
+      "name": "Package sleeping wakes on impact and leaves unsupported slow falls awake",
+      "passed": true
+    },
+    {
+      "name": "Package 2D joints and motors and 3D fabric are available without demo imports",
+      "passed": true
+    },
+    {
+      "name": "fabric material varies across the sheet and reaches the GPU spring rows",
+      "passed": true
+    },
+    {
+      "name": "four-corner fabric leaves its edges free and a middle cut drops both halves",
+      "passed": true
+    },
+    {
+      "name": "dense-scene coloring budget survives quiet counter adaptation",
+      "passed": true
+    },
+    {
+      "name": "cloth spring uses geometric stiffness and caps its AVBD penalty",
+      "passed": true
+    },
+    {
+      "name": "cloth point follows analytic free fall without angular motion",
+      "passed": true
+    },
+    {
+      "name": "cloth finite spring agrees with a closed-form implicit step",
+      "passed": true
+    },
+    {
+      "name": "cloth point has floor support and sliding friction without rolling",
+      "passed": true
+    },
+    {
+      "name": "deformable cloth catches a rotating rigid block and keeps its border fixed",
+      "passed": true
+    },
+    {
+      "name": "2D shapes: exact circle/capsule mass and box-only allocation",
+      "passed": true
+    },
+    {
+      "name": "2D shapes: analytic contacts for every shape pairing and both index orders",
+      "passed": true
+    },
+    {
+      "name": "2D shapes: rotated capsules, crossing segments and infinite tilted planes",
+      "passed": true
+    },
+    {
+      "name": "2D shapes: GPU ray/circle casts use exact curved and zero-thickness surfaces",
+      "passed": true
+    },
+    {
+      "name": "2D body commands: ordered impulses and force use live GPU poses and exact inertia",
+      "passed": true
+    },
+    {
+      "name": "2D body commands: teleport clears old friction anchors without moving neighbors",
+      "passed": true
+    },
+    {
+      "name": "2D shapes: invalid geometry is rejected before allocating body slots",
+      "passed": true
+    },
+    {
+      "name": "2D shapes: live append composes geometry, sensors, masks, restitution and constraints",
+      "passed": true
+    },
+    {
+      "name": "2D shapes: mixed bodies settle without losing rotation or bounce",
+      "passed": true
+    },
+    {
+      "name": "2D hulls: point clouds, exact area and centroid inertia",
+      "passed": true
+    },
+    {
+      "name": "2D hulls: all collider pairings, both orders and separated controls",
+      "passed": true
+    },
+    {
+      "name": "2D hulls: clipped face manifold and resting polygon stack",
+      "passed": true
+    },
+    {
+      "name": "2D hulls: exact rays, disk sweeps, corners and rotated poses",
+      "passed": true
+    },
+    {
+      "name": "2D hulls: live geometry growth preserves old queries and body commands",
+      "passed": true
+    },
+    {
+      "name": "2D Babylon: automatic fixed stepping, detachment and scene disposal",
+      "passed": true
+    },
+    {
+      "name": "Native convenience: 2D packed mass velocity updates",
+      "passed": true
+    },
+    {
+      "name": "Native convenience: 2D bulk edits share one dispatch per batch",
+      "passed": true
+    },
+    {
+      "name": "Native convenience: 2D object setters automatically pack and preserve ordering",
+      "passed": true
+    },
+    {
+      "name": "Native convenience: 2D ordered live edits and selected reads",
+      "passed": true
+    },
+    {
+      "name": "Native convenience: 2D sensors, masks, bounce and sleep handles",
+      "passed": true
+    },
+    {
+      "name": "Native convenience: 2D fixed stepping without downloads",
+      "passed": true
+    },
+    {
+      "name": "Native convenience: 2D selected readbacks reuse buffers without sharing in-flight storage",
+      "passed": true
+    },
+    {
+      "name": "Native convenience: 2D attachment steps and disposes",
+      "passed": true
+    },
+    {
+      "name": "Native convenience: 3D packed mass velocity updates",
+      "passed": true
+    },
+    {
+      "name": "Native convenience: 3D bulk edits share one dispatch per batch",
+      "passed": true
+    },
+    {
+      "name": "Native convenience: 3D object setters automatically pack and preserve ordering",
+      "passed": true
+    },
+    {
+      "name": "Native convenience: 3D ordered live edits and selected reads",
+      "passed": true
+    },
+    {
+      "name": "Native convenience: 3D sensors, masks, bounce and sleep handles",
+      "passed": true
+    },
+    {
+      "name": "Native convenience: 3D fixed stepping without downloads",
+      "passed": true
+    },
+    {
+      "name": "Native convenience: 3D selected readbacks reuse buffers without sharing in-flight storage",
+      "passed": true
+    },
+    {
+      "name": "Native convenience: 3D attachment steps and disposes",
+      "passed": true
+    },
+    {
+      "name": "Native convenience: 3D rotation, query after teleport and warm-start invalidation",
+      "passed": true
+    },
+    {
+      "name": "Batched edits: 2D pooled queries keep concurrent and shorter reads independent",
+      "passed": true
+    },
+    {
+      "name": "Batched edits: 2D pass uniforms cache and invalidate for live settings",
+      "passed": true
+    },
+    {
+      "name": "Batched edits: 2D mixed velocity masks preserve every other word",
+      "passed": true
+    },
+    {
+      "name": "Batched edits: 2D properties, waking, bounce and solving share one submission",
+      "passed": true
+    },
+    {
+      "name": "Batched edits: 2D property validation is atomic and queries flush sparse changes",
+      "passed": true
+    },
+    {
+      "name": "Batched edits: 2D motor patches preserve warm starts and dispose safely",
+      "passed": true
+    },
+    {
+      "name": "Batched edits: 3D pooled queries keep concurrent and shorter reads independent",
+      "passed": true
+    },
+    {
+      "name": "Batched edits: 3D pass uniforms cache and invalidate for live settings",
+      "passed": true
+    },
+    {
+      "name": "Batched edits: 3D mixed velocity masks preserve every other word",
+      "passed": true
+    },
+    {
+      "name": "Batched edits: 3D properties, waking, bounce and solving share one submission",
+      "passed": true
+    },
+    {
+      "name": "Batched edits: 3D property validation is atomic and queries flush sparse changes",
+      "passed": true
+    },
+    {
+      "name": "Batched edits: 3D motor patches preserve warm starts and dispose safely",
+      "passed": true
+    },
+    {
+      "name": "Batched edits: 3D rest-frame capture reuses uploads and observes queued teleports",
+      "passed": true
+    },
+    {
+      "name": "Release API: 2D holds failed contact storage steps and recovers",
+      "passed": true
+    },
+    {
+      "name": "Release API: 2D holds failed contact storage steps and recovers with sensors and bounce",
+      "passed": true
+    },
+    {
+      "name": "Release API: 2D holds failed pair storage steps and recovers",
+      "passed": true
+    },
+    {
+      "name": "Release API: 2D holds failed pair storage steps and recovers with sensors and bounce",
+      "passed": true
+    },
+    {
+      "name": "Release API: 2D holds failed solve groups steps and recovers",
+      "passed": true
+    },
+    {
+      "name": "Release API: 2D holds failed solve groups steps and recovers with sensors and bounce",
+      "passed": true
+    },
+    {
+      "name": "Release API: 2D holds failed stale solve groups steps and recovers",
+      "passed": true
+    },
+    {
+      "name": "Release API: 2D holds failed stale solve groups steps and recovers with sensors and bounce",
+      "passed": true
+    },
+    {
+      "name": "Release API: invalid native 3D body options do not leave phantom bodies",
+      "passed": true
+    },
+    {
+      "name": "Release API: native 3D masks initialize correctly and reject partial edits",
+      "passed": true
+    },
+    {
+      "name": "Release API: 2D motor handles reverse, stop and dispose on live GPU state",
+      "passed": true
+    },
+    {
+      "name": "Release API: required GPU limits fail clearly and preferred capacities adapt",
+      "passed": true
+    },
+    {
+      "name": "Release API: device loss stops Babylon stepping and preserves the caller's ownership",
+      "passed": true
+    },
+    {
+      "name": "2D policy: selective contact events include masked sensors without solving overlaps",
+      "passed": true
+    },
+    {
+      "name": "2D policy: supported stacks sleep with real mass and inertia, excluded bodies stay awake",
+      "passed": true
+    },
+    {
+      "name": "2D policy: impacts wake in the collision step and impulses use real sleeping mass",
+      "passed": true
+    },
+    {
+      "name": "2D policy: support removal, masks, sensors and slow unsupported falls wake correctly",
+      "passed": true
+    },
+    {
+      "name": "2D policy: hard world hinges can sleep, powered motors stay awake, released anchors fall",
+      "passed": true
+    },
+    {
+      "name": "2D policy: motor respects both hinge stops and live limit edits",
+      "passed": true
+    },
+    {
+      "name": "2D policy: motor respects both hinge stops and live limit edits with post stabilization",
+      "passed": true
+    },
+    {
+      "name": "2D policy: two-body angular limits preserve momentum and a free hinge crosses full turns",
+      "passed": true
+    },
+    {
+      "name": "2D policy: invalid limits and sleep options reject without allocating or changing constraints",
+      "passed": true
+    },
+    {
+      "name": "100K application renders, resets and switches every projectile collider",
+      "passed": true
+    }
+  ],
+  "validationErrors": [],
+  "hardware": "NVIDIA GeForce RTX 4070 Laptop GPU",
+  "capsuleBenchmark": {
+    "hardware": "NVIDIA GeForce RTX 4070 Laptop GPU",
+    "bodies": 4096,
+    "pairs": 2048,
+    "iterations": 0,
+    "reuseContacts": false,
+    "description": "Collision-only capsule/sphere pairs; fresh narrowphase every step; 500 warm-up steps and 41 samples per run; analytic/hull/hull/analytic order. GPU timing varies with clock and power state; this is not total application FPS.",
+    "runs": [
+      {
+        "analytic": true,
+        "collisionMs": 0.11776,
+        "totalMs": 0.221184,
+        "contacts": 2048
+      },
+      {
+        "analytic": false,
+        "collisionMs": 0.12288,
+        "totalMs": 0.187392,
+        "contacts": 2048
+      },
+      {
+        "analytic": false,
+        "collisionMs": 0.144384,
+        "totalMs": 0.208896,
+        "contacts": 2048
+      },
+      {
+        "analytic": true,
+        "collisionMs": 0.073728,
+        "totalMs": 0.13824,
+        "contacts": 2048
+      }
+    ],
+    "driver": "32.0.16.1714",
+    "identification": "Current Windows GPU name uniquely matched to WebGPU adapter vendor"
+  }
+}

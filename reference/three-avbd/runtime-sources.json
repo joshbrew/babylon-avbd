@@ -1,0 +1,41 @@
+{
+  "commit": "b3675dea83c78aba9644b059975f48285bf02a47",
+  "files": [
+    {
+      "path": "src/avbd2d/gpu/layout.ts",
+      "sha": "530c2b5014b6e33729957065616b0e8741282a94"
+    },
+    {
+      "path": "src/avbd2d/gpu/scan.ts",
+      "sha": "d7f7fdd4f76b7e2798c14222bb1fc3b45eac9f3b"
+    },
+    {
+      "path": "src/avbd2d/gpu/wgsl-topology.ts",
+      "sha": "a17c0a360da2e85d6373d9e921159a7405d1731e"
+    },
+    {
+      "path": "src/avbd3d/gpu/layout.ts",
+      "sha": "0832a2c69e198ec79741586fa60412d7a84dbaeb"
+    },
+    {
+      "path": "src/avbd3d/gpu/solver.ts",
+      "sha": "e7f4ba2cda6bd16be8704e0ed4d961ecdd402f88"
+    },
+    {
+      "path": "src/avbd3d/gpu/wgsl-collision.ts",
+      "sha": "cbf4c438019c003fe63bd1e4cccaa95043796842"
+    },
+    {
+      "path": "src/avbd3d/gpu/wgsl-hull.ts",
+      "sha": "edd9486ef408f47571955067912f233b9a57ef0e"
+    },
+    {
+      "path": "src/avbd3d/gpu/wgsl-solve.ts",
+      "sha": "14a1fe0078606b231de9ff1edf03b1d64c0af633"
+    },
+    {
+      "path": "src/avbd3d/shapes.ts",
+      "sha": "411771185ad974086723aa563f44c510f84e3cbb"
+    }
+  ]
+}

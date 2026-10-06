@@ -1,0 +1,2072 @@
+{
+  "date": "2026-10-04T17:17:08.224Z",
+  "runs": [
+    {
+      "batchPasses": false,
+      "samples": [
+        {
+          "step": 31,
+          "total": 11.853824,
+          "wake": 0.231424
+        },
+        {
+          "step": 32,
+          "total": 11.54048,
+          "wake": 0.237568
+        },
+        {
+          "step": 33,
+          "total": 10.865664,
+          "wake": 0.229376
+        },
+        {
+          "step": 34,
+          "total": 10.37312,
+          "wake": 0.24576
+        },
+        {
+          "step": 35,
+          "total": 10.925056,
+          "wake": 0.218112
+        },
+        {
+          "step": 36,
+          "total": 10.607616,
+          "wake": 0.2304
+        },
+        {
+          "step": 37,
+          "total": 9.890816,
+          "wake": 0.241664
+        },
+        {
+          "step": 38,
+          "total": 12.094464,
+          "wake": 0.228352
+        },
+        {
+          "step": 39,
+          "total": 12.02176,
+          "wake": 0.224256
+        },
+        {
+          "step": 40,
+          "total": 11.415552,
+          "wake": 0.246784
+        },
+        {
+          "step": 41,
+          "total": 12.147712,
+          "wake": 0.223232
+        },
+        {
+          "step": 42,
+          "total": 12.916736,
+          "wake": 0.241664
+        },
+        {
+          "step": 43,
+          "total": 12.971008,
+          "wake": 0.226304
+        },
+        {
+          "step": 44,
+          "total": 12.84096,
+          "wake": 0.22528
+        },
+        {
+          "step": 45,
+          "total": 12.040192,
+          "wake": 0.251904
+        },
+        {
+          "step": 46,
+          "total": 12.34944,
+          "wake": 0.223232
+        },
+        {
+          "step": 47,
+          "total": 12.890112,
+          "wake": 0.217088
+        },
+        {
+          "step": 48,
+          "total": 12.893184,
+          "wake": 0.210944
+        },
+        {
+          "step": 49,
+          "total": 12.685312,
+          "wake": 0.206848
+        },
+        {
+          "step": 50,
+          "total": 11.475968,
+          "wake": 0.234496
+        },
+        {
+          "step": 51,
+          "total": 12.726272,
+          "wake": 0.233472
+        },
+        {
+          "step": 52,
+          "total": 12.87168,
+          "wake": 0.229376
+        },
+        {
+          "step": 53,
+          "total": 11.096064,
+          "wake": 0.227328
+        },
+        {
+          "step": 54,
+          "total": 13.103104,
+          "wake": 0.219136
+        },
+        {
+          "step": 55,
+          "total": 13.119488,
+          "wake": 0.228352
+        },
+        {
+          "step": 56,
+          "total": 13.119488,
+          "wake": 0.238592
+        },
+        {
+          "step": 57,
+          "total": 12.746752,
+          "wake": 0.212992
+        },
+        {
+          "step": 58,
+          "total": 11.86816,
+          "wake": 0.243712
+        },
+        {
+          "step": 59,
+          "total": 12.209152,
+          "wake": 0.22528
+        },
+        {
+          "step": 60,
+          "total": 13.320192,
+          "wake": 0.212992
+        },
+        {
+          "step": 61,
+          "total": 11.39712,
+          "wake": 0.260096
+        },
+        {
+          "step": 62,
+          "total": 9.90208,
+          "wake": 0.217088
+        },
+        {
+          "step": 63,
+          "total": 11.262976,
+          "wake": 0.238592
+        },
+        {
+          "step": 64,
+          "total": 10.607616,
+          "wake": 0.212992
+        },
+        {
+          "step": 65,
+          "total": 8.680448,
+          "wake": 0.246784
+        },
+        {
+          "step": 66,
+          "total": 10.96704,
+          "wake": 0.251904
+        },
+        {
+          "step": 67,
+          "total": 9.371648,
+          "wake": 0.207872
+        },
+        {
+          "step": 68,
+          "total": 9.885696,
+          "wake": 0.228352
+        },
+        {
+          "step": 69,
+          "total": 11.664384,
+          "wake": 0.208896
+        },
+        {
+          "step": 70,
+          "total": 11.02336,
+          "wake": 0.208896
+        },
+        {
+          "step": 71,
+          "total": 12.071936,
+          "wake": 0.205824
+        },
+        {
+          "step": 72,
+          "total": 11.311104,
+          "wake": 0.234496
+        },
+        {
+          "step": 73,
+          "total": 9.877504,
+          "wake": 0.228352
+        },
+        {
+          "step": 74,
+          "total": 9.985024,
+          "wake": 0.238592
+        },
+        {
+          "step": 75,
+          "total": 12.566528,
+          "wake": 0.216064
+        },
+        {
+          "step": 76,
+          "total": 12.176384,
+          "wake": 0.22528
+        },
+        {
+          "step": 77,
+          "total": 12.512256,
+          "wake": 0.231424
+        },
+        {
+          "step": 78,
+          "total": 11.121664,
+          "wake": 0.246784
+        },
+        {
+          "step": 79,
+          "total": 12.676096,
+          "wake": 0.221184
+        },
+        {
+          "step": 80,
+          "total": 10.814464,
+          "wake": 0.234496
+        },
+        {
+          "step": 81,
+          "total": 10.563584,
+          "wake": 0.206848
+        },
+        {
+          "step": 82,
+          "total": 12.514304,
+          "wake": 0.23552
+        },
+        {
+          "step": 83,
+          "total": 10.710016,
+          "wake": 0.217088
+        },
+        {
+          "step": 84,
+          "total": 11.470848,
+          "wake": 0.221184
+        },
+        {
+          "step": 85,
+          "total": 12.336128,
+          "wake": 0.249856
+        },
+        {
+          "step": 86,
+          "total": 13.768704,
+          "wake": 0.206848
+        },
+        {
+          "step": 87,
+          "total": 12.630016,
+          "wake": 0.217088
+        },
+        {
+          "step": 88,
+          "total": 12.732416,
+          "wake": 0.227328
+        },
+        {
+          "step": 89,
+          "total": 12.695552,
+          "wake": 0.21504
+        },
+        {
+          "step": 90,
+          "total": 12.367872,
+          "wake": 0.222208
+        }
+      ],
+      "summary": {
+        "n": 60,
+        "mean": 11.744068266666668,
+        "median": 12.040192,
+        "p95": 13.119488
+      },
+      "params": {
+        "dt": 0.016666666666666666,
+        "gravity": -10,
+        "iterations": 4,
+        "betaLin": 10000,
+        "betaAng": 100,
+        "alpha": 0.99,
+        "gamma": 0.999,
+        "matchNearest": true,
+        "faceBias": true,
+        "reuseContacts": true,
+        "startAtRest": true,
+        "massPenalty": true,
+        "windSpeed": 0,
+        "windAngle": 0,
+        "windGust": 0.4,
+        "windPressure": 0.72,
+        "up": [
+          0,
+          0,
+          1
+        ]
+      },
+      "startupOptions": {
+        "capacity": {
+          "colors": 32
+        },
+        "colorRounds": 32
+      },
+      "method": "100K rook, identical full AVBD steps and sleeping; GPU interval from clear through awake count, snapshot copy excluded; no drawing",
+      "repeat": 0
+    },
+    {
+      "batchPasses": true,
+      "samples": [
+        {
+          "step": 31,
+          "total": 15.854592,
+          "wake": 0.241664
+        },
+        {
+          "step": 32,
+          "total": 13.548544,
+          "wake": 0.238592
+        },
+        {
+          "step": 33,
+          "total": 14.97088,
+          "wake": 0.249856
+        },
+        {
+          "step": 34,
+          "total": 12.419072,
+          "wake": 0.249856
+        },
+        {
+          "step": 35,
+          "total": 11.360256,
+          "wake": 0.258048
+        },
+        {
+          "step": 36,
+          "total": 11.926528,
+          "wake": 0.227328
+        },
+        {
+          "step": 37,
+          "total": 12.351488,
+          "wake": 0.217088
+        },
+        {
+          "step": 38,
+          "total": 12.48768,
+          "wake": 0.227328
+        },
+        {
+          "step": 39,
+          "total": 11.844608,
+          "wake": 0.206848
+        },
+        {
+          "step": 40,
+          "total": 12.268544,
+          "wake": 0.20992
+        },
+        {
+          "step": 41,
+          "total": 10.7776,
+          "wake": 0.22528
+        },
+        {
+          "step": 42,
+          "total": 12.652544,
+          "wake": 0.229376
+        },
+        {
+          "step": 43,
+          "total": 11.026432,
+          "wake": 0.219136
+        },
+        {
+          "step": 44,
+          "total": 12.019712,
+          "wake": 0.2048
+        },
+        {
+          "step": 45,
+          "total": 10.612736,
+          "wake": 0.236544
+        },
+        {
+          "step": 46,
+          "total": 9.434112,
+          "wake": 0.224256
+        },
+        {
+          "step": 47,
+          "total": 13.205504,
+          "wake": 0.214016
+        },
+        {
+          "step": 48,
+          "total": 11.9552,
+          "wake": 0.217088
+        },
+        {
+          "step": 49,
+          "total": 12.722176,
+          "wake": 0.20992
+        },
+        {
+          "step": 50,
+          "total": 12.664832,
+          "wake": 0.221184
+        },
+        {
+          "step": 51,
+          "total": 13.075456,
+          "wake": 0.224256
+        },
+        {
+          "step": 52,
+          "total": 13.017088,
+          "wake": 0.218112
+        },
+        {
+          "step": 53,
+          "total": 12.101632,
+          "wake": 0.214016
+        },
+        {
+          "step": 54,
+          "total": 11.113472,
+          "wake": 0.24064
+        },
+        {
+          "step": 55,
+          "total": 11.507712,
+          "wake": 0.242688
+        },
+        {
+          "step": 56,
+          "total": 12.780544,
+          "wake": 0.258048
+        },
+        {
+          "step": 57,
+          "total": 12.713984,
+          "wake": 0.221184
+        },
+        {
+          "step": 58,
+          "total": 14.849024,
+          "wake": 0.210944
+        },
+        {
+          "step": 59,
+          "total": 13.121536,
+          "wake": 0.233472
+        },
+        {
+          "step": 60,
+          "total": 14.134272,
+          "wake": 0.23552
+        },
+        {
+          "step": 61,
+          "total": 11.4176,
+          "wake": 0.228352
+        },
+        {
+          "step": 62,
+          "total": 11.261952,
+          "wake": 0.219136
+        },
+        {
+          "step": 63,
+          "total": 11.772928,
+          "wake": 0.223232
+        },
+        {
+          "step": 64,
+          "total": 10.882048,
+          "wake": 0.233472
+        },
+        {
+          "step": 65,
+          "total": 11.229184,
+          "wake": 0.218112
+        },
+        {
+          "step": 66,
+          "total": 10.715136,
+          "wake": 0.214016
+        },
+        {
+          "step": 67,
+          "total": 12.570624,
+          "wake": 0.210944
+        },
+        {
+          "step": 68,
+          "total": 10.144768,
+          "wake": 0.202752
+        },
+        {
+          "step": 69,
+          "total": 11.02848,
+          "wake": 0.224256
+        },
+        {
+          "step": 70,
+          "total": 10.991616,
+          "wake": 0.241664
+        },
+        {
+          "step": 71,
+          "total": 10.719232,
+          "wake": 0.238592
+        },
+        {
+          "step": 72,
+          "total": 11.580416,
+          "wake": 0.238592
+        },
+        {
+          "step": 73,
+          "total": 11.931648,
+          "wake": 0.234496
+        },
+        {
+          "step": 74,
+          "total": 11.731968,
+          "wake": 0.224256
+        },
+        {
+          "step": 75,
+          "total": 11.767808,
+          "wake": 0.224256
+        },
+        {
+          "step": 76,
+          "total": 12.683264,
+          "wake": 0.237568
+        },
+        {
+          "step": 77,
+          "total": 12.372992,
+          "wake": 0.241664
+        },
+        {
+          "step": 78,
+          "total": 12.215296,
+          "wake": 0.223232
+        },
+        {
+          "step": 79,
+          "total": 11.264,
+          "wake": 0.236544
+        },
+        {
+          "step": 80,
+          "total": 11.821056,
+          "wake": 0.228352
+        },
+        {
+          "step": 81,
+          "total": 11.671552,
+          "wake": 0.226304
+        },
+        {
+          "step": 82,
+          "total": 11.544576,
+          "wake": 0.197632
+        },
+        {
+          "step": 83,
+          "total": 12.873728,
+          "wake": 0.206848
+        },
+        {
+          "step": 84,
+          "total": 12.188672,
+          "wake": 0.236544
+        },
+        {
+          "step": 85,
+          "total": 11.979776,
+          "wake": 0.207872
+        },
+        {
+          "step": 86,
+          "total": 13.184,
+          "wake": 0.214016
+        },
+        {
+          "step": 87,
+          "total": 12.659712,
+          "wake": 0.221184
+        },
+        {
+          "step": 88,
+          "total": 12.114944,
+          "wake": 0.214016
+        },
+        {
+          "step": 89,
+          "total": 12.583936,
+          "wake": 0.207872
+        },
+        {
+          "step": 90,
+          "total": 12.44672,
+          "wake": 0.22528
+        }
+      ],
+      "summary": {
+        "n": 60,
+        "mean": 12.1311232,
+        "median": 12.101632,
+        "p95": 14.849024
+      },
+      "params": {
+        "dt": 0.016666666666666666,
+        "gravity": -10,
+        "iterations": 4,
+        "betaLin": 10000,
+        "betaAng": 100,
+        "alpha": 0.99,
+        "gamma": 0.999,
+        "matchNearest": true,
+        "faceBias": true,
+        "reuseContacts": true,
+        "startAtRest": true,
+        "massPenalty": true,
+        "windSpeed": 0,
+        "windAngle": 0,
+        "windGust": 0.4,
+        "windPressure": 0.72,
+        "up": [
+          0,
+          0,
+          1
+        ]
+      },
+      "startupOptions": {
+        "capacity": {
+          "colors": 32
+        },
+        "colorRounds": 32
+      },
+      "method": "100K rook, identical full AVBD steps and sleeping; GPU interval from clear through awake count, snapshot copy excluded; no drawing",
+      "repeat": 0
+    },
+    {
+      "batchPasses": true,
+      "samples": [
+        {
+          "step": 31,
+          "total": 12.35968,
+          "wake": 0.26112
+        },
+        {
+          "step": 32,
+          "total": 11.871232,
+          "wake": 0.239616
+        },
+        {
+          "step": 33,
+          "total": 12.155904,
+          "wake": 0.249856
+        },
+        {
+          "step": 34,
+          "total": 13.095936,
+          "wake": 0.267264
+        },
+        {
+          "step": 35,
+          "total": 13.549568,
+          "wake": 0.243712
+        },
+        {
+          "step": 36,
+          "total": 11.744256,
+          "wake": 0.244736
+        },
+        {
+          "step": 37,
+          "total": 11.177984,
+          "wake": 0.244736
+        },
+        {
+          "step": 38,
+          "total": 12.392448,
+          "wake": 0.236544
+        },
+        {
+          "step": 39,
+          "total": 11.190272,
+          "wake": 0.237568
+        },
+        {
+          "step": 40,
+          "total": 10.660864,
+          "wake": 0.219136
+        },
+        {
+          "step": 41,
+          "total": 10.861568,
+          "wake": 0.22016
+        },
+        {
+          "step": 42,
+          "total": 11.6992,
+          "wake": 0.217088
+        },
+        {
+          "step": 43,
+          "total": 10.596352,
+          "wake": 0.219136
+        },
+        {
+          "step": 44,
+          "total": 11.644928,
+          "wake": 0.214016
+        },
+        {
+          "step": 45,
+          "total": 9.741312,
+          "wake": 0.217088
+        },
+        {
+          "step": 46,
+          "total": 10.863616,
+          "wake": 0.227328
+        },
+        {
+          "step": 47,
+          "total": 11.469824,
+          "wake": 0.221184
+        },
+        {
+          "step": 48,
+          "total": 10.215424,
+          "wake": 0.21504
+        },
+        {
+          "step": 49,
+          "total": 11.813888,
+          "wake": 0.2048
+        },
+        {
+          "step": 50,
+          "total": 12.949504,
+          "wake": 0.218112
+        },
+        {
+          "step": 51,
+          "total": 13.592576,
+          "wake": 0.229376
+        },
+        {
+          "step": 52,
+          "total": 14.628864,
+          "wake": 0.223232
+        },
+        {
+          "step": 53,
+          "total": 11.732992,
+          "wake": 0.211968
+        },
+        {
+          "step": 54,
+          "total": 12.43136,
+          "wake": 0.2304
+        },
+        {
+          "step": 55,
+          "total": 13.54752,
+          "wake": 0.246784
+        },
+        {
+          "step": 56,
+          "total": 12.719104,
+          "wake": 0.216064
+        },
+        {
+          "step": 57,
+          "total": 12.613632,
+          "wake": 0.219136
+        },
+        {
+          "step": 58,
+          "total": 12.766208,
+          "wake": 0.23552
+        },
+        {
+          "step": 59,
+          "total": 12.949504,
+          "wake": 0.274432
+        },
+        {
+          "step": 60,
+          "total": 12.50816,
+          "wake": 0.2304
+        },
+        {
+          "step": 61,
+          "total": 11.603968,
+          "wake": 0.257024
+        },
+        {
+          "step": 62,
+          "total": 11.000832,
+          "wake": 0.217088
+        },
+        {
+          "step": 63,
+          "total": 9.273344,
+          "wake": 0.231424
+        },
+        {
+          "step": 64,
+          "total": 10.124288,
+          "wake": 0.203776
+        },
+        {
+          "step": 65,
+          "total": 10.760192,
+          "wake": 0.211968
+        },
+        {
+          "step": 66,
+          "total": 11.147264,
+          "wake": 0.221184
+        },
+        {
+          "step": 67,
+          "total": 12.537856,
+          "wake": 0.219136
+        },
+        {
+          "step": 68,
+          "total": 11.423744,
+          "wake": 0.232448
+        },
+        {
+          "step": 69,
+          "total": 11.587584,
+          "wake": 0.229376
+        },
+        {
+          "step": 70,
+          "total": 12.362752,
+          "wake": 0.229376
+        },
+        {
+          "step": 71,
+          "total": 11.8528,
+          "wake": 0.218112
+        },
+        {
+          "step": 72,
+          "total": 11.301888,
+          "wake": 0.223232
+        },
+        {
+          "step": 73,
+          "total": 10.676224,
+          "wake": 0.233472
+        },
+        {
+          "step": 74,
+          "total": 12.095488,
+          "wake": 0.228352
+        },
+        {
+          "step": 75,
+          "total": 10.518528,
+          "wake": 0.229376
+        },
+        {
+          "step": 76,
+          "total": 10.144768,
+          "wake": 0.211968
+        },
+        {
+          "step": 77,
+          "total": 10.464256,
+          "wake": 0.2048
+        },
+        {
+          "step": 78,
+          "total": 10.489856,
+          "wake": 0.234496
+        },
+        {
+          "step": 79,
+          "total": 9.921536,
+          "wake": 0.229376
+        },
+        {
+          "step": 80,
+          "total": 10.082304,
+          "wake": 0.237568
+        },
+        {
+          "step": 81,
+          "total": 10.0864,
+          "wake": 0.236544
+        },
+        {
+          "step": 82,
+          "total": 10.627072,
+          "wake": 0.231424
+        },
+        {
+          "step": 83,
+          "total": 10.489856,
+          "wake": 0.221184
+        },
+        {
+          "step": 84,
+          "total": 10.098688,
+          "wake": 0.212992
+        },
+        {
+          "step": 85,
+          "total": 11.496448,
+          "wake": 0.210944
+        },
+        {
+          "step": 86,
+          "total": 10.462208,
+          "wake": 0.224256
+        },
+        {
+          "step": 87,
+          "total": 9.897984,
+          "wake": 0.218112
+        },
+        {
+          "step": 88,
+          "total": 10.810368,
+          "wake": 0.242688
+        },
+        {
+          "step": 89,
+          "total": 10.897408,
+          "wake": 0.222208
+        },
+        {
+          "step": 90,
+          "total": 10.513408,
+          "wake": 0.21504
+        }
+      ],
+      "summary": {
+        "n": 60,
+        "mean": 11.438216533333339,
+        "median": 11.423744,
+        "p95": 13.549568
+      },
+      "params": {
+        "dt": 0.016666666666666666,
+        "gravity": -10,
+        "iterations": 4,
+        "betaLin": 10000,
+        "betaAng": 100,
+        "alpha": 0.99,
+        "gamma": 0.999,
+        "matchNearest": true,
+        "faceBias": true,
+        "reuseContacts": true,
+        "startAtRest": true,
+        "massPenalty": true,
+        "windSpeed": 0,
+        "windAngle": 0,
+        "windGust": 0.4,
+        "windPressure": 0.72,
+        "up": [
+          0,
+          0,
+          1
+        ]
+      },
+      "startupOptions": {
+        "capacity": {
+          "colors": 32
+        },
+        "colorRounds": 32
+      },
+      "method": "100K rook, identical full AVBD steps and sleeping; GPU interval from clear through awake count, snapshot copy excluded; no drawing",
+      "repeat": 1
+    },
+    {
+      "batchPasses": false,
+      "samples": [
+        {
+          "step": 31,
+          "total": 12.99456,
+          "wake": 0.262144
+        },
+        {
+          "step": 32,
+          "total": 13.376512,
+          "wake": 0.277504
+        },
+        {
+          "step": 33,
+          "total": 13.850624,
+          "wake": 0.268288
+        },
+        {
+          "step": 34,
+          "total": 13.55264,
+          "wake": 0.265216
+        },
+        {
+          "step": 35,
+          "total": 13.205504,
+          "wake": 0.28672
+        },
+        {
+          "step": 36,
+          "total": 11.122688,
+          "wake": 0.267264
+        },
+        {
+          "step": 37,
+          "total": 13.492224,
+          "wake": 0.264192
+        },
+        {
+          "step": 38,
+          "total": 10.986496,
+          "wake": 0.212992
+        },
+        {
+          "step": 39,
+          "total": 13.0816,
+          "wake": 0.214016
+        },
+        {
+          "step": 40,
+          "total": 11.134976,
+          "wake": 0.221184
+        },
+        {
+          "step": 41,
+          "total": 10.591232,
+          "wake": 0.212992
+        },
+        {
+          "step": 42,
+          "total": 13.431808,
+          "wake": 0.216064
+        },
+        {
+          "step": 43,
+          "total": 12.957696,
+          "wake": 0.2304
+        },
+        {
+          "step": 44,
+          "total": 10.79808,
+          "wake": 0.196608
+        },
+        {
+          "step": 45,
+          "total": 12.832768,
+          "wake": 0.221184
+        },
+        {
+          "step": 46,
+          "total": 10.271744,
+          "wake": 0.205824
+        },
+        {
+          "step": 47,
+          "total": 10.269696,
+          "wake": 0.228352
+        },
+        {
+          "step": 48,
+          "total": 13.596672,
+          "wake": 0.198656
+        },
+        {
+          "step": 49,
+          "total": 13.065216,
+          "wake": 0.218112
+        },
+        {
+          "step": 50,
+          "total": 12.568576,
+          "wake": 0.21504
+        },
+        {
+          "step": 51,
+          "total": 10.143744,
+          "wake": 0.218112
+        },
+        {
+          "step": 52,
+          "total": 11.239424,
+          "wake": 0.242688
+        },
+        {
+          "step": 53,
+          "total": 9.780224,
+          "wake": 0.205824
+        },
+        {
+          "step": 54,
+          "total": 10.621952,
+          "wake": 0.224256
+        },
+        {
+          "step": 55,
+          "total": 10.43456,
+          "wake": 0.222208
+        },
+        {
+          "step": 56,
+          "total": 10.080256,
+          "wake": 0.283648
+        },
+        {
+          "step": 57,
+          "total": 12.932096,
+          "wake": 0.228352
+        },
+        {
+          "step": 58,
+          "total": 11.628544,
+          "wake": 0.210944
+        },
+        {
+          "step": 59,
+          "total": 13.088768,
+          "wake": 0.238592
+        },
+        {
+          "step": 60,
+          "total": 10.551296,
+          "wake": 0.233472
+        },
+        {
+          "step": 61,
+          "total": 10.725376,
+          "wake": 0.2048
+        },
+        {
+          "step": 62,
+          "total": 10.855424,
+          "wake": 0.212992
+        },
+        {
+          "step": 63,
+          "total": 10.938368,
+          "wake": 0.22016
+        },
+        {
+          "step": 64,
+          "total": 12.25216,
+          "wake": 0.22016
+        },
+        {
+          "step": 65,
+          "total": 11.697152,
+          "wake": 0.234496
+        },
+        {
+          "step": 66,
+          "total": 11.418624,
+          "wake": 0.231424
+        },
+        {
+          "step": 67,
+          "total": 10.966016,
+          "wake": 0.212992
+        },
+        {
+          "step": 68,
+          "total": 11.930624,
+          "wake": 0.210944
+        },
+        {
+          "step": 69,
+          "total": 10.267648,
+          "wake": 0.22016
+        },
+        {
+          "step": 70,
+          "total": 10.715136,
+          "wake": 0.22528
+        },
+        {
+          "step": 71,
+          "total": 12.218368,
+          "wake": 0.212992
+        },
+        {
+          "step": 72,
+          "total": 11.655168,
+          "wake": 0.22528
+        },
+        {
+          "step": 73,
+          "total": 12.048384,
+          "wake": 0.221184
+        },
+        {
+          "step": 74,
+          "total": 11.585536,
+          "wake": 0.207872
+        },
+        {
+          "step": 75,
+          "total": 13.320192,
+          "wake": 0.218112
+        },
+        {
+          "step": 76,
+          "total": 12.414976,
+          "wake": 0.217088
+        },
+        {
+          "step": 77,
+          "total": 10.996736,
+          "wake": 0.227328
+        },
+        {
+          "step": 78,
+          "total": 11.563008,
+          "wake": 0.214016
+        },
+        {
+          "step": 79,
+          "total": 9.785344,
+          "wake": 0.218112
+        },
+        {
+          "step": 80,
+          "total": 12.40064,
+          "wake": 0.231424
+        },
+        {
+          "step": 81,
+          "total": 12.110848,
+          "wake": 0.229376
+        },
+        {
+          "step": 82,
+          "total": 12.333056,
+          "wake": 0.23552
+        },
+        {
+          "step": 83,
+          "total": 12.345344,
+          "wake": 0.202752
+        },
+        {
+          "step": 84,
+          "total": 11.949056,
+          "wake": 0.224256
+        },
+        {
+          "step": 85,
+          "total": 12.232704,
+          "wake": 0.242688
+        },
+        {
+          "step": 86,
+          "total": 12.343296,
+          "wake": 0.222208
+        },
+        {
+          "step": 87,
+          "total": 12.386304,
+          "wake": 0.21504
+        },
+        {
+          "step": 88,
+          "total": 12.161024,
+          "wake": 0.19968
+        },
+        {
+          "step": 89,
+          "total": 12.199936,
+          "wake": 0.212992
+        },
+        {
+          "step": 90,
+          "total": 11.656192,
+          "wake": 0.208896
+        }
+      ],
+      "summary": {
+        "n": 60,
+        "mean": 11.819246933333336,
+        "median": 11.949056,
+        "p95": 13.55264
+      },
+      "params": {
+        "dt": 0.016666666666666666,
+        "gravity": -10,
+        "iterations": 4,
+        "betaLin": 10000,
+        "betaAng": 100,
+        "alpha": 0.99,
+        "gamma": 0.999,
+        "matchNearest": true,
+        "faceBias": true,
+        "reuseContacts": true,
+        "startAtRest": true,
+        "massPenalty": true,
+        "windSpeed": 0,
+        "windAngle": 0,
+        "windGust": 0.4,
+        "windPressure": 0.72,
+        "up": [
+          0,
+          0,
+          1
+        ]
+      },
+      "startupOptions": {
+        "capacity": {
+          "colors": 32
+        },
+        "colorRounds": 32
+      },
+      "method": "100K rook, identical full AVBD steps and sleeping; GPU interval from clear through awake count, snapshot copy excluded; no drawing",
+      "repeat": 1
+    },
+    {
+      "batchPasses": false,
+      "samples": [
+        {
+          "step": 31,
+          "total": 17.36704,
+          "wake": 0.297984
+        },
+        {
+          "step": 32,
+          "total": 14.04928,
+          "wake": 0.31232
+        },
+        {
+          "step": 33,
+          "total": 14.19776,
+          "wake": 0.304128
+        },
+        {
+          "step": 34,
+          "total": 14.613504,
+          "wake": 0.311296
+        },
+        {
+          "step": 35,
+          "total": 15.567872,
+          "wake": 0.293888
+        },
+        {
+          "step": 36,
+          "total": 15.704064,
+          "wake": 0.557056
+        },
+        {
+          "step": 37,
+          "total": 14.977024,
+          "wake": 0.315392
+        },
+        {
+          "step": 38,
+          "total": 14.37184,
+          "wake": 0.31744
+        },
+        {
+          "step": 39,
+          "total": 14.211072,
+          "wake": 0.314368
+        },
+        {
+          "step": 40,
+          "total": 9.710592,
+          "wake": 0.21504
+        },
+        {
+          "step": 41,
+          "total": 11.925504,
+          "wake": 0.229376
+        },
+        {
+          "step": 42,
+          "total": 13.656064,
+          "wake": 0.22016
+        },
+        {
+          "step": 43,
+          "total": 12.639232,
+          "wake": 0.226304
+        },
+        {
+          "step": 44,
+          "total": 11.41248,
+          "wake": 0.221184
+        },
+        {
+          "step": 45,
+          "total": 11.777024,
+          "wake": 0.208896
+        },
+        {
+          "step": 46,
+          "total": 13.270016,
+          "wake": 0.246784
+        },
+        {
+          "step": 47,
+          "total": 12.780544,
+          "wake": 0.217088
+        },
+        {
+          "step": 48,
+          "total": 12.260352,
+          "wake": 0.221184
+        },
+        {
+          "step": 49,
+          "total": 12.52864,
+          "wake": 0.236544
+        },
+        {
+          "step": 50,
+          "total": 12.522496,
+          "wake": 0.216064
+        },
+        {
+          "step": 51,
+          "total": 12.607488,
+          "wake": 0.210944
+        },
+        {
+          "step": 52,
+          "total": 13.719552,
+          "wake": 0.227328
+        },
+        {
+          "step": 53,
+          "total": 13.34784,
+          "wake": 0.211968
+        },
+        {
+          "step": 54,
+          "total": 13.04064,
+          "wake": 0.234496
+        },
+        {
+          "step": 55,
+          "total": 12.111872,
+          "wake": 0.224256
+        },
+        {
+          "step": 56,
+          "total": 11.907072,
+          "wake": 0.221184
+        },
+        {
+          "step": 57,
+          "total": 12.850176,
+          "wake": 0.251904
+        },
+        {
+          "step": 58,
+          "total": 12.756992,
+          "wake": 0.222208
+        },
+        {
+          "step": 59,
+          "total": 13.221888,
+          "wake": 0.223232
+        },
+        {
+          "step": 60,
+          "total": 14.286848,
+          "wake": 0.236544
+        },
+        {
+          "step": 61,
+          "total": 11.296768,
+          "wake": 0.25088
+        },
+        {
+          "step": 62,
+          "total": 11.993088,
+          "wake": 0.22016
+        },
+        {
+          "step": 63,
+          "total": 11.410432,
+          "wake": 0.224256
+        },
+        {
+          "step": 64,
+          "total": 10.54208,
+          "wake": 0.203776
+        },
+        {
+          "step": 65,
+          "total": 12.01664,
+          "wake": 0.207872
+        },
+        {
+          "step": 66,
+          "total": 12.542976,
+          "wake": 0.22016
+        },
+        {
+          "step": 67,
+          "total": 11.226112,
+          "wake": 0.22016
+        },
+        {
+          "step": 68,
+          "total": 11.293696,
+          "wake": 0.267264
+        },
+        {
+          "step": 69,
+          "total": 11.682816,
+          "wake": 0.214016
+        },
+        {
+          "step": 70,
+          "total": 11.671552,
+          "wake": 0.231424
+        },
+        {
+          "step": 71,
+          "total": 12.208128,
+          "wake": 0.218112
+        },
+        {
+          "step": 72,
+          "total": 11.713536,
+          "wake": 0.223232
+        },
+        {
+          "step": 73,
+          "total": 10.847232,
+          "wake": 0.202752
+        },
+        {
+          "step": 74,
+          "total": 11.643904,
+          "wake": 0.221184
+        },
+        {
+          "step": 75,
+          "total": 11.327488,
+          "wake": 0.212992
+        },
+        {
+          "step": 76,
+          "total": 11.81184,
+          "wake": 0.232448
+        },
+        {
+          "step": 77,
+          "total": 11.603968,
+          "wake": 0.231424
+        },
+        {
+          "step": 78,
+          "total": 11.828224,
+          "wake": 0.218112
+        },
+        {
+          "step": 79,
+          "total": 12.910592,
+          "wake": 0.20992
+        },
+        {
+          "step": 80,
+          "total": 10.110976,
+          "wake": 0.253952
+        },
+        {
+          "step": 81,
+          "total": 11.52,
+          "wake": 0.231424
+        },
+        {
+          "step": 82,
+          "total": 12.02176,
+          "wake": 0.224256
+        },
+        {
+          "step": 83,
+          "total": 12.091392,
+          "wake": 0.226304
+        },
+        {
+          "step": 84,
+          "total": 11.746304,
+          "wake": 0.214016
+        },
+        {
+          "step": 85,
+          "total": 12.547072,
+          "wake": 0.247808
+        },
+        {
+          "step": 86,
+          "total": 11.523072,
+          "wake": 0.210944
+        },
+        {
+          "step": 87,
+          "total": 12.322816,
+          "wake": 0.22016
+        },
+        {
+          "step": 88,
+          "total": 11.999232,
+          "wake": 0.223232
+        },
+        {
+          "step": 89,
+          "total": 11.542528,
+          "wake": 0.211968
+        },
+        {
+          "step": 90,
+          "total": 12.493824,
+          "wake": 0.234496
+        }
+      ],
+      "summary": {
+        "n": 60,
+        "mean": 12.514713600000002,
+        "median": 12.208128,
+        "p95": 15.567872
+      },
+      "params": {
+        "dt": 0.016666666666666666,
+        "gravity": -10,
+        "iterations": 4,
+        "betaLin": 10000,
+        "betaAng": 100,
+        "alpha": 0.99,
+        "gamma": 0.999,
+        "matchNearest": true,
+        "faceBias": true,
+        "reuseContacts": true,
+        "startAtRest": true,
+        "massPenalty": true,
+        "windSpeed": 0,
+        "windAngle": 0,
+        "windGust": 0.4,
+        "windPressure": 0.72,
+        "up": [
+          0,
+          0,
+          1
+        ]
+      },
+      "startupOptions": {
+        "capacity": {
+          "colors": 32
+        },
+        "colorRounds": 32
+      },
+      "method": "100K rook, identical full AVBD steps and sleeping; GPU interval from clear through awake count, snapshot copy excluded; no drawing",
+      "repeat": 2
+    },
+    {
+      "batchPasses": true,
+      "samples": [
+        {
+          "step": 31,
+          "total": 15.507456,
+          "wake": 0.313344
+        },
+        {
+          "step": 32,
+          "total": 14.017536,
+          "wake": 0.311296
+        },
+        {
+          "step": 33,
+          "total": 15.212544,
+          "wake": 0.30208
+        },
+        {
+          "step": 34,
+          "total": 11.321344,
+          "wake": 0.233472
+        },
+        {
+          "step": 35,
+          "total": 12.32384,
+          "wake": 0.231424
+        },
+        {
+          "step": 36,
+          "total": 12.5696,
+          "wake": 0.227328
+        },
+        {
+          "step": 37,
+          "total": 12.834816,
+          "wake": 0.22528
+        },
+        {
+          "step": 38,
+          "total": 12.808192,
+          "wake": 0.237568
+        },
+        {
+          "step": 39,
+          "total": 11.164672,
+          "wake": 0.23552
+        },
+        {
+          "step": 40,
+          "total": 13.205504,
+          "wake": 0.22016
+        },
+        {
+          "step": 41,
+          "total": 12.955648,
+          "wake": 0.217088
+        },
+        {
+          "step": 42,
+          "total": 13.223936,
+          "wake": 0.216064
+        },
+        {
+          "step": 43,
+          "total": 13.021184,
+          "wake": 0.236544
+        },
+        {
+          "step": 44,
+          "total": 12.435456,
+          "wake": 0.21504
+        },
+        {
+          "step": 45,
+          "total": 12.607488,
+          "wake": 0.21504
+        },
+        {
+          "step": 46,
+          "total": 12.643328,
+          "wake": 0.24064
+        },
+        {
+          "step": 47,
+          "total": 10.058752,
+          "wake": 0.217088
+        },
+        {
+          "step": 48,
+          "total": 9.767936,
+          "wake": 0.218112
+        },
+        {
+          "step": 49,
+          "total": 10.559488,
+          "wake": 0.219136
+        },
+        {
+          "step": 50,
+          "total": 10.527744,
+          "wake": 0.224256
+        },
+        {
+          "step": 51,
+          "total": 9.892864,
+          "wake": 0.233472
+        },
+        {
+          "step": 52,
+          "total": 10.249216,
+          "wake": 0.246784
+        },
+        {
+          "step": 53,
+          "total": 9.92256,
+          "wake": 0.222208
+        },
+        {
+          "step": 54,
+          "total": 11.307008,
+          "wake": 0.285696
+        },
+        {
+          "step": 55,
+          "total": 10.30656,
+          "wake": 0.214016
+        },
+        {
+          "step": 56,
+          "total": 10.750976,
+          "wake": 0.212992
+        },
+        {
+          "step": 57,
+          "total": 10.676224,
+          "wake": 0.24064
+        },
+        {
+          "step": 58,
+          "total": 12.597248,
+          "wake": 0.22016
+        },
+        {
+          "step": 59,
+          "total": 12.22656,
+          "wake": 0.223232
+        },
+        {
+          "step": 60,
+          "total": 12.936192,
+          "wake": 0.221184
+        },
+        {
+          "step": 61,
+          "total": 11.025408,
+          "wake": 0.208896
+        },
+        {
+          "step": 62,
+          "total": 11.48928,
+          "wake": 0.244736
+        },
+        {
+          "step": 63,
+          "total": 9.596928,
+          "wake": 0.216064
+        },
+        {
+          "step": 64,
+          "total": 10.0864,
+          "wake": 0.218112
+        },
+        {
+          "step": 65,
+          "total": 9.713664,
+          "wake": 0.224256
+        },
+        {
+          "step": 66,
+          "total": 9.737216,
+          "wake": 0.233472
+        },
+        {
+          "step": 67,
+          "total": 11.177984,
+          "wake": 0.226304
+        },
+        {
+          "step": 68,
+          "total": 11.577344,
+          "wake": 0.217088
+        },
+        {
+          "step": 69,
+          "total": 11.8784,
+          "wake": 0.218112
+        },
+        {
+          "step": 70,
+          "total": 11.838464,
+          "wake": 0.228352
+        },
+        {
+          "step": 71,
+          "total": 12.427264,
+          "wake": 0.211968
+        },
+        {
+          "step": 72,
+          "total": 11.720704,
+          "wake": 0.218112
+        },
+        {
+          "step": 73,
+          "total": 11.9808,
+          "wake": 0.212992
+        },
+        {
+          "step": 74,
+          "total": 13.446144,
+          "wake": 0.24064
+        },
+        {
+          "step": 75,
+          "total": 12.402688,
+          "wake": 0.21504
+        },
+        {
+          "step": 76,
+          "total": 12.418048,
+          "wake": 0.234496
+        },
+        {
+          "step": 77,
+          "total": 10.161152,
+          "wake": 0.208896
+        },
+        {
+          "step": 78,
+          "total": 12.07296,
+          "wake": 0.252928
+        },
+        {
+          "step": 79,
+          "total": 12.61568,
+          "wake": 0.233472
+        },
+        {
+          "step": 80,
+          "total": 12.572672,
+          "wake": 0.221184
+        },
+        {
+          "step": 81,
+          "total": 12.635136,
+          "wake": 0.236544
+        },
+        {
+          "step": 82,
+          "total": 13.790208,
+          "wake": 0.229376
+        },
+        {
+          "step": 83,
+          "total": 10.277888,
+          "wake": 0.226304
+        },
+        {
+          "step": 84,
+          "total": 11.97056,
+          "wake": 0.2304
+        },
+        {
+          "step": 85,
+          "total": 12.68224,
+          "wake": 0.193536
+        },
+        {
+          "step": 86,
+          "total": 12.450816,
+          "wake": 0.206848
+        },
+        {
+          "step": 87,
+          "total": 12.722176,
+          "wake": 0.20992
+        },
+        {
+          "step": 88,
+          "total": 12.878848,
+          "wake": 0.221184
+        },
+        {
+          "step": 89,
+          "total": 12.985344,
+          "wake": 0.236544
+        },
+        {
+          "step": 90,
+          "total": 12.811264,
+          "wake": 0.26112
+        }
+      ],
+      "summary": {
+        "n": 60,
+        "mean": 11.912925866666665,
+        "median": 12.32384,
+        "p95": 14.017536
+      },
+      "params": {
+        "dt": 0.016666666666666666,
+        "gravity": -10,
+        "iterations": 4,
+        "betaLin": 10000,
+        "betaAng": 100,
+        "alpha": 0.99,
+        "gamma": 0.999,
+        "matchNearest": true,
+        "faceBias": true,
+        "reuseContacts": true,
+        "startAtRest": true,
+        "massPenalty": true,
+        "windSpeed": 0,
+        "windAngle": 0,
+        "windGust": 0.4,
+        "windPressure": 0.72,
+        "up": [
+          0,
+          0,
+          1
+        ]
+      },
+      "startupOptions": {
+        "capacity": {
+          "colors": 32
+        },
+        "colorRounds": 32
+      },
+      "method": "100K rook, identical full AVBD steps and sleeping; GPU interval from clear through awake count, snapshot copy excluded; no drawing",
+      "repeat": 2
+    }
+  ],
+  "adapter": {
+    "vendor": "nvidia",
+    "architecture": "lovelace"
+  },
+  "errors": [],
+  "summary": {
+    "separate": {
+      "n": 180,
+      "mean": 12.0260096
+    },
+    "batched": {
+      "n": 180,
+      "mean": 11.827421866666668
+    }
+  }
+}

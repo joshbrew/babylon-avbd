@@ -1,0 +1,118 @@
+{
+  "passed": true,
+  "patch": {
+    "indices": [
+      430,
+      432,
+      774,
+      776,
+      441,
+      443,
+      785,
+      787,
+      442,
+      444,
+      786,
+      788,
+      445,
+      447,
+      789,
+      791
+    ],
+    "releasedEdges": 44,
+    "releasedSlots": [
+      1162,
+      1164,
+      1166,
+      1168,
+      1224,
+      1232,
+      1287,
+      1295,
+      1350,
+      1358,
+      1413,
+      1414,
+      1416,
+      1418,
+      1420,
+      1421,
+      3127,
+      3128,
+      3129,
+      3130,
+      3131,
+      3132,
+      3133,
+      3134,
+      3188,
+      3189,
+      3196,
+      3197,
+      3250,
+      3251,
+      3258,
+      3259,
+      3312,
+      3313,
+      3320,
+      3321,
+      3374,
+      3376,
+      3377,
+      3378,
+      3379,
+      3380,
+      3381,
+      3383
+    ]
+  },
+  "snapshots": [
+    {
+      "steps": 120,
+      "seconds": 1,
+      "bodies": 1026,
+      "materialFaces": 1922,
+      "renderedVertices": 34596,
+      "detachedPoints": 16,
+      "boundaryReleased": true,
+      "center": [
+        1.2023995332419872,
+        0.06080159230623394,
+        1.9553355798125267
+      ],
+      "finite": true
+    },
+    {
+      "steps": 360,
+      "seconds": 3,
+      "bodies": 1026,
+      "materialFaces": 1922,
+      "renderedVertices": 34596,
+      "detachedPoints": 16,
+      "boundaryReleased": true,
+      "center": [
+        1.1016835160553455,
+        0.2840837985277176,
+        0.19916567392647266
+      ],
+      "finite": true
+    },
+    {
+      "steps": 960,
+      "seconds": 8,
+      "bodies": 1026,
+      "materialFaces": 1922,
+      "renderedVertices": 34596,
+      "detachedPoints": 16,
+      "boundaryReleased": true,
+      "center": [
+        1.1379380971193314,
+        0.2917934989091009,
+        0.1944152358919382
+      ],
+      "finite": true
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,48 @@
+{
+  "results": [
+    {
+      "route": "rock",
+      "frameMs": {
+        "mean": 17.516250000000003,
+        "median": 16.699999999999818,
+        "p95": 16.900000000000546
+      },
+      "errors": [],
+      "metrics": "← Back to main page\nMixed colliders\n\nSpheres, boxes, capsules, cylinder hulls and convex wedges.\nAll contacts and rotations run in the GPU rigid-body solver.\n\nPauseResetBurstShoot\n\n303 bodies · 60 FPS · 1155 contact points",
+      "passed": true
+    },
+    {
+      "route": "showcase",
+      "frameMs": {
+        "mean": 16.6825,
+        "median": 16.700000000000045,
+        "p95": 16.899999999999977
+      },
+      "errors": [],
+      "metrics": "← Back to main page\nMixed colliders\n\nSpheres, boxes, capsules, cylinder hulls and convex wedges.\nAll contacts and rotations run in the GPU rigid-body solver.\n\nPauseResetBurstShoot\n\n303 bodies · 61 FPS · 1155 contact points",
+      "passed": true
+    },
+    {
+      "route": "cannon",
+      "frameMs": {
+        "mean": 16.685,
+        "median": 16.700000000000045,
+        "p95": 17.700000000000045
+      },
+      "errors": [],
+      "metrics": "← Back to main page\nAVBD · GPU & REFERENCE\nSolver laboratory\n\nExplore the GPU showcase, large paper workloads and all 33 original solver tests, in 2D and 3D.\n\nSCENE\nHalf-million brick walls · 3 iterations\nHalf-million brick walls · 4 iterations\nDeformable cloth + 35K blocks\nBrick Ring (28k)\nBrick Ring (110k)\nBrick Walls (27k)\nRagdolls on Cloth (24k)\nFlag in the Wind (1.5k)\nWall Smash (2k)\nBreakable Wall (600)\nChain Mail (1.6k)\nHeavy Pendulum\nBox Pile (4k)\nBox Pile (32k)\nJointed Drop (34k)\nBox Columns (100k)\nVoronoi wall · wrecking ball\nHinge stops and motors\nTriggers and collision masks\nMortared castle · cannon siege\nTearable cloth · falling ball\nEmpty\nGround\nDynamic Friction\nStatic Friction\nPyramid\nRope\nHeavy Rope\nSpring\nSpring Ratio\nStack\nStack Ratio\nSoft Body\nBridge\nBreakable\nMixed Sizes 1K\nMixed Sizes 10K\nMixed Sizes 50K\n100K Rook Impact\nSphere Contacts\nConvex Hulls\nTriggers and collision masks\nResting 2D pile\nHinge stops and motors\n2D slingshot siege\nMixed 2D colliders\nDense pile 10K\nDense pile 50K\nDense pile 100K\nEmpty\nGround\nDynamic Friction\nStatic Friction\nPyramid\nCards\nRope\nHeavy Rope\nHanging Rope\nSpring\nSpring Ratio\nStack\nStack Ratio\nRod\nSoft Body\nJoint Grid\nNet\nMotor\nFracture\nSOLVER\nCanonical WebGPU\nPause\nStep\nReset\nShoot\nPROJECTILE\nSphere\nBox\nCapsule hull\nCylinder hull\nCannon aim\nDIRECTION\n-16°\nELEVATION\n10°\nSHOT SPEED\n44 m/s\n\nAim left or right across the walls; raise the barrel to reach the towers and roofs. Space fires a shot.\n\nITERATIONS\nFIND COLLISIONS\nAutomatic\nGrid\nGPU tree\n\nGPU AVBD. Work layout selected for joints and springs.\n\n Show detailed calculation times\n Show constraint links and contacts\nFit view\n Enhanced colors, lighting and antialiasing\n\nFour towers and a central keep, slate cone roofs, battlements and an arched gate. Mortar bonds hold the masonry together until impact tears them. Adjust the cannon's direction, elevation and speed, then shoot. Drag the background to orbit; Reset rebuilds the castle.\n\nScene check report and screenshots ↗\nSolver performance and paper comparison ↗\nRun all-scene GPU benchmarks ↗\n100,000 block impact benchmark ↗\nMixed collider gallery ↗\nGPU collision benchmark ↗\nCastle cannon siege ↗\nVoronoi wall and wrecking ball ↗\n2D slingshot siege · 1K–10K bricks ↗\n2D hinges and motors ↗\n3D hinges and motors ↗\n2D triggers and masks ↗\n3D triggers and masks ↗\n\nSource: three-avbd · pinned and verified\n\n3D · Mortared castle · cannon siege\n3915 bodies · Canonical WebGPU\nPerformance\nFrame rate\n59.9 FPS\nGPU AVBD step\n1.95 ms\nGPU render\n0.09 ms\nCollision checks\n0.50 ms\nMovement solver\n1.30 ms\nContact setup\n0.05 ms\nWork scheduling\n0.11 ms\nCollision method\nGrid\nContacts / joints\n233 / 12554\nSimulation\n84 steps · 1.4 s\nSimulation rate\n1.00× real time\nCapacity overflow / clashes\n0 / 0\n● Physics\n● Collisions\n● Render\nFixed 60 Hz physics · GPU phase times sampled\nDrag a body to pull it · drag the background or Alt-drag to orbit · wheel to zoom",
+      "passed": true
+    },
+    {
+      "route": "benchmark",
+      "frameMs": {
+        "mean": 16.68625,
+        "median": 16.700000000000045,
+        "p95": 17.5
+      },
+      "errors": [],
+      "metrics": "← Back to main page\nWebGPU Collision Benchmark\nStart benchmark\nStop\nClear table\nEngine\nRaw WebGPU + Babylon nvidia\nFPS\n59\nCollision ms\n0.047\nTarget\n2,000\nAlive\n2,000\nHits/s\n702\nRay-tris/s\n11,859,410\nTarget FPS\nStep seconds\nStart bullets\nMax bullets\nIncrement\nPrime chunk\nBullet radius\nSpawn radius\nSpeed\nLife\nRotate rad/s\nAim jitter\nGPU sprites show the live particles. Collision time measures only the compute pass. Frame rate also includes rendering.\nStep\tTarget\tAvg FPS\tFrame ms\tAvg alive\tHits/s\tRay-tris/s\tResult",
+      "passed": true
+    }
+  ]
+}

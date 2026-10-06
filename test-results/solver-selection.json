@@ -1,0 +1,158 @@
+{
+  "passed": true,
+  "results": [
+    {
+      "mode": "optimized",
+      "decision": {
+        "requested": "optimized",
+        "selected": "optimized",
+        "reason": "Explicit implementation override (developer setting).",
+        "bodyCount": 2,
+        "constraintCount": 0
+      },
+      "unchanged": true,
+      "reason": "GPU AVBD. Explicit implementation override (developer setting).",
+      "url": "optimized"
+    },
+    {
+      "mode": "points",
+      "decision": {
+        "requested": "points",
+        "selected": "points",
+        "reason": "Explicit implementation override (developer setting).",
+        "bodyCount": 2,
+        "constraintCount": 0
+      },
+      "unchanged": true,
+      "reason": "GPU AVBD · shared contact points. Explicit implementation override (developer setting).",
+      "url": "points"
+    },
+    {
+      "mode": "standard",
+      "decision": {
+        "requested": "standard",
+        "selected": "standard",
+        "reason": "Explicit implementation override (developer setting).",
+        "bodyCount": 2,
+        "constraintCount": 0
+      },
+      "unchanged": true,
+      "reason": "GPU AVBD. Explicit implementation override (developer setting).",
+      "url": "standard"
+    },
+    {
+      "mode": "auto",
+      "decision": {
+        "requested": "auto",
+        "selected": "standard",
+        "reason": "Work layout selected for smaller rigid scenes.",
+        "bodyCount": 2,
+        "constraintCount": 0
+      },
+      "unchanged": true,
+      "reason": "GPU AVBD. Work layout selected for smaller rigid scenes.",
+      "url": "auto"
+    },
+    {
+      "scene": "showcase-box-columns-100k",
+      "decision": {
+        "requested": "auto",
+        "selected": "points",
+        "reason": "Large rigid scene with a measured shared-contact-points layout.",
+        "bodyCount": 100001,
+        "constraintCount": 0
+      },
+      "disabled": false,
+      "reason": "GPU AVBD · shared contact points. Large rigid scene with a measured shared-contact-points layout."
+    },
+    {
+      "scene": "showcase-ragdolls-on-cloth-24k",
+      "decision": {
+        "requested": "auto",
+        "selected": "standard",
+        "reason": "Work layout selected for joints and springs.",
+        "bodyCount": 23617,
+        "constraintCount": 31200
+      },
+      "disabled": false,
+      "reason": "GPU AVBD. Work layout selected for joints and springs."
+    },
+    {
+      "scene": "paper-cloth-35k",
+      "decision": {
+        "requested": "auto",
+        "selected": "custom",
+        "reason": "This scene supplies its own solver. Automatic keeps that implementation.",
+        "bodyCount": 45001,
+        "constraintCount": 131002
+      },
+      "disabled": true,
+      "reason": "GPU deformable solver. This scene supplies its own solver. Automatic keeps that implementation."
+    },
+    {
+      "variant": "production",
+      "decision": {
+        "requested": "auto",
+        "selected": "standard",
+        "reason": "Work layout selected for smaller rigid scenes.",
+        "bodyCount": 2,
+        "constraintCount": 0
+      },
+      "kernel": "baseline",
+      "passed": true,
+      "samples": 3
+    },
+    {
+      "variant": "baseline",
+      "decision": {
+        "requested": "standard",
+        "selected": "standard",
+        "reason": "Explicit implementation override (developer setting).",
+        "bodyCount": 2,
+        "constraintCount": 0
+      },
+      "kernel": "baseline",
+      "passed": true,
+      "samples": 3
+    },
+    {
+      "variant": "projected",
+      "decision": {
+        "requested": "optimized",
+        "selected": "optimized",
+        "reason": "Explicit implementation override (developer setting).",
+        "bodyCount": 2,
+        "constraintCount": 0
+      },
+      "kernel": "projected",
+      "passed": true,
+      "samples": 3
+    },
+    {
+      "variant": "points",
+      "decision": {
+        "requested": "points",
+        "selected": "points",
+        "reason": "Explicit implementation override (developer setting).",
+        "bodyCount": 2,
+        "constraintCount": 0
+      },
+      "kernel": "points",
+      "passed": true,
+      "samples": 3
+    },
+    {
+      "scene": "showcase-box-columns-100k",
+      "decision": {
+        "requested": "standard",
+        "selected": "standard",
+        "reason": "Explicit implementation override (developer setting).",
+        "bodyCount": 100001,
+        "constraintCount": 0
+      },
+      "passed": true,
+      "kernel": "baseline"
+    }
+  ],
+  "errors": []
+}

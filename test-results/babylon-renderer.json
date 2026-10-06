@@ -1,0 +1,1739 @@
+{
+  "passed": true,
+  "results": [
+    {
+      "scene": "3d-voronoi-demolition",
+      "renderer": "babylon",
+      "renderStats": {
+        "renderer": "babylon",
+        "poseDownloads": 0,
+        "matrixUpdates": 0,
+        "draws": 3,
+        "copiedBytes": 35520,
+        "cpuSubmitMs": 1.5,
+        "gpuDrawMs": 0.048128,
+        "gpuCopyMs": 0.006144
+      },
+      "bodyCount": 222,
+      "stats": {
+        "pairs": 112,
+        "contacts": 0,
+        "manifolds": 0,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 6,
+        "brokenBonds": 0
+      },
+      "finite": true,
+      "errors": []
+    },
+    {
+      "scene": "3d-limited-hinges",
+      "renderer": "babylon",
+      "renderStats": {
+        "renderer": "babylon",
+        "poseDownloads": 0,
+        "matrixUpdates": 0,
+        "draws": 4,
+        "copiedBytes": 36640,
+        "cpuSubmitMs": 0.699999988079071,
+        "gpuDrawMs": 0.027648,
+        "gpuCopyMs": 0.016384
+      },
+      "bodyCount": 13,
+      "stats": {
+        "pairs": 0,
+        "contacts": 0,
+        "manifolds": 0,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 1
+      },
+      "finite": true,
+      "errors": []
+    },
+    {
+      "scene": "2d-triggers-and-masks",
+      "renderer": "babylon",
+      "renderStats": {
+        "renderer": "babylon",
+        "poseDownloads": 0,
+        "matrixUpdates": 0,
+        "draws": 1,
+        "copiedBytes": 395520,
+        "cpuSubmitMs": 1.5,
+        "gpuDrawMs": 0.019456,
+        "gpuCopyMs": 0.033792
+      },
+      "bodyCount": 24,
+      "stats": {
+        "pairs": 11,
+        "contacts": 0,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 1,
+        "triggerEntries": 0,
+        "triggerOverlaps": 0
+      },
+      "finite": true,
+      "errors": []
+    },
+    {
+      "scene": "3d-triggers-and-masks",
+      "renderer": "babylon",
+      "renderStats": {
+        "renderer": "babylon",
+        "poseDownloads": 0,
+        "matrixUpdates": 0,
+        "draws": 3,
+        "copiedBytes": 37248,
+        "cpuSubmitMs": 0.30000001192092896,
+        "gpuDrawMs": 0.012288,
+        "gpuCopyMs": 0.008192
+      },
+      "bodyCount": 28,
+      "stats": {
+        "pairs": 0,
+        "contacts": 0,
+        "manifolds": 0,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 1,
+        "triggerEntries": 0,
+        "triggerOverlaps": 0
+      },
+      "finite": true,
+      "errors": []
+    },
+    {
+      "scene": "2d-sleeping-pile",
+      "renderer": "babylon",
+      "renderStats": {
+        "renderer": "babylon",
+        "poseDownloads": 0,
+        "matrixUpdates": 0,
+        "draws": 1,
+        "copiedBytes": 417984,
+        "cpuSubmitMs": 2.899999976158142,
+        "gpuDrawMs": 0.02048,
+        "gpuCopyMs": 0.01136
+      },
+      "bodyCount": 258,
+      "stats": {
+        "pairs": 504,
+        "contacts": 512,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 3,
+        "sleeping": 0
+      },
+      "finite": true,
+      "errors": []
+    },
+    {
+      "scene": "2d-limited-hinges",
+      "renderer": "babylon",
+      "renderStats": {
+        "renderer": "babylon",
+        "poseDownloads": 0,
+        "matrixUpdates": 0,
+        "draws": 2,
+        "copiedBytes": 394208,
+        "cpuSubmitMs": 1.699999988079071,
+        "gpuDrawMs": 0.008192,
+        "gpuCopyMs": 0.01536
+      },
+      "bodyCount": 7,
+      "stats": {
+        "pairs": 2,
+        "contacts": 2,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 1
+      },
+      "finite": true,
+      "errors": []
+    },
+    {
+      "scene": "2d-slingshot-siege",
+      "renderer": "babylon",
+      "renderStats": {
+        "renderer": "babylon",
+        "poseDownloads": 0,
+        "matrixUpdates": 0,
+        "draws": 3,
+        "copiedBytes": 655872,
+        "cpuSubmitMs": 2.199999988079071,
+        "gpuDrawMs": 0.057344,
+        "gpuCopyMs": 0.01536
+      },
+      "bodyCount": 5113,
+      "stats": {
+        "pairs": 15621,
+        "contacts": 7862,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 7,
+        "sleeping": 0
+      },
+      "finite": true,
+      "errors": []
+    },
+    {
+      "scene": "2d-mixed-shapes",
+      "renderer": "babylon",
+      "renderStats": {
+        "renderer": "babylon",
+        "poseDownloads": 0,
+        "matrixUpdates": 0,
+        "draws": 1,
+        "copiedBytes": 403008,
+        "cpuSubmitMs": 1.2000000476837158,
+        "gpuDrawMs": 0.033792,
+        "gpuCopyMs": 0.021504
+      },
+      "bodyCount": 102,
+      "stats": {
+        "pairs": 12,
+        "contacts": 0,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 1
+      },
+      "finite": true,
+      "errors": []
+    },
+    {
+      "scene": "3d-castle-siege",
+      "renderer": "babylon",
+      "renderStats": {
+        "renderer": "babylon",
+        "poseDownloads": 0,
+        "matrixUpdates": 0,
+        "draws": 3,
+        "copiedBytes": 626400,
+        "cpuSubmitMs": 1.199999988079071,
+        "gpuDrawMs": 0.257024,
+        "gpuCopyMs": 0.019456
+      },
+      "bodyCount": 3915,
+      "stats": {
+        "pairs": 994,
+        "contacts": 0,
+        "manifolds": 0,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 7
+      },
+      "finite": true,
+      "errors": []
+    },
+    {
+      "scene": "3d-tearable-cloth",
+      "renderer": "babylon",
+      "renderStats": {
+        "renderer": "babylon",
+        "poseDownloads": 0,
+        "matrixUpdates": 0,
+        "draws": 3,
+        "copiedBytes": 696896,
+        "cpuSubmitMs": 2.300000011920929,
+        "gpuDrawMs": 0.09728,
+        "gpuCopyMs": 0.013312
+      },
+      "bodyCount": 1026,
+      "stats": {
+        "pairs": 0,
+        "contacts": 0,
+        "manifolds": 0,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 7
+      },
+      "finite": true,
+      "errors": []
+    },
+    {
+      "scene": "paper-walls-510k-3",
+      "renderer": "babylon",
+      "renderStats": {
+        "renderer": "babylon",
+        "poseDownloads": 0,
+        "matrixUpdates": 0,
+        "draws": 2,
+        "copiedBytes": 80947680,
+        "cpuSubmitMs": 0.699999988079071,
+        "gpuDrawMs": 4.4544,
+        "gpuCopyMs": 1.014784
+      },
+      "bodyCount": 505923,
+      "stats": {
+        "pairs": 909247,
+        "contacts": 3047190,
+        "manifolds": 860823,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 5
+      },
+      "finite": true,
+      "errors": []
+    },
+    {
+      "scene": "paper-walls-510k-4",
+      "renderer": "babylon",
+      "renderStats": {
+        "renderer": "babylon",
+        "poseDownloads": 0,
+        "matrixUpdates": 0,
+        "draws": 2,
+        "copiedBytes": 80947680,
+        "cpuSubmitMs": 0.699999988079071,
+        "gpuDrawMs": 5.05856,
+        "gpuCopyMs": 0.764
+      },
+      "bodyCount": 505923,
+      "stats": {
+        "pairs": 901261,
+        "contacts": 3087024,
+        "manifolds": 843138,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 5
+      },
+      "finite": true,
+      "errors": []
+    },
+    {
+      "scene": "paper-cloth-35k",
+      "renderer": "babylon",
+      "renderStats": {
+        "renderer": "babylon",
+        "poseDownloads": 0,
+        "matrixUpdates": 0,
+        "draws": 2,
+        "copiedBytes": 7200160,
+        "cpuSubmitMs": 1.600000023841858,
+        "gpuDrawMs": 1.369088,
+        "gpuCopyMs": 0.039936
+      },
+      "bodyCount": 45001,
+      "stats": {
+        "pairs": 124799,
+        "contacts": 104550,
+        "manifolds": 52728,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 11
+      },
+      "finite": true,
+      "errors": []
+    },
+    {
+      "scene": "2d-stress-pile-10k",
+      "renderer": "babylon",
+      "renderStats": {
+        "renderer": "babylon",
+        "poseDownloads": 0,
+        "matrixUpdates": 0,
+        "draws": 1,
+        "copiedBytes": 2313792,
+        "cpuSubmitMs": 2.099999964237213,
+        "gpuDrawMs": 0.0256,
+        "gpuCopyMs": 0.01536
+      },
+      "bodyCount": 10003,
+      "stats": {
+        "pairs": 35532,
+        "contacts": 45431,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 8
+      },
+      "finite": true,
+      "errors": []
+    },
+    {
+      "scene": "2d-stress-pile-50k",
+      "renderer": "babylon",
+      "renderStats": {
+        "renderer": "babylon",
+        "poseDownloads": 0,
+        "matrixUpdates": 0,
+        "draws": 1,
+        "copiedBytes": 9993792,
+        "cpuSubmitMs": 2.199999988079071,
+        "gpuDrawMs": 0.156672,
+        "gpuCopyMs": 0.051264
+      },
+      "bodyCount": 50003,
+      "stats": {
+        "pairs": 171912,
+        "contacts": 220857,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 8
+      },
+      "finite": true,
+      "errors": []
+    },
+    {
+      "scene": "2d-stress-pile-100k",
+      "renderer": "babylon",
+      "renderStats": {
+        "renderer": "babylon",
+        "poseDownloads": 0,
+        "matrixUpdates": 0,
+        "draws": 1,
+        "copiedBytes": 19593792,
+        "cpuSubmitMs": 0.5,
+        "gpuDrawMs": 0.141312,
+        "gpuCopyMs": 0.164864
+      },
+      "bodyCount": 100003,
+      "stats": {
+        "pairs": 337050,
+        "contacts": 439765,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 8
+      },
+      "finite": true,
+      "errors": []
+    },
+    {
+      "scene": "showcase-brick-ring-28k",
+      "renderer": "babylon",
+      "renderStats": {
+        "renderer": "babylon",
+        "poseDownloads": 0,
+        "matrixUpdates": 0,
+        "draws": 2,
+        "copiedBytes": 4498240,
+        "cpuSubmitMs": 0.9000000357627869,
+        "gpuDrawMs": 1.969152,
+        "gpuCopyMs": 0.048128
+      },
+      "bodyCount": 28114,
+      "stats": {
+        "pairs": 53590,
+        "contacts": 254711,
+        "manifolds": 43930,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 5
+      },
+      "finite": true,
+      "errors": []
+    },
+    {
+      "scene": "showcase-brick-ring-110k",
+      "renderer": "babylon",
+      "renderStats": {
+        "renderer": "babylon",
+        "poseDownloads": 0,
+        "matrixUpdates": 0,
+        "draws": 2,
+        "copiedBytes": 17670720,
+        "cpuSubmitMs": 1.7999999523162842,
+        "gpuDrawMs": 1.875968,
+        "gpuCopyMs": 0.130048
+      },
+      "bodyCount": 110442,
+      "stats": {
+        "pairs": 215686,
+        "contacts": 850773,
+        "manifolds": 146164,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 5
+      },
+      "finite": true,
+      "errors": []
+    },
+    {
+      "scene": "showcase-brick-walls-27k",
+      "renderer": "babylon",
+      "renderStats": {
+        "renderer": "babylon",
+        "poseDownloads": 0,
+        "matrixUpdates": 0,
+        "draws": 2,
+        "copiedBytes": 4301280,
+        "cpuSubmitMs": 0.5,
+        "gpuDrawMs": 0.254976,
+        "gpuCopyMs": 0.010624
+      },
+      "bodyCount": 26883,
+      "stats": {
+        "pairs": 48601,
+        "contacts": 170424,
+        "manifolds": 46754,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 5
+      },
+      "finite": true,
+      "errors": []
+    },
+    {
+      "scene": "showcase-ragdolls-on-cloth-24k",
+      "renderer": "babylon",
+      "renderStats": {
+        "renderer": "babylon",
+        "poseDownloads": 0,
+        "matrixUpdates": 0,
+        "draws": 4,
+        "copiedBytes": 3778720,
+        "cpuSubmitMs": 1.699999988079071,
+        "gpuDrawMs": 6.272,
+        "gpuCopyMs": 0.028672
+      },
+      "bodyCount": 23617,
+      "stats": {
+        "pairs": 0,
+        "contacts": 0,
+        "manifolds": 0,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 5
+      },
+      "finite": true,
+      "errors": []
+    },
+    {
+      "scene": "showcase-flag-in-the-wind-1.5k",
+      "renderer": "babylon",
+      "renderStats": {
+        "renderer": "babylon",
+        "poseDownloads": 0,
+        "matrixUpdates": 0,
+        "draws": 4,
+        "copiedBytes": 247360,
+        "cpuSubmitMs": 1.4000000357627869,
+        "gpuDrawMs": 0.045056,
+        "gpuCopyMs": 0.009216
+      },
+      "bodyCount": 1546,
+      "stats": {
+        "pairs": 0,
+        "contacts": 0,
+        "manifolds": 0,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 5
+      },
+      "finite": true,
+      "errors": []
+    },
+    {
+      "scene": "showcase-wall-smash-2k",
+      "renderer": "babylon",
+      "renderStats": {
+        "renderer": "babylon",
+        "poseDownloads": 0,
+        "matrixUpdates": 0,
+        "draws": 2,
+        "copiedBytes": 320320,
+        "cpuSubmitMs": 0.8999999761581421,
+        "gpuDrawMs": 0.124928,
+        "gpuCopyMs": 0.011264
+      },
+      "bodyCount": 2002,
+      "stats": {
+        "pairs": 12288,
+        "contacts": 31216,
+        "manifolds": 9146,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 11
+      },
+      "finite": true,
+      "errors": []
+    },
+    {
+      "scene": "showcase-breakable-wall-600",
+      "renderer": "babylon",
+      "renderStats": {
+        "renderer": "babylon",
+        "poseDownloads": 0,
+        "matrixUpdates": 0,
+        "draws": 2,
+        "copiedBytes": 96320,
+        "cpuSubmitMs": 3.5,
+        "gpuDrawMs": 0.115712,
+        "gpuCopyMs": 0.011264
+      },
+      "bodyCount": 602,
+      "stats": {
+        "pairs": 1128,
+        "contacts": 1312,
+        "manifolds": 362,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 7
+      },
+      "finite": true,
+      "errors": []
+    },
+    {
+      "scene": "showcase-chain-mail-1.6k",
+      "renderer": "babylon",
+      "renderStats": {
+        "renderer": "babylon",
+        "poseDownloads": 0,
+        "matrixUpdates": 0,
+        "draws": 5,
+        "copiedBytes": 256320,
+        "cpuSubmitMs": 0.7000000476837158,
+        "gpuDrawMs": 1.517568,
+        "gpuCopyMs": 0.016384
+      },
+      "bodyCount": 1602,
+      "stats": {
+        "pairs": 0,
+        "contacts": 0,
+        "manifolds": 0,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 4
+      },
+      "finite": true,
+      "errors": []
+    },
+    {
+      "scene": "showcase-heavy-pendulum",
+      "renderer": "babylon",
+      "renderStats": {
+        "renderer": "babylon",
+        "poseDownloads": 0,
+        "matrixUpdates": 0,
+        "draws": 2,
+        "copiedBytes": 8480,
+        "cpuSubmitMs": 0.6000000238418579,
+        "gpuDrawMs": 0.075776,
+        "gpuCopyMs": 0.005152
+      },
+      "bodyCount": 53,
+      "stats": {
+        "pairs": 0,
+        "contacts": 0,
+        "manifolds": 0,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 3
+      },
+      "finite": true,
+      "errors": []
+    },
+    {
+      "scene": "showcase-box-pile-4k",
+      "renderer": "babylon",
+      "renderStats": {
+        "renderer": "babylon",
+        "poseDownloads": 0,
+        "matrixUpdates": 0,
+        "draws": 1,
+        "copiedBytes": 640160,
+        "cpuSubmitMs": 1.600000023841858,
+        "gpuDrawMs": 2.294784,
+        "gpuCopyMs": 0.017408
+      },
+      "bodyCount": 4001,
+      "stats": {
+        "pairs": 75,
+        "contacts": 36,
+        "manifolds": 24,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 2
+      },
+      "finite": true,
+      "errors": []
+    },
+    {
+      "scene": "showcase-box-pile-32k",
+      "renderer": "babylon",
+      "renderStats": {
+        "renderer": "babylon",
+        "poseDownloads": 0,
+        "matrixUpdates": 0,
+        "draws": 1,
+        "copiedBytes": 5120160,
+        "cpuSubmitMs": 2.599999964237213,
+        "gpuDrawMs": 6.708224,
+        "gpuCopyMs": 0.06656
+      },
+      "bodyCount": 32001,
+      "stats": {
+        "pairs": 644,
+        "contacts": 315,
+        "manifolds": 207,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 2
+      },
+      "finite": true,
+      "errors": []
+    },
+    {
+      "scene": "showcase-jointed-drop-34k",
+      "renderer": "babylon",
+      "renderStats": {
+        "renderer": "babylon",
+        "poseDownloads": 0,
+        "matrixUpdates": 0,
+        "draws": 2,
+        "copiedBytes": 5455520,
+        "cpuSubmitMs": 3.399999976158142,
+        "gpuDrawMs": 0.755712,
+        "gpuCopyMs": 0.024576
+      },
+      "bodyCount": 34097,
+      "stats": {
+        "pairs": 106952,
+        "contacts": 85817,
+        "manifolds": 44330,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 11
+      },
+      "finite": true,
+      "errors": []
+    },
+    {
+      "scene": "showcase-box-columns-100k",
+      "renderer": "babylon",
+      "renderStats": {
+        "renderer": "babylon",
+        "poseDownloads": 0,
+        "matrixUpdates": 0,
+        "draws": 1,
+        "copiedBytes": 16000160,
+        "cpuSubmitMs": 9.700000047683716,
+        "gpuDrawMs": 1.340416,
+        "gpuCopyMs": 0.13312
+      },
+      "bodyCount": 100001,
+      "stats": {
+        "pairs": 100000,
+        "contacts": 400000,
+        "manifolds": 100000,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 3
+      },
+      "finite": true,
+      "errors": []
+    },
+    {
+      "scene": "2d-empty",
+      "renderer": "babylon",
+      "renderStats": {
+        "renderer": "babylon",
+        "poseDownloads": 0,
+        "matrixUpdates": 0,
+        "draws": 0,
+        "copiedBytes": 0,
+        "cpuSubmitMs": 0.800000011920929,
+        "gpuDrawMs": 0,
+        "gpuCopyMs": 0.00336
+      },
+      "bodyCount": 0,
+      "stats": {
+        "pairs": 0,
+        "contacts": 0,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 0
+      },
+      "finite": true,
+      "errors": []
+    },
+    {
+      "scene": "2d-ground",
+      "renderer": "babylon",
+      "renderStats": {
+        "renderer": "babylon",
+        "poseDownloads": 0,
+        "matrixUpdates": 0,
+        "draws": 1,
+        "copiedBytes": 393312,
+        "cpuSubmitMs": 1.5,
+        "gpuDrawMs": 0.003072,
+        "gpuCopyMs": 0.007168
+      },
+      "bodyCount": 1,
+      "stats": {
+        "pairs": 0,
+        "contacts": 0,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 0
+      },
+      "finite": true,
+      "errors": []
+    },
+    {
+      "scene": "2d-dynamic-friction",
+      "renderer": "babylon",
+      "renderStats": {
+        "renderer": "babylon",
+        "poseDownloads": 0,
+        "matrixUpdates": 0,
+        "draws": 1,
+        "copiedBytes": 394368,
+        "cpuSubmitMs": 1.199999988079071,
+        "gpuDrawMs": 0.003072,
+        "gpuCopyMs": 0.008192
+      },
+      "bodyCount": 12,
+      "stats": {
+        "pairs": 11,
+        "contacts": 22,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 1
+      },
+      "finite": true,
+      "errors": []
+    },
+    {
+      "scene": "2d-static-friction",
+      "renderer": "babylon",
+      "renderStats": {
+        "renderer": "babylon",
+        "poseDownloads": 0,
+        "matrixUpdates": 0,
+        "draws": 1,
+        "copiedBytes": 394368,
+        "cpuSubmitMs": 0.800000011920929,
+        "gpuDrawMs": 0.008192,
+        "gpuCopyMs": 0.014336
+      },
+      "bodyCount": 12,
+      "stats": {
+        "pairs": 51,
+        "contacts": 0,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 1
+      },
+      "finite": true,
+      "errors": []
+    },
+    {
+      "scene": "2d-pyramid",
+      "renderer": "babylon",
+      "renderStats": {
+        "renderer": "babylon",
+        "poseDownloads": 0,
+        "matrixUpdates": 0,
+        "draws": 1,
+        "copiedBytes": 413472,
+        "cpuSubmitMs": 0.699999988079071,
+        "gpuDrawMs": 0.014336,
+        "gpuCopyMs": 0.014336
+      },
+      "bodyCount": 211,
+      "stats": {
+        "pairs": 780,
+        "contacts": 0,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 1
+      },
+      "finite": true,
+      "errors": []
+    },
+    {
+      "scene": "2d-cards",
+      "renderer": "babylon",
+      "renderStats": {
+        "renderer": "babylon",
+        "poseDownloads": 0,
+        "matrixUpdates": 0,
+        "draws": 2,
+        "copiedBytes": 405344,
+        "cpuSubmitMs": 2.5,
+        "gpuDrawMs": 0.024576,
+        "gpuCopyMs": 0.011328
+      },
+      "bodyCount": 41,
+      "stats": {
+        "pairs": 198,
+        "contacts": 209,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 6
+      },
+      "finite": true,
+      "errors": []
+    },
+    {
+      "scene": "2d-rope",
+      "renderer": "babylon",
+      "renderStats": {
+        "renderer": "babylon",
+        "poseDownloads": 0,
+        "matrixUpdates": 0,
+        "draws": 2,
+        "copiedBytes": 395744,
+        "cpuSubmitMs": 1,
+        "gpuDrawMs": 0.00512,
+        "gpuCopyMs": 0.011264
+      },
+      "bodyCount": 20,
+      "stats": {
+        "pairs": 0,
+        "contacts": 0,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 3
+      },
+      "finite": true,
+      "errors": []
+    },
+    {
+      "scene": "2d-heavy-rope",
+      "renderer": "babylon",
+      "renderStats": {
+        "renderer": "babylon",
+        "poseDownloads": 0,
+        "matrixUpdates": 0,
+        "draws": 2,
+        "copiedBytes": 395744,
+        "cpuSubmitMs": 0.9000000357627869,
+        "gpuDrawMs": 0.022528,
+        "gpuCopyMs": 0.012288
+      },
+      "bodyCount": 20,
+      "stats": {
+        "pairs": 5,
+        "contacts": 0,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 3
+      },
+      "finite": true,
+      "errors": []
+    },
+    {
+      "scene": "2d-hanging-rope",
+      "renderer": "babylon",
+      "renderStats": {
+        "renderer": "babylon",
+        "poseDownloads": 0,
+        "matrixUpdates": 0,
+        "draws": 2,
+        "copiedBytes": 399584,
+        "cpuSubmitMs": 0.699999988079071,
+        "gpuDrawMs": 0.00512,
+        "gpuCopyMs": 0.01536
+      },
+      "bodyCount": 50,
+      "stats": {
+        "pairs": 1,
+        "contacts": 0,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 3
+      },
+      "finite": true,
+      "errors": []
+    },
+    {
+      "scene": "2d-spring",
+      "renderer": "babylon",
+      "renderStats": {
+        "renderer": "babylon",
+        "poseDownloads": 0,
+        "matrixUpdates": 0,
+        "draws": 2,
+        "copiedBytes": 393440,
+        "cpuSubmitMs": 0.8999999761581421,
+        "gpuDrawMs": 0.009216,
+        "gpuCopyMs": 0.021504
+      },
+      "bodyCount": 2,
+      "stats": {
+        "pairs": 0,
+        "contacts": 0,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 1
+      },
+      "finite": true,
+      "errors": []
+    },
+    {
+      "scene": "2d-spring-ratio",
+      "renderer": "babylon",
+      "renderStats": {
+        "renderer": "babylon",
+        "poseDownloads": 0,
+        "matrixUpdates": 0,
+        "draws": 2,
+        "copiedBytes": 394208,
+        "cpuSubmitMs": 0.800000011920929,
+        "gpuDrawMs": 0.003072,
+        "gpuCopyMs": 0.013312
+      },
+      "bodyCount": 8,
+      "stats": {
+        "pairs": 0,
+        "contacts": 0,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 3
+      },
+      "finite": true,
+      "errors": []
+    },
+    {
+      "scene": "2d-stack",
+      "renderer": "babylon",
+      "renderStats": {
+        "renderer": "babylon",
+        "poseDownloads": 0,
+        "matrixUpdates": 0,
+        "draws": 2,
+        "copiedBytes": 403424,
+        "cpuSubmitMs": 2.099999964237213,
+        "gpuDrawMs": 0.01536,
+        "gpuCopyMs": 0.02048
+      },
+      "bodyCount": 21,
+      "stats": {
+        "pairs": 20,
+        "contacts": 2,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 1
+      },
+      "finite": true,
+      "errors": []
+    },
+    {
+      "scene": "2d-stack-ratio",
+      "renderer": "babylon",
+      "renderStats": {
+        "renderer": "babylon",
+        "poseDownloads": 0,
+        "matrixUpdates": 0,
+        "draws": 1,
+        "copiedBytes": 393888,
+        "cpuSubmitMs": 1.4000000357627869,
+        "gpuDrawMs": 0.01536,
+        "gpuCopyMs": 0.03072
+      },
+      "bodyCount": 7,
+      "stats": {
+        "pairs": 11,
+        "contacts": 12,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 3
+      },
+      "finite": true,
+      "errors": []
+    },
+    {
+      "scene": "2d-rod",
+      "renderer": "babylon",
+      "renderStats": {
+        "renderer": "babylon",
+        "poseDownloads": 0,
+        "matrixUpdates": 0,
+        "draws": 2,
+        "copiedBytes": 395744,
+        "cpuSubmitMs": 0.8999999761581421,
+        "gpuDrawMs": 0.004096,
+        "gpuCopyMs": 0.019456
+      },
+      "bodyCount": 20,
+      "stats": {
+        "pairs": 0,
+        "contacts": 0,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 3
+      },
+      "finite": true,
+      "errors": []
+    },
+    {
+      "scene": "2d-soft-body",
+      "renderer": "babylon",
+      "renderStats": {
+        "renderer": "babylon",
+        "poseDownloads": 0,
+        "matrixUpdates": 0,
+        "draws": 2,
+        "copiedBytes": 416032,
+        "cpuSubmitMs": 1.100000023841858,
+        "gpuDrawMs": 0.017408,
+        "gpuCopyMs": 0.012288
+      },
+      "bodyCount": 151,
+      "stats": {
+        "pairs": 150,
+        "contacts": 0,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 4
+      },
+      "finite": true,
+      "errors": []
+    },
+    {
+      "scene": "2d-joint-grid",
+      "renderer": "babylon",
+      "renderStats": {
+        "renderer": "babylon",
+        "poseDownloads": 0,
+        "matrixUpdates": 0,
+        "draws": 2,
+        "copiedBytes": 491616,
+        "cpuSubmitMs": 1.399999976158142,
+        "gpuDrawMs": 0.031744,
+        "gpuCopyMs": 0.013312
+      },
+      "bodyCount": 625,
+      "stats": {
+        "pairs": 0,
+        "contacts": 0,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 5
+      },
+      "finite": true,
+      "errors": []
+    },
+    {
+      "scene": "2d-net",
+      "renderer": "babylon",
+      "renderStats": {
+        "renderer": "babylon",
+        "poseDownloads": 0,
+        "matrixUpdates": 0,
+        "draws": 2,
+        "copiedBytes": 403200,
+        "cpuSubmitMs": 1.300000011920929,
+        "gpuDrawMs": 0.00512,
+        "gpuCopyMs": 0.019456
+      },
+      "bodyCount": 91,
+      "stats": {
+        "pairs": 173,
+        "contacts": 150,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 4
+      },
+      "finite": true,
+      "errors": []
+    },
+    {
+      "scene": "2d-motor",
+      "renderer": "babylon",
+      "renderStats": {
+        "renderer": "babylon",
+        "poseDownloads": 0,
+        "matrixUpdates": 0,
+        "draws": 2,
+        "copiedBytes": 393472,
+        "cpuSubmitMs": 5.099999964237213,
+        "gpuDrawMs": 0.008192,
+        "gpuCopyMs": 0.033792
+      },
+      "bodyCount": 2,
+      "stats": {
+        "pairs": 1,
+        "contacts": 0,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 1
+      },
+      "finite": true,
+      "errors": []
+    },
+    {
+      "scene": "2d-fracture",
+      "renderer": "babylon",
+      "renderStats": {
+        "renderer": "babylon",
+        "poseDownloads": 0,
+        "matrixUpdates": 0,
+        "draws": 2,
+        "copiedBytes": 396320,
+        "cpuSubmitMs": 1.100000023841858,
+        "gpuDrawMs": 0.003072,
+        "gpuCopyMs": 0.012288
+      },
+      "bodyCount": 29,
+      "stats": {
+        "pairs": 42,
+        "contacts": 4,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 3
+      },
+      "finite": true,
+      "errors": []
+    },
+    {
+      "scene": "3d-empty",
+      "renderer": "babylon",
+      "renderStats": {
+        "renderer": "babylon",
+        "poseDownloads": 0,
+        "matrixUpdates": 0,
+        "draws": 1,
+        "copiedBytes": 32768,
+        "cpuSubmitMs": 0.699999988079071,
+        "gpuDrawMs": 0,
+        "gpuCopyMs": 0.014336
+      },
+      "bodyCount": 0,
+      "stats": {
+        "pairs": 0,
+        "contacts": 0,
+        "manifolds": 0,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 0
+      },
+      "finite": true,
+      "errors": []
+    },
+    {
+      "scene": "3d-ground",
+      "renderer": "babylon",
+      "renderStats": {
+        "renderer": "babylon",
+        "poseDownloads": 0,
+        "matrixUpdates": 0,
+        "draws": 2,
+        "copiedBytes": 33088,
+        "cpuSubmitMs": 1.5,
+        "gpuDrawMs": 0.088064,
+        "gpuCopyMs": 0.017408
+      },
+      "bodyCount": 2,
+      "stats": {
+        "pairs": 0,
+        "contacts": 0,
+        "manifolds": 0,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 1
+      },
+      "finite": true,
+      "errors": []
+    },
+    {
+      "scene": "3d-dynamic-friction",
+      "renderer": "babylon",
+      "renderStats": {
+        "renderer": "babylon",
+        "poseDownloads": 0,
+        "matrixUpdates": 0,
+        "draws": 2,
+        "copiedBytes": 34688,
+        "cpuSubmitMs": 1.199999988079071,
+        "gpuDrawMs": 0.090112,
+        "gpuCopyMs": 0.028672
+      },
+      "bodyCount": 12,
+      "stats": {
+        "pairs": 11,
+        "contacts": 44,
+        "manifolds": 11,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 1
+      },
+      "finite": true,
+      "errors": []
+    },
+    {
+      "scene": "3d-static-friction",
+      "renderer": "babylon",
+      "renderStats": {
+        "renderer": "babylon",
+        "poseDownloads": 0,
+        "matrixUpdates": 0,
+        "draws": 2,
+        "copiedBytes": 34848,
+        "cpuSubmitMs": 1,
+        "gpuDrawMs": 0.073728,
+        "gpuCopyMs": 0.028672
+      },
+      "bodyCount": 13,
+      "stats": {
+        "pairs": 11,
+        "contacts": 22,
+        "manifolds": 11,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 1
+      },
+      "finite": true,
+      "errors": []
+    },
+    {
+      "scene": "3d-pyramid",
+      "renderer": "babylon",
+      "renderStats": {
+        "renderer": "babylon",
+        "poseDownloads": 0,
+        "matrixUpdates": 0,
+        "draws": 2,
+        "copiedBytes": 54688,
+        "cpuSubmitMs": 1.7999999523162842,
+        "gpuDrawMs": 0.058368,
+        "gpuCopyMs": 0.016384
+      },
+      "bodyCount": 137,
+      "stats": {
+        "pairs": 0,
+        "contacts": 0,
+        "manifolds": 0,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 1
+      },
+      "finite": true,
+      "errors": []
+    },
+    {
+      "scene": "3d-rope",
+      "renderer": "babylon",
+      "renderStats": {
+        "renderer": "babylon",
+        "poseDownloads": 0,
+        "matrixUpdates": 0,
+        "draws": 3,
+        "copiedBytes": 38560,
+        "cpuSubmitMs": 1.600000023841858,
+        "gpuDrawMs": 0.031744,
+        "gpuCopyMs": 0.014336
+      },
+      "bodyCount": 21,
+      "stats": {
+        "pairs": 0,
+        "contacts": 0,
+        "manifolds": 0,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 3
+      },
+      "finite": true,
+      "errors": []
+    },
+    {
+      "scene": "3d-heavy-rope",
+      "renderer": "babylon",
+      "renderStats": {
+        "renderer": "babylon",
+        "poseDownloads": 0,
+        "matrixUpdates": 0,
+        "draws": 3,
+        "copiedBytes": 38560,
+        "cpuSubmitMs": 2.399999976158142,
+        "gpuDrawMs": 0.03584,
+        "gpuCopyMs": 0.0256
+      },
+      "bodyCount": 21,
+      "stats": {
+        "pairs": 0,
+        "contacts": 0,
+        "manifolds": 0,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 3
+      },
+      "finite": true,
+      "errors": []
+    },
+    {
+      "scene": "3d-spring",
+      "renderer": "babylon",
+      "renderStats": {
+        "renderer": "babylon",
+        "poseDownloads": 0,
+        "matrixUpdates": 0,
+        "draws": 3,
+        "copiedBytes": 33376,
+        "cpuSubmitMs": 1.2000000476837158,
+        "gpuDrawMs": 0.060416,
+        "gpuCopyMs": 0.019456
+      },
+      "bodyCount": 3,
+      "stats": {
+        "pairs": 0,
+        "contacts": 0,
+        "manifolds": 0,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 1
+      },
+      "finite": true,
+      "errors": []
+    },
+    {
+      "scene": "3d-spring-ratio",
+      "renderer": "babylon",
+      "renderStats": {
+        "renderer": "babylon",
+        "poseDownloads": 0,
+        "matrixUpdates": 0,
+        "draws": 3,
+        "copiedBytes": 35104,
+        "cpuSubmitMs": 0.7999999523162842,
+        "gpuDrawMs": 0.04608,
+        "gpuCopyMs": 0.024576
+      },
+      "bodyCount": 9,
+      "stats": {
+        "pairs": 0,
+        "contacts": 0,
+        "manifolds": 0,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 2
+      },
+      "finite": true,
+      "errors": []
+    },
+    {
+      "scene": "3d-stack",
+      "renderer": "babylon",
+      "renderStats": {
+        "renderer": "babylon",
+        "poseDownloads": 0,
+        "matrixUpdates": 0,
+        "draws": 2,
+        "copiedBytes": 34528,
+        "cpuSubmitMs": 1.199999988079071,
+        "gpuDrawMs": 0.064512,
+        "gpuCopyMs": 0.028672
+      },
+      "bodyCount": 11,
+      "stats": {
+        "pairs": 1,
+        "contacts": 4,
+        "manifolds": 1,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 1
+      },
+      "finite": true,
+      "errors": []
+    },
+    {
+      "scene": "3d-stack-ratio",
+      "renderer": "babylon",
+      "renderStats": {
+        "renderer": "babylon",
+        "poseDownloads": 0,
+        "matrixUpdates": 0,
+        "draws": 2,
+        "copiedBytes": 33568,
+        "cpuSubmitMs": 2.400000035762787,
+        "gpuDrawMs": 0.075776,
+        "gpuCopyMs": 0.019456
+      },
+      "bodyCount": 5,
+      "stats": {
+        "pairs": 4,
+        "contacts": 16,
+        "manifolds": 4,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 3
+      },
+      "finite": true,
+      "errors": []
+    },
+    {
+      "scene": "3d-soft-body",
+      "renderer": "babylon",
+      "renderStats": {
+        "renderer": "babylon",
+        "poseDownloads": 0,
+        "matrixUpdates": 0,
+        "draws": 3,
+        "copiedBytes": 118944,
+        "cpuSubmitMs": 0.800000011920929,
+        "gpuDrawMs": 0.105472,
+        "gpuCopyMs": 0.029696
+      },
+      "bodyCount": 193,
+      "stats": {
+        "pairs": 144,
+        "contacts": 18,
+        "manifolds": 18,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 6
+      },
+      "finite": true,
+      "errors": []
+    },
+    {
+      "scene": "3d-bridge",
+      "renderer": "babylon",
+      "renderStats": {
+        "renderer": "babylon",
+        "poseDownloads": 0,
+        "matrixUpdates": 0,
+        "draws": 3,
+        "copiedBytes": 57312,
+        "cpuSubmitMs": 2,
+        "gpuDrawMs": 0.08704,
+        "gpuCopyMs": 0.027648
+      },
+      "bodyCount": 91,
+      "stats": {
+        "pairs": 129,
+        "contacts": 378,
+        "manifolds": 116,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 7
+      },
+      "finite": true,
+      "errors": []
+    },
+    {
+      "scene": "3d-breakable",
+      "renderer": "babylon",
+      "renderStats": {
+        "renderer": "babylon",
+        "poseDownloads": 0,
+        "matrixUpdates": 0,
+        "draws": 3,
+        "copiedBytes": 37088,
+        "cpuSubmitMs": 2.600000023841858,
+        "gpuDrawMs": 0.060416,
+        "gpuCopyMs": 0.019456
+      },
+      "bodyCount": 19,
+      "stats": {
+        "pairs": 0,
+        "contacts": 0,
+        "manifolds": 0,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 2
+      },
+      "finite": true,
+      "errors": []
+    },
+    {
+      "scene": "3d-mixed-sizes-1k",
+      "renderer": "babylon",
+      "renderStats": {
+        "renderer": "babylon",
+        "poseDownloads": 0,
+        "matrixUpdates": 0,
+        "draws": 2,
+        "copiedBytes": 160160,
+        "cpuSubmitMs": 0.6000000238418579,
+        "gpuDrawMs": 0.161792,
+        "gpuCopyMs": 0.012288
+      },
+      "bodyCount": 1001,
+      "stats": {
+        "pairs": 990,
+        "contacts": 2970,
+        "manifolds": 990,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 1
+      },
+      "finite": true,
+      "errors": []
+    },
+    {
+      "scene": "3d-mixed-sizes-10k",
+      "renderer": "babylon",
+      "renderStats": {
+        "renderer": "babylon",
+        "poseDownloads": 0,
+        "matrixUpdates": 0,
+        "draws": 2,
+        "copiedBytes": 1600160,
+        "cpuSubmitMs": 4.099999964237213,
+        "gpuDrawMs": 3.716096,
+        "gpuCopyMs": 0.03072
+      },
+      "bodyCount": 10001,
+      "stats": {
+        "pairs": 9900,
+        "contacts": 29700,
+        "manifolds": 9900,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 1
+      },
+      "finite": true,
+      "errors": []
+    },
+    {
+      "scene": "3d-mixed-sizes-50k",
+      "renderer": "babylon",
+      "renderStats": {
+        "renderer": "babylon",
+        "poseDownloads": 0,
+        "matrixUpdates": 0,
+        "draws": 2,
+        "copiedBytes": 8000160,
+        "cpuSubmitMs": 1.100000023841858,
+        "gpuDrawMs": 2.760704,
+        "gpuCopyMs": 0.022752
+      },
+      "bodyCount": 50001,
+      "stats": {
+        "pairs": 49500,
+        "contacts": 148500,
+        "manifolds": 49500,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 1
+      },
+      "finite": true,
+      "errors": []
+    },
+    {
+      "scene": "3d-100k-rook-impact",
+      "renderer": "babylon",
+      "renderStats": {
+        "renderer": "babylon",
+        "poseDownloads": 0,
+        "matrixUpdates": 0,
+        "draws": 2,
+        "copiedBytes": 16000320,
+        "cpuSubmitMs": 1.899999976158142,
+        "gpuDrawMs": 2.792448,
+        "gpuCopyMs": 4.749312
+      },
+      "bodyCount": 100002,
+      "stats": {
+        "pairs": 0,
+        "contacts": 0,
+        "manifolds": 0,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 1,
+        "awake": 1
+      },
+      "finite": true,
+      "errors": []
+    },
+    {
+      "scene": "3d-sphere-contacts",
+      "renderer": "babylon",
+      "renderStats": {
+        "renderer": "babylon",
+        "poseDownloads": 0,
+        "matrixUpdates": 0,
+        "draws": 3,
+        "copiedBytes": 37088,
+        "cpuSubmitMs": 0.800000011920929,
+        "gpuDrawMs": 0.007168,
+        "gpuCopyMs": 0.009216
+      },
+      "bodyCount": 27,
+      "stats": {
+        "pairs": 0,
+        "contacts": 0,
+        "manifolds": 0,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 1
+      },
+      "finite": true,
+      "errors": []
+    },
+    {
+      "scene": "3d-convex-hulls",
+      "renderer": "babylon",
+      "renderStats": {
+        "renderer": "babylon",
+        "poseDownloads": 0,
+        "matrixUpdates": 0,
+        "draws": 4,
+        "copiedBytes": 35968,
+        "cpuSubmitMs": 1.0999999642372131,
+        "gpuDrawMs": 0.00512,
+        "gpuCopyMs": 0.009216
+      },
+      "bodyCount": 20,
+      "stats": {
+        "pairs": 0,
+        "contacts": 0,
+        "manifolds": 0,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 1
+      },
+      "finite": true,
+      "errors": []
+    },
+    {
+      "scene": "slingshot",
+      "renderStats": {
+        "renderer": "babylon",
+        "poseDownloads": 0,
+        "matrixUpdates": 0,
+        "draws": 2,
+        "copiedBytes": 647680,
+        "cpuSubmitMs": 2.5,
+        "gpuDrawMs": 0.08704,
+        "gpuCopyMs": 0.017408
+      },
+      "state": {
+        "shots": 0,
+        "moved": 0,
+        "toppled": 0,
+        "crossings": 0,
+        "broken": 0,
+        "aimHits": 0,
+        "aimReady": false,
+        "pull": null,
+        "steps": 5,
+        "paused": true,
+        "errors": [],
+        "metrics": {
+          "contacts": 7510,
+          "sleeping": 0,
+          "colors": 7,
+          "overflow": 0,
+          "clashes": 0,
+          "pairs": 15511
+        },
+        "bird": 5111,
+        "hold": true,
+        "camera": {
+          "x": 14,
+          "y": 10.575,
+          "scale": 14.540816326530612
+        }
+      }
+    }
+  ],
+  "contactSamples": {
+    "passed": true,
+    "displayedPoints": 2048,
+    "bufferBytes": 32768,
+    "cases": [
+      "known contact positions",
+      "missing points",
+      "whole-region sampling",
+      "completed-buffer switching",
+      "invalid body guard"
+    ]
+  }
+}

@@ -1,0 +1,140 @@
+{
+  "passed": true,
+  "results": [
+    {
+      "scene": "2d-limited-hinges",
+      "passed": true,
+      "angles": [
+        -0.6501256227493286,
+        0.6501256227493286
+      ],
+      "reversed": true,
+      "stopped": true
+    },
+    {
+      "scene": "2d-triggers-and-masks",
+      "passed": true,
+      "entries": {
+        "coral": 3,
+        "blue": 7,
+        "purple": 0
+      },
+      "maxSensorImpulse": 0,
+      "queries": {
+        "ray": {
+          "type": "Ray",
+          "radius": 0,
+          "hit": {
+            "index": 7,
+            "distance": 3.810847759246826,
+            "normal": [
+              -0.5404343008995056,
+              -0.8413863182067871
+            ],
+            "center": [
+              -4.189152240753174,
+              6
+            ],
+            "point": [
+              -4.189152240753174,
+              6
+            ]
+          }
+        },
+        "cast": {
+          "type": "Circle",
+          "radius": 0.25,
+          "hit": {
+            "index": 7,
+            "distance": 3.4772393703460693,
+            "normal": [
+              -0.8712672591209412,
+              -0.49080902338027954
+            ],
+            "center": [
+              -4.522760629653931,
+              6
+            ],
+            "point": [
+              -4.304943814873695,
+              6.12270225584507
+            ]
+          }
+        }
+      },
+      "maskChange": true,
+      "disabledDetection": true
+    },
+    {
+      "scene": "3d-limited-hinges",
+      "passed": true,
+      "angles": [
+        0.6551491094495099,
+        -0.6551491094495099
+      ],
+      "reversed": true,
+      "stopped": true
+    },
+    {
+      "scene": "3d-triggers-and-masks",
+      "passed": true,
+      "entries": {
+        "coral": 3,
+        "blue": 7,
+        "purple": 0
+      },
+      "maxSensorImpulse": 0,
+      "queries": {
+        "ray": {
+          "type": "Ray",
+          "radius": 0,
+          "hit": {
+            "index": 13,
+            "distance": 3.7538702487945557,
+            "normal": [
+              -0.7032273411750793,
+              0,
+              -0.7109650373458862
+            ],
+            "center": [
+              -4.246129751205444,
+              0,
+              6
+            ],
+            "point": [
+              -4.246129751205444,
+              0,
+              6
+            ]
+          }
+        },
+        "cast": {
+          "type": "Sphere",
+          "radius": 0.25,
+          "hit": {
+            "index": 13,
+            "distance": 3.454033136367798,
+            "normal": [
+              -0.9099445939064026,
+              0,
+              -0.4147298336029053
+            ],
+            "center": [
+              -4.545966863632202,
+              0,
+              6
+            ],
+            "point": [
+              -4.3184807151556015,
+              0,
+              6.103682458400726
+            ]
+          }
+        }
+      },
+      "maskChange": true,
+      "disabledDetection": true
+    }
+  ],
+  "errors": []
+}

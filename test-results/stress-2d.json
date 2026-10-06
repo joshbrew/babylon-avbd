@@ -1,0 +1,158 @@
+{
+  "passed": true,
+  "results": [
+    {
+      "scene": "2d-stress-pile-10k",
+      "passed": true,
+      "checkpoints": [
+        {
+          "steps": 121,
+          "bodies": 10003,
+          "finite": true,
+          "minY": 0.4925483763217926,
+          "outside": 0,
+          "stats": {
+            "pairs": 46825,
+            "contacts": 48153,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 8
+          },
+          "errors": []
+        },
+        {
+          "steps": 241,
+          "bodies": 10003,
+          "finite": true,
+          "minY": 0.49578410387039185,
+          "outside": 0,
+          "stats": {
+            "pairs": 43617,
+            "contacts": 52364,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 8
+          },
+          "errors": []
+        },
+        {
+          "steps": 361,
+          "bodies": 10003,
+          "finite": true,
+          "minY": 0.4951299726963043,
+          "outside": 0,
+          "stats": {
+            "pairs": 43811,
+            "contacts": 52993,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 8
+          },
+          "errors": []
+        }
+      ]
+    },
+    {
+      "scene": "2d-stress-pile-50k",
+      "passed": true,
+      "checkpoints": [
+        {
+          "steps": 121,
+          "bodies": 50003,
+          "finite": true,
+          "minY": 0.49244752526283264,
+          "outside": 0,
+          "stats": {
+            "pairs": 229558,
+            "contacts": 245823,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 9
+          },
+          "errors": []
+        },
+        {
+          "steps": 241,
+          "bodies": 50003,
+          "finite": true,
+          "minY": 0.4952607750892639,
+          "outside": 0,
+          "stats": {
+            "pairs": 211726,
+            "contacts": 254134,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 9
+          },
+          "errors": []
+        },
+        {
+          "steps": 361,
+          "bodies": 50003,
+          "finite": true,
+          "minY": 0.4944564998149872,
+          "outside": 0,
+          "stats": {
+            "pairs": 214616,
+            "contacts": 268213,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 9
+          },
+          "errors": []
+        }
+      ]
+    },
+    {
+      "scene": "2d-stress-pile-100k",
+      "passed": true,
+      "checkpoints": [
+        {
+          "steps": 121,
+          "bodies": 100003,
+          "finite": true,
+          "minY": 0.4916593134403229,
+          "outside": 0,
+          "stats": {
+            "pairs": 450757,
+            "contacts": 517290,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 9
+          },
+          "errors": []
+        },
+        {
+          "steps": 241,
+          "bodies": 100003,
+          "finite": true,
+          "minY": 0.49487802386283875,
+          "outside": 0,
+          "stats": {
+            "pairs": 417695,
+            "contacts": 509204,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 9
+          },
+          "errors": []
+        },
+        {
+          "steps": 361,
+          "bodies": 100003,
+          "finite": true,
+          "minY": 0.494242399930954,
+          "outside": 0,
+          "stats": {
+            "pairs": 421884,
+            "contacts": 531879,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 9
+          },
+          "errors": []
+        }
+      ]
+    }
+  ]
+}

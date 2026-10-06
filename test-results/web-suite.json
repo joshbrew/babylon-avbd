@@ -1,0 +1,150 @@
+{
+  "started": "2026-10-05T20:22:34.039Z",
+  "checks": [
+    {
+      "name": "build",
+      "passed": true,
+      "elapsedMs": 1264.0359999999998
+    },
+    {
+      "name": "check-scenes",
+      "passed": true,
+      "elapsedMs": 142621.02589999998
+    },
+    {
+      "name": "check-benchmark-scenes",
+      "passed": true,
+      "elapsedMs": 131743.4608
+    },
+    {
+      "name": "check-benchmark-preview",
+      "passed": true,
+      "elapsedMs": 41884.38620000001
+    },
+    {
+      "name": "check-solver-selection",
+      "passed": true,
+      "elapsedMs": 11165.278799999971
+    },
+    {
+      "name": "check-2d-stress",
+      "passed": true,
+      "elapsedMs": 26219.23060000001
+    },
+    {
+      "name": "check-shapes-2d",
+      "passed": true,
+      "elapsedMs": 10460.0919
+    },
+    {
+      "name": "check-policy2d",
+      "passed": true,
+      "elapsedMs": 35756.86610000004
+    },
+    {
+      "name": "check-feature-scenes",
+      "passed": true,
+      "elapsedMs": 30922.803400000033
+    },
+    {
+      "name": "check-paper-scenes",
+      "passed": true,
+      "elapsedMs": 87922.05599999998
+    },
+    {
+      "name": "check-hploc-motion",
+      "passed": true,
+      "elapsedMs": 81440.71800000005
+    },
+    {
+      "name": "check-showcase-motion",
+      "passed": true,
+      "elapsedMs": 28120.636500000022
+    },
+    {
+      "name": "check-ragdoll-net",
+      "passed": true,
+      "elapsedMs": 132230.2171
+    },
+    {
+      "name": "check-tearable-cloth",
+      "passed": true,
+      "elapsedMs": 7814.011900000041
+    },
+    {
+      "name": "check-cloth-fragments",
+      "passed": true,
+      "elapsedMs": 7195.411300000036
+    },
+    {
+      "name": "check-rook",
+      "passed": true,
+      "elapsedMs": 15028.350899999961
+    },
+    {
+      "name": "check-controls",
+      "passed": true,
+      "elapsedMs": 13466.618299999973
+    },
+    {
+      "name": "check-castle",
+      "passed": true,
+      "elapsedMs": 12450.774300000048
+    },
+    {
+      "name": "check-castle-layout",
+      "passed": true,
+      "elapsedMs": 4240.823399999994
+    },
+    {
+      "name": "check-routes",
+      "passed": true,
+      "elapsedMs": 13278.806400000001
+    },
+    {
+      "name": "check-improvements",
+      "passed": true,
+      "elapsedMs": 15392.556699999957
+    },
+    {
+      "name": "report-solver",
+      "passed": true,
+      "elapsedMs": 149.5357
+    },
+    {
+      "name": "check-babylon-docs",
+      "passed": true,
+      "elapsedMs": 51650.8965
+    },
+    {
+      "name": "report-web",
+      "passed": true,
+      "elapsedMs": 94.39389999999548
+    },
+    {
+      "name": "check-navigation",
+      "passed": true,
+      "elapsedMs": 25014.5697
+    },
+    {
+      "name": "check-report",
+      "passed": true,
+      "elapsedMs": 2555.507700000002
+    },
+    {
+      "name": "check-solver-report",
+      "passed": true,
+      "elapsedMs": 2591.3910999999935
+    }
+  ],
+  "passed": true,
+  "status": "complete",
+  "updated": "2026-10-05T21:02:40.888Z",
+  "completed": "2026-10-05T21:02:40.888Z",
+  "resumes": [
+    {
+      "from": "report-solver",
+      "date": "2026-10-05T21:01:18.811Z"
+    }
+  ]
+}

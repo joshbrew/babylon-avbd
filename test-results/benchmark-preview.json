@@ -1,0 +1,103 @@
+{
+  "passed": true,
+  "results": [
+    {
+      "scene": "showcase-brick-ring-28k",
+      "passed": true,
+      "pause": true,
+      "step": true,
+      "fit": true
+    },
+    {
+      "scene": "2d-net",
+      "passed": true,
+      "pause": true,
+      "step": true,
+      "fit": true
+    },
+    {
+      "scene": "2d-mixed-shapes",
+      "passed": true,
+      "pause": true,
+      "step": true,
+      "fit": true
+    },
+    {
+      "scene": "2d-sleeping-pile",
+      "passed": true,
+      "pause": true,
+      "step": true,
+      "fit": true
+    },
+    {
+      "scene": "2d-limited-hinges",
+      "passed": true,
+      "pause": true,
+      "step": true,
+      "fit": true
+    },
+    {
+      "scene": "2d-slingshot-siege",
+      "passed": true,
+      "pause": true,
+      "step": true,
+      "fit": true
+    },
+    {
+      "scene": "3d-tearable-cloth",
+      "passed": true,
+      "pause": true,
+      "step": true,
+      "fit": true
+    },
+    {
+      "scene": "showcase-ragdolls-on-cloth-24k",
+      "passed": true,
+      "pause": true,
+      "step": true,
+      "fit": true
+    },
+    {
+      "scene": "3d-100k-rook-impact",
+      "passed": true,
+      "pause": true,
+      "step": true,
+      "fit": true
+    },
+    {
+      "scene": "3d-castle-siege",
+      "passed": true,
+      "pause": true,
+      "step": true,
+      "fit": true
+    },
+    {
+      "scene": "paper-walls-510k-3",
+      "passed": true,
+      "pause": true,
+      "step": true,
+      "fit": true
+    },
+    {
+      "scene": "paper-cloth-35k",
+      "passed": true,
+      "pause": true,
+      "step": true,
+      "fit": true
+    }
+  ],
+  "treePreview": true,
+  "detailedTreeBenchmark": true,
+  "isolation": [
+    {
+      "closed": true,
+      "disposed": true
+    }
+  ],
+  "recovery": {
+    "failed": true,
+    "ready": true,
+    "enabled": true
+  },
+  "errors": []
+}

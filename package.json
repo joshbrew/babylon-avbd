@@ -1,0 +1,121 @@
+{
+  "name": "avbd-babylon",
+  "version": "0.1.0",
+  "description": "GPU AVBD rigid-body physics with a Babylon.js aggregate API",
+  "keywords": [
+    "avbd",
+    "webgpu",
+    "physics",
+    "babylonjs"
+  ],
+  "homepage": "https://github.com/joshbrew/babylon-avbd#readme",
+  "bugs": {
+    "url": "https://github.com/joshbrew/babylon-avbd/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joshbrew/babylon-avbd.git"
+  },
+  "license": "MIT",
+  "author": "josh brewster et al",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/avbd.d.ts",
+      "import": "./dist/avbd.js",
+      "default": "./dist/avbd.js"
+    },
+    "./native": {
+      "types": "./dist/native.d.ts",
+      "import": "./dist/native.js",
+      "default": "./dist/native.js"
+    },
+    "./global": {
+      "types": "./dist/avbd.global.d.ts",
+      "default": "./dist/avbd.global.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "main": "./dist/avbd.js",
+  "types": "./dist/avbd.d.ts",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "files": [
+    "dist/avbd.js",
+    "dist/avbd.global.js",
+    "dist/avbd.global.d.ts",
+    "dist/avbd.d.ts",
+    "dist/babylonAvbd.d.ts",
+    "dist/nativeScenes.d.ts",
+    "dist/native.js",
+    "dist/native.d.ts",
+    "dist/gpuDevice.d.ts",
+    "dist/NOTICE",
+    "LICENSE",
+    "README.md",
+    "docs/README.md",
+    "docs/BABYLON_API.md",
+    "docs/HPLOC.md",
+    "docs/RELEASE.md",
+    "tests/README.md"
+  ],
+  "scripts": {
+    "start": "node scripts/build-library.mjs && node scripts/build.mjs --serve",
+    "build": "node scripts/build-library.mjs",
+    "build:cdn": "node scripts/build-library.mjs --cdn",
+    "build:web": "node scripts/build.mjs",
+    "build:all": "node scripts/build-library.mjs && node scripts/build-library.mjs --cdn && node scripts/build.mjs",
+    "prepack": "node scripts/build-library.mjs && node scripts/build-library.mjs --cdn",
+    "test": "node scripts/test-gpu.mjs",
+    "test:reference": "node --experimental-transform-types --test reference/three-avbd/tests/*.test.ts",
+    "test:gpu": "node scripts/test-gpu.mjs",
+    "test:all": "node scripts/test-all.mjs",
+    "test:complete": "node scripts/test-all.mjs --strict",
+    "test:scenes": "node scripts/build.mjs && node scripts/check-scenes.mjs",
+    "test:rook": "node scripts/build.mjs && node scripts/check-rook.mjs",
+    "test:screenshots": "node scripts/screenshot-contact-sheet.mjs",
+    "test:web": "node scripts/test-web.mjs",
+    "test:benchmarks": "node scripts/build.mjs && node scripts/check-benchmark-scenes.mjs",
+    "test:showcase": "node scripts/build.mjs && node scripts/check-showcase-motion.mjs",
+    "test:cloth": "node scripts/build.mjs && node scripts/check-ragdoll-net.mjs && node scripts/check-tearable-cloth.mjs && node scripts/check-cloth-fragments.mjs",
+    "test:controls": "node scripts/build.mjs && node scripts/check-controls.mjs",
+    "test:castle": "node scripts/build.mjs && node scripts/check-castle.mjs && node scripts/check-castle-layout.mjs",
+    "test:features": "node scripts/build.mjs && node scripts/check-feature-scenes.mjs",
+    "test:renderers": "node scripts/build.mjs && node scripts/check-babylon-renderer.mjs --all && node scripts/benchmark-renderers.mjs --quick",
+    "test:fracture": "node scripts/build.mjs && node scripts/check-voronoi-fracture.mjs",
+    "clean:results": "node scripts/clean-results.mjs --apply",
+    "clean:dist": "node scripts/clean-dist.mjs --apply",
+    "test:package": "node scripts/check-package.mjs",
+    "test:types": "tsc --noEmit --strict --skipLibCheck --module nodenext --target es2022 tests/package-api-types.ts",
+    "benchmark:native": "node scripts/benchmark-package.mjs",
+    "benchmark:sleeping": "node scripts/benchmark-package.mjs",
+    "benchmark:native-edits": "node scripts/check-native-performance.mjs",
+    "benchmark:renderers": "node scripts/build.mjs && node scripts/benchmark-renderers.mjs"
+  },
+  "dependencies": {
+    "chokidar": "^5.0.0",
+    "readdirp": "^5.1.1",
+    "ws": "^8.22.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2",
+    "prettier": "^3.9.9",
+    "tinybuild": "^1.0.6",
+    "@babylonjs/core": "^9.13.0",
+    "typescript": "^7.0.2"
+  },
+  "peerDependencies": {
+    "@babylonjs/core": "^9.13.0"
+  },
+  "peerDependenciesMeta": {
+    "@babylonjs/core": {
+      "optional": true
+    }
+  },
+  "module": "./dist/avbd.js",
+  "sideEffects": false,
+  "unpkg": "./dist/avbd.global.js",
+  "jsdelivr": "./dist/avbd.global.js"
+}

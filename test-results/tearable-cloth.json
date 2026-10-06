@@ -1,0 +1,359 @@
+{
+  "passed": true,
+  "snapshots": [
+    {
+      "steps": 1,
+      "seconds": 0.008333333333333333,
+      "bodies": 1026,
+      "pinnedPoints": 4,
+      "bonds": 3906,
+      "broken": 0,
+      "brokenAttachments": 0,
+      "brokenOuterBonds": 0,
+      "maxTearRadius": 0,
+      "ball": [
+        0.07999999821186066,
+        0.05000000074505806,
+        6.999305725097656
+      ],
+      "maxStrain": 0.000003858782578358699,
+      "minSheetZ": 3.999305486679077,
+      "minFreeEdgeZ": 3.999305486679077,
+      "maxAnchorError": 0,
+      "maxQuatError": 0,
+      "finite": true,
+      "stats": {},
+      "errors": [],
+      "gpuProfile": {
+        "total": 1.723392,
+        "collision": 0.18432,
+        "adjacency": 0.038912,
+        "coloring": 0.314368,
+        "solve": 1.184768,
+        "broadphase": "grid",
+        "bvhRebuilt": false
+      }
+    },
+    {
+      "steps": 60,
+      "seconds": 0.5,
+      "bodies": 1026,
+      "pinnedPoints": 4,
+      "bonds": 3906,
+      "broken": 0,
+      "brokenAttachments": 0,
+      "brokenOuterBonds": 0,
+      "maxTearRadius": 0,
+      "ball": [
+        0.07999999821186066,
+        0.05000000074505806,
+        5.7294769287109375
+      ],
+      "maxStrain": 0.10135643475246559,
+      "minSheetZ": 2.729069709777832,
+      "minFreeEdgeZ": 2.793581962585449,
+      "maxAnchorError": 0,
+      "maxQuatError": 0,
+      "finite": true,
+      "stats": {
+        "pairs": 0,
+        "contacts": 0,
+        "manifolds": 0,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 7
+      },
+      "errors": [],
+      "gpuProfile": {
+        "total": 1.44896,
+        "collision": 0.186368,
+        "adjacency": 0.037888,
+        "coloring": 0.082944,
+        "solve": 1.14176,
+        "broadphase": "grid",
+        "bvhRebuilt": false
+      }
+    },
+    {
+      "steps": 90,
+      "seconds": 0.75,
+      "bodies": 1026,
+      "pinnedPoints": 4,
+      "bonds": 3906,
+      "broken": 0,
+      "brokenAttachments": 0,
+      "brokenOuterBonds": 0,
+      "maxTearRadius": 0,
+      "ball": [
+        0.07999999821186066,
+        0.05000000074505806,
+        4.156944274902344
+      ],
+      "maxStrain": 0.11475978396908282,
+      "minSheetZ": 2.384350299835205,
+      "minFreeEdgeZ": 2.9951388835906982,
+      "maxAnchorError": 0,
+      "maxQuatError": 0,
+      "finite": true,
+      "stats": {
+        "pairs": 0,
+        "contacts": 0,
+        "manifolds": 0,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 7
+      },
+      "errors": [],
+      "gpuProfile": {
+        "total": 1.468416,
+        "collision": 0.193536,
+        "adjacency": 0.037888,
+        "coloring": 0.082944,
+        "solve": 1.154048,
+        "broadphase": "grid",
+        "bvhRebuilt": false
+      }
+    },
+    {
+      "steps": 120,
+      "seconds": 1,
+      "bodies": 1026,
+      "pinnedPoints": 4,
+      "bonds": 3906,
+      "broken": 0,
+      "brokenAttachments": 0,
+      "brokenOuterBonds": 0,
+      "maxTearRadius": 0,
+      "ball": [
+        0.08126534521579742,
+        0.04980606585741043,
+        2.0726826190948486
+      ],
+      "maxStrain": 0.29450225210563485,
+      "minSheetZ": 1.5572940111160278,
+      "minFreeEdgeZ": 3.364046335220337,
+      "maxAnchorError": 0,
+      "maxQuatError": 5.868820895926774e-8,
+      "finite": true,
+      "stats": {
+        "pairs": 14,
+        "contacts": 14,
+        "manifolds": 14,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 7
+      },
+      "errors": [],
+      "gpuProfile": {
+        "total": 2.217984,
+        "collision": 0.29696,
+        "adjacency": 0.063488,
+        "coloring": 0.12288,
+        "solve": 1.734656,
+        "broadphase": "grid",
+        "bvhRebuilt": false
+      }
+    },
+    {
+      "steps": 150,
+      "seconds": 1.25,
+      "bodies": 1026,
+      "pinnedPoints": 4,
+      "bonds": 3906,
+      "broken": 14,
+      "brokenAttachments": 0,
+      "brokenOuterBonds": 0,
+      "maxTearRadius": 0.375,
+      "ball": [
+        0.10308467596769333,
+        0.05574793368577957,
+        0.5039846897125244
+      ],
+      "maxStrain": 0.9156218560370046,
+      "minSheetZ": 0.050474777817726135,
+      "minFreeEdgeZ": 2.7916059494018555,
+      "maxAnchorError": 0,
+      "maxQuatError": 5.4544260552624735e-8,
+      "finite": true,
+      "stats": {
+        "pairs": 19,
+        "contacts": 19,
+        "manifolds": 19,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 7
+      },
+      "errors": [],
+      "gpuProfile": {
+        "total": 2.340864,
+        "collision": 0.331776,
+        "adjacency": 0.0768,
+        "coloring": 0.126976,
+        "solve": 1.804288,
+        "broadphase": "grid",
+        "bvhRebuilt": false
+      }
+    },
+    {
+      "steps": 180,
+      "seconds": 1.5,
+      "bodies": 1026,
+      "pinnedPoints": 4,
+      "bonds": 3906,
+      "broken": 20,
+      "brokenAttachments": 0,
+      "brokenOuterBonds": 0,
+      "maxTearRadius": 0.375,
+      "ball": [
+        0.2117919921875,
+        0.16737811267375946,
+        0.9004781246185303
+      ],
+      "maxStrain": 15.955451735182727,
+      "minSheetZ": 0.1828802227973938,
+      "minFreeEdgeZ": 3.2489864826202393,
+      "maxAnchorError": 0,
+      "maxQuatError": 6.072384439725909e-8,
+      "finite": true,
+      "stats": {
+        "pairs": 3,
+        "contacts": 3,
+        "manifolds": 3,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 7
+      },
+      "errors": [],
+      "gpuProfile": {
+        "total": 2.131968,
+        "collision": 0.311296,
+        "adjacency": 0.059392,
+        "coloring": 0.115712,
+        "solve": 1.644544,
+        "broadphase": "grid",
+        "bvhRebuilt": false
+      }
+    },
+    {
+      "steps": 240,
+      "seconds": 2,
+      "bodies": 1026,
+      "pinnedPoints": 4,
+      "bonds": 3906,
+      "broken": 20,
+      "brokenAttachments": 0,
+      "brokenOuterBonds": 0,
+      "maxTearRadius": 0.375,
+      "ball": [
+        0.5606049299240112,
+        0.4581189751625061,
+        0.48363184928894043
+      ],
+      "maxStrain": 16.73259137606087,
+      "minSheetZ": 0.1669342964887619,
+      "minFreeEdgeZ": 3.9929215908050537,
+      "maxAnchorError": 0,
+      "maxQuatError": 1.3383734676075676e-8,
+      "finite": true,
+      "stats": {
+        "pairs": 5,
+        "contacts": 5,
+        "manifolds": 5,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 8
+      },
+      "errors": [],
+      "gpuProfile": {
+        "total": 2.162688,
+        "collision": 0.309248,
+        "adjacency": 0.059392,
+        "coloring": 0.115712,
+        "solve": 1.677312,
+        "broadphase": "grid",
+        "bvhRebuilt": false
+      }
+    },
+    {
+      "steps": 480,
+      "seconds": 4,
+      "bodies": 1026,
+      "pinnedPoints": 4,
+      "bonds": 3906,
+      "broken": 20,
+      "brokenAttachments": 0,
+      "brokenOuterBonds": 0,
+      "maxTearRadius": 0.375,
+      "ball": [
+        3.179776906967163,
+        2.457226514816284,
+        0.39046716690063477
+      ],
+      "maxStrain": 19.313489111072805,
+      "minSheetZ": 0.16679087281227112,
+      "minFreeEdgeZ": 4.02813720703125,
+      "maxAnchorError": 0,
+      "maxQuatError": 2.8164987120327112e-8,
+      "finite": true,
+      "stats": {
+        "pairs": 6,
+        "contacts": 6,
+        "manifolds": 6,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 8
+      },
+      "errors": [],
+      "gpuProfile": {
+        "total": 1.34144,
+        "collision": 0.188416,
+        "adjacency": 0.03584,
+        "coloring": 0.070656,
+        "solve": 1.046528,
+        "broadphase": "grid",
+        "bvhRebuilt": false
+      }
+    },
+    {
+      "steps": 960,
+      "seconds": 8,
+      "bodies": 1026,
+      "pinnedPoints": 4,
+      "bonds": 3906,
+      "broken": 20,
+      "brokenAttachments": 0,
+      "brokenOuterBonds": 0,
+      "maxTearRadius": 0.375,
+      "ball": [
+        8.356819152832031,
+        6.415640354156494,
+        0.3900029957294464
+      ],
+      "maxStrain": 13.390590841761362,
+      "minSheetZ": 0.16677682101726532,
+      "minFreeEdgeZ": 3.3577141761779785,
+      "maxAnchorError": 0,
+      "maxQuatError": 4.0548445712218495e-9,
+      "finite": true,
+      "stats": {
+        "pairs": 6,
+        "contacts": 6,
+        "manifolds": 6,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 8
+      },
+      "errors": [],
+      "gpuProfile": {
+        "total": 1.2288,
+        "collision": 0.151552,
+        "adjacency": 0.033792,
+        "coloring": 0.065536,
+        "solve": 0.97792,
+        "broadphase": "grid",
+        "bvhRebuilt": false
+      }
+    }
+  ],
+  "errors": []
+}

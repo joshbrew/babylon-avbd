@@ -1,0 +1,407 @@
+{
+  "initial": {
+    "name": "initial",
+    "steps": 1,
+    "workload": {
+      "masonryBlocks": 3559,
+      "roofPieces": 336,
+      "mortarBonds": 12554,
+      "towers": 5
+    },
+    "finite": true,
+    "broken": 0,
+    "maxDrift": 0,
+    "moved": 0,
+    "rotated": 0,
+    "remote": 996,
+    "remoteMoved": 0,
+    "minZ": 0.24931396543979645,
+    "maxSpeed": 0.16187738412695868,
+    "projectile": [
+      -0.7600594758987427,
+      -29.34935760498047,
+      1.7862149477005005
+    ],
+    "stats": {
+      "pairs": 994,
+      "contacts": 0,
+      "manifolds": 0,
+      "overflow": 0,
+      "clashes": 0,
+      "colors": 7
+    },
+    "profile": {
+      "total": 3.324928,
+      "collision": 0.66048,
+      "adjacency": 0.059392,
+      "coloring": 0.397312,
+      "solve": 2.20672,
+      "broadphase": "grid",
+      "bvhRebuilt": false
+    },
+    "errors": []
+  },
+  "quiet": {
+    "name": "settled",
+    "steps": 180,
+    "workload": {
+      "masonryBlocks": 3559,
+      "roofPieces": 336,
+      "mortarBonds": 12554,
+      "towers": 5
+    },
+    "finite": true,
+    "broken": 0,
+    "maxDrift": 0.05260307651196551,
+    "moved": 0,
+    "rotated": 0,
+    "remote": 996,
+    "remoteMoved": 0,
+    "minZ": 0.24345773458480835,
+    "maxSpeed": 0.011344243825617242,
+    "projectile": [
+      -0.7600594758987427,
+      -29.34935760498047,
+      1.7862149477005005
+    ],
+    "stats": {
+      "pairs": 994,
+      "contacts": 0,
+      "manifolds": 0,
+      "overflow": 0,
+      "clashes": 0,
+      "colors": 7
+    },
+    "profile": {
+      "total": 2.6368,
+      "collision": 0.67072,
+      "adjacency": 0.06656,
+      "coloring": 0.141312,
+      "solve": 1.758208,
+      "broadphase": "grid",
+      "bvhRebuilt": false
+    },
+    "errors": []
+  },
+  "final": {
+    "name": "destroyed",
+    "steps": 420,
+    "workload": {
+      "masonryBlocks": 3559,
+      "roofPieces": 336,
+      "mortarBonds": 12554,
+      "towers": 5
+    },
+    "finite": true,
+    "broken": 170,
+    "maxDrift": 53.694964683770436,
+    "moved": 36,
+    "rotated": 32,
+    "remote": 996,
+    "remoteMoved": 1,
+    "minZ": 0.20682674646377563,
+    "maxSpeed": 12.73305519065062,
+    "projectile": [
+      -23.26482582092285,
+      52.82188415527344,
+      0.6099117398262024
+    ],
+    "stats": {
+      "pairs": 1045,
+      "contacts": 188,
+      "manifolds": 51,
+      "overflow": 0,
+      "clashes": 0,
+      "colors": 7
+    },
+    "profile": {
+      "total": 3.013632,
+      "collision": 0.982016,
+      "adjacency": 0.069632,
+      "coloring": 0.116736,
+      "solve": 1.844224,
+      "broadphase": "grid",
+      "bvhRebuilt": false
+    },
+    "errors": []
+  },
+  "roof": {
+    "name": "roof-impact",
+    "steps": 180,
+    "workload": {
+      "masonryBlocks": 3559,
+      "roofPieces": 336,
+      "mortarBonds": 12554,
+      "towers": 5
+    },
+    "finite": true,
+    "broken": 66,
+    "maxDrift": 93.23788796528103,
+    "moved": 6,
+    "rotated": 7,
+    "remote": 996,
+    "remoteMoved": 0,
+    "minZ": 0.24345773458480835,
+    "maxSpeed": 38.13976108772794,
+    "projectile": [
+      -61.43596267700195,
+      66.24849700927734,
+      23.52729034423828
+    ],
+    "stats": {
+      "pairs": 977,
+      "contacts": 26,
+      "manifolds": 12,
+      "overflow": 0,
+      "clashes": 0,
+      "colors": 7
+    },
+    "profile": {
+      "total": 3.15904,
+      "collision": 0.771072,
+      "adjacency": 0.402432,
+      "coloring": 0.140288,
+      "solve": 1.845248,
+      "broadphase": "grid",
+      "bvhRebuilt": false
+    },
+    "errors": []
+  },
+  "roofDamage": 6,
+  "controls": [
+    {
+      "kind": "sphere",
+      "passed": true
+    },
+    {
+      "kind": "box",
+      "passed": true
+    },
+    {
+      "kind": "capsule",
+      "passed": true
+    },
+    {
+      "kind": "cylinder",
+      "passed": true
+    }
+  ],
+  "reset": {
+    "broken": 0,
+    "yaw": "-16",
+    "errors": []
+  },
+  "checkpoints": [
+    {
+      "name": "initial",
+      "steps": 1,
+      "workload": {
+        "masonryBlocks": 3559,
+        "roofPieces": 336,
+        "mortarBonds": 12554,
+        "towers": 5
+      },
+      "finite": true,
+      "broken": 0,
+      "maxDrift": 0,
+      "moved": 0,
+      "rotated": 0,
+      "remote": 996,
+      "remoteMoved": 0,
+      "minZ": 0.24931396543979645,
+      "maxSpeed": 0.16187738412695868,
+      "projectile": [
+        -0.7600594758987427,
+        -29.34935760498047,
+        1.7862149477005005
+      ],
+      "stats": {
+        "pairs": 994,
+        "contacts": 0,
+        "manifolds": 0,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 7
+      },
+      "profile": {
+        "total": 3.324928,
+        "collision": 0.66048,
+        "adjacency": 0.059392,
+        "coloring": 0.397312,
+        "solve": 2.20672,
+        "broadphase": "grid",
+        "bvhRebuilt": false
+      },
+      "errors": []
+    },
+    {
+      "name": "settled",
+      "steps": 180,
+      "workload": {
+        "masonryBlocks": 3559,
+        "roofPieces": 336,
+        "mortarBonds": 12554,
+        "towers": 5
+      },
+      "finite": true,
+      "broken": 0,
+      "maxDrift": 0.05260307651196551,
+      "moved": 0,
+      "rotated": 0,
+      "remote": 996,
+      "remoteMoved": 0,
+      "minZ": 0.24345773458480835,
+      "maxSpeed": 0.011344243825617242,
+      "projectile": [
+        -0.7600594758987427,
+        -29.34935760498047,
+        1.7862149477005005
+      ],
+      "stats": {
+        "pairs": 994,
+        "contacts": 0,
+        "manifolds": 0,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 7
+      },
+      "profile": {
+        "total": 2.6368,
+        "collision": 0.67072,
+        "adjacency": 0.06656,
+        "coloring": 0.141312,
+        "solve": 1.758208,
+        "broadphase": "grid",
+        "bvhRebuilt": false
+      },
+      "errors": []
+    },
+    {
+      "name": "impact",
+      "steps": 240,
+      "workload": {
+        "masonryBlocks": 3559,
+        "roofPieces": 336,
+        "mortarBonds": 12554,
+        "towers": 5
+      },
+      "finite": true,
+      "broken": 109,
+      "maxDrift": 12.860754184482236,
+      "moved": 19,
+      "rotated": 21,
+      "remote": 996,
+      "remoteMoved": 1,
+      "minZ": 0.20618267357349396,
+      "maxSpeed": 25.284458506566278,
+      "projectile": [
+        -11.651446342468262,
+        9.80688762664795,
+        4.187902450561523
+      ],
+      "stats": {
+        "pairs": 1051,
+        "contacts": 160,
+        "manifolds": 55,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 7
+      },
+      "profile": {
+        "total": 2.656256,
+        "collision": 0.698368,
+        "adjacency": 0.070656,
+        "coloring": 0.130048,
+        "solve": 1.757184,
+        "broadphase": "grid",
+        "bvhRebuilt": false
+      },
+      "errors": []
+    },
+    {
+      "name": "destroyed",
+      "steps": 420,
+      "workload": {
+        "masonryBlocks": 3559,
+        "roofPieces": 336,
+        "mortarBonds": 12554,
+        "towers": 5
+      },
+      "finite": true,
+      "broken": 170,
+      "maxDrift": 53.694964683770436,
+      "moved": 36,
+      "rotated": 32,
+      "remote": 996,
+      "remoteMoved": 1,
+      "minZ": 0.20682674646377563,
+      "maxSpeed": 12.73305519065062,
+      "projectile": [
+        -23.26482582092285,
+        52.82188415527344,
+        0.6099117398262024
+      ],
+      "stats": {
+        "pairs": 1045,
+        "contacts": 188,
+        "manifolds": 51,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 7
+      },
+      "profile": {
+        "total": 3.013632,
+        "collision": 0.982016,
+        "adjacency": 0.069632,
+        "coloring": 0.116736,
+        "solve": 1.844224,
+        "broadphase": "grid",
+        "bvhRebuilt": false
+      },
+      "errors": []
+    },
+    {
+      "name": "roof-impact",
+      "steps": 180,
+      "workload": {
+        "masonryBlocks": 3559,
+        "roofPieces": 336,
+        "mortarBonds": 12554,
+        "towers": 5
+      },
+      "finite": true,
+      "broken": 66,
+      "maxDrift": 93.23788796528103,
+      "moved": 6,
+      "rotated": 7,
+      "remote": 996,
+      "remoteMoved": 0,
+      "minZ": 0.24345773458480835,
+      "maxSpeed": 38.13976108772794,
+      "projectile": [
+        -61.43596267700195,
+        66.24849700927734,
+        23.52729034423828
+      ],
+      "stats": {
+        "pairs": 977,
+        "contacts": 26,
+        "manifolds": 12,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 7
+      },
+      "profile": {
+        "total": 3.15904,
+        "collision": 0.771072,
+        "adjacency": 0.402432,
+        "coloring": 0.140288,
+        "solve": 1.845248,
+        "broadphase": "grid",
+        "bvhRebuilt": false
+      },
+      "errors": []
+    }
+  ],
+  "errors": []
+}

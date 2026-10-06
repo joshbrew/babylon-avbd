@@ -1,0 +1,10 @@
+[
+  {
+    "Name": "Intel(R) Arc(TM) Graphics",
+    "DriverVersion": "32.0.101.9033"
+  },
+  {
+    "Name": "NVIDIA GeForce RTX 4070 Laptop GPU",
+    "DriverVersion": "32.0.16.1714"
+  }
+]

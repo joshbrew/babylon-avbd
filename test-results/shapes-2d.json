@@ -1,0 +1,82 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "seconds": 1,
+      "steps": 121,
+      "bodies": 102,
+      "contacts": 24
+    },
+    {
+      "seconds": 2,
+      "steps": 241,
+      "bodies": 102,
+      "contacts": 124
+    },
+    {
+      "seconds": 3,
+      "steps": 361,
+      "bodies": 102,
+      "contacts": 169
+    },
+    {
+      "seconds": 4,
+      "steps": 481,
+      "bodies": 102,
+      "contacts": 182
+    },
+    {
+      "seconds": 5,
+      "steps": 601,
+      "bodies": 102,
+      "contacts": 181
+    },
+    {
+      "seconds": 6,
+      "steps": 721,
+      "bodies": 102,
+      "contacts": 180
+    },
+    {
+      "seconds": 7,
+      "steps": 841,
+      "bodies": 102,
+      "contacts": 182
+    },
+    {
+      "seconds": 8,
+      "steps": 961,
+      "bodies": 102,
+      "contacts": 180
+    },
+    {
+      "seconds": 9,
+      "steps": 1081,
+      "bodies": 102,
+      "contacts": 181
+    },
+    {
+      "seconds": 10,
+      "steps": 1201,
+      "bodies": 102,
+      "contacts": 183
+    }
+  ],
+  "screenshots": [
+    {
+      "width": 1440,
+      "path": "test-results/screenshots/2d-mixed-shapes-settled-1440.png"
+    },
+    {
+      "width": 390,
+      "path": "test-results/screenshots/2d-mixed-shapes-settled-390.png"
+    }
+  ],
+  "preview": true,
+  "collapsibleMeter": {
+    "passed": true,
+    "expandedHeight": 446.0625,
+    "collapsedHeight": 38
+  },
+  "errors": []
+}

@@ -1,0 +1,2 @@
+# Canonical Git blob checks require byte-exact upstream sources and oracle data.
+reference/three-avbd/** -text
