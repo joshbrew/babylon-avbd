@@ -4,6 +4,8 @@
 [![npm downloads](https://img.shields.io/npm/dt/avbd-babylon.svg)](https://www.npmjs.com/package/avbd-babylon)
 ![license](https://img.shields.io/npm/l/avbd-babylon)
 
+### [Try Me!!!](https://babylon-avbd.netlify.app/)
+
 `avbd-babylon` runs AVBD rigid-body physics and collision detection on WebGPU,
 with an aggregate/body API that follows familiar Babylon.js conventions.
 The package bundles its solver and shaders, with **no Babylon runtime dependency**.
