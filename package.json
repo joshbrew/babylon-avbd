@@ -94,11 +94,6 @@
     "benchmark:native-edits": "node scripts/check-native-performance.mjs",
     "benchmark:renderers": "node scripts/build.mjs && node scripts/benchmark-renderers.mjs"
   },
-  "dependencies": {
-    "chokidar": "^5.0.0",
-    "readdirp": "^5.1.1",
-    "ws": "^8.22.0"
-  },
   "devDependencies": {
     "esbuild": "^0.28.2",
     "prettier": "^3.9.9",
