@@ -92,7 +92,8 @@
     "benchmark:native": "node scripts/benchmark-package.mjs",
     "benchmark:sleeping": "node scripts/benchmark-package.mjs",
     "benchmark:native-edits": "node scripts/check-native-performance.mjs",
-    "benchmark:renderers": "node scripts/build.mjs && node scripts/benchmark-renderers.mjs"
+    "benchmark:renderers": "node scripts/build.mjs && node scripts/benchmark-renderers.mjs",
+    "test:published": "node scripts/check-published.mjs"
   },
   "devDependencies": {
     "esbuild": "^0.28.2",

@@ -120,3 +120,7 @@ overflow and zero conflicts are required in release benchmark results.
 The MIT package license and upstream notices ship with the tarball. Attribution
 includes Steven Bobyn, Chris Giles and Erin Catto; pinned upstream files remain
 unchanged.
+
+## Verify the published release
+
+Run `npm run test:published -- 0.1.0` to install the exact registry release into a fresh temporary project and check its integrity, dependency-free native usage, ESM/global exports, TypeScript declarations, and GPU 2D/3D Babylon package feature tests. Results are saved in `test-results/published-package.json`.

@@ -1,0 +1,158 @@
+{
+  "date": "2026-10-06T03:16:00.552Z",
+  "version": "0.1.0",
+  "registry": "https://registry.npmjs.org/",
+  "tarball": "https://registry.npmjs.org/avbd-babylon/-/avbd-babylon-0.1.0.tgz",
+  "integrity": "sha512-0jeYPPtUA7bhRzsTF/v6t2mk6uFjB7DumB1EvvoOliZorlW5CHxifQHKMt2idb/cCnikSorw4ByFzeUYgWCGHA==",
+  "runtimeDependencies": [],
+  "nativeWithoutBabylon": true,
+  "nodeExports": true,
+  "browserGlobal": true,
+  "types": true,
+  "results": [
+    {
+      "name": "GPU 3D zero-torque motor leaves free angular motion unchanged",
+      "passed": true
+    },
+    {
+      "name": "GPU 2D raycasts and circle casts handle rotated boxes, rounded corners, masks and sensors",
+      "passed": true
+    },
+    {
+      "name": "GPU 3D sphere casts use rounded faces, edges and hulls rather than inflated boxes",
+      "passed": true
+    },
+    {
+      "name": "GPU analytic capsules support hull contacts and exact rounded raycasts",
+      "passed": true
+    },
+    {
+      "name": "GPU analytic capsule collision benchmark against tessellated capsules",
+      "passed": true
+    },
+    {
+      "name": "GPU analytic capsules detect segment crossings, rounded corners and stable floor support",
+      "passed": true
+    },
+    {
+      "name": "GPU 2D triggers preserve motion, honor masks and emit one entry/exit per face",
+      "passed": true
+    },
+    {
+      "name": "GPU native 3D hinge and motor initialize their angular records before the first step",
+      "passed": true
+    },
+    {
+      "name": "GPU 2D restitution rebounds at the requested speed without face-point amplification",
+      "passed": true
+    },
+    {
+      "name": "GPU 3D hinge permits axial rotation and enforces angle stops with a torque-limited motor",
+      "passed": true
+    },
+    {
+      "name": "Selected pose gathering supports half-million-body selections",
+      "passed": true
+    },
+    {
+      "name": "GPU restitution obeys a sphere's bounce coefficient and zero skips bounce passes",
+      "passed": true
+    },
+    {
+      "name": "GPU elastic sphere collision conserves momentum and kinetic energy",
+      "passed": true
+    },
+    {
+      "name": "GPU triggers report entry/exit, honor masks, and never deflect motion",
+      "passed": true
+    },
+    {
+      "name": "GPU sleep eligibility is per body and explicit opt-in enables the policy",
+      "passed": true
+    },
+    {
+      "name": "Package rotated weld preserves its rest orientation without pose readback",
+      "passed": true
+    },
+    {
+      "name": "Package live weld captures GPU rotation and joint slots are reused",
+      "passed": true
+    },
+    {
+      "name": "Package movable world anchor, springs and breakable welds execute on GPU",
+      "passed": true
+    },
+    {
+      "name": "Babylon springs stretch and return, fracture in tension, and survive compression",
+      "passed": true
+    },
+    {
+      "name": "Package compact pose gathering copies only requested meshes and preserves order",
+      "passed": true
+    },
+    {
+      "name": "Package rays use live GPU poses, filters, ignored bodies and convex surfaces",
+      "passed": true
+    },
+    {
+      "name": "Package contact events begin/end without full pose downloads",
+      "passed": true
+    },
+    {
+      "name": "Package sleeping wakes for impulses and support removal",
+      "passed": true
+    },
+    {
+      "name": "Package sleeping wakes on impact and leaves unsupported slow falls awake",
+      "passed": true
+    },
+    {
+      "name": "Package 2D joints and motors and 3D fabric are available without demo imports",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "adapter": {
+    "vendor": "nvidia",
+    "description": ""
+  },
+  "capsuleBenchmark": {
+    "hardware": {
+      "vendor": "nvidia",
+      "description": ""
+    },
+    "bodies": 4096,
+    "pairs": 2048,
+    "iterations": 0,
+    "reuseContacts": false,
+    "description": "Collision-only capsule/sphere pairs; fresh narrowphase every step; 500 warm-up steps and 41 samples per run; analytic/hull/hull/analytic order. GPU timing varies with clock and power state; this is not total application FPS.",
+    "runs": [
+      {
+        "analytic": true,
+        "collisionMs": 0.156672,
+        "totalMs": 0.292864,
+        "contacts": 2048
+      },
+      {
+        "analytic": false,
+        "collisionMs": 0.193536,
+        "totalMs": 0.295936,
+        "contacts": 2048
+      },
+      {
+        "analytic": false,
+        "collisionMs": 0.14336,
+        "totalMs": 0.208896,
+        "contacts": 2048
+      },
+      {
+        "analytic": true,
+        "collisionMs": 0.073728,
+        "totalMs": 0.139264,
+        "contacts": 2048
+      }
+    ]
+  },
+  "browserErrors": [],
+  "passed": true
+}

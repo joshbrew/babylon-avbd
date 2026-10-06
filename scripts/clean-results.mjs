@@ -58,6 +58,7 @@ const roots = [
   "library-build.json",
   "library-build-cdn.json",
   "package.json",
+  "published-package.json",
   "package-report-check.json",
   "renderer-performance.json",
   "renderer-performance.html",
