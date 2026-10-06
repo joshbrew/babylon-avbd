@@ -7,7 +7,7 @@
 ### [Try Me!!!](https://babylon-avbd.netlify.app/)
 
 `avbd-babylon` runs AVBD rigid-body physics and collision detection on WebGPU,
-with an aggregate/body API that follows familiar Babylon.js conventions. Render 50-100,000 or more live physics objects in real time!
+with an aggregate/body API that follows familiar Babylon.js conventions. Render 50,000-100,000 or more live physics objects in real time!
 The package bundles its solver and shaders, with **no Babylon runtime dependency**.
 Automatic GPU work sharing and collision selection are enabled by default.
 AVBD calculates collisions, movement, rotation and friction. Babylon renders
