@@ -1,5 +1,10 @@
 # AVBD for Babylon.js
 
+[![npm version](https://img.shields.io/npm/v/avbd-babylon.svg)](https://www.npmjs.com/package/avbd-babylon)
+[![npm downloads](https://img.shields.io/npm/dt/avbd-babylon.svg)](https://www.npmjs.com/package/avbd-babylon)
+![license](https://img.shields.io/npm/l/avbd-babylon)
+
+
 **TRY ME!!!** [**babylon-avbd.netlify.app**](https://babylon-avbd.netlify.app/)
 
 `avbd-babylon` runs AVBD rigid-body physics and collision detection on WebGPU,
