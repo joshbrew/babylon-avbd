@@ -27,7 +27,16 @@ Run `npm run test:mobile-contacts` for the 3D floor-contact portability checks,
 including eight/nine storage-buffer limits and both renderers in a mobile layout.
 The layout checks use the test computer's GPU. Test the hosted demo on actual
 phones as well; its **GPU contact check** sidebar can save a diagnostic report
-with floor-contact results, browser details and device limits.
+with floor-contact results, browser details and device limits. Failed devices
+test separate GPU passes and H-PLOC search; a fallback is used only after its
+known-overlap and falling-shape checks pass. GPUs that pass the normal path keep
+the batched execution and automatic scene selection.
+
+To compare PC performance with a saved package build, run
+`node scripts/check-contact-performance.mjs --baseline=/path/to/avbd.js`.
+It runs 10K and 100K native 3D bodies with five iterations, three alternating
+repeats and no rendering or sleeping. It checks identical dispatch sequences,
+matching selected physics states, GPU times and CPU submission times.
 
 Run `npm run benchmark:native` to refresh the three-repeat 2D/3D measurements
 for bulk movement/spin, property edits, grouped queries, selected reads and

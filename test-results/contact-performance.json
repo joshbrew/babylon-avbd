@@ -1,0 +1,3587 @@
+{
+  "passed": true,
+  "baseline": "C:\\Users\\brews\\Documents\\Github\\babylon-avbd\\dist\\avbd.js",
+  "scope": "Before/after compatibility changes. Same native GPU physics, five iterations, no rendering or sleeping; three alternating repeats. Timing includes GPU phase boundaries.",
+  "date": "2026-10-07T16:33:20.026Z",
+  "adapter": {
+    "vendor": "nvidia",
+    "description": ""
+  },
+  "results": [
+    {
+      "bodies": 10001,
+      "iterations": 5,
+      "dispatchIsolation": false,
+      "commandsIdentical": true,
+      "commands": [
+        [
+          [
+            "pass"
+          ],
+          [
+            "pipeline",
+            "beginFrame"
+          ],
+          [
+            "dispatchWorkgroups",
+            1
+          ],
+          [
+            "pipeline",
+            "Portable contact references"
+          ],
+          [
+            "dispatchWorkgroups",
+            157
+          ],
+          [
+            "pipeline",
+            "argsPrev"
+          ],
+          [
+            "dispatchWorkgroups",
+            1
+          ],
+          [
+            "pipeline",
+            "hashInsert"
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            24
+          ],
+          [
+            "pipeline",
+            "gridCount"
+          ],
+          [
+            "dispatchWorkgroups",
+            157
+          ],
+          [
+            "pipeline",
+            "scanBlocks"
+          ],
+          [
+            "dispatchWorkgroups",
+            65
+          ],
+          [
+            "dispatchWorkgroups",
+            1
+          ],
+          [
+            "pipeline",
+            "addBlocks"
+          ],
+          [
+            "dispatchWorkgroups",
+            65
+          ],
+          [
+            "pipeline",
+            "gridScatter"
+          ],
+          [
+            "dispatchWorkgroups",
+            157
+          ],
+          [
+            "pipeline",
+            "findPairs"
+          ],
+          [
+            "dispatchWorkgroups",
+            157
+          ],
+          [
+            "pipeline",
+            "argsPairs"
+          ],
+          [
+            "dispatchWorkgroups",
+            1
+          ],
+          [
+            "pipeline",
+            "narrowphase"
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            0
+          ],
+          [
+            "pipeline",
+            "argsContacts"
+          ],
+          [
+            "dispatchWorkgroups",
+            1
+          ],
+          [
+            "pipeline",
+            "degreeContacts"
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            12
+          ],
+          [
+            "pipeline",
+            "scanBlocks"
+          ],
+          [
+            "dispatchWorkgroups",
+            20
+          ],
+          [
+            "dispatchWorkgroups",
+            1
+          ],
+          [
+            "pipeline",
+            "addBlocks"
+          ],
+          [
+            "dispatchWorkgroups",
+            20
+          ],
+          [
+            "pipeline",
+            "fillContacts"
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            12
+          ],
+          [
+            "pipeline",
+            "sortAdjacency"
+          ],
+          [
+            "dispatchWorkgroups",
+            157
+          ],
+          [
+            "pipeline",
+            "colorCompact"
+          ],
+          [
+            "dispatchWorkgroups",
+            157
+          ],
+          [
+            "pipeline",
+            "colorMark"
+          ],
+          [
+            "dispatchWorkgroups",
+            157
+          ],
+          [
+            "pipeline",
+            "colorRoundAB"
+          ],
+          [
+            "dispatchWorkgroups",
+            157
+          ],
+          [
+            "pipeline",
+            "colorRoundBA"
+          ],
+          [
+            "dispatchWorkgroups",
+            157
+          ],
+          [
+            "pipeline",
+            "colorRoundAB"
+          ],
+          [
+            "dispatchWorkgroups",
+            157
+          ],
+          [
+            "pipeline",
+            "colorRoundBA"
+          ],
+          [
+            "dispatchWorkgroups",
+            157
+          ],
+          [
+            "pipeline",
+            "colorRoundAB"
+          ],
+          [
+            "dispatchWorkgroups",
+            157
+          ],
+          [
+            "pipeline",
+            "colorRoundBA"
+          ],
+          [
+            "dispatchWorkgroups",
+            157
+          ],
+          [
+            "pipeline",
+            "colorRoundAB"
+          ],
+          [
+            "dispatchWorkgroups",
+            157
+          ],
+          [
+            "pipeline",
+            "colorRoundBA"
+          ],
+          [
+            "dispatchWorkgroups",
+            157
+          ],
+          [
+            "pipeline",
+            "colorRoundAB"
+          ],
+          [
+            "dispatchWorkgroups",
+            157
+          ],
+          [
+            "pipeline",
+            "colorRoundBA"
+          ],
+          [
+            "dispatchWorkgroups",
+            157
+          ],
+          [
+            "pipeline",
+            "colorRoundAB"
+          ],
+          [
+            "dispatchWorkgroups",
+            157
+          ],
+          [
+            "pipeline",
+            "colorRoundBA"
+          ],
+          [
+            "dispatchWorkgroups",
+            157
+          ],
+          [
+            "pipeline",
+            "colorRoundAB"
+          ],
+          [
+            "dispatchWorkgroups",
+            157
+          ],
+          [
+            "pipeline",
+            "colorRoundBA"
+          ],
+          [
+            "dispatchWorkgroups",
+            157
+          ],
+          [
+            "pipeline",
+            "colorRoundAB"
+          ],
+          [
+            "dispatchWorkgroups",
+            157
+          ],
+          [
+            "pipeline",
+            "colorRoundBA"
+          ],
+          [
+            "dispatchWorkgroups",
+            157
+          ],
+          [
+            "pipeline",
+            "colorCount"
+          ],
+          [
+            "dispatchWorkgroups",
+            44
+          ],
+          [
+            "pipeline",
+            "scanBlocks"
+          ],
+          [
+            "dispatchWorkgroups",
+            6
+          ],
+          [
+            "dispatchWorkgroups",
+            1
+          ],
+          [
+            "pipeline",
+            "addBlocks"
+          ],
+          [
+            "dispatchWorkgroups",
+            6
+          ],
+          [
+            "pipeline",
+            "colorStarts"
+          ],
+          [
+            "dispatchWorkgroups",
+            1
+          ],
+          [
+            "pipeline",
+            "argsColors"
+          ],
+          [
+            "dispatchWorkgroups",
+            1
+          ],
+          [
+            "pipeline",
+            "colorScatter"
+          ],
+          [
+            "dispatchWorkgroups",
+            44
+          ],
+          [
+            "pipeline",
+            "warmStartBodies"
+          ],
+          [
+            "dispatchWorkgroups",
+            157
+          ],
+          [
+            "pipeline",
+            "primal"
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            48
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            60
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            72
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            84
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            96
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            108
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            120
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            132
+          ],
+          [
+            "pipeline",
+            "dual"
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            36
+          ],
+          [
+            "pipeline",
+            "primal"
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            48
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            60
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            72
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            84
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            96
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            108
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            120
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            132
+          ],
+          [
+            "pipeline",
+            "dual"
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            36
+          ],
+          [
+            "pipeline",
+            "primal"
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            48
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            60
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            72
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            84
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            96
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            108
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            120
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            132
+          ],
+          [
+            "pipeline",
+            "dual"
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            36
+          ],
+          [
+            "pipeline",
+            "primal"
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            48
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            60
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            72
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            84
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            96
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            108
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            120
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            132
+          ],
+          [
+            "pipeline",
+            "dual"
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            36
+          ],
+          [
+            "pipeline",
+            "primal"
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            48
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            60
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            72
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            84
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            96
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            108
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            120
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            132
+          ],
+          [
+            "pipeline",
+            "dual"
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            36
+          ],
+          [
+            "pipeline",
+            "updateVelocities"
+          ],
+          [
+            "dispatchWorkgroups",
+            157
+          ]
+        ],
+        [
+          [
+            "pass"
+          ],
+          [
+            "pipeline",
+            "beginFrame"
+          ],
+          [
+            "dispatchWorkgroups",
+            1
+          ],
+          [
+            "pipeline",
+            "Portable contact references"
+          ],
+          [
+            "dispatchWorkgroups",
+            157
+          ],
+          [
+            "pipeline",
+            "argsPrev"
+          ],
+          [
+            "dispatchWorkgroups",
+            1
+          ],
+          [
+            "pipeline",
+            "hashInsert"
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            24
+          ],
+          [
+            "pipeline",
+            "gridCount"
+          ],
+          [
+            "dispatchWorkgroups",
+            157
+          ],
+          [
+            "pipeline",
+            "scanBlocks"
+          ],
+          [
+            "dispatchWorkgroups",
+            65
+          ],
+          [
+            "dispatchWorkgroups",
+            1
+          ],
+          [
+            "pipeline",
+            "addBlocks"
+          ],
+          [
+            "dispatchWorkgroups",
+            65
+          ],
+          [
+            "pipeline",
+            "gridScatter"
+          ],
+          [
+            "dispatchWorkgroups",
+            157
+          ],
+          [
+            "pipeline",
+            "findPairs"
+          ],
+          [
+            "dispatchWorkgroups",
+            157
+          ],
+          [
+            "pipeline",
+            "argsPairs"
+          ],
+          [
+            "dispatchWorkgroups",
+            1
+          ],
+          [
+            "pipeline",
+            "narrowphase"
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            0
+          ],
+          [
+            "pipeline",
+            "argsContacts"
+          ],
+          [
+            "dispatchWorkgroups",
+            1
+          ],
+          [
+            "pipeline",
+            "degreeContacts"
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            12
+          ],
+          [
+            "pipeline",
+            "scanBlocks"
+          ],
+          [
+            "dispatchWorkgroups",
+            20
+          ],
+          [
+            "dispatchWorkgroups",
+            1
+          ],
+          [
+            "pipeline",
+            "addBlocks"
+          ],
+          [
+            "dispatchWorkgroups",
+            20
+          ],
+          [
+            "pipeline",
+            "fillContacts"
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            12
+          ],
+          [
+            "pipeline",
+            "sortAdjacency"
+          ],
+          [
+            "dispatchWorkgroups",
+            157
+          ],
+          [
+            "pipeline",
+            "colorCompact"
+          ],
+          [
+            "dispatchWorkgroups",
+            157
+          ],
+          [
+            "pipeline",
+            "colorMark"
+          ],
+          [
+            "dispatchWorkgroups",
+            157
+          ],
+          [
+            "pipeline",
+            "colorRoundAB"
+          ],
+          [
+            "dispatchWorkgroups",
+            157
+          ],
+          [
+            "pipeline",
+            "colorRoundBA"
+          ],
+          [
+            "dispatchWorkgroups",
+            157
+          ],
+          [
+            "pipeline",
+            "colorRoundAB"
+          ],
+          [
+            "dispatchWorkgroups",
+            157
+          ],
+          [
+            "pipeline",
+            "colorRoundBA"
+          ],
+          [
+            "dispatchWorkgroups",
+            157
+          ],
+          [
+            "pipeline",
+            "colorRoundAB"
+          ],
+          [
+            "dispatchWorkgroups",
+            157
+          ],
+          [
+            "pipeline",
+            "colorRoundBA"
+          ],
+          [
+            "dispatchWorkgroups",
+            157
+          ],
+          [
+            "pipeline",
+            "colorRoundAB"
+          ],
+          [
+            "dispatchWorkgroups",
+            157
+          ],
+          [
+            "pipeline",
+            "colorRoundBA"
+          ],
+          [
+            "dispatchWorkgroups",
+            157
+          ],
+          [
+            "pipeline",
+            "colorRoundAB"
+          ],
+          [
+            "dispatchWorkgroups",
+            157
+          ],
+          [
+            "pipeline",
+            "colorRoundBA"
+          ],
+          [
+            "dispatchWorkgroups",
+            157
+          ],
+          [
+            "pipeline",
+            "colorRoundAB"
+          ],
+          [
+            "dispatchWorkgroups",
+            157
+          ],
+          [
+            "pipeline",
+            "colorRoundBA"
+          ],
+          [
+            "dispatchWorkgroups",
+            157
+          ],
+          [
+            "pipeline",
+            "colorRoundAB"
+          ],
+          [
+            "dispatchWorkgroups",
+            157
+          ],
+          [
+            "pipeline",
+            "colorRoundBA"
+          ],
+          [
+            "dispatchWorkgroups",
+            157
+          ],
+          [
+            "pipeline",
+            "colorRoundAB"
+          ],
+          [
+            "dispatchWorkgroups",
+            157
+          ],
+          [
+            "pipeline",
+            "colorRoundBA"
+          ],
+          [
+            "dispatchWorkgroups",
+            157
+          ],
+          [
+            "pipeline",
+            "colorCount"
+          ],
+          [
+            "dispatchWorkgroups",
+            44
+          ],
+          [
+            "pipeline",
+            "scanBlocks"
+          ],
+          [
+            "dispatchWorkgroups",
+            6
+          ],
+          [
+            "dispatchWorkgroups",
+            1
+          ],
+          [
+            "pipeline",
+            "addBlocks"
+          ],
+          [
+            "dispatchWorkgroups",
+            6
+          ],
+          [
+            "pipeline",
+            "colorStarts"
+          ],
+          [
+            "dispatchWorkgroups",
+            1
+          ],
+          [
+            "pipeline",
+            "argsColors"
+          ],
+          [
+            "dispatchWorkgroups",
+            1
+          ],
+          [
+            "pipeline",
+            "colorScatter"
+          ],
+          [
+            "dispatchWorkgroups",
+            44
+          ],
+          [
+            "pipeline",
+            "warmStartBodies"
+          ],
+          [
+            "dispatchWorkgroups",
+            157
+          ],
+          [
+            "pipeline",
+            "primal"
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            48
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            60
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            72
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            84
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            96
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            108
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            120
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            132
+          ],
+          [
+            "pipeline",
+            "dual"
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            36
+          ],
+          [
+            "pipeline",
+            "primal"
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            48
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            60
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            72
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            84
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            96
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            108
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            120
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            132
+          ],
+          [
+            "pipeline",
+            "dual"
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            36
+          ],
+          [
+            "pipeline",
+            "primal"
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            48
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            60
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            72
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            84
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            96
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            108
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            120
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            132
+          ],
+          [
+            "pipeline",
+            "dual"
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            36
+          ],
+          [
+            "pipeline",
+            "primal"
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            48
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            60
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            72
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            84
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            96
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            108
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            120
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            132
+          ],
+          [
+            "pipeline",
+            "dual"
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            36
+          ],
+          [
+            "pipeline",
+            "primal"
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            48
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            60
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            72
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            84
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            96
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            108
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            120
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            132
+          ],
+          [
+            "pipeline",
+            "dual"
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            36
+          ],
+          [
+            "pipeline",
+            "updateVelocities"
+          ],
+          [
+            "dispatchWorkgroups",
+            157
+          ]
+        ]
+      ],
+      "counters": [
+        {
+          "pairs": 10000,
+          "contacts": 40000,
+          "manifolds": 10000,
+          "overflow": 0,
+          "clashes": 0,
+          "colors": 1
+        },
+        {
+          "pairs": 10000,
+          "contacts": 40000,
+          "manifolds": 10000,
+          "overflow": 0,
+          "clashes": 0,
+          "colors": 1
+        }
+      ],
+      "selectedPosesMatch": true,
+      "baseline": {
+        "gpuMs": 1.29536,
+        "cpuSubmitMs": 0.19999998807907104,
+        "samples": [
+          {
+            "gpu": 1.31072,
+            "cpu": 0.9000000357627869
+          },
+          {
+            "gpu": 1.294336,
+            "cpu": 0.40000003576278687
+          },
+          {
+            "gpu": 1.385472,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 1.312768,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 1.299456,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 1.294336,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 1.289216,
+            "cpu": 0.10000002384185791
+          },
+          {
+            "gpu": 1.294336,
+            "cpu": 0.10000002384185791
+          },
+          {
+            "gpu": 1.293312,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 1.293312,
+            "cpu": 0.20000004768371582
+          },
+          {
+            "gpu": 1.294336,
+            "cpu": 0.10000002384185791
+          },
+          {
+            "gpu": 1.294336,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 1.289216,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 1.29536,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 1.29536,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 1.294336,
+            "cpu": 0.10000002384185791
+          },
+          {
+            "gpu": 1.29024,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 1.29536,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 1.296384,
+            "cpu": 0.6000000238418579
+          },
+          {
+            "gpu": 1.29536,
+            "cpu": 0.09999996423721313
+          },
+          {
+            "gpu": 1.294336,
+            "cpu": 0.09999996423721313
+          },
+          {
+            "gpu": 1.284096,
+            "cpu": 0.09999996423721313
+          },
+          {
+            "gpu": 1.29024,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 1.294336,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 1.294336,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 1.29536,
+            "cpu": 0
+          },
+          {
+            "gpu": 1.294336,
+            "cpu": 0.2999999523162842
+          },
+          {
+            "gpu": 1.29536,
+            "cpu": 0.09999996423721313
+          },
+          {
+            "gpu": 1.30048,
+            "cpu": 0.2999999523162842
+          },
+          {
+            "gpu": 1.292288,
+            "cpu": 0.09999996423721313
+          },
+          {
+            "gpu": 1.299456,
+            "cpu": 0.3999999761581421
+          },
+          {
+            "gpu": 1.294336,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 1.299456,
+            "cpu": 0.2999999523162842
+          },
+          {
+            "gpu": 1.30048,
+            "cpu": 0.3999999761581421
+          },
+          {
+            "gpu": 1.29536,
+            "cpu": 0.09999996423721313
+          },
+          {
+            "gpu": 1.292288,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 1.294336,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 1.296384,
+            "cpu": 0.20000004768371582
+          },
+          {
+            "gpu": 1.299456,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 1.294336,
+            "cpu": 0.20000004768371582
+          },
+          {
+            "gpu": 1.298432,
+            "cpu": 0.5
+          },
+          {
+            "gpu": 1.296384,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 1.29536,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 1.297408,
+            "cpu": 0.20000004768371582
+          },
+          {
+            "gpu": 1.299456,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 1.293312,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 1.298432,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 1.299456,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 1.293312,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 1.29536,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 1.291264,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 1.29536,
+            "cpu": 0.2999999523162842
+          },
+          {
+            "gpu": 1.30048,
+            "cpu": 0.10000002384185791
+          },
+          {
+            "gpu": 1.29536,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 1.286144,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 1.294336,
+            "cpu": 0.3999999761581421
+          },
+          {
+            "gpu": 1.297408,
+            "cpu": 0.20000004768371582
+          },
+          {
+            "gpu": 1.298432,
+            "cpu": 0.3999999761581421
+          },
+          {
+            "gpu": 1.29024,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 1.288192,
+            "cpu": 0.09999996423721313
+          },
+          {
+            "gpu": 1.294336,
+            "cpu": 0.20000004768371582
+          },
+          {
+            "gpu": 1.294336,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 1.293312,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 1.293312,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 1.294336,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 1.294336,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 1.296384,
+            "cpu": 0.20000004768371582
+          },
+          {
+            "gpu": 1.29536,
+            "cpu": 0.10000002384185791
+          },
+          {
+            "gpu": 1.29536,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 1.296384,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 1.304576,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 1.296384,
+            "cpu": 0.19999998807907104
+          }
+        ]
+      },
+      "current": {
+        "gpuMs": 1.29536,
+        "cpuSubmitMs": 0.19999998807907104,
+        "samples": [
+          {
+            "gpu": 1.29536,
+            "cpu": 0.6000000238418579
+          },
+          {
+            "gpu": 1.31584,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 1.323008,
+            "cpu": 0.09999996423721313
+          },
+          {
+            "gpu": 1.302528,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 1.29536,
+            "cpu": 0.10000002384185791
+          },
+          {
+            "gpu": 1.294336,
+            "cpu": 0.3999999761581421
+          },
+          {
+            "gpu": 1.293312,
+            "cpu": 0.09999996423721313
+          },
+          {
+            "gpu": 1.297408,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 1.297408,
+            "cpu": 0.09999996423721313
+          },
+          {
+            "gpu": 1.293312,
+            "cpu": 0.20000004768371582
+          },
+          {
+            "gpu": 1.293312,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 1.298432,
+            "cpu": 0.20000004768371582
+          },
+          {
+            "gpu": 1.30048,
+            "cpu": 0.20000004768371582
+          },
+          {
+            "gpu": 1.307648,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 1.29536,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 1.292288,
+            "cpu": 0.10000002384185791
+          },
+          {
+            "gpu": 1.296384,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 1.294336,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 1.299456,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 1.293312,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 1.296384,
+            "cpu": 0
+          },
+          {
+            "gpu": 1.297408,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 1.302528,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 1.301504,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 1.297408,
+            "cpu": 0.10000002384185791
+          },
+          {
+            "gpu": 1.294336,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 1.293312,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 1.299456,
+            "cpu": 0.09999996423721313
+          },
+          {
+            "gpu": 1.29536,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 1.294336,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 1.293312,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 1.294336,
+            "cpu": 0.2999999523162842
+          },
+          {
+            "gpu": 1.293312,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 1.293312,
+            "cpu": 0.09999996423721313
+          },
+          {
+            "gpu": 1.288192,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 1.291264,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 1.293312,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 1.29536,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 1.293312,
+            "cpu": 0.10000002384185791
+          },
+          {
+            "gpu": 1.291264,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 1.294336,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 1.294336,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 1.292288,
+            "cpu": 0.8999999761581421
+          },
+          {
+            "gpu": 1.293312,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 1.283072,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 1.289216,
+            "cpu": 0.09999996423721313
+          },
+          {
+            "gpu": 1.297408,
+            "cpu": 0.10000002384185791
+          },
+          {
+            "gpu": 1.292288,
+            "cpu": 0.2999999523162842
+          },
+          {
+            "gpu": 1.294336,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 1.299456,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 1.30048,
+            "cpu": 0.2999999523162842
+          },
+          {
+            "gpu": 1.297408,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 1.313792,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 1.299456,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 1.29536,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 1.293312,
+            "cpu": 0.09999996423721313
+          },
+          {
+            "gpu": 1.29536,
+            "cpu": 0.10000002384185791
+          },
+          {
+            "gpu": 1.29536,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 1.294336,
+            "cpu": 0.10000002384185791
+          },
+          {
+            "gpu": 1.292288,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 1.29536,
+            "cpu": 0.20000004768371582
+          },
+          {
+            "gpu": 1.299456,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 1.29536,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 1.29536,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 1.294336,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 1.296384,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 1.299456,
+            "cpu": 0.10000002384185791
+          },
+          {
+            "gpu": 1.29536,
+            "cpu": 0.20000004768371582
+          },
+          {
+            "gpu": 1.297408,
+            "cpu": 0.2999999523162842
+          },
+          {
+            "gpu": 1.29536,
+            "cpu": 0.10000002384185791
+          },
+          {
+            "gpu": 1.294336,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 1.293312,
+            "cpu": 0.20000004768371582
+          }
+        ]
+      },
+      "gpuRatio": 1
+    },
+    {
+      "bodies": 100001,
+      "iterations": 5,
+      "dispatchIsolation": false,
+      "commandsIdentical": true,
+      "commands": [
+        [
+          [
+            "pass"
+          ],
+          [
+            "pipeline",
+            "beginFrame"
+          ],
+          [
+            "dispatchWorkgroups",
+            1
+          ],
+          [
+            "pipeline",
+            "Portable contact references"
+          ],
+          [
+            "dispatchWorkgroups",
+            1563
+          ],
+          [
+            "pipeline",
+            "argsPrev"
+          ],
+          [
+            "dispatchWorkgroups",
+            1
+          ],
+          [
+            "pipeline",
+            "hashInsert"
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            24
+          ],
+          [
+            "pipeline",
+            "gridCount"
+          ],
+          [
+            "dispatchWorkgroups",
+            1563
+          ],
+          [
+            "pipeline",
+            "scanBlocks"
+          ],
+          [
+            "dispatchWorkgroups",
+            513
+          ],
+          [
+            "dispatchWorkgroups",
+            2
+          ],
+          [
+            "dispatchWorkgroups",
+            1
+          ],
+          [
+            "pipeline",
+            "addBlocks"
+          ],
+          [
+            "dispatchWorkgroups",
+            2
+          ],
+          [
+            "dispatchWorkgroups",
+            513
+          ],
+          [
+            "pipeline",
+            "gridScatter"
+          ],
+          [
+            "dispatchWorkgroups",
+            1563
+          ],
+          [
+            "pipeline",
+            "findPairs"
+          ],
+          [
+            "dispatchWorkgroups",
+            1563
+          ],
+          [
+            "pipeline",
+            "argsPairs"
+          ],
+          [
+            "dispatchWorkgroups",
+            1
+          ],
+          [
+            "pipeline",
+            "narrowphase"
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            0
+          ],
+          [
+            "pipeline",
+            "argsContacts"
+          ],
+          [
+            "dispatchWorkgroups",
+            1
+          ],
+          [
+            "pipeline",
+            "degreeContacts"
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            12
+          ],
+          [
+            "pipeline",
+            "scanBlocks"
+          ],
+          [
+            "dispatchWorkgroups",
+            196
+          ],
+          [
+            "dispatchWorkgroups",
+            1
+          ],
+          [
+            "pipeline",
+            "addBlocks"
+          ],
+          [
+            "dispatchWorkgroups",
+            196
+          ],
+          [
+            "pipeline",
+            "fillContacts"
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            12
+          ],
+          [
+            "pipeline",
+            "sortAdjacency"
+          ],
+          [
+            "dispatchWorkgroups",
+            1563
+          ],
+          [
+            "pipeline",
+            "colorCompact"
+          ],
+          [
+            "dispatchWorkgroups",
+            1563
+          ],
+          [
+            "pipeline",
+            "colorMark"
+          ],
+          [
+            "dispatchWorkgroups",
+            1563
+          ],
+          [
+            "pipeline",
+            "colorRoundAB"
+          ],
+          [
+            "dispatchWorkgroups",
+            1563
+          ],
+          [
+            "pipeline",
+            "colorRoundBA"
+          ],
+          [
+            "dispatchWorkgroups",
+            1563
+          ],
+          [
+            "pipeline",
+            "colorRoundAB"
+          ],
+          [
+            "dispatchWorkgroups",
+            1563
+          ],
+          [
+            "pipeline",
+            "colorRoundBA"
+          ],
+          [
+            "dispatchWorkgroups",
+            1563
+          ],
+          [
+            "pipeline",
+            "colorRoundAB"
+          ],
+          [
+            "dispatchWorkgroups",
+            1563
+          ],
+          [
+            "pipeline",
+            "colorRoundBA"
+          ],
+          [
+            "dispatchWorkgroups",
+            1563
+          ],
+          [
+            "pipeline",
+            "colorRoundAB"
+          ],
+          [
+            "dispatchWorkgroups",
+            1563
+          ],
+          [
+            "pipeline",
+            "colorRoundBA"
+          ],
+          [
+            "dispatchWorkgroups",
+            1563
+          ],
+          [
+            "pipeline",
+            "colorRoundAB"
+          ],
+          [
+            "dispatchWorkgroups",
+            1563
+          ],
+          [
+            "pipeline",
+            "colorRoundBA"
+          ],
+          [
+            "dispatchWorkgroups",
+            1563
+          ],
+          [
+            "pipeline",
+            "colorRoundAB"
+          ],
+          [
+            "dispatchWorkgroups",
+            1563
+          ],
+          [
+            "pipeline",
+            "colorRoundBA"
+          ],
+          [
+            "dispatchWorkgroups",
+            1563
+          ],
+          [
+            "pipeline",
+            "colorRoundAB"
+          ],
+          [
+            "dispatchWorkgroups",
+            1563
+          ],
+          [
+            "pipeline",
+            "colorRoundBA"
+          ],
+          [
+            "dispatchWorkgroups",
+            1563
+          ],
+          [
+            "pipeline",
+            "colorRoundAB"
+          ],
+          [
+            "dispatchWorkgroups",
+            1563
+          ],
+          [
+            "pipeline",
+            "colorRoundBA"
+          ],
+          [
+            "dispatchWorkgroups",
+            1563
+          ],
+          [
+            "pipeline",
+            "colorCount"
+          ],
+          [
+            "dispatchWorkgroups",
+            395
+          ],
+          [
+            "pipeline",
+            "scanBlocks"
+          ],
+          [
+            "dispatchWorkgroups",
+            50
+          ],
+          [
+            "dispatchWorkgroups",
+            1
+          ],
+          [
+            "pipeline",
+            "addBlocks"
+          ],
+          [
+            "dispatchWorkgroups",
+            50
+          ],
+          [
+            "pipeline",
+            "colorStarts"
+          ],
+          [
+            "dispatchWorkgroups",
+            1
+          ],
+          [
+            "pipeline",
+            "argsColors"
+          ],
+          [
+            "dispatchWorkgroups",
+            1
+          ],
+          [
+            "pipeline",
+            "colorScatter"
+          ],
+          [
+            "dispatchWorkgroups",
+            395
+          ],
+          [
+            "pipeline",
+            "warmStartBodies"
+          ],
+          [
+            "dispatchWorkgroups",
+            1563
+          ],
+          [
+            "pipeline",
+            "primal"
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            48
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            60
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            72
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            84
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            96
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            108
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            120
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            132
+          ],
+          [
+            "pipeline",
+            "dual"
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            36
+          ],
+          [
+            "pipeline",
+            "primal"
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            48
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            60
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            72
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            84
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            96
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            108
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            120
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            132
+          ],
+          [
+            "pipeline",
+            "dual"
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            36
+          ],
+          [
+            "pipeline",
+            "primal"
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            48
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            60
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            72
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            84
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            96
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            108
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            120
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            132
+          ],
+          [
+            "pipeline",
+            "dual"
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            36
+          ],
+          [
+            "pipeline",
+            "primal"
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            48
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            60
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            72
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            84
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            96
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            108
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            120
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            132
+          ],
+          [
+            "pipeline",
+            "dual"
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            36
+          ],
+          [
+            "pipeline",
+            "primal"
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            48
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            60
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            72
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            84
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            96
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            108
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            120
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            132
+          ],
+          [
+            "pipeline",
+            "dual"
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            36
+          ],
+          [
+            "pipeline",
+            "updateVelocities"
+          ],
+          [
+            "dispatchWorkgroups",
+            1563
+          ]
+        ],
+        [
+          [
+            "pass"
+          ],
+          [
+            "pipeline",
+            "beginFrame"
+          ],
+          [
+            "dispatchWorkgroups",
+            1
+          ],
+          [
+            "pipeline",
+            "Portable contact references"
+          ],
+          [
+            "dispatchWorkgroups",
+            1563
+          ],
+          [
+            "pipeline",
+            "argsPrev"
+          ],
+          [
+            "dispatchWorkgroups",
+            1
+          ],
+          [
+            "pipeline",
+            "hashInsert"
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            24
+          ],
+          [
+            "pipeline",
+            "gridCount"
+          ],
+          [
+            "dispatchWorkgroups",
+            1563
+          ],
+          [
+            "pipeline",
+            "scanBlocks"
+          ],
+          [
+            "dispatchWorkgroups",
+            513
+          ],
+          [
+            "dispatchWorkgroups",
+            2
+          ],
+          [
+            "dispatchWorkgroups",
+            1
+          ],
+          [
+            "pipeline",
+            "addBlocks"
+          ],
+          [
+            "dispatchWorkgroups",
+            2
+          ],
+          [
+            "dispatchWorkgroups",
+            513
+          ],
+          [
+            "pipeline",
+            "gridScatter"
+          ],
+          [
+            "dispatchWorkgroups",
+            1563
+          ],
+          [
+            "pipeline",
+            "findPairs"
+          ],
+          [
+            "dispatchWorkgroups",
+            1563
+          ],
+          [
+            "pipeline",
+            "argsPairs"
+          ],
+          [
+            "dispatchWorkgroups",
+            1
+          ],
+          [
+            "pipeline",
+            "narrowphase"
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            0
+          ],
+          [
+            "pipeline",
+            "argsContacts"
+          ],
+          [
+            "dispatchWorkgroups",
+            1
+          ],
+          [
+            "pipeline",
+            "degreeContacts"
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            12
+          ],
+          [
+            "pipeline",
+            "scanBlocks"
+          ],
+          [
+            "dispatchWorkgroups",
+            196
+          ],
+          [
+            "dispatchWorkgroups",
+            1
+          ],
+          [
+            "pipeline",
+            "addBlocks"
+          ],
+          [
+            "dispatchWorkgroups",
+            196
+          ],
+          [
+            "pipeline",
+            "fillContacts"
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            12
+          ],
+          [
+            "pipeline",
+            "sortAdjacency"
+          ],
+          [
+            "dispatchWorkgroups",
+            1563
+          ],
+          [
+            "pipeline",
+            "colorCompact"
+          ],
+          [
+            "dispatchWorkgroups",
+            1563
+          ],
+          [
+            "pipeline",
+            "colorMark"
+          ],
+          [
+            "dispatchWorkgroups",
+            1563
+          ],
+          [
+            "pipeline",
+            "colorRoundAB"
+          ],
+          [
+            "dispatchWorkgroups",
+            1563
+          ],
+          [
+            "pipeline",
+            "colorRoundBA"
+          ],
+          [
+            "dispatchWorkgroups",
+            1563
+          ],
+          [
+            "pipeline",
+            "colorRoundAB"
+          ],
+          [
+            "dispatchWorkgroups",
+            1563
+          ],
+          [
+            "pipeline",
+            "colorRoundBA"
+          ],
+          [
+            "dispatchWorkgroups",
+            1563
+          ],
+          [
+            "pipeline",
+            "colorRoundAB"
+          ],
+          [
+            "dispatchWorkgroups",
+            1563
+          ],
+          [
+            "pipeline",
+            "colorRoundBA"
+          ],
+          [
+            "dispatchWorkgroups",
+            1563
+          ],
+          [
+            "pipeline",
+            "colorRoundAB"
+          ],
+          [
+            "dispatchWorkgroups",
+            1563
+          ],
+          [
+            "pipeline",
+            "colorRoundBA"
+          ],
+          [
+            "dispatchWorkgroups",
+            1563
+          ],
+          [
+            "pipeline",
+            "colorRoundAB"
+          ],
+          [
+            "dispatchWorkgroups",
+            1563
+          ],
+          [
+            "pipeline",
+            "colorRoundBA"
+          ],
+          [
+            "dispatchWorkgroups",
+            1563
+          ],
+          [
+            "pipeline",
+            "colorRoundAB"
+          ],
+          [
+            "dispatchWorkgroups",
+            1563
+          ],
+          [
+            "pipeline",
+            "colorRoundBA"
+          ],
+          [
+            "dispatchWorkgroups",
+            1563
+          ],
+          [
+            "pipeline",
+            "colorRoundAB"
+          ],
+          [
+            "dispatchWorkgroups",
+            1563
+          ],
+          [
+            "pipeline",
+            "colorRoundBA"
+          ],
+          [
+            "dispatchWorkgroups",
+            1563
+          ],
+          [
+            "pipeline",
+            "colorRoundAB"
+          ],
+          [
+            "dispatchWorkgroups",
+            1563
+          ],
+          [
+            "pipeline",
+            "colorRoundBA"
+          ],
+          [
+            "dispatchWorkgroups",
+            1563
+          ],
+          [
+            "pipeline",
+            "colorCount"
+          ],
+          [
+            "dispatchWorkgroups",
+            395
+          ],
+          [
+            "pipeline",
+            "scanBlocks"
+          ],
+          [
+            "dispatchWorkgroups",
+            50
+          ],
+          [
+            "dispatchWorkgroups",
+            1
+          ],
+          [
+            "pipeline",
+            "addBlocks"
+          ],
+          [
+            "dispatchWorkgroups",
+            50
+          ],
+          [
+            "pipeline",
+            "colorStarts"
+          ],
+          [
+            "dispatchWorkgroups",
+            1
+          ],
+          [
+            "pipeline",
+            "argsColors"
+          ],
+          [
+            "dispatchWorkgroups",
+            1
+          ],
+          [
+            "pipeline",
+            "colorScatter"
+          ],
+          [
+            "dispatchWorkgroups",
+            395
+          ],
+          [
+            "pipeline",
+            "warmStartBodies"
+          ],
+          [
+            "dispatchWorkgroups",
+            1563
+          ],
+          [
+            "pipeline",
+            "primal"
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            48
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            60
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            72
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            84
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            96
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            108
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            120
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            132
+          ],
+          [
+            "pipeline",
+            "dual"
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            36
+          ],
+          [
+            "pipeline",
+            "primal"
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            48
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            60
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            72
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            84
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            96
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            108
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            120
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            132
+          ],
+          [
+            "pipeline",
+            "dual"
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            36
+          ],
+          [
+            "pipeline",
+            "primal"
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            48
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            60
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            72
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            84
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            96
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            108
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            120
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            132
+          ],
+          [
+            "pipeline",
+            "dual"
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            36
+          ],
+          [
+            "pipeline",
+            "primal"
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            48
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            60
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            72
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            84
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            96
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            108
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            120
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            132
+          ],
+          [
+            "pipeline",
+            "dual"
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            36
+          ],
+          [
+            "pipeline",
+            "primal"
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            48
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            60
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            72
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            84
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            96
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            108
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            120
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            132
+          ],
+          [
+            "pipeline",
+            "dual"
+          ],
+          [
+            "dispatchWorkgroupsIndirect",
+            36
+          ],
+          [
+            "pipeline",
+            "updateVelocities"
+          ],
+          [
+            "dispatchWorkgroups",
+            1563
+          ]
+        ]
+      ],
+      "counters": [
+        {
+          "pairs": 100000,
+          "contacts": 400000,
+          "manifolds": 100000,
+          "overflow": 0,
+          "clashes": 0,
+          "colors": 3
+        },
+        {
+          "pairs": 100000,
+          "contacts": 400000,
+          "manifolds": 100000,
+          "overflow": 0,
+          "clashes": 0,
+          "colors": 3
+        }
+      ],
+      "selectedPosesMatch": true,
+      "baseline": {
+        "gpuMs": 7.376896,
+        "cpuSubmitMs": 0.30000001192092896,
+        "samples": [
+          {
+            "gpu": 7.68512,
+            "cpu": 0.3999999761581421
+          },
+          {
+            "gpu": 8.173568,
+            "cpu": 0.5
+          },
+          {
+            "gpu": 7.424,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 7.433216,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 7.424,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 7.371776,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 7.995392,
+            "cpu": 0.3999999761581421
+          },
+          {
+            "gpu": 7.307264,
+            "cpu": 0.2999999523162842
+          },
+          {
+            "gpu": 7.918592,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 7.216128,
+            "cpu": 0.3999999761581421
+          },
+          {
+            "gpu": 7.570432,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 7.360512,
+            "cpu": 0.2999999523162842
+          },
+          {
+            "gpu": 7.294976,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 7.585792,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 7.120896,
+            "cpu": 0.20000004768371582
+          },
+          {
+            "gpu": 7.365632,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 7.479296,
+            "cpu": 0.20000004768371582
+          },
+          {
+            "gpu": 7.376896,
+            "cpu": 0.2999999523162842
+          },
+          {
+            "gpu": 7.169024,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 7.87456,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 7.384064,
+            "cpu": 0.2999999523162842
+          },
+          {
+            "gpu": 7.185408,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 7.739392,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 7.261184,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 7.904256,
+            "cpu": 0.3999999761581421
+          },
+          {
+            "gpu": 7.299072,
+            "cpu": 0.40000003576278687
+          },
+          {
+            "gpu": 7.66976,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 7.547904,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 7.622656,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 7.344128,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 7.704576,
+            "cpu": 0.3999999761581421
+          },
+          {
+            "gpu": 7.467008,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 7.443456,
+            "cpu": 0.3999999761581421
+          },
+          {
+            "gpu": 7.48032,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 7.309312,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 7.271424,
+            "cpu": 0.10000002384185791
+          },
+          {
+            "gpu": 7.496704,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 7.159808,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 7.069696,
+            "cpu": 0.09999996423721313
+          },
+          {
+            "gpu": 7.305216,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 7.133184,
+            "cpu": 0.3999999761581421
+          },
+          {
+            "gpu": 7.349248,
+            "cpu": 0.8999999761581421
+          },
+          {
+            "gpu": 7.389184,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 7.235584,
+            "cpu": 0.3999999761581421
+          },
+          {
+            "gpu": 7.299072,
+            "cpu": 0.2999999523162842
+          },
+          {
+            "gpu": 7.250944,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 7.120896,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 7.474176,
+            "cpu": 0.3999999761581421
+          },
+          {
+            "gpu": 7.53664,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 7.179264,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 7.425024,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 7.226368,
+            "cpu": 0.5
+          },
+          {
+            "gpu": 7.114752,
+            "cpu": 0.2999999523162842
+          },
+          {
+            "gpu": 7.378944,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 7.284736,
+            "cpu": 0.3999999761581421
+          },
+          {
+            "gpu": 7.100416,
+            "cpu": 0.2999999523162842
+          },
+          {
+            "gpu": 7.327744,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 7.190528,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 7.465984,
+            "cpu": 0.3999999761581421
+          },
+          {
+            "gpu": 7.550976,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 7.233536,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 7.754752,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 7.468032,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 7.259136,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 7.615488,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 7.41376,
+            "cpu": 0.10000002384185791
+          },
+          {
+            "gpu": 7.165952,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 7.412736,
+            "cpu": 0.3999999761581421
+          },
+          {
+            "gpu": 7.28576,
+            "cpu": 0.40000003576278687
+          },
+          {
+            "gpu": 7.168,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 7.59808,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 7.276544,
+            "cpu": 0.30000001192092896
+          }
+        ]
+      },
+      "current": {
+        "gpuMs": 7.42912,
+        "cpuSubmitMs": 0.30000001192092896,
+        "samples": [
+          {
+            "gpu": 7.606272,
+            "cpu": 0.20000004768371582
+          },
+          {
+            "gpu": 7.820288,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 7.365632,
+            "cpu": 0.40000003576278687
+          },
+          {
+            "gpu": 8.088576,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 7.391232,
+            "cpu": 0.20000004768371582
+          },
+          {
+            "gpu": 7.776256,
+            "cpu": 0.40000003576278687
+          },
+          {
+            "gpu": 7.450624,
+            "cpu": 0.3999999761581421
+          },
+          {
+            "gpu": 7.822336,
+            "cpu": 0.6000000238418579
+          },
+          {
+            "gpu": 7.102464,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 7.171072,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 7.76704,
+            "cpu": 0.40000003576278687
+          },
+          {
+            "gpu": 7.330816,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 7.496704,
+            "cpu": 0.20000004768371582
+          },
+          {
+            "gpu": 7.187456,
+            "cpu": 0.3999999761581421
+          },
+          {
+            "gpu": 7.11168,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 7.506944,
+            "cpu": 0.10000002384185791
+          },
+          {
+            "gpu": 7.45984,
+            "cpu": 0.40000003576278687
+          },
+          {
+            "gpu": 7.820288,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 7.312384,
+            "cpu": 0.09999996423721313
+          },
+          {
+            "gpu": 7.918592,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 7.057408,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 7.845888,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 7.494656,
+            "cpu": 0.3999999761581421
+          },
+          {
+            "gpu": 7.184384,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 7.785472,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 7.729152,
+            "cpu": 0.699999988079071
+          },
+          {
+            "gpu": 7.278592,
+            "cpu": 0.5
+          },
+          {
+            "gpu": 8.139776,
+            "cpu": 0.3999999761581421
+          },
+          {
+            "gpu": 7.667712,
+            "cpu": 0.3999999761581421
+          },
+          {
+            "gpu": 7.47008,
+            "cpu": 0.20000004768371582
+          },
+          {
+            "gpu": 7.590912,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 8.373248,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 7.488512,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 7.554048,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 7.43424,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 7.185408,
+            "cpu": 0.10000002384185791
+          },
+          {
+            "gpu": 7.51616,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 7.33696,
+            "cpu": 0.40000003576278687
+          },
+          {
+            "gpu": 7.15776,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 7.593984,
+            "cpu": 0.20000004768371582
+          },
+          {
+            "gpu": 7.226368,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 7.267328,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 7.420928,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 7.42912,
+            "cpu": 0.40000003576278687
+          },
+          {
+            "gpu": 7.235584,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 7.378944,
+            "cpu": 0.20000004768371582
+          },
+          {
+            "gpu": 7.19872,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 7.3728,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 7.322624,
+            "cpu": 0.40000003576278687
+          },
+          {
+            "gpu": 7.428096,
+            "cpu": 0.6000000238418579
+          },
+          {
+            "gpu": 7.465984,
+            "cpu": 0.20000004768371582
+          },
+          {
+            "gpu": 7.276544,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 7.319552,
+            "cpu": 0.10000002384185791
+          },
+          {
+            "gpu": 7.538688,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 7.1936,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 7.3728,
+            "cpu": 0.699999988079071
+          },
+          {
+            "gpu": 7.642112,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 7.291904,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 7.565312,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 7.406592,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 7.40352,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 7.707648,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 7.405568,
+            "cpu": 0.3999999761581421
+          },
+          {
+            "gpu": 7.911424,
+            "cpu": 0.6000000238418579
+          },
+          {
+            "gpu": 7.604224,
+            "cpu": 0.3999999761581421
+          },
+          {
+            "gpu": 7.293952,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 7.53664,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 7.407616,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 7.272448,
+            "cpu": 0.5
+          },
+          {
+            "gpu": 7.312384,
+            "cpu": 0.19999998807907104
+          },
+          {
+            "gpu": 7.554048,
+            "cpu": 0.30000001192092896
+          },
+          {
+            "gpu": 7.221248,
+            "cpu": 0.30000001192092896
+          }
+        ]
+      },
+      "gpuRatio": 1.0070794003331482
+    }
+  ],
+  "errors": [],
+  "hardwareLabel": "NVIDIA GeForce RTX 4070 Laptop GPU",
+  "driver": "32.0.16.1714"
+}

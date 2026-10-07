@@ -16,6 +16,30 @@
         {
           "name": "GPU 3D floor check keeps box sphere and capsule above a thin floor",
           "passed": true
+        },
+        {
+          "name": "GPU 3D compatibility verifies isolated-grid after batched-pairs failure",
+          "passed": true
+        },
+        {
+          "name": "GPU 3D compatibility verifies batched-hploc after grid-pairs failure",
+          "passed": true
+        },
+        {
+          "name": "GPU 3D compatibility verifies isolated-grid after batched-contacts failure",
+          "passed": true
+        },
+        {
+          "name": "GPU 3D compatibility verifies isolated-hploc after all-but-isolated-hploc failure",
+          "passed": true
+        },
+        {
+          "name": "GPU 3D compatibility refuses paths that all fail real contacts",
+          "passed": true
+        },
+        {
+          "name": "GPU 3D isolated dispatches preserve rotation contacts and detailed timestamps",
+          "passed": true
         }
       ],
       "errors": []
@@ -34,6 +58,30 @@
         {
           "name": "GPU 3D floor check keeps box sphere and capsule above a thin floor",
           "passed": true
+        },
+        {
+          "name": "GPU 3D compatibility verifies isolated-grid after batched-pairs failure",
+          "passed": true
+        },
+        {
+          "name": "GPU 3D compatibility verifies batched-hploc after grid-pairs failure",
+          "passed": true
+        },
+        {
+          "name": "GPU 3D compatibility verifies isolated-grid after batched-contacts failure",
+          "passed": true
+        },
+        {
+          "name": "GPU 3D compatibility verifies isolated-hploc after all-but-isolated-hploc failure",
+          "passed": true
+        },
+        {
+          "name": "GPU 3D compatibility refuses paths that all fail real contacts",
+          "passed": true
+        },
+        {
+          "name": "GPU 3D isolated dispatches preserve rotation contacts and detailed timestamps",
+          "passed": true
         }
       ],
       "errors": []
@@ -45,6 +93,7 @@
         844
       ],
       "contacts": {
+        "mode": "batched-grid",
         "passed": true,
         "steps": 180,
         "cases": [
@@ -81,13 +130,295 @@
         ],
         "errors": [],
         "contactCache": "normal-float-generations-v1",
+        "diagnosticVersion": 2,
         "limits": {
           "storageBindings": 9,
           "workgroupStorageBytes": 16384,
           "workgroupInvocations": 256,
           "storageBindingBytes": 536870912
         },
-        "contactSteps": 5
+        "pipeline": {
+          "expectedFloorPairs": 3,
+          "counters": {
+            "pairs": 3,
+            "contacts": 6,
+            "manifolds": 3,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 1
+          },
+          "pairs": [
+            1,
+            0,
+            2,
+            0,
+            3,
+            0
+          ],
+          "narrowphaseWorkgroups": [
+            1,
+            1,
+            1
+          ],
+          "filters": [
+            4294967295,
+            4294967295,
+            4294967295,
+            4294967295,
+            4294967295,
+            4294967295,
+            4294967295,
+            4294967295
+          ],
+          "params": {
+            "bodyCount": 4,
+            "largeCount": 1,
+            "noCollideCount": 0,
+            "pairCapacity": 4096,
+            "contactCapacity": 8192,
+            "dt": 0.01666666753590107,
+            "cellSize": 1.7322239875793457,
+            "maxSmallRadius": 6.090212345123291,
+            "up": [
+              0,
+              1,
+              0
+            ]
+          },
+          "stage": "contacts-created"
+        },
+        "samples": [
+          {
+            "step": 30,
+            "pairs": 0,
+            "contacts": 0,
+            "manifolds": 0,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 1
+          },
+          {
+            "step": 40,
+            "pairs": 3,
+            "contacts": 6,
+            "manifolds": 3,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 1
+          },
+          {
+            "step": 60,
+            "pairs": 3,
+            "contacts": 6,
+            "manifolds": 3,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 1
+          },
+          {
+            "step": 90,
+            "pairs": 3,
+            "contacts": 6,
+            "manifolds": 3,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 1
+          },
+          {
+            "step": 120,
+            "pairs": 3,
+            "contacts": 6,
+            "manifolds": 3,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 1
+          },
+          {
+            "step": 150,
+            "pairs": 3,
+            "contacts": 6,
+            "manifolds": 3,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 1
+          },
+          {
+            "step": 180,
+            "pairs": 3,
+            "contacts": 6,
+            "manifolds": 3,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 1
+          }
+        ],
+        "contactSteps": 6,
+        "selected": "batched-grid",
+        "compatibility": false,
+        "attempts": [
+          {
+            "mode": "batched-grid",
+            "passed": true,
+            "steps": 180,
+            "cases": [
+              {
+                "shape": "box",
+                "passed": true,
+                "floorGap": -0.018074005842208862,
+                "position": [
+                  -2,
+                  0.48192599415779114,
+                  0
+                ]
+              },
+              {
+                "shape": "sphere",
+                "passed": true,
+                "floorGap": -0.019035011529922485,
+                "position": [
+                  0,
+                  0.4809649884700775,
+                  0
+                ]
+              },
+              {
+                "shape": "capsule",
+                "passed": true,
+                "floorGap": -0.018053638935089156,
+                "position": [
+                  2,
+                  0.7819463610649109,
+                  0
+                ]
+              }
+            ],
+            "errors": [],
+            "contactCache": "normal-float-generations-v1",
+            "diagnosticVersion": 2,
+            "limits": {
+              "storageBindings": 9,
+              "workgroupStorageBytes": 16384,
+              "workgroupInvocations": 256,
+              "storageBindingBytes": 536870912
+            },
+            "pipeline": {
+              "expectedFloorPairs": 3,
+              "counters": {
+                "pairs": 3,
+                "contacts": 6,
+                "manifolds": 3,
+                "overflow": 0,
+                "clashes": 0,
+                "colors": 1
+              },
+              "pairs": [
+                1,
+                0,
+                2,
+                0,
+                3,
+                0
+              ],
+              "narrowphaseWorkgroups": [
+                1,
+                1,
+                1
+              ],
+              "filters": [
+                4294967295,
+                4294967295,
+                4294967295,
+                4294967295,
+                4294967295,
+                4294967295,
+                4294967295,
+                4294967295
+              ],
+              "params": {
+                "bodyCount": 4,
+                "largeCount": 1,
+                "noCollideCount": 0,
+                "pairCapacity": 4096,
+                "contactCapacity": 8192,
+                "dt": 0.01666666753590107,
+                "cellSize": 1.7322239875793457,
+                "maxSmallRadius": 6.090212345123291,
+                "up": [
+                  0,
+                  1,
+                  0
+                ]
+              },
+              "stage": "contacts-created"
+            },
+            "samples": [
+              {
+                "step": 30,
+                "pairs": 0,
+                "contacts": 0,
+                "manifolds": 0,
+                "overflow": 0,
+                "clashes": 0,
+                "colors": 1
+              },
+              {
+                "step": 40,
+                "pairs": 3,
+                "contacts": 6,
+                "manifolds": 3,
+                "overflow": 0,
+                "clashes": 0,
+                "colors": 1
+              },
+              {
+                "step": 60,
+                "pairs": 3,
+                "contacts": 6,
+                "manifolds": 3,
+                "overflow": 0,
+                "clashes": 0,
+                "colors": 1
+              },
+              {
+                "step": 90,
+                "pairs": 3,
+                "contacts": 6,
+                "manifolds": 3,
+                "overflow": 0,
+                "clashes": 0,
+                "colors": 1
+              },
+              {
+                "step": 120,
+                "pairs": 3,
+                "contacts": 6,
+                "manifolds": 3,
+                "overflow": 0,
+                "clashes": 0,
+                "colors": 1
+              },
+              {
+                "step": 150,
+                "pairs": 3,
+                "contacts": 6,
+                "manifolds": 3,
+                "overflow": 0,
+                "clashes": 0,
+                "colors": 1
+              },
+              {
+                "step": 180,
+                "pairs": 3,
+                "contacts": 6,
+                "manifolds": 3,
+                "overflow": 0,
+                "clashes": 0,
+                "colors": 1
+              }
+            ],
+            "contactSteps": 6
+          }
+        ]
       },
       "steps": 181
     },
@@ -98,6 +429,7 @@
         844
       ],
       "contacts": {
+        "mode": "batched-grid",
         "passed": true,
         "steps": 180,
         "cases": [
@@ -134,13 +466,295 @@
         ],
         "errors": [],
         "contactCache": "normal-float-generations-v1",
+        "diagnosticVersion": 2,
         "limits": {
           "storageBindings": 9,
           "workgroupStorageBytes": 16384,
           "workgroupInvocations": 256,
           "storageBindingBytes": 536870912
         },
-        "contactSteps": 5
+        "pipeline": {
+          "expectedFloorPairs": 3,
+          "counters": {
+            "pairs": 3,
+            "contacts": 6,
+            "manifolds": 3,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 1
+          },
+          "pairs": [
+            1,
+            0,
+            2,
+            0,
+            3,
+            0
+          ],
+          "narrowphaseWorkgroups": [
+            1,
+            1,
+            1
+          ],
+          "filters": [
+            4294967295,
+            4294967295,
+            4294967295,
+            4294967295,
+            4294967295,
+            4294967295,
+            4294967295,
+            4294967295
+          ],
+          "params": {
+            "bodyCount": 4,
+            "largeCount": 1,
+            "noCollideCount": 0,
+            "pairCapacity": 4096,
+            "contactCapacity": 8192,
+            "dt": 0.01666666753590107,
+            "cellSize": 1.7322239875793457,
+            "maxSmallRadius": 6.090212345123291,
+            "up": [
+              0,
+              1,
+              0
+            ]
+          },
+          "stage": "contacts-created"
+        },
+        "samples": [
+          {
+            "step": 30,
+            "pairs": 0,
+            "contacts": 0,
+            "manifolds": 0,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 1
+          },
+          {
+            "step": 40,
+            "pairs": 3,
+            "contacts": 6,
+            "manifolds": 3,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 1
+          },
+          {
+            "step": 60,
+            "pairs": 3,
+            "contacts": 6,
+            "manifolds": 3,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 1
+          },
+          {
+            "step": 90,
+            "pairs": 3,
+            "contacts": 6,
+            "manifolds": 3,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 1
+          },
+          {
+            "step": 120,
+            "pairs": 3,
+            "contacts": 6,
+            "manifolds": 3,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 1
+          },
+          {
+            "step": 150,
+            "pairs": 3,
+            "contacts": 6,
+            "manifolds": 3,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 1
+          },
+          {
+            "step": 180,
+            "pairs": 3,
+            "contacts": 6,
+            "manifolds": 3,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 1
+          }
+        ],
+        "contactSteps": 6,
+        "selected": "batched-grid",
+        "compatibility": false,
+        "attempts": [
+          {
+            "mode": "batched-grid",
+            "passed": true,
+            "steps": 180,
+            "cases": [
+              {
+                "shape": "box",
+                "passed": true,
+                "floorGap": -0.018074005842208862,
+                "position": [
+                  -2,
+                  0.48192599415779114,
+                  0
+                ]
+              },
+              {
+                "shape": "sphere",
+                "passed": true,
+                "floorGap": -0.019035011529922485,
+                "position": [
+                  0,
+                  0.4809649884700775,
+                  0
+                ]
+              },
+              {
+                "shape": "capsule",
+                "passed": true,
+                "floorGap": -0.018053638935089156,
+                "position": [
+                  2,
+                  0.7819463610649109,
+                  0
+                ]
+              }
+            ],
+            "errors": [],
+            "contactCache": "normal-float-generations-v1",
+            "diagnosticVersion": 2,
+            "limits": {
+              "storageBindings": 9,
+              "workgroupStorageBytes": 16384,
+              "workgroupInvocations": 256,
+              "storageBindingBytes": 536870912
+            },
+            "pipeline": {
+              "expectedFloorPairs": 3,
+              "counters": {
+                "pairs": 3,
+                "contacts": 6,
+                "manifolds": 3,
+                "overflow": 0,
+                "clashes": 0,
+                "colors": 1
+              },
+              "pairs": [
+                1,
+                0,
+                2,
+                0,
+                3,
+                0
+              ],
+              "narrowphaseWorkgroups": [
+                1,
+                1,
+                1
+              ],
+              "filters": [
+                4294967295,
+                4294967295,
+                4294967295,
+                4294967295,
+                4294967295,
+                4294967295,
+                4294967295,
+                4294967295
+              ],
+              "params": {
+                "bodyCount": 4,
+                "largeCount": 1,
+                "noCollideCount": 0,
+                "pairCapacity": 4096,
+                "contactCapacity": 8192,
+                "dt": 0.01666666753590107,
+                "cellSize": 1.7322239875793457,
+                "maxSmallRadius": 6.090212345123291,
+                "up": [
+                  0,
+                  1,
+                  0
+                ]
+              },
+              "stage": "contacts-created"
+            },
+            "samples": [
+              {
+                "step": 30,
+                "pairs": 0,
+                "contacts": 0,
+                "manifolds": 0,
+                "overflow": 0,
+                "clashes": 0,
+                "colors": 1
+              },
+              {
+                "step": 40,
+                "pairs": 3,
+                "contacts": 6,
+                "manifolds": 3,
+                "overflow": 0,
+                "clashes": 0,
+                "colors": 1
+              },
+              {
+                "step": 60,
+                "pairs": 3,
+                "contacts": 6,
+                "manifolds": 3,
+                "overflow": 0,
+                "clashes": 0,
+                "colors": 1
+              },
+              {
+                "step": 90,
+                "pairs": 3,
+                "contacts": 6,
+                "manifolds": 3,
+                "overflow": 0,
+                "clashes": 0,
+                "colors": 1
+              },
+              {
+                "step": 120,
+                "pairs": 3,
+                "contacts": 6,
+                "manifolds": 3,
+                "overflow": 0,
+                "clashes": 0,
+                "colors": 1
+              },
+              {
+                "step": 150,
+                "pairs": 3,
+                "contacts": 6,
+                "manifolds": 3,
+                "overflow": 0,
+                "clashes": 0,
+                "colors": 1
+              },
+              {
+                "step": 180,
+                "pairs": 3,
+                "contacts": 6,
+                "manifolds": 3,
+                "overflow": 0,
+                "clashes": 0,
+                "colors": 1
+              }
+            ],
+            "contactSteps": 6
+          }
+        ]
       },
       "steps": 181
     }

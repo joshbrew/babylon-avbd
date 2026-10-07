@@ -10,6 +10,7 @@ import {
   IA_PAIRS,
   IA_PREV,
 } from "../../reference/three-avbd/src/avbd2d/gpu/layout.ts";
+import { isolatedComputePass } from "./isolatedComputePass.js";
 const groups = (n) => Math.ceil(n / 64);
 
 export function encodeGpuSolverStep(s) {
@@ -47,7 +48,7 @@ export function encodeGpuSolverStep(s) {
     current = aggregate;
     const index = detailed ? stages.length : PHASES.indexOf(aggregate);
     stages.push({ name, aggregate });
-    pass = encoder.beginComputePass({
+    const descriptor = {
       label: name,
       timestampWrites: timed
         ? {
@@ -56,7 +57,10 @@ export function encodeGpuSolverStep(s) {
             endOfPassWriteIndex: index * 2 + 1,
           }
         : undefined,
-    });
+    };
+    pass = s.dispatchIsolation
+      ? isolatedComputePass(encoder, descriptor)
+      : encoder.beginComputePass(descriptor);
   };
   const run = (name, group, x) => {
     if (x <= 0) return;

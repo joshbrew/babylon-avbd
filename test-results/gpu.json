@@ -1,6 +1,6 @@
 {
   "done": true,
-  "passed": 206,
+  "passed": 212,
   "failed": 0,
   "cases": [
     {
@@ -277,6 +277,30 @@
     },
     {
       "name": "GPU 3D floor check keeps box sphere and capsule above a thin floor",
+      "passed": true
+    },
+    {
+      "name": "GPU 3D compatibility verifies isolated-grid after batched-pairs failure",
+      "passed": true
+    },
+    {
+      "name": "GPU 3D compatibility verifies batched-hploc after grid-pairs failure",
+      "passed": true
+    },
+    {
+      "name": "GPU 3D compatibility verifies isolated-grid after batched-contacts failure",
+      "passed": true
+    },
+    {
+      "name": "GPU 3D compatibility verifies isolated-hploc after all-but-isolated-hploc failure",
+      "passed": true
+    },
+    {
+      "name": "GPU 3D compatibility refuses paths that all fail real contacts",
+      "passed": true
+    },
+    {
+      "name": "GPU 3D isolated dispatches preserve rotation contacts and detailed timestamps",
       "passed": true
     },
     {
@@ -840,26 +864,26 @@
     "runs": [
       {
         "analytic": true,
-        "collisionMs": 0.116736,
+        "collisionMs": 0.11776,
         "totalMs": 0.22016,
         "contacts": 2048
       },
       {
         "analytic": false,
-        "collisionMs": 0.150528,
-        "totalMs": 0.217088,
+        "collisionMs": 0.19456,
+        "totalMs": 0.29696,
         "contacts": 2048
       },
       {
         "analytic": false,
-        "collisionMs": 0.142336,
-        "totalMs": 0.206848,
+        "collisionMs": 0.195584,
+        "totalMs": 0.297984,
         "contacts": 2048
       },
       {
         "analytic": true,
-        "collisionMs": 0.073728,
-        "totalMs": 0.13824,
+        "collisionMs": 0.191488,
+        "totalMs": 0.359424,
         "contacts": 2048
       }
     ],

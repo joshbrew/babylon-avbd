@@ -33,7 +33,7 @@
     "clean:dist": "node scripts/clean-dist.mjs --apply",
     "test:package": "node scripts/check-package.mjs",
     "test:published": "node scripts/check-published.mjs",
-    "test:mobile-contacts": "node scripts/build.mjs && node scripts/check-contact-portability.mjs",
+    "test:mobile-contacts": "node scripts/build.mjs && node scripts/check-contact-portability.mjs && node scripts/check-contact-compatibility-features.mjs",
     "test:types": "tsc --noEmit --strict --skipLibCheck --module nodenext --target es2022 tests/package-api-types.ts",
     "benchmark:native": "node scripts/benchmark-package.mjs",
     "benchmark:sleeping": "node scripts/benchmark-package.mjs",

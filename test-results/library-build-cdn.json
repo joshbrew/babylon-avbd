@@ -28,6 +28,7 @@
     "src/gpu/hplocpp.wgsl",
     "src/gpu/hplocSort.wgsl",
     "src/gpu/gpuHploc.js",
+    "src/gpu/isolatedComputePass.js",
     "src/gpu/gpuSolverStep.js",
     "src/gpu/gpuTopologyKernels.js",
     "src/gpu/sensors.js",
@@ -41,6 +42,7 @@
     "src/gpu/shapeQueries.wgsl",
     "src/gpu/shapeQueries.js",
     "src/gpu/passConstants.js",
+    "src/gpu/executionPolicy3D.js",
     "src/gpu/appGpuSolver3D.js",
     "src/gpu/device.js",
     "src/babylon/babylonAvbd.wgsl",
@@ -173,8 +175,11 @@
         "src/gpu/gpuHploc.js": {
           "bytesInOutput": 7595
         },
+        "src/gpu/isolatedComputePass.js": {
+          "bytesInOutput": 770
+        },
         "src/gpu/gpuSolverStep.js": {
-          "bytesInOutput": 3891
+          "bytesInOutput": 3927
         },
         "src/gpu/gpuTopologyKernels.js": {
           "bytesInOutput": 971
@@ -212,8 +217,11 @@
         "src/gpu/passConstants.js": {
           "bytesInOutput": 1073
         },
+        "src/gpu/executionPolicy3D.js": {
+          "bytesInOutput": 51
+        },
         "src/gpu/appGpuSolver3D.js": {
-          "bytesInOutput": 17407
+          "bytesInOutput": 17502
         },
         "src/gpu/device.js": {
           "bytesInOutput": 949
@@ -327,7 +335,7 @@
           "bytesInOutput": 80
         }
       },
-      "bytes": 461331
+      "bytes": 462283
     }
   }
 }

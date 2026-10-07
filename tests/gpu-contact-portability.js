@@ -2,9 +2,20 @@ import { AppGpuSolver3D } from "../src/gpu/appGpuSolver3D.js";
 import { GpuSolver3D } from "../reference/three-avbd/src/avbd3d/gpu/solver.ts";
 import { Solver } from "../reference/three-avbd/src/avbd3d/ref/solver.ts";
 import { Rigid } from "../reference/three-avbd/src/avbd3d/ref/body.ts";
-import { refsWGSL } from "../reference/three-avbd/src/avbd3d/gpu/wgsl-collision.ts";
+import {
+  refsWGSL,
+  broadphaseWGSL,
+  makeContactsWGSL,
+} from "../reference/three-avbd/src/avbd3d/gpu/wgsl-collision.ts";
 import { portableContactRefs } from "../src/gpu/contactCache3D.js";
-import { checkGpuContacts3D } from "../src/gpu/contactCheck3D.js";
+import {
+  checkGpuContacts3D,
+  runGpuContactChecks3D,
+} from "../src/gpu/contactCheck3D.js";
+import {
+  gpuExecutionPolicy3D,
+  setGpuExecutionPolicy3D,
+} from "../src/gpu/executionPolicy3D.js";
 import { assert, readBuffer } from "./helpers/gpu.js";
 
 function world(device, Class = AppGpuSolver3D) {
@@ -111,8 +122,181 @@ export async function contactPortabilityGpuTests(device, test) {
     const result = await checkGpuContacts3D(device);
     assert(result.passed, JSON.stringify(result));
     assert(
+      result.selected === "batched-grid" &&
+        !result.compatibility &&
+        result.attempts.length === 1,
+      "Passing GPUs keep the original execution path and do not run fallback checks",
+    );
+    assert(
+      result.pipeline.counters.pairs === 3 &&
+        result.pipeline.counters.manifolds === 3,
+      "Known overlaps locate pair generation and contact creation separately",
+    );
+    assert(
       (await checkGpuContacts3D(device)) === result,
       "One startup check per device",
     );
+  });
+  for (const [fault, selected] of [
+    ["batched-pairs", "isolated-grid"],
+    ["grid-pairs", "batched-hploc"],
+    ["batched-contacts", "isolated-grid"],
+    ["all-but-isolated-hploc", "isolated-hploc"],
+  ])
+    await test(`GPU 3D compatibility verifies ${selected} after ${fault} failure`, async () => {
+      const previous = gpuExecutionPolicy3D(device);
+      setGpuExecutionPolicy3D(device, null);
+      try {
+        const result = await runGpuContactChecks3D(device, (gpu, mode) => {
+          const blocked =
+            fault === "all-but-isolated-hploc"
+              ? mode.name !== "isolated-hploc"
+              : fault === "grid-pairs"
+                ? mode.broadphase === "grid"
+                : mode.name === "batched-grid";
+          if (!blocked) return;
+          if (mode.broadphase === "hploc")
+            gpu.externalBeforeStep = () => {
+              if (gpu.bvh) gpu.bvh.encodePairs = () => {};
+            };
+          const entry =
+            fault === "batched-contacts" ? "narrowphase" : "findPairs";
+          const source =
+            entry === "narrowphase" ? makeContactsWGSL(false) : broadphaseWGSL;
+          const signature = `@compute @workgroup_size(64)\nfn ${entry}`;
+          const at = source.indexOf(signature);
+          assert(at >= 0, "Known kernel signature");
+          gpu.pipes[entry] = device.createComputePipeline({
+            layout: device.createPipelineLayout({
+              bindGroupLayouts: [
+                gpu.layouts[entry === "narrowphase" ? "contacts" : "broad"],
+              ],
+            }),
+            compute: {
+              module: device.createShaderModule({
+                code:
+                  source.slice(0, at) +
+                  `@compute @workgroup_size(64) fn ${entry}(){}`,
+              }),
+              entryPoint: entry,
+            },
+          });
+        });
+        assert(
+          result.passed && result.selected === selected && result.compatibility,
+          JSON.stringify(result),
+        );
+        assert(
+          result.cases.every((c) => c.passed),
+          "The selected path passes the full falling-shape check",
+        );
+        assert(
+          result.attempts[0].pipeline.stage ===
+            (fault === "batched-contacts"
+              ? "contact-generation"
+              : "collision-pairs"),
+          "Diagnostics identify the injected failing stage",
+        );
+        const next = world(device);
+        try {
+          assert(
+            next.dispatchIsolation === selected.startsWith("isolated"),
+            "New worlds inherit checked dispatch selection",
+          );
+          assert(
+            next.broadphase === (selected.endsWith("hploc") ? "hploc" : "grid"),
+            "New worlds inherit checked collision selection",
+          );
+          next.step();
+          const counters = await next.readCounters();
+          assert(
+            counters.manifolds === 1 && !counters.overflow && !counters.clashes,
+            "The actual scene still creates contacts",
+          );
+        } finally {
+          next.destroy();
+        }
+      } finally {
+        setGpuExecutionPolicy3D(device, previous);
+      }
+    });
+  await test("GPU 3D compatibility refuses paths that all fail real contacts", async () => {
+    const previous = gpuExecutionPolicy3D(device);
+    setGpuExecutionPolicy3D(device, null);
+    try {
+      const result = await runGpuContactChecks3D(device, (gpu) => {
+        gpu.externalBeforeStep = () => {
+          if (gpu.bvh) gpu.bvh.encodePairs = () => {};
+        };
+        const at = broadphaseWGSL.indexOf(
+          "@compute @workgroup_size(64)\nfn findPairs",
+        );
+        gpu.pipes.findPairs = device.createComputePipeline({
+          layout: device.createPipelineLayout({
+            bindGroupLayouts: [gpu.layouts.broad],
+          }),
+          compute: {
+            module: device.createShaderModule({
+              code:
+                broadphaseWGSL.slice(0, at) +
+                "@compute @workgroup_size(64) fn findPairs(){}",
+            }),
+            entryPoint: "findPairs",
+          },
+        });
+      });
+      assert(
+        !result.passed &&
+          result.selected === null &&
+          result.attempts.length === 4,
+        "Every unverified path remains rejected",
+      );
+      assert(
+        !gpuExecutionPolicy3D(device),
+        "Failed checks do not install a solver policy",
+      );
+    } finally {
+      setGpuExecutionPolicy3D(device, previous);
+    }
+  });
+  await test("GPU 3D isolated dispatches preserve rotation contacts and detailed timestamps", async () => {
+    const a = world(device),
+      b = world(device);
+    b.dispatchIsolation = true;
+    try {
+      for (const gpu of [a, b])
+        device.queue.writeBuffer(
+          gpu.bodyBuffer,
+          176,
+          new Float32Array([Math.sin(0.2), 0, 0, Math.cos(0.2)]),
+        );
+      for (let i = 0; i < 120; i++) {
+        a.step();
+        b.step();
+      }
+      const x = await a.readBodies(),
+        y = await b.readBodies();
+      assert(
+        x.every((v, i) => Number.isFinite(y[i]) && Math.abs(v - y[i]) < 1e-6),
+        "Separate dispatches preserve every body word",
+      );
+      if (device.features.has("timestamp-query")) {
+        const profile = new Promise((resolve) =>
+          b.profileDetailedNextStep(resolve),
+        );
+        b.step();
+        const timing = await profile;
+        assert(
+          timing.total >= 0 &&
+            Object.values(timing.details).every(
+              (v) => Number.isFinite(v) && v >= 0,
+            ),
+          "Detailed GPU phase timestamps remain valid",
+        );
+      }
+    } finally {
+      a.destroy();
+      b.destroy();
+    }
   });
 }

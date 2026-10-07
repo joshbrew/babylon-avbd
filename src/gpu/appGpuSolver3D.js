@@ -46,6 +46,7 @@ import { withCapsuleContacts } from "./capsuleCollision.js";
 import { ShapeQueries } from "./shapeQueries.js";
 import { propertyEdits } from "./bufferEdits.js";
 import { writePassConstants } from "./passConstants.js";
+import { gpuExecutionPolicy3D } from "./executionPolicy3D.js";
 
 // A scene may need a minimum coloring budget while its contact graph changes.
 // Preserve that budget after adaptation, which otherwise shrinks it following
@@ -55,6 +56,7 @@ export class AppGpuSolver3D extends GpuSolver3D {
     writePassConstants.call(this, iterations, alpha);
   }
   constructor(device, ref, options = {}) {
+    const executionPolicy = gpuExecutionPolicy3D(device);
     const angularConstraints = ref.forces.some((force) =>
       initialAngularConstraint(force),
     );
@@ -86,7 +88,8 @@ export class AppGpuSolver3D extends GpuSolver3D {
           : decision.selected === "points"
             ? pointLanesContactSolve
             : undefined;
-    const broadphase = options.broadphase ?? "auto";
+    const broadphase =
+      executionPolicy?.broadphase ?? options.broadphase ?? "auto";
     if (!["grid", "hploc", "auto"].includes(broadphase))
       throw Error("broadphase must be 'grid', 'hploc' or 'auto'");
     const rebuildInterval = options.bvh?.rebuildInterval ?? 64;
@@ -122,6 +125,7 @@ export class AppGpuSolver3D extends GpuSolver3D {
       },
     });
     this.solverPolicy = policy;
+    this.dispatchIsolation = executionPolicy?.dispatchIsolation ?? false;
     if (!options.shaders?.contacts) {
       const make = this.contactShaders.make;
       this.contactShaders.make = (code) => make(portableContactCache(code));
@@ -323,6 +327,7 @@ export class AppGpuSolver3D extends GpuSolver3D {
       this.bvh = new GpuHploc(this.device, this, this.bvhOptions);
     }
     if (
+      this.dispatchIsolation ||
       this.bvh ||
       this.detailCallback ||
       this.sleeping ||

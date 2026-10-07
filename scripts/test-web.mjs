@@ -7,6 +7,7 @@ await mkdir(new URL("../test-results/", import.meta.url), { recursive: true });
 const checks = [
   "build",
   "check-contact-portability",
+  "check-contact-compatibility-features",
   "check-scenes",
   "check-benchmark-scenes",
   "check-benchmark-preview",

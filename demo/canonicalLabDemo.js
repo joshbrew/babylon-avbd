@@ -647,7 +647,9 @@ export async function startCanonicalLabDemo(root = document.body) {
           $("#lab-gpu-check-save").disabled = false;
           $("#lab-gpu-check-status").textContent = diagnostics.contactCheck
             .passed
-            ? "Passed: the box, sphere and capsule stayed on the floor."
+            ? diagnostics.contactCheck.compatibility
+              ? "Passed using a GPU compatibility path: the box, sphere and capsule stayed on the floor. Physics settings are unchanged."
+              : "Passed: the box, sphere and capsule stayed on the floor."
             : "Failed: this GPU did not keep all three shapes on the floor. Save the report to identify the failing contacts.";
           if (!diagnostics.contactCheck.passed)
             throw Error(

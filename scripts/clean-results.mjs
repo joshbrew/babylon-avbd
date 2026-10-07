@@ -60,6 +60,8 @@ const roots = [
   "package.json",
   "published-package.json",
   "contact-portability.json",
+  "contact-performance.json",
+  "contact-compatibility-features.json",
   "package-report-check.json",
   "renderer-performance.json",
   "renderer-performance.html",
