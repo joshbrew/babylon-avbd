@@ -10,15 +10,95 @@ import {
   AvbdShapeType,
   AvbdScene3D,
   AvbdScene2D,
+  createWebGPUDevice,
+  prepareWebGPUDevice3D,
 } from "../src/index.js";
 import { assert, close } from "./helpers/gpu.js";
 import { BodyReadback } from "../src/gpu/bodyReadback.js";
 
 export async function packageFeatureGpuTests(device, test) {
-  await test("GPU 3D zero-torque motor leaves free angular motion unchanged",async()=>{
-    const scenes=[false,true].map(motor=>{const s=new AvbdScene3D({gravity:0,iterations:20});const body=s.addBox([1,1,1],{angularVelocity:[0,0,2]});if(motor)s.addMotor(null,body,{axisA:[0,0,1],axisB:[0,0,1],speed:-100,maxTorque:0});return s;});
-    const states=[];for(const scene of scenes){const gpu=scene.createSolver(device,{bodyCapacity:4});try{for(let i=0;i<120;i++)gpu.step();states.push(await gpu.readBodies());}finally{gpu.destroy();}}
-    for(const k of [4,5,6,7,36,37,38])close(states[1][k],states[0][k],.002,"zero drive matches free rotation");
+  await test("Package device preparation qualifies native 3D and reuses the result for Babylon", async () => {
+    const { device: prepared } = await createWebGPUDevice({
+      validate3D: true,
+      preferredLimits: { maxStorageBuffersPerShaderStage: 9 },
+    });
+    let gpu, world;
+    try {
+      const scene = new AvbdScene3D({ iterations: 5 });
+      scene.addBox([12, 1, 12], { density: 0, position: [0, -0.5, 0] });
+      scene.addSphere(0.5, { position: [0, 2, 0] });
+      gpu = scene.createSolver(prepared, {
+        spatialSort: false,
+        bodyCapacity: 4,
+      });
+      for (let i = 0; i < 180; i++) gpu.step();
+      const poses = await gpu.readBodies();
+      close(poses[41], 0.5, 0.04, "prepared native sphere rests on the floor");
+      let submissions = 0;
+      const submit = prepared.queue.submit.bind(prepared.queue);
+      prepared.queue.submit = (commands) => {
+        submissions++;
+        submit(commands);
+      };
+      try {
+        assert(
+          (await prepareWebGPUDevice3D(prepared)) === prepared,
+          "caller keeps device ownership",
+        );
+        await prepareWebGPUDevice3D(prepared);
+        assert(
+          submissions === 0,
+          "preparation is cached, without another simulation or readback",
+        );
+      } finally {
+        prepared.queue.submit = submit;
+      }
+      world = await AvbdPhysics.create({
+        device: prepared,
+        autoAttach: false,
+        syncMeshes: false,
+        capacity: 4,
+      });
+      assert(
+        world.device === prepared && !world.ownsDevice,
+        "Babylon accepts the prepared renderer-owned device",
+      );
+    } finally {
+      world?.dispose();
+      gpu?.destroy();
+      prepared.destroy();
+    }
+  });
+  await test("GPU 3D zero-torque motor leaves free angular motion unchanged", async () => {
+    const scenes = [false, true].map((motor) => {
+      const s = new AvbdScene3D({ gravity: 0, iterations: 20 });
+      const body = s.addBox([1, 1, 1], { angularVelocity: [0, 0, 2] });
+      if (motor)
+        s.addMotor(null, body, {
+          axisA: [0, 0, 1],
+          axisB: [0, 0, 1],
+          speed: -100,
+          maxTorque: 0,
+        });
+      return s;
+    });
+    const states = [];
+    for (const scene of scenes) {
+      const gpu = scene.createSolver(device, { bodyCapacity: 4 });
+      try {
+        for (let i = 0; i < 120; i++) gpu.step();
+        states.push(await gpu.readBodies());
+      } finally {
+        gpu.destroy();
+      }
+    }
+    for (const k of [4, 5, 6, 7, 36, 37, 38])
+      close(
+        states[1][k],
+        states[0][k],
+        0.002,
+        "zero drive matches free rotation",
+      );
   });
   await test("GPU 2D raycasts and circle casts handle rotated boxes, rounded corners, masks and sensors", async () => {
     const scene = new AvbdScene2D({ gravity: 0 });

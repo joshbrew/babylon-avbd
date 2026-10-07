@@ -32,6 +32,8 @@ try {
         {dispatchIsolation:true,broadphase:'hploc'},
         {scalarPrimal:true,broadphase:'grid'},
         {scalarPrimal:true,dispatchIsolation:true,broadphase:'grid'},
+        {portableContactMath:true,broadphase:'grid'},
+        {portableContactMath:true,scalarPrimal:true,dispatchIsolation:true,broadphase:'grid'},
       ]){
         setGpuExecutionPolicy3D(device,policy);
         const cases=[],excluded=[];
@@ -68,7 +70,7 @@ try {
     ),
   );
   console.log(
-    `PASS compatibility features: ${result.modes.map((m) => (m.scalarPrimal ? "scalar " : "cooperative ") + m.broadphase + " " + m.cases.length + " GPU cases").join("; ")}`,
+    `PASS compatibility features: ${result.modes.map((m) => (m.portableContactMath ? "portable contact " : "") + (m.scalarPrimal ? "scalar " : "cooperative ") + m.broadphase + " " + m.cases.length + " GPU cases").join("; ")}`,
   );
 } finally {
   await browser.close();

@@ -31,6 +31,19 @@ const modes = [
     dispatchIsolation: true,
     scalarPrimal: true,
   },
+  {
+    name: "portable-contact-grid",
+    broadphase: "grid",
+    dispatchIsolation: false,
+    portableContactMath: true,
+  },
+  {
+    name: "portable-contact-isolated-grid",
+    broadphase: "grid",
+    dispatchIsolation: true,
+    scalarPrimal: true,
+    portableContactMath: true,
+  },
 ];
 /** Cached once per device. Successful compatibility paths keep identical physics. */
 export function checkGpuContacts3D(device) {
@@ -47,6 +60,7 @@ export async function runGpuContactChecks3D(device, configure) {
     setGpuExecutionPolicy3D(device, {
       dispatchIsolation: mode.dispatchIsolation,
       scalarPrimal: mode.scalarPrimal ?? false,
+      portableContactMath: mode.portableContactMath ?? false,
       // Retain automatic scene selection when the normal grid works.
       broadphase: mode.broadphase === "hploc" ? "hploc" : undefined,
     });
@@ -105,6 +119,12 @@ async function pipelineTrace(gpu) {
     await readWords(gpu.device, contacts, Math.max(64, counters.contacts * 64)),
   );
   const bodies = await gpu.readBodies();
+  const serialSystems =
+    counters.manifolds >= 3 ? await inspectSystems(gpu) : [];
+  const zeroForceFailure = serialSystems.some(
+    ({ contactEvaluation: e }) =>
+      e.returnedForce === 0 && e.independentForce < -1e-5,
+  );
   return {
     expectedFloorPairs: 3,
     counters,
@@ -112,6 +132,7 @@ async function pipelineTrace(gpu) {
     narrowphaseWorkgroups: Array.from(args.subarray(IA_PAIRS, IA_PAIRS + 3)),
     solver: {
       scalarPrimal: gpu.scalarPrimal,
+      portableContactMath: gpu.portableContactMath,
       lanes: [...gpu.primalLanes],
       contactWorkgroups: Array.from(
         args.subarray(IA_CONTACTS, IA_CONTACTS + 3),
@@ -152,7 +173,8 @@ async function pipelineTrace(gpu) {
         penalty: Array.from(cf.subarray(i * 16 + 8, i * 16 + 11)),
         force: Array.from(cf.subarray(i * 16 + 12, i * 16 + 15)),
       })),
-      serialSystems: counters.manifolds >= 3 ? await inspectSystems(gpu) : [],
+      serialSystems,
+      failure: zeroForceFailure ? "contact-evaluation" : null,
     },
     filters: Array.from(
       new Uint32Array(await readWords(gpu.device, gpu.filterBuffer)),
@@ -167,6 +189,7 @@ async function pipelineTrace(gpu) {
       cellSize: f[6],
       maxSmallRadius: f[7],
       up: Array.from(f.subarray(8, 11)),
+      alpha: f[11],
     },
     stage:
       counters.pairs < 3
@@ -180,6 +203,12 @@ async function pipelineTrace(gpu) {
 // canary, avoiding an extra storage binding on devices limited to eight. The
 // world is destroyed after this trace; the canary does not change body poses.
 async function inspectSystems(gpu) {
+  const alpha = gpu.portableContactMath
+    ? "bitcast<f32>(pc.data.y)"
+    : "pc.alpha";
+  const gap = gpu.portableContactMath ? "k.anchorB.w" : "k.c0x";
+  const penalty = gpu.portableContactMath ? "k.penalty.x" : "k.pen.x";
+  const force = gpu.portableContactMath ? "k.force.x" : "k.lam.x";
   const module = gpu.device.createShaderModule({
     code:
       gpu.solveSource(solveWGSL) +
@@ -190,6 +219,23 @@ async function inspectSystems(gpu) {
   joints[gid.x].penAng = vec4f(acc.ang[0][0], acc.ang[1][1], acc.ang[2][2], 0.0);
   joints[gid.x].c0Lin = vec4f(acc.rLin, 0.0);
   joints[gid.x].c0Ang = vec4f(acc.rAng, 0.0);
+  let mf = manifolds[gid.x];
+  let k = contacts[mf.ids.z];
+  let A = pairBody(mf.ids.x); let B = pairBody(mf.ids.y);
+  let basis = orthonormal(mf.geo.xyz);
+  let result = evalContact(k, basis, mf.geo.w, A, B, ${alpha});
+  // Independently recompute the normal row from scalar inputs. Compare input
+  // reads, pass alpha, the returned error and the returned clamped force.
+  let dA = bodies[mf.ids.x].pos.xyz - bodies[mf.ids.x].initialPos.xyz;
+  let dB = bodies[mf.ids.y].pos.xyz - bodies[mf.ids.y].initialPos.xyz;
+  let wA = qsub(bodies[mf.ids.x].rot, bodies[mf.ids.x].initialRot);
+  let wB = qsub(bodies[mf.ids.y].rot, bodies[mf.ids.y].initialRot);
+  let expectedC = ${gap} * (1.0 - ${alpha}) + dot(basis[0], dA - dB)
+    + dot(cross(result.rAW.xyz, basis[0]), wA)
+    - dot(cross(result.rBW.xyz, basis[0]), wB);
+  let raw = ${penalty} * expectedC + ${force};
+  joints[gid.x].rA = vec4f(${gap}, ${alpha}, result.C.x, result.F.x);
+  joints[gid.x].rB = vec4f(${penalty}, ${force}, expectedC, min(raw, 0.0));
 }`,
   });
   const pipeline = gpu.device.createComputePipeline({
@@ -214,6 +260,16 @@ async function inspectSystems(gpu) {
     angularDiagonal: Array.from(data.subarray(i * 32 + 4, i * 32 + 7)),
     linearForce: Array.from(data.subarray(i * 32 + 16, i * 32 + 19)),
     angularForce: Array.from(data.subarray(i * 32 + 20, i * 32 + 23)),
+    contactEvaluation: {
+      inputGap: data[i * 32 + 24],
+      passAlpha: data[i * 32 + 25],
+      returnedError: data[i * 32 + 26],
+      returnedForce: data[i * 32 + 27],
+      inputPenalty: data[i * 32 + 28],
+      inputForce: data[i * 32 + 29],
+      independentError: data[i * 32 + 30],
+      independentForce: data[i * 32 + 31],
+    },
   }));
 }
 // Read the uniform through a shader; production uniforms deliberately do not
@@ -239,6 +295,7 @@ async function readParams(gpu) {
   out[3]=p.pairCapacity; out[4]=p.contactCapacity;
   out[5]=bitcast<u32>(p.dt); out[6]=bitcast<u32>(p.cellSize); out[7]=bitcast<u32>(p.maxSmallRadius);
   out[8]=bitcast<u32>(p.up.x); out[9]=bitcast<u32>(p.up.y); out[10]=bitcast<u32>(p.up.z);
+  out[11]=bitcast<u32>(p.alpha);
 }`,
         }),
         entryPoint: "inspectParams",
@@ -271,7 +328,7 @@ async function attempt(device, mode, configure) {
     cases: [],
     errors: [],
     contactCache: "normal-float-generations-v1",
-    diagnosticVersion: 3,
+    diagnosticVersion: 4,
     limits: {
       storageBindings: device.limits.maxStorageBuffersPerShaderStage,
       workgroupStorageBytes: device.limits.maxComputeWorkgroupStorageSize,
@@ -286,6 +343,7 @@ async function attempt(device, mode, configure) {
       bodyCapacity: 4,
       broadphase: mode.broadphase,
       scalarPrimal: mode.scalarPrimal ?? false,
+      portableContactMath: mode.portableContactMath ?? false,
       capacity: { pairs: 32, manifolds: 32, contacts: 256, colors: 8 },
     });
     world.params.up = [0, 1, 0];
@@ -342,6 +400,11 @@ async function attempt(device, mode, configure) {
       }
       result.contactSteps = contactSteps;
       result.passed = contactSteps > 0 && result.cases.every((c) => c.passed);
+      if (!result.passed)
+        result.reason =
+          result.pipeline.solver.failure === "contact-evaluation"
+            ? "The GPU created floor contacts but returned zero force where a push was required."
+            : "The GPU did not keep all three falling shapes on the floor.";
     }
   } catch (error) {
     result.errors.push(error.message);

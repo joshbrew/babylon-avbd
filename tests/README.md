@@ -14,6 +14,7 @@ checks run on the host because they inspect files and JavaScript APIs.
 | `npm run test:cloth`             | Thirty-second limb/net checks, central cloth tearing and screenshots                  |
 | `npm run test:features`          | 2D/3D hinge stops, motor reversal/braking, sensors, live masks and casts              |
 | `npm run test:mobile-contacts`   | 3D floor contacts, device-verified fallback selection, 8/9 binding limits and mobile drawing |
+| `npm run test:connected-phone`   | Physical Android GPU: prepared native/Babylon APIs, floor contacts, 2D/3D features and grid/HPLOC++ collisions |
 | `npm run test:renderers`         | Every canonical scene and the slingshot in Babylon; shared-state renderer benchmark checks |
 | `npm run benchmark:renderers`    | Direct WebGPU versus Babylon: GPU drawing/copies, CPU submission and completion; three repeats |
 | `npm run test:fracture`          | Voronoi partition, breakable face bonds, wrecking-ball impact and persistent rubble   |

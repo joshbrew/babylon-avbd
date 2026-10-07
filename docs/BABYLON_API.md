@@ -16,6 +16,14 @@ last argument when their mesh belongs to the world’s scene. Both `AvbdShapeTyp
 and the supported Babylon `PhysicsShapeType` enum values work. Pass
 `autoAttach: false` when you manage stepping yourself.
 
+`AvbdPhysics.create()` checks 3D floor contacts once per device and automatically
+selects a working GPU path. This covers Android drivers that need compatible
+contact calculations or smaller hull workgroups. Desktop devices that pass
+retain their normal shaders and dispatches. The check adds no per-step readbacks.
+For native 3D solvers, use `createWebGPUDevice({validate3D:true})`, or await
+`prepareWebGPUDevice3D(device)` before using a renderer-owned device. Preparation
+is cached and preserves device ownership. 2D does not require the 3D check.
+
 ```js
 import { Vector3 } from "@babylonjs/core/Maths/math.vector.js";
 import { AvbdPhysics, AvbdPhysicsAggregate, AvbdShapeType } from "avbd-babylon";

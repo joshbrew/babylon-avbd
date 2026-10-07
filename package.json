@@ -1,6 +1,6 @@
 {
   "name": "avbd-babylon",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "GPU AVBD rigid-body physics with a Babylon.js aggregate API",
   "main": "./dist/avbd.js",
   "types": "./dist/avbd.d.ts",
@@ -38,7 +38,8 @@
     "benchmark:native": "node scripts/benchmark-package.mjs",
     "benchmark:sleeping": "node scripts/benchmark-package.mjs",
     "benchmark:native-edits": "node scripts/check-native-performance.mjs",
-    "benchmark:renderers": "node scripts/build.mjs && node scripts/benchmark-renderers.mjs"
+    "benchmark:renderers": "node scripts/build.mjs && node scripts/benchmark-renderers.mjs",
+    "test:connected-phone": "node scripts/check-connected-contacts.mjs"
   },
   "license": "MIT",
   "repository": {

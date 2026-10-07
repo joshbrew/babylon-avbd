@@ -17,6 +17,7 @@ import {
   setGpuExecutionPolicy3D,
 } from "../src/gpu/executionPolicy3D.js";
 import { assert, readBuffer } from "./helpers/gpu.js";
+import { AvbdScene3D } from "../src/native/scenes.js";
 
 function world(device, Class = AppGpuSolver3D) {
   const s = new Solver();
@@ -37,6 +38,47 @@ async function generation(gpu) {
   return (words[3] >>> 4) & 0x07ffffff;
 }
 export async function contactPortabilityGpuTests(device, test) {
+  if (device.limits.maxStorageBuffersPerShaderStage >= 9)
+    await test("GPU 3D portable hull contacts cover partial and multiple pair workgroups", async () => {
+      const previous = gpuExecutionPolicy3D(device);
+      setGpuExecutionPolicy3D(device, { portableContactMath: true });
+      const scene = new AvbdScene3D({ gravity: 0, iterations: 1 });
+      const cube = [
+        -1, -1, -1, 1, -1, -1, -1, 1, -1, 1, 1, -1, -1, -1, 1, 1, -1, 1, -1, 1,
+        1, 1, 1, 1,
+      ];
+      for (let i = 0; i < 129; i++) {
+        scene.addHull(cube, { density: 0, position: [i * 6, 0, 0] });
+        scene.addSphere(0.3, { position: [i * 6 + 1.2, 0, 0] });
+      }
+      let gpu;
+      try {
+        gpu = scene.createSolver(device, { spatialSort: false });
+        gpu.params.iterations = 0;
+        for (let i = 0; i < 2; i++) {
+          gpu.step();
+          const counters = await gpu.readCounters();
+          assert(
+            counters.manifolds === 129 &&
+              counters.contacts === 129 &&
+              !counters.overflow &&
+              !counters.clashes,
+            "All 129 hull pairs produce contacts, including the partial last workgroup",
+          );
+          const manifolds = new Uint32Array(
+            await readBuffer(device, gpu.contactStorage.manifolds, 129 * 32),
+          );
+          const pairs = new Set();
+          for (let m = 0; m < 129; m++)
+            pairs.add(`${manifolds[m * 8]},${manifolds[m * 8 + 1]}`);
+          assert(pairs.size === 129, "Every pair executes exactly once");
+          gpu.setSensor(0, true);
+        }
+      } finally {
+        gpu?.destroy();
+        setGpuExecutionPolicy3D(device, previous);
+      }
+    });
   await test("GPU 3D contact cache survives permitted subnormal flushing", async () => {
     const worlds = [world(device, GpuSolver3D), world(device)];
     try {
@@ -260,7 +302,7 @@ export async function contactPortabilityGpuTests(device, test) {
       assert(
         !result.passed &&
           result.selected === null &&
-          result.attempts.length === 6,
+          result.attempts.length === 8,
         "Every unverified path remains rejected",
       );
       assert(
@@ -268,6 +310,105 @@ export async function contactPortabilityGpuTests(device, test) {
         "Failed checks do not install a solver policy",
       );
     } finally {
+      setGpuExecutionPolicy3D(device, previous);
+    }
+  });
+  await test("GPU 3D qualifies portable contact evaluation after zero-force contact failures", async () => {
+    const previous = gpuExecutionPolicy3D(device);
+    setGpuExecutionPolicy3D(device, null);
+    try {
+      const result = await runGpuContactChecks3D(device, (gpu, mode) => {
+        if (mode.portableContactMath) return;
+        // Reproduce the reported symptom: correct contacts and Hessians, but
+        // no returned force. This tests recovery, not a particular phone driver.
+        const make = gpu.solveSource.bind(gpu);
+        gpu.solveSource = (source) =>
+          make(source).replace(
+            "var F = k.pen * e.C + k.lam;",
+            "var F = vec3f(0.0);",
+          );
+        gpu.rebuildSolvePipelines();
+      });
+      assert(
+        result.passed && result.selected === "portable-contact-grid",
+        JSON.stringify(result),
+      );
+      assert(
+        result.attempts.length === 7 &&
+          result.attempts
+            .slice(0, 6)
+            .every(
+              (a) =>
+                !a.passed &&
+                a.pipeline.stage === "contacts-created" &&
+                a.pipeline.solver.serialSystems.every(
+                  (s) =>
+                    s.contactEvaluation.returnedForce === 0 &&
+                    s.contactEvaluation.independentForce < 0,
+                ),
+            ),
+        "Diagnostics distinguish zero returned forces from valid negative normal forces",
+      );
+      const gpu = world(device);
+      try {
+        assert(
+          gpu.portableContactMath &&
+            !gpu.scalarPrimal &&
+            !gpu.dispatchIsolation,
+          "Only the verified contact kernel changes on the recovered device",
+        );
+        gpu.setSensor(0, true);
+        gpu.setSensor(0, false);
+        for (const implementation of ["standard", "optimized", "points"]) {
+          gpu.setSolverMode(implementation);
+          for (let i = 0; i < 20; i++) gpu.step();
+        }
+        const data = await gpu.readBodies();
+        assert(
+          data.every(Number.isFinite) && data[42] > 0.43,
+          "Contact layout survives sensor and scheduling pipeline rebuilds",
+        );
+      } finally {
+        gpu.destroy();
+      }
+    } finally {
+      setGpuExecutionPolicy3D(device, previous);
+    }
+  });
+  await test("GPU 3D portable contact storage and forces preserve resting poses", async () => {
+    const previous = gpuExecutionPolicy3D(device),
+      a = world(device);
+    setGpuExecutionPolicy3D(device, { portableContactMath: true });
+    const b = world(device);
+    try {
+      for (const gpu of [a, b])
+        device.queue.writeBuffer(
+          gpu.bodyBuffer,
+          176,
+          new Float32Array([Math.sin(0.2), 0, 0, Math.cos(0.2)]),
+        );
+      for (let i = 0; i < 120; i++) {
+        a.step();
+        b.step();
+      }
+      const x = await a.readBodies(),
+        y = await b.readBodies();
+      assert(
+        x.every((v, i) => Number.isFinite(y[i]) && Math.abs(v - y[i]) < 1e-5),
+        "Compatibility contact math preserves body words within f32 tolerance",
+      );
+      const read = (gpu) =>
+        readBuffer(device, gpu.contactStorage.contacts, 4 * 64);
+      const old = new Uint32Array(await read(a)),
+        now = new Uint32Array(await read(b));
+      for (let i = 3; i < old.length; i += 16)
+        assert(
+          old[i] === now[i],
+          "Integer feature and static-friction bits are preserved",
+        );
+    } finally {
+      a.destroy();
+      b.destroy();
       setGpuExecutionPolicy3D(device, previous);
     }
   });

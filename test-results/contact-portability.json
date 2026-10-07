@@ -38,6 +38,14 @@
           "passed": true
         },
         {
+          "name": "GPU 3D qualifies portable contact evaluation after zero-force contact failures",
+          "passed": true
+        },
+        {
+          "name": "GPU 3D portable contact storage and forces preserve resting poses",
+          "passed": true
+        },
+        {
           "name": "GPU 3D verifies scalar solve only after cooperative solve failure",
           "passed": true
         },
@@ -85,6 +93,14 @@
         },
         {
           "name": "GPU 3D compatibility refuses paths that all fail real contacts",
+          "passed": true
+        },
+        {
+          "name": "GPU 3D qualifies portable contact evaluation after zero-force contact failures",
+          "passed": true
+        },
+        {
+          "name": "GPU 3D portable contact storage and forces preserve resting poses",
           "passed": true
         },
         {

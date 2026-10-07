@@ -6,7 +6,7 @@ import {
   convexHull,
 } from "../../reference/three-avbd/src/avbd3d/shapes.ts";
 import { AppGpuSolver3D as GpuSolver3D } from "../gpu/appGpuSolver3D.js";
-import { createWebGPUDevice } from "../gpu/device.js";
+import { createWebGPUDevice, prepareWebGPUDevice3D } from "../gpu/device.js";
 import commandShader from "./babylonAvbd.wgsl";
 import { VelocityBatch, MotionBatch } from "../native/velocityBatch.js";
 import { appGpuSolverOptions } from "../gpu/gpuSolverOptions.js";
@@ -62,6 +62,7 @@ export class AvbdPhysics {
       }));
     let world;
     try {
+      await prepareWebGPUDevice3D(device);
       world = new AvbdPhysics(device, options);
       world.ownsDevice = owned;
       if (world.scene && world.autoAttach) world.attachToScene();

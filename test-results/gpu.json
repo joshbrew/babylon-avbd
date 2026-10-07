@@ -1,6 +1,6 @@
 {
   "done": true,
-  "passed": 214,
+  "passed": 216,
   "failed": 0,
   "cases": [
     {
@@ -297,6 +297,14 @@
     },
     {
       "name": "GPU 3D compatibility refuses paths that all fail real contacts",
+      "passed": true
+    },
+    {
+      "name": "GPU 3D qualifies portable contact evaluation after zero-force contact failures",
+      "passed": true
+    },
+    {
+      "name": "GPU 3D portable contact storage and forces preserve resting poses",
       "passed": true
     },
     {
@@ -872,26 +880,26 @@
     "runs": [
       {
         "analytic": true,
-        "collisionMs": 0.084992,
-        "totalMs": 0.159744,
+        "collisionMs": 0.111616,
+        "totalMs": 0.20992,
         "contacts": 2048
       },
       {
         "analytic": false,
         "collisionMs": 0.150528,
-        "totalMs": 0.2304,
+        "totalMs": 0.218112,
         "contacts": 2048
       },
       {
         "analytic": false,
-        "collisionMs": 0.12288,
-        "totalMs": 0.187392,
+        "collisionMs": 0.156672,
+        "totalMs": 0.239616,
         "contacts": 2048
       },
       {
         "analytic": true,
-        "collisionMs": 0.072704,
-        "totalMs": 0.13824,
+        "collisionMs": 0.091136,
+        "totalMs": 0.171008,
         "contacts": 2048
       }
     ],

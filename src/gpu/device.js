@@ -1,3 +1,6 @@
+import { checkGpuContacts3D } from "./contactCheck3D.js";
+import { gpuExecutionPolicy3D } from "./executionPolicy3D.js";
+
 /** Request a caller-owned WebGPU device. No renderer or Babylon dependency. */
 export async function createWebGPUDevice(options = {}) {
   if (!globalThis.navigator?.gpu)
@@ -41,5 +44,23 @@ export async function createWebGPUDevice(options = {}) {
       ? ["timestamp-query"]
       : [],
   });
+  if (options.validate3D) {
+    try {
+      await prepareWebGPUDevice3D(device);
+    } catch (error) {
+      device.destroy();
+      throw error;
+    }
+  }
   return { adapter, device };
+}
+/** Qualify 3D contact execution once; no steady-state readbacks or CPU solving. */
+export async function prepareWebGPUDevice3D(device) {
+  if (gpuExecutionPolicy3D(device)) return device;
+  const result = await checkGpuContacts3D(device);
+  if (!result.passed)
+    throw Error(
+      `GPU 3D contact check failed: ${result.reason ?? result.errors.join("; ")}`,
+    );
+  return device;
 }

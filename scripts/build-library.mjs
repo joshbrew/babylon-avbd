@@ -29,7 +29,7 @@ await copyFile("src/native/scenes.d.ts", "dist/nativeScenes.d.ts");
 await copyFile("src/gpu/device.d.ts", "dist/gpuDevice.d.ts");
 await writeFile(
   "dist/native.js",
-  'export { AvbdScene2D, AvbdScene3D, createWebGPUDevice } from "./avbd.js";\n',
+  'export { AvbdScene2D, AvbdScene3D, createWebGPUDevice, prepareWebGPUDevice3D } from "./avbd.js";\n',
 );
 await writeFile(
   "dist/native.d.ts",

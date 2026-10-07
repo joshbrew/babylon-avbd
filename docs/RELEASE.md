@@ -1,6 +1,6 @@
-# First release checks
+# Release checks
 
-AVBD 0.1 provides GPU rigid-body physics in 2D and 3D, the Babylon aggregate API,
+AVBD 0.2 provides GPU rigid-body physics in 2D and 3D, the Babylon aggregate API,
 portable scene builders and the browser demos. The package ships ESM, the `AVBD`
 browser global, declarations, documentation and license notices. It has no runtime
 dependencies; Babylon 9 is an optional peer for the integration API.
@@ -28,10 +28,26 @@ including eight/nine storage-buffer limits and both renderers in a mobile layout
 The layout checks use the test computer's GPU. Test the hosted demo on actual
 phones as well; its **GPU contact check** sidebar can save a diagnostic report
 with floor-contact results, browser details and device limits. Failed devices
-test separate GPU passes, H-PLOC search and a solver with one GPU thread per body.
+test alternatives for contact data/calculations, work sharing and collision search.
 A fallback is used only after its known-overlap and falling-shape checks pass.
-GPUs that pass the normal path keep
-the batched execution and automatic scene selection.
+GPUs that pass the normal path keep the batched execution and automatic scene
+selection. The diagnostic report compares the contact inputs, stabilization
+setting and calculated forces on the GPU.
+
+For an authorized connected Android phone, start the local demo, unlock the phone
+and open a canonical scene in its browser. Forward the browser debugging socket
+and reverse the demo port with ADB:
+
+```sh
+adb reverse tcp:8080 tcp:8080
+adb forward tcp:9223 localabstract:chrome_devtools_remote
+node scripts/check-connected-contacts.mjs
+```
+
+This checks physical-device floor contacts, 2D/3D package features and both 3D
+collision searches. It uses only the existing local demo tab and saves
+`test-results/connected-phone-contacts.json`. Mobile viewport tests and physical
+phone tests have separate reports.
 
 To compare PC performance with a saved package build, run
 `node scripts/check-contact-performance.mjs --baseline=/path/to/avbd.js`.
@@ -70,7 +86,7 @@ The package check installs the tarball in a temporary project and imports it
 without Babylon or a DOM. It verifies the production file list, both builds,
 optional-peer behavior, strict portable TypeScript usage and upstream notices.
 
-After publishing, run `npm run test:published -- 0.1.0` to verify the registry
+After publishing, run `npm run test:published -- 0.2.0` to verify the registry
 release. This installs the exact version in a fresh temporary project, verifies
 its registry integrity, imports ESM/native and browser-global exports, checks
 TypeScript usage, and runs the GPU package feature tests with Babylon installed
@@ -90,7 +106,7 @@ premade results. Those saved results identify the RTX 4070 Laptop GPU. Live
 benchmarks measure the visitor's machine. The paper's desktop RTX 4090 figures
 are separate comparisons with different hardware and reconstructed workloads.
 
-## Publish 0.1.0
+## Publish 0.2.0
 
 Push the sources, documentation and `test-results/` screenshots to the public
 [repository](https://github.com/joshbrew/babylon-avbd) before publishing npm.
@@ -119,7 +135,7 @@ aggregates, sleeping, hinge angle stops, ropes, ragdolls and fabric helpers.
 attachment for timing and cleanup. Attachment does not create rendering meshes.
 See the [feature table](../README.md#feature-coverage) for exact coverage.
 
-These remain useful follow-up work rather than supported 0.1 features:
+These remain useful follow-up work rather than supported 0.2 features:
 
 - **Concave mesh collisions:** custom hulls fill cavities. Terrain and hollow
   objects need suitable convex pieces.

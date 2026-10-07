@@ -1,5 +1,7 @@
 # AVBD for Babylon.js
 
+**TRY ME!!!** [**babylon-avbd.netlify.app**](https://babylon-avbd.netlify.app/)
+
 `avbd-babylon` runs AVBD rigid-body physics and collision detection on WebGPU,
 with an aggregate/body API that follows familiar Babylon.js conventions.
 The package bundles its solver and shaders, with **no Babylon runtime dependency**.
@@ -58,7 +60,7 @@ npm install avbd-babylon @babylonjs/core
 
 For local development, run `npm install` and `npm run build` in this repository,
 then run `npm install /absolute/path/to/avbd` in your Babylon project. `npm pack`
-creates an installable `avbd-babylon-0.1.0.tgz` archive too.
+creates an installable `avbd-babylon-0.2.0.tgz` archive too.
 
 The package includes ESM, TypeScript declarations and a browser global build.
 Babylon 9 is an optional peer dependency; integration examples are checked with
@@ -75,17 +77,39 @@ can use Babylon's WebGL or WebGPU engine; physics uses WebGPU in either case.
 The scene browser runs a small 3D floor-contact check once per GPU device before
 opening a 3D GPU scene. A box, sphere and capsule must settle on a thin floor.
 GPUs that pass keep the normal batched execution and scene-based collision
-selection. If it fails, the check tries separate GPU passes, H-PLOC collision
-search and a solver with one GPU thread per body. It uses a path only after it
+selection. If it fails, the check tests GPU compatibility alternatives for contact
+data, contact calculations, work sharing and collision search. It uses a path only after it
 passes the same physics checks. These compatibility paths keep the equations,
-timestep and iterations unchanged. The
-check runs at startup; it adds no readbacks during normal simulation.
+timestep and iterations unchanged. The check runs at startup; it adds no
+readbacks during normal simulation.
 If every path fails, the demo stops and offers a diagnostic report under
 **GPU contact check** in the sidebar. The report includes contact results, GPU
 limits, collision counts, contact forces, solver dispatches and browser details.
+It also checks whether the contact inputs and calculated forces agree on the GPU.
 `npm run test:mobile-contacts` checks the same physics
 with eight and nine storage bindings and checks the mobile layout with both
 renderers; testing the layout does not substitute for testing a phone's GPU.
+The [physical-phone floor check](test-results/connected-phone-floor.json) verifies
+boxes, spheres and capsules in Android Brave. `npm run test:connected-phone`
+checks 2D/3D collisions, joints, bounce, triggers, masks, sleeping and queries
+on an authorized, unlocked Android phone running the local demo.
+
+`AvbdPhysics.create()` prepares its device automatically. Native 3D applications
+can qualify a new device when creating it, or prepare a renderer-owned device
+once before creating any solvers. A failed check throws instead of running
+physics with broken contacts. 2D does not need the 3D check.
+
+```js
+import { createWebGPUDevice, prepareWebGPUDevice3D } from "avbd-babylon/native";
+
+const { device } = await createWebGPUDevice({
+  validate3D: true,
+  preferredLimits: { maxStorageBuffersPerShaderStage: 9 },
+});
+// Or, for an existing renderer-owned device:
+await prepareWebGPUDevice3D(rendererDevice);
+// scene3D.createSolver(device) now uses the verified GPU path.
+```
 
 [Direct renderer on a mobile layout](test-results/screenshots/mobile-contact-webgpu.png) ·
 [Babylon renderer on a mobile layout](test-results/screenshots/mobile-contact-babylon.png).
@@ -158,6 +182,7 @@ and `scene.enablePhysics()`.
 | Batched body commands and packed velocity edits       | Yes                  | Yes                   | `editBodies()` groups motion and property edits; packed linear/angular updates use one dispatch. |
 | Automatic Babylon stepping and disposal                | Yes                  | Yes                   | `AvbdPhysics` or native `gpu.attachToScene(scene)` in either dimension.                                  |
 | Manual fixed steps / worker execution                  | Yes                  | Yes                   | No renderer or DOM dependency in either solver.                                                          |
+| Mobile browsers with WebGPU                            | Yes                  | Yes                   | Verified on Android Brave. Babylon's async factory and the scene browser prepare 3D automatically; native 3D apps use `validate3D:true` or `prepareWebGPUDevice3D()`. Requires WebGPU and HTTPS or localhost. |
 | Automatic grid / HPLOC++ choice                        | Yes                  | Grid                  | 3D auto selection uses body sizes and workload.                                                          |
 | GPU work sharing                                       | Yes                  | Yes                   | Retains the configured physics and iteration counts.                                                     |
 | Mesh / instance rendering                              | Yes                  | Yes                   | Use batch drawing for large scenes; portable builders do not create meshes.                              |

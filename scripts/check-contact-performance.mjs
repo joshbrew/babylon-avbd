@@ -36,13 +36,17 @@ try {
     try {
       if(!device.features.has('timestamp-query'))throw Error('GPU timestamps are required for this performance comparison');
       for(const count of [10_000,100_000]){
-        const worlds=[];
+        const worlds=[], shaders=[];
         try{
           for(const Scene of [BaselineScene,CurrentScene]){
             const scene=new Scene({iterations:5});
             scene.addBox([200,1,200],{mass:0,position:[0,-.5,0]});
             for(let i=0;i<count;i++)scene.addBox([.8,.8,.8],{position:[(i%100-50)*.9,.4+Math.floor(i/10000)*.799,(Math.floor(i/100)%100-50)*.9]});
-            const world=scene.createSolver(device);worlds.push(world);
+            const codes=[], make=device.createShaderModule;
+            device.createShaderModule=function(descriptor){codes.push(descriptor.code);return make.call(device,descriptor);};
+            let world;
+            try{world=scene.createSolver(device);}finally{device.createShaderModule=make;}
+            worlds.push(world);shaders.push(codes);
             for(let i=0;i<90;i++)world.step();
             await device.queue.onSubmittedWorkDone();
           }
@@ -71,7 +75,7 @@ try {
           const counters=await Promise.all(worlds.map(w=>w.readCounters()));
           const records=await Promise.all(worlds.map(w=>w.readSelectedBodies([0,1,count])));
           const metrics=samples.map(s=>({gpuMs:median(s.map(v=>v.gpu)),cpuSubmitMs:median(s.map(v=>v.cpu)),samples:s}));
-          results.push({bodies:count+1,iterations:5,dispatchIsolation:worlds[1].dispatchIsolation,commandsIdentical:JSON.stringify(commands[0])===JSON.stringify(commands[1]),commands,counters,selectedPosesMatch:records[0].every((v,i)=>Number.isFinite(records[1][i])&&Math.abs(v-records[1][i])<1.e-5),baseline:metrics[0],current:metrics[1],gpuRatio:metrics[1].gpuMs/metrics[0].gpuMs});
+          results.push({bodies:count+1,iterations:5,dispatchIsolation:worlds[1].dispatchIsolation,shadersIdentical:JSON.stringify(shaders[0])===JSON.stringify(shaders[1]),shaderModuleCount:shaders[1].length,commandsIdentical:JSON.stringify(commands[0])===JSON.stringify(commands[1]),commands,counters,selectedPosesMatch:records[0].every((v,i)=>Number.isFinite(records[1][i])&&Math.abs(v-records[1][i])<1.e-5),baseline:metrics[0],current:metrics[1],gpuRatio:metrics[1].gpuMs/metrics[0].gpuMs});
         }finally{worlds.forEach(w=>w.destroy());}
       }
       return {date:new Date().toISOString(),adapter:adapter.info.toJSON?.()??{vendor:adapter.info.vendor,description:adapter.info.description},results,errors};
@@ -109,7 +113,7 @@ try {
   for (const row of result.results) {
     assert.equal(row.dispatchIsolation, false);
     assert(
-      row.commandsIdentical && row.selectedPosesMatch,
+      row.shadersIdentical && row.commandsIdentical && row.selectedPosesMatch,
       JSON.stringify(row),
     );
     assert(
@@ -137,7 +141,7 @@ try {
   );
   for (const row of result.results)
     console.log(
-      `${row.bodies} bodies: GPU ${row.baseline.gpuMs.toFixed(3)} -> ${row.current.gpuMs.toFixed(3)} ms; CPU ${row.baseline.cpuSubmitMs.toFixed(3)} -> ${row.current.cpuSubmitMs.toFixed(3)} ms; identical dispatches and selected physics`,
+      `${row.bodies} bodies: GPU ${row.baseline.gpuMs.toFixed(3)} -> ${row.current.gpuMs.toFixed(3)} ms; CPU ${row.baseline.cpuSubmitMs.toFixed(3)} -> ${row.current.cpuSubmitMs.toFixed(3)} ms; identical shaders, dispatches and selected physics`,
     );
 } finally {
   await browser.close();

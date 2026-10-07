@@ -90,6 +90,7 @@ for (const key of [
   "AvbdPhysicsBody",
   "AvbdShapeType",
   "createWebGPUDevice",
+  "prepareWebGPUDevice3D",
   "AvbdPhysicsConstraint",
   "AvbdScene2D",
   "AvbdScene3D",
@@ -163,6 +164,7 @@ try {
   );
   assert.equal(native.AvbdScene2D, installed.AvbdScene2D);
   assert.equal(native.createWebGPUDevice, installed.createWebGPUDevice);
+  assert.equal(native.prepareWebGPUDevice3D, installed.prepareWebGPUDevice3D);
   await writeFile(
     join(consumer, "native.ts"),
     `import { AvbdScene2D, AvbdScene3D, createWebGPUDevice } from "avbd-babylon/native";

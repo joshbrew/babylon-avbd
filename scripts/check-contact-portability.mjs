@@ -80,7 +80,7 @@ try {
       {
         passed: true,
         scope:
-          "Desktop GPU, explicit 8/9 storage-binding limits and mobile viewport; physical S10 driver requires device verification.",
+          "Desktop GPU, explicit 8/9 storage-binding limits and mobile viewport. Physical Android checks are recorded separately.",
         results,
       },
       null,
@@ -88,7 +88,7 @@ try {
     ),
   );
   console.log(
-    "PASS contact portability: subnormal-flush reproduction, cache rollover, thin-floor support at 8/9 bindings, both renderers and mobile diagnostics",
+    "PASS GPU 3D compatibility: cache generations, zero-force recovery, verified path selection, 8/9 bindings and both mobile layouts (desktop GPU)",
   );
 } finally {
   await browser.close();

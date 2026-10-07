@@ -29,7 +29,9 @@ const npm =
     ),
     "bin/npm-cli.js",
   );
-const version = process.argv[2] ?? "0.1.0";
+const version = process.argv[2] ?? JSON.parse(
+  await readFile(new URL("../package.json", import.meta.url), "utf8"),
+).version;
 assert.match(version, /^\d+\.\d+\.\d+(?:-[\w.-]+)?$/);
 const registry = "https://registry.npmjs.org/";
 const tempRoot = resolve(".temp");

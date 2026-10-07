@@ -4,10 +4,14 @@ import {
   AvbdShapeType,
   AvbdScene2D,
   AvbdScene3D,
+  createWebGPUDevice,
+  prepareWebGPUDevice3D,
 } from "avbd-babylon";
 import type { Scene } from "@babylonjs/core/scene.js";
 import type { AbstractMesh } from "@babylonjs/core/Meshes/abstractMesh.js";
 async function useBabylon(scene: Scene, mesh: AbstractMesh) {
+  const { device } = await createWebGPUDevice({ validate3D: true });
+  await prepareWebGPUDevice3D(device);
   const physics = await AvbdPhysics.create({ scene, sleeping: true });
   const aggregate = physics.addAggregate(mesh, AvbdShapeType.CAPSULE, {
     restitution: 0.7,

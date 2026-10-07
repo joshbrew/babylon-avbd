@@ -48,6 +48,9 @@ import { propertyEdits } from "./bufferEdits.js";
 import { writePassConstants } from "./passConstants.js";
 import { gpuExecutionPolicy3D } from "./executionPolicy3D.js";
 import { scalarPrimal3D } from "./scalarPrimal3D.js";
+import { portableContactSolve3D } from "./portableContactSolve3D.js";
+import { portableHullContacts3D } from "./portableHullContacts3D.js";
+import { hullOf } from "../../reference/three-avbd/src/avbd3d/shapes.ts";
 
 // A scene may need a minimum coloring budget while its contact graph changes.
 // Preserve that budget after adaptation, which otherwise shrinks it following
@@ -60,6 +63,10 @@ export class AppGpuSolver3D extends GpuSolver3D {
     const executionPolicy = gpuExecutionPolicy3D(device);
     const scalarPrimal =
       options.scalarPrimal ?? executionPolicy?.scalarPrimal ?? false;
+    const portableContactMath =
+      options.portableContactMath ??
+      executionPolicy?.portableContactMath ??
+      false;
     const angularConstraints = ref.forces.some((force) =>
       initialAngularConstraint(force),
     );
@@ -108,7 +115,7 @@ export class AppGpuSolver3D extends GpuSolver3D {
       if (key === "minimumColorRounds" && value % 2)
         throw Error("minimumColorRounds must be even");
     }
-    const initialSolve = protectSolverStep(
+    let initialSolve = protectSolverStep(
       withJointRestFrames(
         angularConstraints
           ? withAngularConstraints(
@@ -121,20 +128,44 @@ export class AppGpuSolver3D extends GpuSolver3D {
             : (source ?? solveWGSL),
       ),
     );
+    if (scalarPrimal) initialSolve = scalarPrimal3D(initialSolve);
+    if (portableContactMath)
+      initialSolve = portableContactSolve3D(initialSolve);
+    const initialPortableHulls =
+      portableContactMath &&
+      !options.shaders?.contacts &&
+      options.hulls !== false &&
+      device.limits.maxStorageBuffersPerShaderStage >= 9 &&
+      ref.bodies.some((body) => hullOf(body));
     super(device, ref, {
       ...options,
       shaders: {
         ...options.shaders,
-        solve: scalarPrimal ? scalarPrimal3D(initialSolve) : initialSolve,
+        contacts: initialPortableHulls
+          ? portableHullContacts3D(makeContactsWGSL(true))
+          : options.shaders?.contacts,
+        solve: initialSolve,
       },
     });
     this.solverPolicy = policy;
     this.scalarPrimal = scalarPrimal;
+    this.portableContactMath = portableContactMath;
     if (scalarPrimal) this.primalLanes = [1, 1, 1];
     this.dispatchIsolation = executionPolicy?.dispatchIsolation ?? false;
     if (!options.shaders?.contacts) {
+      // Initial hull uploads happen in the base constructor. Their compatible
+      // pipeline is already installed; keep later hull/capsule/sensor upgrades.
+      if (initialPortableHulls) {
+        this.contactShaders.custom = false;
+        this.hullShaders = true;
+      }
       const make = this.contactShaders.make;
-      this.contactShaders.make = (code) => make(portableContactCache(code));
+      this.contactShaders.make = (code) =>
+        make(
+          portableContactMath
+            ? portableHullContacts3D(portableContactCache(code))
+            : portableContactCache(code),
+        );
       this.contactShaders.make(makeContactsWGSL(this.hullShaders ?? false));
       this.pipes.updateRefs = device.createComputePipeline({
         label: "Portable contact references",
@@ -392,7 +423,9 @@ export class AppGpuSolver3D extends GpuSolver3D {
     if (this.angularConstraints) source = withAngularConstraints(source);
     if (this.sensorsEnabled) source = sensorSolve(source);
     source = protectSolverStep(withJointRestFrames(source));
-    return this.scalarPrimal ? scalarPrimal3D(source) : source;
+    if (this.scalarPrimal) source = scalarPrimal3D(source);
+    if (this.portableContactMath) source = portableContactSolve3D(source);
+    return source;
   }
   setAngularConstraint(slot, options) {
     if (!Number.isInteger(slot) || slot < 0 || slot >= this.jointCount)
