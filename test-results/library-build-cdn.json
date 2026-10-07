@@ -44,7 +44,10 @@
     "src/gpu/passConstants.js",
     "src/gpu/executionPolicy3D.js",
     "src/gpu/scalarPrimal3D.js",
+    "src/gpu/portableContactSolve3D.js",
+    "src/gpu/portableHullContacts3D.js",
     "src/gpu/appGpuSolver3D.js",
+    "src/gpu/contactCheck3D.js",
     "src/gpu/device.js",
     "src/babylon/babylonAvbd.wgsl",
     "src/native/velocityBatch.js",
@@ -93,7 +96,7 @@
       "entryPoint": ".temp/temp_index.js",
       "inputs": {
         "src/index.js": {
-          "bytesInOutput": 227
+          "bytesInOutput": 256
         },
         "reference/three-avbd/src/avbd3d/ref/math.ts": {
           "bytesInOutput": 3983
@@ -219,16 +222,25 @@
           "bytesInOutput": 1073
         },
         "src/gpu/executionPolicy3D.js": {
-          "bytesInOutput": 51
+          "bytesInOutput": 115
         },
         "src/gpu/scalarPrimal3D.js": {
           "bytesInOutput": 655
         },
+        "src/gpu/portableContactSolve3D.js": {
+          "bytesInOutput": 3157
+        },
+        "src/gpu/portableHullContacts3D.js": {
+          "bytesInOutput": 508
+        },
         "src/gpu/appGpuSolver3D.js": {
-          "bytesInOutput": 17639
+          "bytesInOutput": 18000
+        },
+        "src/gpu/contactCheck3D.js": {
+          "bytesInOutput": 9525
         },
         "src/gpu/device.js": {
-          "bytesInOutput": 949
+          "bytesInOutput": 1166
         },
         "src/babylon/babylonAvbd.wgsl": {
           "bytesInOutput": 1526
@@ -249,7 +261,7 @@
           "bytesInOutput": 7981
         },
         "src/babylon/babylonAvbd.js": {
-          "bytesInOutput": 22467
+          "bytesInOutput": 22479
         },
         "reference/three-avbd/src/avbd2d/ref/body.ts": {
           "bytesInOutput": 726
@@ -339,7 +351,7 @@
           "bytesInOutput": 80
         }
       },
-      "bytes": 463075
+      "bytes": 476948
     }
   }
 }

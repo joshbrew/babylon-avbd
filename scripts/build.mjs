@@ -1,6 +1,10 @@
 import { build, context } from "esbuild";
+import { fileURLToPath } from "node:url";
 import web from "../tinybuild.web.config.js";
 import { sourceMapsEnabled, removeStaleSourceMap } from "./source-maps.mjs";
+// Resolve entries and outputs from this checkout, including direct script calls
+// made from another working directory.
+process.chdir(fileURLToPath(new URL("../", import.meta.url)));
 const options = {
   entryPoints: web.bundler.entryPoints,
   bundle: true,

@@ -106,6 +106,12 @@ premade results. Those saved results identify the RTX 4070 Laptop GPU. Live
 benchmarks measure the visitor's machine. The paper's desktop RTX 4090 figures
 are separate comparisons with different hardware and reconstructed workloads.
 
+The repository's `netlify.toml` runs `npm run build:all` and publishes the root,
+so the demo, benchmark pages, assets and reports stay available. `npm run build`
+builds the npm library only; use `npm run build:all` or `npm run build:web` before
+a manual website upload. Push the Netlify configuration and source changes,
+then redeploy. Clearing browser data cannot update an older deployed bundle.
+
 ## Publish 0.2.0
 
 Push the sources, documentation and `test-results/` screenshots to the public
