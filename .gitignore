@@ -1,6 +1,6 @@
 # Dependencies, builds, temporary wrappers and local test output
 node_modules/
-dist/
+# dist/
 # test-results/
 .npm-cache/
 .temp/
