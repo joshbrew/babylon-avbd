@@ -23,6 +23,12 @@ playable scenes, screenshots, controls and reports. A Chromium browser with
 WebGPU is required for GPU tests; unsupported hardware fails explicitly. GPU
 workloads run sequentially. Type and packaging checks do not need a GPU.
 
+Run `npm run test:mobile-contacts` for the 3D floor-contact portability checks,
+including eight/nine storage-buffer limits and both renderers in a mobile layout.
+The layout checks use the test computer's GPU. Test the hosted demo on actual
+phones as well; its **GPU contact check** sidebar can save a diagnostic report
+with floor-contact results, browser details and device limits.
+
 Run `npm run benchmark:native` to refresh the three-repeat 2D/3D measurements
 for bulk movement/spin, property edits, grouped queries, selected reads and
 sleeping. The browser performance page uses the same package APIs as the demos.
@@ -53,6 +59,13 @@ Preview either cleanup with `node scripts/clean-results.mjs` or
 The package check installs the tarball in a temporary project and imports it
 without Babylon or a DOM. It verifies the production file list, both builds,
 optional-peer behavior, strict portable TypeScript usage and upstream notices.
+
+After publishing, run `npm run test:published -- 0.1.0` to verify the registry
+release. This installs the exact version in a fresh temporary project, verifies
+its registry integrity, imports ESM/native and browser-global exports, checks
+TypeScript usage, and runs the GPU package feature tests with Babylon installed
+explicitly for those integration checks. It uses the downloaded package rather
+than a local build and saves `test-results/published-package.json`.
 `avbd-babylon/native` provides portable imports without Babylon type dependencies.
 Packed files exclude the website,
 benchmark outputs, test fixtures, development tools and dependency directories.
@@ -120,7 +133,3 @@ overflow and zero conflicts are required in release benchmark results.
 The MIT package license and upstream notices ship with the tarball. Attribution
 includes Steven Bobyn, Chris Giles and Erin Catto; pinned upstream files remain
 unchanged.
-
-## Verify the published release
-
-Run `npm run test:published -- 0.1.0` to install the exact registry release into a fresh temporary project and check its integrity, dependency-free native usage, ESM/global exports, TypeScript declarations, and GPU 2D/3D Babylon package feature tests. Results are saved in `test-results/published-package.json`.

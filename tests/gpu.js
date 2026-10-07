@@ -27,6 +27,7 @@ import {
   pointLanesContactSolve,
 } from "../src/gpu/gpuSolverKernels.js";
 import { contactSchedulingGpuTests } from "./gpu-contact-scheduling.js";
+import { contactPortabilityGpuTests } from "./gpu-contact-portability.js";
 import { hplocGpuTests } from "./gpu-hploc.js";
 import { solverSelectionGpuTests } from "./gpu-solver-selection.js";
 import { startGpuStressDemo } from "./legacy/gpuStressDemo.js";
@@ -448,6 +449,7 @@ try {
     },
   );
   await contactSchedulingGpuTests(device, test);
+  await contactPortabilityGpuTests(device, test);
   await hplocGpuTests(device, test);
   await solverSelectionGpuTests(device, test);
   await canonicalGpu2DTests(device, test);

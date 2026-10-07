@@ -2,65 +2,9 @@
   "name": "avbd-babylon",
   "version": "0.1.0",
   "description": "GPU AVBD rigid-body physics with a Babylon.js aggregate API",
-  "keywords": [
-    "avbd",
-    "webgpu",
-    "physics",
-    "babylonjs"
-  ],
-  "homepage": "https://github.com/joshbrew/babylon-avbd#readme",
-  "bugs": {
-    "url": "https://github.com/joshbrew/babylon-avbd/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/joshbrew/babylon-avbd.git"
-  },
-  "license": "MIT",
-  "author": "josh brewster et al",
-  "type": "module",
-  "exports": {
-    ".": {
-      "types": "./dist/avbd.d.ts",
-      "import": "./dist/avbd.js",
-      "default": "./dist/avbd.js"
-    },
-    "./native": {
-      "types": "./dist/native.d.ts",
-      "import": "./dist/native.js",
-      "default": "./dist/native.js"
-    },
-    "./global": {
-      "types": "./dist/avbd.global.d.ts",
-      "default": "./dist/avbd.global.js"
-    },
-    "./package.json": "./package.json"
-  },
   "main": "./dist/avbd.js",
   "types": "./dist/avbd.d.ts",
-  "directories": {
-    "doc": "docs",
-    "test": "tests"
-  },
-  "files": [
-    "dist/avbd.js",
-    "dist/avbd.global.js",
-    "dist/avbd.global.d.ts",
-    "dist/avbd.d.ts",
-    "dist/babylonAvbd.d.ts",
-    "dist/nativeScenes.d.ts",
-    "dist/native.js",
-    "dist/native.d.ts",
-    "dist/gpuDevice.d.ts",
-    "dist/NOTICE",
-    "LICENSE",
-    "README.md",
-    "docs/README.md",
-    "docs/BABYLON_API.md",
-    "docs/HPLOC.md",
-    "docs/RELEASE.md",
-    "tests/README.md"
-  ],
+  "type": "module",
   "scripts": {
     "start": "node scripts/build-library.mjs && node scripts/build.mjs --serve",
     "build": "node scripts/build-library.mjs",
@@ -88,19 +32,22 @@
     "clean:results": "node scripts/clean-results.mjs --apply",
     "clean:dist": "node scripts/clean-dist.mjs --apply",
     "test:package": "node scripts/check-package.mjs",
+    "test:published": "node scripts/check-published.mjs",
+    "test:mobile-contacts": "node scripts/build.mjs && node scripts/check-contact-portability.mjs",
     "test:types": "tsc --noEmit --strict --skipLibCheck --module nodenext --target es2022 tests/package-api-types.ts",
     "benchmark:native": "node scripts/benchmark-package.mjs",
     "benchmark:sleeping": "node scripts/benchmark-package.mjs",
     "benchmark:native-edits": "node scripts/check-native-performance.mjs",
-    "benchmark:renderers": "node scripts/build.mjs && node scripts/benchmark-renderers.mjs",
-    "test:published": "node scripts/check-published.mjs"
+    "benchmark:renderers": "node scripts/build.mjs && node scripts/benchmark-renderers.mjs"
   },
-  "devDependencies": {
-    "esbuild": "^0.28.2",
-    "prettier": "^3.9.9",
-    "tinybuild": "^1.0.6",
-    "@babylonjs/core": "^9.13.0",
-    "typescript": "^7.0.2"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joshbrew/babylon-avbd.git"
+  },
+  "homepage": "https://github.com/joshbrew/babylon-avbd#readme",
+  "bugs": {
+    "url": "https://github.com/joshbrew/babylon-avbd/issues"
   },
   "peerDependencies": {
     "@babylonjs/core": "^9.13.0"
@@ -110,7 +57,56 @@
       "optional": true
     }
   },
+  "keywords": [
+    "avbd",
+    "webgpu",
+    "physics",
+    "babylonjs"
+  ],
+  "devDependencies": {
+    "esbuild": "^0.28.2",
+    "prettier": "^3.9.9",
+    "tinybuild": "^1.0.6",
+    "@babylonjs/core": "^9.13.0",
+    "typescript": "^7.0.2"
+  },
   "module": "./dist/avbd.js",
+  "exports": {
+    ".": {
+      "types": "./dist/avbd.d.ts",
+      "import": "./dist/avbd.js",
+      "default": "./dist/avbd.js"
+    },
+    "./native": {
+      "types": "./dist/native.d.ts",
+      "import": "./dist/native.js",
+      "default": "./dist/native.js"
+    },
+    "./global": {
+      "types": "./dist/avbd.global.d.ts",
+      "default": "./dist/avbd.global.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist/avbd.js",
+    "dist/avbd.global.js",
+    "dist/avbd.global.d.ts",
+    "dist/avbd.d.ts",
+    "dist/babylonAvbd.d.ts",
+    "dist/nativeScenes.d.ts",
+    "dist/native.js",
+    "dist/native.d.ts",
+    "dist/gpuDevice.d.ts",
+    "dist/NOTICE",
+    "LICENSE",
+    "README.md",
+    "docs/README.md",
+    "docs/BABYLON_API.md",
+    "docs/HPLOC.md",
+    "docs/RELEASE.md",
+    "tests/README.md"
+  ],
   "sideEffects": false,
   "unpkg": "./dist/avbd.global.js",
   "jsdelivr": "./dist/avbd.global.js"

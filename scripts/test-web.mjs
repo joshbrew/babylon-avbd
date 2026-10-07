@@ -6,6 +6,7 @@ const root = fileURLToPath(new URL("../", import.meta.url));
 await mkdir(new URL("../test-results/", import.meta.url), { recursive: true });
 const checks = [
   "build",
+  "check-contact-portability",
   "check-scenes",
   "check-benchmark-scenes",
   "check-benchmark-preview",

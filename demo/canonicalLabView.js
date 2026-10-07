@@ -46,6 +46,7 @@ export const labMarkup = `
       <label><input data-param="stiffnessRescale" type="checkbox"> Friction stiffness rescaling</label>
       <label><input data-param="vbd" type="checkbox"> VBD comparison mode</label>
     </details>
+    <details><summary>GPU contact check</summary><p id="lab-gpu-check-status">Opening a 3D GPU scene checks that a box, sphere and capsule stay on the floor.</p><button id="lab-gpu-check-save" disabled>Save GPU diagnostic report</button></details>
     <p id="lab-description"></p>
     <nav class="lab-links">
       <a id="lab-report" href="/test-results/report.html" hidden>Scene check report and screenshots ↗</a>

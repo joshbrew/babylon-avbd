@@ -29,7 +29,11 @@ import {
   sensorTopology,
   clearSensorFlags,
 } from "./sensors.js";
-import { makeContactsWGSL } from "../../reference/three-avbd/src/avbd3d/gpu/wgsl-collision.ts";
+import {
+  makeContactsWGSL,
+  refsWGSL,
+} from "../../reference/three-avbd/src/avbd3d/gpu/wgsl-collision.ts";
+import { portableContactRefs, portableContactCache } from "./contactCache3D.js";
 import { Restitution } from "./restitution.js";
 import {
   initialAngularConstraint,
@@ -118,6 +122,23 @@ export class AppGpuSolver3D extends GpuSolver3D {
       },
     });
     this.solverPolicy = policy;
+    if (!options.shaders?.contacts) {
+      const make = this.contactShaders.make;
+      this.contactShaders.make = (code) => make(portableContactCache(code));
+      this.contactShaders.make(makeContactsWGSL(this.hullShaders ?? false));
+      this.pipes.updateRefs = device.createComputePipeline({
+        label: "Portable contact references",
+        layout: device.createPipelineLayout({
+          bindGroupLayouts: [this.layouts.refs],
+        }),
+        compute: {
+          module: device.createShaderModule({
+            code: portableContactRefs(refsWGSL),
+          }),
+          entryPoint: "updateRefs",
+        },
+      });
+    }
     this.springFracture = springFracture;
     this.angularConstraints = angularConstraints;
     this.customSolveSource = options.shaders?.solve;

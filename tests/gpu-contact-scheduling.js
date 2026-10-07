@@ -95,13 +95,24 @@ export async function contactSchedulingGpuTests(device, test) {
           base.readBodies(),
           safe.readBodies(),
         ]);
-        for (let word = 0; word < states[0].length; word++)
+        for (let word = 0; word < states[0].length; word++) {
+          if (word % 40 === 27) {
+            const original = new Uint32Array(states[0].buffer)[word];
+            const portable =
+              new Uint32Array(states[1].buffer)[word] ^ 0x3f800000;
+            assert(
+              original === portable,
+              `same contact generation at step ${step}, word ${word}`,
+            );
+            continue;
+          }
           close(
             states[1][word],
             states[0][word],
             1e-6,
             `valid protected step ${step}, word ${word}`,
           );
+        }
       }
     } finally {
       base.destroy();

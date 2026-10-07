@@ -1,0 +1,148 @@
+{
+  "passed": true,
+  "scope": "Desktop GPU, explicit 8/9 storage-binding limits and mobile viewport; physical S10 driver requires device verification.",
+  "results": [
+    {
+      "bindings": 8,
+      "cases": [
+        {
+          "name": "GPU 3D contact cache survives permitted subnormal flushing",
+          "passed": true
+        },
+        {
+          "name": "GPU 3D contact cache handles generation rollover and sensor bits",
+          "passed": true
+        },
+        {
+          "name": "GPU 3D floor check keeps box sphere and capsule above a thin floor",
+          "passed": true
+        }
+      ],
+      "errors": []
+    },
+    {
+      "bindings": 9,
+      "cases": [
+        {
+          "name": "GPU 3D contact cache survives permitted subnormal flushing",
+          "passed": true
+        },
+        {
+          "name": "GPU 3D contact cache handles generation rollover and sensor bits",
+          "passed": true
+        },
+        {
+          "name": "GPU 3D floor check keeps box sphere and capsule above a thin floor",
+          "passed": true
+        }
+      ],
+      "errors": []
+    },
+    {
+      "renderer": "webgpu",
+      "viewport": [
+        390,
+        844
+      ],
+      "contacts": {
+        "passed": true,
+        "steps": 180,
+        "cases": [
+          {
+            "shape": "box",
+            "passed": true,
+            "floorGap": -0.018074005842208862,
+            "position": [
+              -2,
+              0.48192599415779114,
+              0
+            ]
+          },
+          {
+            "shape": "sphere",
+            "passed": true,
+            "floorGap": -0.019035011529922485,
+            "position": [
+              0,
+              0.4809649884700775,
+              0
+            ]
+          },
+          {
+            "shape": "capsule",
+            "passed": true,
+            "floorGap": -0.018053638935089156,
+            "position": [
+              2,
+              0.7819463610649109,
+              0
+            ]
+          }
+        ],
+        "errors": [],
+        "contactCache": "normal-float-generations-v1",
+        "limits": {
+          "storageBindings": 9,
+          "workgroupStorageBytes": 16384,
+          "workgroupInvocations": 256,
+          "storageBindingBytes": 536870912
+        },
+        "contactSteps": 5
+      },
+      "steps": 181
+    },
+    {
+      "renderer": "babylon",
+      "viewport": [
+        390,
+        844
+      ],
+      "contacts": {
+        "passed": true,
+        "steps": 180,
+        "cases": [
+          {
+            "shape": "box",
+            "passed": true,
+            "floorGap": -0.018074005842208862,
+            "position": [
+              -2,
+              0.48192599415779114,
+              0
+            ]
+          },
+          {
+            "shape": "sphere",
+            "passed": true,
+            "floorGap": -0.019035011529922485,
+            "position": [
+              0,
+              0.4809649884700775,
+              0
+            ]
+          },
+          {
+            "shape": "capsule",
+            "passed": true,
+            "floorGap": -0.018053638935089156,
+            "position": [
+              2,
+              0.7819463610649109,
+              0
+            ]
+          }
+        ],
+        "errors": [],
+        "contactCache": "normal-float-generations-v1",
+        "limits": {
+          "storageBindings": 9,
+          "workgroupStorageBytes": 16384,
+          "workgroupInvocations": 256,
+          "storageBindingBytes": 536870912
+        },
+        "contactSteps": 5
+      },
+      "steps": 181
+    }
+  ]
+}

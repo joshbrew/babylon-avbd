@@ -31,6 +31,7 @@
     "src/gpu/gpuSolverStep.js",
     "src/gpu/gpuTopologyKernels.js",
     "src/gpu/sensors.js",
+    "src/gpu/contactCache3D.js",
     "src/gpu/restitution.js",
     "src/gpu/angularConstraints.js",
     "src/gpu/angularFrames.wgsl",
@@ -187,6 +188,9 @@
         "src/gpu/sensors.js": {
           "bytesInOutput": 1507
         },
+        "src/gpu/contactCache3D.js": {
+          "bytesInOutput": 1002
+        },
         "src/gpu/restitution.js": {
           "bytesInOutput": 6929
         },
@@ -215,7 +219,7 @@
           "bytesInOutput": 1073
         },
         "src/gpu/appGpuSolver3D.js": {
-          "bytesInOutput": 17031
+          "bytesInOutput": 17407
         },
         "src/gpu/device.js": {
           "bytesInOutput": 949
@@ -329,7 +333,7 @@
           "bytesInOutput": 14755
         }
       },
-      "bytes": 459749
+      "bytes": 461127
     }
   }
 }

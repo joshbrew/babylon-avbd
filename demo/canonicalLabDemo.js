@@ -29,6 +29,7 @@ import {
 } from "./castleScene.js";
 import { collisionGroups } from "./featureScenes.js";
 import { visualOf, RING } from "../reference/three-avbd/src/avbd3d/visuals.ts";
+import { checkGpuContacts3D } from "../src/gpu/contactCheck3D.js";
 
 export async function startCanonicalLabDemo(root = document.body) {
   root.innerHTML = labMarkup;
@@ -158,6 +159,33 @@ export async function startCanonicalLabDemo(root = document.body) {
     get solverDecision() {
       return gpu?.solverDecision ? { ...gpu.solverDecision } : null;
     },
+  };
+  $("#lab-gpu-check-save").onclick = () => {
+    const url = URL.createObjectURL(
+      new Blob(
+        [
+          JSON.stringify(
+            {
+              date: new Date().toISOString(),
+              userAgent: navigator.userAgent,
+              scene: current.id,
+              renderer: $("#lab-renderer").value,
+              adapter: diagnostics.adapter,
+              contacts: diagnostics.contactCheck,
+              errors: diagnostics.errors,
+            },
+            null,
+            2,
+          ),
+        ],
+        { type: "application/json" },
+      ),
+    );
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "avbd-gpu-contact-check.json";
+    link.click();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
   };
   globalThis.__AVBD_LAB__ = {
     diagnostics,
@@ -612,6 +640,19 @@ export async function startCanonicalLabDemo(root = document.body) {
         await getDevice();
         if (epoch !== generation) return;
         if (backend.value === "gpu") {
+          $("#lab-gpu-check-status").textContent =
+            "Checking GPU floor contacts…";
+          diagnostics.contactCheck = await checkGpuContacts3D(device);
+          if (epoch !== generation) return;
+          $("#lab-gpu-check-save").disabled = false;
+          $("#lab-gpu-check-status").textContent = diagnostics.contactCheck
+            .passed
+            ? "Passed: the box, sphere and capsule stayed on the floor."
+            : "Failed: this GPU did not keep all three shapes on the floor. Save the report to identify the failing contacts.";
+          if (!diagnostics.contactCheck.passed)
+            throw Error(
+              "GPU floor-contact check failed. Open GPU contact check and save the diagnostic report.",
+            );
           if (
             current.name === "Convex Hulls" &&
             device.limits.maxStorageBuffersPerShaderStage < 9

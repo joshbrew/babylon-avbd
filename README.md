@@ -1,13 +1,7 @@
 # AVBD for Babylon.js
 
-[![npm version](https://img.shields.io/npm/v/avbd-babylon.svg)](https://www.npmjs.com/package/avbd-babylon)
-[![npm downloads](https://img.shields.io/npm/dt/avbd-babylon.svg)](https://www.npmjs.com/package/avbd-babylon)
-![license](https://img.shields.io/npm/l/avbd-babylon)
-
-### [Try Me!!!](https://babylon-avbd.netlify.app/)
-
 `avbd-babylon` runs AVBD rigid-body physics and collision detection on WebGPU,
-with an aggregate/body API that follows familiar Babylon.js conventions. Render 50,000-100,000 or more live physics objects in real time!
+with an aggregate/body API that follows familiar Babylon.js conventions.
 The package bundles its solver and shaders, with **no Babylon runtime dependency**.
 Automatic GPU work sharing and collision selection are enabled by default.
 AVBD calculates collisions, movement, rotation and friction. Babylon renders
@@ -77,6 +71,17 @@ types; older compilers may need `@webgpu/types` in the project's `types` setting
 Your application does not need a WGSL loader or the repository's TypeScript sources.
 WebGPU requires a supported browser on localhost or HTTPS. Small-scene drawing
 can use Babylon's WebGL or WebGPU engine; physics uses WebGPU in either case.
+
+The browser demos run a small 3D floor-contact check once per GPU device before
+opening a 3D GPU scene. A box, sphere and capsule must settle on a thin floor.
+If that check fails, the demo stops and offers a diagnostic report under
+**GPU contact check** in the sidebar. The report includes contact results, GPU
+limits and browser details. `npm run test:mobile-contacts` checks the same physics
+with eight and nine storage bindings and checks the mobile layout with both
+renderers; testing the layout does not substitute for testing a phone's GPU.
+
+[Direct renderer on a mobile layout](test-results/screenshots/mobile-contact-webgpu.png) ·
+[Babylon renderer on a mobile layout](test-results/screenshots/mobile-contact-babylon.png).
 
 ## What this package adds
 
@@ -211,9 +216,9 @@ contains the repeated measurements and hardware details.
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [![A suspended wrecking ball beside an intact irregular stone wall](test-results/screenshots/voronoi-120.png)](test-results/screenshots/voronoi-120.png)<br>216 convex stones fill a bounded Voronoi partition; shared faces carry breakable welds. | [![A wrecking ball opening a hole in the wall with persistent stone rubble](test-results/screenshots/voronoi-1440.png)](test-results/screenshots/voronoi-1440.png)<br>[Play the demolition](index.html?demo=canonical&scene=3d-voronoi-demolition&backend=gpu). Released stones remain physical debris. |
 
-####  Mixed collider gallery
-
-[![Spheres, boxes, capsules, cylinders and convex wedges on a shadowed floor](test-results/screenshots/mixed-gallery-settled.png)](test-results/screenshots/mixed-gallery-settled.png)<br>Babylon meshes follow the GPU poses, with visible contacts and shadows. |
+| Mixed collider gallery                                                                                                                                                                                                                                            | Chain-mail ring spacing                                                                                                                                                                                                                                                           |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [![Spheres, boxes, capsules, cylinders and convex wedges on a shadowed floor](test-results/screenshots/mixed-gallery-settled.png)](test-results/screenshots/mixed-gallery-settled.png)<br>Babylon meshes follow the GPU poses, with visible contacts and shadows. | [![Interlocking rings with matching wire contact at their rest spacing](test-results/screenshots/chainmail-rest.png)](test-results/screenshots/chainmail-rest.png)<br>Ring sizes follow the link spacing. The net uses jointed rigid proxies; the donuts are decorative geometry. |
 
 ### Destruction and large scenes
 

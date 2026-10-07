@@ -1,6 +1,6 @@
 {
   "done": true,
-  "passed": 203,
+  "passed": 206,
   "failed": 0,
   "cases": [
     {
@@ -265,6 +265,18 @@
     },
     {
       "name": "parallel-point GPU solve remains finite with a heavy slab on a light thin box",
+      "passed": true
+    },
+    {
+      "name": "GPU 3D contact cache survives permitted subnormal flushing",
+      "passed": true
+    },
+    {
+      "name": "GPU 3D contact cache handles generation rollover and sensor bits",
+      "passed": true
+    },
+    {
+      "name": "GPU 3D floor check keeps box sphere and capsule above a thin floor",
       "passed": true
     },
     {
@@ -828,20 +840,20 @@
     "runs": [
       {
         "analytic": true,
-        "collisionMs": 0.11776,
-        "totalMs": 0.221184,
+        "collisionMs": 0.116736,
+        "totalMs": 0.22016,
         "contacts": 2048
       },
       {
         "analytic": false,
-        "collisionMs": 0.12288,
-        "totalMs": 0.187392,
+        "collisionMs": 0.150528,
+        "totalMs": 0.217088,
         "contacts": 2048
       },
       {
         "analytic": false,
-        "collisionMs": 0.144384,
-        "totalMs": 0.208896,
+        "collisionMs": 0.142336,
+        "totalMs": 0.206848,
         "contacts": 2048
       },
       {
