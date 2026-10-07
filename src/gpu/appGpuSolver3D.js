@@ -47,6 +47,7 @@ import { ShapeQueries } from "./shapeQueries.js";
 import { propertyEdits } from "./bufferEdits.js";
 import { writePassConstants } from "./passConstants.js";
 import { gpuExecutionPolicy3D } from "./executionPolicy3D.js";
+import { scalarPrimal3D } from "./scalarPrimal3D.js";
 
 // A scene may need a minimum coloring budget while its contact graph changes.
 // Preserve that budget after adaptation, which otherwise shrinks it following
@@ -57,6 +58,8 @@ export class AppGpuSolver3D extends GpuSolver3D {
   }
   constructor(device, ref, options = {}) {
     const executionPolicy = gpuExecutionPolicy3D(device);
+    const scalarPrimal =
+      options.scalarPrimal ?? executionPolicy?.scalarPrimal ?? false;
     const angularConstraints = ref.forces.some((force) =>
       initialAngularConstraint(force),
     );
@@ -105,26 +108,29 @@ export class AppGpuSolver3D extends GpuSolver3D {
       if (key === "minimumColorRounds" && value % 2)
         throw Error("minimumColorRounds must be even");
     }
+    const initialSolve = protectSolverStep(
+      withJointRestFrames(
+        angularConstraints
+          ? withAngularConstraints(
+              springFracture
+                ? withSpringFracture(source ?? solveWGSL)
+                : (source ?? solveWGSL),
+            )
+          : springFracture
+            ? withSpringFracture(source ?? solveWGSL)
+            : (source ?? solveWGSL),
+      ),
+    );
     super(device, ref, {
       ...options,
       shaders: {
         ...options.shaders,
-        solve: protectSolverStep(
-          withJointRestFrames(
-            angularConstraints
-              ? withAngularConstraints(
-                  springFracture
-                    ? withSpringFracture(source ?? solveWGSL)
-                    : (source ?? solveWGSL),
-                )
-              : springFracture
-                ? withSpringFracture(source ?? solveWGSL)
-                : (source ?? solveWGSL),
-          ),
-        ),
+        solve: scalarPrimal ? scalarPrimal3D(initialSolve) : initialSolve,
       },
     });
     this.solverPolicy = policy;
+    this.scalarPrimal = scalarPrimal;
+    if (scalarPrimal) this.primalLanes = [1, 1, 1];
     this.dispatchIsolation = executionPolicy?.dispatchIsolation ?? false;
     if (!options.shaders?.contacts) {
       const make = this.contactShaders.make;
@@ -150,7 +156,9 @@ export class AppGpuSolver3D extends GpuSolver3D {
       const material = initialSpringMaterial(force);
       if (material) this.setSpringMaterial(slot, material);
     });
-    this.adaptiveScheduling = options.adaptiveScheduling ?? true;
+    this.adaptiveScheduling = scalarPrimal
+      ? false
+      : (options.adaptiveScheduling ?? true);
     this.defaultPrimalLanes = [...this.primalLanes];
     this.cacheAdjacencyKeys = options.cacheAdjacencyKeys;
     this.adjacencyPipelines = { original: this.pipes.sortAdjacency };
@@ -383,7 +391,8 @@ export class AppGpuSolver3D extends GpuSolver3D {
     if (this.springFracture) source = withSpringFracture(source);
     if (this.angularConstraints) source = withAngularConstraints(source);
     if (this.sensorsEnabled) source = sensorSolve(source);
-    return protectSolverStep(withJointRestFrames(source));
+    source = protectSolverStep(withJointRestFrames(source));
+    return this.scalarPrimal ? scalarPrimal3D(source) : source;
   }
   setAngularConstraint(slot, options) {
     if (!Number.isInteger(slot) || slot < 0 || slot >= this.jointCount)

@@ -27,8 +27,13 @@ try {
     const {device}=await createWebGPUDevice({requiredLimits:{maxStorageBuffersPerShaderStage:9}});
     const errors=[],modes=[];device.addEventListener('uncapturederror',e=>errors.push(e.error.message));
     try {
-      for(const broadphase of ['grid','hploc']){
-        setGpuExecutionPolicy3D(device,{dispatchIsolation:true,broadphase});
+      for(const policy of [
+        {dispatchIsolation:true,broadphase:'grid'},
+        {dispatchIsolation:true,broadphase:'hploc'},
+        {scalarPrimal:true,broadphase:'grid'},
+        {scalarPrimal:true,dispatchIsolation:true,broadphase:'grid'},
+      ]){
+        setGpuExecutionPolicy3D(device,policy);
         const cases=[],excluded=[];
         const test=async(name,run)=>{
           // Normal validation covers 2D, performance measurements and read-only
@@ -41,7 +46,7 @@ try {
         };
         await canonicalGpuTests(device,test,undefined,AppGpuSolver3D);
         await packageFeatureGpuTests(device,test);
-        modes.push({broadphase,dispatchIsolation:true,cases,excluded});
+        modes.push({...policy,cases,excluded});
       }
       return {modes,errors};
     }finally{device.destroy();}
@@ -63,7 +68,7 @@ try {
     ),
   );
   console.log(
-    `PASS compatibility features: ${result.modes.map((m) => m.broadphase + " " + m.cases.length + " GPU cases").join("; ")}`,
+    `PASS compatibility features: ${result.modes.map((m) => (m.scalarPrimal ? "scalar " : "cooperative ") + m.broadphase + " " + m.cases.length + " GPU cases").join("; ")}`,
   );
 } finally {
   await browser.close();

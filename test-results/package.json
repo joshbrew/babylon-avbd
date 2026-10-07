@@ -21,7 +21,7 @@
     "package.json",
     "tests/README.md"
   ],
-  "bytes": 356172,
+  "bytes": 357267,
   "exports": [
     "AvbdPhysics",
     "AvbdPhysicsAggregate",

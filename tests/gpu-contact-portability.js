@@ -133,6 +133,18 @@ export async function contactPortabilityGpuTests(device, test) {
       "Known overlaps locate pair generation and contact creation separately",
     );
     assert(
+      result.pipeline.solver.adjacencyStarts[4] === 3,
+      "All three bodies receive a floor constraint",
+    );
+    assert(
+      result.pipeline.solver.serialSystems.every(
+        (s) =>
+          s.linearDiagonal.every((v) => Number.isFinite(v) && v > 0) &&
+          s.angularDiagonal.every((v) => Number.isFinite(v) && v > 0),
+      ),
+      "Diagnostic serial accumulation produces finite positive systems",
+    );
+    assert(
       (await checkGpuContacts3D(device)) === result,
       "One startup check per device",
     );
@@ -248,7 +260,7 @@ export async function contactPortabilityGpuTests(device, test) {
       assert(
         !result.passed &&
           result.selected === null &&
-          result.attempts.length === 4,
+          result.attempts.length === 6,
         "Every unverified path remains rejected",
       );
       assert(
@@ -256,6 +268,88 @@ export async function contactPortabilityGpuTests(device, test) {
         "Failed checks do not install a solver policy",
       );
     } finally {
+      setGpuExecutionPolicy3D(device, previous);
+    }
+  });
+  await test("GPU 3D verifies scalar solve only after cooperative solve failure", async () => {
+    const previous = gpuExecutionPolicy3D(device);
+    setGpuExecutionPolicy3D(device, null);
+    try {
+      const result = await runGpuContactChecks3D(device, (gpu, mode) => {
+        if (mode.scalarPrimal) return;
+        gpu.pipes.primal = device.createComputePipeline({
+          layout: device.createPipelineLayout({
+            bindGroupLayouts: [gpu.layouts.solve, gpu.layouts.pass],
+          }),
+          compute: {
+            module: device.createShaderModule({
+              code: "@compute @workgroup_size(64) fn primal(){}",
+            }),
+            entryPoint: "primal",
+          },
+        });
+      });
+      assert(
+        result.passed && result.selected === "scalar-grid",
+        JSON.stringify(result),
+      );
+      assert(
+        result.attempts
+          .slice(0, 4)
+          .every((a) => !a.passed && a.pipeline.stage === "contacts-created"),
+        "Collision counts alone never qualify an unresponsive solver",
+      );
+      const gpu = world(device);
+      try {
+        assert(
+          gpu.scalarPrimal &&
+            gpu.primalLanes.every((n) => n === 1) &&
+            !gpu.adaptiveScheduling,
+          "The verified scalar kernel and indirect dispatch counts are selected together",
+        );
+        gpu.setSensor(0, true);
+        gpu.setSensor(0, false);
+        for (const implementation of ["standard", "optimized", "points"]) {
+          gpu.setSolverMode(implementation);
+          for (let i = 0; i < 20; i++) gpu.step();
+        }
+        const bodies = await gpu.readBodies();
+        assert(
+          bodies.every(Number.isFinite) && bodies[42] > 0.43,
+          "Pipeline rebuilds retain the verified kernel and support the box",
+        );
+      } finally {
+        gpu.destroy();
+      }
+    } finally {
+      setGpuExecutionPolicy3D(device, previous);
+    }
+  });
+  await test("GPU 3D scalar and cooperative solves retain matching resting contact poses", async () => {
+    const previous = gpuExecutionPolicy3D(device);
+    const a = world(device);
+    setGpuExecutionPolicy3D(device, { scalarPrimal: true });
+    const b = world(device);
+    try {
+      for (const gpu of [a, b])
+        device.queue.writeBuffer(
+          gpu.bodyBuffer,
+          176,
+          new Float32Array([Math.sin(0.2), 0, 0, Math.cos(0.2)]),
+        );
+      for (let i = 0; i < 120; i++) {
+        a.step();
+        b.step();
+      }
+      const x = await a.readBodies(),
+        y = await b.readBodies();
+      assert(
+        x.every((v, i) => Number.isFinite(y[i]) && Math.abs(v - y[i]) < 1e-5),
+        "Changing thread ownership preserves checked body state within f32 tolerance",
+      );
+    } finally {
+      a.destroy();
+      b.destroy();
       setGpuExecutionPolicy3D(device, previous);
     }
   });

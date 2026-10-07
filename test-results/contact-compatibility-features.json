@@ -3,8 +3,8 @@
   "scope": "Desktop GPU: forced compatibility execution, same 3D numerical tests for each collision path; actual mobile GPU verification is separate.",
   "modes": [
     {
-      "broadphase": "grid",
       "dispatchIsolation": true,
+      "broadphase": "grid",
       "cases": [
         {
           "name": "canonical GPU world joint pulls and releases a body",
@@ -120,8 +120,243 @@
       ]
     },
     {
-      "broadphase": "hploc",
       "dispatchIsolation": true,
+      "broadphase": "hploc",
+      "cases": [
+        {
+          "name": "canonical GPU world joint pulls and releases a body",
+          "passed": true
+        },
+        {
+          "name": "canonical GPU resting contact respects the floor contact margin",
+          "passed": true
+        },
+        {
+          "name": "GPU sleeping batches passes without changing impact or support state",
+          "passed": true
+        },
+        {
+          "name": "GPU sleeping preserves poses and real masses, then wakes reciprocal impact bodies",
+          "passed": true
+        },
+        {
+          "name": "GPU sleeping wakes a dependent when a support moves away",
+          "passed": true
+        },
+        {
+          "name": "GPU sleeping rejects an unsupported initial configuration",
+          "passed": true
+        },
+        {
+          "name": "GPU 3D zero-torque motor leaves free angular motion unchanged",
+          "passed": true
+        },
+        {
+          "name": "GPU 3D sphere casts use rounded faces, edges and hulls rather than inflated boxes",
+          "passed": true
+        },
+        {
+          "name": "GPU analytic capsules support hull contacts and exact rounded raycasts",
+          "passed": true
+        },
+        {
+          "name": "GPU analytic capsules detect segment crossings, rounded corners and stable floor support",
+          "passed": true
+        },
+        {
+          "name": "GPU native 3D hinge and motor initialize their angular records before the first step",
+          "passed": true
+        },
+        {
+          "name": "GPU 3D hinge permits axial rotation and enforces angle stops with a torque-limited motor",
+          "passed": true
+        },
+        {
+          "name": "GPU restitution obeys a sphere's bounce coefficient and zero skips bounce passes",
+          "passed": true
+        },
+        {
+          "name": "GPU elastic sphere collision conserves momentum and kinetic energy",
+          "passed": true
+        },
+        {
+          "name": "GPU triggers report entry/exit, honor masks, and never deflect motion",
+          "passed": true
+        },
+        {
+          "name": "GPU sleep eligibility is per body and explicit opt-in enables the policy",
+          "passed": true
+        },
+        {
+          "name": "Package rotated weld preserves its rest orientation without pose readback",
+          "passed": true
+        },
+        {
+          "name": "Package live weld captures GPU rotation and joint slots are reused",
+          "passed": true
+        },
+        {
+          "name": "Package movable world anchor, springs and breakable welds execute on GPU",
+          "passed": true
+        },
+        {
+          "name": "Babylon springs stretch and return, fracture in tension, and survive compression",
+          "passed": true
+        },
+        {
+          "name": "Package compact pose gathering copies only requested meshes and preserves order",
+          "passed": true
+        },
+        {
+          "name": "Package rays use live GPU poses, filters, ignored bodies and convex surfaces",
+          "passed": true
+        },
+        {
+          "name": "Package contact events begin/end without full pose downloads",
+          "passed": true
+        },
+        {
+          "name": "Package sleeping wakes for impulses and support removal",
+          "passed": true
+        },
+        {
+          "name": "Package sleeping wakes on impact and leaves unsupported slow falls awake",
+          "passed": true
+        },
+        {
+          "name": "Package 2D joints and motors and 3D fabric are available without demo imports",
+          "passed": true
+        }
+      ],
+      "excluded": [
+        "GPU 2D raycasts and circle casts handle rotated boxes, rounded corners, masks and sensors",
+        "GPU analytic capsule collision benchmark against tessellated capsules",
+        "GPU 2D triggers preserve motion, honor masks and emit one entry/exit per face",
+        "GPU 2D restitution rebounds at the requested speed without face-point amplification",
+        "Selected pose gathering supports half-million-body selections"
+      ]
+    },
+    {
+      "scalarPrimal": true,
+      "broadphase": "grid",
+      "cases": [
+        {
+          "name": "canonical GPU world joint pulls and releases a body",
+          "passed": true
+        },
+        {
+          "name": "canonical GPU resting contact respects the floor contact margin",
+          "passed": true
+        },
+        {
+          "name": "GPU sleeping batches passes without changing impact or support state",
+          "passed": true
+        },
+        {
+          "name": "GPU sleeping preserves poses and real masses, then wakes reciprocal impact bodies",
+          "passed": true
+        },
+        {
+          "name": "GPU sleeping wakes a dependent when a support moves away",
+          "passed": true
+        },
+        {
+          "name": "GPU sleeping rejects an unsupported initial configuration",
+          "passed": true
+        },
+        {
+          "name": "GPU 3D zero-torque motor leaves free angular motion unchanged",
+          "passed": true
+        },
+        {
+          "name": "GPU 3D sphere casts use rounded faces, edges and hulls rather than inflated boxes",
+          "passed": true
+        },
+        {
+          "name": "GPU analytic capsules support hull contacts and exact rounded raycasts",
+          "passed": true
+        },
+        {
+          "name": "GPU analytic capsules detect segment crossings, rounded corners and stable floor support",
+          "passed": true
+        },
+        {
+          "name": "GPU native 3D hinge and motor initialize their angular records before the first step",
+          "passed": true
+        },
+        {
+          "name": "GPU 3D hinge permits axial rotation and enforces angle stops with a torque-limited motor",
+          "passed": true
+        },
+        {
+          "name": "GPU restitution obeys a sphere's bounce coefficient and zero skips bounce passes",
+          "passed": true
+        },
+        {
+          "name": "GPU elastic sphere collision conserves momentum and kinetic energy",
+          "passed": true
+        },
+        {
+          "name": "GPU triggers report entry/exit, honor masks, and never deflect motion",
+          "passed": true
+        },
+        {
+          "name": "GPU sleep eligibility is per body and explicit opt-in enables the policy",
+          "passed": true
+        },
+        {
+          "name": "Package rotated weld preserves its rest orientation without pose readback",
+          "passed": true
+        },
+        {
+          "name": "Package live weld captures GPU rotation and joint slots are reused",
+          "passed": true
+        },
+        {
+          "name": "Package movable world anchor, springs and breakable welds execute on GPU",
+          "passed": true
+        },
+        {
+          "name": "Babylon springs stretch and return, fracture in tension, and survive compression",
+          "passed": true
+        },
+        {
+          "name": "Package compact pose gathering copies only requested meshes and preserves order",
+          "passed": true
+        },
+        {
+          "name": "Package rays use live GPU poses, filters, ignored bodies and convex surfaces",
+          "passed": true
+        },
+        {
+          "name": "Package contact events begin/end without full pose downloads",
+          "passed": true
+        },
+        {
+          "name": "Package sleeping wakes for impulses and support removal",
+          "passed": true
+        },
+        {
+          "name": "Package sleeping wakes on impact and leaves unsupported slow falls awake",
+          "passed": true
+        },
+        {
+          "name": "Package 2D joints and motors and 3D fabric are available without demo imports",
+          "passed": true
+        }
+      ],
+      "excluded": [
+        "GPU 2D raycasts and circle casts handle rotated boxes, rounded corners, masks and sensors",
+        "GPU analytic capsule collision benchmark against tessellated capsules",
+        "GPU 2D triggers preserve motion, honor masks and emit one entry/exit per face",
+        "GPU 2D restitution rebounds at the requested speed without face-point amplification",
+        "Selected pose gathering supports half-million-body selections"
+      ]
+    },
+    {
+      "scalarPrimal": true,
+      "dispatchIsolation": true,
+      "broadphase": "grid",
       "cases": [
         {
           "name": "canonical GPU world joint pulls and releases a body",

@@ -72,16 +72,17 @@ Your application does not need a WGSL loader or the repository's TypeScript sour
 WebGPU requires a supported browser on localhost or HTTPS. Small-scene drawing
 can use Babylon's WebGL or WebGPU engine; physics uses WebGPU in either case.
 
-The browser demos run a small 3D floor-contact check once per GPU device before
+The scene browser runs a small 3D floor-contact check once per GPU device before
 opening a 3D GPU scene. A box, sphere and capsule must settle on a thin floor.
 GPUs that pass keep the normal batched execution and scene-based collision
-selection. If it fails, the check tries separate GPU passes and H-PLOC collision
-search, and uses a path only after it passes the same physics checks. These
-compatibility paths keep the equations, timestep and iterations unchanged. The
+selection. If it fails, the check tries separate GPU passes, H-PLOC collision
+search and a solver with one GPU thread per body. It uses a path only after it
+passes the same physics checks. These compatibility paths keep the equations,
+timestep and iterations unchanged. The
 check runs at startup; it adds no readbacks during normal simulation.
 If every path fails, the demo stops and offers a diagnostic report under
 **GPU contact check** in the sidebar. The report includes contact results, GPU
-limits, collision-pair/contact counts and browser details.
+limits, collision counts, contact forces, solver dispatches and browser details.
 `npm run test:mobile-contacts` checks the same physics
 with eight and nine storage bindings and checks the mobile layout with both
 renderers; testing the layout does not substitute for testing a phone's GPU.

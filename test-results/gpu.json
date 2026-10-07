@@ -1,6 +1,6 @@
 {
   "done": true,
-  "passed": 212,
+  "passed": 214,
   "failed": 0,
   "cases": [
     {
@@ -297,6 +297,14 @@
     },
     {
       "name": "GPU 3D compatibility refuses paths that all fail real contacts",
+      "passed": true
+    },
+    {
+      "name": "GPU 3D verifies scalar solve only after cooperative solve failure",
+      "passed": true
+    },
+    {
+      "name": "GPU 3D scalar and cooperative solves retain matching resting contact poses",
       "passed": true
     },
     {
@@ -864,26 +872,26 @@
     "runs": [
       {
         "analytic": true,
-        "collisionMs": 0.11776,
-        "totalMs": 0.22016,
+        "collisionMs": 0.084992,
+        "totalMs": 0.159744,
         "contacts": 2048
       },
       {
         "analytic": false,
-        "collisionMs": 0.19456,
-        "totalMs": 0.29696,
+        "collisionMs": 0.150528,
+        "totalMs": 0.2304,
         "contacts": 2048
       },
       {
         "analytic": false,
-        "collisionMs": 0.195584,
-        "totalMs": 0.297984,
+        "collisionMs": 0.12288,
+        "totalMs": 0.187392,
         "contacts": 2048
       },
       {
         "analytic": true,
-        "collisionMs": 0.191488,
-        "totalMs": 0.359424,
+        "collisionMs": 0.072704,
+        "totalMs": 0.13824,
         "contacts": 2048
       }
     ],

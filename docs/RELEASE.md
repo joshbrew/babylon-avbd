@@ -28,8 +28,9 @@ including eight/nine storage-buffer limits and both renderers in a mobile layout
 The layout checks use the test computer's GPU. Test the hosted demo on actual
 phones as well; its **GPU contact check** sidebar can save a diagnostic report
 with floor-contact results, browser details and device limits. Failed devices
-test separate GPU passes and H-PLOC search; a fallback is used only after its
-known-overlap and falling-shape checks pass. GPUs that pass the normal path keep
+test separate GPU passes, H-PLOC search and a solver with one GPU thread per body.
+A fallback is used only after its known-overlap and falling-shape checks pass.
+GPUs that pass the normal path keep
 the batched execution and automatic scene selection.
 
 To compare PC performance with a saved package build, run

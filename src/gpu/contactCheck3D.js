@@ -3,8 +3,14 @@ import { Solver } from "../../reference/three-avbd/src/avbd3d/ref/solver.ts";
 import { Rigid } from "../../reference/three-avbd/src/avbd3d/ref/body.ts";
 import { sphere } from "../../reference/three-avbd/src/avbd3d/shapes.ts";
 import { capsule } from "./capsuleShape.js";
-import { IA_PAIRS } from "../../reference/three-avbd/src/avbd2d/gpu/layout.ts";
+import {
+  IA_PAIRS,
+  IA_COLOR,
+  IA_CONTACTS,
+  IA_CONSTRAINTS,
+} from "../../reference/three-avbd/src/avbd2d/gpu/layout.ts";
 import { PRELUDE_3D } from "../../reference/three-avbd/src/avbd3d/gpu/layout.ts";
+import { solveWGSL } from "../../reference/three-avbd/src/avbd3d/gpu/wgsl-solve.ts";
 import { setGpuExecutionPolicy3D } from "./executionPolicy3D.js";
 
 const checks = new WeakMap();
@@ -13,6 +19,18 @@ const modes = [
   { name: "isolated-grid", broadphase: "grid", dispatchIsolation: true },
   { name: "batched-hploc", broadphase: "hploc", dispatchIsolation: false },
   { name: "isolated-hploc", broadphase: "hploc", dispatchIsolation: true },
+  {
+    name: "scalar-grid",
+    broadphase: "grid",
+    dispatchIsolation: false,
+    scalarPrimal: true,
+  },
+  {
+    name: "scalar-isolated-grid",
+    broadphase: "grid",
+    dispatchIsolation: true,
+    scalarPrimal: true,
+  },
 ];
 /** Cached once per device. Successful compatibility paths keep identical physics. */
 export function checkGpuContacts3D(device) {
@@ -28,6 +46,7 @@ export async function runGpuContactChecks3D(device, configure) {
     if (!result.passed) continue;
     setGpuExecutionPolicy3D(device, {
       dispatchIsolation: mode.dispatchIsolation,
+      scalarPrimal: mode.scalarPrimal ?? false,
       // Retain automatic scene selection when the normal grid works.
       broadphase: mode.broadphase === "hploc" ? "hploc" : undefined,
     });
@@ -72,11 +91,69 @@ async function pipelineTrace(gpu) {
   const raw = await readParams(gpu);
   const u = new Uint32Array(raw),
     f = new Float32Array(raw);
+  const adj = new Uint32Array(await readWords(gpu.device, gpu.adjBuffer));
+  const color = new Uint32Array(await readWords(gpu.device, gpu.colorBuffer));
+  const { manifolds, contacts } = gpu.contactStorage;
+  const manifoldRaw = await readWords(
+    gpu.device,
+    manifolds,
+    Math.max(32, counters.manifolds * 32),
+  );
+  const mi = new Uint32Array(manifoldRaw),
+    mf = new Float32Array(manifoldRaw);
+  const cf = new Float32Array(
+    await readWords(gpu.device, contacts, Math.max(64, counters.contacts * 64)),
+  );
+  const bodies = await gpu.readBodies();
   return {
     expectedFloorPairs: 3,
     counters,
     pairs: counters.pairs ? Array.from(await gpu.readPairs()) : [],
     narrowphaseWorkgroups: Array.from(args.subarray(IA_PAIRS, IA_PAIRS + 3)),
+    solver: {
+      scalarPrimal: gpu.scalarPrimal,
+      lanes: [...gpu.primalLanes],
+      contactWorkgroups: Array.from(
+        args.subarray(IA_CONTACTS, IA_CONTACTS + 3),
+      ),
+      dualWorkgroups: Array.from(
+        args.subarray(IA_CONSTRAINTS, IA_CONSTRAINTS + 3),
+      ),
+      colorWorkgroups: Array.from(
+        args.subarray(IA_COLOR, IA_COLOR + 3 * gpu.colorCap),
+      ),
+      adjacencyStarts: Array.from(adj.subarray(0, 5)),
+      adjacencyEntries: Array.from(
+        adj.subarray(
+          2 * gpu.bodyCapacity + 1,
+          2 * gpu.bodyCapacity + 1 + adj[4],
+        ),
+      ),
+      colorStarts: Array.from(
+        color.subarray(
+          2 * gpu.bodyCapacity,
+          2 * gpu.bodyCapacity + gpu.colorCap + 1,
+        ),
+      ),
+      colorBodies: Array.from(
+        color.subarray(2 * gpu.bodyCapacity + 65, 2 * gpu.bodyCapacity + 68),
+      ),
+      positionsAfterOverlap: [1, 2, 3].map((i) =>
+        Array.from(bodies.subarray(i * 40, i * 40 + 3)),
+      ),
+      manifolds: Array.from({ length: counters.manifolds }, (_, i) => ({
+        ids: Array.from(mi.subarray(i * 8, i * 8 + 4)),
+        normalAndFriction: Array.from(mf.subarray(i * 8 + 4, i * 8 + 8)),
+      })),
+      contacts: Array.from({ length: counters.contacts }, (_, i) => ({
+        anchorA: Array.from(cf.subarray(i * 16, i * 16 + 3)),
+        anchorB: Array.from(cf.subarray(i * 16 + 4, i * 16 + 7)),
+        gap: cf[i * 16 + 7],
+        penalty: Array.from(cf.subarray(i * 16 + 8, i * 16 + 11)),
+        force: Array.from(cf.subarray(i * 16 + 12, i * 16 + 15)),
+      })),
+      serialSystems: counters.manifolds >= 3 ? await inspectSystems(gpu) : [],
+    },
     filters: Array.from(
       new Uint32Array(await readWords(gpu.device, gpu.filterBuffer)),
     ),
@@ -98,6 +175,46 @@ async function pipelineTrace(gpu) {
           ? "contact-generation"
           : "contacts-created",
   };
+}
+// This diagnostic scene has no joints. Reuse its unused joint storage for the
+// canary, avoiding an extra storage binding on devices limited to eight. The
+// world is destroyed after this trace; the canary does not change body poses.
+async function inspectSystems(gpu) {
+  const module = gpu.device.createShaderModule({
+    code:
+      gpu.solveSource(solveWGSL) +
+      `
+@compute @workgroup_size(1) fn inspectSystems(@builtin(global_invocation_id) gid: vec3u) {
+  let acc = accumulate(gid.x + 1u, 0u, 1u);
+  joints[gid.x].penLin = vec4f(acc.lin[0][0], acc.lin[1][1], acc.lin[2][2], 0.0);
+  joints[gid.x].penAng = vec4f(acc.ang[0][0], acc.ang[1][1], acc.ang[2][2], 0.0);
+  joints[gid.x].c0Lin = vec4f(acc.rLin, 0.0);
+  joints[gid.x].c0Ang = vec4f(acc.rAng, 0.0);
+}`,
+  });
+  const pipeline = gpu.device.createComputePipeline({
+    layout: gpu.device.createPipelineLayout({
+      bindGroupLayouts: [gpu.layouts.solve, gpu.layouts.pass],
+    }),
+    compute: { module, entryPoint: "inspectSystems" },
+  });
+  const encoder = gpu.device.createCommandEncoder(),
+    pass = encoder.beginComputePass();
+  pass.setPipeline(pipeline);
+  pass.setBindGroup(0, gpu.groups.solve[1 - gpu.parity]);
+  pass.setBindGroup(1, gpu.passGroup, [0]);
+  pass.dispatchWorkgroups(3);
+  pass.end();
+  gpu.device.queue.submit([encoder.finish()]);
+  const data = new Float32Array(
+    await readWords(gpu.device, gpu.jointBuffer, 3 * 128),
+  );
+  return [0, 1, 2].map((i) => ({
+    linearDiagonal: Array.from(data.subarray(i * 32, i * 32 + 3)),
+    angularDiagonal: Array.from(data.subarray(i * 32 + 4, i * 32 + 7)),
+    linearForce: Array.from(data.subarray(i * 32 + 16, i * 32 + 19)),
+    angularForce: Array.from(data.subarray(i * 32 + 20, i * 32 + 23)),
+  }));
 }
 // Read the uniform through a shader; production uniforms deliberately do not
 // request COPY_SRC. This also verifies the values as the GPU actually sees them.
@@ -154,7 +271,7 @@ async function attempt(device, mode, configure) {
     cases: [],
     errors: [],
     contactCache: "normal-float-generations-v1",
-    diagnosticVersion: 2,
+    diagnosticVersion: 3,
     limits: {
       storageBindings: device.limits.maxStorageBuffersPerShaderStage,
       workgroupStorageBytes: device.limits.maxComputeWorkgroupStorageSize,
@@ -168,6 +285,7 @@ async function attempt(device, mode, configure) {
       spatialSort: false,
       bodyCapacity: 4,
       broadphase: mode.broadphase,
+      scalarPrimal: mode.scalarPrimal ?? false,
       capacity: { pairs: 32, manifolds: 32, contacts: 256, colors: 8 },
     });
     world.params.up = [0, 1, 0];
