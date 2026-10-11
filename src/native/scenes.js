@@ -34,6 +34,7 @@ import {
   hull2D,
   storeShape2D,
 } from "../gpu/shapes2D.js";
+import { isSolverPipeline } from "./pipeline.js";
 
 const vector = (v, n, name) => {
   const a = Array.from(v);
@@ -90,7 +91,7 @@ function settings(params, options) {
     params.gravity = options.gravity;
   }
 }
-/** Portable GPU scene builders: no meshes, renderer imports or CPU stepping API. */
+/** Portable scene builders without meshes or renderer imports. */
 export class AvbdScene3D {
   constructor(options = {}) {
     this.ref = new Solver();
@@ -568,6 +569,7 @@ export class AvbdScene3D {
     return handle;
   }
   createSolver(device, options = {}) {
+    if (isSolverPipeline(device)) return device.createSolver(this, options);
     this.assertEditable();
     if (this.hulls && device.limits.maxStorageBuffersPerShaderStage < 9)
       throw Error("Hull collisions require nine storage buffer bindings");
@@ -852,6 +854,7 @@ export class AvbdScene2D {
     return hinge;
   }
   createSolver(device, options = {}) {
+    if (isSolverPipeline(device)) return device.createSolver(this, options);
     this.assertEditable();
     const gpu = new GpuSolver2D(device, this.topology, options);
     for (const [index, value] of this.restitution ?? [])

@@ -1,0 +1,233 @@
+{
+  "passed": true,
+  "rows": [
+    {
+      "backend": "cpu",
+      "bodyCount": 1114,
+      "before": 1113,
+      "flight": 5.400000000000034,
+      "launchState": {
+        "position": [
+          -28,
+          2.700000047683716
+        ],
+        "angle": 0,
+        "linearVelocity": [
+          27,
+          11.699999809265137
+        ],
+        "angularVelocity": 0,
+        "mass": 23.56194496154785,
+        "moment": 2.9452431201934814,
+        "sleeping": false
+      },
+      "firstState": {
+        "position": [
+          -27.775,
+          2.796805601649814
+        ],
+        "angle": 0,
+        "linearVelocity": [
+          27.00000000000017,
+          11.616666475931776
+        ],
+        "angularVelocity": 0,
+        "mass": 23.56194496154785,
+        "moment": 2.9452431201934814,
+        "sleeping": false
+      },
+      "firstStatus": null,
+      "finite": true,
+      "state": {
+        "shots": 1,
+        "moved": 0,
+        "toppled": 0,
+        "crossings": 0,
+        "broken": 0,
+        "aimHits": 0,
+        "aimReady": false,
+        "pull": null,
+        "steps": 30,
+        "paused": true,
+        "errors": [],
+        "metrics": {
+          "contacts": 1607,
+          "sleeping": 0,
+          "colors": 0,
+          "overflow": 0,
+          "clashes": 0,
+          "pairs": 876,
+          "manifolds": 876,
+          "joints": 990
+        },
+        "bird": 1113,
+        "hold": true,
+        "camera": {
+          "x": 14,
+          "y": 8.459999999999999,
+          "scale": 14.540816326530612
+        }
+      },
+      "renderStats": {
+        "renderer": "canvas",
+        "poseDownloads": 0,
+        "matrixUpdates": 0,
+        "cpuSubmitMs": 2.9000000953674316
+      },
+      "screenshot": "screenshots/cpu-slingshot.png",
+      "passed": true
+    },
+    {
+      "backend": "webgpu",
+      "bodyCount": 1114,
+      "before": 1113,
+      "flight": 5.4000091552734375,
+      "launchState": {
+        "position": [
+          -28,
+          2.700000047683716
+        ],
+        "angle": 0,
+        "linearVelocity": [
+          27,
+          11.699999809265137
+        ],
+        "angularVelocity": 0,
+        "mass": 23.56194496154785,
+        "moment": 2.9452431201934814,
+        "sleeping": false
+      },
+      "firstState": {
+        "position": [
+          -27.774999618530273,
+          2.7968056201934814
+        ],
+        "angle": 0,
+        "linearVelocity": [
+          27.000043869018555,
+          11.616667747497559
+        ],
+        "angularVelocity": 0,
+        "mass": 23.56194496154785,
+        "moment": 2.9452431201934814,
+        "sleeping": false
+      },
+      "firstStatus": null,
+      "finite": true,
+      "state": {
+        "shots": 1,
+        "moved": 0,
+        "toppled": 0,
+        "crossings": 0,
+        "broken": 0,
+        "aimHits": 0,
+        "aimReady": false,
+        "pull": null,
+        "steps": 30,
+        "paused": true,
+        "errors": [],
+        "metrics": {
+          "contacts": 1953,
+          "sleeping": 0,
+          "colors": 8,
+          "overflow": 0,
+          "clashes": 0,
+          "pairs": 3220
+        },
+        "bird": 1113,
+        "hold": true,
+        "camera": {
+          "x": 14,
+          "y": 8.459999999999999,
+          "scale": 14.540816326530612
+        }
+      },
+      "renderStats": {
+        "renderer": "webgpu",
+        "poseDownloads": 0,
+        "matrixUpdates": 0
+      },
+      "screenshot": "screenshots/webgpu-slingshot.png",
+      "passed": true
+    },
+    {
+      "backend": "webgl2",
+      "bodyCount": 1114,
+      "before": 1113,
+      "flight": 5.4000091552734375,
+      "launchState": {
+        "position": [
+          -28,
+          2.700000047683716
+        ],
+        "angle": 0,
+        "linearVelocity": [
+          27,
+          11.699999809265137
+        ],
+        "angularVelocity": 0,
+        "mass": 23.56194496154785,
+        "moment": 2.9452431201934814,
+        "sleeping": false
+      },
+      "firstState": {
+        "position": [
+          -27.774999618530273,
+          2.7968056201934814
+        ],
+        "angle": 0,
+        "linearVelocity": [
+          27.000043869018555,
+          11.616667747497559
+        ],
+        "angularVelocity": 0,
+        "mass": 23.56194496154785,
+        "moment": 2.9452431201934814,
+        "sleeping": false
+      },
+      "firstStatus": {
+        "problems": 0,
+        "colors": 8
+      },
+      "finite": true,
+      "state": {
+        "shots": 1,
+        "moved": 0,
+        "toppled": 0,
+        "crossings": 0,
+        "broken": 0,
+        "aimHits": 0,
+        "aimReady": false,
+        "pull": null,
+        "steps": 30,
+        "paused": true,
+        "errors": [],
+        "metrics": {
+          "contacts": 1902,
+          "sleeping": 0,
+          "colors": 8,
+          "overflow": 0,
+          "clashes": 0,
+          "pairs": 4627,
+          "manifolds": 1025,
+          "joints": 990
+        },
+        "bird": 1113,
+        "hold": true,
+        "camera": {
+          "x": 14,
+          "y": 8.459999999999999,
+          "scale": 14.540816326530612
+        }
+      },
+      "renderStats": {
+        "renderer": "canvas",
+        "poseDownloads": 0,
+        "matrixUpdates": 0,
+        "cpuSubmitMs": 1.1999999284744263
+      },
+      "screenshot": "screenshots/webgl2-slingshot.png",
+      "passed": true
+    }
+  ]
+}

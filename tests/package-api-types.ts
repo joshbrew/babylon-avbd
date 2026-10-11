@@ -6,9 +6,37 @@ import {
   AvbdScene3D,
   createWebGPUDevice,
   prepareWebGPUDevice3D,
+  createSolverPipeline,
 } from "avbd-babylon";
+import type { AvbdSolverBackend } from "avbd-babylon/native";
 import type { Scene } from "@babylonjs/core/scene.js";
 import type { AbstractMesh } from "@babylonjs/core/Meshes/abstractMesh.js";
+async function usePipeline(backend: AvbdSolverBackend) {
+  // @ts-expect-error WebGL2 is an experimental demo backend, not a package backend.
+  createSolverPipeline({ backend: "webgl2" });
+  // @ts-expect-error The package does not accept WebGL compute contexts.
+  createSolverPipeline({ gl: {} });
+  const pipeline = await createSolverPipeline({ backend });
+  const scene3D = new AvbdScene3D();
+  const box = scene3D.addBox([1, 1, 1]);
+  const world3D = scene3D.createSolver(pipeline);
+  const selected3D: AvbdSolverBackend = world3D.setLinearVelocity(
+    world3D.body(box).gpuIndex,
+    [1, 0, 0],
+  ).backend;
+  const scene2D = new AvbdScene2D();
+  const circle = scene2D.addCircle(0.5);
+  const world2D = pipeline.createSolver(scene2D);
+  const selected2D: AvbdSolverBackend = world2D.setAngularVelocity(
+    circle,
+    1,
+  ).backend;
+  await world3D.body(box).readState();
+  await world2D.body(circle).readState();
+  const buffer3D: GPUBuffer | undefined = world3D.bodyBuffer;
+  const buffer2D: GPUBuffer | undefined = world2D.bodyBuffer;
+  pipeline.destroy();
+}
 async function useBabylon(scene: Scene, mesh: AbstractMesh) {
   const { device } = await createWebGPUDevice({ validate3D: true });
   await prepareWebGPUDevice3D(device);

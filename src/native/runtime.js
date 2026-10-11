@@ -296,7 +296,7 @@ export function detachFromScene() {
   return this;
 }
 
-export function installNativeRuntime(gpu, scene, dimension) {
+export function installNativeRuntime(gpu, scene, dimension, execution = {}) {
   gpu.advance = advance;
   let handles, indices;
   gpu.bodyIndex = function (bodyOrIndex) {
@@ -328,12 +328,16 @@ export function installNativeRuntime(gpu, scene, dimension) {
   };
   gpu.setLinearVelocities = function (indices, values) {
     if (this.destroyed) throw Error("The solver has been destroyed");
+    if (execution.setVelocities)
+      return execution.setVelocities.call(this, indices, { linear: values });
     this.velocityBatch ??= new VelocityBatch(this, dimension);
     this.velocityBatch.set(indices, values);
     return this;
   };
   gpu.setVelocities = function (indices, values) {
     if (this.destroyed) throw Error("The solver has been destroyed");
+    if (execution.setVelocities)
+      return execution.setVelocities.call(this, indices, values);
     if (values?.angular === undefined && values?.linear !== undefined)
       return this.setLinearVelocities(indices, values.linear);
     if (values?.linear === undefined && values?.angular !== undefined)
@@ -344,6 +348,8 @@ export function installNativeRuntime(gpu, scene, dimension) {
   };
   gpu.setAngularVelocities = function (indices, values) {
     if (this.destroyed) throw Error("The solver has been destroyed");
+    if (execution.setVelocities)
+      return execution.setVelocities.call(this, indices, { angular: values });
     this.angularVelocityBatch ??= new VelocityBatch(this, dimension, "angular");
     this.angularVelocityBatch.set(indices, values);
     return this;
@@ -361,7 +367,9 @@ export function installNativeRuntime(gpu, scene, dimension) {
     indices = null;
     scene = null;
   };
-  if (dimension === 2)
+  if (execution.readSelectedBodies)
+    gpu.readSelectedBodies = execution.readSelectedBodies;
+  else if (dimension === 2)
     gpu.readSelectedBodies = function (indices, { posesOnly = false } = {}) {
       const selected =
         indices instanceof Uint32Array ? indices : Array.from(indices);

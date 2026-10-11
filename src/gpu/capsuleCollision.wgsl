@@ -49,7 +49,12 @@ fn capSegmentBox(a:vec3f,b:vec3f,h:vec3f)->SegmentPair{
     let lo=breaks[j];let hi=breaks[j+1u];let mid=.5*(lo+hi);let p=a+mid*d;var numerator=0.;var denominator=0.;
     for(var k=0u;k<3u;k++){if(p[k]<-h[k]||p[k]>h[k]){let edge=clamp(p[k],-h[k],h[k]);numerator+=d[k]*(a[k]-edge);denominator+=d[k]*d[k];}}
     var t=mid;if(denominator>1.e-20){t=clamp(-numerator/denominator,lo,hi);}let point=a+t*d;let box=clamp(point,-h,h);let dist=dot(point-box,point-box);
-    if(dist<best-1.e-12 || (abs(dist-best)<=1.e-12&&abs(t-.5)<abs(bestT-.5))){best=dist;bestT=t;result=SegmentPair(point,box);}
+    // An exact segment/box intersection must win over a nearby exterior
+    // sample. A distance tie alone can select roundoff-sized separation and
+    // normalize it into an arbitrary contact normal.
+    let exactIntersection=dist==0.;let previousIntersection=best==0.;
+    if((exactIntersection&&!previousIntersection)||dist<best-1.e-12 ||
+      (exactIntersection==previousIntersection&&abs(dist-best)<=1.e-12&&abs(t-.5)<abs(bestT-.5))){best=dist;bestT=t;result=SegmentPair(point,box);}
   }
   return result;
 }

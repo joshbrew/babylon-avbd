@@ -1,0 +1,139 @@
+{
+  "date": "2026-10-11T00:30:47.928Z",
+  "results": [
+    {
+      "check": "checkBackend",
+      "backend": "webgl2",
+      "dimension": 2,
+      "passed": true
+    },
+    {
+      "check": "checkFloor",
+      "backend": "webgl2",
+      "dimension": 2,
+      "floorHeight": 0.499469518661499,
+      "passed": true
+    },
+    {
+      "check": "checkConstraints",
+      "backend": "webgl2",
+      "dimension": 2,
+      "constraintSlots": true,
+      "passed": true
+    },
+    {
+      "check": "checkContacts",
+      "backend": "webgl2",
+      "dimension": 2,
+      "restitution": true,
+      "triggers": true,
+      "masking": true,
+      "passed": true
+    },
+    {
+      "check": "checkSleeping",
+      "backend": "webgl2",
+      "dimension": 2,
+      "sleeping": true,
+      "waking": true,
+      "passed": true
+    },
+    {
+      "check": "checkForces",
+      "backend": "webgl2",
+      "dimension": 2,
+      "forces": true,
+      "torques": true,
+      "orderedBulkEdits": true,
+      "passed": true
+    },
+    {
+      "check": "checkShapeQueries",
+      "backend": "webgl2",
+      "dimension": 2,
+      "shapes": 6,
+      "batchRays": true,
+      "batchSweeps": true,
+      "liveEdits": true,
+      "passed": true
+    },
+    {
+      "check": "checkBackend",
+      "backend": "webgl2",
+      "dimension": 3,
+      "passed": true
+    },
+    {
+      "check": "checkFloor",
+      "backend": "webgl2",
+      "dimension": 3,
+      "floorHeight": 0.4789328873157501,
+      "passed": true
+    },
+    {
+      "check": "checkConstraints",
+      "backend": "webgl2",
+      "dimension": 3,
+      "constraintSlots": true,
+      "passed": true
+    },
+    {
+      "check": "checkContacts",
+      "backend": "webgl2",
+      "dimension": 3,
+      "restitution": true,
+      "triggers": true,
+      "masking": true,
+      "passed": true
+    },
+    {
+      "check": "checkSleeping",
+      "backend": "webgl2",
+      "dimension": 3,
+      "sleeping": true,
+      "waking": true,
+      "passed": true
+    },
+    {
+      "check": "checkForces",
+      "backend": "webgl2",
+      "dimension": 3,
+      "forces": true,
+      "torques": true,
+      "orderedBulkEdits": true,
+      "passed": true
+    },
+    {
+      "check": "checkShapeQueries",
+      "backend": "webgl2",
+      "dimension": 3,
+      "shapes": 4,
+      "batchRays": true,
+      "batchSweeps": true,
+      "liveEdits": true,
+      "passed": true
+    },
+    {
+      "check": "checkConstraintFrames",
+      "backend": "webgl2",
+      "dimension": 3,
+      "liveConstraintFrames": true,
+      "passed": true
+    },
+    {
+      "backend": "webgl2",
+      "dimension": 3,
+      "fabricPoints": 36,
+      "passed": true
+    },
+    {
+      "check": "checkHeavyFloor",
+      "backend": "webgl2",
+      "dimension": 3,
+      "heavyFloor": true,
+      "height": 0.4902351498603821,
+      "passed": true
+    }
+  ],
+  "errors": []
+}

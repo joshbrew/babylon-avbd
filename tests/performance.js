@@ -18,25 +18,30 @@ import {
   createRendererBenchmarkSession,
 } from "./renderer-performance.js";
 
-const adapter = await navigator.gpu.requestAdapter({
+const adapter = await navigator.gpu?.requestAdapter({
   powerPreference: "high-performance",
 });
-if (!adapter?.features.has("timestamp-query"))
-  throw Error("GPU timestamps are required for solver measurements");
-const device = await adapter.requestDevice({
-  requiredFeatures: ["timestamp-query"],
-  requiredLimits: {
-    maxStorageBufferBindingSize: Math.min(
-      512 * 1024 * 1024,
-      adapter.limits.maxStorageBufferBindingSize,
-    ),
-    maxBufferSize: Math.min(1024 * 1024 * 1024, adapter.limits.maxBufferSize),
-    maxStorageBuffersPerShaderStage: 9,
-  },
-});
+const device = adapter?.features.has("timestamp-query")
+  ? await adapter.requestDevice({
+      requiredFeatures: ["timestamp-query"],
+      requiredLimits: {
+        maxStorageBufferBindingSize: Math.min(
+          512 * 1024 * 1024,
+          adapter.limits.maxStorageBufferBindingSize,
+        ),
+        maxBufferSize: Math.min(
+          1024 * 1024 * 1024,
+          adapter.limits.maxBufferSize,
+        ),
+        maxStorageBuffersPerShaderStage: 9,
+      },
+    })
+  : null;
 const errors = [];
-device.addEventListener("uncapturederror", (e) => errors.push(e.error.message));
-device.lost.then((info) => errors.push(`Device lost: ${info.message}`));
+device?.addEventListener("uncapturederror", (e) =>
+  errors.push(e.error.message),
+);
+device?.lost.then((info) => errors.push(`Device lost: ${info.message}`));
 const rules = {
   baseline: [2 ** 31, 2 ** 15, 2 ** 12],
   one: [1, 1, 1],
@@ -55,9 +60,9 @@ const summarize = (values) => {
 };
 globalThis.__PERFORMANCE__ = {
   info: {
-    ...adapter.info.toJSON?.(),
-    vendor: adapter.info.vendor,
-    architecture: adapter.info.architecture,
+    ...adapter?.info.toJSON?.(),
+    vendor: adapter?.info.vendor ?? "CPU / WebGL2",
+    architecture: adapter?.info.architecture ?? "",
   },
   errors,
   scenes: canonicalScenes,
@@ -198,7 +203,7 @@ globalThis.__PERFORMANCE__ = {
     variant = "production",
     warmup = 60,
     count = 60,
-    { broadphase = "auto", detailed = false } = {},
+    { broadphase = "auto", detailed = false, backend = "webgpu" } = {},
   ) {
     await globalThis.__BENCHMARK_VIEW__?.suspendPreview();
     if (
@@ -220,6 +225,17 @@ globalThis.__PERFORMANCE__ = {
       ].includes(variant)
     )
       throw Error(`Unknown kernel variant: ${variant}`);
+    if (!["webgpu", "webgl2", "cpu"].includes(backend))
+      throw Error(`Unknown physics backend: ${backend}`);
+    if (backend !== "webgpu") {
+      const { compatibilityPerformance } =
+        await import("./compatibility-performance.js");
+      return compatibilityPerformance(scene, backend, warmup, count);
+    }
+    if (!device)
+      throw Error(
+        "WebGPU with GPU timers is unavailable. Select WebGL2 or CPU.",
+      );
     const setupStart = performance.now();
     const built = buildCanonicalScene(scene, "gpu");
     const sceneBuildMs = performance.now() - setupStart;

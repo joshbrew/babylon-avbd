@@ -30,6 +30,7 @@ import {
 import { collisionGroups } from "./featureScenes.js";
 import { visualOf, RING } from "../reference/three-avbd/src/avbd3d/visuals.ts";
 import { checkGpuContacts3D } from "../src/gpu/contactCheck3D.js";
+import { shapesOf2D } from "../src/gpu/shapes2D.js";
 
 export async function startCanonicalLabDemo(root = document.body) {
   root.innerHTML = labMarkup;
@@ -91,10 +92,11 @@ export async function startCanonicalLabDemo(root = document.body) {
     .querySelector(".canonical-lab")
     .classList.toggle("lab-embedded", query.get("embed") === "1");
   $("#lab-enhanced").checked = query.get("quality") !== "benchmark";
-  $("#lab-renderer").value =
+  let preferredGpuRenderer =
     query.get("renderer") === "babylon" ? "babylon" : "webgpu";
+  $("#lab-renderer").value = preferredGpuRenderer;
   $("#lab-enhanced").onchange = () => {
-    if ($("#lab-renderer").value === "babylon") {
+    if ($("#lab-renderer").value === "babylon" || renderer?.kind === "webgl") {
       load().catch((e) => diagnostics.errors.push(e.message));
       return;
     }
@@ -119,10 +121,15 @@ export async function startCanonicalLabDemo(root = document.body) {
       ? "3d-100k-rook-impact"
       : query.get("demo") === "cannon"
         ? "3d-castle-siege"
-        : "showcase-brick-ring-28k";
+        : navigator.gpu
+          ? "showcase-brick-ring-28k"
+          : "3d-stack";
   let sim,
     solver,
     gpu,
+    cpu,
+    glPipeline,
+    live,
     sleep,
     renderer,
     canvas,
@@ -150,7 +157,8 @@ export async function startCanonicalLabDemo(root = document.body) {
     gpuProfile = {},
     samples = [],
     frames = 0,
-    collection = Promise.resolve();
+    collection = Promise.resolve(),
+    builtColors = [];
   const diagnostics = {
     scenes: canonicalScenes,
     samples,
@@ -193,6 +201,7 @@ export async function startCanonicalLabDemo(root = document.body) {
     shoot,
     swingBall,
     tearPatch,
+    benchmark: benchmarkSteps,
     queryFeature,
     stop: () => {
       disposed = true;
@@ -209,10 +218,10 @@ export async function startCanonicalLabDemo(root = document.body) {
       await load(b);
     },
     setRenderer: async (kind) => {
-      if (!["webgpu", "babylon"].includes(kind))
+      if (!["webgpu", "babylon", "webgl", "canvas"].includes(kind))
         throw Error("Unknown renderer");
       $("#lab-renderer").value = kind;
-      await load("gpu");
+      await load(backend.value);
     },
     pause: (value) => {
       paused = value;
@@ -221,9 +230,11 @@ export async function startCanonicalLabDemo(root = document.body) {
     step: async (n = 1) => {
       for (let i = 0; i < n; i++) advance();
       if (device) await device.queue.onSubmittedWorkDone();
+      await cpu?.refreshForDrawing?.();
       draw();
     },
     snapshot: async ({ joints = false } = {}) => {
+      await cpu?.refreshForDrawing?.();
       const poses =
         gpu && sim
           ? Array.from(await gpu.readBodies()).reduce((poses, _, i, data) => {
@@ -252,7 +263,11 @@ export async function startCanonicalLabDemo(root = document.body) {
         stats,
         samples,
         gpuProfile,
-        broadphase: gpu?.broadphase ?? "grid",
+        broadphase:
+          gpu?.broadphase ??
+          (cpu?.backend === "webgl2"
+            ? "WebGL2 GPU spatial hash"
+            : "CPU reference"),
         broadphaseDecision: gpu?.broadphaseDecision,
         solverDecision: gpu?.solverDecision,
         bvh: gpu?.bvh ? { ...gpu.bvh.stats } : null,
@@ -260,20 +275,20 @@ export async function startCanonicalLabDemo(root = document.body) {
         physicsMs: sleep?.physicsTimer.latestMs,
         projectileGpuIndex:
           (current.benchmark || current.cannon) && gpu
-            ? gpu.gpuIndex(solver.bodies.length - 1)
+            ? live.gpuIndex(solver.bodies.length - 1)
             : undefined,
         projectile:
           current.benchmark || current.cannon
             ? poses.slice(
-                gpu.gpuIndex(solver.bodies.length - 1) * 40,
-                gpu.gpuIndex(solver.bodies.length - 1) * 40 + 3,
+                live.gpuIndex(solver.bodies.length - 1) * 40,
+                live.gpuIndex(solver.bodies.length - 1) * 40 + 3,
               )
             : null,
         errors: diagnostics.errors,
         rings: Array.from(
           renderer?.visuals?.ringScales ?? [],
           ([b, scale]) => ({
-            index: gpu.gpuIndex(solver.bodies.indexOf(b)),
+            index: live.gpuIndex(solver.bodies.indexOf(b)),
             radius:
               b.size[0] *
               scale *
@@ -286,10 +301,10 @@ export async function startCanonicalLabDemo(root = document.body) {
         demolition: demolition
           ? {
               pieces: demolition.pieces.map((b) =>
-                gpu.gpuIndex(solver.bodies.indexOf(b)),
+                live.gpuIndex(solver.bodies.indexOf(b)),
               ),
               bonds: demolition.bonds.map((b) => b.handle.slot),
-              ball: gpu.gpuIndex(solver.bodies.indexOf(demolition.ball)),
+              ball: live.gpuIndex(solver.bodies.indexOf(demolition.ball)),
               volume: demolition.geometry.volume,
               cellVolume: demolition.geometry.cells.reduce(
                 (sum, c) => sum + c.volume,
@@ -303,12 +318,12 @@ export async function startCanonicalLabDemo(root = document.body) {
               ...castle.diagnostics,
               parts: castle.diagnostics.parts.map((p) => ({
                 ...p,
-                gpuIndex: gpu.gpuIndex(p.referenceIndex),
+                gpuIndex: live.gpuIndex(p.referenceIndex),
               })),
             }
           : undefined,
         jointStates:
-          joints && gpu ? Array.from(await gpu.readJoints()) : undefined,
+          joints && live ? Array.from(await live.readJoints()) : undefined,
         features: features
           ? {
               kind: features.kind,
@@ -341,7 +356,9 @@ export async function startCanonicalLabDemo(root = document.body) {
         fabric: tearable
           ? {
               materialFaces: tearable.triangles.length,
-              renderedVertices: renderer.visuals.tears.count,
+              renderedVertices:
+                renderer.visuals?.tears?.count ??
+                tearable.triangles.length * 18,
               detachedPatch: tearable.detachedPatch ?? [],
             }
           : undefined,
@@ -354,13 +371,13 @@ export async function startCanonicalLabDemo(root = document.body) {
   function featureIndex(body) {
     return current.dimension === 2
       ? body
-      : gpu.gpuIndex(solver.bodies.indexOf(body));
+      : live.gpuIndex(solver.bodies.indexOf(body));
   }
   function driveMotors(reverse) {
-    if (!gpu || features?.kind !== "hinges") return;
+    if (!live || features?.kind !== "hinges") return;
     for (const motor of features.motors) {
       motor.runningSpeed = reverse ? -(motor.runningSpeed || motor.speed) : 0;
-      gpu.setMotor(motor.handle.slot, {
+      live.setMotor(motor.handle.slot, {
         speed: motor.runningSpeed,
         maxTorque: motor.maxTorque,
       });
@@ -369,7 +386,7 @@ export async function startCanonicalLabDemo(root = document.body) {
   $("#lab-motor-reverse").onclick = () => driveMotors(true);
   $("#lab-motor-stop").onclick = () => driveMotors(false);
   $("#lab-blue-shelf").onchange = (event) => {
-    if (!gpu || features?.kind !== "filters") return;
+    if (!live || features?.kind !== "filters") return;
     const enabled = event.target.checked,
       G = collisionGroups;
     const blue = features.lanes.find((lane) => lane.name === "blue");
@@ -377,7 +394,7 @@ export async function startCanonicalLabDemo(root = document.body) {
       featureIndex(features.shelf),
       ...blue.bodies.map(featureIndex),
     ];
-    gpu.setFilters(
+    live.setFilters(
       indices,
       [G.shelf, ...blue.bodies.map(() => G.blue)],
       [
@@ -388,10 +405,10 @@ export async function startCanonicalLabDemo(root = document.body) {
     features.blueShelfEnabled = enabled;
   };
   $("#lab-sensor-enabled").onchange = (event) => {
-    if (!gpu || features?.kind !== "filters") return;
+    if (!live || features?.kind !== "filters") return;
     const enabled = event.target.checked,
       G = collisionGroups;
-    gpu.setFilters(
+    live.setFilters(
       [featureIndex(features.sensor)],
       [G.sensor],
       [enabled ? G.coral | G.blue : 0],
@@ -399,7 +416,7 @@ export async function startCanonicalLabDemo(root = document.body) {
     features.sensorEnabled = enabled;
   };
   async function queryFeature(radius = 0) {
-    if (!gpu || features?.kind !== "filters") return;
+    if (!live || features?.kind !== "filters") return;
     const epoch = generation;
     const is2D = current.dimension === 2;
     const origin = is2D ? [-8, 6] : [-8, 0, 6];
@@ -412,9 +429,9 @@ export async function startCanonicalLabDemo(root = document.body) {
     const hit =
       radius > 0
         ? await (is2D
-            ? gpu.circleCast(origin, radius, direction, options)
-            : gpu.sphereCast(origin, radius, direction, options))
-        : await gpu.raycast(origin, direction, options);
+            ? live.circleCast(origin, radius, direction, options)
+            : live.sphereCast(origin, radius, direction, options))
+        : await live.raycast(origin, direction, options);
     if (epoch !== generation) return;
     const type = radius > 0 ? (is2D ? "Circle" : "Sphere") : "Ray";
     features.lastQuery = { type, radius, hit };
@@ -428,60 +445,106 @@ export async function startCanonicalLabDemo(root = document.body) {
   $("#lab-shape-query").onclick = () =>
     queryFeature(0.25).catch((error) => diagnostics.errors.push(error.message));
   async function tearPatch() {
-    if (!tearable || !gpu) return;
+    if (!tearable || !live) return;
     const epoch = generation;
     const selected = new Set(
       solver.bodies.filter(
         (body) =>
           body.mass > 0 &&
           body.moment.every((value) => value === 0) &&
-          Math.abs(body.positionLin[0] - 1.25) < 0.55 &&
-          Math.abs(body.positionLin[1]) < 0.55,
+          Math.abs((body.cpuStart ?? body.positionLin)[0] - 1.25) < 0.55 &&
+          Math.abs((body.cpuStart ?? body.positionLin)[1]) < 0.55,
       ),
     );
     const boundary = tearable.bonds.filter(
       (bond) => selected.has(bond.bodyA) !== selected.has(bond.bodyB),
     );
-    const poses = await gpu.readBodies();
+    const poses = await live.readBodies();
     if (epoch !== generation) return;
     const releasedSlots = boundary.map((bond) => renderer.forces.indexOf(bond));
-    gpu.releaseJoints(releasedSlots);
+    live.releaseJoints(releasedSlots);
     const indices = [...selected].map((body) =>
-      gpu.gpuIndex(solver.bodies.indexOf(body)),
+      live.gpuIndex(solver.bodies.indexOf(body)),
     );
-    for (const index of indices)
-      device.queue.writeBuffer(
-        gpu.bodyBuffer,
-        index * 160 + 128,
-        new Float32Array([2, -2, poses[index * 40 + 34] + 2]),
+    if (cpu)
+      live.editBodies(
+        indices.map((index) => ({
+          body: index,
+          linearVelocity: [2, -2, poses[index * 40 + 34] + 2],
+        })),
       );
-    gpu.wakeAll();
+    else
+      for (const index of indices)
+        device.queue.writeBuffer(
+          gpu.bodyBuffer,
+          index * 160 + 128,
+          new Float32Array([2, -2, poses[index * 40 + 34] + 2]),
+        );
+    live.wakeAll();
     tearable.detachedPatch = indices;
     draw();
     return { indices, releasedEdges: boundary.length, releasedSlots };
   }
   $("#lab-tear-patch").onclick = () =>
     tearPatch().catch((error) => diagnostics.errors.push(error.message));
-  function backendOptions(dimension, gpuOnly) {
+  function backendOptions(dimension) {
     backend.replaceChildren();
-    for (const [value, label] of gpuOnly
-      ? [["gpu", "Canonical WebGPU"]]
-      : dimension === 2
+    for (const [value, label] of dimension === 2
+      ? [
+          ["gpu", "WebGPU · AVBD"],
+          ["webgl2", "WebGL2 · experimental GPU"],
+          ["ref", "CPU · reference AVBD"],
+          ["soa-seq", "CPU · sequential arrays"],
+          ...(current.name === "Cards"
+            ? []
+            : [["soa-colored", "CPU · colored arrays"]]),
+        ]
+      : [
+          ["gpu", "WebGPU · AVBD"],
+          ["webgl2", "WebGL2 · experimental GPU"],
+          ["ref", "CPU · reference AVBD"],
+        ]) {
+      const option = new Option(label, value);
+      option.disabled = value === "gpu" && !navigator.gpu;
+      backend.append(option);
+    }
+    $("#lab-backend-help").textContent =
+      "WebGPU is the default. Experimental WebGL2 runs GPU physics for comparison and is excluded from the npm package. CPU runs AVBD in JavaScript. All modes keep the scene size, timestep and iteration count; large compatibility scenes start paused.";
+  }
+  function rendererOptions(wanted) {
+    const control = $("#lab-renderer");
+    const choices =
+      backend.value === "gpu"
         ? [
-            ["gpu", "Canonical WebGPU"],
-            ["ref", "Reference CPU"],
-            ["soa-seq", "Sequential CPU"],
-            ...(current.name === "Cards"
-              ? []
-              : [["soa-colored", "Colored CPU"]]),
+            ["webgpu", "Direct WebGPU"],
+            ["babylon", "Babylon WebGPU · thin instances"],
           ]
-        : gpuOnly
-          ? [["gpu", "Canonical WebGPU"]]
+        : current.dimension === 2
+          ? [["canvas", "Canvas 2D · no WebGPU needed"]]
           : [
-              ["ref", "Reference CPU"],
-              ["gpu", "Canonical WebGPU"],
-            ])
-      backend.append(new Option(label, value));
+              ["webgl", "Babylon WebGL · thin instances"],
+              ...(navigator.gpu &&
+              current.canonical &&
+              backend.value !== "webgl2"
+                ? [
+                    ["webgpu", "Direct WebGPU"],
+                    ["babylon", "Babylon WebGPU · thin instances"],
+                  ]
+                : []),
+            ];
+    control.replaceChildren(
+      ...choices.map(([value, label]) => new Option(label, value)),
+    );
+    control.value = choices.some(([value]) => value === wanted)
+      ? wanted
+      : choices[0][0];
+    if (backend.value === "gpu") preferredGpuRenderer = control.value;
+    $("#lab-renderer-help").textContent =
+      backend.value === "gpu"
+        ? "Both renderers draw the same GPU physics. Changing solver or renderer restarts the scene."
+        : backend.value === "webgl2"
+          ? "WebGL2 runs collisions and AVBD on the GPU. This renderer downloads poses for drawing; that transfer is separate from physics."
+          : "Physics runs on the CPU. Drawing and pose uploads are timed separately. Changing solver or renderer restarts the scene.";
   }
   async function getDevice() {
     if ($("#lab-renderer").value === "babylon" && !babylonEngine) {
@@ -568,23 +631,52 @@ export async function startCanonicalLabDemo(root = document.body) {
     sleep?.dispose();
     if (gpu && sim) sim.destroy();
     else gpu?.destroy();
+    cpu?.destroy();
+    glPipeline?.destroy();
+    glPipeline = null;
     if (babylonEngine) {
       babylonEngine.dispose();
       babylonEngine = null;
       device = null;
     }
-    renderer = gpu = sim = solver = sleep = null;
+    renderer = gpu = cpu = live = sim = solver = sleep = null;
     canvas?.remove();
     current = canonicalScenes.find((s) => s.id === scene.value);
     $("#lab-enhanced").disabled = current.dimension !== 3;
     const previous =
-      $("#lab-renderer").value === "babylon"
-        ? "gpu"
-        : (wanted ?? backend.value);
-    backendOptions(current.dimension, current.gpuOnly);
-    if ([...backend.options].some((o) => o.value === previous))
+      wanted === "cpu"
+        ? "ref"
+        : wanted === "webgpu"
+          ? "gpu"
+          : (wanted ?? backend.value);
+    backendOptions(current.dimension);
+    if ([...backend.options].some((o) => o.value === previous && !o.disabled))
       backend.value = previous;
-    const built = buildCanonicalScene(current.id, backend.value);
+    else
+      backend.value =
+        [...backend.options].find((o) => !o.disabled)?.value ?? "gpu";
+    const requestedRenderer = $("#lab-renderer").value;
+    rendererOptions(
+      backend.value === "gpu"
+        ? preferredGpuRenderer
+        : !diagnostics.backend && query.has("renderer")
+          ? query.get("renderer")
+          : previous === diagnostics.backend
+            ? requestedRenderer
+            : undefined,
+    );
+    diagnostics.contactCheck = null;
+    $("#lab-gpu-check-save").disabled = true;
+    $("#lab-gpu-check-status").textContent =
+      backend.value === "gpu"
+        ? "Opening a 3D GPU scene checks that a box, sphere and capsule stay on the floor."
+        : "CPU mode does not require a GPU contact check.";
+    $("#lab-benchmark-result").textContent =
+      "Measures physics separately from drawing. The scene advances during the measurement.";
+    const built = buildCanonicalScene(
+      current.id,
+      backend.value === "webgl2" ? "gpu" : backend.value,
+    );
     castle = built.castle ?? null;
     demolition = built.demolition ?? null;
     features = built.features ?? null;
@@ -603,8 +695,33 @@ export async function startCanonicalLabDemo(root = document.body) {
       $("#lab-cannon-speed").value = castleAim.speed;
       updateAimLabels();
     }
+    builtColors = built.renderOptions2D?.colors ?? [];
     sim = built.sim;
     solver = built.solver;
+    if (
+      backend.value === "webgl2" ||
+      (backend.value !== "gpu" &&
+        (!current.canonical || current.dimension === 3))
+    ) {
+      const { CpuWorld } = await import("./cpuWorld.js");
+      if (epoch !== generation) return;
+      if (backend.value === "webgl2") {
+        const { createWebglDemoWorld } = await import("./webglWorld.js");
+        const created = await createWebglDemoWorld(built);
+        if (epoch !== generation) {
+          created.pipeline.destroy();
+          return;
+        }
+        cpu = created.world;
+        glPipeline = created.pipeline;
+      } else cpu = new CpuWorld(built, backend.value);
+      if (current.dimension === 2) sim = cpu.sim;
+      else solver = cpu.solver;
+      if (cpu.bodyCount > 10000) {
+        paused = true;
+        updatePause();
+      }
+    }
     canvas = document.createElement("canvas");
     canvas.setAttribute(
       "aria-label",
@@ -637,7 +754,7 @@ export async function startCanonicalLabDemo(root = document.body) {
         } else ctx = canvas.getContext("2d");
         attach2D();
       } else {
-        await getDevice();
+        if ($("#lab-renderer").value !== "webgl") await getDevice();
         if (epoch !== generation) return;
         if (backend.value === "gpu") {
           $("#lab-gpu-check-status").textContent =
@@ -680,15 +797,26 @@ export async function startCanonicalLabDemo(root = document.body) {
           Object.assign(gpu.params, built.gpuParams);
           if (current.benchmark) sleep = new GpuSleep(device, solver, gpu);
         }
-        const Render3D = babylonEngine ? BabylonRenderer3D : CanonicalRenderer;
-        renderer = new Render3D(device, canvas, solver, gpu, {
-          engine: babylonEngine,
-          enhanced: $("#lab-enhanced").checked,
-        });
+        if ($("#lab-renderer").value === "webgl") {
+          const { CpuRenderer3D } = await import("./cpuRenderer3D.js");
+          if (epoch !== generation) return;
+          renderer = new CpuRenderer3D(canvas, solver, {
+            enhanced: $("#lab-enhanced").checked,
+          });
+        } else {
+          const Render3D = babylonEngine
+            ? BabylonRenderer3D
+            : CanonicalRenderer;
+          renderer = new Render3D(device, canvas, solver, gpu, {
+            engine: babylonEngine,
+            enhanced: $("#lab-enhanced").checked,
+          });
+        }
         renderer.sleep = sleep;
         if (built.camera) renderer.setCamera(built.camera);
       }
       await renderer?.ready?.();
+      live = gpu ?? cpu;
       if (features?.kind === "filters") {
         features.entries = { coral: 0, blue: 0, purple: 0 };
         features.overlaps = new Set();
@@ -698,7 +826,7 @@ export async function startCanonicalLabDemo(root = document.body) {
         const indices = [features.sensor, features.shelf, features.floor].map(
           featureIndex,
         );
-        gpu.watchContacts({ indices, maxPairs: 128, maxEvents: 4096 });
+        live.watchContacts({ indices, maxPairs: 128, maxEvents: 4096 });
       }
       steps = frames = 0;
       diagnostics.frames = diagnostics.steps = 0;
@@ -763,14 +891,12 @@ export async function startCanonicalLabDemo(root = document.body) {
       $("#lab-description").textContent =
         current.description ??
         (current.stress
-          ? `${(sim.bodyCount - 3).toLocaleString()} touching 2D boxes with gravity and friction. Ten solver iterations per step. Collision checks, movement and drawing run on the GPU. Zoom in to inspect individual boxes.`
+          ? `${(sim.bodyCount - 3).toLocaleString()} touching 2D boxes with gravity and friction. ${sim.params.iterations} solver iterations per step. Physics uses ${backend.selectedOptions[0].textContent}. Zoom in to inspect individual boxes.`
           : current.benchmark
-            ? "100,000 movable bricks, one cannonball and a floor. GPU sleeping wakes bricks on impact and when their supports move away. Full AVBD solves the active region."
+            ? "100,000 movable bricks, one cannonball and a floor. Supported bricks can sleep; impacts and support removal wake them."
             : current.showcase
-              ? "Original GPU showcase construction: collision detection, AVBD constraints and rendering run on the GPU."
-              : current.gpuOnly
-                ? "True sphere and convex hull contacts, including angular inertia and friction. GPU shape extensions use the canonical 3D solver."
-                : "Original scene construction from the pinned reference. Constraint links follow their local anchors; broken joints disappear.");
+              ? "Large showcase scene. The selected physics backend runs collision checks and AVBD constraints; drawing is selected separately."
+              : "Constraint links follow their local anchors; broken joints release their bodies.");
       $(".lab-help").textContent =
         current.dimension === 2
           ? "Drag a body to apply a constraint · right-click to add a box · wheel to zoom · Shift-drag to pan"
@@ -904,7 +1030,17 @@ export async function startCanonicalLabDemo(root = document.body) {
     );
   }
   function advance() {
-    if (sim) {
+    if (cpu) {
+      if (cpu.backend === "webgl2" && steps % 10 === 0) {
+        const epoch = generation;
+        cpu.profileNextStep((profile) => {
+          if (epoch === generation) gpuProfile = profile ?? {};
+        });
+      }
+      if (cpu.backend === "webgl2" && current.dimension === 3)
+        cpu.params.iterations = solver.iterations;
+      cpu.step();
+    } else if (sim) {
       if (gpu && steps % 10 === 0) gpu.profileNextStep((p) => (gpuProfile = p));
       sim.step();
     } else if (gpu) {
@@ -924,6 +1060,84 @@ export async function startCanonicalLabDemo(root = document.body) {
 
     diagnostics.steps = steps;
   }
+  async function benchmarkSteps({ warmup = 10, count = 60 } = {}) {
+    if (!diagnostics.ready || pending)
+      throw Error("Wait for the scene to load.");
+    if (
+      !Number.isInteger(count) ||
+      count < 1 ||
+      count > 600 ||
+      !Number.isInteger(warmup) ||
+      warmup < 0 ||
+      warmup > 60
+    )
+      throw Error("Use 1–600 measured steps and 0–60 warmup steps.");
+    pending = true;
+    const epoch = generation;
+    const controls = [
+      ...document.querySelectorAll(
+        ".lab-sidebar button,.lab-sidebar input,.lab-sidebar select",
+      ),
+    ].map((control) => [control, control.disabled]);
+    for (const [control] of controls) control.disabled = true;
+    const assertCurrent = () => {
+      if (generation !== epoch)
+        throw Error("The scene changed during the measurement.");
+    };
+    try {
+      await collection;
+      assertCurrent();
+      if (device) await device.queue.onSubmittedWorkDone();
+      for (let i = 0; i < warmup; i++) advance();
+      if (device) await device.queue.onSubmittedWorkDone();
+      const times = [];
+      for (let i = 0; i < count; i++) {
+        const start = performance.now();
+        advance();
+        if (gpu) await device.queue.onSubmittedWorkDone();
+        if (cpu?.backend === "webgl2")
+          await cpu.readSelectedBodies(cpu.bodyCount ? [0] : [], {
+            posesOnly: true,
+          });
+        assertCurrent();
+        times.push(performance.now() - start);
+        // Let controls repaint without including that pause in step timings.
+        if (i % 10 === 9)
+          await new Promise((resolve) => requestAnimationFrame(resolve));
+        assertCurrent();
+      }
+      const sorted = [...times].sort((a, b) => a - b);
+      const result = {
+        scene: current.id,
+        backend: backend.value,
+        bodyCount: sim?.bodyCount ?? solver.bodies.length,
+        iterations: sim?.params.iterations ?? solver.iterations,
+        timeStep: sim?.params.dt ?? solver.dt,
+        warmup,
+        count,
+        meanMs: times.reduce((a, b) => a + b, 0) / count,
+        medianMs:
+          (sorted[Math.floor((count - 1) / 2)] +
+            sorted[Math.floor(count / 2)]) /
+          2,
+        p95Ms: sorted[Math.ceil(count * 0.95) - 1],
+        timing:
+          "Completed physics steps, including GPU submission/wait when selected. Excludes drawing. Not comparable to GPU timestamp-only paper results.",
+      };
+      diagnostics.benchmark = result;
+      $("#lab-benchmark-result").textContent =
+        `${backend.selectedOptions[0].textContent}: ${result.medianMs.toFixed(2)} ms typical, ${result.p95Ms.toFixed(2)} ms for slower steps. ${count} completed physics steps; drawing excluded. GPU measurements include submission and waiting, unlike GPU-only times in the paper comparison.`;
+      draw();
+      return result;
+    } finally {
+      if (generation === epoch) {
+        pending = false;
+        for (const [control, disabled] of controls) control.disabled = disabled;
+        accumulator = 0;
+        last = performance.now();
+      }
+    }
+  }
   async function shoot() {
     if (demolition) return swingBall();
     if (!(current.benchmark || current.cannon)) return;
@@ -933,16 +1147,16 @@ export async function startCanonicalLabDemo(root = document.body) {
     if (current.cannon) {
       const b = createCastleProjectile($("#lab-projectile").value, aimValues());
       solver.bodies[i] = b;
-      gpu.rewriteBodies([gpu.gpuIndex(i)], [b]);
+      live.rewriteBodies([live.gpuIndex(i)], [b]);
       renderer.replaceShape(i, b);
     } else {
       const b = solver.bodies[i];
-      gpu
-        .body(gpu.gpuIndex(i))
+      live
+        .body(live.gpuIndex(i))
         .teleport(b.positionLin, b.positionAng)
         .setLinearVelocity(b.velocityLin)
         .setAngularVelocity(b.velocityAng);
-      gpu.flushEdits();
+      live.flushEdits();
     }
     paused = false;
     updatePause();
@@ -951,16 +1165,16 @@ export async function startCanonicalLabDemo(root = document.body) {
     if (!demolition) return;
     const epoch = generation;
     if (epoch !== generation) return;
-    gpu.editBodies(
+    live.editBodies(
       demolition.pendulum.map((b) => ({
-        body: gpu.gpuIndex(solver.bodies.indexOf(b)),
+        body: live.gpuIndex(solver.bodies.indexOf(b)),
         position: b.positionLin,
         rotation: b.positionAng,
         linearVelocity: b.velocityLin,
         angularVelocity: b.velocityAng,
       })),
     );
-    gpu.flushEdits();
+    live.flushEdits();
     paused = false;
     updatePause();
   }
@@ -973,8 +1187,8 @@ export async function startCanonicalLabDemo(root = document.body) {
       : createRookProjectile(kind);
     renderer.onUp();
     const i = solver.bodies.length - 1,
-      id = gpu.gpuIndex(i);
-    gpu.rewriteBodies([id], [b]);
+      id = live.gpuIndex(i);
+    live.rewriteBodies([id], [b]);
     sleep?.setMass(id, b.mass);
     solver.bodies[i] = b;
     renderer.replaceShape(i, b);
@@ -997,14 +1211,14 @@ export async function startCanonicalLabDemo(root = document.body) {
   let aimGeneration = 0;
   async function updateCannonAim() {
     updateAimLabels();
-    if (!castle || !gpu) return;
+    if (!castle || !live) return;
     const token = ++aimGeneration,
       epoch = generation;
     if (token !== aimGeneration || epoch !== generation || disposed) return;
     const b = createCastleBarrel(aimValues()),
       i = castle.barrelIndex;
     solver.bodies[i] = b;
-    gpu.rewriteBodies([gpu.gpuIndex(i)], [b]);
+    live.rewriteBodies([live.gpuIndex(i)], [b]);
     renderer.replaceShape(i, b);
     draw();
   }
@@ -1046,9 +1260,40 @@ export async function startCanonicalLabDemo(root = document.body) {
       ctx.fillStyle = sim.isDynamic(i)
         ? `hsl(${190 + ((group * 37) % 80)} 35% ${65 + (group % 4) * 4}%)`
         : "#aaa89f";
+      if (builtColors[i])
+        ctx.fillStyle = `rgba(${builtColors[i]
+          .slice(0, 3)
+          .map((v) => Math.round(v * 255))
+          .join(
+            ",",
+          )},${cpu?.solver.sensors.has(i) ? 0.25 : (builtColors[i][3] ?? 1)})`;
       ctx.strokeStyle = i === sim.dragBody ? "#3e5bd7" : "#53606c";
-      ctx.fillRect(-sx / 2, -sy / 2, sx, sy);
-      ctx.strokeRect(-sx / 2, -sy / 2, sx, sy);
+      const geometry = cpu ? shapesOf2D(cpu.solver)?.get(i) : null;
+      ctx.beginPath();
+      if (geometry?.[0] === 1) ctx.arc(0, 0, geometry[1], 0, 2 * Math.PI);
+      else if (geometry?.[0] === 2) {
+        const r = geometry[1],
+          half = geometry[2];
+        ctx.moveTo(-half, -r);
+        ctx.lineTo(half, -r);
+        ctx.arc(half, 0, r, -Math.PI / 2, Math.PI / 2);
+        ctx.lineTo(-half, r);
+        ctx.arc(-half, 0, r, Math.PI / 2, (3 * Math.PI) / 2);
+      } else if (geometry?.[0] === 4) {
+        const vertices = geometry.vertices;
+        ctx.moveTo(vertices[0], vertices[1]);
+        for (let k = 4; k < vertices.length; k += 4)
+          ctx.lineTo(vertices[k], vertices[k + 1]);
+        ctx.closePath();
+      } else if (geometry?.[0] === 3) {
+        ctx.moveTo(-1e5, 0);
+        ctx.lineTo(1e5, 0);
+        ctx.lineTo(1e5, -1e5);
+        ctx.lineTo(-1e5, -1e5);
+        ctx.closePath();
+      } else ctx.rect(-sx / 2, -sy / 2, sx, sy);
+      ctx.fill();
+      ctx.stroke();
       ctx.restore();
     }
     if ($("#lab-debug").checked) {
@@ -1074,13 +1319,13 @@ export async function startCanonicalLabDemo(root = document.body) {
   }
   async function collect() {
     const epoch = generation;
-    if (gpu) {
-      const counters = await gpu.readCounters();
+    if (live) {
+      const counters = await live.readCounters();
       if (epoch !== generation) return;
       stats = counters;
-      gpu.adapt(counters);
+      live.adapt(counters);
       if (demolition) {
-        const joints = await gpu.readJoints();
+        const joints = await live.readJoints();
         if (epoch !== generation) return;
         stats.brokenBonds = demolition.bonds.filter(
           (b) =>
@@ -1090,7 +1335,7 @@ export async function startCanonicalLabDemo(root = document.body) {
         demolition.brokenBonds = stats.brokenBonds;
       }
       if (features?.kind === "filters") {
-        const events = await gpu.readContactEvents();
+        const events = await live.readContactEvents();
         if (epoch !== generation) return;
         if (events.dropped || events.full)
           throw Error("Trigger event storage is full");
@@ -1151,7 +1396,11 @@ export async function startCanonicalLabDemo(root = document.body) {
                 floor: [54, 181, 219],
               }[state] ?? lane.color;
             const rgba = new Float32Array([...rgb.map((v) => v / 255), 1]);
-            if (current.dimension === 2)
+            if (cpu) {
+              if (current.dimension === 2) {
+                builtColors[id] = [...rgba];
+              } else renderer.setColor(id, rgba);
+            } else if (current.dimension === 2)
               device.queue.writeBuffer(renderer.colors, id * 16, rgba);
             else
               device.queue.writeBuffer(renderer.visuals.styles, id * 32, rgba);
@@ -1163,13 +1412,13 @@ export async function startCanonicalLabDemo(root = document.body) {
         stats.awake = await sleep.readAwake();
         if (epoch !== generation) return;
       }
-      if (current.dimension === 2 && gpu.sleeping) {
-        stats.sleeping = (await gpu.readSleepStats()).sleeping;
+      if (current.dimension === 2 && gpu?.sleeping) {
+        stats.sleeping = (await live.readSleepStats()).sleeping;
         if (epoch !== generation) return;
       }
       if ($("#lab-debug").checked) {
-        await renderer.updateJointVisibility();
-        await renderer.updateContacts?.();
+        await renderer?.updateJointVisibility();
+        await renderer?.updateContacts?.();
       }
     } else if (sim) stats = sim.stats();
     else {
@@ -1195,11 +1444,19 @@ export async function startCanonicalLabDemo(root = document.body) {
     const s = samples.slice(-60),
       avg = (key) =>
         s.length ? s.reduce((n, x) => n + (x[key] || 0), 0) / s.length : 0;
-    const solve = sleep
-        ? sleep.physicsTimer.latestMs
-        : gpu
+    const glPhysics = cpu?.backend === "webgl2";
+    const solve =
+        glPhysics && gpuProfile.total !== undefined
           ? gpuProfile.total
-          : avg("solveMs"),
+          : sleep
+            ? sleep.physicsTimer.latestMs
+            : gpu
+              ? gpuProfile.total
+              : s.reduce((n, x) => n + x.solveMs, 0) /
+                Math.max(
+                  1,
+                  s.reduce((n, x) => n + x.stepCount, 0),
+                ),
       render =
         renderer?.kind === "babylon"
           ? renderer.renderStats.gpuDrawMs + renderer.renderStats.gpuCopyMs
@@ -1220,21 +1477,31 @@ export async function startCanonicalLabDemo(root = document.body) {
             : `${(1000 / Math.max(1, avg("frameMs"))).toFixed(1)} FPS`,
       ) +
       row(
-        sleep ? "GPU physics step" : gpu ? "GPU AVBD step" : "CPU solve",
+        glPhysics
+          ? gpuProfile.total !== undefined
+            ? "WebGL2 GPU physics step"
+            : "WebGL2 CPU submission"
+          : sleep
+            ? "GPU physics step"
+            : gpu
+              ? "GPU AVBD step"
+              : "CPU physics step",
         ms(solve),
       ) +
       row(
-        renderer?.kind === "babylon"
-          ? "Babylon render + GPU copies"
-          : gpu
-            ? "GPU render"
-            : "Render submission",
+        renderer?.kind === "webgl"
+          ? "WebGL drawing + pose uploads"
+          : renderer?.kind === "babylon"
+            ? "Babylon render + GPU copies"
+            : gpu
+              ? "GPU render"
+              : "Render submission",
         ms(render),
       ) +
       (renderer?.renderStats
         ? row("Render CPU submission", ms(renderer.renderStats.cpuSubmitMs))
         : "") +
-      (gpu
+      (gpu || (glPhysics && gpuProfile.total !== undefined)
         ? Object.entries({
             collision: "Collision checks",
             solve: "Movement solver",
@@ -1352,6 +1619,23 @@ export async function startCanonicalLabDemo(root = document.body) {
     solveMs = performance.now() - start;
     const renderStart = performance.now();
     draw();
+    if (cpu?.backend === "webgl2") {
+      const epoch = generation;
+      gpuFramesInFlight++;
+      cpu
+        .refreshForDrawing()
+        .then(
+          () => {
+            if (epoch === generation) draw();
+          },
+          (error) => {
+            if (epoch === generation) diagnostics.errors.push(error.message);
+          },
+        )
+        .finally(() => {
+          if (epoch === generation) gpuFramesInFlight--;
+        });
+    }
     if (gpu) {
       const epoch = generation;
       gpuFramesInFlight++;
@@ -1388,7 +1672,9 @@ export async function startCanonicalLabDemo(root = document.body) {
   }
   scene.onchange = () => load().catch(console.error);
   $("#lab-renderer").onchange = () =>
-    load("gpu").catch((e) => diagnostics.errors.push(e.message));
+    load(backend.value).catch((e) => diagnostics.errors.push(e.message));
+  $("#lab-benchmark").onclick = () =>
+    benchmarkSteps().catch((e) => diagnostics.errors.push(e.message));
   $("#lab-shoot").onclick = () =>
     shoot().catch((e) => diagnostics.errors.push(e.message));
   $("#lab-projectile").onchange = (e) =>
@@ -1441,6 +1727,11 @@ export async function startCanonicalLabDemo(root = document.body) {
     paused = true;
     updatePause();
     advance();
+    if (cpu?.refreshForDrawing)
+      cpu
+        .refreshForDrawing()
+        .then(draw)
+        .catch((error) => diagnostics.errors.push(error.message));
     draw();
     readings();
   };
@@ -1461,7 +1752,9 @@ export async function startCanonicalLabDemo(root = document.body) {
       if (gpu) gpu.params.iterations = value;
     }
   };
-  initialization = load(query.get("backend") ?? "gpu").catch(() => {});
+  initialization = load(
+    query.get("backend") ?? (navigator.gpu ? "gpu" : "ref"),
+  ).catch(() => {});
   await initialization;
   updatePause();
   if (!disposed) animation = requestAnimationFrame(tick);

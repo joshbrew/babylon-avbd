@@ -96,7 +96,12 @@ export class ShapeQueries {
   }
   async cast(
     queries,
-    { ignore = [], collidesWith = 0xffffffff, includeTriggers = true } = {},
+    {
+      ignore = [],
+      collidesWith = 0xffffffff,
+      includeTriggers = true,
+      maxDistance: batchMaxDistance,
+    } = {},
   ) {
     if (this.destroyed) throw Error("GPU queries have been destroyed");
     const s = this.solver,
@@ -124,7 +129,7 @@ export class ShapeQueries {
       const origin = Array.from(query.origin),
         direction = Array.from(query.direction),
         radius = query.radius ?? 0,
-        maxDistance = query.maxDistance ?? 3e38;
+        maxDistance = query.maxDistance ?? batchMaxDistance ?? 3e38;
       if (
         origin.length !== dim ||
         direction.length !== dim ||

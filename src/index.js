@@ -8,3 +8,4 @@ export {
 export { AvbdPhysicsConstraint, AvbdPhysicsHinge } from "./babylon/constraints.js";
 export { AvbdScene3D, AvbdScene2D } from "./native/scenes.js";
 export { createWebGPUDevice, prepareWebGPUDevice3D } from "./gpu/device.js";
+export { createSolverPipeline } from "./native/pipeline.js";

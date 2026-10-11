@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "rows": [
+    {
+      "dimension": 2,
+      "bodies": 96,
+      "candidatePairs": 1486,
+      "contactPoints": 888,
+      "maxError": 0.000010583211405901238,
+      "passed": true
+    },
+    {
+      "dimension": 3,
+      "bodies": 96,
+      "candidatePairs": 62,
+      "contactPoints": 145,
+      "maxError": 0.0000050067901611328125,
+      "passed": true
+    }
+  ]
+}

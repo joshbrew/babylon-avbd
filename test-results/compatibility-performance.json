@@ -1,0 +1,607 @@
+{
+  "passed": true,
+  "rows": [
+    {
+      "backend": "cpu",
+      "result": {
+        "scene": "3d-stack",
+        "backend": "cpu",
+        "dimension": 3,
+        "bodyCount": 11,
+        "jointCount": 0,
+        "params": {
+          "dt": 0.016666666666666666,
+          "iterations": 10
+        },
+        "rendering": false,
+        "sleeping": false,
+        "timingKind": "CPU step time",
+        "summary": {
+          "collision": {
+            "mean": null,
+            "median": null,
+            "p95": null,
+            "n": 0
+          },
+          "adjacency": {
+            "mean": null,
+            "median": null,
+            "p95": null,
+            "n": 0
+          },
+          "coloring": {
+            "mean": null,
+            "median": null,
+            "p95": null,
+            "n": 0
+          },
+          "solve": {
+            "mean": null,
+            "median": null,
+            "p95": null,
+            "n": 0
+          },
+          "total": {
+            "mean": null,
+            "median": null,
+            "p95": null,
+            "n": 0
+          },
+          "wall": {
+            "mean": 0.5666666825612386,
+            "median": 0.6000000238418579,
+            "p95": 0.6000000238418579,
+            "n": 3
+          },
+          "submission": {
+            "mean": 0.5666666825612386,
+            "median": 0.6000000238418579,
+            "p95": 0.6000000238418579,
+            "n": 3
+          }
+        },
+        "peakContacts": 4,
+        "peakPairs": 1,
+        "counters": {
+          "pairs": 1,
+          "contacts": 4,
+          "manifolds": 1,
+          "joints": 0,
+          "overflow": 0,
+          "clashes": 0,
+          "colors": 0,
+          "sleeping": 0
+        },
+        "quaternionError": 0,
+        "finite": true,
+        "verifiedSteps": 5,
+        "setup": {
+          "sceneBuildMs": 0.2999999523162842,
+          "initializationMs": 0.20000004768371582
+        },
+        "samples": [
+          {
+            "wall": 0.6000000238418579,
+            "submission": 0.6000000238418579
+          },
+          {
+            "wall": 0.6000000238418579,
+            "submission": 0.6000000238418579
+          },
+          {
+            "wall": 0.5,
+            "submission": 0.5
+          }
+        ],
+        "repeat": 0,
+        "passed": true
+      },
+      "preview": {
+        "phase": "ready",
+        "scene": "3d-stack",
+        "paused": true,
+        "errors": [],
+        "broadphase": "auto",
+        "solverMode": "auto",
+        "renderer": "webgpu",
+        "backend": "cpu"
+      },
+      "rows": "3D · Stack16.67 ms simulated per stepCPU step timeChecks passed11410————0.567"
+    },
+    {
+      "backend": "webgl2",
+      "result": {
+        "scene": "3d-stack",
+        "backend": "webgl2",
+        "dimension": 3,
+        "bodyCount": 11,
+        "jointCount": 0,
+        "params": {
+          "dt": 0.016666666666666666,
+          "iterations": 10
+        },
+        "rendering": false,
+        "sleeping": false,
+        "timingKind": "WebGL2 GPU elapsed queries",
+        "summary": {
+          "collision": {
+            "mean": 0.068608,
+            "median": 0.068608,
+            "p95": 0.069632,
+            "n": 3
+          },
+          "adjacency": {
+            "mean": 1.3745493333333332,
+            "median": 1.168384,
+            "p95": 1.789952,
+            "n": 3
+          },
+          "coloring": {
+            "mean": 9.417727999999999,
+            "median": 10.00448,
+            "p95": 11.4432,
+            "n": 3
+          },
+          "solve": {
+            "mean": 22.683306666666667,
+            "median": 22.238208,
+            "p95": 26.387456,
+            "n": 3
+          },
+          "total": {
+            "mean": 33.544191999999995,
+            "median": 33.477632,
+            "p95": 35.05152,
+            "n": 3
+          },
+          "wall": {
+            "mean": 39.89999997615814,
+            "median": 39.5,
+            "p95": 41.199999928474426,
+            "n": 3
+          },
+          "submission": {
+            "mean": 34.699999968210854,
+            "median": 34.89999997615814,
+            "p95": 35.199999928474426,
+            "n": 3
+          }
+        },
+        "peakContacts": 4,
+        "peakPairs": 19,
+        "counters": {
+          "pairs": 19,
+          "contacts": 4,
+          "manifolds": 1,
+          "joints": 0,
+          "overflow": 0,
+          "clashes": 0,
+          "colors": 2,
+          "sleeping": 0
+        },
+        "quaternionError": 0,
+        "finite": true,
+        "verifiedSteps": 5,
+        "setup": {
+          "sceneBuildMs": 0.10000002384185791,
+          "initializationMs": 12011.399999976158
+        },
+        "samples": [
+          {
+            "collision": 0.069632,
+            "coloring": 10.00448,
+            "adjacency": 1.165312,
+            "solve": 22.238208,
+            "total": 33.477632,
+            "wall": 39.5,
+            "submission": 34.89999997615814
+          },
+          {
+            "collision": 0.067584,
+            "coloring": 11.4432,
+            "adjacency": 1.168384,
+            "solve": 19.424256,
+            "total": 32.103424,
+            "wall": 39,
+            "submission": 34
+          },
+          {
+            "collision": 0.068608,
+            "coloring": 6.805504,
+            "adjacency": 1.789952,
+            "solve": 26.387456,
+            "total": 35.05152,
+            "wall": 41.199999928474426,
+            "submission": 35.199999928474426
+          }
+        ],
+        "repeat": 0,
+        "passed": true
+      },
+      "preview": {
+        "phase": "ready",
+        "scene": "3d-stack",
+        "paused": false,
+        "errors": [],
+        "broadphase": "auto",
+        "solverMode": "auto",
+        "renderer": "webgl",
+        "backend": "webgl2"
+      },
+      "rows": "3D · Stack16.67 ms simulated per stepWebGL2 GPU elapsed queriesChecks passed1141033.54435.0520.06922.68339.900"
+    },
+    {
+      "backend": "webgpu",
+      "result": {
+        "scene": "3d-stack",
+        "dimension": 3,
+        "variant": "production",
+        "bodyCount": 11,
+        "jointCount": 0,
+        "params": {
+          "dt": 0.016666666666666666,
+          "gravity": -10,
+          "iterations": 10,
+          "betaLin": 10000,
+          "betaAng": 100,
+          "alpha": 0.99,
+          "gamma": 0.999,
+          "matchNearest": true,
+          "faceBias": true,
+          "reuseContacts": true,
+          "startAtRest": true,
+          "massPenalty": true,
+          "windSpeed": 0,
+          "windAngle": 0,
+          "windGust": 0.4,
+          "windPressure": 0.72,
+          "up": [
+            0,
+            0,
+            1
+          ]
+        },
+        "colorCap": 8,
+        "capacity": {
+          "contacts": 8192,
+          "pairs": 4096,
+          "manifolds": 4096
+        },
+        "counters": {
+          "pairs": 1,
+          "contacts": 4,
+          "manifolds": 1,
+          "overflow": 0,
+          "clashes": 0,
+          "colors": 1
+        },
+        "peakContacts": 4,
+        "peakPairs": 1,
+        "finite": true,
+        "quaternionError": 0,
+        "broadphase": "grid",
+        "broadphaseDecision": {
+          "requested": "auto",
+          "selected": "grid",
+          "bodyCount": 11,
+          "cellRatio": 1.0001,
+          "constraintCount": 0,
+          "thinPlateFraction": 0,
+          "reason": "Grid retained for this body count and size distribution"
+        },
+        "bvh": null,
+        "details": null,
+        "sleeping": false,
+        "rendering": false,
+        "verifiedSteps": 5,
+        "solverDecision": {
+          "requested": "auto",
+          "selected": "standard",
+          "reason": "Work layout selected for smaller rigid scenes.",
+          "bodyCount": 11,
+          "constraintCount": 0
+        },
+        "cachedAdjacency": false,
+        "primalLanes": [
+          2147483648,
+          32768,
+          4096
+        ],
+        "setup": {
+          "sceneBuildMs": 0.10000002384185791,
+          "gpuInitializationMs": 3.5
+        },
+        "kernel": "baseline",
+        "warmup": 2,
+        "samples": [
+          {
+            "step": 3,
+            "total": 0.393216,
+            "collision": 0.041984,
+            "adjacency": 0.01024,
+            "coloring": 0.033792,
+            "solve": 0.306176,
+            "broadphase": "grid",
+            "bvhRebuilt": false,
+            "submission": 0.5,
+            "wall": 6.099999904632568,
+            "contacts": 4,
+            "pairs": 1
+          },
+          {
+            "step": 4,
+            "total": 1.355776,
+            "collision": 0.041984,
+            "adjacency": 0.011264,
+            "coloring": 0.032768,
+            "solve": 1.26976,
+            "broadphase": "grid",
+            "bvhRebuilt": false,
+            "submission": 0.09999990463256836,
+            "wall": 8.099999904632568,
+            "contacts": 4,
+            "pairs": 1
+          },
+          {
+            "step": 5,
+            "total": 0.38912,
+            "collision": 0.043008,
+            "adjacency": 0.01024,
+            "coloring": 0.032768,
+            "solve": 0.30208,
+            "broadphase": "grid",
+            "bvhRebuilt": false,
+            "submission": 0.19999992847442627,
+            "wall": 9.299999952316284,
+            "contacts": 4,
+            "pairs": 1
+          }
+        ],
+        "summary": {
+          "total": {
+            "n": 3,
+            "mean": 0.712704,
+            "median": 0.393216,
+            "p95": 1.355776
+          },
+          "collision": {
+            "n": 3,
+            "mean": 0.04232533333333333,
+            "median": 0.041984,
+            "p95": 0.043008
+          },
+          "adjacency": {
+            "n": 3,
+            "mean": 0.010581333333333333,
+            "median": 0.01024,
+            "p95": 0.011264
+          },
+          "coloring": {
+            "n": 3,
+            "mean": 0.03310933333333333,
+            "median": 0.032768,
+            "p95": 0.033792
+          },
+          "solve": {
+            "n": 3,
+            "mean": 0.6260053333333334,
+            "median": 0.306176,
+            "p95": 1.26976
+          },
+          "submission": {
+            "n": 3,
+            "mean": 0.26666661103566486,
+            "median": 0.19999992847442627,
+            "p95": 0.5
+          },
+          "wall": {
+            "n": 3,
+            "mean": 7.833333253860474,
+            "median": 8.099999904632568,
+            "p95": 9.299999952316284
+          }
+        },
+        "repeat": 0,
+        "passed": true
+      },
+      "preview": {
+        "phase": "ready",
+        "scene": "3d-stack",
+        "paused": true,
+        "errors": [],
+        "broadphase": "auto",
+        "solverMode": "auto",
+        "renderer": "webgpu",
+        "backend": "webgpu"
+      },
+      "rows": "3D · Stack16.67 ms simulated per stepGPU AVBDChecks passed114100.7131.3560.0420.6267.833"
+    }
+  ],
+  "withoutWebgpu": [
+    {
+      "scene": "2d-stack",
+      "backend": "cpu",
+      "dimension": 2,
+      "bodyCount": 21,
+      "jointCount": 0,
+      "params": {
+        "dt": 0.016666666666666666,
+        "iterations": 10
+      },
+      "rendering": false,
+      "sleeping": false,
+      "timingKind": "CPU step time",
+      "summary": {
+        "collision": {
+          "mean": null,
+          "median": null,
+          "p95": null,
+          "n": 0
+        },
+        "adjacency": {
+          "mean": null,
+          "median": null,
+          "p95": null,
+          "n": 0
+        },
+        "coloring": {
+          "mean": null,
+          "median": null,
+          "p95": null,
+          "n": 0
+        },
+        "solve": {
+          "mean": null,
+          "median": null,
+          "p95": null,
+          "n": 0
+        },
+        "total": {
+          "mean": null,
+          "median": null,
+          "p95": null,
+          "n": 0
+        },
+        "wall": {
+          "mean": 0.3999999761581421,
+          "median": 0.5,
+          "p95": 0.5,
+          "n": 2
+        },
+        "submission": {
+          "mean": 0.3999999761581421,
+          "median": 0.5,
+          "p95": 0.5,
+          "n": 2
+        }
+      },
+      "peakContacts": 2,
+      "peakPairs": 1,
+      "counters": {
+        "pairs": 1,
+        "contacts": 2,
+        "manifolds": 1,
+        "joints": 0,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 0,
+        "sleeping": 0
+      },
+      "quaternionError": 0,
+      "finite": true,
+      "verifiedSteps": 3,
+      "setup": {
+        "sceneBuildMs": 0.6000000238418579,
+        "initializationMs": 0.3999999761581421
+      },
+      "samples": [
+        {
+          "wall": 0.2999999523162842,
+          "submission": 0.2999999523162842
+        },
+        {
+          "wall": 0.5,
+          "submission": 0.5
+        }
+      ]
+    },
+    {
+      "scene": "2d-stack",
+      "backend": "webgl2",
+      "dimension": 2,
+      "bodyCount": 21,
+      "jointCount": 0,
+      "params": {
+        "dt": 0.016666666666666666,
+        "iterations": 10
+      },
+      "rendering": false,
+      "sleeping": false,
+      "timingKind": "WebGL2 GPU elapsed queries",
+      "summary": {
+        "collision": {
+          "mean": 0.065024,
+          "median": 0.06656,
+          "p95": 0.06656,
+          "n": 2
+        },
+        "adjacency": {
+          "mean": 2.6844159999999997,
+          "median": 4.16768,
+          "p95": 4.16768,
+          "n": 2
+        },
+        "coloring": {
+          "mean": 8.123904,
+          "median": 8.252416,
+          "p95": 8.252416,
+          "n": 2
+        },
+        "solve": {
+          "mean": 36.23424,
+          "median": 38.981632,
+          "p95": 38.981632,
+          "n": 2
+        },
+        "total": {
+          "mean": 47.107584,
+          "median": 51.208192,
+          "p95": 51.208192,
+          "n": 2
+        },
+        "wall": {
+          "mean": 53.94999998807907,
+          "median": 56.299999952316284,
+          "p95": 56.299999952316284,
+          "n": 2
+        },
+        "submission": {
+          "mean": 49.10000002384186,
+          "median": 50.89999997615814,
+          "p95": 50.89999997615814,
+          "n": 2
+        }
+      },
+      "peakContacts": 2,
+      "peakPairs": 20,
+      "counters": {
+        "pairs": 20,
+        "contacts": 2,
+        "manifolds": 1,
+        "joints": 0,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 1,
+        "sleeping": 0
+      },
+      "quaternionError": 0,
+      "finite": true,
+      "verifiedSteps": 3,
+      "setup": {
+        "sceneBuildMs": 0.10000002384185791,
+        "initializationMs": 3033.2999999523163
+      },
+      "samples": [
+        {
+          "collision": 0.063488,
+          "coloring": 7.995392,
+          "adjacency": 4.16768,
+          "solve": 38.981632,
+          "total": 51.208192,
+          "wall": 56.299999952316284,
+          "submission": 50.89999997615814
+        },
+        {
+          "collision": 0.06656,
+          "coloring": 8.252416,
+          "adjacency": 1.201152,
+          "solve": 33.486848,
+          "total": 43.006976,
+          "wall": 51.60000002384186,
+          "submission": 47.300000071525574
+        }
+      ]
+    }
+  ],
+  "screenshot": "screenshots/compatibility-performance.png"
+}

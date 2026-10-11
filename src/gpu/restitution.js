@@ -82,6 +82,7 @@ fn pointVelocity(i:u32,r:vec3f,incoming:bool)->vec3f {
 }
 `;
 
+export { shader as restitutionWGSL };
 export class Restitution {
   constructor(solver, { code = shader, dimension = 3 } = {}) {
     this.solver = solver;

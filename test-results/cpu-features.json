@@ -1,0 +1,155 @@
+{
+  "passed": true,
+  "rows": [
+    {
+      "scene": "2d-mixed-shapes",
+      "count": 102,
+      "finite": true,
+      "rings": 0,
+      "shapeDrawCalls": 0,
+      "errors": [],
+      "screenshot": "screenshots/cpu-2d-mixed-shapes.png",
+      "passed": true
+    },
+    {
+      "scene": "2d-limited-hinges",
+      "count": 7,
+      "finite": true,
+      "rings": 0,
+      "shapeDrawCalls": 0,
+      "errors": [],
+      "screenshot": "screenshots/cpu-2d-limited-hinges.png",
+      "passed": true
+    },
+    {
+      "scene": "2d-triggers-and-masks",
+      "count": 24,
+      "finite": true,
+      "rings": 0,
+      "shapeDrawCalls": 0,
+      "errors": [],
+      "screenshot": "screenshots/cpu-2d-triggers-and-masks.png",
+      "passed": true
+    },
+    {
+      "scene": "3d-sphere-contacts",
+      "count": 27,
+      "finite": true,
+      "rings": 0,
+      "shapeDrawCalls": 1,
+      "errors": [],
+      "screenshot": "screenshots/cpu-3d-sphere-contacts.png",
+      "passed": true
+    },
+    {
+      "scene": "3d-convex-hulls",
+      "count": 20,
+      "finite": true,
+      "rings": 0,
+      "shapeDrawCalls": 4,
+      "errors": [],
+      "screenshot": "screenshots/cpu-3d-convex-hulls.png",
+      "passed": true
+    },
+    {
+      "scene": "3d-rope",
+      "count": 21,
+      "finite": true,
+      "rings": 0,
+      "shapeDrawCalls": 0,
+      "errors": [],
+      "screenshot": "screenshots/cpu-3d-rope.png",
+      "passed": true
+    },
+    {
+      "scene": "3d-heavy-rope",
+      "count": 21,
+      "finite": true,
+      "rings": 0,
+      "shapeDrawCalls": 0,
+      "errors": [],
+      "screenshot": "screenshots/cpu-3d-heavy-rope.png",
+      "passed": true
+    },
+    {
+      "scene": "showcase-chain-mail-1.6k",
+      "count": 1602,
+      "finite": true,
+      "rings": 1200,
+      "shapeDrawCalls": 4,
+      "errors": [],
+      "screenshot": "screenshots/cpu-showcase-chain-mail-1.6k.png",
+      "passed": true
+    },
+    {
+      "scene": "showcase-heavy-pendulum",
+      "count": 53,
+      "finite": true,
+      "rings": 0,
+      "shapeDrawCalls": 1,
+      "errors": [],
+      "screenshot": "screenshots/cpu-showcase-heavy-pendulum.png",
+      "passed": true
+    },
+    {
+      "scene": "showcase-flag-in-the-wind-1.5k",
+      "count": 1546,
+      "finite": true,
+      "rings": 0,
+      "shapeDrawCalls": 3,
+      "errors": [],
+      "screenshot": "screenshots/cpu-showcase-flag-in-the-wind-1.5k.png",
+      "passed": true
+    },
+    {
+      "scene": "3d-limited-hinges",
+      "count": 13,
+      "finite": true,
+      "rings": 0,
+      "shapeDrawCalls": 1,
+      "errors": [],
+      "screenshot": "screenshots/cpu-3d-limited-hinges.png",
+      "passed": true
+    },
+    {
+      "scene": "3d-triggers-and-masks",
+      "count": 28,
+      "finite": true,
+      "rings": 0,
+      "shapeDrawCalls": 1,
+      "errors": [],
+      "screenshot": "screenshots/cpu-3d-triggers-and-masks.png",
+      "passed": true
+    },
+    {
+      "scene": "3d-tearable-cloth",
+      "count": 1026,
+      "finite": true,
+      "rings": 0,
+      "shapeDrawCalls": 1,
+      "errors": [],
+      "screenshot": "screenshots/cpu-3d-tearable-cloth.png",
+      "passed": true
+    },
+    {
+      "scene": "3d-castle-siege",
+      "count": 3915,
+      "finite": true,
+      "rings": 0,
+      "shapeDrawCalls": 22,
+      "errors": [],
+      "screenshot": "screenshots/cpu-3d-castle-siege.png",
+      "passed": true
+    },
+    {
+      "scene": "3d-voronoi-demolition",
+      "count": 222,
+      "finite": true,
+      "rings": 0,
+      "shapeDrawCalls": 217,
+      "errors": [],
+      "screenshot": "screenshots/cpu-3d-voronoi-demolition.png",
+      "passed": true
+    }
+  ]
+}

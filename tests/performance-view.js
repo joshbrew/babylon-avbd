@@ -46,6 +46,18 @@ export function mountPerformanceView(runner) {
     });
   const solverControls = () => {
     $("variant").value = "production";
+    const selected = $("backend").value,
+      webgpu = selected === "webgpu";
+    $("broadphase").disabled = !webgpu;
+    $("detailed").disabled = !webgpu;
+    for (const option of $("renderer").options)
+      option.disabled =
+        selected === "webgl2"
+          ? option.value !== "webgl"
+          : webgpu && option.value === "webgl";
+    if (selected === "webgl2") $("renderer").value = "webgl";
+    else if (webgpu && $("renderer").value === "webgl")
+      $("renderer").value = "webgpu";
     $("run-all").disabled = false;
   };
   const loadPreview = () => {
@@ -56,6 +68,7 @@ export function mountPerformanceView(runner) {
       $("broadphase").value,
       "auto",
       $("renderer").value,
+      $("backend").value,
     );
   };
   $("scene").onchange = () => {
@@ -64,6 +77,7 @@ export function mountPerformanceView(runner) {
   $("broadphase").onchange = $("scene").onchange;
   $("variant").onchange = $("scene").onchange;
   $("renderer").onchange = $("scene").onchange;
+  $("backend").onchange = $("scene").onchange;
   $("preview-pause").onclick = () => preview.pause();
   $("preview-step").onclick = () => previewAction(preview.step());
   $("preview-reset").onclick = () => previewAction(loadPreview());
@@ -71,6 +85,7 @@ export function mountPerformanceView(runner) {
   $("preview-shoot").onclick = () => previewAction(preview.shoot());
   const controls = [
     "scene",
+    "backend",
     "variant",
     "broadphase",
     "detailed",
@@ -90,7 +105,7 @@ export function mountPerformanceView(runner) {
     const name = cell(row, ""),
       link = document.createElement("a");
     const scene = runner.scenes.find((s) => s.id === result.scene);
-    link.href = `/?demo=canonical&scene=${encodeURIComponent(result.scene)}&backend=gpu&quality=benchmark`;
+    link.href = `/?demo=canonical&scene=${encodeURIComponent(result.scene)}&backend=${result.backend ?? "gpu"}&quality=benchmark`;
     link.textContent = `${scene.dimension}D · ${scene.name}`;
     name.append(link);
     const interval = document.createElement("small");
@@ -98,6 +113,12 @@ export function mountPerformanceView(runner) {
     if (result.params?.dt)
       interval.textContent = `${(result.params.dt * 1000).toFixed(2)} ms simulated per step`;
     name.append(interval);
+    if (result.timingKind) {
+      const timing = document.createElement("small");
+      timing.style.display = "block";
+      timing.textContent = result.timingKind;
+      name.append(timing);
+    }
     if (result.solverDecision) {
       const description = document.createElement("small");
       description.style.display = "block";
@@ -114,7 +135,7 @@ export function mountPerformanceView(runner) {
     const bar = document.createElement("div");
     bar.className = "stagebar";
     cell(row, "").append(bar);
-    if (result.passed) {
+    if (result.passed && result.summary.total.mean > 0) {
       for (const phase of phases) {
         const span = document.createElement("span");
         span.className = phase;
@@ -162,7 +183,8 @@ export function mountPerformanceView(runner) {
     const warmup = number("warmup", 0, 600),
       samples = number("samples", 1, 600),
       repeats = number("repeats", 1, 10);
-    const variant = $("variant").value;
+    const variant = $("variant").value,
+      selectedBackend = $("backend").value;
     const scenes = all
       ? runner.scenes
       : runner.scenes.filter((s) => s.id === $("scene").value);
@@ -173,8 +195,11 @@ export function mountPerformanceView(runner) {
       errors: [],
       started: new Date().toISOString(),
       adapter: runner.info,
+      backend: selectedBackend,
       method:
-        "Distinct GPU phase timestamps, fresh scene per repeat, no rendering/sleeping, every step checked",
+        selectedBackend === "webgpu"
+          ? "Distinct GPU phase timestamps, fresh scene per repeat, no rendering/sleeping, every step checked"
+          : "Fresh scene per repeat, drawing and sleeping disabled. WebGL2 GPU elapsed queries when supported; CPU and completion times reported separately.",
       warmup,
       samples,
       repeats,
@@ -202,6 +227,7 @@ export function mountPerformanceView(runner) {
               warmup,
               samples,
               {
+                backend: selectedBackend,
                 broadphase: $("broadphase").value,
                 detailed: $("detailed").checked,
               },
@@ -326,6 +352,7 @@ export function mountPerformanceView(runner) {
                 session: rendererSession,
                 warmup,
                 samples,
+                backend: selectedBackend,
                 broadphase: $("broadphase").value,
                 shouldStop: () => stopped,
               })),

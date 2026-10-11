@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "rows": [
+    {
+      "scene": "3D stack, sphere and rotating capsule",
+      "hulls": true,
+      "joints": 8,
+      "steps": 180,
+      "bodyCount": 15,
+      "maxPositionDifference": 0.0016710324519381779,
+      "status": {
+        "problems": 0,
+        "colors": 2
+      },
+      "passed": true
+    }
+  ],
+  "errors": []
+}

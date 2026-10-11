@@ -1,6 +1,6 @@
 {
   "name": "avbd-babylon",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "GPU AVBD rigid-body physics with a Babylon.js aggregate API",
   "main": "./dist/avbd.js",
   "types": "./dist/avbd.d.ts",
@@ -35,11 +35,19 @@
     "test:published": "node scripts/check-published.mjs",
     "test:mobile-contacts": "node scripts/build.mjs && node scripts/check-contact-portability.mjs && node scripts/check-contact-compatibility-features.mjs",
     "test:types": "tsc --noEmit --strict --skipLibCheck --module nodenext --target es2022 tests/package-api-types.ts",
+    "test:cpu": "node scripts/build.mjs && node scripts/check-cpu-demos.mjs && node scripts/check-cpu-features.mjs && node scripts/check-cpu-slingshot.mjs",
+    "test:webgl-collisions": "node scripts/check-webgl-broadphase.mjs && node --experimental-transform-types scripts/check-webgl-contacts.mjs",
+    "test:webgl": "npm run test:webgl-collisions && node scripts/check-webgl-coloring.mjs && node --experimental-transform-types scripts/check-webgl-solve.mjs && node --experimental-transform-types scripts/check-webgl-world.mjs && node --experimental-transform-types scripts/check-webgl-edits.mjs && node --experimental-transform-types scripts/check-webgl-bounce.mjs && node --experimental-transform-types scripts/check-webgl-sleeping.mjs && node scripts/check-webgl-scene-behavior.mjs && node scripts/check-backend-contract.mjs --webgl2",
+    "test:compatibility": "npm run build:all && node scripts/check-backend-contract.mjs --package && npm run test:cpu && npm run test:webgl && npm run test:webgl-scenes && npm run test:compatibility-performance",
+    "test:pipelines": "node scripts/check-backend-contract.mjs",
+    "benchmark:backends": "node scripts/build.mjs && node scripts/benchmark-backends.mjs",
     "benchmark:native": "node scripts/benchmark-package.mjs",
     "benchmark:sleeping": "node scripts/benchmark-package.mjs",
     "benchmark:native-edits": "node scripts/check-native-performance.mjs",
     "benchmark:renderers": "node scripts/build.mjs && node scripts/benchmark-renderers.mjs",
-    "test:connected-phone": "node scripts/check-connected-contacts.mjs"
+    "test:connected-phone": "node scripts/check-connected-contacts.mjs",
+    "test:webgl-scenes": "node scripts/build.mjs && node scripts/check-webgl-demos.mjs",
+    "test:compatibility-performance": "node scripts/build.mjs && node scripts/check-compatibility-performance.mjs"
   },
   "license": "MIT",
   "repository": {
@@ -65,11 +73,12 @@
     "babylonjs"
   ],
   "devDependencies": {
+    "@babylonjs/core": "^9.13.0",
     "esbuild": "^0.28.2",
     "prettier": "^3.9.9",
     "tinybuild": "^1.0.6",
-    "@babylonjs/core": "^9.13.0",
-    "typescript": "^7.0.2"
+    "typescript": "^7.0.2",
+    "wgsl_reflect": "^1.6.0"
   },
   "module": "./dist/avbd.js",
   "exports": {
@@ -99,6 +108,7 @@
     "dist/native.js",
     "dist/native.d.ts",
     "dist/gpuDevice.d.ts",
+    "dist/solverPipeline.d.ts",
     "dist/NOTICE",
     "LICENSE",
     "README.md",

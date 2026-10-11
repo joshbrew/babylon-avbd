@@ -32,13 +32,19 @@ browser tests. `npm start` builds the library and serves the lab together.
 `npm run build:cdn` creates `dist/avbd.global.js`, which exposes `globalThis.AVBD`.
 Host that file yourself and load it with a normal script tag; use
 `const { AvbdPhysics, AvbdPhysicsAggregate, AvbdShapeType } = AVBD`.
-There is no public CDN release URL yet.
 
 WebGPU
 needs a supported browser and localhost or HTTPS. The default world requests
 9 storage bindings, a 512 MiB storage binding limit and a 1 GiB buffer limit;
 unsupported adapters fail during creation. Babylon drawing can use either its
 WebGL or WebGPU engine when using the small-scene mesh bridge.
+
+For CPU physics, use the [native pipeline examples](../README.md#choose-a-solver-backend-once).
+Select the backend once; 2D and 3D scene builders, body commands, joints, triggers,
+restitution, collision masks and state reads keep the same API. The package
+supports WebGPU and CPU. The repository demos retain an experimental WebGL2
+solver for comparisons; its measured performance was too poor to include in
+the package. See the [backend benchmark](../README.md#backend-differences-and-benchmarks).
 
 ## A complete small scene
 

@@ -1,4 +1,6 @@
-import { createWebGPUDevice } from "../src/gpu/device.js";
+import { createSolverPipeline } from "../src/native/pipeline.js";
+import { createExperimentalWebglPipeline } from "../src/webgl/pipeline.js";
+import { CpuRenderer2D } from "./cpuRenderer2D.js";
 import { buildSlingshotScene2D } from "./slingshotScene2D.js";
 import { GpuRenderer2D } from "./gpuRenderer2D.js";
 import {
@@ -16,15 +18,46 @@ export async function startSlingshotDemo() {
     canvas = $("siege-canvas"),
     overlay = $("siege-aim");
   const embedded = new URLSearchParams(location.search).get("embed") === "1";
-  const renderMode =
-    new URLSearchParams(location.search).get("renderer") === "babylon"
+  const query = new URLSearchParams(location.search);
+  const backend =
+    query.get("backend") === "webgl2"
+      ? "webgl2"
+      : query.get("backend") === "cpu" ||
+          (!query.has("backend") && !navigator.gpu)
+        ? "cpu"
+        : "webgpu";
+  const cpu = backend !== "webgpu",
+    webgl = backend === "webgl2";
+  const renderMode = cpu
+    ? "canvas"
+    : new URLSearchParams(location.search).get("renderer") === "babylon"
       ? "babylon"
       : "webgpu";
   const label = document.createElement("label");
-  label.innerHTML =
-    'Renderer <select id="siege-renderer"><option value="webgpu">Direct WebGPU</option><option value="babylon">Babylon WebGPU · thin instances</option></select>';
+  label.innerHTML = `Physics <select id="siege-backend"><option value="webgpu">WebGPU</option><option value="webgl2">WebGL2 GPU · experimental</option><option value="cpu">CPU · compatibility</option></select> Renderer <select id="siege-renderer">${cpu ? '<option value="canvas">Canvas 2D</option>' : '<option value="webgpu">Direct WebGPU</option><option value="babylon">Babylon WebGPU · thin instances</option>'}</select>`;
   document.querySelector(".siege-tools").prepend(label);
   $("siege-renderer").value = renderMode;
+  $("siege-backend").value = backend;
+  if (["1000", "5000", "10000"].includes(query.get("bricks")))
+    $("siege-size").value = query.get("bricks");
+  else if (cpu) $("siege-size").value = "1000";
+  $("siege-backend").onchange = () => {
+    const url = new URL(location.href);
+    url.searchParams.set("backend", $("siege-backend").value);
+    url.searchParams.set("bricks", $("siege-size").value);
+    location.href = url;
+  };
+  document.querySelector(".siege-metrics summary").textContent = cpu
+    ? webgl
+      ? "Experimental WebGL2 performance"
+      : "CPU performance"
+    : "GPU performance";
+  if (cpu)
+    document.querySelector(".siege footer span").textContent =
+      (webgl
+        ? "Experimental WebGL2 mode detects collisions and solves AVBD on the GPU; Canvas drawing downloads poses. "
+        : "CPU compatibility mode runs the same scene and physics features. ") +
+      " Large forts can be slow; WebGPU is the default for performance.";
   $("siege-renderer").onchange = () => {
     const url = new URL(location.href);
     url.searchParams.set("renderer", $("siege-renderer").value);
@@ -33,18 +66,17 @@ export async function startSlingshotDemo() {
   document.body.classList.toggle("siege-embed", embedded);
   if (embedded) document.querySelector(".siege-metrics").open = false;
   const session =
-    renderMode === "babylon"
-      ? await createBabylonEngine(canvas, false)
-      : await createWebGPUDevice({
-          preferredLimits: {
-            maxStorageBuffersPerShaderStage: 9,
-            maxStorageBufferBindingSize: 512 * 1024 * 1024,
-            maxBufferSize: 1024 * 1024 * 1024,
-          },
-        });
-  const { device } = session;
+    renderMode === "babylon" ? await createBabylonEngine(canvas, false) : {};
+  const pipeline = webgl
+    ? await createExperimentalWebglPipeline()
+    : await createSolverPipeline({
+        backend,
+        device: session.device,
+        validate3D: false,
+      });
+  const { device } = pipeline;
   const errors = [];
-  device.addEventListener("uncapturederror", (e) => {
+  device?.addEventListener("uncapturederror", (e) => {
     errors.push(e.error.message);
     $("siege-status").textContent = e.error.message;
   });
@@ -239,12 +271,12 @@ export async function startSlingshotDemo() {
     cancelAnimationFrame(raf);
     $("siege-status").textContent = "Building the forts…";
     try {
-      await device.queue.onSubmittedWorkDone();
+      await device?.queue.onSubmittedWorkDone();
       if (disposed) return;
       renderer?.dispose();
       gpu?.destroy();
       built = buildSlingshotScene2D(undefined, Number($("siege-size").value));
-      gpu = built.scene.createSolver(device, {
+      gpu = built.scene.createSolver(pipeline, {
         ...built.gpuOptions2D,
         sleeping: $("siege-sleep").checked
           ? built.gpuOptions2D.sleeping
@@ -272,8 +304,11 @@ export async function startSlingshotDemo() {
           return gpu.bodyCount;
         },
       };
-      const Render2D =
-        renderMode === "babylon" ? BabylonRenderer2D : GpuRenderer2D;
+      const Render2D = cpu
+        ? CpuRenderer2D
+        : renderMode === "babylon"
+          ? BabylonRenderer2D
+          : GpuRenderer2D;
       renderer = new Render2D(device, canvas, sim, () => camera, {
         engine: session.engine,
         colors: built.colors,
@@ -401,6 +436,10 @@ export async function startSlingshotDemo() {
       g.adapt(c);
       const p = await g.readBodies();
       if (generation !== epoch || disposed) return;
+      if (webgl) {
+        for (let i = 0; i < g.bodyCount; i++)
+          g.solver.pose.set(p.subarray(i * 24, i * 24 + 4), i * 4);
+      }
       if (!shots) initial = p;
       if (shots) {
         moved = built.bricks.filter(
@@ -439,7 +478,7 @@ export async function startSlingshotDemo() {
             (renderer.renderStats.gpuCopyMs ?? 0)
           : (renderer.timer.latestMs ?? 0);
       $("siege-metrics").innerHTML =
-        `<dl><dt>Frame rate</dt><dd>${(1000 / frameMs).toFixed(0)} FPS</dd><dt>Bricks</dt><dd>${built.brickCount.toLocaleString()}</dd><dt>Asleep / awake</dt><dd>${metrics.sleeping.toLocaleString()} / ${(gpu.bodyCount - built.staticCount - metrics.sleeping).toLocaleString()}</dd><dt>Contact points</dt><dd>${c.contacts.toLocaleString()}</dd><dt>${renderMode === "babylon" ? "GPU drawing + copies" : "GPU drawing"}</dt><dd>${renderMs.toFixed(2)} ms</dd><dt>Physics rate</dt><dd>${paused ? "Paused" : `${stepRate.toFixed(0)} steps/sec`}</dd><dt>Fixed step</dt><dd>1/120 sec · 10 rounds</dd></dl><p>${c.overflow || c.clashes ? "Growing collision storage and solve groups; incomplete steps are held safely." : "No collision overflow or conflicting solve groups."}</p>`;
+        `<dl><dt>Frame rate</dt><dd>${(1000 / frameMs).toFixed(0)} FPS</dd><dt>Bricks</dt><dd>${built.brickCount.toLocaleString()}</dd><dt>Asleep / awake</dt><dd>${metrics.sleeping.toLocaleString()} / ${(gpu.bodyCount - built.staticCount - metrics.sleeping).toLocaleString()}</dd><dt>Contact points</dt><dd>${c.contacts.toLocaleString()}</dd><dt>${cpu ? "CPU drawing" : renderMode === "babylon" ? "GPU drawing + copies" : "GPU drawing"}</dt><dd>${renderMs.toFixed(2)} ms</dd><dt>Physics rate</dt><dd>${paused ? "Paused" : `${stepRate.toFixed(0)} steps/sec`}</dd><dt>Fixed step</dt><dd>1/120 sec · 10 rounds</dd></dl><p>${c.overflow || c.clashes ? "Growing collision storage and solve groups; incomplete steps are held safely." : "No collision overflow or conflicting solve groups."}</p>`;
     } catch (e) {
       if (generation === epoch && !disposed) {
         errors.push(e.message);
@@ -449,8 +488,13 @@ export async function startSlingshotDemo() {
       busy = false;
     }
   }
+  let glDrawing = false;
   function frame(now) {
     if (disposed || resetting) return;
+    if (webgl && glDrawing) {
+      raf = requestAnimationFrame(frame);
+      return;
+    }
     const elapsed = last ? Math.min((now - last) / 1000, 0.05) : 0;
     frameMs = frameMs * 0.9 + (elapsed ? elapsed * 1000 : 16.7) * 0.1;
     last = now;
@@ -464,6 +508,19 @@ export async function startSlingshotDemo() {
       }
     }
     renderer.draw(false);
+    if (webgl) {
+      glDrawing = true;
+      const current = epoch;
+      gpu
+        .refreshCpuPoses()
+        .then(
+          () => {
+            if (current === epoch && !disposed) renderer.draw(false);
+          },
+          (error) => errors.push(error.message),
+        )
+        .finally(() => (glDrawing = false));
+    }
     raf = requestAnimationFrame(frame);
   }
   function physicsStep() {
@@ -609,11 +666,12 @@ export async function startSlingshotDemo() {
     clearTimeout(queryTimer);
     resize.disconnect();
     window.removeEventListener("keydown", key);
-    await device.queue.onSubmittedWorkDone();
+    await device?.queue.onSubmittedWorkDone();
     renderer?.dispose();
     gpu?.destroy();
     session.engine?.dispose();
-    device.destroy();
+    pipeline.destroy();
+    if (session.device) device.destroy();
   }
   globalThis.__SLINGSHOT__ = {
     reset,
@@ -667,11 +725,11 @@ export async function startSlingshotDemo() {
       for (let i = 0; i < n; i++) {
         physicsStep();
         steps++;
-        if (i % 30 === 29) await device.queue.onSubmittedWorkDone();
+        if (i % 30 === 29) await device?.queue.onSubmittedWorkDone();
         if (i % 120 === 119) await collect();
       }
-      renderer.draw(false);
       await collect();
+      renderer.draw(false);
     },
     get diagnostics() {
       return {
@@ -682,7 +740,7 @@ export async function startSlingshotDemo() {
       };
     },
   };
-  device.lost.then((info) => {
+  device?.lost.then((info) => {
     if (!disposed) {
       errors.push(info.message || "GPU device lost");
       $("siege-status").textContent =

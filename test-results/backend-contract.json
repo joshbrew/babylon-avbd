@@ -1,0 +1,340 @@
+{
+  "date": "2026-10-11T00:28:45.376Z",
+  "results": [
+    {
+      "check": "checkBackend",
+      "backend": "cpu",
+      "dimension": 2,
+      "passed": true
+    },
+    {
+      "check": "checkFloor",
+      "backend": "cpu",
+      "dimension": 2,
+      "floorHeight": 0.49946955706958135,
+      "passed": true
+    },
+    {
+      "check": "checkConstraints",
+      "backend": "cpu",
+      "dimension": 2,
+      "constraintSlots": true,
+      "passed": true
+    },
+    {
+      "check": "checkContacts",
+      "backend": "cpu",
+      "dimension": 2,
+      "restitution": true,
+      "triggers": true,
+      "masking": true,
+      "passed": true
+    },
+    {
+      "check": "checkSleeping",
+      "backend": "cpu",
+      "dimension": 2,
+      "sleeping": true,
+      "waking": true,
+      "passed": true
+    },
+    {
+      "check": "checkForces",
+      "backend": "cpu",
+      "dimension": 2,
+      "forces": true,
+      "torques": true,
+      "orderedBulkEdits": true,
+      "passed": true
+    },
+    {
+      "check": "checkShapeQueries",
+      "backend": "cpu",
+      "dimension": 2,
+      "shapes": 6,
+      "batchRays": true,
+      "batchSweeps": true,
+      "liveEdits": true,
+      "passed": true
+    },
+    {
+      "check": "checkBackend",
+      "backend": "cpu",
+      "dimension": 3,
+      "passed": true
+    },
+    {
+      "check": "checkFloor",
+      "backend": "cpu",
+      "dimension": 3,
+      "floorHeight": 0.4789371662325512,
+      "passed": true
+    },
+    {
+      "check": "checkConstraints",
+      "backend": "cpu",
+      "dimension": 3,
+      "constraintSlots": true,
+      "passed": true
+    },
+    {
+      "check": "checkContacts",
+      "backend": "cpu",
+      "dimension": 3,
+      "restitution": true,
+      "triggers": true,
+      "masking": true,
+      "passed": true
+    },
+    {
+      "check": "checkSleeping",
+      "backend": "cpu",
+      "dimension": 3,
+      "sleeping": true,
+      "waking": true,
+      "passed": true
+    },
+    {
+      "check": "checkForces",
+      "backend": "cpu",
+      "dimension": 3,
+      "forces": true,
+      "torques": true,
+      "orderedBulkEdits": true,
+      "passed": true
+    },
+    {
+      "check": "checkShapeQueries",
+      "backend": "cpu",
+      "dimension": 3,
+      "shapes": 4,
+      "batchRays": true,
+      "batchSweeps": true,
+      "liveEdits": true,
+      "passed": true
+    },
+    {
+      "check": "checkConstraintFrames",
+      "backend": "cpu",
+      "dimension": 3,
+      "liveConstraintFrames": true,
+      "passed": true
+    },
+    {
+      "backend": "cpu",
+      "dimension": 3,
+      "fabricPoints": 36,
+      "passed": true
+    },
+    {
+      "check": "checkHeavyFloor",
+      "backend": "cpu",
+      "dimension": 3,
+      "heavyFloor": true,
+      "height": 0.4902350314394091,
+      "passed": true
+    },
+    {
+      "check": "checkBackend",
+      "backend": "webgpu",
+      "dimension": 2,
+      "passed": true
+    },
+    {
+      "check": "checkFloor",
+      "backend": "webgpu",
+      "dimension": 2,
+      "floorHeight": 0.4994695484638214,
+      "passed": true
+    },
+    {
+      "check": "checkConstraints",
+      "backend": "webgpu",
+      "dimension": 2,
+      "constraintSlots": true,
+      "passed": true
+    },
+    {
+      "check": "checkContacts",
+      "backend": "webgpu",
+      "dimension": 2,
+      "restitution": true,
+      "triggers": true,
+      "masking": true,
+      "passed": true
+    },
+    {
+      "check": "checkSleeping",
+      "backend": "webgpu",
+      "dimension": 2,
+      "sleeping": true,
+      "waking": true,
+      "passed": true
+    },
+    {
+      "check": "checkForces",
+      "backend": "webgpu",
+      "dimension": 2,
+      "forces": true,
+      "torques": true,
+      "orderedBulkEdits": true,
+      "passed": true
+    },
+    {
+      "check": "checkShapeQueries",
+      "backend": "webgpu",
+      "dimension": 2,
+      "shapes": 6,
+      "batchRays": true,
+      "batchSweeps": true,
+      "liveEdits": true,
+      "passed": true
+    },
+    {
+      "check": "checkBackend",
+      "backend": "webgpu",
+      "dimension": 3,
+      "passed": true
+    },
+    {
+      "check": "checkFloor",
+      "backend": "webgpu",
+      "dimension": 3,
+      "floorHeight": 0.4789327085018158,
+      "passed": true
+    },
+    {
+      "check": "checkConstraints",
+      "backend": "webgpu",
+      "dimension": 3,
+      "constraintSlots": true,
+      "passed": true
+    },
+    {
+      "check": "checkContacts",
+      "backend": "webgpu",
+      "dimension": 3,
+      "restitution": true,
+      "triggers": true,
+      "masking": true,
+      "passed": true
+    },
+    {
+      "check": "checkSleeping",
+      "backend": "webgpu",
+      "dimension": 3,
+      "sleeping": true,
+      "waking": true,
+      "passed": true
+    },
+    {
+      "check": "checkForces",
+      "backend": "webgpu",
+      "dimension": 3,
+      "forces": true,
+      "torques": true,
+      "orderedBulkEdits": true,
+      "passed": true
+    },
+    {
+      "check": "checkShapeQueries",
+      "backend": "webgpu",
+      "dimension": 3,
+      "shapes": 4,
+      "batchRays": true,
+      "batchSweeps": true,
+      "liveEdits": true,
+      "passed": true
+    },
+    {
+      "check": "checkConstraintFrames",
+      "backend": "webgpu",
+      "dimension": 3,
+      "liveConstraintFrames": true,
+      "passed": true
+    },
+    {
+      "backend": "webgpu",
+      "dimension": 3,
+      "fabricPoints": 36,
+      "passed": true
+    },
+    {
+      "check": "checkHeavyFloor",
+      "backend": "webgpu",
+      "dimension": 3,
+      "heavyFloor": true,
+      "height": 0.4902351498603821,
+      "passed": true
+    },
+    {
+      "check": "checkCpuEventCapacity",
+      "backend": "cpu",
+      "dimension": 2,
+      "boundedEvents": true,
+      "passed": true
+    },
+    {
+      "check": "checkCpuEventCapacity",
+      "backend": "cpu",
+      "dimension": 3,
+      "boundedEvents": true,
+      "passed": true
+    },
+    {
+      "name": "portable-body-and-bulk-api",
+      "backend": "cpu",
+      "dimension": 2,
+      "bodies": 264,
+      "finite": true,
+      "selectedFloats": 8,
+      "velocity": [
+        -2.669460985741665,
+        -7.946702683267484
+      ],
+      "events": 4
+    },
+    {
+      "name": "portable-body-and-bulk-api",
+      "backend": "cpu",
+      "dimension": 3,
+      "bodies": 260,
+      "finite": true,
+      "selectedFloats": 16,
+      "velocity": [
+        58.509933704474975,
+        -1.129007797777093,
+        2.0614119017463695e-25
+      ],
+      "events": 4
+    },
+    {
+      "name": "portable-body-and-bulk-api",
+      "backend": "webgpu",
+      "dimension": 2,
+      "bodies": 264,
+      "finite": true,
+      "selectedFloats": 8,
+      "velocity": [
+        4.026488780975342,
+        -4.546036243438721
+      ],
+      "events": 16
+    },
+    {
+      "name": "portable-body-and-bulk-api",
+      "backend": "webgpu",
+      "dimension": 3,
+      "bodies": 260,
+      "finite": true,
+      "selectedFloats": 16,
+      "velocity": [
+        58.58504867553711,
+        2.0514962673187256,
+        0
+      ],
+      "events": 4
+    }
+  ],
+  "errors": []
+}

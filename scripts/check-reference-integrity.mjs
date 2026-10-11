@@ -1,4 +1,3 @@
-// Filesystem checks cannot run on the GPU. No CPU simulation is executed here.
 import { readFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import sources from "../reference/three-avbd/sources.json" with { type: "json" };
@@ -19,6 +18,4 @@ for (const [path, sha] of files) {
   )
     throw Error(`Pinned source changed: ${path}`);
 }
-console.log(
-  `PASS source integrity: ${files.size} unchanged upstream files; no CPU simulation`,
-);
+console.log(`PASS source integrity: ${files.size} unchanged upstream files`);

@@ -52,6 +52,7 @@ export async function browserCheck() {
     pending = new Map();
   let incoming = "",
     next = 0;
+  browser.stdio[2].on("data", chunk => logs.push({source:"browser",level:"debug",text:String(chunk)}));
   browser.stdio[4].on("data", (chunk) => {
     incoming += chunk;
     let end;

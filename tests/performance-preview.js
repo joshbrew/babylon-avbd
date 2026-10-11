@@ -57,6 +57,7 @@ export class PerformancePreview {
     broadphase = this.state.broadphase ?? "auto",
     solverMode = this.state.solverMode ?? "auto",
     renderer = this.state.renderer ?? "webgpu",
+    backend = this.state.backend ?? "webgpu",
   ) {
     const token = ++this.generation;
     this.state.phase = "loading";
@@ -72,13 +73,14 @@ export class PerformancePreview {
         broadphase,
         solverMode,
         renderer,
+        backend,
         errors: [],
       });
       this.message.textContent = "Preparing scene…";
       document.getElementById("preview-open").href =
         scene === "2d-slingshot-siege"
-          ? `/?demo=slingshot&renderer=${renderer}`
-          : `/?demo=canonical&scene=${encodeURIComponent(scene)}&backend=gpu&broadphase=${encodeURIComponent(broadphase)}&solverMode=${encodeURIComponent(solverMode)}&renderer=${renderer}`;
+          ? `/?demo=slingshot&backend=${backend}&renderer=${renderer}`
+          : `/?demo=canonical&scene=${encodeURIComponent(scene)}&backend=${backend === "webgpu" ? "gpu" : backend}&broadphase=${encodeURIComponent(broadphase)}&solverMode=${encodeURIComponent(solverMode)}&renderer=${renderer}`;
       this.controls();
       const frame = document.createElement("iframe");
       frame.id = "preview-frame";
@@ -100,8 +102,8 @@ export class PerformancePreview {
       this.frame = frame;
       frame.src =
         scene === "2d-slingshot-siege"
-          ? `/?demo=slingshot&renderer=${renderer}&embed=1&paused=${paused ? 1 : 0}`
-          : `/?demo=canonical&scene=${encodeURIComponent(scene)}&backend=gpu&broadphase=${encodeURIComponent(broadphase)}&solverMode=${encodeURIComponent(solverMode)}&renderer=${renderer}&embed=1&paused=${paused ? 1 : 0}`;
+          ? `/?demo=slingshot&backend=${backend}&renderer=${renderer}&embed=1&paused=${paused ? 1 : 0}`
+          : `/?demo=canonical&scene=${encodeURIComponent(scene)}&backend=${backend === "webgpu" ? "gpu" : backend}&broadphase=${encodeURIComponent(broadphase)}&solverMode=${encodeURIComponent(solverMode)}&renderer=${renderer}&embed=1&paused=${paused ? 1 : 0}`;
       this.host.append(frame);
       try {
         await this.loaded;

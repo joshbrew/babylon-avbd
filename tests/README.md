@@ -1,26 +1,29 @@
 # GPU validation and browser benchmarks
 
-Normal validation runs physics on the GPU. Package, type and source-integrity
-checks run on the host because they inspect files and JavaScript APIs.
+Numerical and stability validation runs physics on the GPU. Shared API checks
+also run CPU compatibility worlds. Package, type and source-integrity checks
+run on the host because they inspect files and JavaScript APIs.
 
-| Command                          | Scope                                                                                 |
-| -------------------------------- | ------------------------------------------------------------------------------------- |
-| `npm test`                       | GPU numerical and stability regressions                                               |
-| `npm run test:complete`          | GPU suite, package, pinned-source integrity and live Babylon example                  |
-| `npm run test:web`               | All GPU scene views, benchmarks, motion, controls, screenshots and reports            |
-| `npm run test:package`           | ESM/global bundles, declarations and production dependencies                          |
-| `npm run test:types`             | Public declarations with real Babylon types and portable API consumers                |
-| `npm run test:castle`            | Mortar settling, local impacts, rotating debris and responsive layout                 |
-| `npm run test:cloth`             | Thirty-second limb/net checks, central cloth tearing and screenshots                  |
-| `npm run test:features`          | 2D/3D hinge stops, motor reversal/braking, sensors, live masks and casts              |
-| `npm run test:mobile-contacts`   | 3D floor contacts, device-verified fallback selection, 8/9 binding limits and mobile drawing |
-| `npm run test:connected-phone`   | Physical Android GPU: prepared native/Babylon APIs, floor contacts, 2D/3D features and grid/HPLOC++ collisions |
-| `npm run test:renderers`         | Every canonical scene and the slingshot in Babylon; shared-state renderer benchmark checks |
-| `npm run benchmark:renderers`    | Direct WebGPU versus Babylon: GPU drawing/copies, CPU submission and completion; three repeats |
-| `npm run test:fracture`          | Voronoi partition, breakable face bonds, wrecking-ball impact and persistent rubble   |
-| `npm run test:reference`         | Explicitly requested upstream CPU comparison; excluded from normal validation         |
-| `npm run benchmark:native` | 2D/3D movement/spin, property edits, grouped queries, sleeping and selected reads; three repeats |
-| `npm run benchmark:native-edits` | 100K motion updates, 10K property edits and 64 ray queries in 2D/3D; API overhead and GPU completion |
+| Command                          | Scope                                                                                                                                          |
+| -------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| `npm test`                       | GPU numerical and stability regressions                                                                                                        |
+| `npm run test:complete`          | GPU suite, shared pipeline contract, package, pinned-source integrity and live Babylon example                                                 |
+| `npm run test:pipelines`         | Same 2D/3D package application calls on CPU and WebGPU: bulk edits, queries, joints, triggers, bounce, sleeping, scene attachment and disposal |
+| `npm run test:cpu`               | CPU compatibility scene views, controls, screenshots and physics measurements                                                                  |
+| `npm run test:web`               | All GPU scene views, benchmarks, motion, controls, screenshots and reports                                                                     |
+| `npm run test:package`           | ESM/global bundles, declarations and production dependencies                                                                                   |
+| `npm run test:types`             | Public declarations with real Babylon types and portable API consumers                                                                         |
+| `npm run test:castle`            | Mortar settling, local impacts, rotating debris and responsive layout                                                                          |
+| `npm run test:cloth`             | Thirty-second limb/net checks, central cloth tearing and screenshots                                                                           |
+| `npm run test:features`          | 2D/3D hinge stops, motor reversal/braking, sensors, live masks and casts                                                                       |
+| `npm run test:mobile-contacts`   | 3D floor contacts, device-verified fallback selection, 8/9 binding limits and mobile drawing                                                   |
+| `npm run test:connected-phone`   | Physical Android GPU: prepared native/Babylon APIs, floor contacts, 2D/3D features and grid/HPLOC++ collisions                                 |
+| `npm run test:renderers`         | Every canonical scene and the slingshot in Babylon; shared-state renderer benchmark checks                                                     |
+| `npm run benchmark:renderers`    | Direct WebGPU versus Babylon: GPU drawing/copies, CPU submission and completion; three repeats                                                 |
+| `npm run test:fracture`          | Voronoi partition, breakable face bonds, wrecking-ball impact and persistent rubble                                                            |
+| `npm run test:reference`         | Explicitly requested upstream CPU comparison; excluded from normal validation                                                                  |
+| `npm run benchmark:native`       | 2D/3D movement/spin, property edits, grouped queries, sleeping and selected reads; three repeats                                               |
+| `npm run benchmark:native-edits` | 100K motion updates, 10K property edits and 64 ray queries in 2D/3D; API overhead and GPU completion                                           |
 
 Set `AVBD_TEST_BROWSER` to a Chromium executable if browser discovery fails.
 The runner uses an isolated temporary profile and a real WebGPU adapter. Missing
@@ -163,8 +166,53 @@ samples. Do not run GPU workloads concurrently. `AVBD_PROFILE_SCENES`,
 `AVBD_PROFILE_REPEATS` configure these tools. Public benchmarks use production
 automatic selection rather than presenting competing solver versions.
 
+WebGL2 is an experimental repository/demo backend, excluded from the npm
+package. The package contract runs only CPU and WebGPU; `npm run test:webgl`
+also runs the shared contract separately against experimental WebGL2.
+
+`npm run test:webgl-collisions` compares GPU WebGL2 broadphase and shape
+contacts with exhaustive pairs and the WebGPU equations, including masks,
+large shapes, cell boundaries and overflow.
+
+`npm run test:webgl` checks graph coloring, solver stages, complete settling
+worlds, hulls, capsules, joints, welds, motors, springs, ordered body edits,
+nonzero restitution and sleeping/waking in both dimensions. Shared API checks
+also exercise triggers, masking, shape queries, live weld-frame capture and fabric.
+`npm run test:webgl-scenes` checks controls, finite poses, collision counters and
+screenshots across the 2D/3D scene browser. WebGL2 worlds retain every contact
+point and the selected equations, timestep and iteration count. Large scenes
+can exceed the contact-texture memory budget; they are reported explicitly.
+
+`npm run test:compatibility` builds the package and website, then runs the shared
+API, CPU demos and WebGL2 checks. Browser benchmarks select the backend separately
+from drawing. WebGL2's GPU elapsed queries are separate from submission/completion
+time; unsupported GPU timers leave those fields empty.
+
+`npm run test:cpu` includes the slingshot's CPU, WebGPU and WebGL2 paths. The checks launch
+and boost a ball, add a new ball and constraint, verify finite live poses, and
+capture each renderer. CPU scene drawing also covers rounded rope links and
+chainmail rings at the same dimensions as the WebGPU scene.
+
 `npm run benchmark:sleeping` runs the separate sleeping and selective-pose-copy
 comparisons through the browser controls, with three independent repeats and
 screenshots. The resting stacks have 16,384 boxes in 3D and 10,000 in 2D; times include sleep/wake and
 support checks. Results report asleep counts, awake overhead and settled pose
 differences. This benchmark does not change the always-awake paper comparison.
+
+`npm run test:compatibility-performance` checks backend selection, GPU timer labels,
+playable previews and measurements without WebGPU. The `--package` option on
+`check-backend-contract.mjs` checks the built ESM package rather than source imports.
+
+WebGL2 scene checks include all 33 original demos and the added collider, hinge,
+trigger, cloth and demolition examples. The behavior checks verify 60 advancing
+steps in the joint grid, both stack dimensions and tearable cloth; explicit 2D
+collision exclusions are checked separately. These checks cover finite runs;
+the largest workloads use WebGPU and may exceed WebGL2's contact-texture budget.
+
+`npm run benchmark:backends` records the same 2D stack, 2D joint grid, 3D stack
+and 3D pyramid on WebGPU, experimental WebGL2 and CPU. Each backend uses 60 warmup steps,
+60 measured steps and three fresh-world repeats; order rotates between repeats.
+Drawing and sleeping are disabled. GPU elapsed time and JavaScript CPU time are
+reported separately from submission, initialization and completed-step waiting.
+The raw runs and combined summaries are saved in `test-results/backend-comparison.json`;
+the README compares the mean physics times side by side.

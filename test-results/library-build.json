@@ -85,6 +85,20 @@
     "src/native/bodyCommands3D.wgsl",
     "src/native/solver3D.js",
     "src/gpu/gpuClothSolver.js",
+    "src/native/cpu/cpuBoxContacts3D.ts",
+    "src/native/cpu/cpuContacts3D.js",
+    "src/native/cpu/cpuPhysics3D.js",
+    "src/native/cpu/restitution.js",
+    "src/native/cpu/wind.js",
+    "src/native/cpu/cpuSolver3D.ts",
+    "src/native/cpu/cpuContacts2D.js",
+    "src/native/cpu/cpuNarrowphase2D.js",
+    "src/native/cpu/cpuSolver2D.js",
+    "src/native/cpu/queries.js",
+    "src/native/cpu/sleeping.js",
+    "src/native/cpu/world.js",
+    "src/native/pipelineRegistry.js",
+    "src/native/pipeline.js",
     "src/native/scenes.js",
     "src/index.js"
   ],
@@ -100,22 +114,23 @@
         "AvbdScene2D",
         "AvbdScene3D",
         "AvbdShapeType",
+        "createSolverPipeline",
         "createWebGPUDevice",
         "prepareWebGPUDevice3D"
       ],
       "entryPoint": "src/index.js",
       "inputs": {
         "reference/three-avbd/src/avbd3d/ref/math.ts": {
-          "bytesInOutput": 3983
+          "bytesInOutput": 3984
         },
         "reference/three-avbd/src/avbd3d/ref/body.ts": {
-          "bytesInOutput": 1169
+          "bytesInOutput": 1172
         },
         "reference/three-avbd/src/avbd3d/ref/collide.ts": {
           "bytesInOutput": 4283
         },
         "reference/three-avbd/src/avbd3d/ref/manifold.ts": {
-          "bytesInOutput": 2505
+          "bytesInOutput": 2514
         },
         "reference/three-avbd/src/avbd3d/ref/solver.ts": {
           "bytesInOutput": 2586
@@ -136,7 +151,7 @@
           "bytesInOutput": 11454
         },
         "reference/three-avbd/src/avbd3d/ref/forces.ts": {
-          "bytesInOutput": 4280
+          "bytesInOutput": 4289
         },
         "reference/three-avbd/src/avbd3d/gpu/layout.ts": {
           "bytesInOutput": 5917
@@ -154,7 +169,7 @@
           "bytesInOutput": 346
         },
         "reference/three-avbd/src/avbd3d/gpu/solver.ts": {
-          "bytesInOutput": 31243
+          "bytesInOutput": 31245
         },
         "src/gpu/gpuSolverKernels.js": {
           "bytesInOutput": 2739
@@ -166,10 +181,10 @@
           "bytesInOutput": 3196
         },
         "src/gpu/bufferEdits.js": {
-          "bytesInOutput": 2812
+          "bytesInOutput": 2813
         },
         "src/gpu/worldSleeping.js": {
-          "bytesInOutput": 3339
+          "bytesInOutput": 3340
         },
         "src/gpu/springMaterial.js": {
           "bytesInOutput": 1434
@@ -202,7 +217,7 @@
           "bytesInOutput": 1002
         },
         "src/gpu/restitution.js": {
-          "bytesInOutput": 6929
+          "bytesInOutput": 6934
         },
         "src/gpu/angularConstraints.js": {
           "bytesInOutput": 3578
@@ -214,7 +229,7 @@
           "bytesInOutput": 503
         },
         "src/gpu/capsuleCollision.wgsl": {
-          "bytesInOutput": 5874
+          "bytesInOutput": 6239
         },
         "src/gpu/capsuleCollision.js": {
           "bytesInOutput": 3820
@@ -223,7 +238,7 @@
           "bytesInOutput": 10217
         },
         "src/gpu/shapeQueries.js": {
-          "bytesInOutput": 4576
+          "bytesInOutput": 4593
         },
         "src/gpu/passConstants.js": {
           "bytesInOutput": 1073
@@ -241,7 +256,7 @@
           "bytesInOutput": 508
         },
         "src/gpu/appGpuSolver3D.js": {
-          "bytesInOutput": 18000
+          "bytesInOutput": 18006
         },
         "src/gpu/contactCheck3D.js": {
           "bytesInOutput": 9525
@@ -307,7 +322,7 @@
           "bytesInOutput": 18446
         },
         "src/gpu/restitution2D.js": {
-          "bytesInOutput": 4096
+          "bytesInOutput": 4100
         },
         "src/gpu/protectStep2D.js": {
           "bytesInOutput": 672
@@ -316,7 +331,7 @@
           "bytesInOutput": 4768
         },
         "src/gpu/sleeping2D.js": {
-          "bytesInOutput": 3586
+          "bytesInOutput": 3587
         },
         "src/gpu/gpuSolverStep2D.ts": {
           "bytesInOutput": 3305
@@ -337,10 +352,10 @@
           "bytesInOutput": 6262
         },
         "src/gpu/appGpuSolver2D.js": {
-          "bytesInOutput": 21796
+          "bytesInOutput": 21806
         },
         "src/native/runtime.js": {
-          "bytesInOutput": 7292
+          "bytesInOutput": 7524
         },
         "src/native/solver2D.js": {
           "bytesInOutput": 74
@@ -354,11 +369,53 @@
         "src/gpu/gpuClothSolver.js": {
           "bytesInOutput": 2365
         },
+        "src/native/cpu/cpuBoxContacts3D.ts": {
+          "bytesInOutput": 4326
+        },
+        "src/native/cpu/cpuContacts3D.js": {
+          "bytesInOutput": 4379
+        },
+        "src/native/cpu/cpuPhysics3D.js": {
+          "bytesInOutput": 5033
+        },
+        "src/native/cpu/restitution.js": {
+          "bytesInOutput": 2731
+        },
+        "src/native/cpu/wind.js": {
+          "bytesInOutput": 693
+        },
+        "src/native/cpu/cpuSolver3D.ts": {
+          "bytesInOutput": 2753
+        },
+        "src/native/cpu/cpuContacts2D.js": {
+          "bytesInOutput": 2589
+        },
+        "src/native/cpu/cpuNarrowphase2D.js": {
+          "bytesInOutput": 1597
+        },
+        "src/native/cpu/cpuSolver2D.js": {
+          "bytesInOutput": 2842
+        },
+        "src/native/cpu/queries.js": {
+          "bytesInOutput": 3842
+        },
+        "src/native/cpu/sleeping.js": {
+          "bytesInOutput": 1892
+        },
+        "src/native/cpu/world.js": {
+          "bytesInOutput": 15757
+        },
+        "src/native/pipelineRegistry.js": {
+          "bytesInOutput": 81
+        },
+        "src/native/pipeline.js": {
+          "bytesInOutput": 1274
+        },
         "src/native/scenes.js": {
-          "bytesInOutput": 14755
+          "bytesInOutput": 14863
         }
       },
-      "bytes": 476743
+      "bytes": 527333
     }
   }
 }

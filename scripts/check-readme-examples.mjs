@@ -3,8 +3,11 @@ import { dirname, resolve } from "node:path";
 import { build } from "esbuild";
 
 // Bundle the documented modules directly, rather than maintaining test copies.
-export async function checkReadmeExamples(browser) {
-  const doc = await readFile("README.md", "utf8");
+export async function checkReadmeExamples(
+  browser,
+  { portableOnly = false, backends = ["cpu", "webgpu"] } = {},
+) {
+  const doc = (await readFile("README.md", "utf8")).replace(/\r\n/g, "\n");
   const modules = new Map();
   for (const match of doc.matchAll(/```js\n([\s\S]*?)\n```/g)) {
     const path = match[1].match(/^\/\/ ((?:src|demo)\/[\w-]+\.js)/)?.[1];
@@ -95,14 +98,15 @@ export async function checkReadmeExamples(browser) {
     "(async()=>{globalThis.__README_SCENES__ = await import('/dist/readme-scene-examples.js')})()",
   );
   const results = [];
-  for (const [name, expected] of [
-    ["createMixedColliderScene", 31],
-    ["createBrickWallScene", 98],
-    ["createBoxPileScene", 2001],
-    ["createMaterialExamples", 7],
-    ["createHingeExample", 3],
-  ]) {
-    const result = await browser.evaluate(`(async()=>{
+  if (!portableOnly) {
+    for (const [name, expected] of [
+      ["createMixedColliderScene", 31],
+      ["createBrickWallScene", 98],
+      ["createBoxPileScene", 2001],
+      ["createMaterialExamples", 7],
+      ["createHingeExample", 3],
+    ]) {
+      const result = await browser.evaluate(`(async()=>{
       document.body.innerHTML='<canvas id="canvas" style="width:100vw;height:100vh"></canvas>';
       const stage=__README_SCENES__.stage(document.querySelector('canvas'));
       const built=await __README_SCENES__[${JSON.stringify(name)}](stage.scene), w=built.physics;
@@ -116,28 +120,28 @@ export async function checkReadmeExamples(browser) {
       globalThis.__README_STAGE__=stage;
       return result;
     })()`);
-    if (
-      !result.finite ||
-      result.bodies !== expected ||
-      result.counters.overflow ||
-      result.counters.clashes ||
-      result.errors.length
-    )
-      throw Error(JSON.stringify(result));
-    if (name === "createMixedColliderScene" && result.types.length !== 5)
-      throw Error("Missing collider example");
-    if (name === "createBoxPileScene" && result.instances !== 2000)
-      throw Error("Thin instances missing");
-    await browser.screenshot(`test-results/screenshots/readme-${name}.png`);
-    await browser.evaluate(
-      "__README_STAGE__.scene.dispose();__README_STAGE__.engine.dispose()",
-    );
-    results.push(result);
-    console.log(
-      `PASS README ${name}: ${result.bodies} bodies, real GPU steps and drawing`,
-    );
-  }
-  const direct = await browser.evaluate(`(async()=>{
+      if (
+        !result.finite ||
+        result.bodies !== expected ||
+        result.counters.overflow ||
+        result.counters.clashes ||
+        result.errors.length
+      )
+        throw Error(JSON.stringify(result));
+      if (name === "createMixedColliderScene" && result.types.length !== 5)
+        throw Error("Missing collider example");
+      if (name === "createBoxPileScene" && result.instances !== 2000)
+        throw Error("Thin instances missing");
+      await browser.screenshot(`test-results/screenshots/readme-${name}.png`);
+      await browser.evaluate(
+        "__README_STAGE__.scene.dispose();__README_STAGE__.engine.dispose()",
+      );
+      results.push(result);
+      console.log(
+        `PASS README ${name}: ${result.bodies} bodies, real GPU steps and drawing`,
+      );
+    }
+    const direct = await browser.evaluate(`(async()=>{
     document.body.innerHTML='<canvas id="canvas" style="display:block;width:100vw;height:100vh"></canvas>';
     const built=await __README_SCENES__.createDirectGpuExample(document.querySelector('canvas'));
     globalThis.__README_DIRECT__=built;
@@ -152,30 +156,30 @@ export async function checkReadmeExamples(browser) {
     return {kind:'direct-gpu-rendering',bodies:built.gpu.bodyCount,poseReads,
       finite:poses.every(Number.isFinite),counters,canvas:[document.querySelector('canvas').width,document.querySelector('canvas').height]};
   })()`);
-  if (
-    !direct.finite ||
-    direct.bodies !== 4097 ||
-    direct.poseReads ||
-    direct.counters.overflow ||
-    direct.counters.clashes
-  )
-    throw Error(JSON.stringify(direct));
-  await browser.screenshot("test-results/screenshots/readme-direct-gpu.png");
-  await browser.evaluate("__README_DIRECT__.dispose()");
-  results.push(direct);
-  console.log(
-    "PASS README direct GPU drawing: 4097 live bodies, one instanced draw, zero pose downloads",
-  );
-  for (const kind of [
-    "joints",
-    "rope",
-    "ragdolls",
-    "tearable",
-    "2d",
-    "2d-shapes",
-    "2d-policies",
-  ]) {
-    const result = await browser.evaluate(`(async()=>{
+    if (
+      !direct.finite ||
+      direct.bodies !== 4097 ||
+      direct.poseReads ||
+      direct.counters.overflow ||
+      direct.counters.clashes
+    )
+      throw Error(JSON.stringify(direct));
+    await browser.screenshot("test-results/screenshots/readme-direct-gpu.png");
+    await browser.evaluate("__README_DIRECT__.dispose()");
+    results.push(direct);
+    console.log(
+      "PASS README direct GPU drawing: 4097 live bodies, one instanced draw, zero pose downloads",
+    );
+    for (const kind of [
+      "joints",
+      "rope",
+      "ragdolls",
+      "tearable",
+      "2d",
+      "2d-shapes",
+      "2d-policies",
+    ]) {
+      const result = await browser.evaluate(`(async()=>{
       const built = ${kind === "2d-policies" ? "await __README_SCENES__.create2DPolicyExamples()" : kind === "2d-shapes" ? "await __README_SCENES__.create2DShapeExamples()" : kind === "2d" ? "await __README_SCENES__.create2DExamples()" : kind === "joints" ? "await __README_SCENES__.createJointExamples()" : kind === "tearable" ? "await __README_SCENES__.createTearableCloth()" : `await __README_SCENES__.createNativeRig(${JSON.stringify(kind)})`};
       const {gpu,device}=built;
       try {
@@ -187,22 +191,24 @@ export async function checkReadmeExamples(browser) {
         return {kind:${JSON.stringify(kind)},bodies:gpu.bodyCount,joints:gpu.jointCount,broken,finite:poses.every(Number.isFinite)};
       } finally {gpu.destroy();device.destroy();}
     })()`);
-    if (!result.finite || (!result.joints && kind !== "2d-shapes"))
-      throw Error(JSON.stringify(result));
-    if (
-      kind === "tearable" &&
-      (!result.broken || result.broken > 100 || result.bodies !== 1026)
-    )
-      throw Error(JSON.stringify(result));
-    results.push(result);
-    console.log(
-      `PASS README native ${kind}: ${result.bodies} bodies, ${result.joints} constraints`,
-    );
+      if (!result.finite || (!result.joints && kind !== "2d-shapes"))
+        throw Error(JSON.stringify(result));
+      if (
+        kind === "tearable" &&
+        (!result.broken || result.broken > 100 || result.bodies !== 1026)
+      )
+        throw Error(JSON.stringify(result));
+      results.push(result);
+      console.log(
+        `PASS README native ${kind}: ${result.bodies} bodies, ${result.joints} constraints`,
+      );
+    }
   }
-  for (const dimension of [2, 3]) {
-    const result = await browser.evaluate(`(async()=>{
-      const built=await __README_SCENES__.createPortable${dimension}D({count:256});
-      const {gpu,bodies,projectile,sensor,hinge}=built;
+  for (const backend of backends)
+    for (const dimension of [2, 3]) {
+      const result = await browser.evaluate(`(async()=>{
+      const built=await __README_SCENES__.createPortable${dimension}D({backend:'${backend}',count:256});
+      const {solver:gpu,bodies,projectile,sensor,hinge}=built;
       try {
         __README_SCENES__.configureBodies(gpu,bodies);
         __README_SCENES__.launchAll(gpu,bodies,${dimension});
@@ -221,20 +227,24 @@ export async function checkReadmeExamples(browser) {
         projectile.applyImpulse(${dimension === 3 ? "[20,0,0]" : "[20,0]"});
         gpu.setMotor(hinge.motor.slot,{speed:-1,maxTorque:10});
         gpu.watchContacts({indices:[projectile.gpuIndex,sensor.gpuIndex]});
-        for(let i=0;i<60;i++){gpu.advance(1/60);await built.device.queue.onSubmittedWorkDone();}
+        for(let i=0;i<60;i++){gpu.advance(1/60);await built.device?.queue.onSubmittedWorkDone();}
         const c=await gpu.readCounters();if(c.overflow||c.clashes)throw Error(JSON.stringify(c));
         const poses=await gpu.readSelectedBodies([projectile.gpuIndex,sensor.gpuIndex],{posesOnly:true});
         const state=await projectile.readState(),events=await gpu.readContactEvents();
-        return {dimension:${dimension},bodies:gpu.bodyCount,finite:poses.every(Number.isFinite),selectedFloats:poses.length,velocity:state.linearVelocity,events:events.events.length};
+        return {backend:gpu.backend,dimension:${dimension},bodies:gpu.bodyCount,finite:poses.every(Number.isFinite),selectedFloats:poses.length,velocity:state.linearVelocity,events:events.events.length};
       }finally{built.dispose();}
     })()`);
-    if (!result.finite || result.selectedFloats !== (dimension === 2 ? 8 : 16))
-      throw Error(JSON.stringify(result));
-    results.push({ name: "portable-body-and-bulk-api", ...result });
-    console.log(
-      `PASS README portable ${dimension}D: body handles, bulk properties, packed movement/spin, motor, masks, bounce, sensors and selected reads`,
-    );
-  }
+      if (
+        !result.finite ||
+        result.selectedFloats !== (dimension === 2 ? 8 : 16)
+      )
+        throw Error(JSON.stringify(result));
+      results.push({ name: "portable-body-and-bulk-api", ...result });
+      console.log(
+        `PASS README ${backend} ${dimension}D: body handles, bulk properties, packed movement/spin, motor, masks, bounce, sensors and selected reads`,
+      );
+    }
+  if (portableOnly) return results;
   const workerResult = await browser.evaluate(`(async()=>{
     document.body.innerHTML='<canvas id="canvas" width="640" height="360"></canvas>';
     const canvas=document.querySelector('canvas').transferControlToOffscreen();

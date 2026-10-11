@@ -20,6 +20,29 @@ async function run(args) {
 
 await run(["scripts/check-reference-integrity.mjs"]);
 await run(["scripts/test-gpu.mjs"]);
+await run(["scripts/check-backend-contract.mjs"]);
+await run(["scripts/build.mjs"]);
+for (const script of [
+  "check-cpu-demos",
+  "check-cpu-features",
+  "check-cpu-slingshot",
+  "check-webgl-broadphase",
+  "check-webgl-coloring",
+  "check-webgl-demos",
+  "check-webgl-scene-behavior",
+  "check-compatibility-performance",
+])
+  await run([`scripts/${script}.mjs`]);
+for (const script of [
+  "check-webgl-contacts",
+  "check-webgl-solve",
+  "check-webgl-world",
+  "check-webgl-edits",
+  "check-webgl-bounce",
+  "check-webgl-sleeping",
+])
+  await run(["--experimental-transform-types", `scripts/${script}.mjs`]);
+await run(["scripts/check-backend-contract.mjs", "--webgl2"]);
 await run(["scripts/check-package.mjs"]);
 await run([
   "node_modules/typescript/bin/tsc",

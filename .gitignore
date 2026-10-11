@@ -1,6 +1,7 @@
 # Dependencies, builds, temporary wrappers and local test output
 node_modules/
-# dist/
+dist/
+src/webgl/generatedMath.js
 # test-results/
 .npm-cache/
 .temp/

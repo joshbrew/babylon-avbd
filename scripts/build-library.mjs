@@ -20,27 +20,41 @@ if (!built?.metafile)
 const unwanted = Object.keys(built.metafile.inputs).filter(
   (name) =>
     name.includes("node_modules/@babylonjs/") ||
+    name.startsWith("src/webgl/") ||
     /(?:Demo|canonicalLab|gpuStress|avbd\.wgsl)/.test(name),
 );
 if (unwanted.length)
   throw Error(`Unexpected package dependencies: ${unwanted.join(", ")}`);
 await copyFile("src/babylon/babylonAvbd.d.ts", "dist/babylonAvbd.d.ts");
-await copyFile("src/native/scenes.d.ts", "dist/nativeScenes.d.ts");
 await copyFile("src/gpu/device.d.ts", "dist/gpuDevice.d.ts");
 await writeFile(
+  "dist/solverPipeline.d.ts",
+  (await readFile("src/native/pipeline.d.ts", "utf8"))
+    .replaceAll('"./scenes.js"', '"./nativeScenes.js"')
+    .replaceAll('"../gpu/device.js"', '"./gpuDevice.js"'),
+);
+await writeFile(
+  "dist/nativeScenes.d.ts",
+  (await readFile("src/native/scenes.d.ts", "utf8")).replaceAll(
+    '"./pipeline.js"',
+    '"./solverPipeline.js"',
+  ),
+);
+await writeFile(
   "dist/native.js",
-  'export { AvbdScene2D, AvbdScene3D, createWebGPUDevice, prepareWebGPUDevice3D } from "./avbd.js";\n',
+  'export { AvbdScene2D, AvbdScene3D, createWebGPUDevice, prepareWebGPUDevice3D, createSolverPipeline } from "./avbd.js";\n',
 );
 await writeFile(
   "dist/native.d.ts",
-  'export * from "./nativeScenes.js";\nexport * from "./gpuDevice.js";\n',
+  'export * from "./nativeScenes.js";\nexport * from "./gpuDevice.js";\nexport * from "./solverPipeline.js";\n',
 );
 await writeFile(
   "dist/avbd.d.ts",
   (await readFile("src/index.d.ts", "utf8"))
     .replace("./babylon/babylonAvbd.js", "./babylonAvbd.js")
     .replace("./native/scenes.js", "./nativeScenes.js")
-    .replace("./gpu/device.js", "./gpuDevice.js"),
+    .replace("./gpu/device.js", "./gpuDevice.js")
+    .replace("./native/pipeline.js", "./solverPipeline.js"),
 );
 await writeFile(
   "dist/avbd.global.d.ts",
@@ -72,5 +86,5 @@ await writeFile(
   ),
 );
 console.log(
-  "PASS library build: no Babylon runtime, demo pages or legacy solver in the bundle",
+  "PASS library build: self-contained solvers, no Babylon runtime or demo pages in the bundle",
 );

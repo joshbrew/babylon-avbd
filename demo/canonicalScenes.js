@@ -1,5 +1,6 @@
 import { scenes as scenes2D } from "../reference/three-avbd/src/avbd2d/ref/scenes.ts";
 import { createSim } from "../reference/three-avbd/src/avbd2d/sim.ts";
+import { parallelParams } from "../reference/three-avbd/src/avbd2d/ref/solver.ts";
 import { stressScenes2D, buildStressScene2D } from "./stressScenes2D.js";
 import { shapeScene2D, buildShapeScene2D } from "./shapeScenes2D.js";
 import { policyScenes2D, buildPolicyScene2D } from "./policyScenes2D.js";
@@ -199,8 +200,6 @@ function slug(s) {
 export function buildCanonicalScene(id, backend = "ref") {
   const def = canonicalScenes.find((s) => s.id === id);
   if (!def) throw Error(`Unknown scene: ${id}`);
-  if (def.gpuOnly && backend !== "gpu")
-    throw Error(`${def.name} requires the GPU backend.`);
   if (def.shapes) return buildShapeScene2D(def);
   if (def.voronoi) return buildVoronoiFracture(def);
   if (def.featureDemo) return buildFeatureScene(def);
@@ -210,7 +209,11 @@ export function buildCanonicalScene(id, backend = "ref") {
   if (def.dimension === 2)
     return {
       def,
-      sim: createSim(backend === "gpu" ? "soa-seq" : backend, def.name),
+      // Keep CPU/GPU comparisons on the same timestep and solver settings.
+      sim: createSim(backend === "gpu" ? "soa-seq" : backend, def.name, {
+        ...parallelParams(),
+        ...gpuSceneParams2D(def.name),
+      }),
       gpuParams: gpuSceneParams2D(def.name),
     };
   const solver = new Solver();

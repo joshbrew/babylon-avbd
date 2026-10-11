@@ -248,6 +248,10 @@
         a separate desktop comparison.
       </p>
       <p>
+        Choose the physics backend to compare the same scene. Experimental
+        WebGL2 keeps collision checks and solving on the GPU and is excluded
+        from the npm package. CPU uses JavaScript. GPU columns stay blank when a
+        timer is unavailable; completed-step time includes waiting for the GPU.
         Every laboratory scene, including the GPU showcase and all 2D tests.
         Fixed simulation steps run without rendering, sleeping or a frame-rate
         cap. Drawing is checked separately in the scene report. AVBD chooses its
@@ -257,11 +261,18 @@
       <section class="panel">
         <div class="controls">
           <input id="variant" type="hidden" value="production" />
-          <label>Scene<select id="scene"></select></label
+          <label
+            >Physics<select id="backend">
+              <option value="webgpu">WebGPU (default)</option>
+              <option value="webgl2">WebGL2 GPU · experimental</option>
+              <option value="cpu">CPU</option>
+            </select></label
+          ><label>Scene<select id="scene"></select></label
           ><label
             >Preview renderer<select id="renderer">
               <option value="webgpu">Direct WebGPU</option>
               <option value="babylon">Babylon WebGPU · thin instances</option>
+              <option value="webgl">Babylon WebGL / Canvas 2D</option>
             </select></label
           ><label
             >Find collisions<select id="broadphase">
@@ -302,7 +313,7 @@
           Each run starts with a fresh scene and keeps its solving settings. The
           checks make sure every contact fits and object positions stay valid.
           Smaller times are better. These times measure physics, not drawing or
-          overall FPS. Cloth keeps its fabric model in both modes. “Checks
+          overall FPS. Cloth keeps its fabric model with every backend. “Checks
           passed” covers the correctness checks only. Use the times to judge
           speed; passing does not mean the scene matches the paper's
           performance.
@@ -345,11 +356,11 @@
                 <th>Peak contacts</th>
                 <th>Solving rounds</th>
                 <th>Where time goes</th>
-                <th>Physics ms</th>
-                <th>Slower steps ms</th>
-                <th>Collision ms</th>
-                <th>Movement ms</th>
-                <th>CPU + wait ms</th>
+                <th>GPU physics ms</th>
+                <th>Slower GPU steps ms</th>
+                <th>GPU collision ms</th>
+                <th>GPU movement ms</th>
+                <th>Completed step ms</th>
               </tr>
             </thead>
             <tbody id="results"></tbody>
@@ -357,15 +368,16 @@
         </div>
         <p>
           Lower milliseconds are better. “Slower steps” is the time that 95 out
-          of 100 steps fit within. “CPU + wait” includes submission, GPU work
-          and copying measurements back; it is a separate elapsed-time
+          of 100 steps fit within. “Completed step” includes submission, GPU
+          work and copying measurements back; it is a separate elapsed-time
           measurement. Peak contacts counts touching points across warmup and
           measured steps. Compare collision time alongside contact count and
           scene settings; body count alone does not describe collision load. The
           scene column shows how much simulated time each physics step advances.
           A smaller step needs more updates to cover one second. For example,
           the 240 Hz ragdoll net needs four steps per 60 Hz frame; multiply its
-          per-step time by four before adding drawing time.
+          per-step time by four before adding drawing time. CPU timings appear
+          under “Completed step”; GPU columns do not apply.
         </p>
         <button id="download" disabled>Download results JSON</button>
         <details>

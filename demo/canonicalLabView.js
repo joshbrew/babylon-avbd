@@ -7,8 +7,12 @@ export const labMarkup = `
     <p>Explore the GPU showcase, large paper workloads and all 33 original solver tests, in 2D and 3D.</p>
     <label for="lab-scene">SCENE</label><select id="lab-scene"></select>
     <label for="lab-backend">SOLVER</label><select id="lab-backend"></select>
+    <p id="lab-backend-help"></p>
+    <p><a href="?demo=canonical&scene=3d-stack&backend=ref">3D CPU examples</a> · <a href="?demo=canonical&scene=2d-stack&backend=ref">2D CPU examples</a></p>
     <label for="lab-renderer">RENDERER</label><select id="lab-renderer"><option value="webgpu">Direct WebGPU</option><option value="babylon">Babylon WebGPU · thin instances</option></select>
-    <p>Both draw the same GPU physics. Changing renderer restarts the scene.</p>
+    <p id="lab-renderer-help">Changing solver or renderer restarts the scene.</p>
+    <button id="lab-benchmark">Measure 60 physics steps</button>
+    <p id="lab-benchmark-result" aria-live="polite">Measures physics separately from drawing. The scene advances during the measurement.</p>
     <div class="lab-actions"><button id="lab-pause">Pause</button><button id="lab-step">Step</button><button id="lab-reset">Reset</button></div>
     <button id="lab-shoot" hidden>Launch cannonball</button>
     <label id="lab-projectile-label" for="lab-projectile" hidden>PROJECTILE</label>
@@ -37,7 +41,7 @@ export const labMarkup = `
         <p id="lab-trigger-events" aria-live="polite">Trigger entries — coral: 0, blue: 0, purple: 0.</p>
         <div><button id="lab-ray-query">Cast a ray</button><button id="lab-shape-query">Cast a sphere</button></div>
         <p id="lab-query-result" aria-live="polite">Queries look for coral balls and skip triggers. A circle or sphere can hit sooner than a thin ray.</p>
-        <p>These switches change the live GPU world. Reset restores the example's starting settings.</p>
+        <p>These switches change the live physics world. Reset restores the example's starting settings.</p>
       </div>
     </fieldset>
     <label><input id="lab-enhanced" type="checkbox" checked> Enhanced colors, lighting and antialiasing</label>

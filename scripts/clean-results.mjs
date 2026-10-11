@@ -24,6 +24,24 @@ const roots = [
   "solver-paper.json",
   "hardware.json",
   "gpu.json",
+  "backend-contract.json",
+  "backend-comparison.json",
+  "cpu-demos.json",
+  "cpu-slingshot.json",
+  "cpu-features.json",
+  "webgl-broadphase.json",
+  "webgl-contacts.json",
+  "webgl-coloring.json",
+  "webgl-solve.json",
+  "webgl-world.json",
+  "webgl-edits.json",
+  "webgl-bounce.json",
+  "webgl-sleeping.json",
+  "webgl-contract.json",
+  "webgl-demos.json",
+  "webgl-scene-behavior.json",
+  "webgl-readme.json",
+  "compatibility-performance.json",
   "rook.json",
   "routes.json",
   "controls.json",
@@ -82,6 +100,7 @@ const retained = new Set(
     .map((name) => resolve(root, name))
     .filter((path) => available.has(path)),
 );
+const missingReferencedScreenshots = new Set();
 // README images refer directly to results so publishing needs no copied assets.
 const readme = await readFile(new URL("../README.md", import.meta.url), "utf8");
 const metadata = JSON.parse(
@@ -112,6 +131,20 @@ for (const match of readme.matchAll(/\[[^\]\n]*\]\(([^\s)]+)\)/g)) {
 for (const path of retained) {
   if (!within(path))
     throw Error(`Result path is outside the results folder: ${path}`);
+  if (path.endsWith(".json") && path !== resolve(root, "cleanup-results.json")) {
+    const values = [JSON.parse(await readFile(path, "utf8"))];
+    while (values.length) {
+      const value = values.pop();
+      if (value && typeof value === "object") values.push(...Object.values(value));
+      else if (typeof value === "string" && /^(?:(?:\/)?test-results\/)?screenshots\//.test(value)) {
+        const asset = value.replace(/^\/?test-results\//, "");
+        const linked = resolve(root, asset);
+        if (!within(linked)) throw Error(`Unsafe result screenshot: ${value}`);
+        if (available.has(linked)) retained.add(linked);
+        else missingReferencedScreenshots.add(asset);
+      }
+    }
+  }
   if (!path.endsWith(".html")) continue;
   const html = await readFile(path, "utf8");
   for (const match of html.matchAll(/(?:href|src)=["']([^"']+)["']/g)) {
@@ -148,6 +181,7 @@ const report = {
   removedFiles: removed.length,
   removedBytes: removed.reduce((sum, item) => sum + item.bytes, 0),
   removed,
+  missingReferencedScreenshots: [...missingReferencedScreenshots].sort(),
 };
 console.log(
   `${report.applied ? "Removing" : "Would remove"} ${report.removedFiles} obsolete files (${(report.removedBytes / 1024 / 1024).toFixed(1)} MiB); keeping ${report.retained} report assets and current summaries.`,

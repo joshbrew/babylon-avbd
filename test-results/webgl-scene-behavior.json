@@ -1,0 +1,305 @@
+{
+  "passed": true,
+  "rows": [
+    {
+      "scene": "explicit 2D collision exclusion",
+      "counters": {
+        "pairs": 0,
+        "contacts": 0,
+        "manifolds": 0,
+        "joints": 1,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 2,
+        "sleeping": 0
+      },
+      "passed": true
+    },
+    {
+      "scene": "joint release with explicit exclusions",
+      "counters": {
+        "pairs": 1,
+        "contacts": 2,
+        "manifolds": 1,
+        "joints": 1,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 2,
+        "sleeping": 0
+      },
+      "passed": true
+    },
+    {
+      "scene": "2d-joint-grid",
+      "steps": 60,
+      "displacement": 0.07822262495756149,
+      "counters": [
+        {
+          "pairs": 0,
+          "contacts": 0,
+          "manifolds": 0,
+          "joints": 1200,
+          "overflow": 0,
+          "clashes": 0,
+          "colors": 4,
+          "sleeping": 0
+        },
+        {
+          "pairs": 0,
+          "contacts": 0,
+          "manifolds": 0,
+          "joints": 1200,
+          "overflow": 0,
+          "clashes": 0,
+          "colors": 4,
+          "sleeping": 0
+        },
+        {
+          "pairs": 0,
+          "contacts": 0,
+          "manifolds": 0,
+          "joints": 1200,
+          "overflow": 0,
+          "clashes": 0,
+          "colors": 4,
+          "sleeping": 0
+        },
+        {
+          "pairs": 0,
+          "contacts": 0,
+          "manifolds": 0,
+          "joints": 1200,
+          "overflow": 0,
+          "clashes": 0,
+          "colors": 4,
+          "sleeping": 0
+        },
+        {
+          "pairs": 0,
+          "contacts": 0,
+          "manifolds": 0,
+          "joints": 1200,
+          "overflow": 0,
+          "clashes": 0,
+          "colors": 4,
+          "sleeping": 0
+        },
+        {
+          "pairs": 0,
+          "contacts": 0,
+          "manifolds": 0,
+          "joints": 1200,
+          "overflow": 0,
+          "clashes": 0,
+          "colors": 4,
+          "sleeping": 0
+        }
+      ],
+      "passed": true
+    },
+    {
+      "scene": "2d-stack",
+      "steps": 60,
+      "displacement": 5.083837509155273,
+      "counters": [
+        {
+          "pairs": 20,
+          "contacts": 2,
+          "manifolds": 1,
+          "joints": 0,
+          "overflow": 0,
+          "clashes": 0,
+          "colors": 1,
+          "sleeping": 0
+        },
+        {
+          "pairs": 20,
+          "contacts": 2,
+          "manifolds": 1,
+          "joints": 0,
+          "overflow": 0,
+          "clashes": 0,
+          "colors": 1,
+          "sleeping": 0
+        },
+        {
+          "pairs": 21,
+          "contacts": 4,
+          "manifolds": 2,
+          "joints": 0,
+          "overflow": 0,
+          "clashes": 0,
+          "colors": 2,
+          "sleeping": 0
+        },
+        {
+          "pairs": 22,
+          "contacts": 4,
+          "manifolds": 2,
+          "joints": 0,
+          "overflow": 0,
+          "clashes": 0,
+          "colors": 2,
+          "sleeping": 0
+        },
+        {
+          "pairs": 23,
+          "contacts": 4,
+          "manifolds": 2,
+          "joints": 0,
+          "overflow": 0,
+          "clashes": 0,
+          "colors": 2,
+          "sleeping": 0
+        },
+        {
+          "pairs": 25,
+          "contacts": 6,
+          "manifolds": 3,
+          "joints": 0,
+          "overflow": 0,
+          "clashes": 0,
+          "colors": 2,
+          "sleeping": 0
+        }
+      ],
+      "passed": true
+    },
+    {
+      "scene": "3d-stack",
+      "steps": 60,
+      "displacement": 4.930083274841309,
+      "counters": [
+        {
+          "pairs": 19,
+          "contacts": 4,
+          "manifolds": 1,
+          "joints": 0,
+          "overflow": 0,
+          "clashes": 0,
+          "colors": 2,
+          "sleeping": 0
+        },
+        {
+          "pairs": 19,
+          "contacts": 8,
+          "manifolds": 2,
+          "joints": 0,
+          "overflow": 0,
+          "clashes": 0,
+          "colors": 2,
+          "sleeping": 0
+        },
+        {
+          "pairs": 19,
+          "contacts": 12,
+          "manifolds": 3,
+          "joints": 0,
+          "overflow": 0,
+          "clashes": 0,
+          "colors": 2,
+          "sleeping": 0
+        },
+        {
+          "pairs": 19,
+          "contacts": 16,
+          "manifolds": 4,
+          "joints": 0,
+          "overflow": 0,
+          "clashes": 0,
+          "colors": 2,
+          "sleeping": 0
+        },
+        {
+          "pairs": 19,
+          "contacts": 20,
+          "manifolds": 5,
+          "joints": 0,
+          "overflow": 0,
+          "clashes": 0,
+          "colors": 2,
+          "sleeping": 0
+        },
+        {
+          "pairs": 20,
+          "contacts": 28,
+          "manifolds": 7,
+          "joints": 0,
+          "overflow": 0,
+          "clashes": 0,
+          "colors": 3,
+          "sleeping": 0
+        }
+      ],
+      "passed": true
+    },
+    {
+      "scene": "3d-tearable-cloth",
+      "steps": 60,
+      "displacement": 1.270930290222168,
+      "counters": [
+        {
+          "pairs": 1021,
+          "contacts": 0,
+          "manifolds": 0,
+          "joints": 3906,
+          "overflow": 0,
+          "clashes": 0,
+          "colors": 7,
+          "sleeping": 0
+        },
+        {
+          "pairs": 1021,
+          "contacts": 0,
+          "manifolds": 0,
+          "joints": 3906,
+          "overflow": 0,
+          "clashes": 0,
+          "colors": 7,
+          "sleeping": 0
+        },
+        {
+          "pairs": 1021,
+          "contacts": 0,
+          "manifolds": 0,
+          "joints": 3906,
+          "overflow": 0,
+          "clashes": 0,
+          "colors": 7,
+          "sleeping": 0
+        },
+        {
+          "pairs": 1021,
+          "contacts": 0,
+          "manifolds": 0,
+          "joints": 3906,
+          "overflow": 0,
+          "clashes": 0,
+          "colors": 7,
+          "sleeping": 0
+        },
+        {
+          "pairs": 1021,
+          "contacts": 0,
+          "manifolds": 0,
+          "joints": 3906,
+          "overflow": 0,
+          "clashes": 0,
+          "colors": 7,
+          "sleeping": 0
+        },
+        {
+          "pairs": 1021,
+          "contacts": 0,
+          "manifolds": 0,
+          "joints": 3906,
+          "overflow": 0,
+          "clashes": 0,
+          "colors": 7,
+          "sleeping": 0
+        }
+      ],
+      "passed": true
+    }
+  ]
+}

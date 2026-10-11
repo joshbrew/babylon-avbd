@@ -1,3 +1,4 @@
+import "./prepare-webgl.mjs";
 import { build, context } from "esbuild";
 import { fileURLToPath } from "node:url";
 import web from "../tinybuild.web.config.js";

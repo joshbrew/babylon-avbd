@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "rows": [
+    {
+      "dimension": 2,
+      "sleeping": 1,
+      "impulseWakes": true,
+      "passed": true
+    },
+    {
+      "dimension": 3,
+      "sleeping": 1,
+      "impulseWakes": true,
+      "passed": true
+    }
+  ],
+  "errors": []
+}

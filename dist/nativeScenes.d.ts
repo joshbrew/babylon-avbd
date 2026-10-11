@@ -1,3 +1,4 @@
+import type { AvbdSolverPipeline, AvbdSolver2D, AvbdSolver3D } from "./solverPipeline.js";
 export type AvbdTuple3 = readonly [number, number, number];
 export type AvbdTuple2 = readonly [number, number];
 export interface AvbdQueryOptions {
@@ -620,6 +621,7 @@ export class AvbdScene3D {
     },
   ): AvbdNativeConstraint;
   createSolver(device: GPUDevice, options?: AvbdGpuOptions): AvbdGpuSolver3D;
+  createSolver(pipeline: AvbdSolverPipeline, options?: AvbdGpuOptions): AvbdSolver3D;
 }
 export interface AvbdNativeAngularOptions {
   axisA?: AvbdTuple3;
@@ -732,4 +734,5 @@ export class AvbdScene2D {
       sleeping?: boolean | { speedThreshold?: number; timeThreshold?: number };
     },
   ): AvbdGpuSolver2D;
+  createSolver(pipeline: AvbdSolverPipeline, options?: AvbdGpuOptions): AvbdSolver2D;
 }

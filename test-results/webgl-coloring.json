@@ -1,0 +1,133 @@
+{
+  "passed": true,
+  "rows": [
+    {
+      "dimension": 2,
+      "name": "empty",
+      "bodies": 0,
+      "colors": 0,
+      "flags": 0,
+      "passed": true
+    },
+    {
+      "dimension": 2,
+      "name": "sparse collision chain",
+      "bodies": 4096,
+      "colors": 3,
+      "flags": 0,
+      "passed": true
+    },
+    {
+      "dimension": 2,
+      "name": "dense collision graph",
+      "bodies": 64,
+      "colors": 63,
+      "flags": 0,
+      "passed": true
+    },
+    {
+      "dimension": 2,
+      "name": "unfinished coloring",
+      "bodies": 12,
+      "colors": 1,
+      "flags": 1,
+      "passed": true
+    },
+    {
+      "dimension": 2,
+      "name": "insufficient colors",
+      "bodies": 12,
+      "colors": 8,
+      "flags": 1,
+      "passed": true
+    },
+    {
+      "dimension": 2,
+      "name": "collision overflow",
+      "bodies": 64,
+      "colors": 15,
+      "flags": 4,
+      "passed": true
+    },
+    {
+      "dimension": 2,
+      "name": "sensors",
+      "bodies": 64,
+      "colors": 1,
+      "flags": 0,
+      "passed": true
+    },
+    {
+      "dimension": 2,
+      "name": "joint chain and released joints",
+      "bodies": 257,
+      "colors": 3,
+      "flags": 0,
+      "passed": true
+    },
+    {
+      "dimension": 3,
+      "name": "empty",
+      "bodies": 0,
+      "colors": 0,
+      "flags": 0,
+      "passed": true
+    },
+    {
+      "dimension": 3,
+      "name": "sparse collision chain",
+      "bodies": 4096,
+      "colors": 3,
+      "flags": 0,
+      "passed": true
+    },
+    {
+      "dimension": 3,
+      "name": "dense collision graph",
+      "bodies": 64,
+      "colors": 63,
+      "flags": 0,
+      "passed": true
+    },
+    {
+      "dimension": 3,
+      "name": "unfinished coloring",
+      "bodies": 12,
+      "colors": 1,
+      "flags": 1,
+      "passed": true
+    },
+    {
+      "dimension": 3,
+      "name": "insufficient colors",
+      "bodies": 12,
+      "colors": 8,
+      "flags": 1,
+      "passed": true
+    },
+    {
+      "dimension": 3,
+      "name": "collision overflow",
+      "bodies": 64,
+      "colors": 15,
+      "flags": 4,
+      "passed": true
+    },
+    {
+      "dimension": 3,
+      "name": "sensors",
+      "bodies": 64,
+      "colors": 1,
+      "flags": 0,
+      "passed": true
+    },
+    {
+      "dimension": 3,
+      "name": "joint chain and released joints",
+      "bodies": 257,
+      "colors": 3,
+      "flags": 0,
+      "passed": true
+    }
+  ]
+}

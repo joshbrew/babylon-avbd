@@ -5,6 +5,14 @@ portable scene builders and the browser demos. The package ships ESM, the `AVBD`
 browser global, declarations, documentation and license notices. It has no runtime
 dependencies; Babylon 9 is an optional peer for the integration API.
 
+Native 2D and 3D worlds select WebGPU or CPU at initialization and share
+the scene and body APIs. The Babylon aggregate API uses WebGPU; native CPU
+worlds can use Babylon drawing with synchronized poses. The experimental
+WebGL2 implementation remains in the repository demos and benchmarks; it is
+excluded from package exports, declarations and both production bundles.
+Build and package checks enforce that separation. Its measured performance
+was too poor for production; the README preserves the comparison.
+
 ## Validate the package
 
 ```sh
@@ -12,6 +20,7 @@ npm ci
 npm run build:all
 npm run test:complete
 npm run test:web
+npm run test:compatibility
 npm run clean:results
 npm run clean:dist
 npm pack

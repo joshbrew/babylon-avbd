@@ -47,6 +47,7 @@ fn pointVelocity(i:u32,r:vec2f,incoming:bool)->vec2f{let v=select(velocities[i].
 }
 @compute @workgroup_size(64) fn writeBack(@builtin(global_invocation_id) id:vec3u){let i=id.x;if(i>=cfg.count||bodies[i].shape.z<=0.){return;}bodies[i].vel=velocities[i].linear;}
 `;
+export { code as restitutionWGSL2D };
 export class Restitution2D extends Restitution {
   constructor(solver) {
     super(solver, { code, dimension: 2 });

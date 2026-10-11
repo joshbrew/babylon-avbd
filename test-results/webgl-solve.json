@@ -1,0 +1,162 @@
+{
+  "passed": true,
+  "dimension": 2,
+  "stages": [
+    {
+      "stage": "warmStartJoints",
+      "color": 0,
+      "passed": true
+    },
+    {
+      "stage": "warmStartBodies",
+      "color": 0,
+      "passed": true
+    },
+    {
+      "stage": "solveBody",
+      "color": 0,
+      "passed": true
+    },
+    {
+      "stage": "solveBody",
+      "color": 1,
+      "passed": true
+    },
+    {
+      "stage": "dualJoint",
+      "color": 0,
+      "passed": true
+    },
+    {
+      "stage": "dualContact",
+      "color": 0,
+      "passed": true
+    },
+    {
+      "stage": "solveBody",
+      "color": 0,
+      "passed": true
+    },
+    {
+      "stage": "solveBody",
+      "color": 1,
+      "passed": true
+    },
+    {
+      "stage": "dualJoint",
+      "color": 0,
+      "passed": true
+    },
+    {
+      "stage": "dualContact",
+      "color": 0,
+      "passed": true
+    },
+    {
+      "stage": "solveBody",
+      "color": 0,
+      "passed": true
+    },
+    {
+      "stage": "solveBody",
+      "color": 1,
+      "passed": true
+    },
+    {
+      "stage": "dualJoint",
+      "color": 0,
+      "passed": true
+    },
+    {
+      "stage": "dualContact",
+      "color": 0,
+      "passed": true
+    },
+    {
+      "stage": "solveBody",
+      "color": 0,
+      "passed": true
+    },
+    {
+      "stage": "solveBody",
+      "color": 1,
+      "passed": true
+    },
+    {
+      "stage": "dualJoint",
+      "color": 0,
+      "passed": true
+    },
+    {
+      "stage": "dualContact",
+      "color": 0,
+      "passed": true
+    },
+    {
+      "stage": "solveBody",
+      "color": 0,
+      "passed": true
+    },
+    {
+      "stage": "solveBody",
+      "color": 1,
+      "passed": true
+    },
+    {
+      "stage": "dualJoint",
+      "color": 0,
+      "passed": true
+    },
+    {
+      "stage": "dualContact",
+      "color": 0,
+      "passed": true
+    },
+    {
+      "stage": "updateVelocities",
+      "color": 0,
+      "passed": true
+    },
+    {
+      "stage": "refreshStick",
+      "color": 0,
+      "passed": true
+    },
+    {
+      "stage": "warmStartBodies",
+      "heldStep": true,
+      "passed": true
+    },
+    {
+      "stage": "warmStartJoints",
+      "heldStep": true,
+      "passed": true
+    },
+    {
+      "stage": "solveBody",
+      "heldStep": true,
+      "passed": true
+    },
+    {
+      "stage": "dualJoint",
+      "heldStep": true,
+      "passed": true
+    },
+    {
+      "stage": "dualContact",
+      "heldStep": true,
+      "passed": true
+    },
+    {
+      "stage": "refreshStick",
+      "heldStep": true,
+      "passed": true
+    },
+    {
+      "stage": "updateVelocities",
+      "heldStep": true,
+      "passed": true
+    }
+  ],
+  "maxRelativeError": 0.000002957032722296641
+}

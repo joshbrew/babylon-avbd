@@ -1,0 +1,114 @@
+{
+  "passed": true,
+  "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4070 Laptop GPU (0x00002860) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+  "rows": [
+    {
+      "dimension": 2,
+      "name": "empty",
+      "bodies": 0,
+      "adjacencyEntries": 0,
+      "overflowBodies": 0,
+      "submitAndDownloadMs": 477.5,
+      "passed": true
+    },
+    {
+      "dimension": 2,
+      "name": "single",
+      "bodies": 1,
+      "adjacencyEntries": 0,
+      "overflowBodies": 0,
+      "submitAndDownloadMs": 34.59999990463257,
+      "passed": true
+    },
+    {
+      "dimension": 2,
+      "name": "cell boundaries and masks",
+      "bodies": 257,
+      "adjacencyEntries": 418,
+      "overflowBodies": 0,
+      "submitAndDownloadMs": 235.40000009536743,
+      "passed": true
+    },
+    {
+      "dimension": 2,
+      "name": "crowded overflow",
+      "bodies": 64,
+      "adjacencyEntries": 4032,
+      "overflowBodies": 64,
+      "submitAndDownloadMs": 8.599999904632568,
+      "passed": true
+    },
+    {
+      "dimension": 2,
+      "name": "crowded capacity",
+      "bodies": 64,
+      "adjacencyEntries": 4032,
+      "overflowBodies": 0,
+      "submitAndDownloadMs": 7.900000095367432,
+      "passed": true
+    },
+    {
+      "dimension": 2,
+      "name": "sparse stress",
+      "bodies": 4096,
+      "adjacencyEntries": 11432,
+      "overflowBodies": 0,
+      "submitAndDownloadMs": 18.100000023841858,
+      "passed": true
+    },
+    {
+      "dimension": 3,
+      "name": "empty",
+      "bodies": 0,
+      "adjacencyEntries": 0,
+      "overflowBodies": 0,
+      "submitAndDownloadMs": 553.8999999761581,
+      "passed": true
+    },
+    {
+      "dimension": 3,
+      "name": "single",
+      "bodies": 1,
+      "adjacencyEntries": 0,
+      "overflowBodies": 0,
+      "submitAndDownloadMs": 10.399999976158142,
+      "passed": true
+    },
+    {
+      "dimension": 3,
+      "name": "cell boundaries and masks",
+      "bodies": 257,
+      "adjacencyEntries": 136,
+      "overflowBodies": 0,
+      "submitAndDownloadMs": 19.40000009536743,
+      "passed": true
+    },
+    {
+      "dimension": 3,
+      "name": "crowded overflow",
+      "bodies": 64,
+      "adjacencyEntries": 4032,
+      "overflowBodies": 64,
+      "submitAndDownloadMs": 13.299999952316284,
+      "passed": true
+    },
+    {
+      "dimension": 3,
+      "name": "crowded capacity",
+      "bodies": 64,
+      "adjacencyEntries": 4032,
+      "overflowBodies": 0,
+      "submitAndDownloadMs": 8.300000071525574,
+      "passed": true
+    },
+    {
+      "dimension": 3,
+      "name": "sparse stress",
+      "bodies": 4096,
+      "adjacencyEntries": 246,
+      "overflowBodies": 0,
+      "submitAndDownloadMs": 12.5,
+      "passed": true
+    }
+  ]
+}

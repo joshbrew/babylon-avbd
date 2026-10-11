@@ -50,7 +50,7 @@ assert.ok(
 );
 assert.ok(
   files.every((f) =>
-    /^(?:dist\/avbd(?:\.global)?\.(?:js|d\.ts)|dist\/native\.(?:js|d\.ts)|dist\/(?:babylonAvbd|nativeScenes|gpuDevice)\.d\.ts|dist\/NOTICE|LICENSE|README\.md|tests\/README\.md|docs\/(?:README|BABYLON_API|HPLOC|RELEASE)\.md|package\.json)$/.test(
+    /^(?:dist\/avbd(?:\.global)?\.(?:js|d\.ts)|dist\/native\.(?:js|d\.ts)|dist\/(?:babylonAvbd|nativeScenes|gpuDevice|solverPipeline)\.d\.ts|dist\/NOTICE|LICENSE|README\.md|tests\/README\.md|docs\/(?:README|BABYLON_API|HPLOC|RELEASE)\.md|package\.json)$/.test(
       f,
     ),
   ),
@@ -91,6 +91,7 @@ for (const key of [
   "AvbdShapeType",
   "createWebGPUDevice",
   "prepareWebGPUDevice3D",
+  "createSolverPipeline",
   "AvbdPhysicsConstraint",
   "AvbdScene2D",
   "AvbdScene3D",
@@ -104,6 +105,10 @@ for (const suffix of ["", "-cdn"]) {
   );
   assert.ok(
     manifest.inputs.every((f) => !f.includes("node_modules/@babylonjs/")),
+  );
+  assert.ok(
+    manifest.inputs.every((f) => !f.startsWith("src/webgl/")),
+    "Experimental WebGL2 code must not ship in either production bundle",
   );
   assert.ok(
     manifest.inputs.every(
@@ -165,9 +170,35 @@ try {
   assert.equal(native.AvbdScene2D, installed.AvbdScene2D);
   assert.equal(native.createWebGPUDevice, installed.createWebGPUDevice);
   assert.equal(native.prepareWebGPUDevice3D, installed.prepareWebGPUDevice3D);
+  assert.equal(native.createSolverPipeline, installed.createSolverPipeline);
+  await assert.rejects(
+    native.createSolverPipeline({ backend: "webgl2" }),
+    /Unsupported solver backend/,
+    "The package must reject the experimental WebGL2 backend",
+  );
+  const cpu = await native.createSolverPipeline({ backend: "cpu" });
+  try {
+    for (const dimension of [2, 3]) {
+      const scene =
+        dimension === 3
+          ? new native.AvbdScene3D({ gravity: 0 })
+          : new native.AvbdScene2D({ gravity: 0 });
+      const box = scene.addBox(dimension === 3 ? [1, 1, 1] : [1, 1]);
+      const world = scene.createSolver(cpu);
+      const body = world.body(box);
+      body.setLinearVelocity(dimension === 3 ? [1, 0, 0] : [1, 0]);
+      world.step();
+      assert.ok(
+        (await body.readState()).position[0] > 0,
+        "Installed CPU pipeline did not step",
+      );
+    }
+  } finally {
+    cpu.destroy();
+  }
   await writeFile(
     join(consumer, "native.ts"),
-    `import { AvbdScene2D, AvbdScene3D, createWebGPUDevice } from "avbd-babylon/native";
+    `import { AvbdScene2D, AvbdScene3D, createWebGPUDevice, createSolverPipeline } from "avbd-babylon/native";
 async function use() {
   const { device } = await createWebGPUDevice();
   const scene = new AvbdScene2D();
@@ -178,6 +209,14 @@ async function use() {
   gpu.setLinearVelocity("wrong", [1, 0]);
   gpu.destroy();
   new AvbdScene3D().createSolver(device).destroy();
+  // @ts-expect-error Experimental WebGL2 is not a package backend.
+  createSolverPipeline({ backend: "webgl2" });
+  // @ts-expect-error WebGL2 contexts are not accepted by the package.
+  createSolverPipeline({ gl: {} });
+  const cpu = await createSolverPipeline({ backend: "cpu" });
+  const world = new AvbdScene3D().createSolver(cpu);
+  const backend: "webgpu" | "cpu" = world.backend;
+  cpu.destroy();
 }
 `,
   );
