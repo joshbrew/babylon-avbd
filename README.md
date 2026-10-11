@@ -1,5 +1,7 @@
 # AVBD for Babylon.js
 
+`npm install avbd-babylon` or clone this repo for local usage
+
 [![npm version](https://img.shields.io/npm/v/avbd-babylon.svg)](https://www.npmjs.com/package/avbd-babylon)
 [![npm downloads](https://img.shields.io/npm/dt/avbd-babylon.svg)](https://www.npmjs.com/package/avbd-babylon)
 ![license](https://img.shields.io/npm/l/avbd-babylon)
