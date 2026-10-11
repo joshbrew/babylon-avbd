@@ -1,0 +1,69 @@
+{
+  "results": [
+    {
+      "name": "3d-static-terrain-gpu",
+      "passed": true,
+      "scene": "3d-static-terrain",
+      "backend": "gpu",
+      "steps": 140,
+      "bodies": 1286,
+      "finite": true,
+      "timing": {
+        "frameMs": {
+          "mean": 16.68293103448274,
+          "median": 16.68500000000131,
+          "p95": 16.915000000000873
+        },
+        "solveMs": {
+          "mean": 2.2342797241379313,
+          "median": 2.117632,
+          "p95": 3.044352
+        },
+        "renderMs": {
+          "mean": 0.2508270344827586,
+          "median": 0.165888,
+          "p95": 0.513024
+        },
+        "collisionMs": {
+          "mean": 1.788009931034482,
+          "median": 1.839104,
+          "p95": 2.184192
+        },
+        "constraintMs": {
+          "mean": 0.35665213793103434,
+          "median": 0.260096,
+          "p95": 0.91136
+        },
+        "adjacencyMs": {
+          "mean": 0.02385213793103448,
+          "median": 0.024576,
+          "p95": 0.029696
+        },
+        "coloringMs": {
+          "mean": 0.06567724137931037,
+          "median": 0.06656,
+          "p95": 0.080896
+        }
+      },
+      "stats": {
+        "pairs": 533,
+        "contacts": 402,
+        "manifolds": 232,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 4
+      },
+      "gpuProfile": {
+        "total": 2.953216,
+        "collision": 2.12992,
+        "adjacency": 0.029696,
+        "coloring": 0.069632,
+        "solve": 0.723968,
+        "broadphase": "grid",
+        "bvhRebuilt": false
+      },
+      "errors": []
+    }
+  ],
+  "errors": []
+}

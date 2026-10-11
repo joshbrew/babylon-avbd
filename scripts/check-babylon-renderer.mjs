@@ -1,5 +1,6 @@
 import { browserCheck } from "./browser-check.mjs";
-import { readFile, writeFile } from "node:fs/promises";
+import { readFile } from "node:fs/promises";
+import { writeAtomicFile as writeFile } from "./report-file.mjs";
 import { build } from "esbuild";
 const browser = await browserCheck(),
   results = [];
@@ -23,7 +24,7 @@ try {
       ];
   for (const scene of scenes) {
     await browser.navigate(
-      `?demo=canonical&scene=${scene}&backend=gpu&renderer=babylon&quality=benchmark&paused=1`,
+      `?demo=canonical&scope=main&scene=${scene}&backend=gpu&renderer=babylon&quality=benchmark&paused=1`,
     );
     for (let i = 0; i < 1200; i++) {
       const state = await browser.evaluate(

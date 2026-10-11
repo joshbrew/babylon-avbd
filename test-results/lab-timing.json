@@ -1,0 +1,98 @@
+{
+  "passed": true,
+  "clocks": [
+    {
+      "fps": 30,
+      "hz": 60,
+      "steps": 120,
+      "zeroStepFrames": 0,
+      "maxSteps": 2,
+      "remainder": 7.632783294297951e-17
+    },
+    {
+      "fps": 30,
+      "hz": 120,
+      "steps": 240,
+      "zeroStepFrames": 0,
+      "maxSteps": 4,
+      "remainder": 2.740863092043355e-16
+    },
+    {
+      "fps": 60,
+      "hz": 60,
+      "steps": 120,
+      "zeroStepFrames": 0,
+      "maxSteps": 1,
+      "remainder": 7.632783294297951e-17
+    },
+    {
+      "fps": 60,
+      "hz": 120,
+      "steps": 240,
+      "zeroStepFrames": 0,
+      "maxSteps": 2,
+      "remainder": 7.632783294297951e-17
+    },
+    {
+      "fps": 90,
+      "hz": 60,
+      "steps": 120,
+      "zeroStepFrames": 60,
+      "maxSteps": 1,
+      "remainder": 7.632783294297951e-17
+    },
+    {
+      "fps": 90,
+      "hz": 120,
+      "steps": 240,
+      "zeroStepFrames": 0,
+      "maxSteps": 2,
+      "remainder": 7.28583859910259e-17
+    },
+    {
+      "fps": 144,
+      "hz": 60,
+      "steps": 120,
+      "zeroStepFrames": 168,
+      "maxSteps": 1,
+      "remainder": 6.591949208711867e-17
+    },
+    {
+      "fps": 144,
+      "hz": 120,
+      "steps": 240,
+      "zeroStepFrames": 48,
+      "maxSteps": 1,
+      "remainder": 8.847089727481716e-17
+    },
+    {
+      "fps": 240,
+      "hz": 60,
+      "steps": 120,
+      "zeroStepFrames": 360,
+      "maxSteps": 1,
+      "remainder": 7.28583859910259e-17
+    },
+    {
+      "fps": 240,
+      "hz": 120,
+      "steps": 240,
+      "zeroStepFrames": 240,
+      "maxSteps": 1,
+      "remainder": 7.45931094670027e-17
+    },
+    {
+      "overloaded": true,
+      "steps": 6,
+      "remainder": 1.0408340855860843e-17
+    }
+  ],
+  "live": {
+    "worker": true,
+    "hz": 120,
+    "steps": 451,
+    "wallSeconds": 4.211064999938011,
+    "rate": 0.8924899837425112,
+    "errors": []
+  }
+}

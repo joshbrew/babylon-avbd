@@ -6,7 +6,7 @@ const browser = await browserCheck(),
 try {
   await mkdir("test-results/screenshots", { recursive: true });
   await browser.navigate(
-    "?demo=canonical&scene=3d-stack&backend=webgl2&paused=1",
+    "?demo=canonical&scope=main&scene=3d-stack&backend=webgl2&paused=1&embed=1&benchmark=1",
   );
   let ready = false;
   for (let i = 0; i < 600; i++) {

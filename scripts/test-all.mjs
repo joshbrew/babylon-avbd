@@ -19,6 +19,7 @@ async function run(args) {
 }
 
 await run(["scripts/check-reference-integrity.mjs"]);
+await run(["scripts/check-terrain-cooking.mjs"]);
 await run(["scripts/test-gpu.mjs"]);
 await run(["scripts/check-backend-contract.mjs"]);
 await run(["scripts/build.mjs"]);

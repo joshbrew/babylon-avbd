@@ -16,24 +16,25 @@
             "extraBytes": 1062152
           },
           "finite": true,
-          "minZ": 0.23833870887756348,
-          "maxZ": 0.5963192582130432,
+          "minZ": null,
+          "maxZ": null,
           "points": 0,
           "pinError": 0,
           "pointRotation": 0,
           "sag": 0,
-          "rotated": 234,
+          "rotated": 0,
           "farCount": 0,
           "farMoved": 0,
           "farDropped": 0,
           "farTilted": 0,
           "stats": {
-            "pairs": 10100,
-            "contacts": 30067,
-            "manifolds": 10100,
+            "pairs": 0,
+            "contacts": 0,
+            "manifolds": 0,
             "overflow": 0,
             "clashes": 0,
-            "colors": 2
+            "colors": 0,
+            "sleeping": 10000
           },
           "errors": []
         },
@@ -48,24 +49,25 @@
             "extraBytes": 1062152
           },
           "finite": true,
-          "minZ": 0.23827707767486572,
-          "maxZ": 0.5954416990280151,
+          "minZ": null,
+          "maxZ": null,
           "points": 0,
           "pinError": 0,
           "pointRotation": 0,
           "sag": 0,
-          "rotated": 367,
+          "rotated": 0,
           "farCount": 0,
           "farMoved": 0,
           "farDropped": 0,
           "farTilted": 0,
           "stats": {
-            "pairs": 10100,
-            "contacts": 30067,
-            "manifolds": 10100,
+            "pairs": 0,
+            "contacts": 0,
+            "manifolds": 0,
             "overflow": 0,
             "clashes": 0,
-            "colors": 2
+            "colors": 0,
+            "sleeping": 10000
           },
           "errors": []
         },
@@ -80,24 +82,25 @@
             "extraBytes": 1062152
           },
           "finite": true,
-          "minZ": 0.23809123039245605,
-          "maxZ": 0.595352292060852,
+          "minZ": null,
+          "maxZ": null,
           "points": 0,
           "pinError": 0,
           "pointRotation": 0,
           "sag": 0,
-          "rotated": 428,
+          "rotated": 0,
           "farCount": 0,
           "farMoved": 0,
           "farDropped": 0,
           "farTilted": 0,
           "stats": {
-            "pairs": 10133,
-            "contacts": 30056,
-            "manifolds": 10128,
+            "pairs": 0,
+            "contacts": 0,
+            "manifolds": 0,
             "overflow": 0,
             "clashes": 0,
-            "colors": 2
+            "colors": 0,
+            "sleeping": 10000
           },
           "errors": []
         }
@@ -118,24 +121,25 @@
             "extraBytes": 5253384
           },
           "finite": true,
-          "minZ": 0.23833830654621124,
-          "maxZ": 0.6392709016799927,
+          "minZ": null,
+          "maxZ": null,
           "points": 0,
           "pinError": 0,
           "pointRotation": 0,
           "sag": 0,
-          "rotated": 21,
+          "rotated": 0,
           "farCount": 0,
           "farMoved": 0,
           "farDropped": 0,
           "farTilted": 0,
           "stats": {
-            "pairs": 59143,
-            "contacts": 177392,
-            "manifolds": 59143,
+            "pairs": 0,
+            "contacts": 0,
+            "manifolds": 0,
             "overflow": 0,
             "clashes": 0,
-            "colors": 2
+            "colors": 0,
+            "sleeping": 50000
           },
           "errors": []
         },
@@ -150,24 +154,25 @@
             "extraBytes": 5253384
           },
           "finite": true,
-          "minZ": 0.2382790893316269,
-          "maxZ": 0.6321253180503845,
+          "minZ": null,
+          "maxZ": null,
           "points": 0,
           "pinError": 0,
           "pointRotation": 0,
           "sag": 0,
-          "rotated": 30,
+          "rotated": 0,
           "farCount": 0,
           "farMoved": 0,
           "farDropped": 0,
           "farTilted": 0,
           "stats": {
-            "pairs": 59176,
-            "contacts": 177504,
-            "manifolds": 59176,
+            "pairs": 0,
+            "contacts": 0,
+            "manifolds": 0,
             "overflow": 0,
             "clashes": 0,
-            "colors": 2
+            "colors": 0,
+            "sleeping": 50000
           },
           "errors": []
         },
@@ -182,24 +187,25 @@
             "extraBytes": 5253384
           },
           "finite": true,
-          "minZ": 0.2381005734205246,
-          "maxZ": 0.6302701234817505,
+          "minZ": null,
+          "maxZ": null,
           "points": 0,
           "pinError": 0,
           "pointRotation": 0,
           "sag": 0,
-          "rotated": 34,
+          "rotated": 0,
           "farCount": 0,
           "farMoved": 0,
           "farDropped": 0,
           "farTilted": 0,
           "stats": {
-            "pairs": 59178,
-            "contacts": 177506,
-            "manifolds": 59178,
+            "pairs": 0,
+            "contacts": 0,
+            "manifolds": 0,
             "overflow": 0,
             "clashes": 0,
-            "colors": 2
+            "colors": 0,
+            "sleeping": 50000
           },
           "errors": []
         }
@@ -220,24 +226,25 @@
             "extraBytes": 11585200
           },
           "finite": true,
-          "minZ": 0.5328797101974487,
+          "minZ": 0.5294670462608337,
           "maxZ": 30.084758758544922,
           "points": 0,
           "pinError": 0,
           "pointRotation": 0,
           "sag": 0,
-          "rotated": 110382,
+          "rotated": 110376,
           "farCount": 0,
           "farMoved": 0,
           "farDropped": 0,
           "farTilted": 0,
           "stats": {
-            "pairs": 256140,
-            "contacts": 1209160,
-            "manifolds": 246710,
+            "pairs": 255836,
+            "contacts": 1207470,
+            "manifolds": 246696,
             "overflow": 0,
             "clashes": 0,
-            "colors": 15
+            "colors": 15,
+            "sleeping": 0
           },
           "errors": []
         },
@@ -252,24 +259,25 @@
             "extraBytes": 11585200
           },
           "finite": true,
-          "minZ": 0.5168213248252869,
-          "maxZ": 19.946443557739258,
+          "minZ": 0.5497158169746399,
+          "maxZ": 19.933208465576172,
           "points": 0,
           "pinError": 0,
           "pointRotation": 0,
           "sag": 0,
-          "rotated": 110404,
+          "rotated": 110398,
           "farCount": 0,
           "farMoved": 0,
           "farDropped": 0,
           "farTilted": 0,
           "stats": {
-            "pairs": 246167,
-            "contacts": 1096764,
-            "manifolds": 236797,
+            "pairs": 246216,
+            "contacts": 1094275,
+            "manifolds": 236598,
             "overflow": 0,
             "clashes": 0,
-            "colors": 11
+            "colors": 14,
+            "sleeping": 0
           },
           "errors": []
         },
@@ -284,24 +292,25 @@
             "extraBytes": 11585200
           },
           "finite": true,
-          "minZ": 0.4929993152618408,
-          "maxZ": 19.874862670898438,
+          "minZ": 0.6011775135993958,
+          "maxZ": 19.8731689453125,
           "points": 0,
           "pinError": 0,
           "pointRotation": 0,
           "sag": 0,
-          "rotated": 110405,
+          "rotated": 110390,
           "farCount": 0,
           "farMoved": 0,
           "farDropped": 0,
           "farTilted": 0,
           "stats": {
-            "pairs": 262640,
-            "contacts": 1029806,
-            "manifolds": 247104,
+            "pairs": 261205,
+            "contacts": 1022608,
+            "manifolds": 245297,
             "overflow": 0,
             "clashes": 0,
-            "colors": 11
+            "colors": 14,
+            "sleeping": 0
           },
           "errors": []
         }
@@ -322,8 +331,8 @@
             "extraBytes": 10491560
           },
           "finite": true,
-          "minZ": 0.9902053475379944,
-          "maxZ": 9.913362503051758,
+          "minZ": 6.950793743133545,
+          "maxZ": 9.928900718688965,
           "points": 0,
           "pinError": 0,
           "pointRotation": 0,
@@ -334,12 +343,13 @@
           "farDropped": 0,
           "farTilted": 0,
           "stats": {
-            "pairs": 100000,
-            "contacts": 400000,
-            "manifolds": 100000,
+            "pairs": 40000,
+            "contacts": 160000,
+            "manifolds": 40000,
             "overflow": 0,
             "clashes": 0,
-            "colors": 3
+            "colors": 3,
+            "sleeping": 60000
           },
           "errors": []
         },
@@ -354,8 +364,8 @@
             "extraBytes": 10491560
           },
           "finite": true,
-          "minZ": 0.9888246059417725,
-          "maxZ": 9.896381378173828,
+          "minZ": null,
+          "maxZ": null,
           "points": 0,
           "pinError": 0,
           "pointRotation": 0,
@@ -366,12 +376,13 @@
           "farDropped": 0,
           "farTilted": 0,
           "stats": {
-            "pairs": 100000,
-            "contacts": 400000,
-            "manifolds": 100000,
+            "pairs": 0,
+            "contacts": 0,
+            "manifolds": 0,
             "overflow": 0,
             "clashes": 0,
-            "colors": 3
+            "colors": 0,
+            "sleeping": 100000
           },
           "errors": []
         },
@@ -386,8 +397,8 @@
             "extraBytes": 10491560
           },
           "finite": true,
-          "minZ": 0.9886430501937866,
-          "maxZ": 9.892919540405273,
+          "minZ": null,
+          "maxZ": null,
           "points": 0,
           "pinError": 0,
           "pointRotation": 0,
@@ -398,12 +409,13 @@
           "farDropped": 0,
           "farTilted": 0,
           "stats": {
-            "pairs": 100000,
-            "contacts": 400000,
-            "manifolds": 100000,
+            "pairs": 0,
+            "contacts": 0,
+            "manifolds": 0,
             "overflow": 0,
             "clashes": 0,
-            "colors": 3
+            "colors": 0,
+            "sleeping": 100000
           },
           "errors": []
         }
@@ -421,27 +433,28 @@
             "builds": 2,
             "refits": 119,
             "nodes": 1011845,
-            "extraBytes": 53013144
+            "extraBytes": 53014600
           },
           "finite": true,
-          "minZ": 0.3434005379676819,
-          "maxZ": 15.789874076843262,
+          "minZ": 0.29427391290664673,
+          "maxZ": 15.803935050964355,
           "points": 0,
           "pinError": 0,
           "pointRotation": 0,
           "sag": 0,
-          "rotated": 8138,
-          "farCount": 320280,
-          "farMoved": 58409,
+          "rotated": 8199,
+          "farCount": 228317,
+          "farMoved": 53216,
           "farDropped": 0,
           "farTilted": 0,
           "stats": {
-            "pairs": 979292,
-            "contacts": 4014974,
-            "manifolds": 977303,
+            "pairs": 732977,
+            "contacts": 3012673,
+            "manifolds": 731205,
             "overflow": 0,
             "clashes": 0,
-            "colors": 9
+            "colors": 9,
+            "sleeping": 139544
           },
           "errors": []
         },
@@ -453,27 +466,28 @@
             "builds": 4,
             "refits": 237,
             "nodes": 1011845,
-            "extraBytes": 53013144
+            "extraBytes": 53014600
           },
           "finite": true,
-          "minZ": 0.5416324734687805,
-          "maxZ": 15.400357246398926,
+          "minZ": 0.399997353553772,
+          "maxZ": 15.430468559265137,
           "points": 0,
           "pinError": 0,
           "pointRotation": 0,
           "sag": 0,
-          "rotated": 17589,
-          "farCount": 320280,
-          "farMoved": 101888,
+          "rotated": 17647,
+          "farCount": 121226,
+          "farMoved": 78719,
           "farDropped": 0,
           "farTilted": 0,
           "stats": {
-            "pairs": 984878,
-            "contacts": 4055281,
-            "manifolds": 980220,
+            "pairs": 421360,
+            "contacts": 1706153,
+            "manifolds": 416941,
             "overflow": 0,
             "clashes": 0,
-            "colors": 9
+            "colors": 9,
+            "sleeping": 296589
           },
           "errors": []
         },
@@ -485,27 +499,28 @@
             "builds": 6,
             "refits": 355,
             "nodes": 1011845,
-            "extraBytes": 53013144
+            "extraBytes": 53014600
           },
           "finite": true,
-          "minZ": 0.5167466998100281,
-          "maxZ": 15.27932357788086,
+          "minZ": 0.4112347662448883,
+          "maxZ": 15.342416763305664,
           "points": 0,
           "pinError": 0,
           "pointRotation": 0,
           "sag": 0,
-          "rotated": 26122,
-          "farCount": 320280,
-          "farMoved": 106964,
+          "rotated": 26347,
+          "farCount": 50887,
+          "farMoved": 50617,
           "farDropped": 0,
           "farTilted": 0,
           "stats": {
-            "pairs": 993530,
-            "contacts": 4072851,
-            "manifolds": 986269,
+            "pairs": 235108,
+            "contacts": 873449,
+            "manifolds": 228309,
             "overflow": 0,
             "clashes": 0,
-            "colors": 9
+            "colors": 9,
+            "sleeping": 394446
           },
           "errors": []
         }

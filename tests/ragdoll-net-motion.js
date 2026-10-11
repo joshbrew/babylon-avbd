@@ -1,4 +1,4 @@
-import { buildCanonicalScene } from "../demo/canonicalScenes.js";
+import { buildCanonicalScene } from "../demo/lab/scenes.js";
 import { AppGpuSolver3D } from "../src/gpu/appGpuSolver3D.js";
 import { sceneGpuSolverOptions } from "../src/gpu/gpuSolverOptions.js";
 import { clothsOf } from "../reference/three-avbd/src/avbd3d/visuals.ts";

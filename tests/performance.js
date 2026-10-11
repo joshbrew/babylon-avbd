@@ -1,7 +1,5 @@
-import {
-  buildCanonicalScene,
-  canonicalScenes,
-} from "../demo/canonicalScenes.js";
+import { PlayPhysics } from "../demo/shared/playground/physics.js";
+import { buildCanonicalScene, canonicalScenes } from "../demo/lab/scenes.js";
 import { NativeGpuSolver3D as GpuSolver3D } from "../src/native/solver3D.js";
 import { NativeGpuSolver2D as GpuSolver2D } from "../src/native/solver2D.js";
 import { parallelParams } from "../reference/three-avbd/src/avbd2d/ref/solver.ts";
@@ -115,7 +113,11 @@ globalThis.__PERFORMANCE__ = {
         : new GpuSolver3D(device, built.solver, gpuOptions);
       if (rules[mode]) gpu.primalLanes = rules[mode];
       Object.assign(gpu.params, built.gpuParams);
-      return { gpu, detailed: variant.endsWith("-detail") };
+      const playground = built.play
+        ? new PlayPhysics(device, built, gpu)
+        : null;
+      playground?.action("start");
+      return { gpu, playground, detailed: variant.endsWith("-detail") };
     };
     return pairedPerformance(
       { device, create, summarize, errors },
@@ -259,7 +261,10 @@ globalThis.__PERFORMANCE__ = {
             ...built.gpuOptions,
             adaptiveScheduling: variant === "production",
             cacheAdjacencyKeys: variant === "production" ? undefined : false,
-            broadphase,
+            broadphase:
+              broadphase === "auto"
+                ? (built.gpuOptions?.broadphase ?? "auto")
+                : broadphase,
             solverMode: built.gpuOptions?.shaders
               ? "auto"
               : ({
@@ -290,6 +295,8 @@ globalThis.__PERFORMANCE__ = {
         : new GpuSolver3D(device, built.solver, gpuOptions);
     }
     Object.assign(gpu.params, built.gpuParams);
+    const playground = built.play ? new PlayPhysics(device, built, gpu) : null;
+    playground?.action("start");
     if (dimension === 3) gpu.primalLanes = rules[variant] || rules.baseline;
     const setup = {
       sceneBuildMs,
@@ -375,6 +382,11 @@ globalThis.__PERFORMANCE__ = {
       return {
         scene,
         workload: built.workload,
+        sceneAction: playground ? "start" : null,
+        galton: await playground?.feeder?.measure(true),
+        timingNote: playground
+          ? "GPU stage times cover the solver; submission and completion also include demo forces or the metered feed."
+          : undefined,
         dimension,
         variant,
         bodyCount: gpu.bodyCount,
@@ -438,6 +450,7 @@ globalThis.__PERFORMANCE__ = {
         ),
       };
     } finally {
+      playground?.destroy();
       gpu.destroy();
       await device.queue.onSubmittedWorkDone();
     }

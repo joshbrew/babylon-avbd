@@ -1,18 +1,86 @@
 {
-  "date": "2026-10-11T00:14:07.834Z",
+  "date": "2026-10-11T23:33:02.355Z",
   "applied": true,
-  "retained": 284,
-  "removedFiles": 1,
-  "removedBytes": 2185,
+  "retained": 249,
+  "removedFiles": 18,
+  "removedBytes": 2211431,
   "removed": [
     {
       "path": "gpu-selected.json",
-      "bytes": 2185
+      "bytes": 1872
+    },
+    {
+      "path": "screenshots/3d-domino-spiral-babylon-worker.png",
+      "bytes": 152110
+    },
+    {
+      "path": "screenshots/3d-marble-cascade-babylon-worker.png",
+      "bytes": 105783
+    },
+    {
+      "path": "screenshots/3d-tornado-town-babylon-worker.png",
+      "bytes": 95559
+    },
+    {
+      "path": "screenshots/babylon-readme-example.png",
+      "bytes": 5854
+    },
+    {
+      "path": "screenshots/naval-1440.png",
+      "bytes": 239953
+    },
+    {
+      "path": "screenshots/naval-3000.png",
+      "bytes": 245513
+    },
+    {
+      "path": "screenshots/naval-720.png",
+      "bytes": 233729
+    },
+    {
+      "path": "screenshots/naval-floating-sails-later.png",
+      "bytes": 228012
+    },
+    {
+      "path": "screenshots/naval-floating-sails.png",
+      "bytes": 229011
+    },
+    {
+      "path": "screenshots/naval-grid.png",
+      "bytes": 232892
+    },
+    {
+      "path": "screenshots/naval-mobile-layout.png",
+      "bytes": 94311
+    },
+    {
+      "path": "screenshots/naval-settled.png",
+      "bytes": 229866
+    },
+    {
+      "path": "screenshots/readme-createBoxPileScene.png",
+      "bytes": 33613
+    },
+    {
+      "path": "screenshots/readme-createBrickWallScene.png",
+      "bytes": 16410
+    },
+    {
+      "path": "screenshots/readme-createHingeExample.png",
+      "bytes": 12121
+    },
+    {
+      "path": "screenshots/readme-createMaterialExamples.png",
+      "bytes": 20794
+    },
+    {
+      "path": "screenshots/readme-createMixedColliderScene.png",
+      "bytes": 34028
     }
   ],
-  "missingReferencedScreenshots": [
-    "screenshots/2d-mixed-shapes-settled-1440.png",
-    "screenshots/2d-mixed-shapes-settled-390.png"
+  "prunedCaptureSummaries": [
+    "playgrounds.json",
+    "naval.json"
   ],
   "removedDirectories": []
 }

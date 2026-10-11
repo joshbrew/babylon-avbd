@@ -1,6 +1,8 @@
-import { readFile, readdir, stat, unlink, writeFile } from "node:fs/promises";
+import { readFile, readdir, stat, unlink } from "node:fs/promises";
 import { resolve, relative, sep } from "node:path";
 import { fileURLToPath } from "node:url";
+import web from "../tinybuild.web.config.js";
+import { writeAtomicFile as writeFile } from "./report-file.mjs";
 
 const root = resolve(fileURLToPath(new URL("../", import.meta.url)));
 const dist = resolve(root, "dist");
@@ -14,6 +16,8 @@ const retained = new Set(
     .map((name) => resolve(root, name)),
 );
 const pages = [resolve(root, "index.html")];
+for (const bundle of web.additionalBundles)
+  retained.add(resolve(root, bundle.outfile));
 const testEntries = await readdir(resolve(root, "tests"), {
   recursive: true,
   withFileTypes: true,

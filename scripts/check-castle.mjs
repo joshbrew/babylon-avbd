@@ -16,7 +16,7 @@ try {
     deviceScaleFactor: 1,
     mobile: false,
   });
-  await browser.navigate("?demo=cannon&paused=1");
+  await browser.navigate("?demo=cannon&scope=main&paused=1");
   await wait("globalThis.__AVBD_LAB__?.diagnostics.ready");
   await browser.evaluate("__AVBD_LAB__.pause(true)");
   await browser.evaluate(

@@ -41,7 +41,7 @@ export function encodeGpuSolverStep(s) {
   const split = timed || s.splitPasses;
   const timing = detailed ? s.detailTiming : s.timing;
   const stages = [];
-  let pass, current;
+  let pass, current, boundGroup;
   const phase = (name, aggregate) => {
     if (pass && !detailed && (current === aggregate || !split)) return;
     pass?.end();
@@ -61,16 +61,24 @@ export function encodeGpuSolverStep(s) {
     pass = s.dispatchIsolation
       ? isolatedComputePass(encoder, descriptor)
       : encoder.beginComputePass(descriptor);
+    boundGroup = undefined;
+  };
+  // Scan/BVH helpers bind their own buffers. Invalidate after those helpers
+  // and when opening a new pass; pipeline changes alone keep bindings intact.
+  const bind = (group) => {
+    if (boundGroup === group) return;
+    pass.setBindGroup(0, group);
+    boundGroup = group;
   };
   const run = (name, group, x) => {
     if (x <= 0) return;
     pass.setPipeline(s.pipes[name]);
-    pass.setBindGroup(0, group);
+    bind(group);
     pass.dispatchWorkgroups(x);
   };
   const indirect = (name, group, args) => {
     pass.setPipeline(s.pipes[name]);
-    pass.setBindGroup(0, group);
+    bind(group);
     pass.dispatchWorkgroupsIndirect(s.argsBuffer, args * 4);
   };
   phase("contactCache", "collision");
@@ -82,14 +90,18 @@ export function encodeGpuSolverStep(s) {
   if (s.bvh) {
     s.bvh.configure(N);
     s.bvh.encodeBuild(pass);
+    boundGroup = undefined;
   } else {
     run("gridCount", G.broad, groups(N));
     s.gridScan.encode(pass);
+    boundGroup = undefined;
     run("gridScatter", G.broad, groups(N));
   }
   phase("broadphasePairs", "collision");
-  if (s.bvh) s.bvh.encodePairs(pass, s);
-  else run("findPairs", G.broad, groups(N));
+  if (s.bvh) {
+    s.bvh.encodePairs(pass, s);
+    boundGroup = undefined;
+  } else run("findPairs", G.broad, groups(N));
   phase("narrowphase", "collision");
   run("argsPairs", G.args, 1);
   indirect("narrowphase", G.contacts[cur], IA_PAIRS);
@@ -98,6 +110,7 @@ export function encodeGpuSolverStep(s) {
   run("degreeJoints", G.topo[cur], groups(J));
   indirect("degreeContacts", G.topo[cur], IA_CONTACTS);
   s.adjScan.encode(pass);
+  boundGroup = undefined;
   run("fillJoints", G.topo[cur], groups(J));
   indirect("fillContacts", G.topo[cur], IA_CONTACTS);
   run("sortAdjacency", G.topo[cur], groups(N));
@@ -114,39 +127,59 @@ export function encodeGpuSolverStep(s) {
   }
   run("colorCount", G.topo[cur], s.colorGroups);
   s.colorHistScan.encode(pass);
+  boundGroup = undefined;
   run("colorStarts", G.topo[cur], 1);
   run("argsColors", G.args, 1);
   run("colorScatter", G.topo[cur], s.colorGroups);
-  const setPass = (entry) =>
-    pass.setBindGroup(1, s.passGroup, [entry * PASS_STRIDE]);
+  // A reused sequence avoids the typed-array overload cost for one offset.
+  const offsets = (s.passOffsets ??= [0]);
+  let solvePass, offsetPass, lastEntry;
+  const setPass = (entry) => {
+    if (offsetPass === pass && lastEntry === entry) return;
+    offsets[0] = entry * PASS_STRIDE;
+    pass.setBindGroup(1, s.passGroup, offsets);
+    offsetPass = pass;
+    lastEntry = entry;
+  };
   const solveBindings = () => {
-    pass.setBindGroup(0, G.solve[cur]);
-    setPass(0);
+    if (solvePass !== pass) {
+      pass.setBindGroup(0, G.solve[cur]);
+      solvePass = pass;
+    }
   };
   phase("warmStart", "solve");
   solveBindings();
+  setPass(0);
   if (J > 0) {
     pass.setPipeline(s.pipes.warmStartJoints);
     pass.dispatchWorkgroups(groups(J));
   }
   pass.setPipeline(s.pipes.warmStartBodies);
   if (N) pass.dispatchWorkgroups(groups(N));
-  for (let it = 0; it < p.iterations; it++) {
-    phase("bodySolve", "solve");
+  if (s.smallGroupPipeline) {
+    phase("smallGroupSolve", "solve");
     solveBindings();
-    pass.setPipeline(s.pipes.primal);
-    for (let col = 0; col < s.colorCap; col++) {
-      setPass(it * (s.colorCap + 1) + col);
-      pass.dispatchWorkgroupsIndirect(s.argsBuffer, (IA_COLOR + 3 * col) * 4);
+    setPass(0);
+    pass.setPipeline(s.smallGroupPipeline);
+    pass.dispatchWorkgroups(1);
+  } else
+    for (let it = 0; it < p.iterations; it++) {
+      phase("bodySolve", "solve");
+      solveBindings();
+      pass.setPipeline(s.pipes.primal);
+      for (let col = 0; col < s.colorCap; col++) {
+        setPass(it * (s.colorCap + 1) + col);
+        pass.dispatchWorkgroupsIndirect(s.argsBuffer, (IA_COLOR + 3 * col) * 4);
+      }
+      phase("contactUpdate", "solve");
+      solveBindings();
+      setPass(it * (s.colorCap + 1) + s.colorCap);
+      pass.setPipeline(s.pipes.dual);
+      pass.dispatchWorkgroupsIndirect(s.argsBuffer, IA_CONSTRAINTS * 4);
     }
-    phase("contactUpdate", "solve");
-    solveBindings();
-    setPass(it * (s.colorCap + 1) + s.colorCap);
-    pass.setPipeline(s.pipes.dual);
-    pass.dispatchWorkgroupsIndirect(s.argsBuffer, IA_CONSTRAINTS * 4);
-  }
   phase("velocities", "solve");
   solveBindings();
+  setPass(0);
   pass.setPipeline(s.pipes.updateVelocities);
   if (N) pass.dispatchWorkgroups(groups(N));
   pass.end();

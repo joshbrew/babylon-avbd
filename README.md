@@ -1,7 +1,5 @@
 # AVBD for Babylon.js
 
-`npm install avbd-babylon` or clone this repo for local usage
-
 [![npm version](https://img.shields.io/npm/v/avbd-babylon.svg)](https://www.npmjs.com/package/avbd-babylon)
 [![npm downloads](https://img.shields.io/npm/dt/avbd-babylon.svg)](https://www.npmjs.com/package/avbd-babylon)
 ![license](https://img.shields.io/npm/l/avbd-babylon)
@@ -17,6 +15,8 @@ the resulting poses; `AvbdPhysics` owns the physics world and its GPU solver.
 
 **Jump to:**
 
+- [Benchmark sample code](#benchmark-sample-code)
+- [Demo source and initialization](#demo-source-and-initialization)
 - [Install](#install)
 - [What this package adds](#what-this-package-adds)
 - [Feature coverage](#feature-coverage)
@@ -51,12 +51,65 @@ the resulting poses; `AvbdPhysics` owns the physics world and its GPU solver.
 - [Slingshot siege demo](#slingshot-siege-demo)
 - [Manual stepping and cleanup](#manual-stepping-and-cleanup)
 - [Worker integration](#worker-integration)
+- [Static terrain: hills, caves and overhangs](#static-terrain-hills-caves-and-overhangs)
+- [Ships, water and destruction](#ships-water-and-destruction)
+- [Worker and shared-memory benchmarks](#worker-and-shared-memory-benchmarks)
+- [Reusable GPU and worker utilities](#reusable-gpu-and-worker-utilities)
+- [D20 particle capacity](#d20-particle-capacity)
 - [Benchmark replication](#benchmark-replication)
 - [Babylon renderer comparison](#babylon-renderer-comparison)
 - [Script-tag usage](#script-tag-usage)
 - [Build and run the repository](#build-and-run-the-repository)
 - [Validation and attribution](#validation-and-attribution)
 - [First release checks](docs/RELEASE.md)
+
+## Benchmark sample code
+
+**Start here:** [Benchmark replication](#benchmark-replication) contains copyable
+JavaScript examples. Run `npm start`, then open the
+[browser benchmark page](tests/performance.html) to run the scenes yourself.
+
+| What you want to reproduce                                | Sample code and runnable source                                                                                                                                                                              |
+| --------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Physics timings, including the AVBD paper scenes          | [Copyable physics example](#benchmark-replication), [scene measurement code](tests/performance.js), [package timing examples](tests/package-performance.js), [package runner](scripts/benchmark-package.mjs) |
+| Scene setup: piles, walls, joints, cloth and stress tests | [Demo scene registry and builders](demo/lab/scenes.js), [browser benchmark controller](tests/performance.js)                                                                                                 |
+| Babylon rendering versus direct GPU rendering             | [Rendering examples and commands](#babylon-renderer-comparison), [measurement code](tests/renderer-performance.js), [runner](scripts/benchmark-renderers.mjs)                                                |
+| Main thread versus dedicated worker and shared memory     | [Copyable worker example and commands](#worker-and-shared-memory-benchmarks), [worker page](tests/workers.html), [worker runner](scripts/benchmark-workers.mjs)                                              |
+| Batched body edits, pose reads and queries                | [Bulk-edit examples](#bulk-edits-and-gpu-dispatches), [measurement code](tests/native-edit-performance.js), [runner](scripts/check-native-performance.mjs)                                                   |
+| CPU compatibility versus WebGPU                           | [Settings and results](#backend-differences-and-benchmarks), [measurement code](tests/compatibility-performance.js), [runner](scripts/benchmark-backends.mjs)                                                |
+| Sleeping and waking in large connected scenes             | [Sleeping example](#queries-callbacks-and-sleeping), [connected-wall runner](scripts/benchmark-connected-sleep.mjs)                                                                                          |
+| Ships, buoyancy and water                                 | [Scene explanation](#ships-water-and-destruction), [scene builder](demo/naval/scene.js), [runner](scripts/benchmark-naval.mjs)                                                                               |
+| Grid versus HPLOC++ collisions                            | [Collision guide](docs/HPLOC.md), [paired scene measurements](tests/performance.js), [tree refit runner](scripts/benchmark-hploc-refit.mjs)                                                                  |
+| D20 particle collisions                                   | [Capacity benchmark](#d20-particle-capacity), [runner](scripts/benchmark-particles.mjs), [reusable GPU particles](src/gpu/surfaceParticles.js), [collision shader](src/gpu/surfaceParticles.wgsl) |
+| Movement solver and GPU scheduling                        | [Movement runner](scripts/benchmark-movement-solve.mjs), [color-bucket runner](scripts/benchmark-color-buckets.mjs), [small-group runner](scripts/benchmark-small-groups.mjs)                                |
+| Uploads and command batching                              | [GPU upload runner](scripts/benchmark-webgpu-uploads.mjs), [command encoding runner](scripts/benchmark-command-encoding.mjs)                                                                                 |
+
+This README includes package-usage examples and benchmark console snippets;
+each benchmark snippet names the page where it runs. Files under `tests/`
+implement the browser measurements; files under `scripts/` run those measurements
+and save results. [tests/README.md](tests/README.md) lists the validation and
+benchmark commands. Saved reports and screenshots live in `test-results/`.
+
+## Demo source and initialization
+
+**[Demo source guide](demo/README.md)** lists each demo's configuration, builder,
+controls and shaders. Each demo has its own folder: for example,
+[Galton board](demo/galton-board/scene.js), [ships](demo/naval/scene.js),
+[slingshot](demo/slingshot/scene.js), [terrain](demo/terrain/scene.js) and
+[tearable cloth](demo/tearable-cloth/scene.js).
+
+Open `scene.js` to change bodies, constraints and solver settings; `index.js`
+initializes demos with their own controls. The [lab registry](demo/lab/scenes.js)
+selects scenes, while [the shared runtime](demo/shared/runtime/simulationSession.js)
+initializes their solver and renderer for workers. Related size or feature presets
+share a `scenes.js` builder. Rendering and execution helpers live in `demo/shared/`.
+
+Build the bodies and constraints together, create one solver, and reuse its GPU
+buffers. Initial shapes and sensors select the required shaders before compilation;
+disabled collision groups are excluded from the initial contact-capacity estimate.
+The [startup check](scripts/check-demo-startup.mjs) initializes every demo in a
+paused worker with `--all` and records setup times separately from simulation
+performance. Shader caches, device checks and scene size affect those times.
 
 ## Install
 
@@ -103,6 +156,10 @@ The [physical-phone floor check](test-results/connected-phone-floor.json) verifi
 boxes, spheres and capsules in Android Brave. `npm run test:connected-phone`
 checks 2D/3D collisions, joints, bounce, triggers, masks, sleeping and queries
 on an authorized, unlocked Android phone running the local demo.
+The current [Galaxy S23 GPU checks](test-results/connected-phone-contacts.json)
+cover both 2D and 3D in Brave. The [phone scene checks](test-results/connected-phone-demos.json)
+include hinges, sensors, terrain, cloth and 40,000-marble flow, with screenshots
+and short measurements. Run these with `npm run test:connected-demos`.
 
 `AvbdPhysics.create()` prepares its device automatically. Native 3D applications
 can qualify a new device when creating it, or prepare a renderer-owned device
@@ -147,8 +204,22 @@ portable 2D/3D APIs and a Babylon integration:
   equations, timestep and iteration count. Direct GPU pose buffers let a
   compatible renderer draw many bodies without downloading every pose. When
   CPU poses are needed, callers can request only the bodies they use.
+  Large 2D and 3D worlds automatically use bitsets to group bodies for solving,
+  reducing GPU scheduling work while preserving body order.
+  Large rigid 3D scenes also update a contact's points in parallel. The shared
+  contact-point layout stores only the needed entries of symmetric body matrices,
+  reducing movement-solver work with the same contacts and equations.
+  It also groups frequently read pose fields during solving, then restores the
+  public body-buffer format before rendering, queries or body edits.
+  Closed jointless 3D worlds of up to 32 bodies batch all movement iterations in
+  one workgroup with shared body poses and the same reductions and equations.
+  CPU command setup reuses settings and offset storage, uploads only changed
+  step/sleep/bounce settings and skips repeated buffer bindings within a compute
+  pass.
 - **Sleeping and live editing.** Per-body sleep permission, support checks and
-  impact checks allow resting objects to sleep and wake again. Velocities,
+  impact checks allow resting objects to sleep and wake again. Large jointless desktop
+  3D worlds retain conservative connected groups so impacts can wake a wall
+  without waking unrelated walls on the same floor. Velocities,
   impulses, teleports, filters and motor targets can change during simulation.
   Welds capture their rest rotation from live GPU poses, and released
   constraint slots can be reused.
@@ -163,7 +234,7 @@ portable 2D/3D APIs and a Babylon integration:
   behavior, collider pair coverage, queries, constraints, sleeping and failure
   recovery. Collision overflow or conflicting parallel groups hold a step and
   report the problem instead of silently dropping work. Browser tests cover all
-  68 scenes, controls, screenshots and stage timings; replication examples
+  69 scenes, controls, screenshots and stage timings; replication examples
   distinguish physics, drawing and the paper's measurements.
 
 The underlying solver and retained upstream code are credited in
@@ -178,50 +249,90 @@ It is an alternative physics integration, **not a drop-in Havok/Physics V2
 plugin**: use `AvbdPhysicsAggregate`, rather than Babylon's `PhysicsAggregate`
 and `scene.enablePhysics()`.
 
-| Feature                                                | 3D GPU               | 2D GPU                | Babylon / package usage                                                                                                                                                                                       |
-| ------------------------------------------------------ | -------------------- | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Static and dynamic bodies, rotation, inertia, friction | Yes                  | Yes                   | Aggregates in 3D; native 2D boxes, circles and capsules.                                                                                                                                                      |
-| Boxes                                                  | Yes                  | Yes                   | Native collision shapes.                                                                                                                                                                                      |
-| Spheres / circles                                      | Analytic             | Analytic              | 3D `addSphere()`; 2D `addCircle()`. Exact rounded surfaces.                                                                                                                                                   |
-| Capsules                                               | Analytic             | Analytic              | 3D local Y, 2D local X. Full height / length includes both caps.                                                                                                                                              |
-| Finite lines / infinite planes                         | Use static colliders | Yes                   | 2D `addSegment()` is two-sided; `addPlane()` defines a solid half-space.                                                                                                                                      |
-| Cylinders                                              | Convex hulls         | No                    | Polygonal 3D approximations from mesh vertices.                                                                                                                                                               |
-| Custom convex hulls                                    | Yes                  | Yes                   | `addHull()` in both dimensions. Up to 32 boundary vertices.                                                                                                                                                   |
-| Concave triangle surfaces                              | No                   | No                    | Convex proxies fill concavities.                                                                                                                                                                              |
-| Body velocity, forces, impulses and teleporting        | Yes                  | Yes                   | Native `gpu.body()` handles or indexed solver methods in both dimensions; live GPU poses.                                                                                                                     |
-| Batched body commands and packed velocity edits        | Yes                  | Yes                   | `editBodies()` groups motion and property edits; packed linear/angular updates use one dispatch.                                                                                                              |
-| Automatic Babylon stepping and disposal                | Yes                  | Yes                   | `AvbdPhysics` or native `gpu.attachToScene(scene)` in either dimension.                                                                                                                                       |
-| Manual fixed steps / worker execution                  | Yes                  | Yes                   | No renderer or DOM dependency in either solver.                                                                                                                                                               |
-| Mobile browsers with WebGPU                            | Yes                  | Yes                   | Verified on Android Brave. Babylon's async factory and the scene browser prepare 3D automatically; native 3D apps use `validate3D:true` or `prepareWebGPUDevice3D()`. Requires WebGPU and HTTPS or localhost. |
-| Automatic grid / HPLOC++ choice                        | Yes                  | Grid                  | 3D auto selection uses body sizes and workload.                                                                                                                                                               |
-| GPU work sharing                                       | Yes                  | Yes                   | Retains the configured physics and iteration counts.                                                                                                                                                          |
-| Mesh / instance rendering                              | Yes                  | Yes                   | Use batch drawing for large scenes; portable builders do not create meshes.                                                                                                                                   |
-| Direct GPU pose drawing                                | Yes                  | Yes                   | Renderer and solver must share a GPUDevice. Body layouts differ by dimension.                                                                                                                                 |
-| Ball joints / planar hinges                            | Yes                  | Yes                   | 3D `addJoint()`; 2D joint with free angular row.                                                                                                                                                              |
-| World anchors                                          | Yes                  | Yes                   | Null body A in 3D; body index `-1` in 2D.                                                                                                                                                                     |
-| Welds and breakable joints                             | Yes                  | Yes                   | 3D `addWeld()`; 2D joint with all three rows locked and optional `breakForce`.                                                                                                                                |
-| Springs, linked ropes and ragdolls                     | Yes                  | Yes                   | 3D helpers; 2D bodies linked with joints/springs.                                                                                                                                                             |
-| Hinges                                                 | Axis + angle limits  | Planar + angle limits | `addHinge()` in both dimensions; optional angle bounds relative to creation.                                                                                                                                  |
-| Torque-limited motors                                  | Yes                  | Yes                   | Both dimensions expose motor handles and live `gpu.setMotor()` controls.                                                                                                                                      |
-| Elastic / tearable fabric                              | Yes                  | Build spring networks | 3D `addFabric()` has point collisions and tensile fracture. The demo preserves material after tearing.                                                                                                        |
-| Per-body sleeping / waking                             | Yes                  | Yes                   | World `sleeping`, body `allowSleep`, live `setSleepEnabled()`; supported bodies rest, impacts wake them.                                                                                                      |
-| Restitution / bounce                                   | Yes                  | Yes                   | Coefficient 0..1. Zero adds no bounce passes.                                                                                                                                                                 |
-| Collision masks                                        | Yes                  | Yes                   | Both bodies must allow the pair. Includes sensors.                                                                                                                                                            |
-| Contact / trigger events                               | Yes                  | Yes                   | Babylon `onContact()`; native `gpu.watchContacts()` + `readContactEvents()` in both dimensions.                                                                                                               |
-| Non-solving triggers                                   | Yes                  | Yes                   | `isTrigger:true`; no contact forces. Static–static pairs are not scanned.                                                                                                                                     |
-| Raycasts                                               | Yes                  | Yes                   | `physics.raycast()` or portable `gpu.raycast()`; masks and ignored bodies.                                                                                                                                    |
-| Sphere / circle casts                                  | Yes                  | Yes                   | 3D `sphereCast()`; 2D `circleCast()`; exact rounded corner tests.                                                                                                                                             |
-| Continuous collision detection                         | No                   | No                    | Discrete contacts; timestep matters for fast objects.                                                                                                                                                         |
-| Full Babylon Physics V2 / Havok plugin                 | No                   | No                    | Use AVBD aggregates, rather than `scene.enablePhysics()`.                                                                                                                                                     |
+| Feature                                                | 3D GPU                | 2D GPU                      | Babylon / package usage                                                                                                                                                                                       |
+| ------------------------------------------------------ | --------------------- | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Static and dynamic bodies, rotation, inertia, friction | Yes                   | Yes                         | Aggregates in 3D; native 2D boxes, circles and capsules.                                                                                                                                                      |
+| Boxes                                                  | Yes                   | Yes                         | Native collision shapes.                                                                                                                                                                                      |
+| Spheres / circles                                      | Analytic              | Analytic                    | 3D `addSphere()`; 2D `addCircle()`. Exact rounded surfaces.                                                                                                                                                   |
+| Capsules                                               | Analytic              | Analytic                    | 3D local Y, 2D local X. Full height / length includes both caps.                                                                                                                                              |
+| Finite lines / infinite planes                         | Use static colliders  | Yes                         | 2D `addSegment()` is two-sided; `addPlane()` defines a solid half-space.                                                                                                                                      |
+| Cylinders                                              | Convex hulls          | No                          | Polygonal 3D approximations from mesh vertices.                                                                                                                                                               |
+| Custom convex hulls                                    | Yes                   | Yes                         | `addHull()` in both dimensions. Up to 32 boundary vertices.                                                                                                                                                   |
+| Static heightfields and concave mesh terrain           | Tiled convex contacts | Use static segments / hulls | Native and Babylon `addHeightfield()` / `addStaticMesh()`. Each triangle becomes a small static prism, preserving openings and overhangs.                                                                     |
+| Body velocity, forces, impulses and teleporting        | Yes                   | Yes                         | Native `gpu.body()` handles or indexed solver methods in both dimensions; live GPU poses.                                                                                                                     |
+| Batched body commands and packed velocity edits        | Yes                   | Yes                         | `editBodies()` groups motion and property edits; packed linear/angular updates use one dispatch.                                                                                                              |
+| Automatic Babylon stepping and disposal                | Yes                   | Yes                         | `AvbdPhysics` or native `gpu.attachToScene(scene)` in either dimension.                                                                                                                                       |
+| Manual fixed steps / worker execution                  | Yes                   | Yes                         | No renderer or DOM dependency in either solver.                                                                                                                                                               |
+| Mobile browsers with WebGPU                            | Yes                   | Yes                         | Verified on Android Brave. Babylon's async factory and the scene browser prepare 3D automatically; native 3D apps use `validate3D:true` or `prepareWebGPUDevice3D()`. Requires WebGPU and HTTPS or localhost. |
+| Automatic grid / HPLOC++ choice                        | Yes                   | Grid                        | 3D auto selection uses body sizes and workload.                                                                                                                                                               |
+| GPU work sharing                                       | Yes                   | Yes                         | Retains the configured physics and iteration counts.                                                                                                                                                          |
+| Mesh / instance rendering                              | Yes                   | Yes                         | Use batch drawing for large scenes; portable builders do not create meshes.                                                                                                                                   |
+| Direct GPU pose drawing                                | Yes                   | Yes                         | Renderer and solver must share a GPUDevice. Body layouts differ by dimension.                                                                                                                                 |
+| Ball joints / planar hinges                            | Yes                   | Yes                         | 3D `addJoint()`; 2D joint with free angular row.                                                                                                                                                              |
+| World anchors                                          | Yes                   | Yes                         | Null body A in 3D; body index `-1` in 2D.                                                                                                                                                                     |
+| Welds and breakable joints                             | Yes                   | Yes                         | 3D `addWeld()`; 2D joint with all three rows locked and optional `breakForce`.                                                                                                                                |
+| Springs, linked ropes and ragdolls                     | Yes                   | Yes                         | 3D helpers; 2D bodies linked with joints/springs.                                                                                                                                                             |
+| Hinges                                                 | Axis + angle limits   | Planar + angle limits       | `addHinge()` in both dimensions; optional angle bounds relative to creation.                                                                                                                                  |
+| Torque-limited motors                                  | Yes                   | Yes                         | Both dimensions expose motor handles and live `gpu.setMotor()` controls.                                                                                                                                      |
+| Elastic / tearable fabric                              | Yes                   | Build spring networks       | 3D `addFabric()` has point collisions and tensile fracture. The demo preserves material after tearing.                                                                                                        |
+| Per-body sleeping / waking                             | Yes                   | Yes                         | World `sleeping`, body `allowSleep`, live `setSleepEnabled()`; supported bodies rest, impacts wake them.                                                                                                      |
+| Restitution / bounce                                   | Yes                   | Yes                         | Coefficient 0..1. Zero adds no bounce passes.                                                                                                                                                                 |
+| Collision masks                                        | Yes                   | Yes                         | Both bodies must allow the pair. Includes sensors.                                                                                                                                                            |
+| Contact / trigger events                               | Yes                   | Yes                         | Babylon `onContact()`; native `gpu.watchContacts()` + `readContactEvents()` in both dimensions.                                                                                                               |
+| Non-solving triggers                                   | Yes                   | Yes                         | `isTrigger:true`; no contact forces. Static–static pairs are not scanned.                                                                                                                                     |
+| Raycasts                                               | Yes                   | Yes                         | `physics.raycast()` or portable `gpu.raycast()`; masks and ignored bodies.                                                                                                                                    |
+| Sphere / circle casts                                  | Yes                   | Yes                         | 3D `sphereCast()`; 2D `circleCast()`; exact rounded corner tests.                                                                                                                                             |
+| Continuous collision detection                         | No                    | No                          | Discrete contacts; timestep matters for fast objects.                                                                                                                                                         |
+| Full Babylon Physics V2 / Havok plugin                 | No                    | No                          | Use AVBD aggregates, rather than `scene.enablePhysics()`.                                                                                                                                                     |
 
 See the [API reference](docs/BABYLON_API.md) and [GPU validation guide](tests/README.md)
 for supported methods, numerical checks and limitations.
 
 ## Playable feature demos
 
+Also try [ships, waves and sinking](index.html?demo=naval),
+[hills, caves and overhangs](index.html?demo=canonical&scene=3d-static-terrain&backend=gpu)
+and the [interactive worker comparison](tests/workers.html).
+
+Three more physics playgrounds offer thousands of independently simulated bodies:
+
+| Playground                                                                    | What you can do                                                                                                                                                                                                                                    |
+| ----------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Tornado town](index.html?demo=canonical&scene=3d-tornado-town&backend=gpu)   | Send swirling wind through twenty houses made from 4,400 breakable pieces. Stop the wind and let debris settle. The visible funnel marks an analytic wind field.                                                                                   |
+| [Domino spiral](index.html?demo=canonical&scene=3d-domino-spiral&backend=gpu) | Start a chain reaction through 2,048 tiles, or drag tiles to make your own branches.                                                                                                                                                               |
+| [Galton board](index.html?demo=canonical&scene=3d-marble-cascade&backend=gpu) | Open the visible hopper to release 40,000 marbles through twenty staggered rows of pegs into thirty-three bins in a shallow board. Gravity and collisions control the discharge and spread. Watch the live bin chart, shake the board or reset it. |
+
+These scenes support direct WebGPU and Babylon thin-instance drawing, dedicated
+workers and optional shared input. The force-field demo adds one GPU pass to the
+existing physics command buffer; positions stay on the GPU. CPU compatibility
+also retains the actions, with the expected cost of simulating thousands of bodies.
+The main scene browser and the naval demo default to a dedicated worker when
+OffscreenCanvas is available. Physics and drawing run in the worker while the
+scene selector and controls stay on the page. Choose Main thread, or add
+`scope=main` to the scene URL, to compare execution. Specialized scene editors
+are available through the scene editing link in the sidebar.
+
+Every AVBD example has a Sleeping toggle for comparing the same scene with and
+without sleeping. Large rigid scenes enable it by default. Add `sleeping=1` or
+`sleeping=0` to choose explicitly; moving water and wind still keep affected
+bodies awake. The half-million wall demos keep the original two-ball benchmark
+until you click **Bowl every row**, which launches balls into all sixteen lanes.
+
+The Galton board runs fixed physics steps against elapsed time, catching up
+across frames when needed. Catch-up is bounded when the GPU is overloaded.
+Click or tap a peg to retract it; its coral cap restores it. **Restore all pegs**
+returns the original layout without releasing the hopper or resuming a paused
+simulation. Peg movements and collision-filter changes are batched GPU edits.
+[Playground checks](test-results/playgrounds.json) cover standing structures,
+chain propagation, the 40,000-marble distribution and worker rendering. Run `npm run test:playgrounds`.
+
+![Tornado crossing a breakable neighborhood](test-results/screenshots/3d-tornado-town.png)
+![A spiral of falling dominoes](test-results/screenshots/3d-domino-spiral.png)
+![Thousands of marbles falling through a Galton board](test-results/screenshots/3d-marble-cascade-flow.png)
+
 Run `npm start` and open the links below. Every scene uses GPU physics. The
 [scene browser and benchmark](tests/performance.html)
-includes all 68 presets and lets you play them before measuring performance.
+includes all presets and lets you play them before measuring performance.
 The [scene check report](test-results/report.html) contains
 screenshots and results after `npm run test:web`.
 
@@ -945,8 +1056,8 @@ export async function createDirectGpuExample(canvas, count = 4096) {
 
 The helper renders centered **boxes** in GPU order, including the floor. Hulls,
 capsules and other graphics need their own geometry and any center/principal-frame
-conversion. The [demo renderer](demo/canonicalRenderer.js) shows those paths.
-2D uses a different packed layout; see [the 2D renderer](demo/gpuRenderer2D.js).
+conversion. The [demo renderer](demo/shared/rendering/canonicalRenderer.js) shows those paths.
+2D uses a different packed layout; see [the 2D renderer](demo/shared/rendering/gpuRenderer2D.js).
 
 For an existing Babylon world, pass `() => physics.getRenderBinding(device)`
 to `createGpuBoxRenderer()`. Configure that world with `syncMeshes: false` and
@@ -1030,23 +1141,23 @@ the same `readSelectedBodies()` calls instead. Supply `{ device }` when sharing
 an existing WebGPU renderer's device; the pipeline then leaves that device alive
 on disposal. Existing `scene.createSolver(device)` calls remain supported.
 
-The scene browser and browser benchmark also include an **experimental WebGL2
-solver for repository comparisons**. It is excluded from the npm package and
+The browser benchmark includes an **experimental WebGL2
+solver for repository comparisons**. Playable demos offer WebGPU and CPU. WebGL2 is excluded from the npm package and
 cannot be selected through the published `createSolverPipeline()` API. Its
 measured performance was too poor for a production backend; see the
 [side-by-side results](#backend-differences-and-benchmarks).
 
 The [slingshot siege](https://babylon-avbd.netlify.app/?demo=slingshot) also has
-a physics selector. CPU and experimental WebGL2 modes include the same ropes, motors, breakable joints,
+a physics selector. CPU and WebGPU modes include the same ropes, motors, breakable joints,
 collision masks, sensors and bounce, with all three fort sizes available.
-It draws with Canvas 2D and does not require WebGPU.
+CPU mode draws with Canvas 2D and does not require WebGPU.
 
-| Experimental WebGL2 demo with Babylon WebGL drawing                                          | Experimental WebGL2 cloth points and springs                                                 |
-| ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
-| ![WebGL2 box stack](test-results/screenshots/webgl2-3d-stack.png)                  | ![WebGL2 tearable cloth](test-results/screenshots/webgl2-3d-tearable-cloth.png) |
+| Experimental WebGL2 benchmark preview with Babylon WebGL drawing  | Experimental WebGL2 cloth benchmark preview                                     |
+| ----------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| ![WebGL2 box stack](test-results/screenshots/webgl2-3d-stack.png) | ![WebGL2 tearable cloth](test-results/screenshots/webgl2-3d-tearable-cloth.png) |
 
 [Slingshot compatibility checks](test-results/cpu-slingshot.json) cover launching,
-boosting and adding another ball on all three backends.
+boosting and adding another ball on CPU and WebGPU.
 
 The [shared API checks](test-results/backend-contract.json) run the same 2D/3D
 operations on the published CPU and WebGPU backends. Separate [experimental WebGL2 checks](test-results/webgl-contract.json) include cloth points, live constraint frames, sensors, masks, restitution and sleeping. The [CPU scene checks](test-results/cpu-demos.json)
@@ -1071,26 +1182,26 @@ describes the repository experiment, which remains playable in the demos and
 is **excluded from the npm package**. The same scene commands are used in these
 comparisons; execution, rendering and memory costs differ.
 
-| Capability | WebGPU (default) | WebGL2 (experimental demo only) | CPU |
-| --- | --- | --- | --- |
-| Included in the npm package | Yes | No | Yes |
-| 2D/3D colliders, joints, welds, springs, cloth, motors and limits | Supported | Supported | Supported |
-| Bounce, triggers, masks, sleeping and batched body commands | Supported | Supported | Supported |
-| Simulation collision detection and AVBD solving | GPU compute | GPU texture/draw passes | JavaScript on the CPU |
-| Direct drawing from public GPU pose buffers | Yes; renderer shares the GPU device | Poses must be downloaded | Renderer reads CPU poses |
-| Selected body reads | GPU gathers requested bodies | GPU gathers requested bodies | Copies requested CPU records |
-| Ray and circle/sphere casts | GPU queries | Downloads current poses, then CPU queries | CPU queries |
-| Contact events | GPU results downloaded when enabled | GPU results downloaded when enabled | CPU results |
-| Babylon aggregate API (`AvbdPhysics`, `AvbdPhysicsAggregate`) | Supported | Use native worlds and synchronize renderer poses | Use native worlds and synchronize renderer poses |
-| Native worlds with Babylon or another renderer | Supported | Supported | Supported |
-| Module workers | WebGPU device in worker | Offscreen WebGL2 compute context in worker | JavaScript worker |
-| Large-scene limits | GPU buffer limits and available memory | More memory per candidate; default 2 GiB contact-texture budget | Browser memory and CPU time |
+| Capability                                                        | WebGPU (default)                       | WebGL2 (experimental benchmark only)                            | CPU                                              |
+| ----------------------------------------------------------------- | -------------------------------------- | --------------------------------------------------------------- | ------------------------------------------------ |
+| Included in the npm package                                       | Yes                                    | No                                                              | Yes                                              |
+| 2D/3D colliders, joints, welds, springs, cloth, motors and limits | Supported                              | Supported                                                       | Supported                                        |
+| Bounce, triggers, masks, sleeping and batched body commands       | Supported                              | Supported                                                       | Supported                                        |
+| Simulation collision detection and AVBD solving                   | GPU compute                            | GPU texture/draw passes                                         | JavaScript on the CPU                            |
+| Direct drawing from public GPU pose buffers                       | Yes; renderer shares the GPU device    | Poses must be downloaded                                        | Renderer reads CPU poses                         |
+| Selected body reads                                               | GPU gathers requested bodies           | GPU gathers requested bodies                                    | Copies requested CPU records                     |
+| Ray and circle/sphere casts                                       | GPU queries                            | Downloads current poses, then CPU queries                       | CPU queries                                      |
+| Contact events                                                    | GPU results downloaded when enabled    | GPU results downloaded when enabled                             | CPU results                                      |
+| Babylon aggregate API (`AvbdPhysics`, `AvbdPhysicsAggregate`)     | Supported                              | Use native worlds and synchronize renderer poses                | Use native worlds and synchronize renderer poses |
+| Native worlds with Babylon or another renderer                    | Supported                              | Supported                                                       | Supported                                        |
+| Module workers                                                    | WebGPU device in worker                | Offscreen WebGL2 compute context in worker                      | JavaScript worker                                |
+| Large-scene limits                                                | GPU buffer limits and available memory | More memory per candidate; default 2 GiB contact-texture budget | Browser memory and CPU time                      |
 
 WebGPU is the best starting point for large scenes and direct GPU rendering.
 CPU can be quicker for a handful of objects because it avoids GPU submission
 costs. The WebGL2 experiment needs `EXT_color_buffer_float` and uses more memory
 than WebGPU.
-The 100K and half-million demos can exceed WebGL2's default budget. Increasing
+The 100K and half-million benchmarks can exceed WebGL2's default budget. Increasing
 `maxTextureBytes` only helps when the device has enough memory.
 
 <!-- backend-comparison-results -->
@@ -1103,12 +1214,12 @@ per scene and backend**. Drawing and sleeping are disabled.
 
 **Mean physics time per step — lower is faster:**
 
-| Scene | Objects, including fixed bodies | Iterations | WebGPU: GPU ms | Experimental WebGL2: GPU ms | CPU: JavaScript ms |
-| --- | ---: | ---: | ---: | ---: | ---: |
-| [2D stack](index.html?demo=canonical&scene=2d-stack&backend=gpu) | 21 | 10 | 1.810 | 38.241 | 0.299 |
-| [2D joint grid](index.html?demo=canonical&scene=2d-joint-grid&backend=gpu) | 625 | 10 | 3.614 | 51.396 | 4.323 |
-| [3D stack](index.html?demo=canonical&scene=3d-stack&backend=gpu) | 11 | 10 | 2.862 | 25.716 | 0.794 |
-| [3D pyramid](index.html?demo=canonical&scene=3d-pyramid&backend=gpu) | 137 | 10 | 4.056 | 57.057 | 14.776 |
+| Scene                                                                      | Objects, including fixed bodies | Iterations | WebGPU: GPU ms | Experimental WebGL2: GPU ms | CPU: JavaScript ms |
+| -------------------------------------------------------------------------- | ------------------------------: | ---------: | -------------: | --------------------------: | -----------------: |
+| [2D stack](index.html?demo=canonical&scene=2d-stack&backend=gpu)           |                              21 |         10 |          1.810 |                      38.241 |              0.299 |
+| [2D joint grid](index.html?demo=canonical&scene=2d-joint-grid&backend=gpu) |                             625 |         10 |          3.614 |                      51.396 |              4.323 |
+| [3D stack](index.html?demo=canonical&scene=3d-stack&backend=gpu)           |                              11 |         10 |          2.862 |                      25.716 |              0.794 |
+| [3D pyramid](index.html?demo=canonical&scene=3d-pyramid&backend=gpu)       |                             137 |         10 |          4.056 |                      57.057 |             14.776 |
 
 GPU columns measure the GPU interval for collisions, scheduling and solving.
 The CPU column measures JavaScript executing the complete physics step.
@@ -1117,12 +1228,12 @@ are physics timings; a rendered frame also needs CPU submission and drawing.
 
 **Additional JavaScript time to submit GPU work, in ms per step:**
 
-| Scene | WebGPU submission | Experimental WebGL2 submission |
-| --- | ---: | ---: |
-| 2D stack | 0.164 | 41.617 |
-| 2D joint grid | 0.197 | 55.267 |
-| 3D stack | 0.207 | 27.073 |
-| 3D pyramid | 0.666 | 54.471 |
+| Scene         | WebGPU submission | Experimental WebGL2 submission |
+| ------------- | ----------------: | -----------------------------: |
+| 2D stack      |             0.164 |                         41.617 |
+| 2D joint grid |             0.197 |                         55.267 |
+| 3D stack      |             0.207 |                         27.073 |
+| 3D pyramid    |             0.666 |                         54.471 |
 
 Submission can overlap GPU execution, so these two tables should not be added
 together or converted directly into FPS. The raw report also records the
@@ -1133,7 +1244,7 @@ joint grid and the 137-object pyramid. The crossover depends on contact density
 and joints as well as object count. WebGL2 is the slowest of the three in these
 runs; its many texture/draw passes carry substantial CPU submission overhead.
 Its performance was too poor for inclusion in the main package. WebGL2 remains
-available as an experimental demo/benchmark backend; WebGPU is the default and
+available in the experimental benchmark; WebGPU is the default and
 CPU is the packaged compatibility option.
 
 <!-- /backend-comparison-results -->
@@ -1380,6 +1491,10 @@ until the next step, read or query. `flushEdits()` applies them without advancin
 time. Batch motor changes by calling `setMotor()` for each motor and stepping
 once; the uploads touch the target fields and preserve live constraint forces.
 Removing or reusing a constraint applies its earlier edits first.
+
+WebGPU also reuses its solver-setting upload storage. Unchanged settings stay
+on the GPU; live changes to gravity, timestep, wind and solver options are
+uploaded automatically. This applies to both native and Babylon integrations.
 
 For frequent velocity updates, use packed arrays. This submits one dispatch,
 after flushing earlier queued edits. Each index must be a unique GPU slot in
@@ -1678,7 +1793,7 @@ For the complete rendered presets, open [Rope](index.html?demo=canonical&scene=3
 [Ragdolls on a rigid net](index.html?demo=canonical&scene=showcase-ragdolls-on-cloth-24k&backend=gpu),
 [Breakable](index.html?demo=canonical&scene=3d-breakable&backend=gpu)
 and [Castle siege](index.html?demo=cannon). The
-[castle builder](demo/castleScene.js) shows connected mortar and roof joints.
+[castle builder](demo/castle/scene.js) shows connected mortar and roof joints.
 
 ### Tearable cloth
 
@@ -1754,9 +1869,9 @@ one per simulated point. Intact edges stretch together; broken edges keep each
 point's share of the material, following its live pose. Detached patches remain
 visible and physical indefinitely. There is no automatic debris lifetime.
 This is a point-sampled cloth model, not an independent rigid-body shard model.
-The web demo's [cloth renderer](demo/tearableClothRenderer.js) reads those
+The web demo's [cloth renderer](demo/tearable-cloth/renderer.js) reads those
 stiffness values on the GPU, so drawing does not download cloth poses or joint
-states. Its [scene builder](demo/tearableClothScene.js) records which
+states. Its [scene builder](demo/tearable-cloth/scene.js) records which
 connections support each triangle. The renderer is application code, excluded
 from the package.
 
@@ -1983,7 +2098,8 @@ physics.setGravity(new Vector3(0, -9.81, 0));
 Commands apply at the next step against live GPU mass, inertia and position.
 Impulses queued for the same body are combined. Omitting the application point
 applies an impulse through the center of mass. Teleport retains velocity unless
-you also set it. To remove an object, dispose its aggregate and its mesh:
+you also set it; omitting the quaternion preserves the live GPU rotation.
+The position is the mesh origin. To remove an object, dispose its aggregate and its mesh:
 
 ```js
 fallingBox.dispose(); // removes collisions; does not dispose the visual mesh
@@ -2086,7 +2202,13 @@ console.log(await physics.readSleepStats());
 ```
 
 Impulses, teleports, constraint edits, new bodies and removed supports wake the
-world. Impacts and moving joint endpoints also wake it conservatively. Under
+world. Jointless desktop WebGPU worlds with at least 4,096 bodies automatically track conservative connected
+groups, so an impact wakes the touched group while unrelated piles stay asleep.
+The static floor does not connect separate piles. Connections persist while
+bodies sleep and reset on explicit world edits; a group can therefore include
+objects that touched earlier. Smaller worlds and mobile compatibility paths use
+whole-world impact waking. Set `sleeping: { islands: true }` to opt into connected
+groups in a smaller 3D world, or `islands: false` to use whole-world waking. Under
 gravity, unsupported slow-moving bodies stay awake; supports extend upward
 through resting contacts. This does not guarantee that every suspended or
 jointed object will sleep. Sleeping is off by default unless a body explicitly
@@ -2094,6 +2216,32 @@ opts in with `allowSleep:true` or `setSleepEnabled(true)`. Enabling it on the
 world makes bodies eligible by default; `allowSleep:false` excludes a body.
 Paper comparisons keep sleeping disabled. Portable 3D solvers accept these
 same world and initial-body options.
+
+Small jointless 3D worlds with up to 32 bodies also batch all movement iterations
+into one GPU workgroup. Body poses stay in shared memory; contacts remain in GPU
+storage. The equations, contact order, lane reductions and iteration count stay
+the same. Adding bodies beyond that limit or adding a joint automatically selects
+the ordinary movement pipeline. Mobile compatibility paths retain their qualified
+pipeline. `smallGroups: false` disables this batching for a controlled comparison.
+
+In two RTX 4070 Laptop GPU runs of the half-million-wall scene, connected-group
+waking took **9.90–10.14 ms** per later impact step, versus **55.05–55.28 ms**
+with whole-world waking. Both used four iterations and the same sleep thresholds;
+457,095 bricks remained asleep with connected groups. Fully awake steps took
+53.91–54.24 ms with connected groups and 53.39 ms with whole-world waking.
+These numbers include sleep checks and exclude drawing. This is a sleeping
+comparison, separate from the paper's awake workload. See the
+[measurements](test-results/connected-sleep-performance.json) and
+[visual comparison](test-results/solver-performance.html).
+
+![Half-million wall physics times with whole-world and connected-group waking on an RTX 4070 Laptop GPU](test-results/screenshots/solver-connected-sleep-1440.png)
+
+```sh
+# From a repository checkout: two runs, 480 steps per world, 4 iterations, no drawing.
+npm run benchmark:connected-sleep
+# Compare identical small-world physics with separate and batched movement.
+npm run benchmark:small-groups
+```
 
 The [browser performance page](tests/performance.html) has a separate sleeping
 benchmark, including the cost of sleep checks while bodies are awake. It reports
@@ -2412,11 +2560,19 @@ checks, and shows the cost while every body is awake as well as after settling.
 
 After `npm start`, open [Slingshot siege](index.html?demo=slingshot).
 Pull the red ball back and release; Space fires, Next ball reloads and Rebuild
-restores the forts. Choose 1,000, 5,000 or 10,000 bricks. Target counts and bricks
+restores the forts. A dashed trajectory line follows your aim; the full game
+also marks the first predicted obstacle using batched circle casts. Mouse and
+touch dragging work in the full game and the worker comparison view, including
+shared input. Choose 1,000, 5,000 or 10,000 bricks. Larger scenes use finer courses
+with the same practical building height. Select a target and press
+**Aim at target** for a high arc, or aim manually. Targets turn gold when
+knocked out by strong hits from the ball, falling debris, or a long fall.
+Smaller impacts accumulate damage, and defeated enemies stay defeated. Clear
+every target to win. Target counts and bricks
 moved show the impact; the collapsible display shows frame rate, contacts,
 sleeping bodies and drawing time. Toggle Sleeping to compare the same scene.
 Scroll to zoom; Shift-drag pans the view. Boost gives each launched ball one
-extra impulse and a short thrust. The fixed timestep is 1/120 second with ten
+extra impulse and a short thrust. The fixed timestep is 1/120 second with sixteen
 solver rounds; the meter shows the actual physics rate alongside frame rate.
 
 The level uses every supported category of 2D physics:
@@ -2425,7 +2581,7 @@ The level uses every supported category of 2D physics:
 | ----------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
 | Boxes, circles, capsules, convex hulls, segments and planes | Bricks, balls, chain links, roof tiles, launcher and ground                                                                                   |
 | Joints, world anchors and ropes                             | Hanging targets and linked ragdoll limbs                                                                                                      |
-| Welds and fracture                                          | Small masonry panels and roof tiles use locked joints with a break force; impacts break the mortar                                            |
+| Welds and fracture                                          | Connected masonry walls, foundations and roof tiles use locked joints with a break force; impacts break the mortar                            |
 | Springs                                                     | Elastic platforms under the small ragdolls                                                                                                    |
 | Limited hinges and motors                                   | Powered blue gates reverse at their angle stops; toggle Powered gates                                                                         |
 | Friction and restitution                                    | Bricks grip their supports; Bouncy ball changes the projectile's bounce                                                                       |
@@ -2438,8 +2594,8 @@ The renderer draws the GPU body buffer directly. Periodic diagnostic copies coun
 moved bricks, update gate controls and show broken supports; drawing does not
 download poses. Aiming queries run only while aiming. Predictions sample the
 current scene and do not provide continuous collision detection.
-The source is in `demo/slingshotScene2D.js` (level construction) and
-`demo/slingshotDemo.js` (GPU controls, events and queries).
+The source is in `demo/slingshot/scene.js` (level construction) and
+`demo/slingshot/index.js` (GPU controls, events and queries).
 Its `2d-slingshot-siege` scene is also in the all-scene benchmark,
 which keeps sleeping off for consistent solver measurements.
 
@@ -2554,6 +2710,388 @@ setup and submission off the UI thread; they do not accelerate GPU kernels.
 For large scenes, keep direct GPU rendering in that worker instead of copying
 every pose back to the page.
 
+## Static terrain: hills, caves and overhangs
+
+The 32-vertex limit applies to one convex collider. A terrain can contain many
+small static pieces, preserving hills, concavities, openings and overhangs.
+Play [Hills, cave and overhang](index.html?demo=canonical&scene=3d-static-terrain&backend=gpu).
+
+![Rigid bodies on a heightfield beside an open stone shelter](test-results/screenshots/3d-static-terrain-gpu.png)
+
+Heightfields use two triangular prisms per grid cell, extending to a solid base.
+Mesh terrain uses one thin prism per nondegenerate triangle, with backing behind
+the triangle's winding. The original front surface stays at the supplied vertices.
+Both use the existing GPU convex contacts and grid/HPLOC collision search; this
+is a tiled collision representation, not a dedicated triangle-mesh collision kernel.
+Internal tile edges can influence sliding contacts. Choose a collision mesh with
+enough detail for the bodies it supports, rather than using every rendering triangle.
+
+```js
+import { AvbdScene3D, createSolverPipeline } from "avbd-babylon/native";
+
+const scene = new AvbdScene3D({ timeStep: 1 / 120, iterations: 5 }); // y up
+const columns = 65,
+  rows = 65;
+const heights = Float32Array.from({ length: columns * rows }, (_, i) => {
+  const x = i % columns,
+    z = Math.floor(i / columns);
+  return 2 * Math.sin(x / 12) * Math.cos(z / 15);
+});
+const terrain = scene.addHeightfield({
+  heights,
+  columns,
+  rows,
+  spacing: 2,
+  origin: [-64, 0, -64],
+  baseHeight: -5,
+  friction: 0.65,
+  // Optional holes: one nonzero entry per cell removes both triangles.
+});
+scene.addSphere(0.5, { position: [0, 8, 0] });
+const pipeline = await createSolverPipeline({ backend: "webgpu" });
+const solver = scene.createSolver(pipeline, { broadphase: "hploc" });
+solver.advance(1 / 60); // two fixed steps
+// terrain.dispose(); disables collisions without shifting body indices.
+// pipeline.destroy(); releases the solver and its owned GPU device.
+```
+
+For an arbitrary static mesh, use world-space vertices and triangle indices:
+
+```js
+const cave = scene.addStaticMesh({
+  positions: collisionVertices, // xyz triples; concave geometry is retained
+  indices: collisionIndices, // omit for nonindexed triangles
+  thickness: 0.15, // finite backing, in world units
+  friction: 0.6,
+});
+```
+
+Add terrain before creating the solver. Static mesh backing is finite; it does
+not fill an entire mountain or implement continuous collision detection. Heights
+are row-major, `origin` offsets the grid, and `upAxis` defaults to 1 (Y); use 2
+for Z-up worlds. Terrain also works with the CPU pipeline, with higher costs.
+
+Terrain cooking uses each triangle prism's known topology and computes its mass
+properties in a local frame. All source triangles and their backing thickness
+are retained, including caves and overhangs.
+
+In a Babylon world, the same heightfield helper is available. An existing Babylon
+mesh can supply its triangles directly, including its current world transform:
+
+Keep the original mesh visible. `addStaticMesh()` cooks its triangles into static
+collision pieces; it does not replace the rendered asset with those pieces or
+turn a cave into one solid convex hull. The terrain demo draws the original
+ground and cave surfaces with smooth lighting, while the collision pieces stay
+hidden. Its **Load OBJ or terrain JSON** control accepts OBJ files (Y up) or JSON containing
+`positions` and `indices` (Z up), centered and scaled for the preview. The demo
+import is limited to 10,000 triangles; production projects can load assets with
+their usual Babylon loader and pass the resulting mesh to the helper below.
+
+```js
+const physics = await AvbdPhysics.create({
+  scene: babylonScene,
+  capacity: 20_000, // includes terrain pieces and dynamic bodies
+});
+const ground = physics.addStaticMesh(groundMesh, {
+  thickness: 0.2,
+  friction: 0.7,
+});
+// Or: physics.addHeightfield({ heights, columns, rows, spacing: 2 });
+// Add dynamic aggregates before the first render/initialize.
+// ground.dispose(); removes collision participation; groundMesh remains yours.
+```
+
+Terrain is static and does not follow later mesh edits. Each piece has a body
+identity for masks, contacts and queries; there is no per-frame mesh synchronization
+for terrain. Reserve enough `capacity` before initialization. For large assets,
+`cookHeightfield()` and `cookStaticMesh()` return serializable geometry that can
+be prepared in another worker and registered with `addTerrain(cooked, material)`.
+Cooking happens once, outside the simulation loop.
+
+![Smooth hills and an open rock cave, with hidden collision pieces](test-results/screenshots/terrain-organic.png)
+
+The Babylon mesh helper uses vertex normals to keep the backing behind the
+visible surface, including mirrored transforms. Meshes without normals use
+their triangle winding to define the front surface.
+
+## Ships, water and destruction
+
+Play [Little ships, big trouble](index.html?demo=naval). Two composite ships trade
+cannon fire on a 128 × 128 shallow-water grid. Individual planks, deck strips,
+cabins and masts are welded rigid bodies. Hits release nearby pieces and leave hull
+openings. Each member's own submerged solid volume produces buoyancy; welds
+combine the lift from wooden pieces to support a dense keel. Released wood
+retains its buoyancy while the unsupported keel sinks. There is no flooding
+timer or trapped-air multiplier. Hull fragments persist until Reset.
+
+![Two composite ships on simulated water](test-results/screenshots/naval-afloat.png)
+![A ship breaking against the island](test-results/screenshots/naval-island.png)
+![Detached wood floating above a sunken keel](test-results/screenshots/naval-separated.png)
+
+Water height and flow feed four buoyancy samples per piece. Lift, drag and their
+lever arms produce translation, pitch and roll. Water, ship forces, damage and
+AVBD collisions run on WebGPU; drawing reads GPU poses directly. Wakes use
+approximate momentum forcing. This surface-water model does not resolve detailed
+underwater flow or watertight fluid inside arbitrary mesh interiors.
+
+The rocky island has real static collision shapes. Hard contact loads can break
+the hull's welds. Use the island buttons to drive either ship ashore, or release
+the Coral hull's welds to compare floating wood with its sinking keel. Each sail
+is a spring-connected cloth grid attached to its yard and pushed by gusting wind.
+Sail particles have lightweight, buoyant material with an effective displacement
+thickness, so detached fabric floats and drifts rather than sinking. Water drag
+damps submerged fabric, and submerged portions receive less wind force.
+
+The demo defaults to a dedicated worker when OffscreenCanvas is available. Its
+scope selector also offers main-thread execution and optional shared input.
+Automatic solid-collision selection uses HPLOC for this scene’s mix of large
+island rocks, ship parts and small sail particles. The existing joint graph is
+colored at startup to avoid unnecessary solver dispatches; live contacts still
+use GPU coloring. Both explicit grid and HPLOC modes remain available.
+See the [scene builder](demo/naval/scene.js), [water integration](demo/naval/water.js)
+and [water/force shader](demo/naval/water.wgsl). These are demo components; the
+general package API remains the rigid-body and constraint API.
+
+```sh
+npm run test:naval       # settling, cannon impacts, grounding and floating debris
+npm run benchmark:naval  # matched grid / HPLOC physics, water and drawing timings
+```
+
+## Worker and shared-memory benchmarks
+
+Open the [interactive worker comparison](tests/workers.html). It can play the
+canonical scenes using direct GPU drawing or Babylon WebGPU thin instances,
+with physics and drawing together on the page or in a dedicated worker. CPU
+comparisons use Canvas 2D drawing in 2D and WebGPU drawing with pose uploads in
+3D. CPU 2D worker execution does not require WebGPU.
+
+The scene browser and slingshot demo include an Execution selector that opens
+the matching scene in this worker play/benchmark view. Main thread, dedicated
+worker and shared-input worker can each be played or measured individually.
+The shared-input choice appears only when the host supports SharedArrayBuffer
+and cross-origin isolation. The Full scene controls link returns to the demo.
+
+The main benefit of a CPU worker is responsive controls. It runs the same solver;
+moving it to a worker does not turn it into a parallel solver. The tables below
+show simulation time and page responsiveness separately. Shared input had no
+consistent additional speed advantage in these runs. Measurements include
+the naval scene, 100K boxes, a 10K 2D pile and Babylon rendering:
+[recorded results](test-results/worker-performance.json).
+
+Worker timings are estimates and can fluctuate with browser scheduling,
+background activity and GPU clock speeds. Repeat runs before judging small
+differences. Workers are generally less affected by busy page controls and other
+main-thread work, so updates can be steadier. They still share the computer’s
+resources and do not guarantee faster or more consistent GPU timings.
+
+<!-- worker-results:start -->
+Physics per step / drawing per frame, in **milliseconds**. Each cell shows the range of the two runs’ medians. Compare execution modes within a row; different rows use different workloads.
+
+| Scene · physics · drawing | Main thread | Dedicated worker | Worker + shared input |
+| --- | ---: | ---: | ---: |
+| Hills and overhang · WebGPU · Direct drawing | 1.12–3.53 / 0.03–0.09 | 0.75–0.79 / 0.02 | 1.74–2.26 / 0.05 |
+| Ships, island and cloth sails · WebGPU · Direct drawing | 2.31–3.19 / 0.11–0.19 | 1.97–2.03 / 0.14–0.16 | 2.06–2.10 / 0.11 |
+| 100K box columns · WebGPU · Direct drawing | 3.05–3.13 / 1.02 | 3.02–3.38 / 1.02–1.05 | 3.06–3.32 / 1.02–1.07 |
+| 10K 2D pile · WebGPU · Direct drawing | 3.28–4.35 / 0.02–0.03 | 4.22–4.47 / 0.03 | 3.40–4.49 / 0.02–0.03 |
+| 3D pyramid · WebGPU · Babylon thin instances | 1.82–2.06 / 0.09 | 1.60–2.53 / 0.15 | 2.13–2.14 / 0.10 |
+| 2D pyramid · WebGPU · Babylon thin instances | 2.57–2.64 / 0.09–0.12 | 3.19–3.23 / 0.12–0.13 | 3.08–3.10 / 0.12 |
+| 3D pyramid · CPU · Direct drawing | 15.66–17.55 / 0.05 | 15.57–17.80 / 0.05–0.08 | 17.37–18.38 / 0.06–0.08 |
+| 2D joint grid · CPU · Canvas 2D | 4.96–5.20 / 0.57–0.62 | 4.97–5.19 / 0.58–0.68 | 4.49–4.74 / 0.58–0.64 |
+
+Page delay p95, in **milliseconds**. Lower means the page’s controls get more frequent opportunities to respond. This includes browser timer scheduling.
+
+| Scene · physics · drawing | Main thread | Dedicated worker | Worker + shared input |
+| --- | ---: | ---: | ---: |
+| Hills and overhang · WebGPU · Direct drawing | 1.40–1.53 | 1.04–1.12 | 1.14–1.20 |
+| Ships, island and cloth sails · WebGPU · Direct drawing | 1.10–1.66 | 1.08–1.38 | 1.17–1.36 |
+| 100K box columns · WebGPU · Direct drawing | 1.45–1.58 | 1.00–1.18 | 0.98–1.29 |
+| 10K 2D pile · WebGPU · Direct drawing | 1.29–1.54 | 1.04–1.36 | 0.93–1.14 |
+| 3D pyramid · WebGPU · Babylon thin instances | 1.54–1.75 | 1.34–1.51 | 1.03–1.08 |
+| 2D pyramid · WebGPU · Babylon thin instances | 1.65–1.75 | 1.22–1.26 | 1.05–1.57 |
+| 3D pyramid · CPU · Direct drawing | 19.54–20.61 | 1.09–1.18 | 1.01–1.24 |
+| 2D joint grid · CPU · Canvas 2D | 6.42–7.08 | 1.13–1.64 | 1.11–1.60 |
+
+Recorded on **Intel Core Ultra 7 155H / RTX 4070 Laptop GPU**. All modes use the same scene, timestep, iterations, canvas and renderer. Physics and rendering run together in the selected scope. SharedArrayBuffer carries input only; it does not share GPU buffers or parallelize the solver.
+<!-- worker-results:end -->
+
+![Worker comparisons with recorded CPU physics and page-delay results](test-results/screenshots/workers.png)
+
+![Main-thread, worker and shared-input timings for direct and Babylon drawing](test-results/screenshots/solver-workers-1440.png)
+
+```sh
+npm run benchmark:workers
+npm run test:workers
+```
+
+The comparison warms up for 30 frames and measures 120 frames at one physics
+step per frame. It sends 120 pointer updates per second; main, message-worker
+and shared-input modes use the same scene, canvas, timestep and iterations.
+WebGPU times come from GPU timestamps; CPU physics uses wall-clock timing.
+Repeat on the target device before choosing a mode.
+
+Shared input uses a small atomic mailbox for the latest pointer position and
+wheel total. Clicks, taps, keys, resize and commands are forwarded separately.
+Discrete event boundaries prevent newer pointer positions from overtaking a
+click. Shared memory does not share GPUBuffer objects or speed up GPU kernels.
+Keeping rendering in the physics worker avoids transferring all poses each frame.
+
+SharedArrayBuffer requires cross-origin isolation. `npm start` supplies COOP/COEP
+headers, and [netlify.toml](netlify.toml) supplies the same headers when hosted.
+The ordinary message mode remains usable without shared memory. Cross-origin
+assets must be served with compatible CORS/CORP headers under this configuration.
+
+A worker pool is useful for independent startup jobs, such as cooking terrain
+chunks. Parallelizing the CPU collision search or constraint solver itself
+requires changes to ownership, scheduling and result merging; the package does
+not currently run one physics world across a worker pool. Shared pose arrays
+could reduce copying if rendering lives in a separate thread, but that is not
+what the shared-input benchmark measures.
+
+The demo's reusable [simulation client](demo/shared/runtime/simulationClient.js),
+[worker runtime](demo/shared/runtime/simulationRuntime.js) and [input mailbox](src/utils/sharedInput.js)
+show lifecycle, pointer forwarding, resize, batched steps and explicit readbacks.
+
+## Reusable GPU and worker utilities
+
+The reusable helpers used by the demos ship in the package. Import them from
+`avbd-babylon/utils` or the main entry; script-tag builds expose them on `AVBD`.
+They have no Babylon or DOM dependency and work in a dedicated worker.
+
+| Utility | Purpose |
+| --- | --- |
+| `GpuSurfaceParticles` | The D20 demo's GPU particle sweeps, live particle buffer and optional asynchronous counters. |
+| `GpuTimer` | Nonblocking GPU timestamps for a compute or render pass. |
+| `GPUBufferRecycler` | Reuse released buffers with compatible usage and a free-memory budget. |
+| `GpuContactSample` | Gather a bounded set of contact dots directly on the GPU, rather than downloading the full contact set. |
+| `seedConstraintColoring` | Optional startup coloring for an existing native constraint graph; GPU coloring continues to check live contacts. |
+| `addGpuStepPass` | Append custom GPU forces or copies to the solver's existing submission, in 2D or 3D. Multiple features can register without overwriting each other. |
+| `WorkerCanvas` | DOM-free sizing and input-event adapter around an offscreen canvas. |
+| Shared input helpers | A nonblocking latest-state mailbox for continuous pointer input, with a message fallback when shared memory is unavailable. |
+
+The active HPLOC collision tree, automatic work scheduling, bulk edits and
+selective pose reads are already part of the normal solver pipeline under
+[`src/`](src/). Example scenes, cameras, game rules and page controls remain
+in [`demo/`](demo/README.md).
+
+```js
+import { createWebGPUDevice } from "avbd-babylon";
+import { GpuSurfaceParticles } from "avbd-babylon/utils";
+
+const { device } = await createWebGPUDevice();
+const particles = new GpuSurfaceParticles(device, {
+  capacity: 100_000,
+  triangleCount: 1,
+  readback: false, // No CPU counters needed for drawing.
+});
+particles.writeTriangles(new Float32Array([
+  -10, -10, 0, 0, // a, padded to vec4
+   10, -10, 0, 0, // b
+    0,  10, 0, 0, // c
+]));
+particles.step({ dt: 1 / 60, count: 100_000, speed: 80, spawnRadius: 32 });
+// Bind particles.particleBuffer as read-only storage in your renderer.
+// Each 48-byte record contains position/life, velocity/radius, then a vec4u seed.
+// Use the same GPUDevice; no position downloads are required.
+// Call step() from your animation loop, then destroy() when the effect is removed.
+particles.destroy();
+device.destroy();
+```
+
+These particles spawn on a sphere and aim toward the origin. A surface hit or
+expired lifetime respawns the particle; particles ignore one another. Five
+offset rays approximate each sweep. See [the sprite renderer](demo/collision-benchmark/sprites.js)
+for a complete example of drawing the live buffer. This helper is separate
+from the rigid-body solver and its collision masks.
+
+Custom GPU work can share the physics submission. This is the path used by
+the naval buoyancy and playground force demos:
+
+```js
+import { addGpuStepPass } from "avbd-babylon/utils";
+
+// world is a WebGPU solver created from AvbdScene2D or AvbdScene3D.
+// Create your forcePipeline and forceBindings on the same GPUDevice.
+const removeForces = addGpuStepPass(world, {
+  before(encoder, solver) {
+    const pass = encoder.beginComputePass({ label: "Custom forces" });
+    pass.setPipeline(forcePipeline);
+    pass.setBindGroup(0, forceBindings);
+    pass.dispatchWorkgroups(Math.ceil(solver.bodyCount / 64));
+    pass.end();
+  },
+});
+world.step(); // Forces and AVBD use one command submission.
+removeForces(); // Remove this registration before destroying its resources.
+```
+
+Callbacks run synchronously and must end their own passes. Do not finish or
+submit the provided encoder. An `after` callback can gather results after
+physics. Recreate your bindings if the solver grows and replaces a buffer;
+wake affected bodies when activating a new force. CPU solvers reject GPU passes.
+
+```js
+import { createSharedInput, writeSharedInput, readSharedInput } from "avbd-babylon/utils";
+
+const shared = createSharedInput(); // null without COOP/COEP support
+if (shared) {
+  // Pass shared.buffer to your worker through postMessage, without transferring it.
+  writeSharedInput(shared, { clientX: 120, clientY: 80, buttons: 1 });
+  // In the worker, use new Int32Array(message.input) and retain the last sequence.
+  const state = readSharedInput(shared, -1);
+  if (state) console.log(state.event, state.sequence);
+}
+```
+
+The mailbox has one writer and one reader. Keep clicks, releases and key events
+in ordered messages; coalescing them would lose discrete actions. Send normal
+messages when `createSharedInput()` returns null.
+
+`WorkerCanvas` wraps your transferred `OffscreenCanvas` with `clientWidth`,
+`clientHeight`, `resize()` and an event surface. Call `dispatch(type, event)`
+for mirrored pointer events. The [worker initialization](demo/shared/runtime/simulationWorker.js)
+and [page-side input bridge](demo/shared/runtime/simulationClient.js) use these
+same package helpers; their scene catalog and controls stay in the demo.
+
+For timestamps, call `timer.begin()`, spread `timer.descriptor(slot)` into your
+pass descriptor, and call `timer.encode(encoder, slot)` after ending the pass.
+Submit the encoder, then call `timer.resolve(slot)`. `latestMs` stays null when
+timestamp queries are unavailable. The demo [particle pass](src/gpu/surfaceParticles.js)
+shows this sequence. Buffer recycling preserves contents: overwrite or clear
+reused storage before expecting zeroes, and release it only after encoding its
+last use. Destroy helpers when their owning world or renderer is disposed.
+
+## D20 particle capacity
+
+Run `npm run benchmark:particles` to search for the particle count that maintains
+60 FPS, refine the boundary and repeat both sides. It uses the normal visible
+sprites at 1440 × 900 with unchanged particle radius, speed and collision work.
+The [saved report](test-results/particle-capacity.html) separates collision GPU
+time, sprite GPU time and total frame rate. A drawing-disabled run helps show
+whether rendering contributes to the limit.
+
+<!-- particle-capacity-results:start -->
+Saved reference: **NVIDIA GeForce RTX 4070 Laptop GPU**, 1440 × 900, device pixel ratio 1. 8,000,000 visible particles maintained about 60 FPS in every recorded run at that count, including three longer confirmation runs. Some runs missed the target from 8,792,000 particles upward. Near the limit, browser scheduling and GPU clocks can change the result.
+<!-- particle-capacity-results:end -->
+
+Open the [particle demo](index.html?demo=benchmark) to play or set counts manually.
+For a fixed-count measurement, use its browser console:
+
+```js
+await __COLLISION_BENCHMARK__.measure({
+  count: 200_000,
+  warmupSeconds: 2,
+  seconds: 8,
+  draw: true,
+});
+```
+
+The result reports actual elapsed frame times, GPU pass timings, live particle
+counts and errors. A sustained-60 result allows display timing tolerance:
+at least 59 FPS and 95% of frames below 25 ms. Repeat runs near the boundary;
+resolution, GPU clocks, browser scheduling and sprite coverage affect capacity.
+This measures surface-only particle sweeps, rather than AVBD solving or
+particle-to-particle contacts.
+
 ## Benchmark replication
 
 Start this repository with `npm start`. Play scenes while the benchmark is
@@ -2632,7 +3170,18 @@ Each run starts fresh and checks contact storage, parallel-work conflicts and
 finite poses. GPU stages measure finding contacts, preparing them, planning
 parallel work and moving objects. CPU submission and startup have separate
 fields; wall time also includes waiting for measurements. These are physics
-timings, not rendered FPS. The [integration guide](docs/README.md#reproduce-the-collision-and-solver-benchmarks)
+timings, not rendered FPS. Interactive playground benchmarks automatically start
+their action (wind, domino tipping or marble release). GPU stage timings cover
+the solver; submission and completion times also include their force/feed work.
+The Galton board holds all 40,000 marbles visibly in its hopper until the gate
+opens. One GPU dispatch enables their collisions; gravity drains the hopper
+without teleporting marbles into the peg field. Its benchmark records how many
+marbles are still in the hopper and how many have passed the outlet, so early
+discharge samples are distinguishable from runs with all marbles below it.
+The hopper has a narrow central outlet and a short vertical throat above the
+first peg. The bin chart counts actual marble positions and overlays a fitted
+normal curve. Crowding and retracted pegs can change the distribution.
+The [integration guide](docs/README.md#reproduce-the-collision-and-solver-benchmarks)
 includes downloads and profiling commands.
 
 Saved reports were recorded on an **NVIDIA GeForce RTX 4070 Laptop GPU**. Live
@@ -2660,8 +3209,13 @@ storage buffers to the vertex shaders. Instance matrices are uploaded once.
 Colors are copied again only when edited. Camera controls, contact overlays,
 shape sizes and cloth tearing use the viewer's existing geometry and shaders.
 
-The [Babylon renderer source](demo/babylonGpuRenderer.js) and
-[WGSL adapter](demo/babylonShaders.js) show the integration. This is a custom
+The direct WebGPU viewer also batches unique hull geometry into a single draw.
+In scenes with many cloth particles or hidden collision pieces, its box draw
+contains only visible boxes. Box-only stress scenes use a contiguous
+instance layout.
+
+The [Babylon renderer source](demo/shared/rendering/babylonGpuRenderer.js) and
+[WGSL adapter](demo/shared/rendering/babylonShaders.js) show the integration. This is a custom
 Babylon shader renderer; ordinary Babylon materials use the matrix-update path
 shown in [Large pile with thin instances](#large-pile-with-thin-instances).
 The demo isolates its access to Babylon 9's internal `_device` field in
@@ -2780,6 +3334,10 @@ npm run test:web       # GPU scenes, benchmarks, controls and reports
 npm run test:features  # Playable 2D/3D hinge, motor, trigger, mask and cast checks
 npm run benchmark:native # Bulk edits, sleeping and selected reads; three repeats
 npm run benchmark:native-edits # 100K motion edits, 10K property changes and batched queries
+npm run benchmark:gpu-uploads # WebGPU setting preparation and upload overhead
+npm run benchmark:gpu-scheduling # GPU color-bucket timing and exact-order checks
+npm run benchmark:movement # Movement stages, paired timings and exact state checks
+npm run benchmark:gpu-encoding # CPU setup for GPU steps, excluding GPU/drawing time
 ```
 
 Results and screenshots are generated in `test-results/`. Normal physics tests

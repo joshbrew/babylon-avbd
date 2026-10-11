@@ -1,0 +1,5022 @@
+{
+  "date": "2026-10-11T08:55:25.195Z",
+  "hardware": "NVIDIA GeForce RTX 4070 Laptop GPU",
+  "driver": "32.0.16.1714",
+  "identification": "Current Windows GPU name uniquely matched to the WebGPU adapter vendor",
+  "method": "Independent worlds alternate execution order each fixed step, with creation order reversed on odd repeats. Detailed GPU stage timestamps. No drawing or sleeping. Final body fields match exactly; every step checks contact overflow and coloring conflicts.",
+  "outcomes": {
+    "shared": "Not enabled: inconsistent gains across repeats and scene loads.",
+    "scheduling": "Not enabled: both guarded kernels and indirect dispatch skipping failed to improve the measured 500K workload.",
+    "smallGroup": "Enabled automatically for closed jointless standard 3D worlds of up to 32 bodies; mobile compatibility retains the qualified path."
+  },
+  "results": [
+    {
+      "candidate": "shared",
+      "repeat": 0,
+      "scene": "showcase-box-columns-100k",
+      "differentWords": 0,
+      "maxError": 0,
+      "errors": [],
+      "warmup": 100,
+      "samples": 40,
+      "runs": [
+        {
+          "variant": "baseline",
+          "bodyCount": 100001,
+          "jointCount": 0,
+          "params": {
+            "dt": 0.016666666666666666,
+            "gravity": -10,
+            "iterations": 5,
+            "betaLin": 10000,
+            "betaAng": 100,
+            "alpha": 0.99,
+            "gamma": 0.999,
+            "matchNearest": true,
+            "faceBias": true,
+            "reuseContacts": true,
+            "startAtRest": true,
+            "massPenalty": true,
+            "windSpeed": 0,
+            "windAngle": 0,
+            "windGust": 0.4,
+            "windPressure": 0.72,
+            "up": [
+              0,
+              0,
+              1
+            ]
+          },
+          "verifiedSteps": 140,
+          "counters": {
+            "pairs": 100000,
+            "contacts": 400000,
+            "manifolds": 100000,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 3
+          },
+          "quaternionError": 1.212363542890671e-13,
+          "finite": true,
+          "summary": {
+            "total": {
+              "mean": 5.1188992,
+              "median": 5.083136,
+              "p95": 5.4528,
+              "n": 40
+            },
+            "collision": {
+              "mean": 1.90592,
+              "median": 1.8851840000000002,
+              "p95": 2.159616,
+              "n": 40
+            },
+            "adjacency": {
+              "mean": 0.2635519999999999,
+              "median": 0.259072,
+              "p95": 0.265216,
+              "n": 40
+            },
+            "coloring": {
+              "mean": 0.15226879999999993,
+              "median": 0.156672,
+              "p95": 0.161792,
+              "n": 40
+            },
+            "solve": {
+              "mean": 2.7958784,
+              "median": 2.772992,
+              "p95": 2.93888,
+              "n": 40
+            }
+          },
+          "details": {
+            "contactCache": {
+              "mean": 0.0981504,
+              "median": 0.1024,
+              "p95": 0.121856,
+              "n": 40
+            },
+            "broadphaseBuild": {
+              "mean": 0.060825599999999994,
+              "median": 0.059392,
+              "p95": 0.072704,
+              "n": 40
+            },
+            "broadphasePairs": {
+              "mean": 1.1035647999999998,
+              "median": 1.0752,
+              "p95": 1.37728,
+              "n": 40
+            },
+            "narrowphase": {
+              "mean": 0.6433792000000002,
+              "median": 0.648192,
+              "p95": 0.672768,
+              "n": 40
+            },
+            "adjacency": {
+              "mean": 0.2635519999999999,
+              "median": 0.259072,
+              "p95": 0.265216,
+              "n": 40
+            },
+            "coloring": {
+              "mean": 0.15226879999999993,
+              "median": 0.156672,
+              "p95": 0.161792,
+              "n": 40
+            },
+            "warmStart": {
+              "mean": 0.07869439999999998,
+              "median": 0.078848,
+              "p95": 0.080896,
+              "n": 40
+            },
+            "bodySolve": {
+              "mean": 1.9699455999999997,
+              "median": 1.956864,
+              "p95": 2.0121599999999997,
+              "n": 40
+            },
+            "contactUpdate": {
+              "mean": 0.6381568000000002,
+              "median": 0.628736,
+              "p95": 0.800768,
+              "n": 40
+            },
+            "velocities": {
+              "mean": 0.10908160000000003,
+              "median": 0.10752,
+              "p95": 0.115712,
+              "n": 40
+            }
+          }
+        },
+        {
+          "variant": "shared",
+          "bodyCount": 100001,
+          "jointCount": 0,
+          "params": {
+            "dt": 0.016666666666666666,
+            "gravity": -10,
+            "iterations": 5,
+            "betaLin": 10000,
+            "betaAng": 100,
+            "alpha": 0.99,
+            "gamma": 0.999,
+            "matchNearest": true,
+            "faceBias": true,
+            "reuseContacts": true,
+            "startAtRest": true,
+            "massPenalty": true,
+            "windSpeed": 0,
+            "windAngle": 0,
+            "windGust": 0.4,
+            "windPressure": 0.72,
+            "up": [
+              0,
+              0,
+              1
+            ]
+          },
+          "verifiedSteps": 140,
+          "counters": {
+            "pairs": 100000,
+            "contacts": 400000,
+            "manifolds": 100000,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 3
+          },
+          "quaternionError": 1.212363542890671e-13,
+          "finite": true,
+          "summary": {
+            "total": {
+              "mean": 5.190528000000001,
+              "median": 5.090304,
+              "p95": 5.545984,
+              "n": 40
+            },
+            "collision": {
+              "mean": 1.8902528,
+              "median": 1.881088,
+              "p95": 2.062336,
+              "n": 40
+            },
+            "adjacency": {
+              "mean": 0.27816959999999996,
+              "median": 0.253952,
+              "p95": 0.480256,
+              "n": 40
+            },
+            "coloring": {
+              "mean": 0.15311360000000002,
+              "median": 0.156672,
+              "p95": 0.160768,
+              "n": 40
+            },
+            "solve": {
+              "mean": 2.8679168,
+              "median": 2.784255999999999,
+              "p95": 3.2880639999999994,
+              "n": 40
+            }
+          },
+          "details": {
+            "contactCache": {
+              "mean": 0.0982272,
+              "median": 0.1024,
+              "p95": 0.125952,
+              "n": 40
+            },
+            "broadphaseBuild": {
+              "mean": 0.060825599999999994,
+              "median": 0.060416,
+              "p95": 0.072704,
+              "n": 40
+            },
+            "broadphasePairs": {
+              "mean": 1.0792703999999995,
+              "median": 1.072128,
+              "p95": 1.104896,
+              "n": 40
+            },
+            "narrowphase": {
+              "mean": 0.6519296,
+              "median": 0.65024,
+              "p95": 0.766976,
+              "n": 40
+            },
+            "adjacency": {
+              "mean": 0.27816959999999996,
+              "median": 0.253952,
+              "p95": 0.480256,
+              "n": 40
+            },
+            "coloring": {
+              "mean": 0.15311360000000002,
+              "median": 0.156672,
+              "p95": 0.160768,
+              "n": 40
+            },
+            "warmStart": {
+              "mean": 0.0781568,
+              "median": 0.077824,
+              "p95": 0.08192,
+              "n": 40
+            },
+            "bodySolve": {
+              "mean": 2.0103424,
+              "median": 1.952768,
+              "p95": 2.402304,
+              "n": 40
+            },
+            "contactUpdate": {
+              "mean": 0.6638848000000002,
+              "median": 0.644096,
+              "p95": 0.831488,
+              "n": 40
+            },
+            "velocities": {
+              "mean": 0.11553280000000002,
+              "median": 0.10752,
+              "p95": 0.253952,
+              "n": 40
+            }
+          }
+        }
+      ]
+    },
+    {
+      "candidate": "shared",
+      "repeat": 1,
+      "scene": "showcase-box-columns-100k",
+      "differentWords": 0,
+      "maxError": 0,
+      "errors": [],
+      "warmup": 100,
+      "samples": 40,
+      "runs": [
+        {
+          "variant": "shared",
+          "bodyCount": 100001,
+          "jointCount": 0,
+          "params": {
+            "dt": 0.016666666666666666,
+            "gravity": -10,
+            "iterations": 5,
+            "betaLin": 10000,
+            "betaAng": 100,
+            "alpha": 0.99,
+            "gamma": 0.999,
+            "matchNearest": true,
+            "faceBias": true,
+            "reuseContacts": true,
+            "startAtRest": true,
+            "massPenalty": true,
+            "windSpeed": 0,
+            "windAngle": 0,
+            "windGust": 0.4,
+            "windPressure": 0.72,
+            "up": [
+              0,
+              0,
+              1
+            ]
+          },
+          "verifiedSteps": 140,
+          "counters": {
+            "pairs": 100000,
+            "contacts": 400000,
+            "manifolds": 100000,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 3
+          },
+          "quaternionError": 1.212363542890671e-13,
+          "finite": true,
+          "summary": {
+            "total": {
+              "mean": 5.1474944,
+              "median": 5.087232,
+              "p95": 5.535744,
+              "n": 40
+            },
+            "collision": {
+              "mean": 1.8860800000000004,
+              "median": 1.878016,
+              "p95": 2.134016,
+              "n": 40
+            },
+            "adjacency": {
+              "mean": 0.26593279999999997,
+              "median": 0.259072,
+              "p95": 0.264192,
+              "n": 40
+            },
+            "coloring": {
+              "mean": 0.15260159999999995,
+              "median": 0.156672,
+              "p95": 0.160768,
+              "n": 40
+            },
+            "solve": {
+              "mean": 2.8416256,
+              "median": 2.7904,
+              "p95": 3.1948800000000004,
+              "n": 40
+            }
+          },
+          "details": {
+            "contactCache": {
+              "mean": 0.09054720000000001,
+              "median": 0.090112,
+              "p95": 0.105472,
+              "n": 40
+            },
+            "broadphaseBuild": {
+              "mean": 0.060441600000000005,
+              "median": 0.06144,
+              "p95": 0.07168,
+              "n": 40
+            },
+            "broadphasePairs": {
+              "mean": 1.0917631999999997,
+              "median": 1.072128,
+              "p95": 1.321984,
+              "n": 40
+            },
+            "narrowphase": {
+              "mean": 0.6433279999999999,
+              "median": 0.646144,
+              "p95": 0.674816,
+              "n": 40
+            },
+            "adjacency": {
+              "mean": 0.26593279999999997,
+              "median": 0.259072,
+              "p95": 0.264192,
+              "n": 40
+            },
+            "coloring": {
+              "mean": 0.15260159999999995,
+              "median": 0.156672,
+              "p95": 0.160768,
+              "n": 40
+            },
+            "warmStart": {
+              "mean": 0.07943680000000002,
+              "median": 0.079872,
+              "p95": 0.08192,
+              "n": 40
+            },
+            "bodySolve": {
+              "mean": 1.9897343999999997,
+              "median": 1.957888,
+              "p95": 2.3336959999999998,
+              "n": 40
+            },
+            "contactUpdate": {
+              "mean": 0.6577407999999999,
+              "median": 0.646144,
+              "p95": 0.826368,
+              "n": 40
+            },
+            "velocities": {
+              "mean": 0.1147136,
+              "median": 0.10752,
+              "p95": 0.11264,
+              "n": 40
+            }
+          }
+        },
+        {
+          "variant": "baseline",
+          "bodyCount": 100001,
+          "jointCount": 0,
+          "params": {
+            "dt": 0.016666666666666666,
+            "gravity": -10,
+            "iterations": 5,
+            "betaLin": 10000,
+            "betaAng": 100,
+            "alpha": 0.99,
+            "gamma": 0.999,
+            "matchNearest": true,
+            "faceBias": true,
+            "reuseContacts": true,
+            "startAtRest": true,
+            "massPenalty": true,
+            "windSpeed": 0,
+            "windAngle": 0,
+            "windGust": 0.4,
+            "windPressure": 0.72,
+            "up": [
+              0,
+              0,
+              1
+            ]
+          },
+          "verifiedSteps": 140,
+          "counters": {
+            "pairs": 100000,
+            "contacts": 400000,
+            "manifolds": 100000,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 3
+          },
+          "quaternionError": 1.212363542890671e-13,
+          "finite": true,
+          "summary": {
+            "total": {
+              "mean": 5.160243200000001,
+              "median": 5.07904,
+              "p95": 5.7088,
+              "n": 40
+            },
+            "collision": {
+              "mean": 1.9147263999999997,
+              "median": 1.8892800000000003,
+              "p95": 2.2097919999999998,
+              "n": 40
+            },
+            "adjacency": {
+              "mean": 0.2530816,
+              "median": 0.253952,
+              "p95": 0.258048,
+              "n": 40
+            },
+            "coloring": {
+              "mean": 0.1529856,
+              "median": 0.156672,
+              "p95": 0.161792,
+              "n": 40
+            },
+            "solve": {
+              "mean": 2.8382464000000005,
+              "median": 2.7832319999999995,
+              "p95": 3.2030720000000006,
+              "n": 40
+            }
+          },
+          "details": {
+            "contactCache": {
+              "mean": 0.0975616,
+              "median": 0.101376,
+              "p95": 0.118784,
+              "n": 40
+            },
+            "broadphaseBuild": {
+              "mean": 0.060620800000000016,
+              "median": 0.063488,
+              "p95": 0.07168,
+              "n": 40
+            },
+            "broadphasePairs": {
+              "mean": 1.1062271999999997,
+              "median": 1.072128,
+              "p95": 1.404928,
+              "n": 40
+            },
+            "narrowphase": {
+              "mean": 0.6503168000000001,
+              "median": 0.648192,
+              "p95": 0.782336,
+              "n": 40
+            },
+            "adjacency": {
+              "mean": 0.2530816,
+              "median": 0.253952,
+              "p95": 0.258048,
+              "n": 40
+            },
+            "coloring": {
+              "mean": 0.1529856,
+              "median": 0.156672,
+              "p95": 0.161792,
+              "n": 40
+            },
+            "warmStart": {
+              "mean": 0.07843839999999999,
+              "median": 0.077824,
+              "p95": 0.08192,
+              "n": 40
+            },
+            "bodySolve": {
+              "mean": 2.0013056000000002,
+              "median": 1.961984,
+              "p95": 2.361344,
+              "n": 40
+            },
+            "contactUpdate": {
+              "mean": 0.6488832,
+              "median": 0.6348800000000001,
+              "p95": 0.84992,
+              "n": 40
+            },
+            "velocities": {
+              "mean": 0.10961920000000007,
+              "median": 0.108544,
+              "p95": 0.119808,
+              "n": 40
+            }
+          }
+        }
+      ]
+    },
+    {
+      "candidate": "shared",
+      "repeat": 0,
+      "scene": "showcase-brick-ring-110k",
+      "differentWords": 0,
+      "maxError": 0,
+      "errors": [],
+      "warmup": 100,
+      "samples": 40,
+      "runs": [
+        {
+          "variant": "baseline",
+          "bodyCount": 110442,
+          "jointCount": 0,
+          "params": {
+            "dt": 0.016666666666666666,
+            "gravity": -10,
+            "iterations": 4,
+            "betaLin": 10000,
+            "betaAng": 100,
+            "alpha": 0.99,
+            "gamma": 0.999,
+            "matchNearest": true,
+            "faceBias": true,
+            "reuseContacts": true,
+            "startAtRest": true,
+            "massPenalty": true,
+            "windSpeed": 0,
+            "windAngle": 0,
+            "windGust": 0.4,
+            "windPressure": 0.72,
+            "up": [
+              0,
+              0,
+              1
+            ]
+          },
+          "verifiedSteps": 140,
+          "counters": {
+            "pairs": 255088,
+            "contacts": 1200967,
+            "manifolds": 246239,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 15
+          },
+          "quaternionError": 1.2994734821525356e-07,
+          "finite": true,
+          "summary": {
+            "total": {
+              "mean": 16.3889664,
+              "median": 16.411648,
+              "p95": 16.770048,
+              "n": 40
+            },
+            "collision": {
+              "mean": 4.744371200000002,
+              "median": 4.676608,
+              "p95": 5.041152,
+              "n": 40
+            },
+            "adjacency": {
+              "mean": 0.7282432000000001,
+              "median": 0.722944,
+              "p95": 0.811008,
+              "n": 40
+            },
+            "coloring": {
+              "mean": 0.26526720000000004,
+              "median": 0.263168,
+              "p95": 0.278528,
+              "n": 40
+            },
+            "solve": {
+              "mean": 10.649779199999998,
+              "median": 10.66496,
+              "p95": 11.102208,
+              "n": 40
+            }
+          },
+          "details": {
+            "contactCache": {
+              "mean": 0.1908992,
+              "median": 0.196608,
+              "p95": 0.202752,
+              "n": 40
+            },
+            "broadphaseBuild": {
+              "mean": 0.07431680000000002,
+              "median": 0.075776,
+              "p95": 0.077824,
+              "n": 40
+            },
+            "broadphasePairs": {
+              "mean": 2.1307904,
+              "median": 2.06336,
+              "p95": 2.414592,
+              "n": 40
+            },
+            "narrowphase": {
+              "mean": 2.3483648,
+              "median": 2.326528,
+              "p95": 2.545664,
+              "n": 40
+            },
+            "adjacency": {
+              "mean": 0.7282432000000001,
+              "median": 0.722944,
+              "p95": 0.811008,
+              "n": 40
+            },
+            "coloring": {
+              "mean": 0.26526720000000004,
+              "median": 0.263168,
+              "p95": 0.278528,
+              "n": 40
+            },
+            "warmStart": {
+              "mean": 0.09016320000000003,
+              "median": 0.090112,
+              "p95": 0.094208,
+              "n": 40
+            },
+            "bodySolve": {
+              "mean": 7.5283712000000005,
+              "median": 7.4577919999999995,
+              "p95": 7.901184000000001,
+              "n": 40
+            },
+            "contactUpdate": {
+              "mean": 2.936576,
+              "median": 2.87744,
+              "p95": 3.1569920000000002,
+              "n": 40
+            },
+            "velocities": {
+              "mean": 0.09466880000000003,
+              "median": 0.093184,
+              "p95": 0.100352,
+              "n": 40
+            }
+          }
+        },
+        {
+          "variant": "shared",
+          "bodyCount": 110442,
+          "jointCount": 0,
+          "params": {
+            "dt": 0.016666666666666666,
+            "gravity": -10,
+            "iterations": 4,
+            "betaLin": 10000,
+            "betaAng": 100,
+            "alpha": 0.99,
+            "gamma": 0.999,
+            "matchNearest": true,
+            "faceBias": true,
+            "reuseContacts": true,
+            "startAtRest": true,
+            "massPenalty": true,
+            "windSpeed": 0,
+            "windAngle": 0,
+            "windGust": 0.4,
+            "windPressure": 0.72,
+            "up": [
+              0,
+              0,
+              1
+            ]
+          },
+          "verifiedSteps": 140,
+          "counters": {
+            "pairs": 255088,
+            "contacts": 1200967,
+            "manifolds": 246239,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 15
+          },
+          "quaternionError": 1.2994734821525356e-07,
+          "finite": true,
+          "summary": {
+            "total": {
+              "mean": 16.1289472,
+              "median": 16.151552,
+              "p95": 16.615424,
+              "n": 40
+            },
+            "collision": {
+              "mean": 4.6947072,
+              "median": 4.641792000000001,
+              "p95": 5.006336,
+              "n": 40
+            },
+            "adjacency": {
+              "mean": 0.7300351999999999,
+              "median": 0.723968,
+              "p95": 0.801792,
+              "n": 40
+            },
+            "coloring": {
+              "mean": 0.2722304000000001,
+              "median": 0.264192,
+              "p95": 0.2816,
+              "n": 40
+            },
+            "solve": {
+              "mean": 10.431001599999998,
+              "median": 10.337280000000002,
+              "p95": 10.985472,
+              "n": 40
+            }
+          },
+          "details": {
+            "contactCache": {
+              "mean": 0.18434560000000003,
+              "median": 0.186368,
+              "p95": 0.195584,
+              "n": 40
+            },
+            "broadphaseBuild": {
+              "mean": 0.0743936,
+              "median": 0.074752,
+              "p95": 0.077824,
+              "n": 40
+            },
+            "broadphasePairs": {
+              "mean": 2.0993023999999996,
+              "median": 2.072576,
+              "p95": 2.37056,
+              "n": 40
+            },
+            "narrowphase": {
+              "mean": 2.3366656000000003,
+              "median": 2.304,
+              "p95": 2.6368,
+              "n": 40
+            },
+            "adjacency": {
+              "mean": 0.7300351999999999,
+              "median": 0.723968,
+              "p95": 0.801792,
+              "n": 40
+            },
+            "coloring": {
+              "mean": 0.2722304000000001,
+              "median": 0.264192,
+              "p95": 0.2816,
+              "n": 40
+            },
+            "warmStart": {
+              "mean": 0.06691840000000002,
+              "median": 0.067584,
+              "p95": 0.068608,
+              "n": 40
+            },
+            "bodySolve": {
+              "mean": 7.625523200000001,
+              "median": 7.501823999999999,
+              "p95": 8.007679999999999,
+              "n": 40
+            },
+            "contactUpdate": {
+              "mean": 2.6593280000000012,
+              "median": 2.615296,
+              "p95": 2.9163520000000003,
+              "n": 40
+            },
+            "velocities": {
+              "mean": 0.07923200000000001,
+              "median": 0.078848,
+              "p95": 0.08192,
+              "n": 40
+            }
+          }
+        }
+      ]
+    },
+    {
+      "candidate": "shared",
+      "repeat": 1,
+      "scene": "showcase-brick-ring-110k",
+      "differentWords": 0,
+      "maxError": 0,
+      "errors": [],
+      "warmup": 100,
+      "samples": 40,
+      "runs": [
+        {
+          "variant": "shared",
+          "bodyCount": 110442,
+          "jointCount": 0,
+          "params": {
+            "dt": 0.016666666666666666,
+            "gravity": -10,
+            "iterations": 4,
+            "betaLin": 10000,
+            "betaAng": 100,
+            "alpha": 0.99,
+            "gamma": 0.999,
+            "matchNearest": true,
+            "faceBias": true,
+            "reuseContacts": true,
+            "startAtRest": true,
+            "massPenalty": true,
+            "windSpeed": 0,
+            "windAngle": 0,
+            "windGust": 0.4,
+            "windPressure": 0.72,
+            "up": [
+              0,
+              0,
+              1
+            ]
+          },
+          "verifiedSteps": 140,
+          "counters": {
+            "pairs": 255088,
+            "contacts": 1200967,
+            "manifolds": 246239,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 15
+          },
+          "quaternionError": 1.2994734821525356e-07,
+          "finite": true,
+          "summary": {
+            "total": {
+              "mean": 16.101785600000003,
+              "median": 16.135168,
+              "p95": 16.375808,
+              "n": 40
+            },
+            "collision": {
+              "mean": 4.7167744,
+              "median": 4.632576,
+              "p95": 5.075968,
+              "n": 40
+            },
+            "adjacency": {
+              "mean": 0.731904,
+              "median": 0.726016,
+              "p95": 0.7936,
+              "n": 40
+            },
+            "coloring": {
+              "mean": 0.2691583999999999,
+              "median": 0.265216,
+              "p95": 0.2816,
+              "n": 40
+            },
+            "solve": {
+              "mean": 10.3826432,
+              "median": 10.299392,
+              "p95": 10.7264,
+              "n": 40
+            }
+          },
+          "details": {
+            "contactCache": {
+              "mean": 0.18247679999999994,
+              "median": 0.183296,
+              "p95": 0.196608,
+              "n": 40
+            },
+            "broadphaseBuild": {
+              "mean": 0.0748288,
+              "median": 0.075776,
+              "p95": 0.0768,
+              "n": 40
+            },
+            "broadphasePairs": {
+              "mean": 2.1096192,
+              "median": 2.065408,
+              "p95": 2.481152,
+              "n": 40
+            },
+            "narrowphase": {
+              "mean": 2.3498496,
+              "median": 2.315264,
+              "p95": 2.593792,
+              "n": 40
+            },
+            "adjacency": {
+              "mean": 0.731904,
+              "median": 0.726016,
+              "p95": 0.7936,
+              "n": 40
+            },
+            "coloring": {
+              "mean": 0.2691583999999999,
+              "median": 0.265216,
+              "p95": 0.2816,
+              "n": 40
+            },
+            "warmStart": {
+              "mean": 0.0665088,
+              "median": 0.06656,
+              "p95": 0.068608,
+              "n": 40
+            },
+            "bodySolve": {
+              "mean": 7.6023552,
+              "median": 7.5448319999999995,
+              "p95": 7.95648,
+              "n": 40
+            },
+            "contactUpdate": {
+              "mean": 2.633088,
+              "median": 2.615296,
+              "p95": 2.789376,
+              "n": 40
+            },
+            "velocities": {
+              "mean": 0.08069119999999999,
+              "median": 0.078848,
+              "p95": 0.118784,
+              "n": 40
+            }
+          }
+        },
+        {
+          "variant": "baseline",
+          "bodyCount": 110442,
+          "jointCount": 0,
+          "params": {
+            "dt": 0.016666666666666666,
+            "gravity": -10,
+            "iterations": 4,
+            "betaLin": 10000,
+            "betaAng": 100,
+            "alpha": 0.99,
+            "gamma": 0.999,
+            "matchNearest": true,
+            "faceBias": true,
+            "reuseContacts": true,
+            "startAtRest": true,
+            "massPenalty": true,
+            "windSpeed": 0,
+            "windAngle": 0,
+            "windGust": 0.4,
+            "windPressure": 0.72,
+            "up": [
+              0,
+              0,
+              1
+            ]
+          },
+          "verifiedSteps": 140,
+          "counters": {
+            "pairs": 255088,
+            "contacts": 1200967,
+            "manifolds": 246239,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 15
+          },
+          "quaternionError": 1.2994734821525356e-07,
+          "finite": true,
+          "summary": {
+            "total": {
+              "mean": 15.9416832,
+              "median": 15.966208,
+              "p95": 16.320512,
+              "n": 40
+            },
+            "collision": {
+              "mean": 4.697983999999999,
+              "median": 4.639744,
+              "p95": 5.024768,
+              "n": 40
+            },
+            "adjacency": {
+              "mean": 0.7322368000000001,
+              "median": 0.723968,
+              "p95": 0.944128,
+              "n": 40
+            },
+            "coloring": {
+              "mean": 0.2684416,
+              "median": 0.263168,
+              "p95": 0.280576,
+              "n": 40
+            },
+            "solve": {
+              "mean": 10.2415616,
+              "median": 10.160128,
+              "p95": 10.535936,
+              "n": 40
+            }
+          },
+          "details": {
+            "contactCache": {
+              "mean": 0.19266559999999996,
+              "median": 0.201728,
+              "p95": 0.211968,
+              "n": 40
+            },
+            "broadphaseBuild": {
+              "mean": 0.07408640000000001,
+              "median": 0.074752,
+              "p95": 0.077824,
+              "n": 40
+            },
+            "broadphasePairs": {
+              "mean": 2.121599999999999,
+              "median": 2.072576,
+              "p95": 2.422784,
+              "n": 40
+            },
+            "narrowphase": {
+              "mean": 2.3096319999999992,
+              "median": 2.299904,
+              "p95": 2.419712,
+              "n": 40
+            },
+            "adjacency": {
+              "mean": 0.7322368000000001,
+              "median": 0.723968,
+              "p95": 0.944128,
+              "n": 40
+            },
+            "coloring": {
+              "mean": 0.2684416,
+              "median": 0.263168,
+              "p95": 0.280576,
+              "n": 40
+            },
+            "warmStart": {
+              "mean": 0.08977920000000002,
+              "median": 0.090112,
+              "p95": 0.09216,
+              "n": 40
+            },
+            "bodySolve": {
+              "mean": 7.448729599999996,
+              "median": 7.389184,
+              "p95": 7.7322239999999995,
+              "n": 40
+            },
+            "contactUpdate": {
+              "mean": 2.6077439999999994,
+              "median": 2.55488,
+              "p95": 2.950144,
+              "n": 40
+            },
+            "velocities": {
+              "mean": 0.09530880000000001,
+              "median": 0.093184,
+              "p95": 0.11264,
+              "n": 40
+            }
+          }
+        }
+      ]
+    },
+    {
+      "candidate": "shared",
+      "repeat": 0,
+      "scene": "paper-walls-510k-4",
+      "differentWords": 0,
+      "maxError": 0,
+      "errors": [],
+      "warmup": 100,
+      "samples": 40,
+      "runs": [
+        {
+          "variant": "baseline",
+          "bodyCount": 505923,
+          "jointCount": 0,
+          "params": {
+            "dt": 0.016666666666666666,
+            "gravity": -10,
+            "iterations": 4,
+            "betaLin": 10000,
+            "betaAng": 100,
+            "alpha": 0.99,
+            "gamma": 0.999,
+            "matchNearest": true,
+            "faceBias": true,
+            "reuseContacts": true,
+            "startAtRest": true,
+            "massPenalty": true,
+            "windSpeed": 0,
+            "windAngle": 0,
+            "windGust": 0.4,
+            "windPressure": 0.72,
+            "up": [
+              0,
+              0,
+              1
+            ]
+          },
+          "verifiedSteps": 140,
+          "counters": {
+            "pairs": 979022,
+            "contacts": 4027281,
+            "manifolds": 976759,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 10
+          },
+          "quaternionError": 1.3597574244350596e-07,
+          "finite": true,
+          "summary": {
+            "total": {
+              "mean": 55.288115200000014,
+              "median": 55.262208,
+              "p95": 56.059904,
+              "n": 40
+            },
+            "collision": {
+              "mean": 15.947647999999997,
+              "median": 15.9232,
+              "p95": 16.267264,
+              "n": 40
+            },
+            "adjacency": {
+              "mean": 3.9224319999999993,
+              "median": 3.93728,
+              "p95": 4.209664,
+              "n": 40
+            },
+            "coloring": {
+              "mean": 1.6224256000000001,
+              "median": 1.604608,
+              "p95": 1.8432,
+              "n": 40
+            },
+            "solve": {
+              "mean": 33.793766399999996,
+              "median": 33.826816,
+              "p95": 34.336768,
+              "n": 40
+            }
+          },
+          "details": {
+            "contactCache": {
+              "mean": 2.7147263999999995,
+              "median": 2.70336,
+              "p95": 2.93888,
+              "n": 40
+            },
+            "broadphaseBuild": {
+              "mean": 0.5978112,
+              "median": 0.584704,
+              "p95": 0.755712,
+              "n": 40
+            },
+            "broadphasePairs": {
+              "mean": 3.295232,
+              "median": 3.263488,
+              "p95": 3.70176,
+              "n": 40
+            },
+            "narrowphase": {
+              "mean": 9.3398784,
+              "median": 9.309184,
+              "p95": 9.506816,
+              "n": 40
+            },
+            "adjacency": {
+              "mean": 3.9224319999999993,
+              "median": 3.93728,
+              "p95": 4.209664,
+              "n": 40
+            },
+            "coloring": {
+              "mean": 1.6224256000000001,
+              "median": 1.604608,
+              "p95": 1.8432,
+              "n": 40
+            },
+            "warmStart": {
+              "mean": 0.49105920000000003,
+              "median": 0.490496,
+              "p95": 0.51712,
+              "n": 40
+            },
+            "bodySolve": {
+              "mean": 21.494784,
+              "median": 21.471232,
+              "p95": 22.08256,
+              "n": 40
+            },
+            "contactUpdate": {
+              "mean": 11.288934399999999,
+              "median": 11.1872,
+              "p95": 11.863040000000002,
+              "n": 40
+            },
+            "velocities": {
+              "mean": 0.5189887999999998,
+              "median": 0.515072,
+              "p95": 0.591872,
+              "n": 40
+            }
+          }
+        },
+        {
+          "variant": "shared",
+          "bodyCount": 505923,
+          "jointCount": 0,
+          "params": {
+            "dt": 0.016666666666666666,
+            "gravity": -10,
+            "iterations": 4,
+            "betaLin": 10000,
+            "betaAng": 100,
+            "alpha": 0.99,
+            "gamma": 0.999,
+            "matchNearest": true,
+            "faceBias": true,
+            "reuseContacts": true,
+            "startAtRest": true,
+            "massPenalty": true,
+            "windSpeed": 0,
+            "windAngle": 0,
+            "windGust": 0.4,
+            "windPressure": 0.72,
+            "up": [
+              0,
+              0,
+              1
+            ]
+          },
+          "verifiedSteps": 140,
+          "counters": {
+            "pairs": 979022,
+            "contacts": 4027281,
+            "manifolds": 976759,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 10
+          },
+          "quaternionError": 1.3597574244350596e-07,
+          "finite": true,
+          "summary": {
+            "total": {
+              "mean": 54.519449599999994,
+              "median": 54.551552,
+              "p95": 55.323648,
+              "n": 40
+            },
+            "collision": {
+              "mean": 15.902540800000002,
+              "median": 15.901696,
+              "p95": 16.371712000000002,
+              "n": 40
+            },
+            "adjacency": {
+              "mean": 3.849344,
+              "median": 3.847168,
+              "p95": 4.277248,
+              "n": 40
+            },
+            "coloring": {
+              "mean": 1.6323839999999996,
+              "median": 1.608704,
+              "p95": 1.95072,
+              "n": 40
+            },
+            "solve": {
+              "mean": 33.13364479999999,
+              "median": 33.082367999999995,
+              "p95": 33.64044799999999,
+              "n": 40
+            }
+          },
+          "details": {
+            "contactCache": {
+              "mean": 2.5993983999999997,
+              "median": 2.57024,
+              "p95": 2.746368,
+              "n": 40
+            },
+            "broadphaseBuild": {
+              "mean": 0.59072,
+              "median": 0.584704,
+              "p95": 0.638976,
+              "n": 40
+            },
+            "broadphasePairs": {
+              "mean": 3.3496832000000003,
+              "median": 3.263488,
+              "p95": 3.955712,
+              "n": 40
+            },
+            "narrowphase": {
+              "mean": 9.362739200000002,
+              "median": 9.341952,
+              "p95": 9.718784,
+              "n": 40
+            },
+            "adjacency": {
+              "mean": 3.849344,
+              "median": 3.847168,
+              "p95": 4.277248,
+              "n": 40
+            },
+            "coloring": {
+              "mean": 1.6323839999999996,
+              "median": 1.608704,
+              "p95": 1.95072,
+              "n": 40
+            },
+            "warmStart": {
+              "mean": 0.42534400000000006,
+              "median": 0.418816,
+              "p95": 0.49152,
+              "n": 40
+            },
+            "bodySolve": {
+              "mean": 21.710976,
+              "median": 21.695487999999997,
+              "p95": 22.387712,
+              "n": 40
+            },
+            "contactUpdate": {
+              "mean": 10.548326399999999,
+              "median": 10.499072,
+              "p95": 11.196416000000001,
+              "n": 40
+            },
+            "velocities": {
+              "mean": 0.4489984000000001,
+              "median": 0.447488,
+              "p95": 0.461824,
+              "n": 40
+            }
+          }
+        }
+      ]
+    },
+    {
+      "candidate": "shared",
+      "repeat": 1,
+      "scene": "paper-walls-510k-4",
+      "differentWords": 0,
+      "maxError": 0,
+      "errors": [],
+      "warmup": 100,
+      "samples": 40,
+      "runs": [
+        {
+          "variant": "shared",
+          "bodyCount": 505923,
+          "jointCount": 0,
+          "params": {
+            "dt": 0.016666666666666666,
+            "gravity": -10,
+            "iterations": 4,
+            "betaLin": 10000,
+            "betaAng": 100,
+            "alpha": 0.99,
+            "gamma": 0.999,
+            "matchNearest": true,
+            "faceBias": true,
+            "reuseContacts": true,
+            "startAtRest": true,
+            "massPenalty": true,
+            "windSpeed": 0,
+            "windAngle": 0,
+            "windGust": 0.4,
+            "windPressure": 0.72,
+            "up": [
+              0,
+              0,
+              1
+            ]
+          },
+          "verifiedSteps": 140,
+          "counters": {
+            "pairs": 979022,
+            "contacts": 4027281,
+            "manifolds": 976759,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 10
+          },
+          "quaternionError": 1.3597574244350596e-07,
+          "finite": true,
+          "summary": {
+            "total": {
+              "mean": 54.07877119999999,
+              "median": 54.073344,
+              "p95": 54.914048,
+              "n": 40
+            },
+            "collision": {
+              "mean": 15.690009599999996,
+              "median": 15.679488,
+              "p95": 16.243712000000002,
+              "n": 40
+            },
+            "adjacency": {
+              "mean": 3.722956800000001,
+              "median": 3.736576,
+              "p95": 4.07552,
+              "n": 40
+            },
+            "coloring": {
+              "mean": 1.6153600000000004,
+              "median": 1.6128,
+              "p95": 1.772544,
+              "n": 40
+            },
+            "solve": {
+              "mean": 33.0486528,
+              "median": 32.985088,
+              "p95": 33.59232,
+              "n": 40
+            }
+          },
+          "details": {
+            "contactCache": {
+              "mean": 2.5340928000000003,
+              "median": 2.523136,
+              "p95": 2.746368,
+              "n": 40
+            },
+            "broadphaseBuild": {
+              "mean": 0.5897216000000001,
+              "median": 0.585728,
+              "p95": 0.62976,
+              "n": 40
+            },
+            "broadphasePairs": {
+              "mean": 3.3193216,
+              "median": 3.277824,
+              "p95": 3.748864,
+              "n": 40
+            },
+            "narrowphase": {
+              "mean": 9.246873600000002,
+              "median": 9.240576,
+              "p95": 9.626624,
+              "n": 40
+            },
+            "adjacency": {
+              "mean": 3.722956800000001,
+              "median": 3.736576,
+              "p95": 4.07552,
+              "n": 40
+            },
+            "coloring": {
+              "mean": 1.6153600000000004,
+              "median": 1.6128,
+              "p95": 1.772544,
+              "n": 40
+            },
+            "warmStart": {
+              "mean": 0.4876288,
+              "median": 0.490496,
+              "p95": 0.507904,
+              "n": 40
+            },
+            "bodySolve": {
+              "mean": 21.4398208,
+              "median": 21.397504,
+              "p95": 22.188032000000003,
+              "n": 40
+            },
+            "contactUpdate": {
+              "mean": 10.604185600000001,
+              "median": 10.543104,
+              "p95": 11.280384000000002,
+              "n": 40
+            },
+            "velocities": {
+              "mean": 0.5170176,
+              "median": 0.510976,
+              "p95": 0.538624,
+              "n": 40
+            }
+          }
+        },
+        {
+          "variant": "baseline",
+          "bodyCount": 505923,
+          "jointCount": 0,
+          "params": {
+            "dt": 0.016666666666666666,
+            "gravity": -10,
+            "iterations": 4,
+            "betaLin": 10000,
+            "betaAng": 100,
+            "alpha": 0.99,
+            "gamma": 0.999,
+            "matchNearest": true,
+            "faceBias": true,
+            "reuseContacts": true,
+            "startAtRest": true,
+            "massPenalty": true,
+            "windSpeed": 0,
+            "windAngle": 0,
+            "windGust": 0.4,
+            "windPressure": 0.72,
+            "up": [
+              0,
+              0,
+              1
+            ]
+          },
+          "verifiedSteps": 140,
+          "counters": {
+            "pairs": 979022,
+            "contacts": 4027281,
+            "manifolds": 976759,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 10
+          },
+          "quaternionError": 1.3597574244350596e-07,
+          "finite": true,
+          "summary": {
+            "total": {
+              "mean": 54.478310399999984,
+              "median": 54.4512,
+              "p95": 55.333888,
+              "n": 40
+            },
+            "collision": {
+              "mean": 16.305126400000002,
+              "median": 16.262144,
+              "p95": 16.841728,
+              "n": 40
+            },
+            "adjacency": {
+              "mean": 4.0794624,
+              "median": 4.068352,
+              "p95": 4.547584,
+              "n": 40
+            },
+            "coloring": {
+              "mean": 1.6370687999999998,
+              "median": 1.626112,
+              "p95": 1.759232,
+              "n": 40
+            },
+            "solve": {
+              "mean": 32.454528,
+              "median": 32.473088,
+              "p95": 33.23596799999999,
+              "n": 40
+            }
+          },
+          "details": {
+            "contactCache": {
+              "mean": 2.8254976,
+              "median": 2.808832,
+              "p95": 2.98496,
+              "n": 40
+            },
+            "broadphaseBuild": {
+              "mean": 0.6147328000000001,
+              "median": 0.585728,
+              "p95": 0.800768,
+              "n": 40
+            },
+            "broadphasePairs": {
+              "mean": 3.391360000000001,
+              "median": 3.298304,
+              "p95": 3.933184,
+              "n": 40
+            },
+            "narrowphase": {
+              "mean": 9.473535999999996,
+              "median": 9.433088,
+              "p95": 9.790464,
+              "n": 40
+            },
+            "adjacency": {
+              "mean": 4.0794624,
+              "median": 4.068352,
+              "p95": 4.547584,
+              "n": 40
+            },
+            "coloring": {
+              "mean": 1.6370687999999998,
+              "median": 1.626112,
+              "p95": 1.759232,
+              "n": 40
+            },
+            "warmStart": {
+              "mean": 0.5105663999999999,
+              "median": 0.490496,
+              "p95": 0.69632,
+              "n": 40
+            },
+            "bodySolve": {
+              "mean": 21.439104,
+              "median": 21.46304,
+              "p95": 21.987327999999998,
+              "n": 40
+            },
+            "contactUpdate": {
+              "mean": 9.971481600000002,
+              "median": 9.928704,
+              "p95": 10.500096,
+              "n": 40
+            },
+            "velocities": {
+              "mean": 0.533376,
+              "median": 0.528384,
+              "p95": 0.592896,
+              "n": 40
+            }
+          }
+        }
+      ]
+    },
+    {
+      "candidate": "scheduling",
+      "repeat": 0,
+      "scene": "showcase-box-columns-100k",
+      "differentWords": 0,
+      "maxError": 0,
+      "errors": [],
+      "warmup": 100,
+      "samples": 40,
+      "runs": [
+        {
+          "variant": "baseline",
+          "bodyCount": 100001,
+          "jointCount": 0,
+          "params": {
+            "dt": 0.016666666666666666,
+            "gravity": -10,
+            "iterations": 5,
+            "betaLin": 10000,
+            "betaAng": 100,
+            "alpha": 0.99,
+            "gamma": 0.999,
+            "matchNearest": true,
+            "faceBias": true,
+            "reuseContacts": true,
+            "startAtRest": true,
+            "massPenalty": true,
+            "windSpeed": 0,
+            "windAngle": 0,
+            "windGust": 0.4,
+            "windPressure": 0.72,
+            "up": [
+              0,
+              0,
+              1
+            ]
+          },
+          "verifiedSteps": 140,
+          "counters": {
+            "pairs": 100000,
+            "contacts": 400000,
+            "manifolds": 100000,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 3
+          },
+          "quaternionError": 1.212363542890671e-13,
+          "finite": true,
+          "summary": {
+            "total": {
+              "mean": 5.120435199999999,
+              "median": 5.081088,
+              "p95": 5.496832,
+              "n": 40
+            },
+            "collision": {
+              "mean": 1.9022848000000003,
+              "median": 1.8790399999999998,
+              "p95": 2.1790719999999997,
+              "n": 40
+            },
+            "adjacency": {
+              "mean": 0.2605312000000001,
+              "median": 0.257024,
+              "p95": 0.264192,
+              "n": 40
+            },
+            "coloring": {
+              "mean": 0.15237119999999996,
+              "median": 0.156672,
+              "p95": 0.160768,
+              "n": 40
+            },
+            "solve": {
+              "mean": 2.803968,
+              "median": 2.7770880000000004,
+              "p95": 3.0433280000000003,
+              "n": 40
+            }
+          },
+          "details": {
+            "contactCache": {
+              "mean": 0.09643519999999998,
+              "median": 0.101376,
+              "p95": 0.116736,
+              "n": 40
+            },
+            "broadphaseBuild": {
+              "mean": 0.06133759999999999,
+              "median": 0.060416,
+              "p95": 0.070656,
+              "n": 40
+            },
+            "broadphasePairs": {
+              "mean": 1.0996992,
+              "median": 1.0752,
+              "p95": 1.353728,
+              "n": 40
+            },
+            "narrowphase": {
+              "mean": 0.6448128000000002,
+              "median": 0.644096,
+              "p95": 0.68608,
+              "n": 40
+            },
+            "adjacency": {
+              "mean": 0.2605312000000001,
+              "median": 0.257024,
+              "p95": 0.264192,
+              "n": 40
+            },
+            "coloring": {
+              "mean": 0.15237119999999996,
+              "median": 0.156672,
+              "p95": 0.160768,
+              "n": 40
+            },
+            "warmStart": {
+              "mean": 0.0787712,
+              "median": 0.078848,
+              "p95": 0.08192,
+              "n": 40
+            },
+            "bodySolve": {
+              "mean": 1.9674111999999997,
+              "median": 1.949696,
+              "p95": 2.134016,
+              "n": 40
+            },
+            "contactUpdate": {
+              "mean": 0.6457088000000001,
+              "median": 0.6410239999999999,
+              "p95": 0.662528,
+              "n": 40
+            },
+            "velocities": {
+              "mean": 0.11207680000000005,
+              "median": 0.10752,
+              "p95": 0.11776,
+              "n": 40
+            }
+          }
+        },
+        {
+          "variant": "scheduling",
+          "bodyCount": 100001,
+          "jointCount": 0,
+          "params": {
+            "dt": 0.016666666666666666,
+            "gravity": -10,
+            "iterations": 5,
+            "betaLin": 10000,
+            "betaAng": 100,
+            "alpha": 0.99,
+            "gamma": 0.999,
+            "matchNearest": true,
+            "faceBias": true,
+            "reuseContacts": true,
+            "startAtRest": true,
+            "massPenalty": true,
+            "windSpeed": 0,
+            "windAngle": 0,
+            "windGust": 0.4,
+            "windPressure": 0.72,
+            "up": [
+              0,
+              0,
+              1
+            ]
+          },
+          "verifiedSteps": 140,
+          "counters": {
+            "pairs": 100000,
+            "contacts": 400000,
+            "manifolds": 100000,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 3
+          },
+          "quaternionError": 1.212363542890671e-13,
+          "finite": true,
+          "summary": {
+            "total": {
+              "mean": 5.656806400000001,
+              "median": 5.602304,
+              "p95": 6.289408,
+              "n": 40
+            },
+            "collision": {
+              "mean": 1.9132672,
+              "median": 1.88416,
+              "p95": 2.1258239999999997,
+              "n": 40
+            },
+            "adjacency": {
+              "mean": 0.2608384,
+              "median": 0.26112,
+              "p95": 0.267264,
+              "n": 40
+            },
+            "coloring": {
+              "mean": 0.6344703999999999,
+              "median": 0.712704,
+              "p95": 0.878592,
+              "n": 40
+            },
+            "solve": {
+              "mean": 2.8472576000000003,
+              "median": 2.7648,
+              "p95": 3.479552,
+              "n": 40
+            }
+          },
+          "details": {
+            "contactCache": {
+              "mean": 0.09105919999999998,
+              "median": 0.091136,
+              "p95": 0.105472,
+              "n": 40
+            },
+            "broadphaseBuild": {
+              "mean": 0.061568,
+              "median": 0.059392,
+              "p95": 0.07168,
+              "n": 40
+            },
+            "broadphasePairs": {
+              "mean": 1.1052799999999998,
+              "median": 1.0752,
+              "p95": 1.332224,
+              "n": 40
+            },
+            "narrowphase": {
+              "mean": 0.6553599999999998,
+              "median": 0.652288,
+              "p95": 0.826368,
+              "n": 40
+            },
+            "adjacency": {
+              "mean": 0.2608384,
+              "median": 0.26112,
+              "p95": 0.267264,
+              "n": 40
+            },
+            "coloring": {
+              "mean": 0.6344703999999999,
+              "median": 0.712704,
+              "p95": 0.878592,
+              "n": 40
+            },
+            "warmStart": {
+              "mean": 0.07936000000000003,
+              "median": 0.079872,
+              "p95": 0.08192,
+              "n": 40
+            },
+            "bodySolve": {
+              "mean": 2.01344,
+              "median": 1.9568639999999997,
+              "p95": 2.470912,
+              "n": 40
+            },
+            "contactUpdate": {
+              "mean": 0.641024,
+              "median": 0.6225919999999999,
+              "p95": 0.80384,
+              "n": 40
+            },
+            "velocities": {
+              "mean": 0.11343360000000002,
+              "median": 0.108544,
+              "p95": 0.118784,
+              "n": 40
+            }
+          }
+        }
+      ]
+    },
+    {
+      "candidate": "scheduling",
+      "repeat": 1,
+      "scene": "showcase-box-columns-100k",
+      "differentWords": 0,
+      "maxError": 0,
+      "errors": [],
+      "warmup": 100,
+      "samples": 40,
+      "runs": [
+        {
+          "variant": "scheduling",
+          "bodyCount": 100001,
+          "jointCount": 0,
+          "params": {
+            "dt": 0.016666666666666666,
+            "gravity": -10,
+            "iterations": 5,
+            "betaLin": 10000,
+            "betaAng": 100,
+            "alpha": 0.99,
+            "gamma": 0.999,
+            "matchNearest": true,
+            "faceBias": true,
+            "reuseContacts": true,
+            "startAtRest": true,
+            "massPenalty": true,
+            "windSpeed": 0,
+            "windAngle": 0,
+            "windGust": 0.4,
+            "windPressure": 0.72,
+            "up": [
+              0,
+              0,
+              1
+            ]
+          },
+          "verifiedSteps": 140,
+          "counters": {
+            "pairs": 100000,
+            "contacts": 400000,
+            "manifolds": 100000,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 3
+          },
+          "quaternionError": 1.212363542890671e-13,
+          "finite": true,
+          "summary": {
+            "total": {
+              "mean": 5.6434175999999985,
+              "median": 5.608448,
+              "p95": 6.098944,
+              "n": 40
+            },
+            "collision": {
+              "mean": 1.8995968,
+              "median": 1.880064,
+              "p95": 2.143232,
+              "n": 40
+            },
+            "adjacency": {
+              "mean": 0.28743679999999994,
+              "median": 0.260096,
+              "p95": 0.623616,
+              "n": 40
+            },
+            "coloring": {
+              "mean": 0.6415359999999999,
+              "median": 0.712704,
+              "p95": 0.755712,
+              "n": 40
+            },
+            "solve": {
+              "mean": 2.8135168,
+              "median": 2.7668479999999995,
+              "p95": 3.1682560000000004,
+              "n": 40
+            }
+          },
+          "details": {
+            "contactCache": {
+              "mean": 0.09126400000000001,
+              "median": 0.090112,
+              "p95": 0.106496,
+              "n": 40
+            },
+            "broadphaseBuild": {
+              "mean": 0.06195200000000001,
+              "median": 0.060416,
+              "p95": 0.073728,
+              "n": 40
+            },
+            "broadphasePairs": {
+              "mean": 1.091968,
+              "median": 1.07008,
+              "p95": 1.321984,
+              "n": 40
+            },
+            "narrowphase": {
+              "mean": 0.6544128000000001,
+              "median": 0.65024,
+              "p95": 0.795648,
+              "n": 40
+            },
+            "adjacency": {
+              "mean": 0.28743679999999994,
+              "median": 0.260096,
+              "p95": 0.623616,
+              "n": 40
+            },
+            "coloring": {
+              "mean": 0.6415359999999999,
+              "median": 0.712704,
+              "p95": 0.755712,
+              "n": 40
+            },
+            "warmStart": {
+              "mean": 0.08483840000000002,
+              "median": 0.079872,
+              "p95": 0.08192,
+              "n": 40
+            },
+            "bodySolve": {
+              "mean": 1.973119999999999,
+              "median": 1.9435520000000002,
+              "p95": 2.2845440000000004,
+              "n": 40
+            },
+            "contactUpdate": {
+              "mean": 0.6455552,
+              "median": 0.632832,
+              "p95": 0.666624,
+              "n": 40
+            },
+            "velocities": {
+              "mean": 0.11000320000000001,
+              "median": 0.10752,
+              "p95": 0.144384,
+              "n": 40
+            }
+          }
+        },
+        {
+          "variant": "baseline",
+          "bodyCount": 100001,
+          "jointCount": 0,
+          "params": {
+            "dt": 0.016666666666666666,
+            "gravity": -10,
+            "iterations": 5,
+            "betaLin": 10000,
+            "betaAng": 100,
+            "alpha": 0.99,
+            "gamma": 0.999,
+            "matchNearest": true,
+            "faceBias": true,
+            "reuseContacts": true,
+            "startAtRest": true,
+            "massPenalty": true,
+            "windSpeed": 0,
+            "windAngle": 0,
+            "windGust": 0.4,
+            "windPressure": 0.72,
+            "up": [
+              0,
+              0,
+              1
+            ]
+          },
+          "verifiedSteps": 140,
+          "counters": {
+            "pairs": 100000,
+            "contacts": 400000,
+            "manifolds": 100000,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 3
+          },
+          "quaternionError": 1.212363542890671e-13,
+          "finite": true,
+          "summary": {
+            "total": {
+              "mean": 5.157683199999999,
+              "median": 5.083136,
+              "p95": 5.530624,
+              "n": 40
+            },
+            "collision": {
+              "mean": 1.9090944,
+              "median": 1.890304,
+              "p95": 2.187264,
+              "n": 40
+            },
+            "adjacency": {
+              "mean": 0.26311680000000004,
+              "median": 0.263168,
+              "p95": 0.268288,
+              "n": 40
+            },
+            "coloring": {
+              "mean": 0.15895040000000002,
+              "median": 0.15872,
+              "p95": 0.162816,
+              "n": 40
+            },
+            "solve": {
+              "mean": 2.825216,
+              "median": 2.7647999999999993,
+              "p95": 3.2440319999999994,
+              "n": 40
+            }
+          },
+          "details": {
+            "contactCache": {
+              "mean": 0.09763840000000003,
+              "median": 0.101376,
+              "p95": 0.120832,
+              "n": 40
+            },
+            "broadphaseBuild": {
+              "mean": 0.06110719999999999,
+              "median": 0.058368,
+              "p95": 0.070656,
+              "n": 40
+            },
+            "broadphasePairs": {
+              "mean": 1.0888703999999998,
+              "median": 1.073152,
+              "p95": 1.2544,
+              "n": 40
+            },
+            "narrowphase": {
+              "mean": 0.6614783999999998,
+              "median": 0.657408,
+              "p95": 0.770048,
+              "n": 40
+            },
+            "adjacency": {
+              "mean": 0.26311680000000004,
+              "median": 0.263168,
+              "p95": 0.268288,
+              "n": 40
+            },
+            "coloring": {
+              "mean": 0.15895040000000002,
+              "median": 0.15872,
+              "p95": 0.162816,
+              "n": 40
+            },
+            "warmStart": {
+              "mean": 0.0781056,
+              "median": 0.077824,
+              "p95": 0.080896,
+              "n": 40
+            },
+            "bodySolve": {
+              "mean": 1.9890176000000004,
+              "median": 1.952768,
+              "p95": 2.28352,
+              "n": 40
+            },
+            "contactUpdate": {
+              "mean": 0.6459136000000002,
+              "median": 0.626688,
+              "p95": 0.861184,
+              "n": 40
+            },
+            "velocities": {
+              "mean": 0.1121792,
+              "median": 0.10752,
+              "p95": 0.118784,
+              "n": 40
+            }
+          }
+        }
+      ]
+    },
+    {
+      "candidate": "scheduling",
+      "repeat": 0,
+      "scene": "showcase-brick-ring-110k",
+      "differentWords": 0,
+      "maxError": 0,
+      "errors": [],
+      "warmup": 100,
+      "samples": 40,
+      "runs": [
+        {
+          "variant": "baseline",
+          "bodyCount": 110442,
+          "jointCount": 0,
+          "params": {
+            "dt": 0.016666666666666666,
+            "gravity": -10,
+            "iterations": 4,
+            "betaLin": 10000,
+            "betaAng": 100,
+            "alpha": 0.99,
+            "gamma": 0.999,
+            "matchNearest": true,
+            "faceBias": true,
+            "reuseContacts": true,
+            "startAtRest": true,
+            "massPenalty": true,
+            "windSpeed": 0,
+            "windAngle": 0,
+            "windGust": 0.4,
+            "windPressure": 0.72,
+            "up": [
+              0,
+              0,
+              1
+            ]
+          },
+          "verifiedSteps": 140,
+          "counters": {
+            "pairs": 255088,
+            "contacts": 1200967,
+            "manifolds": 246239,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 15
+          },
+          "quaternionError": 1.2994734821525356e-07,
+          "finite": true,
+          "summary": {
+            "total": {
+              "mean": 16.296857599999996,
+              "median": 16.299008,
+              "p95": 16.692224,
+              "n": 40
+            },
+            "collision": {
+              "mean": 4.744371199999999,
+              "median": 4.656128,
+              "p95": 5.142528,
+              "n": 40
+            },
+            "adjacency": {
+              "mean": 0.7458560000000001,
+              "median": 0.739328,
+              "p95": 0.909312,
+              "n": 40
+            },
+            "coloring": {
+              "mean": 0.26449920000000005,
+              "median": 0.262144,
+              "p95": 0.279552,
+              "n": 40
+            },
+            "solve": {
+              "mean": 10.540902400000002,
+              "median": 10.491904,
+              "p95": 11.051008,
+              "n": 40
+            }
+          },
+          "details": {
+            "contactCache": {
+              "mean": 0.18268160000000003,
+              "median": 0.185344,
+              "p95": 0.18944,
+              "n": 40
+            },
+            "broadphaseBuild": {
+              "mean": 0.07365120000000001,
+              "median": 0.075776,
+              "p95": 0.077824,
+              "n": 40
+            },
+            "broadphasePairs": {
+              "mean": 2.0982016,
+              "median": 2.071552,
+              "p95": 2.403328,
+              "n": 40
+            },
+            "narrowphase": {
+              "mean": 2.3898368000000003,
+              "median": 2.31936,
+              "p95": 2.715648,
+              "n": 40
+            },
+            "adjacency": {
+              "mean": 0.7458560000000001,
+              "median": 0.739328,
+              "p95": 0.909312,
+              "n": 40
+            },
+            "coloring": {
+              "mean": 0.26449920000000005,
+              "median": 0.262144,
+              "p95": 0.279552,
+              "n": 40
+            },
+            "warmStart": {
+              "mean": 0.06735360000000004,
+              "median": 0.067584,
+              "p95": 0.069632,
+              "n": 40
+            },
+            "bodySolve": {
+              "mean": 7.624959999999999,
+              "median": 7.481344,
+              "p95": 8.094719999999999,
+              "n": 40
+            },
+            "contactUpdate": {
+              "mean": 2.7683328,
+              "median": 2.8334080000000004,
+              "p95": 3.193856,
+              "n": 40
+            },
+            "velocities": {
+              "mean": 0.08025600000000001,
+              "median": 0.078848,
+              "p95": 0.09728,
+              "n": 40
+            }
+          }
+        },
+        {
+          "variant": "scheduling",
+          "bodyCount": 110442,
+          "jointCount": 0,
+          "params": {
+            "dt": 0.016666666666666666,
+            "gravity": -10,
+            "iterations": 4,
+            "betaLin": 10000,
+            "betaAng": 100,
+            "alpha": 0.99,
+            "gamma": 0.999,
+            "matchNearest": true,
+            "faceBias": true,
+            "reuseContacts": true,
+            "startAtRest": true,
+            "massPenalty": true,
+            "windSpeed": 0,
+            "windAngle": 0,
+            "windGust": 0.4,
+            "windPressure": 0.72,
+            "up": [
+              0,
+              0,
+              1
+            ]
+          },
+          "verifiedSteps": 140,
+          "counters": {
+            "pairs": 255088,
+            "contacts": 1200967,
+            "manifolds": 246239,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 15
+          },
+          "quaternionError": 1.2994734821525356e-07,
+          "finite": true,
+          "summary": {
+            "total": {
+              "mean": 17.077478400000004,
+              "median": 17.048576,
+              "p95": 17.598464,
+              "n": 40
+            },
+            "collision": {
+              "mean": 4.779392,
+              "median": 4.6735359999999995,
+              "p95": 5.238784,
+              "n": 40
+            },
+            "adjacency": {
+              "mean": 0.7063808,
+              "median": 0.705536,
+              "p95": 0.713728,
+              "n": 40
+            },
+            "coloring": {
+              "mean": 1.1796992000000004,
+              "median": 1.161216,
+              "p95": 1.429504,
+              "n": 40
+            },
+            "solve": {
+              "mean": 10.410495999999998,
+              "median": 10.422272000000001,
+              "p95": 10.904576,
+              "n": 40
+            }
+          },
+          "details": {
+            "contactCache": {
+              "mean": 0.18552320000000005,
+              "median": 0.187392,
+              "p95": 0.200704,
+              "n": 40
+            },
+            "broadphaseBuild": {
+              "mean": 0.07380479999999998,
+              "median": 0.074752,
+              "p95": 0.0768,
+              "n": 40
+            },
+            "broadphasePairs": {
+              "mean": 2.161843199999999,
+              "median": 2.082816,
+              "p95": 2.507776,
+              "n": 40
+            },
+            "narrowphase": {
+              "mean": 2.3582208000000002,
+              "median": 2.326528,
+              "p95": 2.671616,
+              "n": 40
+            },
+            "adjacency": {
+              "mean": 0.7063808,
+              "median": 0.705536,
+              "p95": 0.713728,
+              "n": 40
+            },
+            "coloring": {
+              "mean": 1.1796992000000004,
+              "median": 1.161216,
+              "p95": 1.429504,
+              "n": 40
+            },
+            "warmStart": {
+              "mean": 0.06684160000000001,
+              "median": 0.06656,
+              "p95": 0.072704,
+              "n": 40
+            },
+            "bodySolve": {
+              "mean": 7.646617599999995,
+              "median": 7.643136,
+              "p95": 8.216576,
+              "n": 40
+            },
+            "contactUpdate": {
+              "mean": 2.6100736,
+              "median": 2.56512,
+              "p95": 2.843648,
+              "n": 40
+            },
+            "velocities": {
+              "mean": 0.08696320000000002,
+              "median": 0.078848,
+              "p95": 0.101376,
+              "n": 40
+            }
+          }
+        }
+      ]
+    },
+    {
+      "candidate": "scheduling",
+      "repeat": 1,
+      "scene": "showcase-brick-ring-110k",
+      "differentWords": 0,
+      "maxError": 0,
+      "errors": [],
+      "warmup": 100,
+      "samples": 40,
+      "runs": [
+        {
+          "variant": "scheduling",
+          "bodyCount": 110442,
+          "jointCount": 0,
+          "params": {
+            "dt": 0.016666666666666666,
+            "gravity": -10,
+            "iterations": 4,
+            "betaLin": 10000,
+            "betaAng": 100,
+            "alpha": 0.99,
+            "gamma": 0.999,
+            "matchNearest": true,
+            "faceBias": true,
+            "reuseContacts": true,
+            "startAtRest": true,
+            "massPenalty": true,
+            "windSpeed": 0,
+            "windAngle": 0,
+            "windGust": 0.4,
+            "windPressure": 0.72,
+            "up": [
+              0,
+              0,
+              1
+            ]
+          },
+          "verifiedSteps": 140,
+          "counters": {
+            "pairs": 255088,
+            "contacts": 1200967,
+            "manifolds": 246239,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 15
+          },
+          "quaternionError": 1.2994734821525356e-07,
+          "finite": true,
+          "summary": {
+            "total": {
+              "mean": 17.290854399999997,
+              "median": 17.31584,
+              "p95": 17.780736,
+              "n": 40
+            },
+            "collision": {
+              "mean": 4.744115200000001,
+              "median": 4.658176000000001,
+              "p95": 5.116928,
+              "n": 40
+            },
+            "adjacency": {
+              "mean": 0.7206399999999997,
+              "median": 0.710656,
+              "p95": 0.888832,
+              "n": 40
+            },
+            "coloring": {
+              "mean": 1.1980288,
+              "median": 1.164288,
+              "p95": 1.531904,
+              "n": 40
+            },
+            "solve": {
+              "mean": 10.6266624,
+              "median": 10.661888000000003,
+              "p95": 11.016192000000002,
+              "n": 40
+            }
+          },
+          "details": {
+            "contactCache": {
+              "mean": 0.1912320000000001,
+              "median": 0.198656,
+              "p95": 0.205824,
+              "n": 40
+            },
+            "broadphaseBuild": {
+              "mean": 0.07344640000000001,
+              "median": 0.074752,
+              "p95": 0.077824,
+              "n": 40
+            },
+            "broadphasePairs": {
+              "mean": 2.1362688,
+              "median": 2.071552,
+              "p95": 2.522112,
+              "n": 40
+            },
+            "narrowphase": {
+              "mean": 2.3431679999999995,
+              "median": 2.316288,
+              "p95": 2.572288,
+              "n": 40
+            },
+            "adjacency": {
+              "mean": 0.7206399999999997,
+              "median": 0.710656,
+              "p95": 0.888832,
+              "n": 40
+            },
+            "coloring": {
+              "mean": 1.1980288,
+              "median": 1.164288,
+              "p95": 1.531904,
+              "n": 40
+            },
+            "warmStart": {
+              "mean": 0.08929280000000003,
+              "median": 0.090112,
+              "p95": 0.09216,
+              "n": 40
+            },
+            "bodySolve": {
+              "mean": 7.533849600000001,
+              "median": 7.554048,
+              "p95": 7.87968,
+              "n": 40
+            },
+            "contactUpdate": {
+              "mean": 2.9102079999999995,
+              "median": 2.876416,
+              "p95": 3.095552,
+              "n": 40
+            },
+            "velocities": {
+              "mean": 0.09331200000000003,
+              "median": 0.09216,
+              "p95": 0.098304,
+              "n": 40
+            }
+          }
+        },
+        {
+          "variant": "baseline",
+          "bodyCount": 110442,
+          "jointCount": 0,
+          "params": {
+            "dt": 0.016666666666666666,
+            "gravity": -10,
+            "iterations": 4,
+            "betaLin": 10000,
+            "betaAng": 100,
+            "alpha": 0.99,
+            "gamma": 0.999,
+            "matchNearest": true,
+            "faceBias": true,
+            "reuseContacts": true,
+            "startAtRest": true,
+            "massPenalty": true,
+            "windSpeed": 0,
+            "windAngle": 0,
+            "windGust": 0.4,
+            "windPressure": 0.72,
+            "up": [
+              0,
+              0,
+              1
+            ]
+          },
+          "verifiedSteps": 140,
+          "counters": {
+            "pairs": 255088,
+            "contacts": 1200967,
+            "manifolds": 246239,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 15
+          },
+          "quaternionError": 1.2994734821525356e-07,
+          "finite": true,
+          "summary": {
+            "total": {
+              "mean": 16.4757504,
+              "median": 16.495616,
+              "p95": 16.775168,
+              "n": 40
+            },
+            "collision": {
+              "mean": 4.7895296,
+              "median": 4.696064,
+              "p95": 5.127168,
+              "n": 40
+            },
+            "adjacency": {
+              "mean": 0.7649536,
+              "median": 0.759808,
+              "p95": 0.850944,
+              "n": 40
+            },
+            "coloring": {
+              "mean": 0.2705664,
+              "median": 0.264192,
+              "p95": 0.280576,
+              "n": 40
+            },
+            "solve": {
+              "mean": 10.649420799999998,
+              "median": 10.637311999999998,
+              "p95": 11.015167999999997,
+              "n": 40
+            }
+          },
+          "details": {
+            "contactCache": {
+              "mean": 0.1845504000000001,
+              "median": 0.186368,
+              "p95": 0.190464,
+              "n": 40
+            },
+            "broadphaseBuild": {
+              "mean": 0.07395840000000001,
+              "median": 0.075776,
+              "p95": 0.0768,
+              "n": 40
+            },
+            "broadphasePairs": {
+              "mean": 2.1396736000000005,
+              "median": 2.085888,
+              "p95": 2.445312,
+              "n": 40
+            },
+            "narrowphase": {
+              "mean": 2.391347200000001,
+              "median": 2.336768,
+              "p95": 2.719744,
+              "n": 40
+            },
+            "adjacency": {
+              "mean": 0.7649536,
+              "median": 0.759808,
+              "p95": 0.850944,
+              "n": 40
+            },
+            "coloring": {
+              "mean": 0.2705664,
+              "median": 0.264192,
+              "p95": 0.280576,
+              "n": 40
+            },
+            "warmStart": {
+              "mean": 0.07546880000000003,
+              "median": 0.06656,
+              "p95": 0.068608,
+              "n": 40
+            },
+            "bodySolve": {
+              "mean": 7.567564799999998,
+              "median": 7.496704,
+              "p95": 7.937024000000001,
+              "n": 40
+            },
+            "contactUpdate": {
+              "mean": 2.9284096000000006,
+              "median": 2.8753919999999997,
+              "p95": 3.168256,
+              "n": 40
+            },
+            "velocities": {
+              "mean": 0.07797760000000004,
+              "median": 0.077824,
+              "p95": 0.08192,
+              "n": 40
+            }
+          }
+        }
+      ]
+    },
+    {
+      "candidate": "scheduling",
+      "repeat": 0,
+      "scene": "paper-walls-510k-4",
+      "differentWords": 0,
+      "maxError": 0,
+      "errors": [],
+      "warmup": 100,
+      "samples": 40,
+      "runs": [
+        {
+          "variant": "baseline",
+          "bodyCount": 505923,
+          "jointCount": 0,
+          "params": {
+            "dt": 0.016666666666666666,
+            "gravity": -10,
+            "iterations": 4,
+            "betaLin": 10000,
+            "betaAng": 100,
+            "alpha": 0.99,
+            "gamma": 0.999,
+            "matchNearest": true,
+            "faceBias": true,
+            "reuseContacts": true,
+            "startAtRest": true,
+            "massPenalty": true,
+            "windSpeed": 0,
+            "windAngle": 0,
+            "windGust": 0.4,
+            "windPressure": 0.72,
+            "up": [
+              0,
+              0,
+              1
+            ]
+          },
+          "verifiedSteps": 140,
+          "counters": {
+            "pairs": 979022,
+            "contacts": 4027281,
+            "manifolds": 976759,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 10
+          },
+          "quaternionError": 1.3597574244350596e-07,
+          "finite": true,
+          "summary": {
+            "total": {
+              "mean": 53.491327999999996,
+              "median": 53.415936,
+              "p95": 54.629376,
+              "n": 40
+            },
+            "collision": {
+              "mean": 15.601664,
+              "median": 15.502336,
+              "p95": 16.33792,
+              "n": 40
+            },
+            "adjacency": {
+              "mean": 3.7425919999999997,
+              "median": 3.708928,
+              "p95": 4.139008,
+              "n": 40
+            },
+            "coloring": {
+              "mean": 1.6485888,
+              "median": 1.61792,
+              "p95": 1.921024,
+              "n": 40
+            },
+            "solve": {
+              "mean": 32.49692159999999,
+              "median": 32.505856,
+              "p95": 33.038336,
+              "n": 40
+            }
+          },
+          "details": {
+            "contactCache": {
+              "mean": 2.4605695999999995,
+              "median": 2.444288,
+              "p95": 2.674688,
+              "n": 40
+            },
+            "broadphaseBuild": {
+              "mean": 0.5964032,
+              "median": 0.58368,
+              "p95": 0.607232,
+              "n": 40
+            },
+            "broadphasePairs": {
+              "mean": 3.3308416000000003,
+              "median": 3.26656,
+              "p95": 3.996672,
+              "n": 40
+            },
+            "narrowphase": {
+              "mean": 9.2138496,
+              "median": 9.188352,
+              "p95": 9.465856,
+              "n": 40
+            },
+            "adjacency": {
+              "mean": 3.7425919999999997,
+              "median": 3.708928,
+              "p95": 4.139008,
+              "n": 40
+            },
+            "coloring": {
+              "mean": 1.6485888,
+              "median": 1.61792,
+              "p95": 1.921024,
+              "n": 40
+            },
+            "warmStart": {
+              "mean": 0.4228352000000001,
+              "median": 0.417792,
+              "p95": 0.490496,
+              "n": 40
+            },
+            "bodySolve": {
+              "mean": 21.7019904,
+              "median": 21.638144,
+              "p95": 22.332416,
+              "n": 40
+            },
+            "contactUpdate": {
+              "mean": 9.900672,
+              "median": 9.816064,
+              "p95": 10.515456,
+              "n": 40
+            },
+            "velocities": {
+              "mean": 0.471424,
+              "median": 0.45056,
+              "p95": 0.64,
+              "n": 40
+            }
+          }
+        },
+        {
+          "variant": "scheduling",
+          "bodyCount": 505923,
+          "jointCount": 0,
+          "params": {
+            "dt": 0.016666666666666666,
+            "gravity": -10,
+            "iterations": 4,
+            "betaLin": 10000,
+            "betaAng": 100,
+            "alpha": 0.99,
+            "gamma": 0.999,
+            "matchNearest": true,
+            "faceBias": true,
+            "reuseContacts": true,
+            "startAtRest": true,
+            "massPenalty": true,
+            "windSpeed": 0,
+            "windAngle": 0,
+            "windGust": 0.4,
+            "windPressure": 0.72,
+            "up": [
+              0,
+              0,
+              1
+            ]
+          },
+          "verifiedSteps": 140,
+          "counters": {
+            "pairs": 979022,
+            "contacts": 4027281,
+            "manifolds": 976759,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 10
+          },
+          "quaternionError": 1.3597574244350596e-07,
+          "finite": true,
+          "summary": {
+            "total": {
+              "mean": 62.56381440000001,
+              "median": 62.696448,
+              "p95": 63.997952,
+              "n": 40
+            },
+            "collision": {
+              "mean": 16.214143999999997,
+              "median": 16.185344,
+              "p95": 16.648192,
+              "n": 40
+            },
+            "adjacency": {
+              "mean": 4.0700928,
+              "median": 4.058112,
+              "p95": 4.409344,
+              "n": 40
+            },
+            "coloring": {
+              "mean": 9.213721600000001,
+              "median": 9.375744,
+              "p95": 9.859072,
+              "n": 40
+            },
+            "solve": {
+              "mean": 33.06385920000001,
+              "median": 33.276928,
+              "p95": 34.062336,
+              "n": 40
+            }
+          },
+          "details": {
+            "contactCache": {
+              "mean": 2.8031487999999998,
+              "median": 2.799616,
+              "p95": 2.854912,
+              "n": 40
+            },
+            "broadphaseBuild": {
+              "mean": 0.6316288,
+              "median": 0.585728,
+              "p95": 1.015808,
+              "n": 40
+            },
+            "broadphasePairs": {
+              "mean": 3.326208000000001,
+              "median": 3.296256,
+              "p95": 3.612672,
+              "n": 40
+            },
+            "narrowphase": {
+              "mean": 9.453158400000001,
+              "median": 9.4464,
+              "p95": 9.677824,
+              "n": 40
+            },
+            "adjacency": {
+              "mean": 4.0700928,
+              "median": 4.058112,
+              "p95": 4.409344,
+              "n": 40
+            },
+            "coloring": {
+              "mean": 9.213721600000001,
+              "median": 9.375744,
+              "p95": 9.859072,
+              "n": 40
+            },
+            "warmStart": {
+              "mean": 0.5030143999999999,
+              "median": 0.490496,
+              "p95": 0.681984,
+              "n": 40
+            },
+            "bodySolve": {
+              "mean": 21.422156800000007,
+              "median": 21.43744,
+              "p95": 21.88288,
+              "n": 40
+            },
+            "contactUpdate": {
+              "mean": 10.598809600000003,
+              "median": 11.006976,
+              "p95": 11.681792,
+              "n": 40
+            },
+            "velocities": {
+              "mean": 0.5398784,
+              "median": 0.52224,
+              "p95": 0.70656,
+              "n": 40
+            }
+          }
+        }
+      ]
+    },
+    {
+      "candidate": "scheduling",
+      "repeat": 1,
+      "scene": "paper-walls-510k-4",
+      "differentWords": 0,
+      "maxError": 0,
+      "errors": [],
+      "warmup": 100,
+      "samples": 40,
+      "runs": [
+        {
+          "variant": "scheduling",
+          "bodyCount": 505923,
+          "jointCount": 0,
+          "params": {
+            "dt": 0.016666666666666666,
+            "gravity": -10,
+            "iterations": 4,
+            "betaLin": 10000,
+            "betaAng": 100,
+            "alpha": 0.99,
+            "gamma": 0.999,
+            "matchNearest": true,
+            "faceBias": true,
+            "reuseContacts": true,
+            "startAtRest": true,
+            "massPenalty": true,
+            "windSpeed": 0,
+            "windAngle": 0,
+            "windGust": 0.4,
+            "windPressure": 0.72,
+            "up": [
+              0,
+              0,
+              1
+            ]
+          },
+          "verifiedSteps": 140,
+          "counters": {
+            "pairs": 979022,
+            "contacts": 4027281,
+            "manifolds": 976759,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 10
+          },
+          "quaternionError": 1.3597574244350596e-07,
+          "finite": true,
+          "summary": {
+            "total": {
+              "mean": 61.1203584,
+              "median": 61.144064,
+              "p95": 61.949952,
+              "n": 40
+            },
+            "collision": {
+              "mean": 15.668633600000001,
+              "median": 15.642624000000001,
+              "p95": 16.036864,
+              "n": 40
+            },
+            "adjacency": {
+              "mean": 3.7331199999999995,
+              "median": 3.739648,
+              "p95": 3.974144,
+              "n": 40
+            },
+            "coloring": {
+              "mean": 9.383423999999998,
+              "median": 9.549824,
+              "p95": 10.340352,
+              "n": 40
+            },
+            "solve": {
+              "mean": 32.33333759999999,
+              "median": 32.334848,
+              "p95": 32.859136,
+              "n": 40
+            }
+          },
+          "details": {
+            "contactCache": {
+              "mean": 2.5595648,
+              "median": 2.52416,
+              "p95": 2.733056,
+              "n": 40
+            },
+            "broadphaseBuild": {
+              "mean": 0.5969664000000001,
+              "median": 0.585728,
+              "p95": 0.800768,
+              "n": 40
+            },
+            "broadphasePairs": {
+              "mean": 3.2999935999999996,
+              "median": 3.267584,
+              "p95": 3.66592,
+              "n": 40
+            },
+            "narrowphase": {
+              "mean": 9.2121088,
+              "median": 9.230336,
+              "p95": 9.442304,
+              "n": 40
+            },
+            "adjacency": {
+              "mean": 3.7331199999999995,
+              "median": 3.739648,
+              "p95": 3.974144,
+              "n": 40
+            },
+            "coloring": {
+              "mean": 9.383423999999998,
+              "median": 9.549824,
+              "p95": 10.340352,
+              "n": 40
+            },
+            "warmStart": {
+              "mean": 0.4945919999999999,
+              "median": 0.489472,
+              "p95": 0.64,
+              "n": 40
+            },
+            "bodySolve": {
+              "mean": 21.359180800000004,
+              "median": 21.359616000000003,
+              "p95": 21.793792,
+              "n": 40
+            },
+            "contactUpdate": {
+              "mean": 9.940428799999998,
+              "median": 9.884672,
+              "p95": 10.472448,
+              "n": 40
+            },
+            "velocities": {
+              "mean": 0.5391359999999998,
+              "median": 0.530432,
+              "p95": 0.6912,
+              "n": 40
+            }
+          }
+        },
+        {
+          "variant": "baseline",
+          "bodyCount": 505923,
+          "jointCount": 0,
+          "params": {
+            "dt": 0.016666666666666666,
+            "gravity": -10,
+            "iterations": 4,
+            "betaLin": 10000,
+            "betaAng": 100,
+            "alpha": 0.99,
+            "gamma": 0.999,
+            "matchNearest": true,
+            "faceBias": true,
+            "reuseContacts": true,
+            "startAtRest": true,
+            "massPenalty": true,
+            "windSpeed": 0,
+            "windAngle": 0,
+            "windGust": 0.4,
+            "windPressure": 0.72,
+            "up": [
+              0,
+              0,
+              1
+            ]
+          },
+          "verifiedSteps": 140,
+          "counters": {
+            "pairs": 979022,
+            "contacts": 4027281,
+            "manifolds": 976759,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 10
+          },
+          "quaternionError": 1.3597574244350596e-07,
+          "finite": true,
+          "summary": {
+            "total": {
+              "mean": 54.934220800000006,
+              "median": 54.885376,
+              "p95": 55.723008,
+              "n": 40
+            },
+            "collision": {
+              "mean": 15.727616000000006,
+              "median": 15.6928,
+              "p95": 16.210943999999998,
+              "n": 40
+            },
+            "adjacency": {
+              "mean": 3.7570048,
+              "median": 3.748864,
+              "p95": 4.145152,
+              "n": 40
+            },
+            "coloring": {
+              "mean": 1.6272384000000002,
+              "median": 1.6128,
+              "p95": 1.748992,
+              "n": 40
+            },
+            "solve": {
+              "mean": 33.820825600000006,
+              "median": 33.898496,
+              "p95": 34.144256,
+              "n": 40
+            }
+          },
+          "details": {
+            "contactCache": {
+              "mean": 2.5559296000000007,
+              "median": 2.536448,
+              "p95": 2.752512,
+              "n": 40
+            },
+            "broadphaseBuild": {
+              "mean": 0.5840128000000001,
+              "median": 0.58368,
+              "p95": 0.59392,
+              "n": 40
+            },
+            "broadphasePairs": {
+              "mean": 3.3597440000000005,
+              "median": 3.300352,
+              "p95": 3.830784,
+              "n": 40
+            },
+            "narrowphase": {
+              "mean": 9.2279296,
+              "median": 9.186304,
+              "p95": 9.508864,
+              "n": 40
+            },
+            "adjacency": {
+              "mean": 3.7570048,
+              "median": 3.748864,
+              "p95": 4.145152,
+              "n": 40
+            },
+            "coloring": {
+              "mean": 1.6272384000000002,
+              "median": 1.6128,
+              "p95": 1.748992,
+              "n": 40
+            },
+            "warmStart": {
+              "mean": 0.5090560000000001,
+              "median": 0.49152,
+              "p95": 0.795648,
+              "n": 40
+            },
+            "bodySolve": {
+              "mean": 21.487386400000005,
+              "median": 21.512192000000002,
+              "p95": 22.044672,
+              "n": 40
+            },
+            "contactUpdate": {
+              "mean": 11.297765599999998,
+              "median": 11.209727999999998,
+              "p95": 12.010496,
+              "n": 40
+            },
+            "velocities": {
+              "mean": 0.5266176,
+              "median": 0.51712,
+              "p95": 0.594944,
+              "n": 40
+            }
+          }
+        }
+      ]
+    },
+    {
+      "candidate": "schedulingIndirect",
+      "repeat": 0,
+      "scene": "showcase-box-columns-100k",
+      "differentWords": 0,
+      "maxError": 0,
+      "errors": [],
+      "warmup": 100,
+      "samples": 40,
+      "runs": [
+        {
+          "variant": "baseline",
+          "bodyCount": 100001,
+          "jointCount": 0,
+          "params": {
+            "dt": 0.016666666666666666,
+            "gravity": -10,
+            "iterations": 5,
+            "betaLin": 10000,
+            "betaAng": 100,
+            "alpha": 0.99,
+            "gamma": 0.999,
+            "matchNearest": true,
+            "faceBias": true,
+            "reuseContacts": true,
+            "startAtRest": true,
+            "massPenalty": true,
+            "windSpeed": 0,
+            "windAngle": 0,
+            "windGust": 0.4,
+            "windPressure": 0.72,
+            "up": [
+              0,
+              0,
+              1
+            ]
+          },
+          "verifiedSteps": 140,
+          "counters": {
+            "pairs": 100000,
+            "contacts": 400000,
+            "manifolds": 100000,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 3
+          },
+          "quaternionError": 1.212363542890671e-13,
+          "finite": true,
+          "summary": {
+            "total": {
+              "mean": 5.114444799999999,
+              "median": 5.060608,
+              "p95": 5.42208,
+              "n": 40
+            },
+            "collision": {
+              "mean": 1.9020800000000002,
+              "median": 1.8862079999999999,
+              "p95": 2.172928,
+              "n": 40
+            },
+            "adjacency": {
+              "mean": 0.25507840000000015,
+              "median": 0.254976,
+              "p95": 0.26112,
+              "n": 40
+            },
+            "coloring": {
+              "mean": 0.1521663999999999,
+              "median": 0.155648,
+              "p95": 0.159744,
+              "n": 40
+            },
+            "solve": {
+              "mean": 2.8037120000000004,
+              "median": 2.7637760000000005,
+              "p95": 3.0740480000000003,
+              "n": 40
+            }
+          },
+          "details": {
+            "contactCache": {
+              "mean": 0.0980736,
+              "median": 0.101376,
+              "p95": 0.12288,
+              "n": 40
+            },
+            "broadphaseBuild": {
+              "mean": 0.06041599999999999,
+              "median": 0.059392,
+              "p95": 0.07168,
+              "n": 40
+            },
+            "broadphasePairs": {
+              "mean": 1.0840576000000002,
+              "median": 1.073152,
+              "p95": 1.236992,
+              "n": 40
+            },
+            "narrowphase": {
+              "mean": 0.6595327999999999,
+              "median": 0.653312,
+              "p95": 0.826368,
+              "n": 40
+            },
+            "adjacency": {
+              "mean": 0.25507840000000015,
+              "median": 0.254976,
+              "p95": 0.26112,
+              "n": 40
+            },
+            "coloring": {
+              "mean": 0.1521663999999999,
+              "median": 0.155648,
+              "p95": 0.159744,
+              "n": 40
+            },
+            "warmStart": {
+              "mean": 0.0861952,
+              "median": 0.078848,
+              "p95": 0.08192,
+              "n": 40
+            },
+            "bodySolve": {
+              "mean": 1.9779583999999997,
+              "median": 1.953792,
+              "p95": 2.239488,
+              "n": 40
+            },
+            "contactUpdate": {
+              "mean": 0.6264064,
+              "median": 0.6246400000000001,
+              "p95": 0.6512640000000001,
+              "n": 40
+            },
+            "velocities": {
+              "mean": 0.11315200000000003,
+              "median": 0.108544,
+              "p95": 0.12288,
+              "n": 40
+            }
+          }
+        },
+        {
+          "variant": "schedulingIndirect",
+          "bodyCount": 100001,
+          "jointCount": 0,
+          "params": {
+            "dt": 0.016666666666666666,
+            "gravity": -10,
+            "iterations": 5,
+            "betaLin": 10000,
+            "betaAng": 100,
+            "alpha": 0.99,
+            "gamma": 0.999,
+            "matchNearest": true,
+            "faceBias": true,
+            "reuseContacts": true,
+            "startAtRest": true,
+            "massPenalty": true,
+            "windSpeed": 0,
+            "windAngle": 0,
+            "windGust": 0.4,
+            "windPressure": 0.72,
+            "up": [
+              0,
+              0,
+              1
+            ]
+          },
+          "verifiedSteps": 140,
+          "counters": {
+            "pairs": 100000,
+            "contacts": 400000,
+            "manifolds": 100000,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 3
+          },
+          "quaternionError": 1.212363542890671e-13,
+          "finite": true,
+          "summary": {
+            "total": {
+              "mean": 5.178035199999999,
+              "median": 5.118976,
+              "p95": 5.640192,
+              "n": 40
+            },
+            "collision": {
+              "mean": 1.9232256000000008,
+              "median": 1.886208,
+              "p95": 2.321408,
+              "n": 40
+            },
+            "adjacency": {
+              "mean": 0.25546240000000003,
+              "median": 0.256,
+              "p95": 0.26112,
+              "n": 40
+            },
+            "coloring": {
+              "mean": 0.15083520000000003,
+              "median": 0.1536,
+              "p95": 0.159744,
+              "n": 40
+            },
+            "solve": {
+              "mean": 2.8474880000000002,
+              "median": 2.7852799999999998,
+              "p95": 3.3085439999999995,
+              "n": 40
+            }
+          },
+          "details": {
+            "contactCache": {
+              "mean": 0.0981504,
+              "median": 0.101376,
+              "p95": 0.120832,
+              "n": 40
+            },
+            "broadphaseBuild": {
+              "mean": 0.060185600000000006,
+              "median": 0.058368,
+              "p95": 0.072704,
+              "n": 40
+            },
+            "broadphasePairs": {
+              "mean": 1.1094016,
+              "median": 1.0752,
+              "p95": 1.422336,
+              "n": 40
+            },
+            "narrowphase": {
+              "mean": 0.6554879999999998,
+              "median": 0.649216,
+              "p95": 0.813056,
+              "n": 40
+            },
+            "adjacency": {
+              "mean": 0.25546240000000003,
+              "median": 0.256,
+              "p95": 0.26112,
+              "n": 40
+            },
+            "coloring": {
+              "mean": 0.15083520000000003,
+              "median": 0.1536,
+              "p95": 0.159744,
+              "n": 40
+            },
+            "warmStart": {
+              "mean": 0.07843839999999999,
+              "median": 0.077824,
+              "p95": 0.08704,
+              "n": 40
+            },
+            "bodySolve": {
+              "mean": 2.0085248,
+              "median": 1.965056,
+              "p95": 2.4872959999999997,
+              "n": 40
+            },
+            "contactUpdate": {
+              "mean": 0.6422016,
+              "median": 0.631808,
+              "p95": 0.6656,
+              "n": 40
+            },
+            "velocities": {
+              "mean": 0.11832320000000003,
+              "median": 0.108544,
+              "p95": 0.274432,
+              "n": 40
+            }
+          }
+        }
+      ]
+    },
+    {
+      "candidate": "schedulingIndirect",
+      "repeat": 1,
+      "scene": "showcase-box-columns-100k",
+      "differentWords": 0,
+      "maxError": 0,
+      "errors": [],
+      "warmup": 100,
+      "samples": 40,
+      "runs": [
+        {
+          "variant": "schedulingIndirect",
+          "bodyCount": 100001,
+          "jointCount": 0,
+          "params": {
+            "dt": 0.016666666666666666,
+            "gravity": -10,
+            "iterations": 5,
+            "betaLin": 10000,
+            "betaAng": 100,
+            "alpha": 0.99,
+            "gamma": 0.999,
+            "matchNearest": true,
+            "faceBias": true,
+            "reuseContacts": true,
+            "startAtRest": true,
+            "massPenalty": true,
+            "windSpeed": 0,
+            "windAngle": 0,
+            "windGust": 0.4,
+            "windPressure": 0.72,
+            "up": [
+              0,
+              0,
+              1
+            ]
+          },
+          "verifiedSteps": 140,
+          "counters": {
+            "pairs": 100000,
+            "contacts": 400000,
+            "manifolds": 100000,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 3
+          },
+          "quaternionError": 1.212363542890671e-13,
+          "finite": true,
+          "summary": {
+            "total": {
+              "mean": 5.150745600000002,
+              "median": 5.045248,
+              "p95": 5.750784,
+              "n": 40
+            },
+            "collision": {
+              "mean": 1.9073536,
+              "median": 1.8749439999999997,
+              "p95": 2.2702080000000002,
+              "n": 40
+            },
+            "adjacency": {
+              "mean": 0.2652416,
+              "median": 0.257024,
+              "p95": 0.26624,
+              "n": 40
+            },
+            "coloring": {
+              "mean": 0.1502976000000001,
+              "median": 0.154624,
+              "p95": 0.157696,
+              "n": 40
+            },
+            "solve": {
+              "mean": 2.8263679999999995,
+              "median": 2.761728,
+              "p95": 3.21024,
+              "n": 40
+            }
+          },
+          "details": {
+            "contactCache": {
+              "mean": 0.0898048,
+              "median": 0.089088,
+              "p95": 0.1024,
+              "n": 40
+            },
+            "broadphaseBuild": {
+              "mean": 0.06036479999999998,
+              "median": 0.059392,
+              "p95": 0.070656,
+              "n": 40
+            },
+            "broadphasePairs": {
+              "mean": 1.1065088000000003,
+              "median": 1.074176,
+              "p95": 1.381376,
+              "n": 40
+            },
+            "narrowphase": {
+              "mean": 0.6506752,
+              "median": 0.646144,
+              "p95": 0.76288,
+              "n": 40
+            },
+            "adjacency": {
+              "mean": 0.2652416,
+              "median": 0.257024,
+              "p95": 0.26624,
+              "n": 40
+            },
+            "coloring": {
+              "mean": 0.1502976000000001,
+              "median": 0.154624,
+              "p95": 0.157696,
+              "n": 40
+            },
+            "warmStart": {
+              "mean": 0.07953920000000003,
+              "median": 0.078848,
+              "p95": 0.083968,
+              "n": 40
+            },
+            "bodySolve": {
+              "mean": 2.0042752,
+              "median": 1.947648,
+              "p95": 2.37568,
+              "n": 40
+            },
+            "contactUpdate": {
+              "mean": 0.6282239999999999,
+              "median": 0.62464,
+              "p95": 0.6543360000000001,
+              "n": 40
+            },
+            "velocities": {
+              "mean": 0.1143296,
+              "median": 0.109568,
+              "p95": 0.149504,
+              "n": 40
+            }
+          }
+        },
+        {
+          "variant": "baseline",
+          "bodyCount": 100001,
+          "jointCount": 0,
+          "params": {
+            "dt": 0.016666666666666666,
+            "gravity": -10,
+            "iterations": 5,
+            "betaLin": 10000,
+            "betaAng": 100,
+            "alpha": 0.99,
+            "gamma": 0.999,
+            "matchNearest": true,
+            "faceBias": true,
+            "reuseContacts": true,
+            "startAtRest": true,
+            "massPenalty": true,
+            "windSpeed": 0,
+            "windAngle": 0,
+            "windGust": 0.4,
+            "windPressure": 0.72,
+            "up": [
+              0,
+              0,
+              1
+            ]
+          },
+          "verifiedSteps": 140,
+          "counters": {
+            "pairs": 100000,
+            "contacts": 400000,
+            "manifolds": 100000,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 3
+          },
+          "quaternionError": 1.212363542890671e-13,
+          "finite": true,
+          "summary": {
+            "total": {
+              "mean": 5.186944000000001,
+              "median": 5.083136,
+              "p95": 5.809152,
+              "n": 40
+            },
+            "collision": {
+              "mean": 1.9145728000000006,
+              "median": 1.870848,
+              "p95": 2.2650879999999995,
+              "n": 40
+            },
+            "adjacency": {
+              "mean": 0.2516991999999999,
+              "median": 0.251904,
+              "p95": 0.256,
+              "n": 40
+            },
+            "coloring": {
+              "mean": 0.15270399999999998,
+              "median": 0.157696,
+              "p95": 0.160768,
+              "n": 40
+            },
+            "solve": {
+              "mean": 2.8666112,
+              "median": 2.7801599999999995,
+              "p95": 3.3331199999999996,
+              "n": 40
+            }
+          },
+          "details": {
+            "contactCache": {
+              "mean": 0.0899072,
+              "median": 0.088064,
+              "p95": 0.104448,
+              "n": 40
+            },
+            "broadphaseBuild": {
+              "mean": 0.06018559999999999,
+              "median": 0.057344,
+              "p95": 0.07168,
+              "n": 40
+            },
+            "broadphasePairs": {
+              "mean": 1.1129855999999998,
+              "median": 1.074176,
+              "p95": 1.431552,
+              "n": 40
+            },
+            "narrowphase": {
+              "mean": 0.6514944000000001,
+              "median": 0.647168,
+              "p95": 0.800768,
+              "n": 40
+            },
+            "adjacency": {
+              "mean": 0.2516991999999999,
+              "median": 0.251904,
+              "p95": 0.256,
+              "n": 40
+            },
+            "coloring": {
+              "mean": 0.15270399999999998,
+              "median": 0.157696,
+              "p95": 0.160768,
+              "n": 40
+            },
+            "warmStart": {
+              "mean": 0.0795136,
+              "median": 0.079872,
+              "p95": 0.082944,
+              "n": 40
+            },
+            "bodySolve": {
+              "mean": 2.0202240000000002,
+              "median": 1.954816,
+              "p95": 2.436096,
+              "n": 40
+            },
+            "contactUpdate": {
+              "mean": 0.6577408000000001,
+              "median": 0.636928,
+              "p95": 0.954368,
+              "n": 40
+            },
+            "velocities": {
+              "mean": 0.10913280000000006,
+              "median": 0.108544,
+              "p95": 0.114688,
+              "n": 40
+            }
+          }
+        }
+      ]
+    },
+    {
+      "candidate": "schedulingIndirect",
+      "repeat": 0,
+      "scene": "showcase-brick-ring-110k",
+      "differentWords": 0,
+      "maxError": 0,
+      "errors": [],
+      "warmup": 100,
+      "samples": 40,
+      "runs": [
+        {
+          "variant": "baseline",
+          "bodyCount": 110442,
+          "jointCount": 0,
+          "params": {
+            "dt": 0.016666666666666666,
+            "gravity": -10,
+            "iterations": 4,
+            "betaLin": 10000,
+            "betaAng": 100,
+            "alpha": 0.99,
+            "gamma": 0.999,
+            "matchNearest": true,
+            "faceBias": true,
+            "reuseContacts": true,
+            "startAtRest": true,
+            "massPenalty": true,
+            "windSpeed": 0,
+            "windAngle": 0,
+            "windGust": 0.4,
+            "windPressure": 0.72,
+            "up": [
+              0,
+              0,
+              1
+            ]
+          },
+          "verifiedSteps": 140,
+          "counters": {
+            "pairs": 255088,
+            "contacts": 1200967,
+            "manifolds": 246239,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 15
+          },
+          "quaternionError": 1.2994734821525356e-07,
+          "finite": true,
+          "summary": {
+            "total": {
+              "mean": 16.4503808,
+              "median": 16.453632,
+              "p95": 16.900096,
+              "n": 40
+            },
+            "collision": {
+              "mean": 4.712345599999999,
+              "median": 4.653055999999999,
+              "p95": 5.057536000000001,
+              "n": 40
+            },
+            "adjacency": {
+              "mean": 0.7397632,
+              "median": 0.739328,
+              "p95": 0.75264,
+              "n": 40
+            },
+            "coloring": {
+              "mean": 0.2645504,
+              "median": 0.263168,
+              "p95": 0.279552,
+              "n": 40
+            },
+            "solve": {
+              "mean": 10.732364799999997,
+              "median": 10.807296000000001,
+              "p95": 11.169792000000001,
+              "n": 40
+            }
+          },
+          "details": {
+            "contactCache": {
+              "mean": 0.18204159999999994,
+              "median": 0.181248,
+              "p95": 0.187392,
+              "n": 40
+            },
+            "broadphaseBuild": {
+              "mean": 0.07383040000000005,
+              "median": 0.075776,
+              "p95": 0.077824,
+              "n": 40
+            },
+            "broadphasePairs": {
+              "mean": 2.107392,
+              "median": 2.069504,
+              "p95": 2.41664,
+              "n": 40
+            },
+            "narrowphase": {
+              "mean": 2.3490816,
+              "median": 2.312192,
+              "p95": 2.588672,
+              "n": 40
+            },
+            "adjacency": {
+              "mean": 0.7397632,
+              "median": 0.739328,
+              "p95": 0.75264,
+              "n": 40
+            },
+            "coloring": {
+              "mean": 0.2645504,
+              "median": 0.263168,
+              "p95": 0.279552,
+              "n": 40
+            },
+            "warmStart": {
+              "mean": 0.06717440000000005,
+              "median": 0.067584,
+              "p95": 0.068608,
+              "n": 40
+            },
+            "bodySolve": {
+              "mean": 7.627238399999999,
+              "median": 7.616511999999999,
+              "p95": 7.9667200000000005,
+              "n": 40
+            },
+            "contactUpdate": {
+              "mean": 2.9577728,
+              "median": 2.873344,
+              "p95": 3.196928,
+              "n": 40
+            },
+            "velocities": {
+              "mean": 0.08017920000000003,
+              "median": 0.077824,
+              "p95": 0.08704,
+              "n": 40
+            }
+          }
+        },
+        {
+          "variant": "schedulingIndirect",
+          "bodyCount": 110442,
+          "jointCount": 0,
+          "params": {
+            "dt": 0.016666666666666666,
+            "gravity": -10,
+            "iterations": 4,
+            "betaLin": 10000,
+            "betaAng": 100,
+            "alpha": 0.99,
+            "gamma": 0.999,
+            "matchNearest": true,
+            "faceBias": true,
+            "reuseContacts": true,
+            "startAtRest": true,
+            "massPenalty": true,
+            "windSpeed": 0,
+            "windAngle": 0,
+            "windGust": 0.4,
+            "windPressure": 0.72,
+            "up": [
+              0,
+              0,
+              1
+            ]
+          },
+          "verifiedSteps": 140,
+          "counters": {
+            "pairs": 255088,
+            "contacts": 1200967,
+            "manifolds": 246239,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 15
+          },
+          "quaternionError": 1.2994734821525356e-07,
+          "finite": true,
+          "summary": {
+            "total": {
+              "mean": 16.0758784,
+              "median": 16.114688,
+              "p95": 16.625664,
+              "n": 40
+            },
+            "collision": {
+              "mean": 4.743782400000001,
+              "median": 4.658175999999999,
+              "p95": 5.039104,
+              "n": 40
+            },
+            "adjacency": {
+              "mean": 0.6972415999999999,
+              "median": 0.69632,
+              "p95": 0.707584,
+              "n": 40
+            },
+            "coloring": {
+              "mean": 0.37437440000000005,
+              "median": 0.367616,
+              "p95": 0.386048,
+              "n": 40
+            },
+            "solve": {
+              "mean": 10.2590464,
+              "median": 10.128383999999999,
+              "p95": 10.668032,
+              "n": 40
+            }
+          },
+          "details": {
+            "contactCache": {
+              "mean": 0.18831360000000003,
+              "median": 0.192512,
+              "p95": 0.202752,
+              "n": 40
+            },
+            "broadphaseBuild": {
+              "mean": 0.0739072,
+              "median": 0.075776,
+              "p95": 0.077824,
+              "n": 40
+            },
+            "broadphasePairs": {
+              "mean": 2.1058304,
+              "median": 2.071552,
+              "p95": 2.415616,
+              "n": 40
+            },
+            "narrowphase": {
+              "mean": 2.3757311999999997,
+              "median": 2.311168,
+              "p95": 2.656256,
+              "n": 40
+            },
+            "adjacency": {
+              "mean": 0.6972415999999999,
+              "median": 0.69632,
+              "p95": 0.707584,
+              "n": 40
+            },
+            "coloring": {
+              "mean": 0.37437440000000005,
+              "median": 0.367616,
+              "p95": 0.386048,
+              "n": 40
+            },
+            "warmStart": {
+              "mean": 0.08939520000000004,
+              "median": 0.089088,
+              "p95": 0.091136,
+              "n": 40
+            },
+            "bodySolve": {
+              "mean": 7.468902400000002,
+              "median": 7.3840639999999995,
+              "p95": 7.846912,
+              "n": 40
+            },
+            "contactUpdate": {
+              "mean": 2.6037504000000005,
+              "median": 2.5589760000000004,
+              "p95": 2.816,
+              "n": 40
+            },
+            "velocities": {
+              "mean": 0.0969984,
+              "median": 0.09216,
+              "p95": 0.110592,
+              "n": 40
+            }
+          }
+        }
+      ]
+    },
+    {
+      "candidate": "schedulingIndirect",
+      "repeat": 1,
+      "scene": "showcase-brick-ring-110k",
+      "differentWords": 0,
+      "maxError": 0,
+      "errors": [],
+      "warmup": 100,
+      "samples": 40,
+      "runs": [
+        {
+          "variant": "schedulingIndirect",
+          "bodyCount": 110442,
+          "jointCount": 0,
+          "params": {
+            "dt": 0.016666666666666666,
+            "gravity": -10,
+            "iterations": 4,
+            "betaLin": 10000,
+            "betaAng": 100,
+            "alpha": 0.99,
+            "gamma": 0.999,
+            "matchNearest": true,
+            "faceBias": true,
+            "reuseContacts": true,
+            "startAtRest": true,
+            "massPenalty": true,
+            "windSpeed": 0,
+            "windAngle": 0,
+            "windGust": 0.4,
+            "windPressure": 0.72,
+            "up": [
+              0,
+              0,
+              1
+            ]
+          },
+          "verifiedSteps": 140,
+          "counters": {
+            "pairs": 255088,
+            "contacts": 1200967,
+            "manifolds": 246239,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 15
+          },
+          "quaternionError": 1.2994734821525356e-07,
+          "finite": true,
+          "summary": {
+            "total": {
+              "mean": 16.266803200000002,
+              "median": 16.254976,
+              "p95": 16.929792,
+              "n": 40
+            },
+            "collision": {
+              "mean": 4.7483904,
+              "median": 4.66432,
+              "p95": 5.389312,
+              "n": 40
+            },
+            "adjacency": {
+              "mean": 0.7271936,
+              "median": 0.712704,
+              "p95": 0.965632,
+              "n": 40
+            },
+            "coloring": {
+              "mean": 0.36812800000000007,
+              "median": 0.366592,
+              "p95": 0.385024,
+              "n": 40
+            },
+            "solve": {
+              "mean": 10.4217088,
+              "median": 10.42944,
+              "p95": 10.852352000000002,
+              "n": 40
+            }
+          },
+          "details": {
+            "contactCache": {
+              "mean": 0.19025920000000002,
+              "median": 0.193536,
+              "p95": 0.205824,
+              "n": 40
+            },
+            "broadphaseBuild": {
+              "mean": 0.07434240000000002,
+              "median": 0.0768,
+              "p95": 0.078848,
+              "n": 40
+            },
+            "broadphasePairs": {
+              "mean": 2.1460224,
+              "median": 2.075648,
+              "p95": 2.748416,
+              "n": 40
+            },
+            "narrowphase": {
+              "mean": 2.3377663999999996,
+              "median": 2.315264,
+              "p95": 2.5856,
+              "n": 40
+            },
+            "adjacency": {
+              "mean": 0.7271936,
+              "median": 0.712704,
+              "p95": 0.965632,
+              "n": 40
+            },
+            "coloring": {
+              "mean": 0.36812800000000007,
+              "median": 0.366592,
+              "p95": 0.385024,
+              "n": 40
+            },
+            "warmStart": {
+              "mean": 0.09359360000000003,
+              "median": 0.090112,
+              "p95": 0.091136,
+              "n": 40
+            },
+            "bodySolve": {
+              "mean": 7.499776,
+              "median": 7.395327999999999,
+              "p95": 8.030208,
+              "n": 40
+            },
+            "contactUpdate": {
+              "mean": 2.7321855999999998,
+              "median": 2.840576,
+              "p95": 2.932736,
+              "n": 40
+            },
+            "velocities": {
+              "mean": 0.09615360000000003,
+              "median": 0.093184,
+              "p95": 0.118784,
+              "n": 40
+            }
+          }
+        },
+        {
+          "variant": "baseline",
+          "bodyCount": 110442,
+          "jointCount": 0,
+          "params": {
+            "dt": 0.016666666666666666,
+            "gravity": -10,
+            "iterations": 4,
+            "betaLin": 10000,
+            "betaAng": 100,
+            "alpha": 0.99,
+            "gamma": 0.999,
+            "matchNearest": true,
+            "faceBias": true,
+            "reuseContacts": true,
+            "startAtRest": true,
+            "massPenalty": true,
+            "windSpeed": 0,
+            "windAngle": 0,
+            "windGust": 0.4,
+            "windPressure": 0.72,
+            "up": [
+              0,
+              0,
+              1
+            ]
+          },
+          "verifiedSteps": 140,
+          "counters": {
+            "pairs": 255088,
+            "contacts": 1200967,
+            "manifolds": 246239,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 15
+          },
+          "quaternionError": 1.2994734821525356e-07,
+          "finite": true,
+          "summary": {
+            "total": {
+              "mean": 16.1611776,
+              "median": 16.149504,
+              "p95": 16.678912,
+              "n": 40
+            },
+            "collision": {
+              "mean": 4.744396799999999,
+              "median": 4.649984,
+              "p95": 5.146623999999999,
+              "n": 40
+            },
+            "adjacency": {
+              "mean": 0.7219455999999999,
+              "median": 0.715776,
+              "p95": 0.827392,
+              "n": 40
+            },
+            "coloring": {
+              "mean": 0.2653696,
+              "median": 0.264192,
+              "p95": 0.280576,
+              "n": 40
+            },
+            "solve": {
+              "mean": 10.4283136,
+              "median": 10.411008,
+              "p95": 10.896384000000001,
+              "n": 40
+            }
+          },
+          "details": {
+            "contactCache": {
+              "mean": 0.19059200000000004,
+              "median": 0.19456,
+              "p95": 0.206848,
+              "n": 40
+            },
+            "broadphaseBuild": {
+              "mean": 0.07431679999999999,
+              "median": 0.075776,
+              "p95": 0.0768,
+              "n": 40
+            },
+            "broadphasePairs": {
+              "mean": 2.133632,
+              "median": 2.080768,
+              "p95": 2.409472,
+              "n": 40
+            },
+            "narrowphase": {
+              "mean": 2.3458560000000004,
+              "median": 2.296832,
+              "p95": 2.625536,
+              "n": 40
+            },
+            "adjacency": {
+              "mean": 0.7219455999999999,
+              "median": 0.715776,
+              "p95": 0.827392,
+              "n": 40
+            },
+            "coloring": {
+              "mean": 0.2653696,
+              "median": 0.264192,
+              "p95": 0.280576,
+              "n": 40
+            },
+            "warmStart": {
+              "mean": 0.08954880000000003,
+              "median": 0.090112,
+              "p95": 0.091136,
+              "n": 40
+            },
+            "bodySolve": {
+              "mean": 7.4940416,
+              "median": 7.421952,
+              "p95": 7.831551999999999,
+              "n": 40
+            },
+            "contactUpdate": {
+              "mean": 2.7508224000000006,
+              "median": 2.8221439999999998,
+              "p95": 3.0556159999999997,
+              "n": 40
+            },
+            "velocities": {
+              "mean": 0.09390079999999999,
+              "median": 0.093184,
+              "p95": 0.103424,
+              "n": 40
+            }
+          }
+        }
+      ]
+    },
+    {
+      "candidate": "schedulingIndirect",
+      "repeat": 0,
+      "scene": "paper-walls-510k-4",
+      "differentWords": 0,
+      "maxError": 0,
+      "errors": [],
+      "warmup": 100,
+      "samples": 40,
+      "runs": [
+        {
+          "variant": "baseline",
+          "bodyCount": 505923,
+          "jointCount": 0,
+          "params": {
+            "dt": 0.016666666666666666,
+            "gravity": -10,
+            "iterations": 4,
+            "betaLin": 10000,
+            "betaAng": 100,
+            "alpha": 0.99,
+            "gamma": 0.999,
+            "matchNearest": true,
+            "faceBias": true,
+            "reuseContacts": true,
+            "startAtRest": true,
+            "massPenalty": true,
+            "windSpeed": 0,
+            "windAngle": 0,
+            "windGust": 0.4,
+            "windPressure": 0.72,
+            "up": [
+              0,
+              0,
+              1
+            ]
+          },
+          "verifiedSteps": 140,
+          "counters": {
+            "pairs": 979022,
+            "contacts": 4027281,
+            "manifolds": 976759,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 10
+          },
+          "quaternionError": 1.3597574244350596e-07,
+          "finite": true,
+          "summary": {
+            "total": {
+              "mean": 54.07319040000002,
+              "median": 54.028288,
+              "p95": 54.945792,
+              "n": 40
+            },
+            "collision": {
+              "mean": 16.038374400000002,
+              "median": 15.993856,
+              "p95": 16.498688,
+              "n": 40
+            },
+            "adjacency": {
+              "mean": 3.9677696000000005,
+              "median": 3.977216,
+              "p95": 4.310016,
+              "n": 40
+            },
+            "coloring": {
+              "mean": 1.6464895999999996,
+              "median": 1.615872,
+              "p95": 1.982464,
+              "n": 40
+            },
+            "solve": {
+              "mean": 32.418764800000005,
+              "median": 32.414719999999996,
+              "p95": 33.304576,
+              "n": 40
+            }
+          },
+          "details": {
+            "contactCache": {
+              "mean": 2.7275008000000005,
+              "median": 2.70848,
+              "p95": 2.9184,
+              "n": 40
+            },
+            "broadphaseBuild": {
+              "mean": 0.5961728000000001,
+              "median": 0.58368,
+              "p95": 0.81408,
+              "n": 40
+            },
+            "broadphasePairs": {
+              "mean": 3.3203455999999996,
+              "median": 3.286016,
+              "p95": 3.677184,
+              "n": 40
+            },
+            "narrowphase": {
+              "mean": 9.3943552,
+              "median": 9.393152,
+              "p95": 9.616384,
+              "n": 40
+            },
+            "adjacency": {
+              "mean": 3.9677696000000005,
+              "median": 3.977216,
+              "p95": 4.310016,
+              "n": 40
+            },
+            "coloring": {
+              "mean": 1.6464895999999996,
+              "median": 1.615872,
+              "p95": 1.982464,
+              "n": 40
+            },
+            "warmStart": {
+              "mean": 0.4876544,
+              "median": 0.490496,
+              "p95": 0.505856,
+              "n": 40
+            },
+            "bodySolve": {
+              "mean": 21.4514944,
+              "median": 21.4528,
+              "p95": 22.176767999999996,
+              "n": 40
+            },
+            "contactUpdate": {
+              "mean": 9.9484672,
+              "median": 9.919488000000001,
+              "p95": 10.500096000000001,
+              "n": 40
+            },
+            "velocities": {
+              "mean": 0.5311488000000002,
+              "median": 0.52224,
+              "p95": 0.694272,
+              "n": 40
+            }
+          }
+        },
+        {
+          "variant": "schedulingIndirect",
+          "bodyCount": 505923,
+          "jointCount": 0,
+          "params": {
+            "dt": 0.016666666666666666,
+            "gravity": -10,
+            "iterations": 4,
+            "betaLin": 10000,
+            "betaAng": 100,
+            "alpha": 0.99,
+            "gamma": 0.999,
+            "matchNearest": true,
+            "faceBias": true,
+            "reuseContacts": true,
+            "startAtRest": true,
+            "massPenalty": true,
+            "windSpeed": 0,
+            "windAngle": 0,
+            "windGust": 0.4,
+            "windPressure": 0.72,
+            "up": [
+              0,
+              0,
+              1
+            ]
+          },
+          "verifiedSteps": 140,
+          "counters": {
+            "pairs": 979022,
+            "contacts": 4027281,
+            "manifolds": 976759,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 10
+          },
+          "quaternionError": 1.3597574244350596e-07,
+          "finite": true,
+          "summary": {
+            "total": {
+              "mean": 54.76224000000002,
+              "median": 54.967296,
+              "p95": 55.967744,
+              "n": 40
+            },
+            "collision": {
+              "mean": 15.904281600000001,
+              "median": 15.888384000000002,
+              "p95": 16.6144,
+              "n": 40
+            },
+            "adjacency": {
+              "mean": 3.8505215999999995,
+              "median": 3.832832,
+              "p95": 4.143104,
+              "n": 40
+            },
+            "coloring": {
+              "mean": 1.8728703999999994,
+              "median": 1.855488,
+              "p95": 2.03264,
+              "n": 40
+            },
+            "solve": {
+              "mean": 33.132595200000004,
+              "median": 33.381376,
+              "p95": 34.32857599999999,
+              "n": 40
+            }
+          },
+          "details": {
+            "contactCache": {
+              "mean": 2.6854912,
+              "median": 2.649088,
+              "p95": 2.941952,
+              "n": 40
+            },
+            "broadphaseBuild": {
+              "mean": 0.6059007999999999,
+              "median": 0.584704,
+              "p95": 0.781312,
+              "n": 40
+            },
+            "broadphasePairs": {
+              "mean": 3.3350400000000007,
+              "median": 3.303424,
+              "p95": 4.016128,
+              "n": 40
+            },
+            "narrowphase": {
+              "mean": 9.2778496,
+              "median": 9.247744,
+              "p95": 9.531392,
+              "n": 40
+            },
+            "adjacency": {
+              "mean": 3.8505215999999995,
+              "median": 3.832832,
+              "p95": 4.143104,
+              "n": 40
+            },
+            "coloring": {
+              "mean": 1.8728703999999994,
+              "median": 1.855488,
+              "p95": 2.03264,
+              "n": 40
+            },
+            "warmStart": {
+              "mean": 0.49684480000000003,
+              "median": 0.488448,
+              "p95": 0.658432,
+              "n": 40
+            },
+            "bodySolve": {
+              "mean": 21.434188799999998,
+              "median": 21.40672,
+              "p95": 22.085632,
+              "n": 40
+            },
+            "contactUpdate": {
+              "mean": 10.658457600000002,
+              "median": 10.983424,
+              "p95": 11.817984000000001,
+              "n": 40
+            },
+            "velocities": {
+              "mean": 0.5431040000000001,
+              "median": 0.524288,
+              "p95": 0.697344,
+              "n": 40
+            }
+          }
+        }
+      ]
+    },
+    {
+      "candidate": "schedulingIndirect",
+      "repeat": 1,
+      "scene": "paper-walls-510k-4",
+      "differentWords": 0,
+      "maxError": 0,
+      "errors": [],
+      "warmup": 100,
+      "samples": 40,
+      "runs": [
+        {
+          "variant": "schedulingIndirect",
+          "bodyCount": 505923,
+          "jointCount": 0,
+          "params": {
+            "dt": 0.016666666666666666,
+            "gravity": -10,
+            "iterations": 4,
+            "betaLin": 10000,
+            "betaAng": 100,
+            "alpha": 0.99,
+            "gamma": 0.999,
+            "matchNearest": true,
+            "faceBias": true,
+            "reuseContacts": true,
+            "startAtRest": true,
+            "massPenalty": true,
+            "windSpeed": 0,
+            "windAngle": 0,
+            "windGust": 0.4,
+            "windPressure": 0.72,
+            "up": [
+              0,
+              0,
+              1
+            ]
+          },
+          "verifiedSteps": 140,
+          "counters": {
+            "pairs": 979022,
+            "contacts": 4027281,
+            "manifolds": 976759,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 10
+          },
+          "quaternionError": 1.3597574244350596e-07,
+          "finite": true,
+          "summary": {
+            "total": {
+              "mean": 54.462259200000005,
+              "median": 54.31808,
+              "p95": 55.711744,
+              "n": 40
+            },
+            "collision": {
+              "mean": 16.020479999999996,
+              "median": 15.968256,
+              "p95": 16.892928,
+              "n": 40
+            },
+            "adjacency": {
+              "mean": 3.9480063999999997,
+              "median": 3.939328,
+              "p95": 4.251648,
+              "n": 40
+            },
+            "coloring": {
+              "mean": 1.9245056000000003,
+              "median": 1.874944,
+              "p95": 2.386944,
+              "n": 40
+            },
+            "solve": {
+              "mean": 32.5673728,
+              "median": 32.504832,
+              "p95": 33.134592000000005,
+              "n": 40
+            }
+          },
+          "details": {
+            "contactCache": {
+              "mean": 2.6519296000000003,
+              "median": 2.643968,
+              "p95": 2.813952,
+              "n": 40
+            },
+            "broadphaseBuild": {
+              "mean": 0.5887743999999999,
+              "median": 0.58368,
+              "p95": 0.598016,
+              "n": 40
+            },
+            "broadphasePairs": {
+              "mean": 3.3641728,
+              "median": 3.306496,
+              "p95": 3.8912,
+              "n": 40
+            },
+            "narrowphase": {
+              "mean": 9.4156032,
+              "median": 9.371648,
+              "p95": 9.698304,
+              "n": 40
+            },
+            "adjacency": {
+              "mean": 3.9480063999999997,
+              "median": 3.939328,
+              "p95": 4.251648,
+              "n": 40
+            },
+            "coloring": {
+              "mean": 1.9245056000000003,
+              "median": 1.874944,
+              "p95": 2.386944,
+              "n": 40
+            },
+            "warmStart": {
+              "mean": 0.4224768,
+              "median": 0.417792,
+              "p95": 0.452608,
+              "n": 40
+            },
+            "bodySolve": {
+              "mean": 21.717273600000006,
+              "median": 21.671936000000002,
+              "p95": 22.327295999999997,
+              "n": 40
+            },
+            "contactUpdate": {
+              "mean": 9.9688704,
+              "median": 9.901056,
+              "p95": 10.513408,
+              "n": 40
+            },
+            "velocities": {
+              "mean": 0.45875200000000016,
+              "median": 0.45568,
+              "p95": 0.487424,
+              "n": 40
+            }
+          }
+        },
+        {
+          "variant": "baseline",
+          "bodyCount": 505923,
+          "jointCount": 0,
+          "params": {
+            "dt": 0.016666666666666666,
+            "gravity": -10,
+            "iterations": 4,
+            "betaLin": 10000,
+            "betaAng": 100,
+            "alpha": 0.99,
+            "gamma": 0.999,
+            "matchNearest": true,
+            "faceBias": true,
+            "reuseContacts": true,
+            "startAtRest": true,
+            "massPenalty": true,
+            "windSpeed": 0,
+            "windAngle": 0,
+            "windGust": 0.4,
+            "windPressure": 0.72,
+            "up": [
+              0,
+              0,
+              1
+            ]
+          },
+          "verifiedSteps": 140,
+          "counters": {
+            "pairs": 979022,
+            "contacts": 4027281,
+            "manifolds": 976759,
+            "overflow": 0,
+            "clashes": 0,
+            "colors": 10
+          },
+          "quaternionError": 1.3597574244350596e-07,
+          "finite": true,
+          "summary": {
+            "total": {
+              "mean": 54.66408960000001,
+              "median": 54.58944,
+              "p95": 55.929856,
+              "n": 40
+            },
+            "collision": {
+              "mean": 16.0396288,
+              "median": 16.047103999999997,
+              "p95": 16.613376000000002,
+              "n": 40
+            },
+            "adjacency": {
+              "mean": 3.9393024,
+              "median": 3.936256,
+              "p95": 4.37248,
+              "n": 40
+            },
+            "coloring": {
+              "mean": 1.6423936000000001,
+              "median": 1.614848,
+              "p95": 1.842176,
+              "n": 40
+            },
+            "solve": {
+              "mean": 33.04130560000001,
+              "median": 33.10899199999999,
+              "p95": 34.128896000000005,
+              "n": 40
+            }
+          },
+          "details": {
+            "contactCache": {
+              "mean": 2.7076864,
+              "median": 2.69824,
+              "p95": 2.890752,
+              "n": 40
+            },
+            "broadphaseBuild": {
+              "mean": 0.6049024000000001,
+              "median": 0.585728,
+              "p95": 0.800768,
+              "n": 40
+            },
+            "broadphasePairs": {
+              "mean": 3.3482239999999996,
+              "median": 3.298304,
+              "p95": 3.593216,
+              "n": 40
+            },
+            "narrowphase": {
+              "mean": 9.378815999999999,
+              "median": 9.351168,
+              "p95": 9.8048,
+              "n": 40
+            },
+            "adjacency": {
+              "mean": 3.9393024,
+              "median": 3.936256,
+              "p95": 4.37248,
+              "n": 40
+            },
+            "coloring": {
+              "mean": 1.6423936000000001,
+              "median": 1.614848,
+              "p95": 1.842176,
+              "n": 40
+            },
+            "warmStart": {
+              "mean": 0.48903679999999994,
+              "median": 0.484352,
+              "p95": 0.510976,
+              "n": 40
+            },
+            "bodySolve": {
+              "mean": 21.4887936,
+              "median": 21.520384,
+              "p95": 21.9648,
+              "n": 40
+            },
+            "contactUpdate": {
+              "mean": 10.546944000000002,
+              "median": 10.884096000000001,
+              "p95": 11.872255999999998,
+              "n": 40
+            },
+            "velocities": {
+              "mean": 0.5165312,
+              "median": 0.514048,
+              "p95": 0.543744,
+              "n": 40
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "retainedBenchmarks": [
+    "connected-sleep-performance.json",
+    "small-group-performance.json"
+  ]
+}

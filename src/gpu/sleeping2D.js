@@ -1,3 +1,4 @@
+import { uniformData, uploadUniform } from "./uniformUpload.js";
 import shader from "./sleeping2D.wgsl";
 import { propertyEdits } from "./bufferEdits.js";
 export function sleepOptions2D(options = {}) {
@@ -135,26 +136,18 @@ export class Sleeping2D {
   }
   before(encoder) {
     this.gpu.flushPropertyEdits(encoder);
-    const g = this.gpu,
-      data = new ArrayBuffer(32),
-      u = new Uint32Array(data),
-      f = new Float32Array(data);
-    u.set([
-      g.bodyCount,
-      g.jointCount,
-      g.contactCapacity,
-      Number(this.wakeRequested),
-    ]);
-    f.set(
-      [
-        this.options.speedThreshold,
-        this.options.timeThreshold,
-        g.params.dt,
-        g.params.gravity,
-      ],
-      4,
-    );
-    this.device.queue.writeBuffer(this.params, 0, data);
+    const g = this.gpu;
+    const cache = (this.paramData ??= uniformData(8)),
+      { u, f } = cache;
+    u[0] = g.bodyCount;
+    u[1] = g.jointCount;
+    u[2] = g.contactCapacity;
+    u[3] = Number(this.wakeRequested);
+    f[4] = this.options.speedThreshold;
+    f[5] = this.options.timeThreshold;
+    f[6] = g.params.dt;
+    f[7] = g.params.gravity;
+    uploadUniform(this.device, this.params, cache);
     this.wakeRequested = false;
     this.run(
       [

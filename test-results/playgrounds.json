@@ -1,0 +1,273 @@
+{
+  "date": "2026-10-11T23:31:09.978Z",
+  "passed": true,
+  "results": [
+    {
+      "scene": "3d-tornado-town",
+      "passed": true,
+      "lifted": 761,
+      "broken": 401,
+      "bodies": 4530,
+      "screenshot": "screenshots/3d-tornado-town.png"
+    },
+    {
+      "scene": "3d-domino-spiral",
+      "passed": true,
+      "fallen": 107,
+      "bodies": 2049,
+      "screenshot": "screenshots/3d-domino-spiral.png"
+    },
+    {
+      "scene": "3d-marble-cascade",
+      "passed": true,
+      "released": 40000,
+      "collected": 39827,
+      "timeStep": 0.008333333333333333,
+      "iterations": 5,
+      "outletWidth": 0.9,
+      "histogram": [
+        0,
+        0,
+        0,
+        2,
+        20,
+        109,
+        504,
+        849,
+        1093,
+        1346,
+        1663,
+        1936,
+        2244,
+        2620,
+        2941,
+        3146,
+        3151,
+        3015,
+        2830,
+        2593,
+        2267,
+        2028,
+        1544,
+        1342,
+        1088,
+        838,
+        535,
+        111,
+        10,
+        2,
+        0,
+        0,
+        0
+      ],
+      "distribution": {
+        "count": 39827,
+        "mean": -0.014388229090817176,
+        "standardDeviation": 4.961242391222065,
+        "skewness": 0.0063762006896357646,
+        "kurtosis": 2.381162356427721,
+        "cdfError": 0.01624407955606122
+      },
+      "bodies": 40747,
+      "flowScreenshot": "screenshots/3d-marble-cascade-flow.png"
+    },
+    {
+      "scene": "3d-tornado-town",
+      "renderer": "none",
+      "scope": "solver-only",
+      "passed": true,
+      "bodies": 4530,
+      "sceneAction": "start"
+    },
+    {
+      "scene": "3d-domino-spiral",
+      "renderer": "none",
+      "scope": "solver-only",
+      "passed": true,
+      "bodies": 2049,
+      "sceneAction": "start"
+    },
+    {
+      "scene": "3d-marble-cascade",
+      "renderer": "none",
+      "scope": "solver-only",
+      "passed": true,
+      "bodies": 40747,
+      "sceneAction": "start",
+      "galton": {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "released": 0,
+        "queued": 40000,
+        "escaped": 0,
+        "opened": true
+      }
+    },
+    {
+      "scene": "3d-marble-cascade",
+      "renderer": "paired",
+      "scope": "renderer-comparison",
+      "passed": true,
+      "bodies": 40747,
+      "identicalState": true,
+      "galton": {
+        "bins": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "released": 0,
+        "queued": 40000,
+        "escaped": 0,
+        "opened": true
+      }
+    },
+    {
+      "scene": "3d-tornado-town",
+      "renderer": "webgpu",
+      "scope": "worker",
+      "passed": true,
+      "bodies": 4530
+    },
+    {
+      "scene": "3d-tornado-town",
+      "renderer": "webgpu",
+      "scope": "worker-sab",
+      "passed": true,
+      "bodies": 4530
+    },
+    {
+      "scene": "3d-tornado-town",
+      "renderer": "babylon",
+      "scope": "worker",
+      "passed": true,
+      "bodies": 4530
+    },
+    {
+      "scene": "3d-tornado-town",
+      "renderer": "babylon",
+      "scope": "worker-sab",
+      "passed": true,
+      "bodies": 4530
+    },
+    {
+      "scene": "3d-domino-spiral",
+      "renderer": "webgpu",
+      "scope": "worker",
+      "passed": true,
+      "bodies": 2049
+    },
+    {
+      "scene": "3d-domino-spiral",
+      "renderer": "webgpu",
+      "scope": "worker-sab",
+      "passed": true,
+      "bodies": 2049
+    },
+    {
+      "scene": "3d-domino-spiral",
+      "renderer": "babylon",
+      "scope": "worker",
+      "passed": true,
+      "bodies": 2049
+    },
+    {
+      "scene": "3d-domino-spiral",
+      "renderer": "babylon",
+      "scope": "worker-sab",
+      "passed": true,
+      "bodies": 2049
+    },
+    {
+      "scene": "3d-marble-cascade",
+      "renderer": "webgpu",
+      "scope": "worker",
+      "passed": true,
+      "bodies": 40747
+    },
+    {
+      "scene": "3d-marble-cascade",
+      "renderer": "webgpu",
+      "scope": "worker-sab",
+      "passed": true,
+      "bodies": 40747
+    },
+    {
+      "scene": "3d-marble-cascade",
+      "renderer": "babylon",
+      "scope": "worker",
+      "passed": true,
+      "bodies": 40747
+    },
+    {
+      "scene": "3d-marble-cascade",
+      "renderer": "babylon",
+      "scope": "worker-sab",
+      "passed": true,
+      "bodies": 40747
+    }
+  ]
+}

@@ -1,9 +1,9 @@
 import { browserCheck } from "./browser-check.mjs";
-import { writeFile } from "node:fs/promises";
+import { writeAtomicFile as writeFile } from "./report-file.mjs";
 const b = await browserCheck();
 try {
   await b.navigate(
-    "?demo=canonical&scene=3d-100k-rook-impact&backend=gpu&paused=1&quality=benchmark",
+    "?demo=canonical&scope=main&scene=3d-100k-rook-impact&backend=gpu&paused=1&quality=benchmark",
   );
   for (let i = 0; i < 600; i++) {
     if (await b.evaluate("globalThis.__AVBD_LAB__?.diagnostics.ready")) break;

@@ -341,6 +341,9 @@ async function attempt(device, mode, configure) {
     const world = new AppGpuSolver3D(device, scene(falling), {
       spatialSort: false,
       bodyCapacity: 4,
+      // Qualify the general pipeline used by large worlds. A closed-world
+      // fast path must not hide a faulty cooperative movement kernel.
+      smallGroups: false,
       broadphase: mode.broadphase,
       scalarPrimal: mode.scalarPrimal ?? false,
       portableContactMath: mode.portableContactMath ?? false,

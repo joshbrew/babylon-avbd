@@ -3,7 +3,7 @@ import { writeFile } from "node:fs/promises";
 const b = await browserCheck(),
   results = [];
 try {
-  await b.navigate("?scene=2d-empty&backend=gpu&paused=1");
+  await b.navigate("?demo=canonical&scope=main&scene=2d-empty&backend=gpu&paused=1");
   for (let i = 0; i < 400; i++) {
     if (await b.evaluate("globalThis.__AVBD_LAB__?.diagnostics.ready")) break;
     await new Promise((r) => setTimeout(r, 30));

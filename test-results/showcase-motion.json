@@ -5,20 +5,21 @@
       "steps": 360,
       "bodies": 28114,
       "finite": true,
-      "moved": 20439,
-      "rotated": 10622,
-      "maxQuatError": 1.309569632734764e-7,
-      "minZ": 0.6393647193908691,
-      "maxZ": 12.148261070251465,
+      "moved": 19627,
+      "rotated": 9304,
+      "maxQuatError": 1.2866636811548204e-7,
+      "minZ": 0.6571996212005615,
+      "maxZ": 15.076614379882812,
       "belowFloor": 0,
       "escapedFloor": 0,
       "stats": {
-        "pairs": 73840,
-        "contacts": 272528,
-        "manifolds": 70466,
+        "pairs": 73288,
+        "contacts": 270221,
+        "manifolds": 69806,
         "overflow": 0,
         "clashes": 0,
-        "colors": 10
+        "colors": 10,
+        "sleeping": 1952
       },
       "errors": [],
       "passed": true
@@ -41,7 +42,8 @@
         "manifolds": 29418,
         "overflow": 0,
         "clashes": 0,
-        "colors": 9
+        "colors": 9,
+        "sleeping": 0
       },
       "errors": [],
       "passed": true

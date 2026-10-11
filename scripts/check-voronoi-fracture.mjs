@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { writeFile } from "node:fs/promises";
 import { browserCheck } from "./browser-check.mjs";
-import { makeVoronoiWall } from "../demo/voronoiGeometry.js";
+import { makeVoronoiWall } from "../demo/voronoi-demolition/geometry.js";
 const geometry = makeVoronoiWall();
 assert.equal(geometry.cells.length, 216);
 assert.ok(
@@ -27,7 +27,7 @@ const b = await browserCheck(),
   checkpoints = [];
 try {
   await b.navigate(
-    "?demo=canonical&scene=3d-voronoi-demolition&backend=gpu&paused=1",
+    "?demo=canonical&scope=main&scene=3d-voronoi-demolition&backend=gpu&paused=1",
   );
   let ready = false;
   for (let i = 0; i < 400; i++) {

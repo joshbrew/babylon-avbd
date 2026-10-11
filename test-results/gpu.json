@@ -1,6 +1,6 @@
 {
   "done": true,
-  "passed": 216,
+  "passed": 247,
   "failed": 0,
   "cases": [
     {
@@ -168,6 +168,14 @@
       "passed": true
     },
     {
+      "name": "Package particle sweeps preserve exact state across tiled dispatch and partial groups",
+      "passed": true
+    },
+    {
+      "name": "Package GPU utilities reuse buffers and validate contact sampling capacity",
+      "passed": true
+    },
+    {
       "name": "canonical GPU world joint pulls and releases a body",
       "passed": true
     },
@@ -268,6 +276,10 @@
       "passed": true
     },
     {
+      "name": "GPU 3D portable hull contacts cover partial and multiple pair workgroups",
+      "passed": true
+    },
+    {
       "name": "GPU 3D contact cache survives permitted subnormal flushing",
       "passed": true
     },
@@ -352,6 +364,10 @@
       "passed": true
     },
     {
+      "name": "H-PLOC excludes disabled queues and restores contacts when enabled",
+      "passed": true
+    },
+    {
       "name": "H-PLOC matches grid for rotated mixed shapes, large statics and masks",
       "passed": true
     },
@@ -376,11 +392,103 @@
       "passed": true
     },
     {
+      "name": "GPU 2D bitset color ranks preserve stable scheduling and every histogram word",
+      "passed": true
+    },
+    {
+      "name": "GPU 2D large worlds retain bitset scheduling after sensor pipeline changes",
+      "passed": true
+    },
+    {
+      "name": "GPU 3D bitset color ranks preserve stable scheduling and every histogram word",
+      "passed": true
+    },
+    {
+      "name": "GPU 3D large worlds retain bitset scheduling after sensor pipeline changes",
+      "passed": true
+    },
+    {
       "name": "GPU solver mode switches preserve live state and moving-platform contacts",
       "passed": true
     },
     {
       "name": "GPU automatic solver reselects for appended bodies and released or reused joints",
+      "passed": true
+    },
+    {
+      "name": "GPU movement batching tiles million-manifold dispatches within device limits",
+      "passed": true
+    },
+    {
+      "name": "GPU movement batching optimized retains every live pose, velocity and constraint value",
+      "passed": true
+    },
+    {
+      "name": "GPU movement batching points retains every live pose, velocity and constraint value",
+      "passed": true
+    },
+    {
+      "name": "GPU movement batching restores partial tiles, unused capacity and zero-iteration steps",
+      "passed": true
+    },
+    {
+      "name": "GPU movement batching overflow restores public body layout before recovery",
+      "passed": true
+    },
+    {
+      "name": "GPU movement batching clashes restores public body layout before recovery",
+      "passed": true
+    },
+    {
+      "name": "GPU movement batching retains mobile compatibility layouts",
+      "passed": true
+    },
+    {
+      "name": "GPU command encoding 2D preserves exact state across combined and split passes",
+      "passed": true
+    },
+    {
+      "name": "GPU command encoding 3D preserves exact state across combined and split passes",
+      "passed": true
+    },
+    {
+      "name": "GPU feature uniforms 2D retain exact bounce, sleep and wake state",
+      "passed": true
+    },
+    {
+      "name": "GPU feature uniforms 3D retain exact bounce, sleep and wake state",
+      "passed": true
+    },
+    {
+      "name": "GPU island sleeping grid wakes a connected pile without its neighbor",
+      "passed": true
+    },
+    {
+      "name": "GPU island sleeping hploc wakes a connected pile without its neighbor",
+      "passed": true
+    },
+    {
+      "name": "GPU island sleeping grid-joint wakes a connected pile without its neighbor",
+      "passed": true
+    },
+    {
+      "name": "GPU small group 1 bodies retains the complete state and fallback",
+      "passed": true
+    },
+    {
+      "name": "GPU small group 9 bodies retains the complete state and fallback",
+      "passed": true
+    },
+    {
+      "name": "GPU small group 16 bodies retains the complete state and fallback",
+      "passed": true
+    },
+    {
+      "name": "GPU small group 32 bodies retains the complete state and fallback",
+      "passed": true
+    },
+    {
+      "name": "GPU small group 33 bodies retains the complete state and fallback",
       "passed": true
     },
     {
@@ -432,6 +540,10 @@
       "passed": true
     },
     {
+      "name": "Babylon position-only teleports retain live rotation, mesh origins and queued rotations",
+      "passed": true
+    },
+    {
       "name": "Babylon command batches reuse storage, auto-pack velocities and exclude stale records",
       "passed": true
     },
@@ -461,6 +573,10 @@
     },
     {
       "name": "Projected contact kernel matches baseline on one step and settles a spinning mixed stack",
+      "passed": true
+    },
+    {
+      "name": "Package device preparation qualifies native 3D and reuses the result for Babylon",
       "passed": true
     },
     {
@@ -724,6 +840,10 @@
       "passed": true
     },
     {
+      "name": "Batched edits: 2D step parameters retain exact bits and invalidate live changes",
+      "passed": true
+    },
+    {
       "name": "Batched edits: 2D pooled queries keep concurrent and shorter reads independent",
       "passed": true
     },
@@ -745,6 +865,10 @@
     },
     {
       "name": "Batched edits: 2D motor patches preserve warm starts and dispose safely",
+      "passed": true
+    },
+    {
+      "name": "Batched edits: 3D step parameters retain exact bits and invalidate live changes",
       "passed": true
     },
     {
@@ -880,26 +1004,26 @@
     "runs": [
       {
         "analytic": true,
-        "collisionMs": 0.111616,
+        "collisionMs": 0.116736,
+        "totalMs": 0.207872,
+        "contacts": 2048
+      },
+      {
+        "analytic": false,
+        "collisionMs": 0.144384,
         "totalMs": 0.20992,
         "contacts": 2048
       },
       {
         "analytic": false,
-        "collisionMs": 0.150528,
-        "totalMs": 0.218112,
-        "contacts": 2048
-      },
-      {
-        "analytic": false,
-        "collisionMs": 0.156672,
-        "totalMs": 0.239616,
+        "collisionMs": 0.137216,
+        "totalMs": 0.19968,
         "contacts": 2048
       },
       {
         "analytic": true,
-        "collisionMs": 0.091136,
-        "totalMs": 0.171008,
+        "collisionMs": 0.075776,
+        "totalMs": 0.135168,
         "contacts": 2048
       }
     ],

@@ -3,7 +3,7 @@ import { writeFile } from "node:fs/promises";
 const b = await browserCheck(),
   results = [];
 try {
-  await b.navigate("?scene=2d-empty&backend=ref&paused=1");
+  await b.navigate("?demo=canonical&scope=main&scene=2d-empty&backend=ref&paused=1");
   for (
     let i = 0;
     i < 400 &&

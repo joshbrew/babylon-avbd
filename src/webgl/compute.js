@@ -366,6 +366,8 @@ export class GlCompute {
   }
   destroy() {
     if (this.destroyed) return;
+    // WebGL defers deleting the current program until it is unbound.
+    this.gl.useProgram(null);
     for (const t of this.textures) this.gl.deleteTexture(t.handle);
     for (const p of this.programs) this.gl.deleteProgram(p.handle);
     this.textures.clear();

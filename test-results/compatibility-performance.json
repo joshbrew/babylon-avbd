@@ -13,6 +13,7 @@
           "dt": 0.016666666666666666,
           "iterations": 10
         },
+        "sceneAction": null,
         "rendering": false,
         "sleeping": false,
         "timingKind": "CPU step time",
@@ -48,15 +49,15 @@
             "n": 0
           },
           "wall": {
-            "mean": 0.5666666825612386,
-            "median": 0.6000000238418579,
-            "p95": 0.6000000238418579,
+            "mean": 0.5566666523615519,
+            "median": 0.5199999809265137,
+            "p95": 0.6599999666213989,
             "n": 3
           },
           "submission": {
-            "mean": 0.5666666825612386,
-            "median": 0.6000000238418579,
-            "p95": 0.6000000238418579,
+            "mean": 0.5566666523615519,
+            "median": 0.5199999809265137,
+            "p95": 0.6599999666213989,
             "n": 3
           }
         },
@@ -76,21 +77,21 @@
         "finite": true,
         "verifiedSteps": 5,
         "setup": {
-          "sceneBuildMs": 0.2999999523162842,
-          "initializationMs": 0.20000004768371582
+          "sceneBuildMs": 0.33000004291534424,
+          "initializationMs": 0.38999998569488525
         },
         "samples": [
           {
-            "wall": 0.6000000238418579,
-            "submission": 0.6000000238418579
+            "wall": 0.6599999666213989,
+            "submission": 0.6599999666213989
           },
           {
-            "wall": 0.6000000238418579,
-            "submission": 0.6000000238418579
+            "wall": 0.5199999809265137,
+            "submission": 0.5199999809265137
           },
           {
-            "wall": 0.5,
-            "submission": 0.5
+            "wall": 0.49000000953674316,
+            "submission": 0.49000000953674316
           }
         ],
         "repeat": 0,
@@ -106,7 +107,7 @@
         "renderer": "webgpu",
         "backend": "cpu"
       },
-      "rows": "3D · Stack16.67 ms simulated per stepCPU step timeChecks passed11410————0.567"
+      "rows": "3D · Stack16.67 ms simulated per stepCPU step timeChecks passed11410————0.557"
     },
     {
       "backend": "webgl2",
@@ -120,50 +121,51 @@
           "dt": 0.016666666666666666,
           "iterations": 10
         },
+        "sceneAction": null,
         "rendering": false,
         "sleeping": false,
         "timingKind": "WebGL2 GPU elapsed queries",
         "summary": {
           "collision": {
-            "mean": 0.068608,
-            "median": 0.068608,
-            "p95": 0.069632,
+            "mean": 0.3662506666666667,
+            "median": 0.406528,
+            "p95": 0.423936,
             "n": 3
           },
           "adjacency": {
-            "mean": 1.3745493333333332,
-            "median": 1.168384,
-            "p95": 1.789952,
+            "mean": 1.009664,
+            "median": 0.420864,
+            "p95": 2.250752,
             "n": 3
           },
           "coloring": {
-            "mean": 9.417727999999999,
-            "median": 10.00448,
-            "p95": 11.4432,
+            "mean": 8.022698666666665,
+            "median": 9.307136,
+            "p95": 14.075904,
             "n": 3
           },
           "solve": {
-            "mean": 22.683306666666667,
-            "median": 22.238208,
-            "p95": 26.387456,
+            "mean": 28.384597333333332,
+            "median": 26.801152,
+            "p95": 32.951296,
             "n": 3
           },
           "total": {
-            "mean": 33.544191999999995,
-            "median": 33.477632,
-            "p95": 35.05152,
+            "mean": 37.78321066666667,
+            "median": 40.322048,
+            "p95": 43.022335999999996,
             "n": 3
           },
           "wall": {
-            "mean": 39.89999997615814,
-            "median": 39.5,
-            "p95": 41.199999928474426,
+            "mean": 47.66999999682108,
+            "median": 46.87999999523163,
+            "p95": 50.7150000333786,
             "n": 3
           },
           "submission": {
-            "mean": 34.699999968210854,
-            "median": 34.89999997615814,
-            "p95": 35.199999928474426,
+            "mean": 35.50166666507721,
+            "median": 35.389999985694885,
+            "p95": 40.955000042915344,
             "n": 3
           }
         },
@@ -183,36 +185,36 @@
         "finite": true,
         "verifiedSteps": 5,
         "setup": {
-          "sceneBuildMs": 0.10000002384185791,
-          "initializationMs": 12011.399999976158
+          "sceneBuildMs": 0.13499999046325684,
+          "initializationMs": 11316.144999980927
         },
         "samples": [
           {
-            "collision": 0.069632,
-            "coloring": 10.00448,
-            "adjacency": 1.165312,
-            "solve": 22.238208,
-            "total": 33.477632,
-            "wall": 39.5,
-            "submission": 34.89999997615814
+            "collision": 0.268288,
+            "coloring": 0.685056,
+            "adjacency": 2.250752,
+            "solve": 26.801152,
+            "total": 30.005247999999998,
+            "wall": 45.41499996185303,
+            "submission": 35.389999985694885
           },
           {
-            "collision": 0.067584,
-            "coloring": 11.4432,
-            "adjacency": 1.168384,
-            "solve": 19.424256,
-            "total": 32.103424,
-            "wall": 39,
-            "submission": 34
+            "collision": 0.406528,
+            "coloring": 9.307136,
+            "adjacency": 0.357376,
+            "solve": 32.951296,
+            "total": 43.022335999999996,
+            "wall": 50.7150000333786,
+            "submission": 30.1599999666214
           },
           {
-            "collision": 0.068608,
-            "coloring": 6.805504,
-            "adjacency": 1.789952,
-            "solve": 26.387456,
-            "total": 35.05152,
-            "wall": 41.199999928474426,
-            "submission": 35.199999928474426
+            "collision": 0.423936,
+            "coloring": 14.075904,
+            "adjacency": 0.420864,
+            "solve": 25.401344,
+            "total": 40.322048,
+            "wall": 46.87999999523163,
+            "submission": 40.955000042915344
           }
         ],
         "repeat": 0,
@@ -228,12 +230,13 @@
         "renderer": "webgl",
         "backend": "webgl2"
       },
-      "rows": "3D · Stack16.67 ms simulated per stepWebGL2 GPU elapsed queriesChecks passed1141033.54435.0520.06922.68339.900"
+      "rows": "3D · Stack16.67 ms simulated per stepWebGL2 GPU elapsed queriesChecks passed1141037.78343.0220.36628.38547.670"
     },
     {
       "backend": "webgpu",
       "result": {
         "scene": "3d-stack",
+        "sceneAction": null,
         "dimension": 3,
         "variant": "production",
         "bodyCount": 11,
@@ -308,51 +311,51 @@
           4096
         ],
         "setup": {
-          "sceneBuildMs": 0.10000002384185791,
-          "gpuInitializationMs": 3.5
+          "sceneBuildMs": 0.26499998569488525,
+          "gpuInitializationMs": 5.945000052452087
         },
         "kernel": "baseline",
         "warmup": 2,
         "samples": [
           {
             "step": 3,
-            "total": 0.393216,
-            "collision": 0.041984,
-            "adjacency": 0.01024,
-            "coloring": 0.033792,
-            "solve": 0.306176,
+            "total": 1.403904,
             "broadphase": "grid",
             "bvhRebuilt": false,
-            "submission": 0.5,
-            "wall": 6.099999904632568,
+            "collision": 0.318464,
+            "adjacency": 0.083968,
+            "coloring": 0.231424,
+            "solve": 0.769024,
+            "submission": 0.9350000619888306,
+            "wall": 5.810000061988831,
             "contacts": 4,
             "pairs": 1
           },
           {
             "step": 4,
-            "total": 1.355776,
-            "collision": 0.041984,
-            "adjacency": 0.011264,
-            "coloring": 0.032768,
-            "solve": 1.26976,
+            "total": 1.401856,
             "broadphase": "grid",
             "bvhRebuilt": false,
-            "submission": 0.09999990463256836,
-            "wall": 8.099999904632568,
+            "collision": 0.319488,
+            "adjacency": 0.077824,
+            "coloring": 0.231424,
+            "solve": 0.77312,
+            "submission": 0.13999998569488525,
+            "wall": 4.079999923706055,
             "contacts": 4,
             "pairs": 1
           },
           {
             "step": 5,
-            "total": 0.38912,
-            "collision": 0.043008,
-            "adjacency": 0.01024,
-            "coloring": 0.032768,
-            "solve": 0.30208,
+            "total": 4.663296,
             "broadphase": "grid",
             "bvhRebuilt": false,
-            "submission": 0.19999992847442627,
-            "wall": 9.299999952316284,
+            "collision": 0.319488,
+            "adjacency": 0.074752,
+            "coloring": 2.287616,
+            "solve": 1.98144,
+            "submission": 0.1499999761581421,
+            "wall": 7.985000014305115,
             "contacts": 4,
             "pairs": 1
           }
@@ -360,45 +363,45 @@
         "summary": {
           "total": {
             "n": 3,
-            "mean": 0.712704,
-            "median": 0.393216,
-            "p95": 1.355776
+            "mean": 2.4896853333333335,
+            "median": 1.403904,
+            "p95": 4.663296
           },
           "collision": {
             "n": 3,
-            "mean": 0.04232533333333333,
-            "median": 0.041984,
-            "p95": 0.043008
+            "mean": 0.3191466666666667,
+            "median": 0.319488,
+            "p95": 0.319488
           },
           "adjacency": {
             "n": 3,
-            "mean": 0.010581333333333333,
-            "median": 0.01024,
-            "p95": 0.011264
+            "mean": 0.07884799999999999,
+            "median": 0.077824,
+            "p95": 0.083968
           },
           "coloring": {
             "n": 3,
-            "mean": 0.03310933333333333,
-            "median": 0.032768,
-            "p95": 0.033792
+            "mean": 0.9168213333333334,
+            "median": 0.231424,
+            "p95": 2.287616
           },
           "solve": {
             "n": 3,
-            "mean": 0.6260053333333334,
-            "median": 0.306176,
-            "p95": 1.26976
+            "mean": 1.174528,
+            "median": 0.77312,
+            "p95": 1.98144
           },
           "submission": {
             "n": 3,
-            "mean": 0.26666661103566486,
-            "median": 0.19999992847442627,
-            "p95": 0.5
+            "mean": 0.4083333412806193,
+            "median": 0.1499999761581421,
+            "p95": 0.9350000619888306
           },
           "wall": {
             "n": 3,
-            "mean": 7.833333253860474,
-            "median": 8.099999904632568,
-            "p95": 9.299999952316284
+            "mean": 5.958333333333333,
+            "median": 5.810000061988831,
+            "p95": 7.985000014305115
           }
         },
         "repeat": 0,
@@ -414,7 +417,7 @@
         "renderer": "webgpu",
         "backend": "webgpu"
       },
-      "rows": "3D · Stack16.67 ms simulated per stepGPU AVBDChecks passed114100.7131.3560.0420.6267.833"
+      "rows": "3D · Stack16.67 ms simulated per stepGPU AVBDChecks passed114102.4904.6630.3191.1755.958"
     }
   ],
   "withoutWebgpu": [
@@ -428,6 +431,7 @@
         "dt": 0.016666666666666666,
         "iterations": 10
       },
+      "sceneAction": null,
       "rendering": false,
       "sleeping": false,
       "timingKind": "CPU step time",
@@ -463,15 +467,15 @@
           "n": 0
         },
         "wall": {
-          "mean": 0.3999999761581421,
-          "median": 0.5,
-          "p95": 0.5,
+          "mean": 0.39250004291534424,
+          "median": 0.440000057220459,
+          "p95": 0.440000057220459,
           "n": 2
         },
         "submission": {
-          "mean": 0.3999999761581421,
-          "median": 0.5,
-          "p95": 0.5,
+          "mean": 0.39000004529953003,
+          "median": 0.43500006198883057,
+          "p95": 0.43500006198883057,
           "n": 2
         }
       },
@@ -491,17 +495,17 @@
       "finite": true,
       "verifiedSteps": 3,
       "setup": {
-        "sceneBuildMs": 0.6000000238418579,
-        "initializationMs": 0.3999999761581421
+        "sceneBuildMs": 0.940000057220459,
+        "initializationMs": 0.7749999761581421
       },
       "samples": [
         {
-          "wall": 0.2999999523162842,
-          "submission": 0.2999999523162842
+          "wall": 0.440000057220459,
+          "submission": 0.43500006198883057
         },
         {
-          "wall": 0.5,
-          "submission": 0.5
+          "wall": 0.3450000286102295,
+          "submission": 0.3450000286102295
         }
       ]
     },
@@ -515,50 +519,51 @@
         "dt": 0.016666666666666666,
         "iterations": 10
       },
+      "sceneAction": null,
       "rendering": false,
       "sleeping": false,
       "timingKind": "WebGL2 GPU elapsed queries",
       "summary": {
         "collision": {
-          "mean": 0.065024,
-          "median": 0.06656,
-          "p95": 0.06656,
+          "mean": 0.436736,
+          "median": 0.449536,
+          "p95": 0.449536,
           "n": 2
         },
         "adjacency": {
-          "mean": 2.6844159999999997,
-          "median": 4.16768,
-          "p95": 4.16768,
+          "mean": 0.43520000000000003,
+          "median": 0.436224,
+          "p95": 0.436224,
           "n": 2
         },
         "coloring": {
-          "mean": 8.123904,
-          "median": 8.252416,
-          "p95": 8.252416,
+          "mean": 8.04352,
+          "median": 8.287232,
+          "p95": 8.287232,
           "n": 2
         },
         "solve": {
-          "mean": 36.23424,
-          "median": 38.981632,
-          "p95": 38.981632,
+          "mean": 45.65504,
+          "median": 49.948672,
+          "p95": 49.948672,
           "n": 2
         },
         "total": {
-          "mean": 47.107584,
-          "median": 51.208192,
-          "p95": 51.208192,
+          "mean": 54.570496,
+          "median": 59.094016,
+          "p95": 59.094016,
           "n": 2
         },
         "wall": {
-          "mean": 53.94999998807907,
-          "median": 56.299999952316284,
-          "p95": 56.299999952316284,
+          "mean": 64.25000005960464,
+          "median": 68.95500004291534,
+          "p95": 68.95500004291534,
           "n": 2
         },
         "submission": {
-          "mean": 49.10000002384186,
-          "median": 50.89999997615814,
-          "p95": 50.89999997615814,
+          "mean": 45.467500030994415,
+          "median": 46.795000076293945,
+          "p95": 46.795000076293945,
           "n": 2
         }
       },
@@ -578,30 +583,29 @@
       "finite": true,
       "verifiedSteps": 3,
       "setup": {
-        "sceneBuildMs": 0.10000002384185791,
-        "initializationMs": 3033.2999999523163
+        "sceneBuildMs": 0.2200000286102295,
+        "initializationMs": 3268.0849999189377
       },
       "samples": [
         {
-          "collision": 0.063488,
-          "coloring": 7.995392,
-          "adjacency": 4.16768,
-          "solve": 38.981632,
-          "total": 51.208192,
-          "wall": 56.299999952316284,
-          "submission": 50.89999997615814
+          "collision": 0.449536,
+          "coloring": 7.799808,
+          "adjacency": 0.436224,
+          "solve": 41.361408,
+          "total": 50.046975999999994,
+          "wall": 59.545000076293945,
+          "submission": 46.795000076293945
         },
         {
-          "collision": 0.06656,
-          "coloring": 8.252416,
-          "adjacency": 1.201152,
-          "solve": 33.486848,
-          "total": 43.006976,
-          "wall": 51.60000002384186,
-          "submission": 47.300000071525574
+          "collision": 0.423936,
+          "coloring": 8.287232,
+          "adjacency": 0.434176,
+          "solve": 49.948672,
+          "total": 59.094016,
+          "wall": 68.95500004291534,
+          "submission": 44.139999985694885
         }
       ]
     }
-  ],
-  "screenshot": "screenshots/compatibility-performance.png"
+  ]
 }

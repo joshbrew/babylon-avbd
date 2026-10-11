@@ -2,12 +2,23 @@
   "passed": true,
   "rows": [
     {
+      "scene": "2D box stack and falling box",
+      "steps": 180,
+      "bodyCount": 6,
+      "maxPositionDifference": 0.000013679266372158801,
+      "status": {
+        "problems": 0,
+        "colors": 2
+      },
+      "passed": true
+    },
+    {
       "scene": "3D stack, sphere and rotating capsule",
       "hulls": true,
       "joints": 8,
       "steps": 180,
       "bodyCount": 15,
-      "maxPositionDifference": 0.0016710324519381779,
+      "maxPositionDifference": 0.0008149499825437405,
       "status": {
         "problems": 0,
         "colors": 2

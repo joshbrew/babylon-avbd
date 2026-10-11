@@ -1,11 +1,12 @@
-import { buildCanonicalScene } from "../demo/canonicalScenes.js";
-import { CanonicalRenderer } from "../demo/canonicalRenderer.js";
-import { GpuRenderer2D } from "../demo/gpuRenderer2D.js";
+import { PlayPhysics } from "../demo/shared/playground/physics.js";
+import { buildCanonicalScene } from "../demo/lab/scenes.js";
+import { CanonicalRenderer } from "../demo/shared/rendering/canonicalRenderer.js";
+import { GpuRenderer2D } from "../demo/shared/rendering/gpuRenderer2D.js";
 import {
   createBabylonEngine,
   BabylonRenderer2D,
   BabylonRenderer3D,
-} from "../demo/babylonGpuRenderer.js";
+} from "../demo/shared/rendering/babylonGpuRenderer.js";
 import { NativeGpuSolver2D } from "../src/native/solver2D.js";
 import { NativeGpuSolver3D } from "../src/native/solver3D.js";
 import {
@@ -172,6 +173,7 @@ export async function rendererBenchmark(
   let session = provided,
     gpu,
     sleep,
+    playground,
     direct,
     babylon;
   const errors = [];
@@ -219,7 +221,10 @@ export async function rendererBenchmark(
         spatialSort: true,
         ...sceneGpuSolverOptions(scene),
         ...built.gpuOptions,
-        broadphase,
+        broadphase:
+          broadphase === "auto"
+            ? (built.gpuOptions?.broadphase ?? "auto")
+            : broadphase,
         solverMode: "auto",
       });
       gpu = built.scene
@@ -239,6 +244,10 @@ export async function rendererBenchmark(
       }
     }
     Object.assign(gpu.params, built.gpuParams);
+    if (built.play) {
+      playground = new PlayPhysics(device, built, gpu);
+      playground.action("start");
+    }
     await babylon.ready();
     const rows = { webgpu: [], babylon: [] },
       physics = [];
@@ -337,6 +346,8 @@ export async function rendererBenchmark(
       dimension,
       bodyCount: gpu.bodyCount,
       params: { ...gpu.params },
+      sceneAction: playground ? "start" : null,
+      galton: await playground?.feeder?.measure(true),
       adapter: {
         vendor: session.info.vendor,
         architecture: session.info.architecture,
@@ -366,6 +377,7 @@ export async function rendererBenchmark(
     direct?.dispose();
     babylon?.dispose();
     sleep?.dispose();
+    playground?.destroy();
     gpu?.destroy();
     session?.device.removeEventListener("uncapturederror", captureError);
     if (provided) provided.busy = false;

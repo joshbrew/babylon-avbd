@@ -143,7 +143,6 @@
       "overflow": 0,
       "clashes": 0,
       "adaptations": 0,
-      "screenshot": "screenshots/webgl2-2d-stack.png",
       "passed": true
     },
     {
@@ -300,7 +299,6 @@
       "overflow": 0,
       "clashes": 0,
       "adaptations": 0,
-      "screenshot": "screenshots/webgl2-3d-rope.png",
       "passed": true
     },
     {
@@ -410,7 +408,6 @@
       "overflow": 0,
       "clashes": 0,
       "adaptations": 0,
-      "screenshot": "screenshots/webgl2-2d-mixed-shapes.png",
       "passed": true
     },
     {
@@ -419,11 +416,10 @@
       "count": 7,
       "finite": true,
       "errors": [],
-      "contacts": 2,
+      "contacts": 4,
       "overflow": 0,
       "clashes": 0,
       "adaptations": 0,
-      "screenshot": "screenshots/webgl2-2d-limited-hinges.png",
       "passed": true
     },
     {
@@ -436,7 +432,6 @@
       "overflow": 0,
       "clashes": 0,
       "adaptations": 0,
-      "screenshot": "screenshots/webgl2-2d-triggers-and-masks.png",
       "passed": true
     },
     {
@@ -449,7 +444,6 @@
       "overflow": 0,
       "clashes": 0,
       "adaptations": 0,
-      "screenshot": "screenshots/webgl2-3d-convex-hulls.png",
       "passed": true
     },
     {
@@ -462,7 +456,6 @@
       "overflow": 0,
       "clashes": 0,
       "adaptations": 0,
-      "screenshot": "screenshots/webgl2-3d-limited-hinges.png",
       "passed": true
     },
     {
@@ -475,7 +468,6 @@
       "overflow": 0,
       "clashes": 0,
       "adaptations": 0,
-      "screenshot": "screenshots/webgl2-3d-triggers-and-masks.png",
       "passed": true
     },
     {
@@ -497,11 +489,10 @@
       "count": 3915,
       "finite": true,
       "errors": [],
-      "contacts": 0,
+      "contacts": 1763,
       "overflow": 0,
       "clashes": 0,
       "adaptations": 0,
-      "screenshot": "screenshots/webgl2-3d-castle-siege.png",
       "passed": true
     },
     {
@@ -510,11 +501,10 @@
       "count": 222,
       "finite": true,
       "errors": [],
-      "contacts": 0,
+      "contacts": 422,
       "overflow": 0,
       "clashes": 0,
       "adaptations": 0,
-      "screenshot": "screenshots/webgl2-3d-voronoi-demolition.png",
       "passed": true
     }
   ]

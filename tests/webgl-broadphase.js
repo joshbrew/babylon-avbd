@@ -1,5 +1,9 @@
 import { GlCompute } from "../src/webgl/compute.js";
 import { GlBroadphase } from "../src/webgl/broadphase.js";
+import {
+  checkReleasedCompute,
+  destroyComputeAndCheck,
+} from "./webgl-resources.js";
 
 const check = (v, message) => {
   if (!v) throw Error(message);
@@ -180,10 +184,7 @@ export async function checkGlBroadphase() {
         compute.release(input);
         compute.release(filter);
         if (shifted) compute.release(shifted);
-        check(
-          compute.textures.size === 0 && compute.programs.size === 0,
-          `${name}: leaked compute resources`,
-        );
+        checkReleasedCompute(compute);
       }
     }
     return {
@@ -195,6 +196,6 @@ export async function checkGlBroadphase() {
       rows,
     };
   } finally {
-    compute.destroy();
+    destroyComputeAndCheck(compute);
   }
 }

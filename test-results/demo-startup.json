@@ -1,0 +1,343 @@
+{
+  "date": "2026-10-11T22:10:50.296Z",
+  "passed": true,
+  "hardware": "NVIDIA GeForce RTX 4070 Laptop GPU",
+  "driver": "32.0.16.1714",
+  "identification": "Current Windows GPU name uniquely matched to the WebGPU adapter vendor",
+  "method": "One paused initialization per scene in a dedicated worker. Includes scene building, GPU contact qualification, physics and rendering setup; excludes simulation steps. Browser/driver caches may warm between scenes. These are startup times, not frame times.",
+  "results": [
+    {
+      "scene": "3d-ground",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 3,
+      "bodies": 2,
+      "iterations": 10,
+      "timeStep": 0.016666666666666666,
+      "defaultStepRate": 60,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": false,
+      "startupMs": 915,
+      "navigationMs": 1012.5055000000002,
+      "passed": true
+    },
+    {
+      "scene": "2d-pyramid",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 2,
+      "bodies": 211,
+      "iterations": 10,
+      "timeStep": 0.016666666666666666,
+      "defaultStepRate": 60,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": false,
+      "startupMs": 133.52499997615814,
+      "navigationMs": 276.8095999999996,
+      "passed": true
+    },
+    {
+      "scene": "2d-stress-pile-100k",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 2,
+      "bodies": 100003,
+      "iterations": 10,
+      "timeStep": 0.016666666666666666,
+      "defaultStepRate": 60,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": true,
+      "startupMs": 880.7599999904633,
+      "navigationMs": 995.1629999999996,
+      "passed": true
+    },
+    {
+      "scene": "2d-slingshot-siege",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 2,
+      "bodies": 5121,
+      "iterations": 16,
+      "timeStep": 0.008333333333333333,
+      "defaultStepRate": 120,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": true,
+      "startupMs": 186.59499990940094,
+      "navigationMs": 301.8882000000003,
+      "passed": true
+    },
+    {
+      "scene": "3d-marble-cascade",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 3,
+      "bodies": 40747,
+      "playActions": [
+        {
+          "id": "start",
+          "label": "Release marbles"
+        },
+        {
+          "id": "shake",
+          "label": "Shake marbles"
+        },
+        {
+          "id": "restore-pegs",
+          "label": "Restore all pegs"
+        }
+      ],
+      "iterations": 5,
+      "timeStep": 0.008333333333333333,
+      "defaultStepRate": 120,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "pegs": {
+        "total": 700,
+        "retracted": 0
+      },
+      "sleepingEnabled": false,
+      "startupMs": 7376.449999928474,
+      "navigationMs": 7470.0492,
+      "passed": true
+    },
+    {
+      "scene": "3d-tornado-town",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 3,
+      "bodies": 4530,
+      "playActions": [
+        {
+          "id": "start",
+          "label": "Send in tornado"
+        },
+        {
+          "id": "stop",
+          "label": "Stop wind"
+        }
+      ],
+      "iterations": 5,
+      "timeStep": 0.008333333333333333,
+      "defaultStepRate": 120,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": false,
+      "startupMs": 646.8949999809265,
+      "navigationMs": 757.8119999999999,
+      "passed": true
+    },
+    {
+      "scene": "3d-domino-spiral",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 3,
+      "bodies": 2049,
+      "playActions": [
+        {
+          "id": "start",
+          "label": "Tip first domino"
+        }
+      ],
+      "iterations": 5,
+      "timeStep": 0.008333333333333333,
+      "defaultStepRate": 120,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": false,
+      "startupMs": 502.9800000190735,
+      "navigationMs": 638.9976999999999,
+      "passed": true
+    },
+    {
+      "scene": "showcase-ragdolls-on-cloth-24k",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 3,
+      "bodies": 23617,
+      "iterations": 5,
+      "timeStep": 0.004166666666666667,
+      "defaultStepRate": 240,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": true,
+      "startupMs": 867.1450001001358,
+      "navigationMs": 1003.0850999999984,
+      "passed": true
+    },
+    {
+      "scene": "showcase-box-columns-100k",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 3,
+      "bodies": 100001,
+      "iterations": 5,
+      "timeStep": 0.016666666666666666,
+      "defaultStepRate": 60,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": true,
+      "startupMs": 2052.0750000476837,
+      "navigationMs": 2178.8936000000012,
+      "passed": true
+    },
+    {
+      "scene": "paper-walls-510k-4",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 3,
+      "bodies": 505923,
+      "iterations": 4,
+      "timeStep": 0.016666666666666666,
+      "defaultStepRate": 60,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": true,
+      "bowlingBalls": [
+        168845,
+        236512
+      ],
+      "sleepingEnabled": true,
+      "startupMs": 6691.600000023842,
+      "navigationMs": 6818.8897,
+      "passed": true
+    },
+    {
+      "scene": "3d-static-terrain",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 3,
+      "bodies": 2416,
+      "terrain": {
+        "name": "Rolling hills and rock cave",
+        "triangles": 2288,
+        "colliders": 2288,
+        "surfaces": 2,
+        "imported": false
+      },
+      "iterations": 5,
+      "timeStep": 0.008333333333333333,
+      "defaultStepRate": 120,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": false,
+      "startupMs": 3036.7799999713898,
+      "navigationMs": 3120.592200000003,
+      "passed": true
+    },
+    {
+      "scene": "naval",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 3,
+      "bodies": 418,
+      "iterations": 5,
+      "timeStep": 0.008333333333333333,
+      "defaultStepRate": 120,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": false,
+      "startupMs": 2014.4250000715256,
+      "navigationMs": 2121.4240000000027,
+      "passed": true
+    }
+  ]
+}

@@ -29,15 +29,25 @@ export {setGpuExecutionPolicy3D} from './src/gpu/executionPolicy3D.js';
 export {AppGpuSolver3D} from './src/gpu/appGpuSolver3D.js';
 export {canonicalGpuTests} from './tests/gpu-canonical.js';
 export {packageFeatureGpuTests} from './tests/gpu-package-features.js';
+export {babylonGpuTests} from './tests/gpu-babylon.js';
 export {contactPortabilityGpuTests} from './tests/gpu-contact-portability.js';
 `,
   },
 });
-const servedFixture = await fetch(`${origin}/.temp/connected-contact-tests.js`, {
-  signal: AbortSignal.timeout(10000),
-});
-if (!servedFixture.ok || await servedFixture.text() !== await readFile(".temp/connected-contact-tests.js", "utf8"))
-  throw Error("Run the phone check from the same repository that serves the local demo.");
+const servedFixture = await fetch(
+  `${origin}/.temp/connected-contact-tests.js`,
+  {
+    signal: AbortSignal.timeout(10000),
+  },
+);
+if (
+  !servedFixture.ok ||
+  (await servedFixture.text()) !==
+    (await readFile(".temp/connected-contact-tests.js", "utf8"))
+)
+  throw Error(
+    "Run the phone check from the same repository that serves the local demo.",
+  );
 const ws = new WebSocket(target.webSocketDebuggerUrl);
 await new Promise((resolve, reject) => {
   ws.addEventListener("open", resolve, { once: true });
@@ -78,6 +88,9 @@ async function evaluate(expression) {
     );
   return result.result.value;
 }
+const wasPaused = await evaluate(
+  "document.getElementById('lab-pause')?.textContent === 'Resume'",
+);
 try {
   console.log(
     "Testing 3D contacts and native features on the connected phone.",
@@ -113,6 +126,9 @@ try {
         };
         await tests.canonicalGpuTests(device,test,undefined,tests.AppGpuSolver3D);
         await tests.packageFeatureGpuTests(device,test);
+        if(broadphase==='grid')await tests.babylonGpuTests(device,async(name,run)=>{
+          if(name.startsWith('Babylon'))await test(name,run);
+        });
         if(broadphase==='grid')await tests.contactPortabilityGpuTests(device,async(name,run)=>{
           if(name.includes('portable hull contacts'))await test(name,run);
         });
@@ -142,6 +158,8 @@ try {
       if (!c.passed) console.log(`${mode.broadphase}: ${c.name}: ${c.error}`);
   if (!result.passed) process.exitCode = 1;
 } finally {
-  await evaluate("globalThis.__AVBD_LAB__?.pause(false)").catch(() => {});
+  await evaluate(`globalThis.__AVBD_LAB__?.pause(${wasPaused})`).catch(
+    () => {},
+  );
   ws.close();
 }

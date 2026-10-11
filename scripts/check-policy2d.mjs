@@ -13,7 +13,7 @@ try {
   for (const id of process.env.AVBD_SLINGSHOT_ONLY
     ? []
     : ["2d-sleeping-pile", "2d-limited-hinges"]) {
-    await b.navigate(`?demo=canonical&scene=${id}&backend=gpu&paused=1`);
+    await b.navigate(`?demo=canonical&scope=main&scene=${id}&backend=gpu&paused=1`);
     await wait("globalThis.__AVBD_LAB__?.diagnostics.ready");
     await b.evaluate("__AVBD_LAB__.step(720)");
     const snapshot = await b.evaluate(

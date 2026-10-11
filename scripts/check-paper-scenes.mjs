@@ -1,11 +1,11 @@
 import { browserCheck } from "./browser-check.mjs";
-import { writeFile } from "node:fs/promises";
+import { writeAtomicFile as writeFile } from "./report-file.mjs";
 
 const browser = await browserCheck(),
   results = [];
 try {
   await browser.navigate(
-    "?demo=canonical&scene=2d-empty&backend=ref&paused=1&quality=benchmark",
+    "?demo=canonical&scope=main&scene=2d-empty&backend=ref&paused=1&quality=benchmark",
   );
   for (
     let i = 0;

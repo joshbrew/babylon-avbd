@@ -2,7 +2,7 @@ import { browserCheck } from "./browser-check.mjs";
 import { readdir, readFile } from "node:fs/promises";
 const b = await browserCheck();
 try {
-  await b.navigate("?demo=canonical&scene=2d-empty&backend=ref");
+  await b.navigate("?demo=canonical&scope=main&scene=2d-empty&backend=ref");
   for (let i = 0; i < 300; i++) {
     if (await b.evaluate("globalThis.__AVBD_LAB__?.diagnostics.ready")) break;
     await new Promise((r) => setTimeout(r, 30));

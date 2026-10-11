@@ -1,4 +1,4 @@
-import { GpuContactSample } from "../demo/gpuContactSample.js";
+import { GpuContactSample } from "../src/gpu/contactSample.js";
 import { createWebGPUDevice } from "../src/gpu/device.js";
 
 export async function checkContactSamples() {
@@ -48,7 +48,7 @@ export async function checkContactSamples() {
       camera: buffer(camera, GPUBufferUsage.UNIFORM),
       gpu: { contactStorage: storage },
     };
-    sample = new GpuContactSample(r);
+    sample = new GpuContactSample(device);
     const read = device.createBuffer({
       size: sample.buffer.size,
       usage: GPUBufferUsage.COPY_DST | GPUBufferUsage.MAP_READ,
@@ -56,7 +56,11 @@ export async function checkContactSamples() {
     resources.push(read);
     const gather = async () => {
       const encoder = device.createCommandEncoder();
-      sample.encode(encoder);
+      sample.encode(encoder, {
+        bodyBuffer: r.buffer,
+        cameraBuffer: r.camera,
+        contactStorage: r.gpu.contactStorage,
+      });
       encoder.copyBufferToBuffer(sample.buffer, 0, read, 0, read.size);
       device.queue.submit([encoder.finish()]);
       await read.mapAsync(GPUMapMode.READ);

@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir } from "node:fs/promises";
 import { browserCheck } from "./browser-check.mjs";
+import { writeReport } from "./report-file.mjs";
 
 const b = await browserCheck();
 const results = [];
@@ -39,7 +40,9 @@ async function checkScene(id, backend = "ref", steps = 8) {
 }
 try {
   await mkdir("test-results/screenshots", { recursive: true });
-  await b.navigate("?demo=canonical&scene=3d-stack&backend=cpu&paused=1");
+  await b.navigate(
+    "?demo=canonical&scope=main&scene=3d-stack&backend=cpu&paused=1",
+  );
   await ready();
   assert.equal(await b.evaluate("__AVBD_LAB__.diagnostics.backend"), "ref");
   const scenes = await b.evaluate(
@@ -92,6 +95,17 @@ try {
   );
   const cpu2D = await checkScene("2d-stack", "ref");
   await b.screenshot("test-results/screenshots/cpu-2d-stack.png");
+  for (const mode of ["ref", "soa-seq", "soa-colored"]) {
+    await checkScene("2d-stack", mode);
+    for (const enabled of [true, false]) {
+      const measured = await b.evaluate(`(async()=>{
+        const toggle=document.querySelector('#lab-sleep');
+        toggle.checked=${enabled};toggle.onchange({target:toggle});
+        return __AVBD_LAB__.benchmark({warmup:0,count:1});
+      })()`);
+      assert.equal(measured.sleepingEnabled, enabled);
+    }
+  }
   const gpu2D = await checkScene("2d-stack", "gpu");
   assert.equal(cpu2D.timeStep, gpu2D.timeStep);
   assert.equal(cpu2D.iterations, gpu2D.iterations);
@@ -108,12 +122,14 @@ try {
     source:
       "Object.defineProperty(navigator,'gpu',{value:undefined,configurable:true});",
   });
-  await b.navigate("?demo=canonical&paused=1");
+  await b.navigate("?demo=canonical&scope=main&paused=1");
   await ready();
   assert.equal(await b.evaluate("__AVBD_LAB__.diagnostics.scene"), "3d-stack");
   await checkScene("3d-stack", "ref", 120);
   await checkScene("2d-rope", "ref", 30);
-  await b.navigate("?demo=canonical&scene=3d-rope&backend=cpu&paused=1");
+  await b.navigate(
+    "?demo=canonical&scope=main&scene=3d-rope&backend=cpu&paused=1",
+  );
   await ready();
   await b.evaluate("__AVBD_LAB__.step(30)");
   assert.equal(await b.evaluate("__AVBD_LAB__.diagnostics.backend"), "ref");
@@ -127,13 +143,13 @@ try {
   console.error(error);
   process.exitCode = 1;
 } finally {
-  await writeFile(
-    "test-results/cpu-demos.json",
-    JSON.stringify(
-      { date: new Date().toISOString(), results, errors: b.errors },
-      null,
-      2,
-    ),
-  );
-  await b.close();
+  try {
+    await writeReport("test-results/cpu-demos.json", {
+      date: new Date().toISOString(),
+      results,
+      errors: b.errors,
+    });
+  } finally {
+    await b.close();
+  }
 }

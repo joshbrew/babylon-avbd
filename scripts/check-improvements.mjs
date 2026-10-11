@@ -150,7 +150,7 @@ try {
     passed: true,
   });
   await b.navigate(
-    "?demo=canonical&scene=showcase-box-columns-100k&backend=gpu&paused=1",
+    "?demo=canonical&scope=main&scene=showcase-box-columns-100k&backend=gpu&paused=1",
   );
   await wait("globalThis.__AVBD_LAB__?.diagnostics.ready");
   await wait("__AVBD_LAB__.diagnostics.frames>3");

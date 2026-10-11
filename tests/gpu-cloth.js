@@ -3,7 +3,7 @@ import { Rigid } from "../reference/three-avbd/src/avbd3d/ref/body.ts";
 import { Spring } from "../reference/three-avbd/src/avbd3d/ref/forces.ts";
 import { GpuSolver3D } from "../reference/three-avbd/src/avbd3d/gpu/solver.ts";
 import { AppGpuSolver3D } from "../src/gpu/appGpuSolver3D.js";
-import { clothPoint, buildCloth } from "../demo/paperScenes.js";
+import { clothPoint, buildCloth } from "../demo/paper-benchmarks/scenes.js";
 import { clothSolve } from "../src/gpu/gpuClothSolver.js";
 import { assert, close } from "./helpers/gpu.js";
 import { AvbdScene3D } from "../src/index.js";

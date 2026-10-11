@@ -1,0 +1,105 @@
+{
+  "passed": true,
+  "results": [
+    {
+      "backend": "webgpu",
+      "maxSpeed": 0,
+      "raised": 0,
+      "beforeDestroyed": 0,
+      "beforeTargets": 0,
+      "removed": [
+        {
+          "id": 1116,
+          "mass": 0,
+          "speed": 0
+        },
+        {
+          "id": 272,
+          "mass": 0,
+          "speed": 0
+        },
+        {
+          "id": 273,
+          "mass": 0,
+          "speed": 0
+        },
+        {
+          "id": 274,
+          "mass": 0,
+          "speed": 0
+        },
+        {
+          "id": 275,
+          "mass": 0,
+          "speed": 0
+        },
+        {
+          "id": 276,
+          "mass": 0,
+          "speed": 0
+        },
+        {
+          "id": 277,
+          "mass": 0,
+          "speed": 0
+        }
+      ],
+      "filtersClear": true,
+      "invisible": true,
+      "health": 0,
+      "destroyedBricks": 125,
+      "finite": true,
+      "errors": []
+    },
+    {
+      "backend": "cpu",
+      "maxSpeed": 0,
+      "raised": 0,
+      "beforeDestroyed": 0,
+      "beforeTargets": 0,
+      "removed": [
+        {
+          "id": 1116,
+          "mass": 0,
+          "speed": 0
+        },
+        {
+          "id": 272,
+          "mass": 0,
+          "speed": 0
+        },
+        {
+          "id": 273,
+          "mass": 0,
+          "speed": 0
+        },
+        {
+          "id": 274,
+          "mass": 0,
+          "speed": 0
+        },
+        {
+          "id": 275,
+          "mass": 0,
+          "speed": 0
+        },
+        {
+          "id": 276,
+          "mass": 0,
+          "speed": 0
+        },
+        {
+          "id": 277,
+          "mass": 0,
+          "speed": 0
+        }
+      ],
+      "filtersClear": true,
+      "invisible": true,
+      "health": 0,
+      "destroyedBricks": 73,
+      "finite": true,
+      "errors": []
+    }
+  ]
+}

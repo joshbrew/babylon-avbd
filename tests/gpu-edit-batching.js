@@ -5,7 +5,9 @@ import {
   J_FMIN,
   J_FMAX,
 } from "../reference/three-avbd/src/avbd2d/gpu/layout.ts";
-import { assert, close } from "./helpers/gpu.js";
+import { assert, close, readBuffer } from "./helpers/gpu.js";
+import { GpuSolver2D } from "../reference/three-avbd/src/avbd2d/gpu/solver.ts";
+import { GpuSolver3D } from "../reference/three-avbd/src/avbd3d/gpu/solver.ts";
 
 export async function editBatchingGpuTests(device, test) {
   for (const dimension of [2, 3]) {
@@ -15,6 +17,137 @@ export async function editBatchingGpuTests(device, test) {
       dimension === 2
         ? new AvbdScene2D({ gravity: 0 })
         : new AvbdScene3D({ gravity: 0 });
+    await test(`Batched edits: ${dimension}D step parameters retain exact bits and invalidate live changes`, async () => {
+      const scene = make();
+      scene.addBox(vec(0.5, 0.5, 0.5), { position: vec(0, 5) });
+      const g = scene.createSolver(device);
+      const output = device.createBuffer({
+        size: g.paramsBuffer.size,
+        usage: GPUBufferUsage.STORAGE | GPUBufferUsage.COPY_SRC,
+      });
+      try {
+        const capture = device.createComputePipeline({
+          layout: "auto",
+          compute: {
+            module: device.createShaderModule({
+              code: `
+          struct Config { words:array<vec4u,${g.paramsBuffer.size / 16}> }
+          @group(0) @binding(0) var<uniform> cfg:Config;
+          @group(0) @binding(1) var<storage,read_write> result:array<vec4u>;
+          @compute @workgroup_size(1) fn main(){for(var i=0u;i<${g.paramsBuffer.size / 16}u;i++){result[i]=cfg.words[i];}}
+        `,
+            }),
+            entryPoint: "main",
+          },
+        });
+        g.step();
+        const cache = g.stepParamsCache,
+          views = cache.u;
+        let uploads = cache.uploads,
+          bytes = cache.bytes;
+        g.step();
+        assert(cache.u === views, "Upload views persist between steps");
+        assert(
+          cache.uploads === uploads + (dimension === 3 ? 1 : 0),
+          "Only changing parameters are uploaded",
+        );
+        assert(
+          cache.bytes === bytes + (dimension === 3 ? 4 : 0),
+          "The 3D generation update uploads one word",
+        );
+        const prototype =
+          dimension === 2 ? GpuSolver2D.prototype : GpuSolver3D.prototype;
+        // Compare serialization with the pinned layout, not a CPU physics step.
+        const compare = async () => {
+          const p = g.params,
+            alpha = p.vbd ? 0 : p.alpha,
+            post = p.postStabilize && !p.vbd;
+          const effectiveAlpha = dimension === 2 && post ? 1 : alpha;
+          let expected;
+          const reference = Object.create(g);
+          reference.device = {
+            queue: {
+              writeBuffer(_buffer, _offset, data) {
+                expected = new Uint32Array(data).slice();
+              },
+            },
+          };
+          prototype.writeParams.call(reference, effectiveAlpha, post);
+          g.writeParams(effectiveAlpha, post);
+          const encoder = device.createCommandEncoder(),
+            pass = encoder.beginComputePass();
+          pass.setPipeline(capture);
+          pass.setBindGroup(
+            0,
+            device.createBindGroup({
+              layout: capture.getBindGroupLayout(0),
+              entries: [g.paramsBuffer, output].map((buffer, binding) => ({
+                binding,
+                resource: { buffer },
+              })),
+            }),
+          );
+          pass.dispatchWorkgroups(1);
+          pass.end();
+          device.queue.submit([encoder.finish()]);
+          const actual = new Uint32Array(await readBuffer(device, output));
+          assert(
+            expected.every((v, i) => v === actual[i]),
+            "GPU parameter words exactly match the pinned serializer",
+          );
+        };
+        await compare();
+        for (let i = 0; i < 12; i++) {
+          g.params.dt = (i + 1) / 120;
+          g.params.gravity = i % 2 ? -9.81 : 0;
+          g.params.alpha = i * 0.03;
+          g.params.matchNearest = i % 2 === 0;
+          if (dimension === 2) {
+            g.params.vbd = i % 3 === 0;
+            g.params.postStabilize = i % 2 === 0;
+            g.params.stiffnessRescale = i % 3 === 1;
+            g.params.beta = i * 0.05;
+            g.params.gamma = i * 0.01;
+            g.params.vbdStiffness = 1e4 + i;
+          } else {
+            g.stepCount++;
+            g.params.windSpeed = i;
+            g.params.windAngle = i * 0.4;
+            g.params.windPressure = i * 0.3;
+            g.params.windGust = i * 0.2;
+            g.params.up = i % 2 ? [0, 1, 0] : [0, 0, 1];
+            g.params.faceBias = i % 2 === 0;
+            g.params.reuseContacts = i % 3 === 0;
+            g.params.startAtRest = i % 2 === 1;
+            g.params.massPenalty = i % 3 === 1;
+            g.params.betaLin = i * 0.04;
+            g.params.betaAng = i * 0.02;
+            g.params.gamma = i * 0.01;
+          }
+          g.colorRounds = i + 1;
+          await compare();
+        }
+        const oldBuffer = g.paramsBuffer;
+        const replacement = device.createBuffer({
+          size: oldBuffer.size,
+          usage:
+            GPUBufferUsage.UNIFORM |
+            GPUBufferUsage.COPY_DST |
+            GPUBufferUsage.COPY_SRC,
+        });
+        try {
+          g.paramsBuffer = replacement;
+          await compare();
+        } finally {
+          g.paramsBuffer = oldBuffer;
+          replacement.destroy();
+        }
+        await compare();
+      } finally {
+        output.destroy();
+        g.destroy();
+      }
+    });
     await test(`Batched edits: ${dimension}D pooled queries keep concurrent and shorter reads independent`, async () => {
       const scene = make();
       const refs = Array.from({ length: 4 }, (_, i) =>

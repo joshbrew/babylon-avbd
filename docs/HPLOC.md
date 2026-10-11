@@ -1,13 +1,13 @@
 # GPU tree collision detection
 
-`GpuHploc` in `gpuHploc.js` builds and traverses a GPU bounding-volume hierarchy.
+[`GpuHploc`](../src/gpu/gpuHploc.js) in `src/gpu/` builds and traverses a GPU bounding-volume hierarchy.
 Its pairs feed the existing narrowphase and AVBD solver. Shapes, friction,
 rotation, solving rounds and contact equations stay the same; pinned upstream
 sources remain unchanged.
 
-This is a portable hierarchical PLOC treelet variant, based on the clustering
-family described in [H-PLOC](https://gpuopen.com/download/HPLOC.pdf), **not** the
-paper's single-launch wave implementation. `hplocpp.wgsl` builds the tree;
+This portable hierarchical PLOC treelet variant builds on the clustering family
+described in [H-PLOC](https://gpuopen.com/download/HPLOC.pdf). It uses multiple
+GPU dispatches to coordinate tree levels. `hplocpp.wgsl` builds the tree;
 `hplocSort.wgsl` sorts keys.
 
 ## Algorithm
@@ -24,6 +24,10 @@ paper's single-launch wave implementation. `hplocpp.wgsl` builds the tree;
 5. Refit **every leaf and internal bound every step**. Rebuild ordering and
    clustering every 64 steps by default. Refitting preserves coverage after
    teleports; rebuilding improves traversal quality.
+
+Refit steps update leaf boxes directly without the scene-bound reductions used
+for Morton sorting. Every leaf and internal box still follows the current GPU
+pose, including moved static bodies and teleports.
 
 Pair acceptance reuses the grid's masks, disabled-joint handling, bounding
 spheres, world AABBs, face-axis rejection and overflow accounting. Dynamic
@@ -50,14 +54,15 @@ when bodies or active constraint counts change; positions are not downloaded.
 Body count alone does not select a tree. Adapter dispatch/storage limits are checked; automatic mode
 keeps the grid when unsupported. Explicit unsupported requests fail clearly.
 
-This is a conservative policy based on the measured 1K, 10K and 50K mixed-size workloads and the 24K ragdoll net,
-not a universal crossover point. Scene layout, size distribution and GPU matter.
+The selection policy uses measurements from 1K, 10K and 50K mixed-size workloads
+and the 24K ragdoll net. The crossover depends on scene layout, object sizes and
+the GPU.
 
 Extra buffers store nodes, links, sorting and clustering. JSON records primary
 buffer bytes, rebuild/refit counts and the first GPU step. Startup GPU time
 excludes CPU scene creation and shader compilation. Warm timing includes
 periodic rebuilds, but excludes the first build; inspect both. Grid buffers
-remain available for selection changes. This path adds no sleeping.
+remain available for selection changes. Sleeping is configured separately from collision search.
 Reported primary bytes exclude prefix-scan scratch, small uniforms and pipelines.
 
 ## Replication and checks
@@ -113,4 +118,3 @@ scenes, 110K ring, 100K columns and half-million walls with the tree forced.
 It checks every step's capacity and scheduling counters, measures floor support
 and rotation, and captures four screenshots per scene. `npm run test:web`
 includes this check alongside all scene and benchmark views.
-

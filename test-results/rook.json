@@ -33,16 +33,16 @@
         "awake": 27648
       },
       "gpuProfile": {
-        "total": 8.000512,
-        "collision": 4.345856,
-        "adjacency": 0.37888,
-        "coloring": 0.354304,
-        "solve": 2.921472,
+        "total": 8.384512,
+        "collision": 4.037632,
+        "adjacency": 0.39424,
+        "coloring": 0.340992,
+        "solve": 3.611648,
         "broadphase": "grid",
         "bvhRebuilt": false
       },
-      "physicsMs": 10.617856,
-      "sleepMs": 0.221184,
+      "physicsMs": 9.706496,
+      "sleepMs": 0.20992,
       "errors": [],
       "advanced": 59
     },
@@ -75,16 +75,16 @@
         "awake": 48311
       },
       "gpuProfile": {
-        "total": 9.039872,
-        "collision": 4.808704,
-        "adjacency": 0.524288,
-        "coloring": 0.263168,
-        "solve": 3.443712,
+        "total": 9.418752,
+        "collision": 5.033984,
+        "adjacency": 0.75264,
+        "coloring": 0.285696,
+        "solve": 3.346432,
         "broadphase": "grid",
         "bvhRebuilt": false
       },
-      "physicsMs": 10.966016,
-      "sleepMs": 0.198656,
+      "physicsMs": 12.844032,
+      "sleepMs": 0.2048,
       "errors": [],
       "advanced": 179
     },
@@ -117,16 +117,16 @@
         "awake": 63480
       },
       "gpuProfile": {
-        "total": 8.315904,
-        "collision": 4.20864,
-        "adjacency": 0.561152,
-        "coloring": 0.273408,
-        "solve": 3.272704,
+        "total": 9.663488,
+        "collision": 5.508096,
+        "adjacency": 0.564224,
+        "coloring": 0.328704,
+        "solve": 3.26144,
         "broadphase": "grid",
         "bvhRebuilt": false
       },
-      "physicsMs": 10.359808,
-      "sleepMs": 0.205824,
+      "physicsMs": 9.761792,
+      "sleepMs": 0.183296,
       "errors": [],
       "advanced": 359
     }
@@ -134,36 +134,36 @@
   "timing": {
     "summary": {
       "frameMs": {
-        "mean": 16.683999999999997,
-        "median": 16.69999999999891,
-        "p95": 16.900000000001455
+        "mean": 16.68324999999999,
+        "median": 16.68000000000029,
+        "p95": 16.7599999999984
       },
       "solveMs": {
-        "mean": 11.31373568,
-        "median": 11.209728,
-        "p95": 13.365248
+        "mean": 12.51985408,
+        "median": 12.563456,
+        "p95": 14.111744
       },
       "renderMs": {
-        "mean": 0.9720217599999986,
-        "median": 0.971776,
-        "p95": 0.978944
+        "mean": 0.9715916799999995,
+        "median": 0.970752,
+        "p95": 0.987136
       }
     },
     "stats": {
-      "pairs": 209282,
-      "contacts": 370680,
-      "manifolds": 182198,
+      "pairs": 208842,
+      "contacts": 366316,
+      "manifolds": 182020,
       "overflow": 0,
       "clashes": 0,
-      "colors": 18,
-      "awake": 70227
+      "colors": 15,
+      "awake": 70493
     },
     "profile": {
-      "total": 8.648704,
-      "collision": 4.196352,
-      "adjacency": 0.586752,
-      "coloring": 0.24064,
-      "solve": 3.62496,
+      "total": 8.455168,
+      "collision": 4.050944,
+      "adjacency": 0.59904,
+      "coloring": 0.316416,
+      "solve": 3.488768,
       "broadphase": "grid",
       "bvhRebuilt": false
     },

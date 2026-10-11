@@ -4,7 +4,7 @@ import { browserCheck } from "./browser-check.mjs";
 const b = await browserCheck();
 try {
   await b.navigate(
-    "?demo=canonical&scene=showcase-chain-mail-1.6k&backend=gpu&paused=1",
+    "?demo=canonical&scope=main&scene=showcase-chain-mail-1.6k&backend=gpu&paused=1",
   );
   let ready = false;
   for (let i = 0; i < 400; i++) {

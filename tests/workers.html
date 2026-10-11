@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>AVBD · Worker comparison</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        font:
+          16px/1.5 system-ui,
+          sans-serif;
+        margin: 0;
+        color: #21354b;
+        background: #f1f5f8;
+      }
+      main {
+        max-width: 1250px;
+        margin: auto;
+        padding: 20px;
+      }
+      a {
+        color: #245fcc;
+      }
+      h1 {
+        margin: 14px 0 4px;
+      }
+      p {
+        max-width: 1000px;
+      }
+      label {
+        display: inline-flex;
+        flex-direction: column;
+        gap: 4px;
+        margin: 5px 12px 5px 0;
+      }
+      select,
+      button {
+        font: inherit;
+        padding: 8px;
+        border: 1px solid #bbc8d5;
+        border-radius: 7px;
+        background: white;
+        color: inherit;
+      }
+      button {
+        cursor: pointer;
+      }
+      button:disabled {
+        opacity: 0.5;
+      }
+      canvas {
+        display: block;
+        width: 100%;
+        height: 450px;
+        background: #e8ebef;
+        touch-action: none;
+        border-radius: 12px;
+        margin: 16px 0;
+      }
+      .simulation-stage {
+        position: relative;
+        margin: 16px 0;
+      }
+      .simulation-stage canvas {
+        margin: 0;
+      }
+      #slingshot-aim {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+      }
+      fieldset {
+        border: 0;
+        padding: 0;
+      }
+      #galton-chart {
+        max-width: 400px;
+      }
+      #galton-chart svg {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+      #galton-chart p {
+        margin: 4px 0;
+      }
+      #status {
+        min-height: 24px;
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        background: white;
+        font-variant-numeric: tabular-nums;
+      }
+      th,
+      td {
+        text-align: right;
+        padding: 12px;
+        border-bottom: 1px solid #dbe2e8;
+      }
+      th:first-child,
+      td:first-child {
+        text-align: left;
+      }
+      .table {
+        overflow: auto;
+      }
+      small {
+        color: #57687a;
+      }
+      #busy {
+        flex-direction: row;
+        align-items: center;
+      }
+      details {
+        margin: 18px 0;
+      }
+      #error {
+        color: #a32e26;
+      }
+      @media (max-width: 600px) {
+        main {
+          padding: 12px;
+        }
+        canvas {
+          height: 350px;
+        }
+        label {
+          max-width: 100%;
+        }
+        select {
+          max-width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <a href="../">← Main demo</a> ·
+      <a href="performance.html">Solver benchmark</a> ·
+      <a href="../?demo=naval">Little ships</a>
+      · <a id="scene-controls" href="../">Full scene controls</a>
+      <h1>Physics and drawing in a worker</h1>
+      <p>
+        Play a scene here or compare the same scene in three places. A worker
+        keeps physics and drawing away from the page’s controls. Shared input
+        replaces frequent pointer messages with one small shared buffer.
+      </p>
+      <fieldset id="settings">
+        <label>Scene<select id="scene"></select></label
+        ><label
+          >Physics<select id="backend">
+            <option value="gpu">WebGPU</option>
+            <option value="cpu">CPU fallback</option>
+          </select></label
+        ><label
+          >Drawing<select id="renderer">
+            <option value="webgpu">Direct rendering</option>
+            <option value="babylon">Babylon WebGPU · thin instances</option>
+          </select></label
+        ><label
+          >Run in<select id="scope">
+            <option value="main">Main thread</option>
+            <option value="worker">Worker · messages</option>
+            <option value="worker-sab">Worker · shared input</option>
+          </select></label
+        ><label><input type="checkbox" id="sleeping" />Sleeping</label
+        ><label id="busy"
+          ><input type="checkbox" id="ui-load" />Add 8 ms of page work per
+          frame</label
+        >
+      </fieldset>
+      <div>
+        <button id="play">Pause</button> <button id="reset">Reset scene</button>
+        <span id="play-actions"></span
+        ><button id="fire">Fire blue cannon</button>
+        <button id="reload" hidden>Next ball</button>
+        <button id="measure">Compare all available modes</button>
+        <button id="measure-selected">Measure selected mode</button>
+        <button id="save" disabled>Save results</button>
+        <button id="recorded">Show recorded laptop results</button>
+      </div>
+      <p id="status" aria-live="polite">Loading…</p>
+      <p id="error" role="alert"></p>
+      <p id="slingshot-hint" hidden>
+        Pull the red ball back to aim; the dashed line shows its flight before
+        collisions. Release to launch. Space fires or loads the next ball. Drag
+        elsewhere to pan; scroll to zoom.
+      </p>
+      <div class="simulation-stage">
+        <canvas
+          id="canvas"
+          tabindex="0"
+          aria-label="Interactive simulation"
+        ></canvas
+        ><svg id="slingshot-aim" aria-hidden="true"></svg>
+      </div>
+      <div id="galton-chart" hidden></div>
+      <p id="availability"></p>
+      <div class="table">
+        <table>
+          <thead>
+            <tr>
+              <th>Execution</th>
+              <th>Physics / step</th>
+              <th>Drawing / frame</th>
+              <th>CPU work / frame</th>
+              <th>Frame interval</th>
+              <th>Page delay · p95</th>
+            </tr>
+          </thead>
+          <tbody id="results"></tbody>
+        </table>
+      </div>
+      <p id="interpretation">
+        Lower times are better. Compare physics times within the same physics
+        backend and drawing times within the same renderer.
+      </p>
+      <details>
+        <summary>What is being measured?</summary>
+        <p>
+          Each mode starts with a fresh copy of the scene, warms up for 30
+          frames, then measures 120 frames with one physics step per frame. The
+          scene, timestep, iterations, canvas size and drawing quality stay the
+          same. These controlled measurements differ from the live demo, which
+          may run several physics steps per frame.
+        </p>
+        <p>
+          Worker timings are estimates and vary with browser scheduling,
+          background activity and GPU clock speeds. Workers are generally less
+          affected by main-thread page work, but still share the computer’s
+          resources. Repeat runs before judging small differences. WebGPU
+          physics and drawing use GPU timestamps when available. CPU physics
+          uses wall-clock time around the solver step. “CPU work” includes
+          submission and drawing preparation; CPU physics is included for the
+          CPU backend. “Page delay” measures how late a 10 ms page timer runs.
+          It shows whether the controls are being held up; it is not solver
+          time.
+        </p>
+        <p>
+          During measurement, the page sends the same 120 pointer updates per
+          second in every mode. Shared input keeps the latest pointer position,
+          so old moves can be skipped. Clicks, keys and commands still use
+          ordered messages. No GPU pose buffers are copied through shared
+          memory.
+        </p>
+        <p>
+          CPU 2D drawing uses Canvas 2D and needs no WebGPU device. CPU 3D
+          comparisons use WebGPU drawing with CPU pose uploads. Babylon
+          comparisons use WebGPU physics and thin instances. The naval water
+          simulation requires WebGPU and its direct water renderer.
+        </p>
+        <p>
+          Shared buffers require a secure context and cross-origin isolation.
+          Ordinary worker messages work without those headers. This comparison
+          uses one dedicated worker, not a pool of parallel physics solvers.
+        </p>
+      </details>
+    </main>
+    <script type="module" src="../dist/workers.js"></script>
+  </body>
+</html>

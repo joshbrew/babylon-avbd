@@ -27,6 +27,11 @@ export async function solverSelectionGpuTests(device, test) {
         const buffer = gpu.bodyBuffer,
           contacts = gpu.contactBuffer;
         gpu.setSolverMode(mode);
+        assert(
+          gpu.parallelDual ===
+            ["optimized", "points"].includes(gpu.solverDecision.selected),
+          "Solve and indirect-dispatch layouts switch together",
+        );
         const after = await gpu.readBodies();
         assert(
           gpu.bodyBuffer === buffer && gpu.contactBuffer === contacts,
@@ -87,11 +92,19 @@ export async function solverSelectionGpuTests(device, test) {
         gpu.solverDecision.selected === "optimized",
         "crossing threshold selects optimized",
       );
+      assert(
+        gpu.parallelDual,
+        "Large free-body worlds batch contact-point updates",
+      );
       const slot = gpu.appendJoint(0, 1, [1, 0, 0], [-1, 0, 0], 1000, 1000);
       gpu.step();
       assert(
         gpu.solverDecision.selected === "standard",
         "a joint changes automatic choice",
+      );
+      assert(
+        !gpu.parallelDual,
+        "Adding a joint restores its matching dispatch layout",
       );
       gpu.releaseJoints([slot]);
       gpu.step();

@@ -9,6 +9,10 @@ const scenes = await read("scenes.json"),
   motion = await read("showcase-motion.json"),
   hardware = await read("hardware.json");
 const policy2D = await read("policy-2d.json").catch(() => null);
+const phoneDemos = await read("connected-phone-demos.json").catch(() => null);
+const phoneContacts = await read("connected-phone-contacts.json").catch(
+  () => null,
+);
 const features = await read("feature-scenes.json");
 const fabric = await read("cloth-fragments.json");
 const fracture = await read("voronoi-fracture.json");
@@ -46,10 +50,29 @@ const name = (id) =>
   id.replace(/^(showcase-|2d-|3d-)/, "").replaceAll("-", " ");
 const backends = {
   gpu: "GPU",
-  ref: "Reference CPU",
+  ref: "CPU AVBD",
   "soa-seq": "Sequential CPU",
   "soa-colored": "Parallel-order CPU",
 };
+const phoneCases = phoneContacts?.modes.flatMap((mode) => mode.cases) ?? [];
+const phoneSection = phoneDemos
+  ? `<section class="panel"><h2>Physical phone checks</h2><p>${escape(phoneDemos.hardware)} · ${escape(phoneDemos.measuredAt.slice(0, 10))}. ${phoneDemos.results.filter((r) => r.passed).length}/${phoneDemos.results.length} production scene checks passed. ${phoneCases.length ? `${phoneCases.filter((r) => r.passed).length}/${phoneCases.length} GPU feature checks passed, including native and Babylon body commands, hinges, triggers and both collision searches.` : ""}</p><p>These checks ran on the connected phone in Brave, with physics and drawing in a dedicated worker. They check startup, floor contacts and short periods of motion. The Galton check verifies marble flow; the complete 40,000-marble distribution is checked separately on the test PC. Phone timings include separate GPU and completion measurements and can change as the phone warms up.</p><div class="checkpoints">${phoneDemos.results
+      .filter((r) =>
+        [
+          "3d-ground",
+          "3d-static-terrain",
+          "3d-tearable-cloth",
+          "3d-marble-cascade",
+        ].includes(r.scene),
+      )
+      .map(
+        (r) =>
+          `<figure><a href="${escape(r.screenshot)}"><img loading="lazy" src="${escape(r.screenshot)}" alt="${escape(name(r.scene))} on the connected phone"></a><figcaption>${escape(name(r.scene))}</figcaption></figure>`,
+      )
+      .join(
+        "",
+      )}</div><p><a href="connected-phone-demos.json">Phone measurements and scene checks</a>${phoneContacts ? ' · <a href="connected-phone-contacts.json">Phone GPU feature checks</a>' : ""}</p></section>`
+  : "";
 const slingshotRuns = policy2D?.passed
   ? policy2D.results.filter((r) => /^slingshot-\d+$/.test(r.scene))
   : [];
@@ -95,7 +118,7 @@ const body = `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta n
 <h2>100,000 block rook impact</h2><p>The rook uses GPU AVBD at 60 simulation steps per second, four solver iterations and sleeping for supported bricks. The cannonball is ten times denser than the bricks. The renderer reads GPU positions directly and draws the bricks together.</p><section class="panel"><p>${interpretation({ timing: { solveMs: rook.timing.summary.solveMs, renderMs: rook.timing.summary.renderMs }, backend: "gpu" })}</p><div class="scroll"><table><thead><tr><th>Overall frame rate</th><th>Typical physics, including sleeping</th><th>Typical drawing</th></tr></thead><tbody><tr><td>${fps(rook.timing.summary.frameMs.mean)} FPS</td><td>${ms(rook.timing.summary.solveMs.median)} ms/step</td><td>${ms(rook.timing.summary.renderMs.median)} ms/frame</td></tr></tbody></table></div><p>After six simulated seconds the ball has passed through the wall and the unsupported bricks above the opening have fallen. ${last.farMoved.toLocaleString()} of ${last.farCount.toLocaleString()} bricks in the outer quarters moved more than 15 cm. This checks that the impact remains localized instead of moving the whole wall.</p><details><summary>Stability check details</summary><p>The check requires at least 75% of outer-quarter bricks and 99.9% of outer-eighth bricks to stay within 15 cm of their starting positions. ${last.edgeMoved} of ${last.edgeCount.toLocaleString()} outer-eighth bricks exceeded that distance. Rotation normalization error was below ${last.maxQuatError.toExponential(2)}. Contact storage and parallel scheduling checks passed.</p></details></section><div class="checkpoints">${[60, 180, 360].map((n) => `<a href="screenshots/rook-${n}.png"><img src="screenshots/rook-${n}.png" alt="Rook impact at ${n / 60} seconds">${n / 60} simulated seconds</a>`).join("")}</div>
 <h2>Brick ring and net motion</h2><p>These checks run for six simulated seconds. Objects move and rotate, the net keeps its pinned corners and catches the characters, and all checked positions and rotations remain valid.</p><div class="grid">${motion.results.map((s) => `<article><div class="card-heading">${escape(name(s.scene))} · six simulated seconds</div><a href="screenshots/${s.scene}-six-seconds.png"><img loading="lazy" src="screenshots/${s.scene}-six-seconds.png" alt="${escape(s.scene)} after six seconds"></a><div class="numbers"><span>${s.moved.toLocaleString()} objects moved</span><span>${s.rotated.toLocaleString()} objects rotated</span></div></article>`).join("")}</div>
 <h2>Projectile controls</h2><p>${controls.results.filter((s) => s.passed).length}/${controls.results.length} control checks passed, including reset and launch. Capsule and cylinder projectiles use matching polygonal convex colliders.</p><div class="grid">${["sphere", "box", "capsule", "cylinder"].map((kind) => `<article><div class="card-heading">${kind} projectile</div><a href="screenshots/projectile-${kind}.png"><img loading="lazy" src="screenshots/projectile-${kind}.png" alt="${kind} projectile check"></a></article>`).join("")}</div>
-${slingshotSection}${featureSection}${fractureSection}${chainmailSection}${fabricSection}${directSection}<h2>All scene checks</h2><p>“Passed” means the scene displayed, positions remained valid, contact storage and scheduling checks passed, and the single-step control advanced once. It does not mean every long-running physical behavior has been checked. Both 2D and 3D scenes support GPU physics; the original tests also offer CPU comparisons.</p><details><summary>Scene and solver settings</summary><p>Each scene retains its configured timestep and solving rounds. The GPU solves touching objects in separate work groups. Small scenes can spend more time submitting GPU work than calculating movement. Drawing enhancements are disabled for these captures.</p></details><input id="filter" aria-label="Filter scenes" placeholder="Filter by scene, 2D, 3D or solver"><div class="grid">${cards}</div>
+${slingshotSection}${featureSection}${fractureSection}${chainmailSection}${fabricSection}${directSection}${phoneSection}<h2>All scene checks</h2><p>“Passed” means the scene displayed, positions remained valid, contact storage and scheduling checks passed, and the single-step control advanced once. It does not mean every long-running physical behavior has been checked. Both 2D and 3D scenes support GPU physics; the original tests also offer CPU comparisons.</p><details><summary>Scene and solver settings</summary><p>Each scene retains its configured timestep and solving rounds. The GPU solves touching objects in separate work groups. Small scenes can spend more time submitting GPU work than calculating movement. Drawing enhancements are disabled for these captures.</p></details><input id="filter" aria-label="Filter scenes" placeholder="Filter by scene, 2D, 3D or solver"><div class="grid">${cards}</div>
 <h2>Other pages</h2><p>These checks record overall FPS and screenshots. They do not measure physics and drawing separately, so their FPS cannot identify which stage limits performance.</p><div class="grid">${routes.results.map((s) => `<article><div class="card-heading"><a href="/?demo=${s.route}">${s.route}</a><span>${fps(s.frameMs.mean ?? s.frameMs.median)} FPS overall</span></div><a href="screenshots/route-${s.route}.png"><img loading="lazy" src="screenshots/route-${s.route}.png" alt="${s.route} screenshot"></a></article>`).join("")}</div><p>Generated ${new Date().toISOString()}. Raw results: <a href="scenes.json">scene checks</a> · <a href="rook.json">rook stability and timing</a> · <a href="routes.json">other pages</a> · <a href="controls.json">controls</a> · <a href="gpu.json">GPU tests</a>.</p></main><script>document.getElementById('filter').oninput=e=>{const q=e.target.value.toLowerCase();for(const card of document.querySelectorAll('[data-name]'))card.hidden=!card.dataset.name.includes(q)};</script></body></html>`;
 await writeFile(
   "test-results/report.html",

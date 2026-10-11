@@ -1,5 +1,6 @@
 import { browserCheck } from "./browser-check.mjs";
-import { readFile, writeFile, access } from "node:fs/promises";
+import { readFile, access } from "node:fs/promises";
+import { writeAtomicFile as writeFile } from "./report-file.mjs";
 import { build } from "esbuild";
 
 const report = JSON.parse(
@@ -103,7 +104,7 @@ try {
       live.results[0].passed &&
       live.results[0].identicalState &&
       !live.errors.length,
-    "Live renderer comparison failed",
+    `Live renderer comparison failed: ${JSON.stringify(live)}`,
   );
   const restored = await browser.evaluate(
     "({renderer:__BENCHMARK_VIEW__.preview.state.renderer,phase:__BENCHMARK_VIEW__.preview.state.phase,download:!document.getElementById('renderer-download').disabled,running:__BENCHMARK_VIEW__.state.running})",
@@ -129,7 +130,7 @@ try {
   await browser.evaluate("__BENCHMARK_VIEW__.suspendPreview()");
 
   await browser.navigate(
-    "?demo=canonical&scene=3d-tearable-cloth&backend=gpu&renderer=babylon&paused=1",
+    "?demo=canonical&scope=main&scene=3d-tearable-cloth&backend=gpu&renderer=babylon&paused=1",
   );
   await wait("globalThis.__AVBD_LAB__?.diagnostics.ready");
   const torn = await browser.evaluate(

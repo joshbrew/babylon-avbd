@@ -1,0 +1,1039 @@
+{
+  "measuredAt": "2026-10-11T21:17:52.527Z",
+  "hardware": "Samsung Galaxy S23 (SM-S911U1)",
+  "scope": "Physical phone, local production demo. GPU timestamps when available; completion includes submission and waiting. Short runs check compatibility, not long-term settling or the final Galton distribution.",
+  "results": [
+    {
+      "scene": "3d-ground",
+      "passed": true,
+      "startupMs": 11812.6793,
+      "benchmark": {
+        "scene": "3d-ground",
+        "steps": 35,
+        "backend": "gpu",
+        "renderer": "webgpu",
+        "dimension": 3,
+        "bodies": 2,
+        "iterations": 10,
+        "timeStep": 0.016666666666666666,
+        "adapter": {
+          "vendor": "",
+          "architecture": "",
+          "device": "",
+          "description": ""
+        },
+        "worker": true,
+        "sharedInput": false,
+        "bowling": false,
+        "sleepingEnabled": false,
+        "warmup": 5,
+        "samples": 30,
+        "cpuSubmitMs": {
+          "mean": 1.1268333276112874,
+          "median": 0.7849999964237213,
+          "p95": 2.8649999797344208,
+          "samples": 30
+        },
+        "completionMs": {
+          "mean": 17.813499994079272,
+          "median": 16.834999978542328,
+          "p95": 26.955000013113022,
+          "samples": 30
+        },
+        "frameMs": {
+          "mean": 25.597499999999975,
+          "median": 33.36499999999978,
+          "p95": 33.38999999999942,
+          "samples": 30
+        },
+        "physicsMs": {
+          "mean": 1.0922666666666665,
+          "median": 1.114112,
+          "p95": 1.179648,
+          "samples": 30
+        },
+        "physicsClock": "GPU timestamps",
+        "collisionMs": {
+          "mean": 0.10267306666666666,
+          "median": 0.131072,
+          "p95": 0.131072,
+          "samples": 30
+        },
+        "drawMs": {
+          "mean": 0.17913173333333327,
+          "median": 0.196608,
+          "p95": 0.196608,
+          "samples": 30
+        },
+        "waterMs": null,
+        "inputs": 0,
+        "counters": {
+          "pairs": 0,
+          "contacts": 0,
+          "manifolds": 0,
+          "overflow": 0,
+          "clashes": 0,
+          "colors": 1
+        },
+        "errors": [],
+        "measuredStepsPerFrame": 1,
+        "sceneAction": null
+      },
+      "state": {
+        "finite": true,
+        "counters": {
+          "pairs": 1,
+          "contacts": 4,
+          "manifolds": 1,
+          "overflow": 0,
+          "clashes": 0,
+          "colors": 1
+        },
+        "errors": [],
+        "steps": 155,
+        "minDynamicHeight": 0.9929933547973633,
+        "rotationError": 0
+      },
+      "screenshot": "screenshots/connected-phone-3d-ground.png"
+    },
+    {
+      "scene": "3d-sphere-contacts",
+      "passed": true,
+      "startupMs": 8681.406300000002,
+      "benchmark": {
+        "scene": "3d-sphere-contacts",
+        "steps": 35,
+        "backend": "gpu",
+        "renderer": "webgpu",
+        "dimension": 3,
+        "bodies": 27,
+        "iterations": 10,
+        "timeStep": 0.016666666666666666,
+        "adapter": {
+          "vendor": "",
+          "architecture": "",
+          "device": "",
+          "description": ""
+        },
+        "worker": true,
+        "sharedInput": false,
+        "bowling": false,
+        "sleepingEnabled": false,
+        "warmup": 5,
+        "samples": 30,
+        "cpuSubmitMs": {
+          "mean": 0.8744999994834264,
+          "median": 0.8100000023841858,
+          "p95": 1.574999988079071,
+          "samples": 30
+        },
+        "completionMs": {
+          "mean": 25.831833333770433,
+          "median": 27.450000017881393,
+          "p95": 30.40999999642372,
+          "samples": 30
+        },
+        "frameMs": {
+          "mean": 33.37716666666668,
+          "median": 33.375,
+          "p95": 33.39500000000044,
+          "samples": 30
+        },
+        "physicsMs": {
+          "mean": 3.2571391999999992,
+          "median": 3.60448,
+          "p95": 3.801088,
+          "samples": 30
+        },
+        "physicsClock": "GPU timestamps",
+        "collisionMs": {
+          "mean": 0.3670016000000001,
+          "median": 0.393216,
+          "p95": 0.458752,
+          "samples": 30
+        },
+        "drawMs": {
+          "mean": 0.4937045333333334,
+          "median": 0.524288,
+          "p95": 0.524288,
+          "samples": 30
+        },
+        "waterMs": null,
+        "inputs": 0,
+        "counters": {
+          "pairs": 25,
+          "contacts": 25,
+          "manifolds": 25,
+          "overflow": 0,
+          "clashes": 0,
+          "colors": 3
+        },
+        "errors": [],
+        "measuredStepsPerFrame": 1,
+        "sceneAction": null
+      },
+      "state": {
+        "finite": true,
+        "counters": {
+          "pairs": 26,
+          "contacts": 26,
+          "manifolds": 26,
+          "overflow": 0,
+          "clashes": 0,
+          "colors": 4
+        },
+        "errors": [],
+        "steps": 155,
+        "minDynamicHeight": 0.41698122024536133,
+        "rotationError": 8.162121312160764e-8
+      }
+    },
+    {
+      "scene": "2d-mixed-shapes",
+      "passed": true,
+      "startupMs": 911.0449999999983,
+      "benchmark": {
+        "scene": "2d-mixed-shapes",
+        "steps": 35,
+        "backend": "gpu",
+        "renderer": "webgpu",
+        "dimension": 2,
+        "bodies": 102,
+        "iterations": 10,
+        "timeStep": 0.008333333333333333,
+        "adapter": {
+          "vendor": "",
+          "architecture": "",
+          "device": "",
+          "description": ""
+        },
+        "worker": true,
+        "sharedInput": false,
+        "bowling": false,
+        "sleepingEnabled": false,
+        "warmup": 5,
+        "samples": 30,
+        "cpuSubmitMs": {
+          "mean": 0.7081666668256124,
+          "median": 0.6599999964237213,
+          "p95": 1.0999999940395355,
+          "samples": 30
+        },
+        "completionMs": {
+          "mean": 28.933666664361954,
+          "median": 28.685000002384186,
+          "p95": 33.08000001311302,
+          "samples": 30
+        },
+        "frameMs": {
+          "mean": 34.48499999999998,
+          "median": 33.375,
+          "p95": 49.64000000000033,
+          "samples": 30
+        },
+        "physicsMs": {
+          "mean": 3.1784960000000004,
+          "median": 3.211264,
+          "p95": 3.211264,
+          "samples": 30
+        },
+        "physicsClock": "GPU timestamps",
+        "collisionMs": {
+          "mean": 0.6007466666666667,
+          "median": 0.589824,
+          "p95": 0.65536,
+          "samples": 30
+        },
+        "drawMs": {
+          "mean": 0.23811413333333345,
+          "median": 0.262144,
+          "p95": 0.262144,
+          "samples": 30
+        },
+        "waterMs": null,
+        "inputs": 0,
+        "counters": {
+          "pairs": 14,
+          "contacts": 0,
+          "overflow": 0,
+          "clashes": 0,
+          "colors": 1
+        },
+        "errors": [],
+        "measuredStepsPerFrame": 1,
+        "sceneAction": null
+      },
+      "state": {
+        "finite": true,
+        "counters": {
+          "pairs": 124,
+          "contacts": 56,
+          "overflow": 0,
+          "clashes": 0,
+          "colors": 4
+        },
+        "errors": [],
+        "steps": 155,
+        "minDynamicHeight": null,
+        "rotationError": 0
+      }
+    },
+    {
+      "scene": "2d-limited-hinges",
+      "passed": true,
+      "startupMs": 857.9853999999905,
+      "benchmark": {
+        "scene": "2d-limited-hinges",
+        "steps": 35,
+        "backend": "gpu",
+        "renderer": "webgpu",
+        "dimension": 2,
+        "bodies": 7,
+        "iterations": 12,
+        "timeStep": 0.008333333333333333,
+        "adapter": {
+          "vendor": "",
+          "architecture": "",
+          "device": "",
+          "description": ""
+        },
+        "worker": true,
+        "sharedInput": false,
+        "bowling": false,
+        "sleepingEnabled": false,
+        "warmup": 5,
+        "samples": 30,
+        "cpuSubmitMs": {
+          "mean": 0.7243333329757055,
+          "median": 0.6899999976158142,
+          "p95": 1.0900000035762787,
+          "samples": 30
+        },
+        "completionMs": {
+          "mean": 32.5051666667064,
+          "median": 30.87999999523163,
+          "p95": 43.54499998688698,
+          "samples": 30
+        },
+        "frameMs": {
+          "mean": 37.824833333333345,
+          "median": 33.38000000000011,
+          "p95": 50.07999999999993,
+          "samples": 30
+        },
+        "physicsMs": {
+          "mean": 3.886284799999999,
+          "median": 3.93216,
+          "p95": 3.997696,
+          "samples": 30
+        },
+        "physicsClock": "GPU timestamps",
+        "collisionMs": {
+          "mean": 0.29272746666666677,
+          "median": 0.262144,
+          "p95": 0.32768,
+          "samples": 30
+        },
+        "drawMs": {
+          "mean": 0.08738133333333334,
+          "median": 0.065536,
+          "p95": 0.131072,
+          "samples": 30
+        },
+        "waterMs": null,
+        "inputs": 0,
+        "counters": {
+          "pairs": 2,
+          "contacts": 2,
+          "overflow": 0,
+          "clashes": 0,
+          "colors": 1
+        },
+        "errors": [],
+        "measuredStepsPerFrame": 1,
+        "sceneAction": null
+      },
+      "state": {
+        "finite": true,
+        "counters": {
+          "pairs": 2,
+          "contacts": 2,
+          "overflow": 0,
+          "clashes": 0,
+          "colors": 1
+        },
+        "errors": [],
+        "steps": 155,
+        "minDynamicHeight": null,
+        "rotationError": 0
+      }
+    },
+    {
+      "scene": "3d-limited-hinges",
+      "passed": true,
+      "startupMs": 9009.557400000005,
+      "benchmark": {
+        "scene": "3d-limited-hinges",
+        "steps": 35,
+        "backend": "gpu",
+        "renderer": "webgpu",
+        "dimension": 3,
+        "bodies": 13,
+        "iterations": 10,
+        "timeStep": 0.008333333333333333,
+        "adapter": {
+          "vendor": "",
+          "architecture": "",
+          "device": "",
+          "description": ""
+        },
+        "worker": true,
+        "sharedInput": false,
+        "bowling": false,
+        "sleepingEnabled": false,
+        "warmup": 5,
+        "samples": 30,
+        "cpuSubmitMs": {
+          "mean": 0.7698333313067754,
+          "median": 0.7599999904632568,
+          "p95": 0.9950000047683716,
+          "samples": 30
+        },
+        "completionMs": {
+          "mean": 25.51583333313465,
+          "median": 25.13500002026558,
+          "p95": 30.025000005960464,
+          "samples": 30
+        },
+        "frameMs": {
+          "mean": 33.37150000000001,
+          "median": 33.3700000000008,
+          "p95": 33.38500000000022,
+          "samples": 30
+        },
+        "physicsMs": {
+          "mean": 2.8005717333333333,
+          "median": 2.818048,
+          "p95": 2.818048,
+          "samples": 30
+        },
+        "physicsClock": "GPU timestamps",
+        "collisionMs": {
+          "mean": 0.2861738666666668,
+          "median": 0.262144,
+          "p95": 0.32768,
+          "samples": 30
+        },
+        "drawMs": {
+          "mean": 0.3757397333333335,
+          "median": 0.393216,
+          "p95": 0.393216,
+          "samples": 30
+        },
+        "waterMs": null,
+        "inputs": 20,
+        "counters": {
+          "pairs": 0,
+          "contacts": 0,
+          "manifolds": 0,
+          "overflow": 0,
+          "clashes": 0,
+          "colors": 1
+        },
+        "errors": [],
+        "measuredStepsPerFrame": 1,
+        "sceneAction": null
+      },
+      "state": {
+        "finite": true,
+        "counters": {
+          "pairs": 0,
+          "contacts": 0,
+          "manifolds": 0,
+          "overflow": 0,
+          "clashes": 0,
+          "colors": 1
+        },
+        "errors": [],
+        "steps": 155,
+        "minDynamicHeight": 3.7989072799682617,
+        "rotationError": 8.820374108875484e-8
+      }
+    },
+    {
+      "scene": "2d-triggers-and-masks",
+      "passed": true,
+      "startupMs": 869.9464999999909,
+      "benchmark": {
+        "scene": "2d-triggers-and-masks",
+        "steps": 35,
+        "backend": "gpu",
+        "renderer": "webgpu",
+        "dimension": 2,
+        "bodies": 24,
+        "iterations": 10,
+        "timeStep": 0.008333333333333333,
+        "adapter": {
+          "vendor": "",
+          "architecture": "",
+          "device": "",
+          "description": ""
+        },
+        "worker": true,
+        "sharedInput": false,
+        "bowling": false,
+        "sleepingEnabled": false,
+        "warmup": 5,
+        "samples": 30,
+        "cpuSubmitMs": {
+          "mean": 0.7668333381414414,
+          "median": 0.7149999737739563,
+          "p95": 1.2000000178813934,
+          "samples": 30
+        },
+        "completionMs": {
+          "mean": 29.24500000476837,
+          "median": 28.83500000834465,
+          "p95": 36.650000005960464,
+          "samples": 30
+        },
+        "frameMs": {
+          "mean": 35.59383333333332,
+          "median": 33.3700000000008,
+          "p95": 50.05500000000029,
+          "samples": 30
+        },
+        "physicsMs": {
+          "mean": 2.8049407999999993,
+          "median": 2.818048,
+          "p95": 2.883584,
+          "samples": 30
+        },
+        "physicsClock": "GPU timestamps",
+        "collisionMs": {
+          "mean": 0.3298645333333335,
+          "median": 0.32768,
+          "p95": 0.393216,
+          "samples": 30
+        },
+        "drawMs": {
+          "mean": 0.07645866666666667,
+          "median": 0.065536,
+          "p95": 0.131072,
+          "samples": 30
+        },
+        "waterMs": null,
+        "inputs": 0,
+        "counters": {
+          "pairs": 11,
+          "contacts": 0,
+          "overflow": 0,
+          "clashes": 0,
+          "colors": 1
+        },
+        "errors": [],
+        "measuredStepsPerFrame": 1,
+        "sceneAction": null
+      },
+      "state": {
+        "finite": true,
+        "counters": {
+          "pairs": 38,
+          "contacts": 21,
+          "overflow": 0,
+          "clashes": 0,
+          "colors": 3
+        },
+        "errors": [],
+        "steps": 155,
+        "minDynamicHeight": null,
+        "rotationError": 0
+      }
+    },
+    {
+      "scene": "3d-triggers-and-masks",
+      "passed": true,
+      "startupMs": 9071.224100000007,
+      "benchmark": {
+        "scene": "3d-triggers-and-masks",
+        "steps": 35,
+        "backend": "gpu",
+        "renderer": "webgpu",
+        "dimension": 3,
+        "bodies": 28,
+        "iterations": 10,
+        "timeStep": 0.008333333333333333,
+        "adapter": {
+          "vendor": "",
+          "architecture": "",
+          "device": "",
+          "description": ""
+        },
+        "worker": true,
+        "sharedInput": false,
+        "bowling": false,
+        "sleepingEnabled": false,
+        "warmup": 5,
+        "samples": 30,
+        "cpuSubmitMs": {
+          "mean": 1.126833332578341,
+          "median": 1.0999999940395355,
+          "p95": 1.729999989271164,
+          "samples": 30
+        },
+        "completionMs": {
+          "mean": 30.11999999980132,
+          "median": 32.75,
+          "p95": 35.78999999165535,
+          "samples": 30
+        },
+        "frameMs": {
+          "mean": 41.15466666666665,
+          "median": 33.43000000000029,
+          "p95": 50.30500000000029,
+          "samples": 30
+        },
+        "physicsMs": {
+          "mean": 2.291575466666666,
+          "median": 2.29376,
+          "p95": 2.359296,
+          "samples": 30
+        },
+        "physicsClock": "GPU timestamps",
+        "collisionMs": {
+          "mean": 0.23374506666666675,
+          "median": 0.262144,
+          "p95": 0.262144,
+          "samples": 30
+        },
+        "drawMs": {
+          "mean": 0.4915200000000001,
+          "median": 0.458752,
+          "p95": 0.524288,
+          "samples": 30
+        },
+        "waterMs": null,
+        "inputs": 0,
+        "counters": {
+          "pairs": 0,
+          "contacts": 0,
+          "manifolds": 0,
+          "overflow": 0,
+          "clashes": 0,
+          "colors": 1
+        },
+        "errors": [],
+        "measuredStepsPerFrame": 1,
+        "sceneAction": null
+      },
+      "state": {
+        "finite": true,
+        "counters": {
+          "pairs": 20,
+          "contacts": 20,
+          "manifolds": 20,
+          "overflow": 0,
+          "clashes": 0,
+          "colors": 3
+        },
+        "errors": [],
+        "steps": 155,
+        "minDynamicHeight": 0.32394939661026,
+        "rotationError": 0
+      }
+    },
+    {
+      "scene": "3d-static-terrain",
+      "passed": true,
+      "startupMs": 10893.298200000005,
+      "benchmark": {
+        "scene": "3d-static-terrain",
+        "steps": 35,
+        "backend": "gpu",
+        "renderer": "webgpu",
+        "dimension": 3,
+        "bodies": 2416,
+        "terrain": {
+          "name": "Rolling hills and rock cave",
+          "triangles": 2288,
+          "colliders": 2288,
+          "surfaces": 2,
+          "imported": false
+        },
+        "iterations": 5,
+        "timeStep": 0.008333333333333333,
+        "adapter": {
+          "vendor": "",
+          "architecture": "",
+          "device": "",
+          "description": ""
+        },
+        "worker": true,
+        "sharedInput": false,
+        "bowling": false,
+        "sleepingEnabled": false,
+        "warmup": 5,
+        "samples": 30,
+        "cpuSubmitMs": {
+          "mean": 0.8966666658719381,
+          "median": 0.8350000083446503,
+          "p95": 1.4199999868869781,
+          "samples": 30
+        },
+        "completionMs": {
+          "mean": 17.246333332856498,
+          "median": 16.080000013113022,
+          "p95": 23.919999986886978,
+          "samples": 30
+        },
+        "frameMs": {
+          "mean": 24.471166666666672,
+          "median": 16.69499999999971,
+          "p95": 33.3849999999984,
+          "samples": 30
+        },
+        "physicsMs": {
+          "mean": 2.186717866666667,
+          "median": 2.162688,
+          "p95": 2.490368,
+          "samples": 30
+        },
+        "physicsClock": "GPU timestamps",
+        "collisionMs": {
+          "mean": 0.6837589333333334,
+          "median": 0.65536,
+          "p95": 0.98304,
+          "samples": 30
+        },
+        "drawMs": {
+          "mean": 0.6007466666666669,
+          "median": 0.589824,
+          "p95": 0.65536,
+          "samples": 30
+        },
+        "waterMs": null,
+        "inputs": 0,
+        "counters": {
+          "pairs": 2,
+          "contacts": 0,
+          "manifolds": 0,
+          "overflow": 0,
+          "clashes": 0,
+          "colors": 1
+        },
+        "errors": [],
+        "measuredStepsPerFrame": 1,
+        "sceneAction": null
+      },
+      "state": {
+        "finite": true,
+        "counters": {
+          "pairs": 657,
+          "contacts": 392,
+          "manifolds": 267,
+          "overflow": 0,
+          "clashes": 0,
+          "colors": 4
+        },
+        "errors": [],
+        "steps": 155,
+        "minDynamicHeight": 0.19094452261924744,
+        "rotationError": 1.250710152111978e-7
+      },
+      "screenshot": "screenshots/connected-phone-3d-static-terrain.png"
+    },
+    {
+      "scene": "3d-tearable-cloth",
+      "passed": true,
+      "startupMs": 7953.073000000004,
+      "benchmark": {
+        "scene": "3d-tearable-cloth",
+        "steps": 35,
+        "backend": "gpu",
+        "renderer": "webgpu",
+        "dimension": 3,
+        "bodies": 1026,
+        "iterations": 10,
+        "timeStep": 0.008333333333333333,
+        "adapter": {
+          "vendor": "",
+          "architecture": "",
+          "device": "",
+          "description": ""
+        },
+        "worker": true,
+        "sharedInput": false,
+        "bowling": false,
+        "sleepingEnabled": false,
+        "warmup": 5,
+        "samples": 30,
+        "cpuSubmitMs": {
+          "mean": 1.2501666635274886,
+          "median": 1.229999989271164,
+          "p95": 1.9549999833106995,
+          "samples": 30
+        },
+        "completionMs": {
+          "mean": 49.6676666667064,
+          "median": 50.89999997615814,
+          "p95": 53.820000022649765,
+          "samples": 30
+        },
+        "frameMs": {
+          "mean": 61.74016666666667,
+          "median": 66.73000000000138,
+          "p95": 66.76000000000022,
+          "samples": 30
+        },
+        "physicsMs": {
+          "mean": 9.225284266666666,
+          "median": 9.240576,
+          "p95": 9.437184,
+          "samples": 30
+        },
+        "physicsClock": "GPU timestamps",
+        "collisionMs": {
+          "mean": 1.4046549333333336,
+          "median": 1.441792,
+          "p95": 1.441792,
+          "samples": 30
+        },
+        "drawMs": {
+          "mean": 1.267029333333334,
+          "median": 1.245184,
+          "p95": 1.31072,
+          "samples": 30
+        },
+        "waterMs": null,
+        "inputs": 0,
+        "counters": {
+          "pairs": 0,
+          "contacts": 0,
+          "manifolds": 0,
+          "overflow": 0,
+          "clashes": 0,
+          "colors": 7
+        },
+        "errors": [],
+        "measuredStepsPerFrame": 1,
+        "sceneAction": null
+      },
+      "state": {
+        "finite": true,
+        "counters": {
+          "pairs": 11,
+          "contacts": 11,
+          "manifolds": 11,
+          "overflow": 0,
+          "clashes": 0,
+          "colors": 7
+        },
+        "errors": [],
+        "steps": 155,
+        "minDynamicHeight": 0.09678105264902115,
+        "rotationError": 4.8580519385055254e-8
+      },
+      "screenshot": "screenshots/connected-phone-3d-tearable-cloth.png"
+    },
+    {
+      "scene": "3d-marble-cascade",
+      "passed": true,
+      "startupMs": 9042.67749999999,
+      "benchmark": {
+        "scene": "3d-marble-cascade",
+        "steps": 35,
+        "backend": "gpu",
+        "renderer": "webgpu",
+        "dimension": 3,
+        "bodies": 40747,
+        "playActions": [
+          {
+            "id": "start",
+            "label": "Release marbles"
+          },
+          {
+            "id": "shake",
+            "label": "Shake marbles"
+          },
+          {
+            "id": "restore-pegs",
+            "label": "Restore all pegs"
+          }
+        ],
+        "iterations": 5,
+        "timeStep": 0.008333333333333333,
+        "adapter": {
+          "vendor": "",
+          "architecture": "",
+          "device": "",
+          "description": ""
+        },
+        "worker": true,
+        "sharedInput": false,
+        "bowling": false,
+        "pegs": {
+          "total": 700,
+          "retracted": 0
+        },
+        "sleepingEnabled": false,
+        "warmup": 5,
+        "samples": 30,
+        "cpuSubmitMs": {
+          "mean": 1.7564999987681706,
+          "median": 1.6949999928474426,
+          "p95": 2.3949999809265137,
+          "samples": 30
+        },
+        "completionMs": {
+          "mean": 95.80833332935968,
+          "median": 86.53499999642372,
+          "p95": 135.2049999833107,
+          "samples": 30
+        },
+        "frameMs": {
+          "mean": 102.91333333333333,
+          "median": 100.10000000000036,
+          "p95": 150.13500000000022,
+          "samples": 30
+        },
+        "physicsMs": {
+          "mean": 7.237358933333335,
+          "median": 6.619136,
+          "p95": 9.371648,
+          "samples": 30
+        },
+        "physicsClock": "GPU timestamps",
+        "collisionMs": {
+          "mean": 1.9901098666666668,
+          "median": 1.835008,
+          "p95": 2.62144,
+          "samples": 30
+        },
+        "drawMs": {
+          "mean": 37.486591999999995,
+          "median": 33.030144,
+          "p95": 85.000192,
+          "samples": 30
+        },
+        "waterMs": null,
+        "inputs": 0,
+        "counters": {
+          "pairs": 1,
+          "contacts": 4,
+          "manifolds": 1,
+          "overflow": 0,
+          "clashes": 0,
+          "colors": 1
+        },
+        "errors": [],
+        "measuredStepsPerFrame": 1,
+        "sceneAction": "start",
+        "galton": {
+          "bins": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "released": 0,
+          "queued": 40000,
+          "escaped": 0,
+          "opened": true
+        }
+      },
+      "state": {
+        "finite": true,
+        "counters": {
+          "pairs": 81326,
+          "contacts": 80933,
+          "manifolds": 80930,
+          "overflow": 0,
+          "clashes": 0,
+          "colors": 7
+        },
+        "errors": [],
+        "steps": 635,
+        "galton": {
+          "bins": [
+            0,
+            0,
+            0,
+            0,
+            5,
+            37,
+            58,
+            15,
+            4,
+            5,
+            2,
+            2,
+            0,
+            3,
+            0,
+            2,
+            4,
+            0,
+            0,
+            1,
+            1,
+            0,
+            1,
+            6,
+            6,
+            21,
+            63,
+            27,
+            1,
+            1,
+            0,
+            0,
+            0
+          ],
+          "released": 2297,
+          "queued": 37703,
+          "escaped": 0,
+          "opened": true
+        },
+        "pegs": {
+          "total": 700,
+          "retracted": 0
+        },
+        "minDynamicHeight": -4.966400623321533,
+        "rotationError": 1.4720547814039975e-7
+      },
+      "screenshot": "screenshots/connected-phone-3d-marble-cascade.png"
+    }
+  ],
+  "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Mobile Safari/537.36",
+  "passed": true,
+  "browserErrors": []
+}

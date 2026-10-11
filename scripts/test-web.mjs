@@ -1,11 +1,20 @@
 import { spawn } from "node:child_process";
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { mkdir, readFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
+import { writeReport } from "./report-file.mjs";
 
 const root = fileURLToPath(new URL("../", import.meta.url));
 await mkdir(new URL("../test-results/", import.meta.url), { recursive: true });
 const checks = [
   "build",
+  "check-terrain-cooking",
+  "check-runtime-efficiency",
+  "check-naval",
+  "check-workers",
+  "check-execution-ui",
+  "check-lab-step-rate",
+  "check-terrain",
+  "check-terrain-import",
   "check-contact-portability",
   "check-contact-compatibility-features",
   "check-scenes",
@@ -16,6 +25,16 @@ const checks = [
   "check-shapes-2d",
   "check-policy2d",
   "check-feature-scenes",
+  "check-siege-damage",
+  "check-slingshot-game",
+  "check-slingshot-input",
+  "check-galton-statistics",
+  "check-galton-startup",
+  "check-galton-pegs",
+  "check-lab-timing",
+  "check-lab-sleep",
+  "check-demo-startup",
+  "check-playgrounds",
   "check-babylon-renderer",
   "benchmark-renderers",
   "check-renderer-report",
@@ -32,6 +51,7 @@ const checks = [
   "check-castle",
   "check-castle-layout",
   "check-routes",
+  "check-worker-cannon",
   "check-improvements",
   "report-solver",
   "check-babylon-docs",
@@ -95,7 +115,7 @@ for (const name of checks.slice(report.checks.length)) {
     code !== 0 ? "failed" : report.passed ? "complete" : "running";
   report.updated = new Date().toISOString();
   if (report.status !== "running") report.completed = report.updated;
-  await writeFile(reportPath, JSON.stringify(report, null, 2));
+  await writeReport(fileURLToPath(reportPath), report);
   if (code !== 0) process.exit(code);
 }
 console.log(

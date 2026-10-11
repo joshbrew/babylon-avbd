@@ -36,6 +36,8 @@ import { PAIR_SHIFT } from "../../reference/three-avbd/src/avbd2d/soa/broadphase
 import { BodyCommands2D, vector2D } from "./bodyCommands2D.js";
 import { propertyEdits } from "./bufferEdits.js";
 import { writePassConstants } from "./passConstants.js";
+import { writeStepParams2D } from "./stepParams.js";
+import { withBitsetColorBuckets, selectColorBuckets } from "./colorBuckets.js";
 import {
   CS,
   STIFF,
@@ -57,6 +59,9 @@ import {
   argsWGSL,
 } from "../../reference/three-avbd/src/avbd2d/gpu/layout.ts";
 export class AppGpuSolver2D extends GpuSolver2D {
+  writeParams(alpha, postStabilize) {
+    writeStepParams2D.call(this, alpha, postStabilize);
+  }
   writePassConstants(iterations, alphaFor) {
     writePassConstants.call(this, iterations, alphaFor);
   }
@@ -108,9 +113,18 @@ export class AppGpuSolver2D extends GpuSolver2D {
     );
   }
   constructor(device, topology, options = {}) {
+    if (
+      options.minimumColors !== undefined &&
+      (!Number.isInteger(options.minimumColors) ||
+        options.minimumColors < 4 ||
+        options.minimumColors > 64)
+    )
+      throw Error("minimumColors must be an integer from 4 to 64");
     if (options.sleeping !== undefined && options.sleeping !== false)
       sleepOptions2D(options.sleeping);
     super(device, topology, options);
+    this.minimumColors = options.minimumColors ?? 4;
+    this.colorCap = Math.max(this.colorCap, this.minimumColors);
     this.sleepEligible = new Map(topology.avbdSleepEligible ?? []);
     uploadAngleLimits2D(this);
     if (shapesOf2D(topology)?.size) this.enableShapes();
@@ -903,7 +917,11 @@ export class AppGpuSolver2D extends GpuSolver2D {
     if (code.includes("fn warmStartBodies("))
       code = protectStep2D(withSleepingSolve2D(withAngleLimits2D(code)));
     if (code.includes("fn dynamicBody(")) code = withSleepingTopology2D(code);
-    if (code.includes("fn colorCount(")) code = protectTopology2D(code);
+    const colorBuckets = code.includes("fn colorCount(");
+    if (colorBuckets) {
+      this.colorBucketSource = protectTopology2D(withBitsetColorBuckets(code));
+      code = protectTopology2D(code);
+    }
     const d = this.device,
       module = d.createShaderModule({ code }),
       layout = d.createPipelineLayout({ bindGroupLayouts: layouts });
@@ -912,6 +930,10 @@ export class AppGpuSolver2D extends GpuSolver2D {
         layout,
         compute: { module, entryPoint },
       });
+    if (colorBuckets && entries.includes("colorCount")) {
+      this.colorBucketPipelines = { scan: this.pipes.colorCount };
+      this.bitsetColorBuckets = undefined;
+    }
   }
   watchContacts({ maxPairs = 8192, maxEvents = 4096, indices } = {}) {
     if (this.destroyed) throw Error("The 2D solver has been destroyed");
@@ -963,11 +985,14 @@ export class AppGpuSolver2D extends GpuSolver2D {
   }
   step() {
     if (this.destroyed) throw Error("The 2D solver has been destroyed");
+    selectColorBuckets(this, this.colorBucketSource);
     if (
       this.sleeping ||
       this.restitution?.active.size ||
       this.bodyCommands?.pending.size ||
-      this.propertyEdits?.pending
+      this.propertyEdits?.pending ||
+      this.externalBeforeStep ||
+      this.externalAfterStep
     )
       encodeGpuSolverStep2D.call(this);
     else super.step();
@@ -983,15 +1008,21 @@ export class AppGpuSolver2D extends GpuSolver2D {
         this.params.dt,
       );
   }
+  adapt(counters) {
+    super.adapt(counters);
+    this.colorCap = Math.max(this.colorCap, this.minimumColors);
+  }
   encodeStepPrelude(encoder) {
     this.flushPropertyEdits(encoder);
     this.sleeping?.before(encoder);
     this.bodyCommands?.flush(encoder);
     this.restitution?.before(encoder);
+    this.externalBeforeStep?.(encoder);
   }
   encodeStepPostlude(encoder) {
     this.restitution?.after(encoder);
     this.sleeping?.after(encoder);
+    this.externalAfterStep?.(encoder);
   }
   destroy() {
     this.passConstantCache = null;

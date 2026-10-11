@@ -2,10 +2,11 @@ import { readFile, writeFile } from "node:fs/promises";
 import { build } from "esbuild";
 import { browserCheck } from "./browser-check.mjs";
 import { checkReadmeExamples } from "./check-readme-examples.mjs";
-const doc =
+const doc = (
   (await readFile("README.md", "utf8")) +
   "\n" +
-  (await readFile("docs/README.md", "utf8"));
+  (await readFile("docs/README.md", "utf8"))
+).replace(/\r\n/g, "\n");
 const snippets = [...doc.matchAll(/```js\n([\s\S]*?)\n```/g)].map((m) => m[1]);
 const source = snippets.find((s) => s.startsWith("// src/main.js"));
 if (!source) throw Error("Complete Babylon example missing");
@@ -34,6 +35,15 @@ for (const snippet of snippets)
 const b = await browserCheck();
 try {
   await b.navigate("test-results/solver-performance.html");
+  let ready = false;
+  for (let i = 0; i < 200; i++) {
+    ready = await b.evaluate(
+      "location.pathname.endsWith('/solver-performance.html') && document.readyState === 'complete' && !!document.body",
+    );
+    if (ready) break;
+    await new Promise((resolve) => setTimeout(resolve, 50));
+  }
+  if (!ready) throw Error("README example host page did not load");
   await b.evaluate(
     `(async()=>{document.body.innerHTML='<canvas id="canvas" style="width:100vw;height:100vh;display:block"></canvas>';await import('/dist/babylon-doc-example.js');})()`,
   );

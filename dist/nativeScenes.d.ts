@@ -1,4 +1,8 @@
-import type { AvbdSolverPipeline, AvbdSolver2D, AvbdSolver3D } from "./solverPipeline.js";
+import type {
+  AvbdSolverPipeline,
+  AvbdSolver2D,
+  AvbdSolver3D,
+} from "./solverPipeline.js";
 export type AvbdTuple3 = readonly [number, number, number];
 export type AvbdTuple2 = readonly [number, number];
 export interface AvbdQueryOptions {
@@ -23,6 +27,55 @@ export interface AvbdQueryHit<V> {
   center: V;
 }
 export type AvbdQuaternion = readonly [number, number, number, number];
+export interface AvbdTerrainMaterial {
+  friction?: number;
+  restitution?: number;
+  group?: number;
+  collidesWith?: number;
+  mass?: 0;
+}
+export interface AvbdHeightfieldOptions extends AvbdTerrainMaterial {
+  heights: ArrayLike<number>;
+  columns: number;
+  rows: number;
+  spacing?: number | AvbdTuple2;
+  origin?: AvbdTuple3;
+  upAxis?: 0 | 1 | 2;
+  /** Local height below every sample; defaults to the minimum height minus 2. */
+  baseHeight?: number;
+  /** Row-major cells; a nonzero entry leaves a hole. */
+  holes?: ArrayLike<number>;
+}
+export interface AvbdStaticMeshOptions extends AvbdTerrainMaterial {
+  /** World-space xyz triples. */
+  positions: ArrayLike<number>;
+  indices?: ArrayLike<number>;
+  /** Backing behind triangle winding, in world units. Defaults to 0.1. */
+  thickness?: number;
+}
+/** Serializable preprocessing output; can be cooked in a separate worker. */
+export interface AvbdCookedTerrain {
+  kind: "heightfield" | "static-mesh";
+  triangleCount: number;
+  pieces: Array<{
+    shape: object;
+    position: AvbdTuple3;
+    rotation: AvbdQuaternion;
+  }>;
+}
+export interface AvbdNativeTerrain {
+  readonly bodies: AvbdRigid[];
+  readonly triangleCount: number;
+  readonly kind: "heightfield" | "static-mesh";
+  /** Disable collision participation; live indices remain stable. */
+  dispose(): void;
+}
+export function cookHeightfield(
+  options: AvbdHeightfieldOptions,
+): AvbdCookedTerrain;
+export function cookStaticMesh(
+  options: AvbdStaticMeshOptions,
+): AvbdCookedTerrain;
 export interface AvbdNativeState3D {
   position: [number, number, number];
   rotation: [number, number, number, number];
@@ -187,6 +240,13 @@ export interface AvbdGpuParameters2D extends AvbdGpuParameters {
   vbd: boolean;
   vbdStiffness: number;
 }
+/** 3D can retain conservative connected groups between explicit world edits. */
+export interface AvbdSleepOptions {
+  speedThreshold?: number;
+  timeThreshold?: number;
+  /** 3D: automatic for large jointless desktop worlds; false selects whole-world waking. */
+  islands?: boolean;
+}
 export interface AvbdGpuOptions {
   bodyBuffer?: GPUBuffer;
   bodyCapacity?: number;
@@ -194,6 +254,8 @@ export interface AvbdGpuOptions {
   spatialSort?: boolean;
   broadphase?: "auto" | "grid" | "hploc";
   solverMode?: "auto" | "standard" | "optimized" | "points";
+  /** 3D: automatically fuse closed jointless worlds of at most 32 bodies. */
+  smallGroups?: boolean;
   bvh?: { rebuildInterval?: number };
   capacity?: {
     contacts?: number;
@@ -202,9 +264,10 @@ export interface AvbdGpuOptions {
     colors?: number;
     joints?: number;
   };
+  /** Reserve coloring capacity when sleeping bodies wake. */
   minimumColors?: number;
   minimumColorRounds?: number;
-  sleeping?: boolean | { speedThreshold?: number; timeThreshold?: number };
+  sleeping?: boolean | AvbdSleepOptions;
 }
 export interface AvbdGpuSolver {
   readonly bodyBuffer: GPUBuffer;
@@ -274,10 +337,7 @@ export interface AvbdGpuSolver3D extends AvbdGpuSolver {
     rotation?: AvbdQuaternion,
   ): this;
   readBodyState(index: number): Promise<AvbdNativeState3D>;
-  enableSleeping(options?: {
-    speedThreshold?: number;
-    timeThreshold?: number;
-  }): this;
+  enableSleeping(options?: AvbdSleepOptions): this;
   disableSleeping(): this;
   setSleepEnabled(index: number, enabled: boolean): this;
   watchContacts(options?: AvbdNativeContactOptions): this;
@@ -509,6 +569,12 @@ export interface AvbdNativeConstraint {
   destroy(): void;
 }
 export class AvbdScene3D {
+  addHeightfield(options: AvbdHeightfieldOptions): AvbdNativeTerrain;
+  addStaticMesh(options: AvbdStaticMeshOptions): AvbdNativeTerrain;
+  addTerrain(
+    cooked: AvbdCookedTerrain,
+    options?: AvbdTerrainMaterial,
+  ): AvbdNativeTerrain;
   addMotor(
     a: AvbdRigid | null,
     b: AvbdRigid,
@@ -621,7 +687,10 @@ export class AvbdScene3D {
     },
   ): AvbdNativeConstraint;
   createSolver(device: GPUDevice, options?: AvbdGpuOptions): AvbdGpuSolver3D;
-  createSolver(pipeline: AvbdSolverPipeline, options?: AvbdGpuOptions): AvbdSolver3D;
+  createSolver(
+    pipeline: AvbdSolverPipeline,
+    options?: AvbdGpuOptions,
+  ): AvbdSolver3D;
 }
 export interface AvbdNativeAngularOptions {
   axisA?: AvbdTuple3;
@@ -731,8 +800,12 @@ export class AvbdScene2D {
       bodyBuffer?: GPUBuffer;
       bodyCapacity?: number;
       colorRounds?: number;
+      minimumColors?: number;
       sleeping?: boolean | { speedThreshold?: number; timeThreshold?: number };
     },
   ): AvbdGpuSolver2D;
-  createSolver(pipeline: AvbdSolverPipeline, options?: AvbdGpuOptions): AvbdSolver2D;
+  createSolver(
+    pipeline: AvbdSolverPipeline,
+    options?: AvbdGpuOptions,
+  ): AvbdSolver2D;
 }

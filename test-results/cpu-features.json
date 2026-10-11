@@ -8,7 +8,6 @@
       "rings": 0,
       "shapeDrawCalls": 0,
       "errors": [],
-      "screenshot": "screenshots/cpu-2d-mixed-shapes.png",
       "passed": true
     },
     {
@@ -18,7 +17,6 @@
       "rings": 0,
       "shapeDrawCalls": 0,
       "errors": [],
-      "screenshot": "screenshots/cpu-2d-limited-hinges.png",
       "passed": true
     },
     {
@@ -28,7 +26,6 @@
       "rings": 0,
       "shapeDrawCalls": 0,
       "errors": [],
-      "screenshot": "screenshots/cpu-2d-triggers-and-masks.png",
       "passed": true
     },
     {
@@ -38,7 +35,6 @@
       "rings": 0,
       "shapeDrawCalls": 1,
       "errors": [],
-      "screenshot": "screenshots/cpu-3d-sphere-contacts.png",
       "passed": true
     },
     {
@@ -48,7 +44,6 @@
       "rings": 0,
       "shapeDrawCalls": 4,
       "errors": [],
-      "screenshot": "screenshots/cpu-3d-convex-hulls.png",
       "passed": true
     },
     {
@@ -68,7 +63,6 @@
       "rings": 0,
       "shapeDrawCalls": 0,
       "errors": [],
-      "screenshot": "screenshots/cpu-3d-heavy-rope.png",
       "passed": true
     },
     {
@@ -88,7 +82,6 @@
       "rings": 0,
       "shapeDrawCalls": 1,
       "errors": [],
-      "screenshot": "screenshots/cpu-showcase-heavy-pendulum.png",
       "passed": true
     },
     {
@@ -98,7 +91,6 @@
       "rings": 0,
       "shapeDrawCalls": 3,
       "errors": [],
-      "screenshot": "screenshots/cpu-showcase-flag-in-the-wind-1.5k.png",
       "passed": true
     },
     {
@@ -108,7 +100,6 @@
       "rings": 0,
       "shapeDrawCalls": 1,
       "errors": [],
-      "screenshot": "screenshots/cpu-3d-limited-hinges.png",
       "passed": true
     },
     {
@@ -118,7 +109,6 @@
       "rings": 0,
       "shapeDrawCalls": 1,
       "errors": [],
-      "screenshot": "screenshots/cpu-3d-triggers-and-masks.png",
       "passed": true
     },
     {
@@ -128,7 +118,6 @@
       "rings": 0,
       "shapeDrawCalls": 1,
       "errors": [],
-      "screenshot": "screenshots/cpu-3d-tearable-cloth.png",
       "passed": true
     },
     {
@@ -138,7 +127,6 @@
       "rings": 0,
       "shapeDrawCalls": 22,
       "errors": [],
-      "screenshot": "screenshots/cpu-3d-castle-siege.png",
       "passed": true
     },
     {
@@ -148,7 +136,6 @@
       "rings": 0,
       "shapeDrawCalls": 217,
       "errors": [],
-      "screenshot": "screenshots/cpu-3d-voronoi-demolition.png",
       "passed": true
     }
   ]

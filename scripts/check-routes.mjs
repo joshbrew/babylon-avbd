@@ -1,5 +1,6 @@
 import { browserCheck } from "./browser-check.mjs";
-import { writeFile, mkdir } from "node:fs/promises";
+import { mkdir } from "node:fs/promises";
+import { writeAtomicFile as writeFile } from "./report-file.mjs";
 const b = await browserCheck(),
   results = [];
 try {
@@ -8,7 +9,13 @@ try {
     const errorStart = b.errors.length;
     await b.navigate("?demo=" + route);
     for (let i = 0; i < 300; i++) {
-      if (await b.evaluate('document.querySelector("canvas")?.width > 300'))
+      if (
+        await b.evaluate(
+          route === "cannon"
+            ? "globalThis.__AVBD_LAB__?.diagnostics.ready"
+            : 'document.querySelector("canvas")?.width > 300',
+        )
+      )
         break;
       await new Promise((r) => setTimeout(r, 50));
     }
@@ -18,7 +25,7 @@ try {
       );
     if (route === "cannon")
       await b.evaluate(
-        `[...document.querySelectorAll('button')].find(e=>e.textContent==='Shoot').click()`,
+        `(()=>{const button=document.querySelector('#lab-shoot');if(!button||button.hidden)throw Error('Cannon controls are unavailable');button.click();})()`,
       );
     const samples = await b.evaluate(
       `new Promise(resolve=>{const samples=[];let last=performance.now();const sample=now=>{if(samples.length>=90)return resolve(samples.slice(10));samples.push(now-last);last=now;requestAnimationFrame(sample);};requestAnimationFrame(sample);})`,

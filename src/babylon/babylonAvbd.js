@@ -15,6 +15,11 @@ import { BodyReadback } from "../gpu/bodyReadback.js";
 import { ContactWatch, BEGIN } from "../vendor/three-avbd-lib/contacts.ts";
 import { WorldSleeping } from "../gpu/worldSleeping.js";
 import { capsule } from "../gpu/capsuleShape.js";
+import {
+  cookHeightfield,
+  cookStaticMesh,
+  createTerrainBodies,
+} from "../native/terrain.js";
 
 export const AvbdShapeType = Object.freeze({
   BOX: "box",
@@ -85,6 +90,7 @@ export class AvbdPhysics {
       maxSyncedBodies = 2048,
       broadphase = "auto",
       solverMode = "auto",
+      smallGroups,
       bvh = {},
       autoAttach = true,
       maxContactPairs = 8192,
@@ -105,7 +111,7 @@ export class AvbdPhysics {
     )
       throw Error("capacity and maxSyncedBodies must be valid integer counts");
     this.capacity = capacity;
-    this.collisionOptions = { broadphase, bvh, solverMode };
+    this.collisionOptions = { broadphase, bvh, solverMode, smallGroups };
     this.ref = new Solver();
     this.ref.dt = positive(timeStep, "timeStep");
     if (!Number.isInteger(iterations) || iterations < 1)
@@ -240,6 +246,107 @@ export class AvbdPhysics {
       this.addAggregate(mesh, type, options),
     );
   }
+  addHeightfield(options) {
+    return this.addTerrain(cookHeightfield(options), options);
+  }
+  /** Capture a Babylon mesh's world-space triangles once, retaining concavities. */
+  addStaticMesh(mesh, options = {}) {
+    mesh.computeWorldMatrix(true);
+    const vertices = mesh.getVerticesData("position"),
+      matrix = mesh.getWorldMatrix().m;
+    if (!vertices) throw Error("Static mesh requires vertex positions");
+    const positions = new Float64Array(vertices.length);
+    for (let i = 0; i < vertices.length; i += 3) {
+      const x = vertices[i],
+        y = vertices[i + 1],
+        z = vertices[i + 2];
+      for (let k = 0; k < 3; k++)
+        positions[i + k] =
+          matrix[k] * x +
+          matrix[4 + k] * y +
+          matrix[8 + k] * z +
+          matrix[12 + k];
+    }
+    // Babylon's mesh winding can differ from the mathematical cross-product
+    // convention used by terrain cooking. Keep backing behind the visible face.
+    const sourceIndices = mesh.getIndices(),
+      indices = sourceIndices?.length
+        ? Uint32Array.from(sourceIndices)
+        : Uint32Array.from({ length: vertices.length / 3 }, (_, i) => i),
+      normals = mesh.getVerticesData("normal"),
+      mirrored = mesh.getWorldMatrix().determinant() < 0;
+    for (let i = 0; i < indices.length; i += 3) {
+      const a = indices[i] * 3,
+        b = indices[i + 1] * 3,
+        c = indices[i + 2] * 3,
+        u = [0, 1, 2].map((k) => vertices[b + k] - vertices[a + k]),
+        v = [0, 1, 2].map((k) => vertices[c + k] - vertices[a + k]);
+      let reverse = false;
+      if (normals?.length === vertices.length) {
+        const n = [
+          u[1] * v[2] - u[2] * v[1],
+          u[2] * v[0] - u[0] * v[2],
+          u[0] * v[1] - u[1] * v[0],
+        ];
+        reverse =
+          n.reduce(
+            (sum, value, k) =>
+              sum + value * (normals[a + k] + normals[b + k] + normals[c + k]),
+            0,
+          ) < 0;
+      }
+      if (reverse !== mirrored)
+        [indices[i + 1], indices[i + 2]] = [indices[i + 2], indices[i + 1]];
+    }
+    return this.addTerrain(
+      cookStaticMesh({
+        positions,
+        indices,
+        thickness: options.thickness,
+      }),
+      options,
+    );
+  }
+  addTerrain(cooked, options = {}) {
+    this.assertAlive();
+    if (this.gpu)
+      throw Error("Add static terrain before initializing the physics world");
+    if (this.device.limits.maxStorageBuffersPerShaderStage < 9)
+      throw Error("Terrain collisions require nine storage buffer bindings");
+    if (this.aggregates.length + (cooked?.pieces?.length ?? 0) > this.capacity)
+      throw Error(
+        "AVBD terrain exceeds body capacity; reserve space for its collision pieces",
+      );
+    const rigids = createTerrainBodies(this.ref, cooked, options);
+    const colliders = rigids.map(
+      (rigid) => new StaticTerrainCollider(this, rigid),
+    );
+    let disposed = false;
+    return {
+      bodies: colliders.map((c) => c.body),
+      triangleCount: cooked.triangleCount,
+      kind: cooked.kind,
+      dispose: () => {
+        if (disposed) return;
+        disposed = true;
+        const selected = new Set(colliders.map((c) => c.body));
+        for (const constraint of [...this.constraints])
+          if (selected.has(constraint.bodyA) || selected.has(constraint.bodyB))
+            constraint.dispose();
+        if (this.gpu && !this.disposed) {
+          const ids = colliders.map((c) => c.body.gpuIndex),
+            zeros = new Uint32Array(ids.length);
+          this.gpu.setFilters(ids, zeros, zeros);
+        }
+        for (const c of colliders) {
+          c.disposed = c.body.disposed = true;
+          c.group = c.collidesWith = 0;
+          this.commands.delete(c.body);
+        }
+        this.wakeAll();
+      },
+    };
+  }
   addConstraint(bodyA, bodyB, options = {}) {
     return new AvbdPhysicsConstraint(this, bodyA, bodyB, options);
   }
@@ -260,6 +367,19 @@ export class AvbdPhysics {
     this.sleepOptions = options;
     if (this.gpu && !this.sleepManager)
       this.sleepManager = new WorldSleeping(this, options);
+    return this;
+  }
+  disableSleeping() {
+    this.assertAlive();
+    this.sleepOptions = false;
+    if (!this.gpu) return this;
+    this.flushCommands();
+    if (this.sleepManager) {
+      this.sleepManager.wakeRequested = true;
+      this.sleepManager.before();
+      this.sleepManager.dispose();
+      this.sleepManager = null;
+    }
     return this;
   }
   addMotor(bodyA, bodyB, options = {}) {
@@ -909,26 +1029,52 @@ export class AvbdPhysicsAggregate {
   }
   /** Release collision participation without shifting any live GPU index. The mesh is caller-owned. */
   dispose() {
-    if (this.disposed) return;
-    const world = this.world;
-    for (const c of [...world.constraints])
-      if (c.bodyA === this.body || c.bodyB === this.body) c.dispose();
-    if (world.gpu) {
-      const index = this.body.gpuIndex;
-      world.queue(this.body, 16, "velocity", [0, 0, 0]);
-      world.gpu.setFilters([index], [0], [0]);
-      world.gpu.setRestitution(index, 0);
-    }
-    this.rigid.mass = 0;
-    this.rigid.moment.fill(0);
-    this.sync = false;
-    this.disposed = this.body.disposed = true;
-    world.sleepManager?.register(
-      this.gpuSlot ?? world.gpu?.gpuIndex(this.index) ?? this.index,
-      0,
-    );
-    world.wakeAll?.();
+    releaseCollider(this);
   }
+}
+
+/** A static collision piece has a body/query identity but no synchronized mesh. */
+class StaticTerrainCollider {
+  constructor(world, rigid) {
+    Object.assign(this, {
+      world,
+      rigid,
+      index: world.aggregates.length,
+      sync: false,
+      allowSleep: false,
+      isTrigger: false,
+      restitution: rigid.restitution,
+      group: rigid.group,
+      collidesWith: rigid.collidesWith,
+      staticTerrain: true,
+    });
+    this.body = new AvbdPhysicsBody(this);
+    world.aggregates.push(this);
+  }
+  dispose() {
+    releaseCollider(this);
+  }
+}
+function releaseCollider(collider) {
+  if (collider.disposed) return;
+  const world = collider.world;
+  for (const c of [...world.constraints])
+    if (c.bodyA === collider.body || c.bodyB === collider.body) c.dispose();
+  if (world.gpu) {
+    const index = collider.body.gpuIndex;
+    world.queue(collider.body, 16, "velocity", [0, 0, 0]);
+    world.gpu.setFilters([index], [0], [0]);
+    world.gpu.setRestitution(index, 0);
+  }
+  collider.rigid.mass = 0;
+  collider.rigid.moment.fill(0);
+  collider.sync = false;
+  collider.disposed = collider.body.disposed = true;
+  world.sleepManager?.register(
+    collider.gpuSlot ?? world.gpu?.gpuIndex(collider.index) ?? collider.index,
+    0,
+  );
+  world.wakeAll?.();
 }
 
 export class AvbdPhysicsBody {
@@ -1058,16 +1204,52 @@ export class AvbdPhysicsBody {
     w.wakeAll();
     return this;
   }
-  teleport(position, rotation = this.aggregate.mesh.rotationQuaternion) {
-    const q = rotation.clone().normalize(),
-      a = this.aggregate;
+  teleport(position, rotation) {
+    this.assertAlive();
+    if (this.aggregate.staticTerrain)
+      throw Error(
+        "Terrain is static; set its geometry transform before registration",
+      );
+    const a = this.aggregate;
+    if (rotation === undefined) {
+      const queued = a.world.commands.get(this);
+      if (queued && (queued.mask & 8) !== 0 && (queued.mask & 32) === 0) {
+        // A preceding explicit rotation in the same batch is still the latest
+        // requested orientation. Keep it when only the destination changes.
+        const q = a.mesh.rotationQuaternion.clone();
+        q.copyFromFloats(...queued.rotation);
+        const offset = a.localCenter.applyRotationQuaternion(
+          a.localRotation.conjugate(),
+        );
+        a.world.queue(
+          this,
+          8,
+          "position",
+          xyz(position.add(offset.applyRotationQuaternion(q))),
+        );
+      } else {
+        const offset = a.localCenter.applyRotationQuaternion(
+          a.localRotation.conjugate(),
+        );
+        a.world.queue(this, 8 | 32, "position", xyz(position));
+        a.world.queue(this, 8 | 32, "rotation", [...xyz(offset), 0]);
+      }
+      return this;
+    }
+    const q = rotation.clone().normalize();
     a.world.queue(
       this,
       8,
       "position",
       xyz(position.add(a.localCenter.applyRotationQuaternion(q))),
     );
-    a.world.queue(this, 8, "rotation", q.multiply(a.localRotation).asArray());
+    const command = a.world.queue(
+      this,
+      8,
+      "rotation",
+      q.multiply(a.localRotation).asArray(),
+    );
+    command.mask &= ~32;
     return this;
   }
 }

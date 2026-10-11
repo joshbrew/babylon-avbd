@@ -1,150 +1,305 @@
 {
-  "started": "2026-10-05T20:22:34.039Z",
+  "started": "2026-10-11T21:50:04.351Z",
   "checks": [
     {
       "name": "build",
       "passed": true,
-      "elapsedMs": 1264.0359999999998
+      "elapsedMs": 1597.8582
+    },
+    {
+      "name": "check-terrain-cooking",
+      "passed": true,
+      "elapsedMs": 1074.3368
+    },
+    {
+      "name": "check-runtime-efficiency",
+      "passed": true,
+      "elapsedMs": 16932.9539
+    },
+    {
+      "name": "check-naval",
+      "passed": true,
+      "elapsedMs": 27743.8571
+    },
+    {
+      "name": "check-workers",
+      "passed": true,
+      "elapsedMs": 11804.441599999998
+    },
+    {
+      "name": "check-execution-ui",
+      "passed": true,
+      "elapsedMs": 27710.207599999994
+    },
+    {
+      "name": "check-lab-step-rate",
+      "passed": true,
+      "elapsedMs": 13673.581900000005
+    },
+    {
+      "name": "check-terrain",
+      "passed": true,
+      "elapsedMs": 12917.155599999998
+    },
+    {
+      "name": "check-terrain-import",
+      "passed": true,
+      "elapsedMs": 39177.4149
+    },
+    {
+      "name": "check-contact-portability",
+      "passed": true,
+      "elapsedMs": 32923.2132
+    },
+    {
+      "name": "check-contact-compatibility-features",
+      "passed": true,
+      "elapsedMs": 133473.2071
     },
     {
       "name": "check-scenes",
       "passed": true,
-      "elapsedMs": 142621.02589999998
+      "elapsedMs": 186220.6951
     },
     {
       "name": "check-benchmark-scenes",
       "passed": true,
-      "elapsedMs": 131743.4608
+      "elapsedMs": 142139.87569999998
     },
     {
       "name": "check-benchmark-preview",
       "passed": true,
-      "elapsedMs": 41884.38620000001
+      "elapsedMs": 50828.6138
     },
     {
       "name": "check-solver-selection",
       "passed": true,
-      "elapsedMs": 11165.278799999971
+      "elapsedMs": 15470.979100000004
     },
     {
       "name": "check-2d-stress",
       "passed": true,
-      "elapsedMs": 26219.23060000001
+      "elapsedMs": 30433.753099999998
     },
     {
       "name": "check-shapes-2d",
       "passed": true,
-      "elapsedMs": 10460.0919
+      "elapsedMs": 15366.965999999997
     },
     {
       "name": "check-policy2d",
       "passed": true,
-      "elapsedMs": 35756.86610000004
+      "elapsedMs": 52589.9989
     },
     {
       "name": "check-feature-scenes",
       "passed": true,
-      "elapsedMs": 30922.803400000033
+      "elapsedMs": 34190.264500000005
+    },
+    {
+      "name": "check-siege-damage",
+      "passed": true,
+      "elapsedMs": 45763.06270000001
+    },
+    {
+      "name": "check-slingshot-game",
+      "passed": true,
+      "elapsedMs": 59733.6286
+    },
+    {
+      "name": "check-slingshot-input",
+      "passed": true,
+      "elapsedMs": 26371.389799999975
+    },
+    {
+      "name": "check-galton-statistics",
+      "passed": true,
+      "elapsedMs": 99.25880000001052
+    },
+    {
+      "name": "check-galton-startup",
+      "passed": true,
+      "elapsedMs": 7985.5077000000165
+    },
+    {
+      "name": "check-galton-pegs",
+      "passed": true,
+      "elapsedMs": 20640.977899999998
+    },
+    {
+      "name": "check-lab-timing",
+      "passed": true,
+      "elapsedMs": 8583.074000000022
+    },
+    {
+      "name": "check-lab-sleep",
+      "passed": true,
+      "elapsedMs": 35079.36249999999
+    },
+    {
+      "name": "check-demo-startup",
+      "passed": true,
+      "elapsedMs": 30727.896400000027
+    },
+    {
+      "name": "check-playgrounds",
+      "passed": true,
+      "elapsedMs": 209777.33029999997
+    },
+    {
+      "name": "check-babylon-renderer",
+      "passed": true,
+      "elapsedMs": 103948.39139999996
+    },
+    {
+      "name": "benchmark-renderers",
+      "passed": true,
+      "elapsedMs": 78623.00439999998
+    },
+    {
+      "name": "check-renderer-report",
+      "passed": true,
+      "elapsedMs": 14950.749499999918
+    },
+    {
+      "name": "check-voronoi-fracture",
+      "passed": true,
+      "elapsedMs": 15013.828699999955
+    },
+    {
+      "name": "check-chainmail",
+      "passed": true,
+      "elapsedMs": 5032.702200000058
     },
     {
       "name": "check-paper-scenes",
       "passed": true,
-      "elapsedMs": 87922.05599999998
+      "elapsedMs": 80646.9854
     },
     {
       "name": "check-hploc-motion",
       "passed": true,
-      "elapsedMs": 81440.71800000005
+      "elapsedMs": 77006.44960000005
     },
     {
       "name": "check-showcase-motion",
       "passed": true,
-      "elapsedMs": 28120.636500000022
+      "elapsedMs": 14472.780200000037
     },
     {
       "name": "check-ragdoll-net",
       "passed": true,
-      "elapsedMs": 132230.2171
+      "elapsedMs": 146287.8371
     },
     {
       "name": "check-tearable-cloth",
       "passed": true,
-      "elapsedMs": 7814.011900000041
+      "elapsedMs": 10047.207699999912
     },
     {
       "name": "check-cloth-fragments",
       "passed": true,
-      "elapsedMs": 7195.411300000036
+      "elapsedMs": 9342.864499999909
     },
     {
       "name": "check-rook",
       "passed": true,
-      "elapsedMs": 15028.350899999961
+      "elapsedMs": 15472.1737
     },
     {
       "name": "check-controls",
       "passed": true,
-      "elapsedMs": 13466.618299999973
+      "elapsedMs": 13796.0718
     },
     {
       "name": "check-castle",
       "passed": true,
-      "elapsedMs": 12450.774300000048
+      "elapsedMs": 14622.962499999998
     },
     {
       "name": "check-castle-layout",
       "passed": true,
-      "elapsedMs": 4240.823399999994
+      "elapsedMs": 5153.022499999999
     },
     {
       "name": "check-routes",
       "passed": true,
-      "elapsedMs": 13278.806400000001
+      "elapsedMs": 15077.1191
+    },
+    {
+      "name": "check-worker-cannon",
+      "passed": true,
+      "elapsedMs": 22497.7904
     },
     {
       "name": "check-improvements",
       "passed": true,
-      "elapsedMs": 15392.556699999957
+      "elapsedMs": 16299.8744
     },
     {
       "name": "report-solver",
       "passed": true,
-      "elapsedMs": 149.5357
+      "elapsedMs": 156.66860000000452
     },
     {
       "name": "check-babylon-docs",
       "passed": true,
-      "elapsedMs": 51650.8965
+      "elapsedMs": 62910.0377
+    },
+    {
+      "name": "check-package-report",
+      "passed": true,
+      "elapsedMs": 1308.554999999993
     },
     {
       "name": "report-web",
       "passed": true,
-      "elapsedMs": 94.39389999999548
+      "elapsedMs": 88.81509999999253
     },
     {
       "name": "check-navigation",
       "passed": true,
-      "elapsedMs": 25014.5697
+      "elapsedMs": 26544.6525
     },
     {
       "name": "check-report",
       "passed": true,
-      "elapsedMs": 2555.507700000002
+      "elapsedMs": 2064.424500000001
     },
     {
       "name": "check-solver-report",
       "passed": true,
-      "elapsedMs": 2591.3910999999935
+      "elapsedMs": 2677.5192000000025
     }
   ],
   "passed": true,
   "status": "complete",
-  "updated": "2026-10-05T21:02:40.888Z",
-  "completed": "2026-10-05T21:02:40.888Z",
+  "updated": "2026-10-11T22:40:36.563Z",
+  "completed": "2026-10-11T22:40:36.563Z",
   "resumes": [
     {
-      "from": "report-solver",
-      "date": "2026-10-05T21:01:18.811Z"
+      "from": "check-benchmark-preview",
+      "date": "2026-10-11T22:03:05.333Z"
+    },
+    {
+      "from": "check-2d-stress",
+      "date": "2026-10-11T22:04:43.722Z"
+    },
+    {
+      "from": "check-rook",
+      "date": "2026-10-11T22:30:28.060Z"
+    },
+    {
+      "from": "check-routes",
+      "date": "2026-10-11T22:32:59.908Z"
+    },
+    {
+      "from": "check-routes",
+      "date": "2026-10-11T22:36:31.448Z"
+    },
+    {
+      "from": "check-navigation",
+      "date": "2026-10-11T22:40:05.269Z"
     }
   ]
 }

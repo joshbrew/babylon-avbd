@@ -1,5 +1,6 @@
 import { browserCheck } from "./browser-check.mjs";
-import { readFile, writeFile } from "node:fs/promises";
+import { readFile } from "node:fs/promises";
+import { writeAtomicFile as writeFile } from "./report-file.mjs";
 
 const data = JSON.parse(
   await readFile("test-results/solver-performance.json", "utf8"),
@@ -59,6 +60,13 @@ try {
       result.scroll > result.width
     )
       throw Error(JSON.stringify(result));
+    if (
+      data.workerBenchmarks?.passed &&
+      !(await browser.evaluate(
+        "document.querySelector('#worker-comparison')?.textContent.includes('Worker timings are estimates')",
+      ))
+    )
+      throw Error("Missing worker timing caveat");
     const explanation = await browser.evaluate(`(()=>{
       const text=document.body.innerText;
       return {plain:text.includes('Smaller time = faster simulation.') && text.includes('Drawing is separate.') && text.includes('What is “Move + prepare”?'),
@@ -72,6 +80,38 @@ try {
     if (!Object.values(explanation).every(Boolean))
       throw Error(JSON.stringify(explanation));
     result.explanation = explanation;
+    if (data.connectedSleep) {
+      const connected =
+        await browser.evaluate(`({bars:document.querySelectorAll('#connected-sleep .bar span').length,
+        rows:document.querySelectorAll('#connected-sleep tbody tr').length,
+        plain:document.querySelector('#connected-sleep').textContent.includes('Group tracking adds some work while everything is awake')})`);
+      if (connected.bars !== 2 || connected.rows !== 2 || !connected.plain)
+        throw Error(JSON.stringify(connected));
+      connected.screenshot = `screenshots/solver-connected-sleep-${width}.png`;
+      result.connectedSleep = connected;
+      await browser.evaluate(
+        "document.querySelector('#connected-sleep').scrollIntoView()",
+      );
+      await browser.screenshot(
+        `test-results/screenshots/solver-connected-sleep-${width}.png`,
+      );
+    }
+    if (data.workerBenchmarks?.passed) {
+      const workers = await browser.evaluate(`({
+        rows:document.querySelectorAll('#worker-comparison table:first-of-type tbody tr').length,
+        choices:document.querySelector('#worker-comparison').textContent.includes('Worker + shared input'),
+        explanation:document.querySelector('#worker-comparison').textContent.includes('does not share GPU buffers')
+      })`);
+      if (workers.rows < 8 || !workers.choices || !workers.explanation)
+        throw Error(JSON.stringify(workers));
+      result.workers = workers;
+      await browser.evaluate(
+        "document.querySelector('#worker-comparison').scrollIntoView()",
+      );
+      await browser.screenshot(
+        `test-results/screenshots/solver-workers-${width}.png`,
+      );
+    }
     const protections = await browser.evaluate(`(()=>{
       const text=document.body.innerText;
       return {comparison:!!document.querySelector('#contact-scheduling'),

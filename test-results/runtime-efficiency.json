@@ -1,0 +1,174 @@
+{
+  "passed": true,
+  "date": "2026-10-11T23:29:50.594Z",
+  "method": "Rendering only: 10 warmup draws and 20 alternating samples per path; same unmoved scene and pixel-identical images. Draw times use GPU timestamps; submission times measure CPU encoding. Paused input, sizing, backpressure and readback lifecycle checks.",
+  "results": [
+    {
+      "scheduling": {
+        "held": 0.02,
+        "elapsed": 0.04,
+        "steps": 4,
+        "draws": 1,
+        "rejected": true,
+        "stopped": true
+      }
+    },
+    {
+      "adaptation": [
+        {
+          "dimension": 2,
+          "startupPreserved": true,
+          "adapted": true
+        },
+        {
+          "dimension": 3,
+          "startupPreserved": true,
+          "adapted": true
+        }
+      ]
+    },
+    {
+      "scene": "3d-sphere-contacts",
+      "bodies": 27,
+      "boxInstances": 27,
+      "compact": false,
+      "customMeshes": 0,
+      "customMeshDraws": 0,
+      "idleDraws": 0,
+      "afterInput": 1,
+      "afterResize": 2,
+      "identical": true,
+      "fullDrawMs": 0.013312,
+      "compactDrawMs": 0.013312,
+      "fullSubmitMs": 0.1950000524520874,
+      "compactSubmitMs": 0.17500007152557373,
+      "counters": {
+        "pairs": 0,
+        "contacts": 0,
+        "manifolds": 0,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 1
+      },
+      "errors": [],
+      "events": []
+    },
+    {
+      "scene": "3d-static-terrain",
+      "bodies": 2416,
+      "boxInstances": 40,
+      "compact": true,
+      "customMeshes": 2,
+      "customMeshDraws": 1,
+      "idleDraws": 0,
+      "afterInput": 1,
+      "afterResize": 2,
+      "identical": true,
+      "fullDrawMs": 0.177152,
+      "compactDrawMs": 0.116736,
+      "fullSubmitMs": 0.17500007152557373,
+      "compactSubmitMs": 0.20000004768371582,
+      "counters": {
+        "pairs": 0,
+        "contacts": 0,
+        "manifolds": 0,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 1
+      },
+      "errors": [],
+      "events": []
+    },
+    {
+      "scene": "3d-voronoi-demolition",
+      "bodies": 222,
+      "boxInstances": 222,
+      "compact": false,
+      "customMeshes": 216,
+      "customMeshDraws": 1,
+      "idleDraws": 0,
+      "afterInput": 1,
+      "afterResize": 2,
+      "identical": true,
+      "fullDrawMs": 0.067584,
+      "compactDrawMs": 0.06144,
+      "fullSubmitMs": 0.25999999046325684,
+      "compactSubmitMs": 0.15000009536743164,
+      "counters": {
+        "pairs": 112,
+        "contacts": 0,
+        "manifolds": 0,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 6
+      },
+      "errors": [],
+      "events": []
+    },
+    {
+      "scene": "showcase-ragdolls-on-cloth-24k",
+      "bodies": 23617,
+      "boxInstances": 1,
+      "compact": true,
+      "customMeshes": 0,
+      "customMeshDraws": 0,
+      "idleDraws": 0,
+      "afterInput": 1,
+      "afterResize": 2,
+      "identical": true,
+      "fullDrawMs": 3.570688,
+      "compactDrawMs": 3.065856,
+      "fullSubmitMs": 0.20500004291534424,
+      "compactSubmitMs": 0.23000001907348633,
+      "counters": {
+        "pairs": 0,
+        "contacts": 0,
+        "manifolds": 0,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 5
+      },
+      "errors": [],
+      "events": []
+    },
+    {
+      "scene": "showcase-box-columns-100k",
+      "bodies": 100001,
+      "boxInstances": 100001,
+      "compact": false,
+      "customMeshes": 0,
+      "customMeshDraws": 0,
+      "idleDraws": 0,
+      "afterInput": 1,
+      "afterResize": 2,
+      "identical": true,
+      "fullDrawMs": 2.459648,
+      "compactDrawMs": 2.454528,
+      "fullSubmitMs": 0.18500006198883057,
+      "compactSubmitMs": 0.1799999475479126,
+      "counters": {
+        "pairs": 100000,
+        "contacts": 400000,
+        "manifolds": 100000,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 3
+      },
+      "errors": [],
+      "events": []
+    },
+    {
+      "readback": {
+        "shared": true,
+        "reused": true,
+        "firstTick": 0,
+        "nextTick": 1,
+        "stateLength": 1576,
+        "shotLength": 192,
+        "waterSamples": 10,
+        "drawSamples": 10,
+        "errors": []
+      }
+    }
+  ]
+}

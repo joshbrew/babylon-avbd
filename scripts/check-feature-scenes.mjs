@@ -6,7 +6,7 @@ const assert = (condition, message) => {
   if (!condition) throw Error(message);
 };
 async function load(id) {
-  await browser.navigate(`?demo=canonical&scene=${id}&backend=gpu&paused=1`);
+  await browser.navigate(`?demo=canonical&scope=main&scene=${id}&backend=gpu&paused=1`);
   for (let i = 0; i < 400; i++) {
     if (await browser.evaluate("globalThis.__AVBD_LAB__?.diagnostics.ready"))
       return;

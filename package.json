@@ -1,6 +1,6 @@
 {
   "name": "avbd-babylon",
-  "version": "0.3.0",
+  "version": "0.2.0",
   "description": "GPU AVBD rigid-body physics with a Babylon.js aggregate API",
   "main": "./dist/avbd.js",
   "types": "./dist/avbd.d.ts",
@@ -43,11 +43,28 @@
     "benchmark:backends": "node scripts/build.mjs && node scripts/benchmark-backends.mjs",
     "benchmark:native": "node scripts/benchmark-package.mjs",
     "benchmark:sleeping": "node scripts/benchmark-package.mjs",
+    "benchmark:connected-sleep": "node scripts/benchmark-connected-sleep.mjs",
+    "benchmark:small-groups": "node scripts/benchmark-small-groups.mjs",
     "benchmark:native-edits": "node scripts/check-native-performance.mjs",
     "benchmark:renderers": "node scripts/build.mjs && node scripts/benchmark-renderers.mjs",
+    "benchmark:particles": "node scripts/build.mjs && node scripts/benchmark-particles.mjs && node scripts/report-particles.mjs",
     "test:connected-phone": "node scripts/check-connected-contacts.mjs",
+    "test:connected-demos": "node scripts/check-connected-demos.mjs",
     "test:webgl-scenes": "node scripts/build.mjs && node scripts/check-webgl-demos.mjs",
-    "test:compatibility-performance": "node scripts/build.mjs && node scripts/check-compatibility-performance.mjs"
+    "test:compatibility-performance": "node scripts/build.mjs && node scripts/check-compatibility-performance.mjs",
+    "test:workers": "node scripts/build.mjs && node scripts/check-runtime-efficiency.mjs && node scripts/check-workers.mjs",
+    "benchmark:workers": "node scripts/build.mjs && node scripts/benchmark-workers.mjs && node scripts/report-workers.mjs && node scripts/report-solver.mjs",
+    "test:execution": "node scripts/build.mjs && node scripts/check-execution-ui.mjs",
+    "test:naval": "node scripts/build.mjs && node scripts/check-naval.mjs",
+    "benchmark:naval": "node scripts/build.mjs && node scripts/benchmark-naval.mjs",
+    "test:terrain": "node scripts/check-terrain-cooking.mjs && node scripts/build-library.mjs && node scripts/build.mjs && node scripts/check-terrain.mjs && node scripts/check-terrain-import.mjs",
+    "benchmark:hploc-refit": "node scripts/benchmark-hploc-refit.mjs",
+    "benchmark:gpu-uploads": "node scripts/benchmark-webgpu-uploads.mjs",
+    "benchmark:gpu-scheduling": "node scripts/benchmark-color-buckets.mjs",
+    "benchmark:movement": "node scripts/benchmark-movement-solve.mjs",
+    "benchmark:gpu-encoding": "node scripts/benchmark-command-encoding.mjs",
+    "test:playgrounds": "node scripts/build.mjs && node scripts/check-siege-damage.mjs && node scripts/check-galton-statistics.mjs && node scripts/check-galton-startup.mjs && node scripts/check-galton-pegs.mjs && node scripts/check-lab-timing.mjs && node scripts/check-lab-step-rate.mjs && node scripts/check-lab-sleep.mjs && node scripts/check-playgrounds.mjs && node scripts/check-slingshot-input.mjs && node scripts/check-slingshot-game.mjs",
+    "test:demo-startup": "node scripts/build.mjs && node scripts/check-demo-startup.mjs --all"
   },
   "license": "MIT",
   "repository": {
@@ -92,6 +109,11 @@
       "import": "./dist/native.js",
       "default": "./dist/native.js"
     },
+    "./utils": {
+      "types": "./dist/utilities.d.ts",
+      "import": "./dist/utilities.js",
+      "default": "./dist/utilities.js"
+    },
     "./global": {
       "types": "./dist/avbd.global.d.ts",
       "default": "./dist/avbd.global.js"
@@ -109,6 +131,8 @@
     "dist/native.d.ts",
     "dist/gpuDevice.d.ts",
     "dist/solverPipeline.d.ts",
+    "dist/utilities.js",
+    "dist/utilities.d.ts",
     "dist/NOTICE",
     "LICENSE",
     "README.md",

@@ -1,4 +1,8 @@
 import { GlCompute } from "../src/webgl/compute.js";
+import {
+  checkReleasedCompute,
+  destroyComputeAndCheck,
+} from "./webgl-resources.js";
 import { GlSolve2D } from "../src/webgl/solve2D.js";
 const check = (value, message) => {
   if (!value) throw Error(message);
@@ -459,8 +463,8 @@ export async function checkGlSolve2D(source) {
     solver?.destroy();
     for (const b of resources) b.destroy();
     for (const t of [...c.textures]) c.release(t);
-    check(c.programs.size === 0, "Leaked solve shader");
-    c.destroy();
+    checkReleasedCompute(c);
+    destroyComputeAndCheck(c);
     device.destroy();
   }
 }

@@ -1,4 +1,4 @@
-import { GpuSolver3D } from "../../reference/three-avbd/src/avbd3d/gpu/solver.ts";
+import { GpuSolver3D } from "../vendor/three-avbd-lib/solver3D.ts";
 import {
   protectSolverStep,
   projectedContactSolve,
@@ -8,6 +8,7 @@ import {
 import { solveWGSL } from "../../reference/three-avbd/src/avbd3d/gpu/wgsl-solve.ts";
 import constraintFrames from "./constraintFrames.wgsl";
 import { WorldSleeping } from "./worldSleeping.js";
+import { selectSmallGroup3D } from "./smallGroup3D.js";
 import {
   initialSpringMaterial,
   springMaterial,
@@ -20,7 +21,11 @@ import {
 } from "../../reference/three-avbd/src/avbd3d/ref/forces.ts";
 import { GpuHploc } from "./gpuHploc.js";
 import { encodeGpuSolverStep } from "./gpuSolverStep.js";
-import { cachedAdjacencyWGSL } from "./gpuTopologyKernels.js";
+import {
+  cachedAdjacencyWGSL,
+  bitsetColorCountWGSL,
+} from "./gpuTopologyKernels.js";
+import { selectColorBuckets } from "./colorBuckets.js";
 import { select } from "../../reference/three-avbd/src/avbd3d/gpu/radii.ts";
 import { T_SPRING } from "../../reference/three-avbd/src/avbd3d/gpu/layout.ts";
 import {
@@ -46,20 +51,40 @@ import { withCapsuleContacts } from "./capsuleCollision.js";
 import { ShapeQueries } from "./shapeQueries.js";
 import { propertyEdits } from "./bufferEdits.js";
 import { writePassConstants } from "./passConstants.js";
+import { writeStepParams3D } from "./stepParams.js";
+import { withPackedAccumulator3D } from "./packedAccumulator3D.js";
+import { withCompactBodies3D } from "./compactBodies3D.js";
+import { withParallelDual3D, selectDualArgs3D } from "./parallelDual3D.js";
 import { gpuExecutionPolicy3D } from "./executionPolicy3D.js";
 import { scalarPrimal3D } from "./scalarPrimal3D.js";
 import { portableContactSolve3D } from "./portableContactSolve3D.js";
 import { portableHullContacts3D } from "./portableHullContacts3D.js";
 import { hullOf } from "../../reference/three-avbd/src/avbd3d/shapes.ts";
 
+// Keep the selected equations and reduction order while sharing independent
+// contact-point updates and avoiding redundant symmetric matrix entries.
+function movementSource(source, selected) {
+  if (selected === "points") source = withPackedAccumulator3D(source);
+  if (selected === "points" || selected === "optimized")
+    source = withParallelDual3D(source);
+  return source;
+}
 // A scene may need a minimum coloring budget while its contact graph changes.
 // Preserve that budget after adaptation, which otherwise shrinks it following
 // three quiet counter reads. This policy does not change the AVBD equations.
 export class AppGpuSolver3D extends GpuSolver3D {
+  writeParams() {
+    writeStepParams3D.call(this);
+  }
   writePassConstants(iterations, alpha) {
     writePassConstants.call(this, iterations, alpha);
   }
   constructor(device, ref, options = {}) {
+    if (
+      options.smallGroups !== undefined &&
+      typeof options.smallGroups !== "boolean"
+    )
+      throw Error("smallGroups must be a boolean");
     const executionPolicy = gpuExecutionPolicy3D(device);
     const scalarPrimal =
       options.scalarPrimal ?? executionPolicy?.scalarPrimal ?? false;
@@ -115,70 +140,86 @@ export class AppGpuSolver3D extends GpuSolver3D {
       if (key === "minimumColorRounds" && value % 2)
         throw Error("minimumColorRounds must be even");
     }
+    const initialSource = movementSource(
+      source ?? solveWGSL,
+      decision.selected,
+    );
     let initialSolve = protectSolverStep(
       withJointRestFrames(
         angularConstraints
           ? withAngularConstraints(
               springFracture
-                ? withSpringFracture(source ?? solveWGSL)
-                : (source ?? solveWGSL),
+                ? withSpringFracture(initialSource)
+                : initialSource,
             )
           : springFracture
-            ? withSpringFracture(source ?? solveWGSL)
-            : (source ?? solveWGSL),
+            ? withSpringFracture(initialSource)
+            : initialSource,
       ),
     );
     if (scalarPrimal) initialSolve = scalarPrimal3D(initialSolve);
     if (portableContactMath)
       initialSolve = portableContactSolve3D(initialSolve);
-    const initialPortableHulls =
-      portableContactMath &&
+    if (
+      decision.selected === "points" &&
+      !scalarPrimal &&
+      !portableContactMath &&
+      !executionPolicy?.dispatchIsolation
+    )
+      initialSolve = withCompactBodies3D(initialSolve);
+    const initialHulls =
       !options.shaders?.contacts &&
       options.hulls !== false &&
       device.limits.maxStorageBuffersPerShaderStage >= 9 &&
       ref.bodies.some((body) => hullOf(body));
+    const initialCapsules =
+      !options.shaders?.contacts && ref.bodies.some((body) => isCapsule(body));
+    const initialSensors =
+      !options.shaders?.contacts && ref.bodies.some((body) => body.isTrigger);
+    if (initialSensors) initialSolve = sensorSolve(initialSolve);
+    const contactSource = (code) => {
+      if (initialCapsules) code = withCapsuleContacts(code);
+      if (initialSensors) code = sensorContacts(code);
+      code = portableContactCache(code);
+      return portableContactMath ? portableHullContacts3D(code) : code;
+    };
     super(device, ref, {
       ...options,
       shaders: {
         ...options.shaders,
-        contacts: initialPortableHulls
-          ? portableHullContacts3D(makeContactsWGSL(true))
-          : options.shaders?.contacts,
+        // Compile the complete initial contact kernel once. Installing cache,
+        // hull and capsule support afterward repeatedly compiled unused kernels.
+        contacts:
+          options.shaders?.contacts ??
+          contactSource(makeContactsWGSL(initialHulls)),
         solve: initialSolve,
+        refs:
+          options.shaders?.refs ??
+          (!options.shaders?.contacts
+            ? portableContactRefs(refsWGSL)
+            : undefined),
+        topology:
+          options.shaders?.topology ??
+          (initialSensors ? sensorTopology() : undefined),
       },
     });
     this.solverPolicy = policy;
     this.scalarPrimal = scalarPrimal;
     this.portableContactMath = portableContactMath;
+    if (initialSensors) {
+      this.sensorsEnabled = true;
+      clearSensorFlags(this);
+    }
     if (scalarPrimal) this.primalLanes = [1, 1, 1];
     this.dispatchIsolation = executionPolicy?.dispatchIsolation ?? false;
     if (!options.shaders?.contacts) {
       // Initial hull uploads happen in the base constructor. Their compatible
       // pipeline is already installed; keep later hull/capsule/sensor upgrades.
-      if (initialPortableHulls) {
-        this.contactShaders.custom = false;
-        this.hullShaders = true;
-      }
+      this.contactShaders.custom = false;
+      this.hullShaders = initialHulls;
+      this.capsulesEnabled = initialCapsules;
       const make = this.contactShaders.make;
-      this.contactShaders.make = (code) =>
-        make(
-          portableContactMath
-            ? portableHullContacts3D(portableContactCache(code))
-            : portableContactCache(code),
-        );
-      this.contactShaders.make(makeContactsWGSL(this.hullShaders ?? false));
-      this.pipes.updateRefs = device.createComputePipeline({
-        label: "Portable contact references",
-        layout: device.createPipelineLayout({
-          bindGroupLayouts: [this.layouts.refs],
-        }),
-        compute: {
-          module: device.createShaderModule({
-            code: portableContactRefs(refsWGSL),
-          }),
-          entryPoint: "updateRefs",
-        },
-      });
+      this.contactShaders.make = (code) => make(contactSource(code));
     }
     this.springFracture = springFracture;
     this.angularConstraints = angularConstraints;
@@ -192,6 +233,7 @@ export class AppGpuSolver3D extends GpuSolver3D {
       : (options.adaptiveScheduling ?? true);
     this.defaultPrimalLanes = [...this.primalLanes];
     this.cacheAdjacencyKeys = options.cacheAdjacencyKeys;
+    this.smallGroups = options.smallGroups;
     this.adjacencyPipelines = { original: this.pipes.sortAdjacency };
     this.selectAdjacencyPipeline();
     this.solverDecision = decision;
@@ -209,6 +251,10 @@ export class AppGpuSolver3D extends GpuSolver3D {
         ),
       ],
     ]);
+    selectDualArgs3D(
+      this,
+      decision.selected === "points" || decision.selected === "optimized",
+    );
     this.minimumColors = options.minimumColors ?? 0;
     this.minimumColorRounds = options.minimumColorRounds ?? 4;
     this.colorCap = Math.max(this.minimumColors, this.colorCap);
@@ -342,8 +388,10 @@ export class AppGpuSolver3D extends GpuSolver3D {
     };
   }
   step() {
+    selectColorBuckets(this, bitsetColorCountWGSL);
     this.selectAdjacencyPipeline();
     this.selectSolver();
+    selectSmallGroup3D(this);
     if (this.radiiDirty) {
       this.uploadStatics();
       this.selectBroadphase();
@@ -367,6 +415,7 @@ export class AppGpuSolver3D extends GpuSolver3D {
     }
     if (
       this.dispatchIsolation ||
+      this.smallGroupPipeline ||
       this.bvh ||
       this.detailCallback ||
       this.sleeping ||
@@ -418,13 +467,21 @@ export class AppGpuSolver3D extends GpuSolver3D {
     this.selectSolver();
     return this.solverDecision;
   }
-  solveSource(source) {
+  solveSource(source, selected = this.solverDecision.selected) {
+    source = movementSource(source, selected);
     if (this.springFracture) source = withSpringFracture(source);
     if (this.angularConstraints) source = withAngularConstraints(source);
     if (this.sensorsEnabled) source = sensorSolve(source);
     source = protectSolverStep(withJointRestFrames(source));
     if (this.scalarPrimal) source = scalarPrimal3D(source);
     if (this.portableContactMath) source = portableContactSolve3D(source);
+    if (
+      selected === "points" &&
+      !this.scalarPrimal &&
+      !this.portableContactMath &&
+      !this.dispatchIsolation
+    )
+      source = withCompactBodies3D(source);
     return source;
   }
   setAngularConstraint(slot, options) {
@@ -493,6 +550,8 @@ export class AppGpuSolver3D extends GpuSolver3D {
   }
   rebuildSolvePipelines() {
     this.solvePipelineCache.clear();
+    this.smallGroupPipelines?.clear();
+    this.smallGroupPipeline = null;
     const selected = this.solverDecision.selected;
     const source =
       selected === "custom"
@@ -599,7 +658,7 @@ export class AppGpuSolver3D extends GpuSolver3D {
               ? pointLanesContactSolve
               : undefined;
         const module = this.device.createShaderModule({
-          code: this.solveSource(source ?? solveWGSL),
+          code: this.solveSource(source ?? solveWGSL, decision.selected),
         });
         const layout = this.device.createPipelineLayout({
           bindGroupLayouts: [this.layouts.solve, this.layouts.pass],
@@ -625,6 +684,10 @@ export class AppGpuSolver3D extends GpuSolver3D {
       Object.assign(this.pipes, pipelines);
     }
     this.solverDecision = decision;
+    selectDualArgs3D(
+      this,
+      decision.selected === "points" || decision.selected === "optimized",
+    );
   }
   profileDetailedNextStep(callback) {
     if (

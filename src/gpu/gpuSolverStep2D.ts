@@ -35,6 +35,7 @@ export function encodeGpuSolverStep2D(this: any): void {
 
   const timed = this.timingCallback !== null && this.timing !== null;
   let pass!: GPUComputePassEncoder;
+  let boundGroup: GPUBindGroup | undefined;
   let phase = 0;
   const split = timed || this.splitPasses;
   const beginPhase = () => {
@@ -50,18 +51,25 @@ export function encodeGpuSolverStep2D(this: any): void {
           }
         : undefined,
     });
+    boundGroup = undefined;
     phase++;
   };
   const G = this.groups;
+  // Scans and sleeping helpers own their bindings; invalidate after each one.
+  const bind = (group: GPUBindGroup) => {
+    if (boundGroup === group) return;
+    pass.setBindGroup(0, group);
+    boundGroup = group;
+  };
   const run = (name: string, group: GPUBindGroup, x: number) => {
     if (x <= 0) return;
     pass.setPipeline(this.pipes[name]);
-    pass.setBindGroup(0, group);
+    bind(group);
     pass.dispatchWorkgroups(x);
   };
   const runIndirect = (name: string, group: GPUBindGroup, argsWord: number) => {
     pass.setPipeline(this.pipes[name]);
-    pass.setBindGroup(0, group);
+    bind(group);
     pass.dispatchWorkgroupsIndirect(this.argsBuffer, argsWord * 4);
   };
 
@@ -72,6 +80,7 @@ export function encodeGpuSolverStep2D(this: any): void {
   runIndirect("hashInsert", G.contacts[cur], IA_PREV);
   run("gridCount", G.broad, groups(N));
   this.gridScan.encode(pass);
+  boundGroup = undefined;
   run("gridScatter", G.broad, groups(N));
   run("findPairs", G.broad, groups(N));
   run("argsPairs", G.args, 1);
@@ -79,12 +88,14 @@ export function encodeGpuSolverStep2D(this: any): void {
   run("argsContacts", G.args, 1);
 
   this.sleeping?.encodeWake(pass, cur);
+  boundGroup = undefined;
 
   // Adjacency
   beginPhase();
   run("degreeJoints", G.topo[cur], groups(J));
   runIndirect("degreeContacts", G.topo[cur], IA_CONTACTS);
   this.adjScan!.encode(pass);
+  boundGroup = undefined;
   run("fillJoints", G.topo[cur], groups(J));
   runIndirect("fillContacts", G.topo[cur], IA_CONTACTS);
   run("sortAdjacency", G.topo[cur], groups(N));
@@ -97,6 +108,7 @@ export function encodeGpuSolverStep2D(this: any): void {
     run(r % 2 === 0 ? "colorRoundAB" : "colorRoundBA", G.topo[cur], groups(N));
   run("colorCount", G.topo[cur], this.colorGroups);
   this.colorHistScan.encode(pass);
+  boundGroup = undefined;
   run("colorStarts", G.topo[cur], 1);
   run("argsColors", G.args, 1);
   run("colorScatter", G.topo[cur], this.colorGroups);
@@ -104,8 +116,15 @@ export function encodeGpuSolverStep2D(this: any): void {
   // Solve
   beginPhase();
   const perIteration = this.colorCap + 1;
-  const setPass = (entry: number) =>
-    pass.setBindGroup(1, this.passGroup!, [entry * PASS_STRIDE]);
+  // A reused sequence avoids the typed-array overload cost for one offset.
+  const offsets = (this.passOffsets ??= [0]);
+  let lastEntry = -1;
+  const setPass = (entry: number) => {
+    if (entry === lastEntry) return;
+    offsets[0] = entry * PASS_STRIDE;
+    pass.setBindGroup(1, this.passGroup!, offsets);
+    lastEntry = entry;
+  };
   pass.setBindGroup(0, G.solve[cur]);
   setPass(0);
   if (J > 0) {

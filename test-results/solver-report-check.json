@@ -19,6 +19,17 @@
         "limits": true,
         "hiddenHardware": true
       },
+      "connectedSleep": {
+        "bars": 2,
+        "rows": 2,
+        "plain": true,
+        "screenshot": "screenshots/solver-connected-sleep-1440.png"
+      },
+      "workers": {
+        "rows": 16,
+        "choices": true,
+        "explanation": true
+      },
       "protections": {
         "comparison": true,
         "protection": true
@@ -46,6 +57,16 @@
         "paperScenes": true,
         "limits": true,
         "hiddenHardware": true
+      },
+      "connectedSleep": {
+        "bars": 2,
+        "rows": 2,
+        "plain": true
+      },
+      "workers": {
+        "rows": 16,
+        "choices": true,
+        "explanation": true
       },
       "protections": {
         "comparison": true,

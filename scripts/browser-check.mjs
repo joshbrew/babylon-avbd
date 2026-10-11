@@ -3,10 +3,15 @@ import { readFile, mkdtemp, rm } from "node:fs/promises";
 import { resolve, join, extname, sep } from "node:path";
 import { tmpdir } from "node:os";
 import { spawn } from "node:child_process";
+import { writeAtomicFile } from "./report-file.mjs";
 
-export async function browserCheck() {
+export async function browserCheck({ isolated = true } = {}) {
   const root = resolve(".");
   const server = createServer(async (req, res) => {
+    if(isolated) {
+      res.setHeader("Cross-Origin-Opener-Policy", "same-origin");
+      res.setHeader("Cross-Origin-Embedder-Policy", "require-corp");
+    }
     try {
       const path = resolve(
         root,
@@ -130,9 +135,7 @@ export async function browserCheck() {
       }),
     screenshot: async (path) => {
       const r = await call("Page.captureScreenshot", { format: "png" });
-      await import("node:fs/promises").then((fs) =>
-        fs.writeFile(path, Buffer.from(r.data, "base64")),
-      );
+      await writeAtomicFile(path, Buffer.from(r.data, "base64"));
     },
     close: async () => {
       try {

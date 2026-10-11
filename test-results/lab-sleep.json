@@ -1,0 +1,48 @@
+{
+  "passed": true,
+  "results": [
+    {
+      "scene": "2d-stack",
+      "defaultSleeping": false,
+      "toggle": true,
+      "bowling": false,
+      "errors": []
+    },
+    {
+      "scene": "3d-stack",
+      "defaultSleeping": false,
+      "toggle": true,
+      "bowling": false,
+      "errors": []
+    },
+    {
+      "scene": "showcase-box-columns-100k",
+      "defaultSleeping": true,
+      "toggle": true,
+      "bowling": false,
+      "errors": []
+    },
+    {
+      "scene": "3d-100k-rook-impact",
+      "defaultSleeping": true,
+      "toggle": true,
+      "bowling": false,
+      "errors": []
+    },
+    {
+      "scene": "paper-walls-510k-3",
+      "defaultSleeping": true,
+      "toggle": true,
+      "bowling": true,
+      "errors": []
+    },
+    {
+      "scene": "paper-walls-510k-4",
+      "defaultSleeping": true,
+      "toggle": true,
+      "bowling": true,
+      "errors": []
+    }
+  ],
+  "screenshots": []
+}

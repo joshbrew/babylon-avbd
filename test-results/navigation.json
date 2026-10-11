@@ -22,7 +22,7 @@
       "passed": true
     },
     {
-      "page": "?demo=gpu-stress",
+      "page": "?demo=gpu-stress&scope=main",
       "passed": true
     },
     {

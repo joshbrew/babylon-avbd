@@ -3,12 +3,14 @@ import {
   PRELUDE_3D,
   TOPOLOGY_ACCESSORS_3D,
 } from "../../reference/three-avbd/src/avbd3d/gpu/layout.ts";
+import { withBitsetColorBuckets } from "./colorBuckets.js";
 
 // Cache sort keys for short adjacency lists. Large lists retain the original
 // insertion sort; key ordering and constraint accumulation order are identical.
 const original =
   "  let list = params.adjListOffset;\n  for (var i = lo + 1u; i < hi; i++) {";
 const source = makeTopologyWGSL(PRELUDE_3D, TOPOLOGY_ACCESSORS_3D);
+export const bitsetColorCountWGSL = withBitsetColorBuckets(source);
 if (source.split(original).length !== 2)
   throw Error("Pinned adjacency sort changed; review the cached-key variant");
 export const cachedAdjacencyWGSL = source.replace(

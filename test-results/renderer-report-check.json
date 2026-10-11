@@ -4,8 +4,8 @@
     {
       "width": 1440,
       "scroll": 1425,
-      "cards": 68,
-      "bars": 136,
+      "cards": 8,
+      "bars": 16,
       "hardware": true,
       "navigation": [
         "../",
@@ -13,13 +13,13 @@
         "solver-performance.html"
       ],
       "separate": true,
-      "images": 69
+      "images": 8
     },
     {
       "width": 390,
       "scroll": 375,
-      "cards": 68,
-      "bars": 136,
+      "cards": 8,
+      "bars": 16,
       "hardware": true,
       "navigation": [
         "../",
@@ -27,7 +27,7 @@
         "solver-performance.html"
       ],
       "separate": true,
-      "images": 69
+      "images": 8
     },
     {
       "contactSamples": {
@@ -55,7 +55,8 @@
         "errors": [],
         "broadphase": "auto",
         "solverMode": "auto",
-        "renderer": "babylon"
+        "renderer": "babylon",
+        "backend": "webgpu"
       },
       "live": "2d-mixed-shapes",
       "restored": {

@@ -1,4 +1,8 @@
 import { GlCompute } from "../src/webgl/compute.js";
+import {
+  checkReleasedCompute,
+  destroyComputeAndCheck,
+} from "./webgl-resources.js";
 import { GlBroadphase } from "../src/webgl/broadphase.js";
 import { GlColoring } from "../src/webgl/coloring.js";
 const check = (value, message) => {
@@ -184,12 +188,9 @@ export async function checkGlColoring() {
           for (const resource of resources) c.release(resource);
         }
       }
-    check(
-      c.textures.size === 0 && c.programs.size === 0,
-      "GPU coloring leaked resources",
-    );
+    checkReleasedCompute(c);
     return { passed: true, rows };
   } finally {
-    c.destroy();
+    destroyComputeAndCheck(c);
   }
 }

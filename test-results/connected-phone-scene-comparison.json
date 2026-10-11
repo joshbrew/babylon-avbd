@@ -1,0 +1,311 @@
+{
+  "hardware": "Samsung Galaxy S23 (SM-S911U1)",
+  "measuredAt": "2026-10-11T21:41:21.387Z",
+  "scope": "Physical phone, worker physics and direct WebGPU drawing, enhanced quality. Sequential short runs; clock speeds can vary.",
+  "results": [
+    {
+      "scene": "showcase-chain-mail-1.6k",
+      "repeat": 0,
+      "result": {
+        "scene": "showcase-chain-mail-1.6k",
+        "steps": 90,
+        "backend": "gpu",
+        "renderer": "webgpu",
+        "dimension": 3,
+        "bodies": 1602,
+        "iterations": 10,
+        "timeStep": 0.016666666666666666,
+        "adapter": {
+          "vendor": "",
+          "architecture": "",
+          "device": "",
+          "description": ""
+        },
+        "worker": true,
+        "sharedInput": false,
+        "bowling": false,
+        "sleepingEnabled": false,
+        "warmup": 30,
+        "samples": 60,
+        "cpuSubmitMs": {
+          "mean": 1.1165000011523565,
+          "median": 1.104999989271164,
+          "p95": 1.449999988079071,
+          "samples": 60
+        },
+        "completionMs": {
+          "mean": 36.33925000280142,
+          "median": 36.82500001788139,
+          "p95": 40.08500000834465,
+          "samples": 60
+        },
+        "frameMs": {
+          "mean": 48.942333333333345,
+          "median": 50.05500000000029,
+          "p95": 50.06500000000051,
+          "samples": 60
+        },
+        "physicsMs": {
+          "mean": 8.2771968,
+          "median": 7.667712,
+          "p95": 10.027008,
+          "samples": 60
+        },
+        "physicsClock": "GPU timestamps",
+        "collisionMs": {
+          "mean": 1.3609642666666673,
+          "median": 1.245184,
+          "p95": 1.900544,
+          "samples": 60
+        },
+        "drawMs": {
+          "mean": 3.2669696000000004,
+          "median": 3.2768,
+          "p95": 3.342336,
+          "samples": 60
+        },
+        "waterMs": null,
+        "inputs": 0,
+        "counters": {
+          "pairs": 60,
+          "contacts": 40,
+          "manifolds": 40,
+          "overflow": 0,
+          "clashes": 0,
+          "colors": 5
+        },
+        "errors": [],
+        "measuredStepsPerFrame": 1,
+        "sceneAction": null
+      }
+    },
+    {
+      "scene": "showcase-chain-mail-1.6k",
+      "repeat": 1,
+      "result": {
+        "scene": "showcase-chain-mail-1.6k",
+        "steps": 180,
+        "backend": "gpu",
+        "renderer": "webgpu",
+        "dimension": 3,
+        "bodies": 1602,
+        "iterations": 10,
+        "timeStep": 0.016666666666666666,
+        "adapter": {
+          "vendor": "",
+          "architecture": "",
+          "device": "",
+          "description": ""
+        },
+        "worker": true,
+        "sharedInput": false,
+        "bowling": false,
+        "sleepingEnabled": false,
+        "warmup": 30,
+        "samples": 60,
+        "cpuSubmitMs": {
+          "mean": 1.143333331743876,
+          "median": 1.1349999904632568,
+          "p95": 1.520000010728836,
+          "samples": 60
+        },
+        "completionMs": {
+          "mean": 36.42533333152532,
+          "median": 36.889999985694885,
+          "p95": 40.270000010728836,
+          "samples": 60
+        },
+        "frameMs": {
+          "mean": 47.83658333333333,
+          "median": 50.05999999999949,
+          "p95": 50.090000000000146,
+          "samples": 60
+        },
+        "physicsMs": {
+          "mean": 8.563370666666668,
+          "median": 8.585216,
+          "p95": 9.043968,
+          "samples": 60
+        },
+        "physicsClock": "GPU timestamps",
+        "collisionMs": {
+          "mean": 1.4002858666666662,
+          "median": 1.376256,
+          "p95": 1.572864,
+          "samples": 60
+        },
+        "drawMs": {
+          "mean": 3.2822613333333326,
+          "median": 3.2768,
+          "p95": 3.342336,
+          "samples": 60
+        },
+        "waterMs": null,
+        "inputs": 0,
+        "counters": {
+          "pairs": 14,
+          "contacts": 3,
+          "manifolds": 3,
+          "overflow": 0,
+          "clashes": 0,
+          "colors": 5
+        },
+        "errors": [],
+        "measuredStepsPerFrame": 1,
+        "sceneAction": null
+      }
+    },
+    {
+      "scene": "3d-voronoi-demolition",
+      "repeat": 0,
+      "result": {
+        "scene": "3d-voronoi-demolition",
+        "steps": 90,
+        "backend": "gpu",
+        "renderer": "webgpu",
+        "dimension": 3,
+        "bodies": 222,
+        "iterations": 10,
+        "timeStep": 0.004166666666666667,
+        "adapter": {
+          "vendor": "",
+          "architecture": "",
+          "device": "",
+          "description": ""
+        },
+        "worker": true,
+        "sharedInput": false,
+        "bowling": false,
+        "sleepingEnabled": false,
+        "warmup": 30,
+        "samples": 60,
+        "cpuSubmitMs": {
+          "mean": 1.2392499993244808,
+          "median": 1.1949999928474426,
+          "p95": 1.6899999976158142,
+          "samples": 60
+        },
+        "completionMs": {
+          "mean": 59.01058333367109,
+          "median": 59.19000002741814,
+          "p95": 65.875,
+          "samples": 60
+        },
+        "frameMs": {
+          "mean": 67.30525000000002,
+          "median": 66.75,
+          "p95": 83.40999999999985,
+          "samples": 60
+        },
+        "physicsMs": {
+          "mean": 10.394009599999997,
+          "median": 10.420224,
+          "p95": 10.682368,
+          "samples": 60
+        },
+        "physicsClock": "GPU timestamps",
+        "collisionMs": {
+          "mean": 2.844262399999999,
+          "median": 2.883584,
+          "p95": 2.94912,
+          "samples": 60
+        },
+        "drawMs": {
+          "mean": 0.46858239999999995,
+          "median": 0.458752,
+          "p95": 0.524288,
+          "samples": 60
+        },
+        "waterMs": null,
+        "inputs": 0,
+        "counters": {
+          "pairs": 113,
+          "contacts": 0,
+          "manifolds": 0,
+          "overflow": 0,
+          "clashes": 0,
+          "colors": 6
+        },
+        "errors": [],
+        "measuredStepsPerFrame": 1,
+        "sceneAction": null
+      }
+    },
+    {
+      "scene": "3d-voronoi-demolition",
+      "repeat": 1,
+      "result": {
+        "scene": "3d-voronoi-demolition",
+        "steps": 180,
+        "backend": "gpu",
+        "renderer": "webgpu",
+        "dimension": 3,
+        "bodies": 222,
+        "iterations": 10,
+        "timeStep": 0.004166666666666667,
+        "adapter": {
+          "vendor": "",
+          "architecture": "",
+          "device": "",
+          "description": ""
+        },
+        "worker": true,
+        "sharedInput": false,
+        "bowling": false,
+        "sleepingEnabled": false,
+        "warmup": 30,
+        "samples": 60,
+        "cpuSubmitMs": {
+          "mean": 1.136083336174488,
+          "median": 1.1399999856948853,
+          "p95": 1.5149999856948853,
+          "samples": 60
+        },
+        "completionMs": {
+          "mean": 57.314166669050856,
+          "median": 58.064999997615814,
+          "p95": 66.26500001549721,
+          "samples": 60
+        },
+        "frameMs": {
+          "mean": 66.1986666666667,
+          "median": 66.75500000000102,
+          "p95": 83.51000000000204,
+          "samples": 60
+        },
+        "physicsMs": {
+          "mean": 10.302259200000004,
+          "median": 10.289152,
+          "p95": 10.616832,
+          "samples": 60
+        },
+        "physicsClock": "GPU timestamps",
+        "collisionMs": {
+          "mean": 2.778726399999999,
+          "median": 2.752512,
+          "p95": 2.883584,
+          "samples": 60
+        },
+        "drawMs": {
+          "mean": 0.4489216000000002,
+          "median": 0.458752,
+          "p95": 0.458752,
+          "samples": 60
+        },
+        "waterMs": null,
+        "inputs": 0,
+        "counters": {
+          "pairs": 113,
+          "contacts": 0,
+          "manifolds": 0,
+          "overflow": 0,
+          "clashes": 0,
+          "colors": 6
+        },
+        "errors": [],
+        "measuredStepsPerFrame": 1,
+        "sceneAction": null
+      }
+    }
+  ]
+}

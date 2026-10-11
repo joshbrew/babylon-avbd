@@ -1,0 +1,103 @@
+{
+  "passed": true,
+  "results": [
+    {
+      "scene": "3d-sphere-contacts",
+      "backend": "gpu",
+      "scope": "main",
+      "bodies": 27,
+      "passed": true
+    },
+    {
+      "scene": "3d-sphere-contacts",
+      "backend": "gpu",
+      "scope": "worker",
+      "bodies": 27,
+      "passed": true
+    },
+    {
+      "scene": "3d-sphere-contacts",
+      "backend": "gpu",
+      "scope": "worker-sab",
+      "bodies": 27,
+      "passed": true
+    },
+    {
+      "scene": "2d-pyramid",
+      "backend": "gpu",
+      "scope": "main",
+      "bodies": 211,
+      "passed": true
+    },
+    {
+      "scene": "2d-pyramid",
+      "backend": "gpu",
+      "scope": "worker",
+      "bodies": 211,
+      "passed": true
+    },
+    {
+      "scene": "2d-pyramid",
+      "backend": "gpu",
+      "scope": "worker-sab",
+      "bodies": 211,
+      "passed": true
+    },
+    {
+      "scene": "3d-sphere-contacts",
+      "backend": "cpu",
+      "scope": "main",
+      "bodies": 27,
+      "passed": true
+    },
+    {
+      "scene": "3d-sphere-contacts",
+      "backend": "cpu",
+      "scope": "worker",
+      "bodies": 27,
+      "passed": true
+    },
+    {
+      "scene": "3d-sphere-contacts",
+      "backend": "cpu",
+      "scope": "worker-sab",
+      "bodies": 27,
+      "passed": true
+    },
+    {
+      "scene": "2d-pyramid",
+      "backend": "cpu",
+      "scope": "main",
+      "bodies": 211,
+      "passed": true
+    },
+    {
+      "scene": "2d-pyramid",
+      "backend": "cpu",
+      "scope": "worker",
+      "bodies": 211,
+      "passed": true
+    },
+    {
+      "scene": "2d-pyramid",
+      "backend": "cpu",
+      "scope": "worker-sab",
+      "bodies": 211,
+      "passed": true
+    },
+    {
+      "scene": "3d-sphere-contacts",
+      "renderer": "babylon",
+      "scope": "worker",
+      "passed": true
+    },
+    {
+      "scene": "2d-pyramid",
+      "renderer": "babylon",
+      "scope": "worker",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "screenshot": "screenshots/workers.png"
+}

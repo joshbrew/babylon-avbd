@@ -32,6 +32,10 @@ export function mountPerformanceView(runner) {
     $("scene").append(option);
   }
   $("scene").value = "showcase-brick-ring-28k";
+  const query = new URLSearchParams(location.search);
+  for (const id of ["scene", "backend"])
+    if ([...$(id).options].some((option) => option.value === query.get(id)))
+      $(id).value = query.get(id);
   $("adapter").textContent =
     `GPU: ${runner.info.vendor} ${runner.info.architecture} · ${runner.scenes.length} scenes available`;
   $("status").textContent =
@@ -105,7 +109,10 @@ export function mountPerformanceView(runner) {
     const name = cell(row, ""),
       link = document.createElement("a");
     const scene = runner.scenes.find((s) => s.id === result.scene);
-    link.href = `/?demo=canonical&scene=${encodeURIComponent(result.scene)}&backend=${result.backend ?? "gpu"}&quality=benchmark`;
+    link.href =
+      result.backend === "webgl2"
+        ? `/tests/performance.html?scene=${encodeURIComponent(result.scene)}&backend=webgl2`
+        : `/?demo=canonical&scene=${encodeURIComponent(result.scene)}&backend=${result.backend ?? "gpu"}&quality=benchmark`;
     link.textContent = `${scene.dimension}D · ${scene.name}`;
     name.append(link);
     const interval = document.createElement("small");
@@ -323,7 +330,8 @@ export function mountPerformanceView(runner) {
     if (state.running) return;
     const warmup = number("warmup", 0, 600),
       samples = number("samples", 1, 600),
-      repeats = number("repeats", 1, 10);
+      repeats = number("repeats", 1, 10),
+      selectedBackend = $("backend").value;
     const report = {
       started: new Date().toISOString(),
       adapter: runner.info,

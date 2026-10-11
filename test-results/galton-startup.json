@@ -1,0 +1,60 @@
+{
+  "passed": true,
+  "results": [
+    {
+      "mode": "default-worker",
+      "elapsedMs": 4420.2824,
+      "scene": "3d-marble-cascade",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 3,
+      "bodies": 40747,
+      "playActions": [
+        {
+          "id": "start",
+          "label": "Release marbles"
+        },
+        {
+          "id": "shake",
+          "label": "Shake marbles"
+        },
+        {
+          "id": "restore-pegs",
+          "label": "Restore all pegs"
+        }
+      ],
+      "iterations": 5,
+      "timeStep": 0.008333333333333333,
+      "defaultStepRate": 120,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "pegs": {
+        "total": 700,
+        "retracted": 0
+      },
+      "sleepingEnabled": false,
+      "scope": "worker",
+      "ticks": 137,
+      "fullControls": "main",
+      "paused": true,
+      "settingsEnabled": true,
+      "pathname": "/"
+    },
+    {
+      "mode": "explicit-main",
+      "passed": true
+    },
+    {
+      "mode": "unsupported-worker-fallback",
+      "passed": true
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 import { build } from "esbuild";
-import { writeFile } from "node:fs/promises";
+import { writeAtomicFile as writeFile } from "./report-file.mjs";
 import { browserCheck } from "./browser-check.mjs";
 await build({
   entryPoints: ["tests/ragdoll-net-motion.js"],

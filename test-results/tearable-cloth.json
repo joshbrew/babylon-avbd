@@ -25,11 +25,11 @@
       "stats": {},
       "errors": [],
       "gpuProfile": {
-        "total": 1.723392,
-        "collision": 0.18432,
-        "adjacency": 0.038912,
-        "coloring": 0.314368,
-        "solve": 1.184768,
+        "total": 7.33184,
+        "collision": 2.383872,
+        "adjacency": 0.395264,
+        "coloring": 1.1776,
+        "solve": 3.37408,
         "broadphase": "grid",
         "bvhRebuilt": false
       }
@@ -65,11 +65,11 @@
       },
       "errors": [],
       "gpuProfile": {
-        "total": 1.44896,
+        "total": 1.455104,
         "collision": 0.186368,
-        "adjacency": 0.037888,
-        "coloring": 0.082944,
-        "solve": 1.14176,
+        "adjacency": 0.036864,
+        "coloring": 0.070656,
+        "solve": 1.159168,
         "broadphase": "grid",
         "bvhRebuilt": false
       }
@@ -105,11 +105,11 @@
       },
       "errors": [],
       "gpuProfile": {
-        "total": 1.468416,
-        "collision": 0.193536,
+        "total": 1.457152,
+        "collision": 0.196608,
         "adjacency": 0.037888,
-        "coloring": 0.082944,
-        "solve": 1.154048,
+        "coloring": 0.070656,
+        "solve": 1.152,
         "broadphase": "grid",
         "bvhRebuilt": false
       }
@@ -145,11 +145,11 @@
       },
       "errors": [],
       "gpuProfile": {
-        "total": 2.217984,
-        "collision": 0.29696,
-        "adjacency": 0.063488,
-        "coloring": 0.12288,
-        "solve": 1.734656,
+        "total": 1.903616,
+        "collision": 0.196608,
+        "adjacency": 0.04608,
+        "coloring": 0.0768,
+        "solve": 1.584128,
         "broadphase": "grid",
         "bvhRebuilt": false
       }
@@ -185,11 +185,11 @@
       },
       "errors": [],
       "gpuProfile": {
-        "total": 2.340864,
-        "collision": 0.331776,
-        "adjacency": 0.0768,
-        "coloring": 0.126976,
-        "solve": 1.804288,
+        "total": 1.651712,
+        "collision": 0.249856,
+        "adjacency": 0.05632,
+        "coloring": 0.078848,
+        "solve": 1.265664,
         "broadphase": "grid",
         "bvhRebuilt": false
       }
@@ -225,11 +225,11 @@
       },
       "errors": [],
       "gpuProfile": {
-        "total": 2.131968,
-        "collision": 0.311296,
-        "adjacency": 0.059392,
-        "coloring": 0.115712,
-        "solve": 1.644544,
+        "total": 1.564672,
+        "collision": 0.241664,
+        "adjacency": 0.044032,
+        "coloring": 0.072704,
+        "solve": 1.205248,
         "broadphase": "grid",
         "bvhRebuilt": false
       }
@@ -265,11 +265,11 @@
       },
       "errors": [],
       "gpuProfile": {
-        "total": 2.162688,
-        "collision": 0.309248,
-        "adjacency": 0.059392,
-        "coloring": 0.115712,
-        "solve": 1.677312,
+        "total": 1.570816,
+        "collision": 0.234496,
+        "adjacency": 0.045056,
+        "coloring": 0.072704,
+        "solve": 1.21856,
         "broadphase": "grid",
         "bvhRebuilt": false
       }
@@ -305,11 +305,11 @@
       },
       "errors": [],
       "gpuProfile": {
-        "total": 1.34144,
-        "collision": 0.188416,
+        "total": 1.308672,
+        "collision": 0.192512,
         "adjacency": 0.03584,
-        "coloring": 0.070656,
-        "solve": 1.046528,
+        "coloring": 0.058368,
+        "solve": 1.021952,
         "broadphase": "grid",
         "bvhRebuilt": false
       }
@@ -345,11 +345,11 @@
       },
       "errors": [],
       "gpuProfile": {
-        "total": 1.2288,
-        "collision": 0.151552,
-        "adjacency": 0.033792,
-        "coloring": 0.065536,
-        "solve": 0.97792,
+        "total": 1.404928,
+        "collision": 0.192512,
+        "adjacency": 0.037888,
+        "coloring": 0.063488,
+        "solve": 1.110016,
         "broadphase": "grid",
         "bvhRebuilt": false
       }

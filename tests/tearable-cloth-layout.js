@@ -1,4 +1,4 @@
-import { buildCanonicalScene } from "../demo/canonicalScenes.js";
+import { buildCanonicalScene } from "../demo/lab/scenes.js";
 export function tearableBondLayout() {
   const { solver, tearable } = buildCanonicalScene("3d-tearable-cloth", "gpu");
   return tearable.bonds.map((bond) => {

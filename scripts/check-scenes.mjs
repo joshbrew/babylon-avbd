@@ -1,5 +1,6 @@
 import { browserCheck } from "./browser-check.mjs";
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir } from "node:fs/promises";
+import { writeAtomicFile as writeFile } from "./report-file.mjs";
 const browser = await browserCheck(),
   results = [];
 const selected = process.argv.slice(2).find((arg) => !arg.startsWith("--"));
@@ -16,7 +17,7 @@ const wait = async (expression) => {
 try {
   await mkdir("test-results/screenshots", { recursive: true });
   await browser.navigate(
-    "?demo=canonical&scene=2d-empty&backend=gpu&quality=benchmark",
+    "?demo=canonical&scope=main&scene=2d-empty&backend=gpu&quality=benchmark",
   );
   await wait("globalThis.__AVBD_LAB__?.diagnostics.ready");
   const scenes = await browser.evaluate("__AVBD_LAB__.diagnostics.scenes");

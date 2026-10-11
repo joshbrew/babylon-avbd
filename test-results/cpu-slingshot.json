@@ -3,8 +3,8 @@
   "rows": [
     {
       "backend": "cpu",
-      "bodyCount": 1114,
-      "before": 1113,
+      "bodyCount": 1122,
+      "before": 1121,
       "flight": 5.400000000000034,
       "launchState": {
         "position": [
@@ -40,8 +40,77 @@
       "finite": true,
       "state": {
         "shots": 1,
-        "moved": 0,
+        "moved": 4,
         "toppled": 0,
+        "won": false,
+        "cleared": [],
+        "destroyedBricks": 0,
+        "targets": [
+          {
+            "id": 253,
+            "health": 1
+          },
+          {
+            "id": 254,
+            "health": 1
+          },
+          {
+            "id": 269,
+            "health": 1
+          },
+          {
+            "id": 273,
+            "health": 1
+          },
+          {
+            "id": 530,
+            "health": 1
+          },
+          {
+            "id": 531,
+            "health": 1
+          },
+          {
+            "id": 546,
+            "health": 1
+          },
+          {
+            "id": 550,
+            "health": 1
+          },
+          {
+            "id": 807,
+            "health": 1
+          },
+          {
+            "id": 808,
+            "health": 1
+          },
+          {
+            "id": 823,
+            "health": 1
+          },
+          {
+            "id": 827,
+            "health": 1
+          },
+          {
+            "id": 1084,
+            "health": 1
+          },
+          {
+            "id": 1085,
+            "health": 1
+          },
+          {
+            "id": 1100,
+            "health": 1
+          },
+          {
+            "id": 1104,
+            "health": 1
+          }
+        ],
         "crossings": 0,
         "broken": 0,
         "aimHits": 0,
@@ -51,16 +120,16 @@
         "paused": true,
         "errors": [],
         "metrics": {
-          "contacts": 1607,
+          "contacts": 1650,
           "sleeping": 0,
           "colors": 0,
           "overflow": 0,
           "clashes": 0,
-          "pairs": 876,
-          "manifolds": 876,
-          "joints": 990
+          "pairs": 878,
+          "manifolds": 878,
+          "joints": 1118
         },
-        "bird": 1113,
+        "bird": 1121,
         "hold": true,
         "camera": {
           "x": 14,
@@ -72,16 +141,15 @@
         "renderer": "canvas",
         "poseDownloads": 0,
         "matrixUpdates": 0,
-        "cpuSubmitMs": 2.9000000953674316
+        "cpuSubmitMs": 2.4800000190734863
       },
-      "screenshot": "screenshots/cpu-slingshot.png",
       "passed": true
     },
     {
       "backend": "webgpu",
-      "bodyCount": 1114,
-      "before": 1113,
-      "flight": 5.4000091552734375,
+      "bodyCount": 1122,
+      "before": 1121,
+      "flight": 6.750011444091797,
       "launchState": {
         "position": [
           -28,
@@ -99,13 +167,13 @@
       },
       "firstState": {
         "position": [
-          -27.774999618530273,
-          2.7968056201934814
+          -26.424997329711914,
+          3.3630542755126953
         ],
         "angle": 0,
         "linearVelocity": [
           27.000043869018555,
-          11.616667747497559
+          11.116618156433105
         ],
         "angularVelocity": 0,
         "mass": 23.56194496154785,
@@ -116,25 +184,94 @@
       "finite": true,
       "state": {
         "shots": 1,
-        "moved": 0,
+        "moved": 4,
         "toppled": 0,
+        "won": false,
+        "cleared": [],
+        "destroyedBricks": 0,
+        "targets": [
+          {
+            "id": 253,
+            "health": 1
+          },
+          {
+            "id": 254,
+            "health": 1
+          },
+          {
+            "id": 269,
+            "health": 1
+          },
+          {
+            "id": 273,
+            "health": 1
+          },
+          {
+            "id": 530,
+            "health": 1
+          },
+          {
+            "id": 531,
+            "health": 1
+          },
+          {
+            "id": 546,
+            "health": 1
+          },
+          {
+            "id": 550,
+            "health": 1
+          },
+          {
+            "id": 807,
+            "health": 1
+          },
+          {
+            "id": 808,
+            "health": 1
+          },
+          {
+            "id": 823,
+            "health": 1
+          },
+          {
+            "id": 827,
+            "health": 1
+          },
+          {
+            "id": 1084,
+            "health": 1
+          },
+          {
+            "id": 1085,
+            "health": 1
+          },
+          {
+            "id": 1100,
+            "health": 1
+          },
+          {
+            "id": 1104,
+            "health": 1
+          }
+        ],
         "crossings": 0,
         "broken": 0,
         "aimHits": 0,
         "aimReady": false,
         "pull": null,
-        "steps": 30,
+        "steps": 36,
         "paused": true,
         "errors": [],
         "metrics": {
-          "contacts": 1953,
+          "contacts": 1103,
           "sleeping": 0,
-          "colors": 8,
+          "colors": 7,
           "overflow": 0,
           "clashes": 0,
-          "pairs": 3220
+          "pairs": 2701
         },
-        "bird": 1113,
+        "bird": 1121,
         "hold": true,
         "camera": {
           "x": 14,
@@ -147,86 +284,6 @@
         "poseDownloads": 0,
         "matrixUpdates": 0
       },
-      "screenshot": "screenshots/webgpu-slingshot.png",
-      "passed": true
-    },
-    {
-      "backend": "webgl2",
-      "bodyCount": 1114,
-      "before": 1113,
-      "flight": 5.4000091552734375,
-      "launchState": {
-        "position": [
-          -28,
-          2.700000047683716
-        ],
-        "angle": 0,
-        "linearVelocity": [
-          27,
-          11.699999809265137
-        ],
-        "angularVelocity": 0,
-        "mass": 23.56194496154785,
-        "moment": 2.9452431201934814,
-        "sleeping": false
-      },
-      "firstState": {
-        "position": [
-          -27.774999618530273,
-          2.7968056201934814
-        ],
-        "angle": 0,
-        "linearVelocity": [
-          27.000043869018555,
-          11.616667747497559
-        ],
-        "angularVelocity": 0,
-        "mass": 23.56194496154785,
-        "moment": 2.9452431201934814,
-        "sleeping": false
-      },
-      "firstStatus": {
-        "problems": 0,
-        "colors": 8
-      },
-      "finite": true,
-      "state": {
-        "shots": 1,
-        "moved": 0,
-        "toppled": 0,
-        "crossings": 0,
-        "broken": 0,
-        "aimHits": 0,
-        "aimReady": false,
-        "pull": null,
-        "steps": 30,
-        "paused": true,
-        "errors": [],
-        "metrics": {
-          "contacts": 1902,
-          "sleeping": 0,
-          "colors": 8,
-          "overflow": 0,
-          "clashes": 0,
-          "pairs": 4627,
-          "manifolds": 1025,
-          "joints": 990
-        },
-        "bird": 1113,
-        "hold": true,
-        "camera": {
-          "x": 14,
-          "y": 8.459999999999999,
-          "scale": 14.540816326530612
-        }
-      },
-      "renderStats": {
-        "renderer": "canvas",
-        "poseDownloads": 0,
-        "matrixUpdates": 0,
-        "cpuSubmitMs": 1.1999999284744263
-      },
-      "screenshot": "screenshots/webgl2-slingshot.png",
       "passed": true
     }
   ]

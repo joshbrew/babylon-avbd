@@ -78,9 +78,11 @@ export class PerformancePreview {
       });
       this.message.textContent = "Preparing scene…";
       document.getElementById("preview-open").href =
-        scene === "2d-slingshot-siege"
-          ? `/?demo=slingshot&backend=${backend}&renderer=${renderer}`
-          : `/?demo=canonical&scene=${encodeURIComponent(scene)}&backend=${backend === "webgpu" ? "gpu" : backend}&broadphase=${encodeURIComponent(broadphase)}&solverMode=${encodeURIComponent(solverMode)}&renderer=${renderer}`;
+        backend === "webgl2"
+          ? `/tests/performance.html?scene=${encodeURIComponent(scene)}&backend=webgl2`
+          : scene === "2d-slingshot-siege"
+            ? `/?demo=slingshot&backend=${backend}&renderer=${renderer}`
+            : `/?demo=canonical&scene=${encodeURIComponent(scene)}&backend=${backend === "webgpu" ? "gpu" : backend}&broadphase=${encodeURIComponent(broadphase)}&solverMode=${encodeURIComponent(solverMode)}&renderer=${renderer}`;
       this.controls();
       const frame = document.createElement("iframe");
       frame.id = "preview-frame";
@@ -101,9 +103,9 @@ export class PerformancePreview {
       });
       this.frame = frame;
       frame.src =
-        scene === "2d-slingshot-siege"
+        scene === "2d-slingshot-siege" && backend !== "webgl2"
           ? `/?demo=slingshot&backend=${backend}&renderer=${renderer}&embed=1&paused=${paused ? 1 : 0}`
-          : `/?demo=canonical&scene=${encodeURIComponent(scene)}&backend=${backend === "webgpu" ? "gpu" : backend}&broadphase=${encodeURIComponent(broadphase)}&solverMode=${encodeURIComponent(solverMode)}&renderer=${renderer}&embed=1&paused=${paused ? 1 : 0}`;
+          : `/?demo=canonical&scene=${encodeURIComponent(scene)}&backend=${backend === "webgpu" ? "gpu" : backend}&broadphase=${encodeURIComponent(broadphase)}&solverMode=${encodeURIComponent(solverMode)}&renderer=${renderer}&embed=1&benchmark=1&paused=${paused ? 1 : 0}`;
       this.host.append(frame);
       try {
         await this.loaded;

@@ -165,7 +165,10 @@ export async function pairedPerformance(
         "Two independent worlds, alternating execution order each fixed step; separate GPU phase timestamps, no drawing or sleeping. Every step checked for contact overflow and coloring conflicts.",
     };
   } finally {
-    for (const { gpu } of worlds) gpu.destroy();
+    for (const { gpu, playground } of worlds) {
+      playground?.destroy();
+      gpu.destroy();
+    }
     await device.queue.onSubmittedWorkDone();
   }
 }

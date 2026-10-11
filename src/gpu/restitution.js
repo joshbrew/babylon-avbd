@@ -1,5 +1,14 @@
+import { uniformData, uploadUniform } from "./uniformUpload.js";
 import { PRELUDE_3D } from "../../reference/three-avbd/src/avbd3d/gpu/layout.ts";
 import { propertyEdits } from "./bufferEdits.js";
+
+const incomingStages = ["captureIncoming"];
+const bounceStages = [
+  "captureSolved",
+  "initialize",
+  ...Array.from({ length: 12 }, () => ["pairs", "apply"]).flat(),
+  "writeBack",
+];
 
 // Optional velocity-level normal impulses after the position solve. Each
 // manifold owns its impulse; each body owns its velocity write. Alternating
@@ -179,18 +188,15 @@ export class Restitution {
         })),
       });
     }
-    const cfg = new Uint32Array([
-      s.bodyCount,
-      s.jointCount,
-      capacity,
-      2 * s.bodyCapacity + 1,
-      0,
-      0,
-      0,
-      0,
-    ]);
-    new Float32Array(cfg.buffer).set([1, s.params.dt], 4);
-    d.queue.writeBuffer(this.params, 0, cfg);
+    const cache = (this.paramData ??= uniformData(8)),
+      { u, f } = cache;
+    u[0] = s.bodyCount;
+    u[1] = s.jointCount;
+    u[2] = capacity;
+    u[3] = 2 * s.bodyCapacity + 1;
+    f[4] = 1;
+    f[5] = s.params.dt;
+    uploadUniform(d, this.params, cache);
   }
   run(entries, encoder) {
     this.bind();
@@ -214,19 +220,10 @@ export class Restitution {
     if (!encoder) this.device.queue.submit([e.finish()]);
   }
   before(encoder) {
-    if (this.active.size) this.run(["captureIncoming"], encoder);
+    if (this.active.size) this.run(incomingStages, encoder);
   }
   after(encoder) {
-    if (this.active.size)
-      this.run(
-        [
-          "captureSolved",
-          "initialize",
-          ...Array.from({ length: 12 }, () => ["pairs", "apply"]).flat(),
-          "writeBack",
-        ],
-        encoder,
-      );
+    if (this.active.size) this.run(bounceStages, encoder);
   }
   destroy() {
     for (const key of ["materials", "velocities", "params", "bounce"])

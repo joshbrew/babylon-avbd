@@ -1,0 +1,261 @@
+.naval-demo {
+  position: fixed;
+  inset: 0;
+  overflow: auto;
+  background: #f5f2e9;
+  color: #24434b;
+  font:
+    15px/1.5 system-ui,
+    sans-serif;
+  display: grid;
+  grid-template-rows: auto minmax(360px, 1fr) auto;
+}
+.naval-demo * {
+  box-sizing: border-box;
+}
+.naval-demo header {
+  padding: 20px 32px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+}
+.naval-demo a {
+  color: #276782;
+  text-decoration: none;
+}
+.naval-demo a:hover {
+  text-decoration: underline;
+}
+.naval-eyebrow {
+  font-size: 11px;
+  font-weight: 750;
+  letter-spacing: 0.16em;
+  color: #748a88;
+  margin: 12px 0 0;
+}
+.naval-demo h1 {
+  font-size: clamp(24px, 3vw, 36px);
+  letter-spacing: -0.045em;
+  margin: 2px 0 0;
+  line-height: 1.15;
+}
+.naval-intro {
+  max-width: 480px;
+  color: #627b7d;
+  margin: 0;
+}
+.naval-view {
+  position: relative;
+  min-height: 360px;
+  overflow: hidden;
+  border-block: 1px solid #cbded9;
+}
+#naval-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 360px;
+  touch-action: none;
+}
+.naval-caption {
+  position: absolute;
+  top: 22px;
+  left: 28px;
+  pointer-events: none;
+}
+.naval-badge {
+  display: inline-block;
+  border: 1px solid #ffffff80;
+  background: #f7fbf4bb;
+  border-radius: 30px;
+  padding: 6px 13px;
+  font-size: 12px;
+  font-weight: 650;
+}
+.naval-caption p {
+  font-size: 12px;
+  margin-top: 8px;
+  color: #315f67;
+}
+.naval-performance {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  max-width: 280px;
+  padding: 10px 14px;
+  border: 1px solid #ffffffaa;
+  border-radius: 13px;
+  background: #f6faf1e8;
+  font-size: 12px;
+}
+.naval-performance summary,
+.naval-explanation summary {
+  cursor: pointer;
+  font-weight: 650;
+}
+.naval-performance dl {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 6px 14px;
+}
+.naval-performance dd {
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+}
+.naval-performance p {
+  margin-bottom: 0;
+  color: #627b7d;
+}
+.naval-message {
+  position: absolute;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  width: max-content;
+  max-width: 90%;
+  background: #f7fbf4e8;
+  border-radius: 30px;
+  padding: 9px 20px;
+  font-size: 13px;
+  box-shadow: 0 3px 20px #204b5a16;
+}
+.naval-controls {
+  padding: 17px 32px 15px;
+}
+.naval-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.naval-demo button,
+.naval-demo select {
+  border: 1px solid #b6cac7;
+  border-radius: 8px;
+  background: #fffdf6;
+  color: #24434b;
+  font: inherit;
+  padding: 9px 16px;
+  cursor: pointer;
+}
+#naval-fire {
+  color: #fff;
+  background: #367f9b;
+  border-color: #367f9b;
+}
+#naval-return {
+  color: #fff;
+  background: #c56b58;
+  border-color: #c56b58;
+}
+.naval-demo button:hover {
+  filter: brightness(0.95);
+}
+.naval-settings {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  flex-wrap: wrap;
+  margin: 14px 0;
+  font-size: 13px;
+}
+.naval-settings label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.naval-settings input {
+  accent-color: #367f9b;
+}
+.naval-settings select {
+  padding: 3px 7px;
+  font-size: 13px;
+}
+.naval-ship-status {
+  display: flex;
+  gap: 30px;
+}
+.naval-ship {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 3px 18px;
+  font-size: 12px;
+  flex: 1;
+  max-width: 400px;
+}
+.naval-ship strong {
+  color: #367f9b;
+}
+.naval-ship.coral strong {
+  color: #bd6653;
+}
+.naval-ship span {
+  text-align: right;
+  color: #6a7e7a;
+}
+.naval-ship progress {
+  width: 100%;
+  height: 5px;
+  grid-column: 1/-1;
+  accent-color: #c56b58;
+}
+.naval-explanation {
+  font-size: 12px;
+  color: #6a7e7a;
+  margin-top: 12px;
+  max-width: 1000px;
+}
+.naval-explanation p {
+  margin: 8px 0;
+}
+@media (max-width: 700px) {
+  .naval-demo {
+    grid-template-rows: auto minmax(330px, 1fr) auto;
+  }
+  .naval-demo header {
+    padding: 14px 17px;
+    display: block;
+  }
+  .naval-intro {
+    margin: 10px 0 0;
+    font-size: 12px;
+  }
+  .naval-controls {
+    padding: 12px 16px;
+  }
+  .naval-demo button {
+    font-size: 12px;
+    padding: 8px 11px;
+  }
+  .naval-settings {
+    gap: 10px;
+    margin: 10px 0;
+    font-size: 12px;
+  }
+  .naval-caption {
+    top: 14px;
+    left: 14px;
+  }
+  .naval-caption p {
+    max-width: 150px;
+  }
+  .naval-performance {
+    top: 14px;
+    right: 14px;
+  }
+  .naval-ship-status {
+    gap: 14px;
+  }
+  .naval-ship {
+    display: block;
+  }
+  .naval-ship span {
+    display: block;
+    text-align: left;
+  }
+  .naval-message {
+    font-size: 11px;
+    bottom: 12px;
+  }
+}

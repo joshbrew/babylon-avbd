@@ -1,4 +1,8 @@
 import { GlCompute } from "../src/webgl/compute.js";
+import {
+  checkReleasedCompute,
+  destroyComputeAndCheck,
+} from "./webgl-resources.js";
 import { GlBroadphase } from "../src/webgl/broadphase.js";
 import { GlNarrowphase } from "../src/webgl/narrowphase.js";
 import { GlColoring } from "../src/webgl/coloring.js";
@@ -349,15 +353,12 @@ export async function checkGlContacts(sources) {
       grid.destroy();
       for (const t of [boundsTex, filterTex, poseTex, rotTex, sizeTex, geoTex])
         c.release(t);
-      check(
-        c.textures.size === 0 && c.programs.size === 0,
-        "Contact resources leaked",
-      );
+      checkReleasedCompute(c);
     }
     check(errors.length === 0, errors.join("\n"));
     return { passed: true, rows };
   } finally {
-    c.destroy();
+    destroyComputeAndCheck(c);
     device.destroy();
   }
 }

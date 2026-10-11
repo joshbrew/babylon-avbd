@@ -1,25 +1,25 @@
 {
-  "date": "2026-10-06T02:38:18.459Z",
+  "date": "2026-10-11T23:33:02.478Z",
   "applied": true,
-  "retained": 14,
+  "retained": 20,
   "removedFiles": 4,
-  "removedBytes": 40707304,
+  "removedBytes": 41302035,
   "removed": [
     {
       "path": "dist/babylon-doc-example.js",
-      "bytes": 13504598
+      "bytes": 13556547
     },
     {
       "path": "dist/contact-sample-check.js",
-      "bytes": 9288
+      "bytes": 378202
     },
     {
       "path": "dist/readme-scene-examples.js",
-      "bytes": 13688117
+      "bytes": 13810050
     },
     {
       "path": "dist/readme-worker-example.js",
-      "bytes": 13505301
+      "bytes": 13557236
     }
   ]
 }

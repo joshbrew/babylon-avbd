@@ -50,7 +50,7 @@ assert.ok(
 );
 assert.ok(
   files.every((f) =>
-    /^(?:dist\/avbd(?:\.global)?\.(?:js|d\.ts)|dist\/native\.(?:js|d\.ts)|dist\/(?:babylonAvbd|nativeScenes|gpuDevice|solverPipeline)\.d\.ts|dist\/NOTICE|LICENSE|README\.md|tests\/README\.md|docs\/(?:README|BABYLON_API|HPLOC|RELEASE)\.md|package\.json)$/.test(
+    /^(?:dist\/avbd(?:\.global)?\.(?:js|d\.ts)|dist\/(?:native|utilities)\.(?:js|d\.ts)|dist\/(?:babylonAvbd|nativeScenes|gpuDevice|solverPipeline)\.d\.ts|dist\/NOTICE|LICENSE|README\.md|tests\/README\.md|docs\/(?:README|BABYLON_API|HPLOC|RELEASE)\.md|package\.json)$/.test(
       f,
     ),
   ),
@@ -95,6 +95,18 @@ for (const key of [
   "AvbdPhysicsConstraint",
   "AvbdScene2D",
   "AvbdScene3D",
+  "cookHeightfield",
+  "cookStaticMesh",
+  "GpuSurfaceParticles",
+  "GpuContactSample",
+  "GpuTimer",
+  "GPUBufferRecycler",
+  "createSharedInput",
+  "readSharedInput",
+  "writeSharedInput",
+  "seedConstraintColoring",
+  "addGpuStepPass",
+  "WorkerCanvas",
 ]) {
   assert.ok(exports[key], `ESM export ${key}`);
   assert.ok(context.AVBD[key], `browser global ${key}`);
@@ -109,6 +121,10 @@ for (const suffix of ["", "-cdn"]) {
   assert.ok(
     manifest.inputs.every((f) => !f.startsWith("src/webgl/")),
     "Experimental WebGL2 code must not ship in either production bundle",
+  );
+  assert.ok(
+    manifest.inputs.every((f) => !f.startsWith("demo/")),
+    "Production code must not depend on demo files",
   );
   assert.ok(
     manifest.inputs.every(
@@ -171,6 +187,13 @@ try {
   assert.equal(native.createWebGPUDevice, installed.createWebGPUDevice);
   assert.equal(native.prepareWebGPUDevice3D, installed.prepareWebGPUDevice3D);
   assert.equal(native.createSolverPipeline, installed.createSolverPipeline);
+  const utilities = await import(
+    pathToFileURL(join(consumer, "node_modules/avbd-babylon/dist/utilities.js"))
+      .href
+  );
+  assert.equal(utilities.GpuSurfaceParticles, installed.GpuSurfaceParticles);
+  assert.equal(utilities.GpuContactSample, installed.GpuContactSample);
+  assert.equal(utilities.GPUBufferRecycler, installed.GPUBufferRecycler);
   await assert.rejects(
     native.createSolverPipeline({ backend: "webgl2" }),
     /Unsupported solver backend/,

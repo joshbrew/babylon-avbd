@@ -1,0 +1,611 @@
+{
+  "date": "2026-10-11T09:08:29.756Z",
+  "method": "Two independent 505,923-object worlds alternate execution order every fixed step. Four iterations at 60 Hz. First 30 steps keep every body awake, then both policies use identical speed 0.03 and delay 0.1 sleep thresholds. GPU timestamps include collision detection, scheduling, movement and all sleep checks. No rendering. Every 20 steps check overflow and color conflicts; every final pose must be finite with valid rotations and no body below the solid floor. Sleeping deliberately changes which resting bodies participate; trajectories are not expected to be bit identical during impacts.",
+  "results": [
+    {
+      "repeat": 0,
+      "scene": "paper-walls-510k-4",
+      "steps": 480,
+      "objects": 505923,
+      "adapter": {
+        "vendor": "nvidia",
+        "description": ""
+      },
+      "results": [
+        {
+          "islands": false,
+          "awake": {
+            "mean": 53.365752,
+            "median": 53.390784,
+            "p95": 56.244224,
+            "n": 20
+          },
+          "settled": {
+            "mean": 55.301104800000005,
+            "median": 55.282688,
+            "p95": 57.091872,
+            "n": 40
+          },
+          "sleep": {
+            "sleeping": 0,
+            "wakeRequested": true
+          },
+          "snapshots": [
+            {
+              "step": 59,
+              "counters": {
+                "pairs": 960415,
+                "contacts": 3888217,
+                "manifolds": 959213,
+                "overflow": 0,
+                "clashes": 0,
+                "colors": 9
+              },
+              "sleep": {
+                "sleeping": 0,
+                "wakeRequested": true
+              }
+            },
+            {
+              "step": 119,
+              "counters": {
+                "pairs": 980616,
+                "contacts": 4028381,
+                "manifolds": 978426,
+                "overflow": 0,
+                "clashes": 0,
+                "colors": 10
+              },
+              "sleep": {
+                "sleeping": 0,
+                "wakeRequested": false
+              }
+            },
+            {
+              "step": 179,
+              "counters": {
+                "pairs": 982198,
+                "contacts": 4048213,
+                "manifolds": 978654,
+                "overflow": 0,
+                "clashes": 0,
+                "colors": 11
+              },
+              "sleep": {
+                "sleeping": 0,
+                "wakeRequested": false
+              }
+            },
+            {
+              "step": 239,
+              "counters": {
+                "pairs": 986543,
+                "contacts": 4045807,
+                "manifolds": 981650,
+                "overflow": 0,
+                "clashes": 0,
+                "colors": 11
+              },
+              "sleep": {
+                "sleeping": 0,
+                "wakeRequested": false
+              }
+            },
+            {
+              "step": 299,
+              "counters": {
+                "pairs": 991670,
+                "contacts": 4048589,
+                "manifolds": 985379,
+                "overflow": 0,
+                "clashes": 0,
+                "colors": 11
+              },
+              "sleep": {
+                "sleeping": 0,
+                "wakeRequested": false
+              }
+            },
+            {
+              "step": 359,
+              "counters": {
+                "pairs": 995840,
+                "contacts": 4050159,
+                "manifolds": 988355,
+                "overflow": 0,
+                "clashes": 0,
+                "colors": 11
+              },
+              "sleep": {
+                "sleeping": 23241,
+                "wakeRequested": false
+              }
+            },
+            {
+              "step": 419,
+              "counters": {
+                "pairs": 1000457,
+                "contacts": 4051927,
+                "manifolds": 992167,
+                "overflow": 0,
+                "clashes": 0,
+                "colors": 11
+              },
+              "sleep": {
+                "sleeping": 0,
+                "wakeRequested": false
+              }
+            },
+            {
+              "step": 479,
+              "counters": {
+                "pairs": 979186,
+                "contacts": 3956069,
+                "manifolds": 970016,
+                "overflow": 0,
+                "clashes": 0,
+                "colors": 11
+              },
+              "sleep": {
+                "sleeping": 0,
+                "wakeRequested": true
+              }
+            }
+          ],
+          "belowFloor": 0,
+          "quatError": 1.4727782038370663e-7,
+          "roots": 0
+        },
+        {
+          "islands": true,
+          "awake": {
+            "mean": 53.60920000000001,
+            "median": 53.90848,
+            "p95": 55.894016,
+            "n": 20
+          },
+          "settled": {
+            "mean": 9.920467199999997,
+            "median": 9.897984,
+            "p95": 10.917344,
+            "n": 40
+          },
+          "sleep": {
+            "sleeping": 457095,
+            "wakeRequested": false
+          },
+          "snapshots": [
+            {
+              "step": 59,
+              "counters": {
+                "pairs": 774340,
+                "contacts": 3135176,
+                "manifolds": 773190,
+                "overflow": 0,
+                "clashes": 0,
+                "colors": 9
+              },
+              "sleep": {
+                "sleeping": 121152,
+                "wakeRequested": false
+              }
+            },
+            {
+              "step": 119,
+              "counters": {
+                "pairs": 308507,
+                "contacts": 1260019,
+                "manifolds": 306842,
+                "overflow": 0,
+                "clashes": 0,
+                "colors": 10
+              },
+              "sleep": {
+                "sleeping": 352135,
+                "wakeRequested": false
+              }
+            },
+            {
+              "step": 179,
+              "counters": {
+                "pairs": 71562,
+                "contacts": 251641,
+                "manifolds": 69018,
+                "overflow": 0,
+                "clashes": 0,
+                "colors": 10
+              },
+              "sleep": {
+                "sleeping": 469266,
+                "wakeRequested": false
+              }
+            },
+            {
+              "step": 239,
+              "counters": {
+                "pairs": 43725,
+                "contacts": 104352,
+                "manifolds": 39834,
+                "overflow": 0,
+                "clashes": 0,
+                "colors": 10
+              },
+              "sleep": {
+                "sleeping": 484030,
+                "wakeRequested": false
+              }
+            },
+            {
+              "step": 299,
+              "counters": {
+                "pairs": 62162,
+                "contacts": 152692,
+                "manifolds": 57174,
+                "overflow": 0,
+                "clashes": 0,
+                "colors": 10
+              },
+              "sleep": {
+                "sleeping": 476625,
+                "wakeRequested": false
+              }
+            },
+            {
+              "step": 359,
+              "counters": {
+                "pairs": 78936,
+                "contacts": 196739,
+                "manifolds": 72821,
+                "overflow": 0,
+                "clashes": 0,
+                "colors": 10
+              },
+              "sleep": {
+                "sleeping": 470115,
+                "wakeRequested": false
+              }
+            },
+            {
+              "step": 419,
+              "counters": {
+                "pairs": 95326,
+                "contacts": 238038,
+                "manifolds": 88021,
+                "overflow": 0,
+                "clashes": 0,
+                "colors": 10
+              },
+              "sleep": {
+                "sleeping": 464070,
+                "wakeRequested": false
+              }
+            },
+            {
+              "step": 479,
+              "counters": {
+                "pairs": 112545,
+                "contacts": 287251,
+                "manifolds": 104389,
+                "overflow": 0,
+                "clashes": 0,
+                "colors": 10
+              },
+              "sleep": {
+                "sleeping": 457095,
+                "wakeRequested": false
+              }
+            }
+          ],
+          "belowFloor": 0,
+          "quatError": 1.5176199874566976e-7,
+          "roots": 986
+        }
+      ],
+      "errors": []
+    },
+    {
+      "repeat": 1,
+      "scene": "paper-walls-510k-4",
+      "steps": 480,
+      "objects": 505923,
+      "adapter": {
+        "vendor": "nvidia",
+        "description": ""
+      },
+      "results": [
+        {
+          "islands": true,
+          "awake": {
+            "mean": 53.844224,
+            "median": 54.245376,
+            "p95": 56.195072,
+            "n": 20
+          },
+          "settled": {
+            "mean": 10.139283199999998,
+            "median": 10.137248,
+            "p95": 10.868352,
+            "n": 40
+          },
+          "sleep": {
+            "sleeping": 457095,
+            "wakeRequested": false
+          },
+          "snapshots": [
+            {
+              "step": 59,
+              "counters": {
+                "pairs": 774340,
+                "contacts": 3135176,
+                "manifolds": 773190,
+                "overflow": 0,
+                "clashes": 0,
+                "colors": 9
+              },
+              "sleep": {
+                "sleeping": 121152,
+                "wakeRequested": false
+              }
+            },
+            {
+              "step": 119,
+              "counters": {
+                "pairs": 308507,
+                "contacts": 1260019,
+                "manifolds": 306842,
+                "overflow": 0,
+                "clashes": 0,
+                "colors": 10
+              },
+              "sleep": {
+                "sleeping": 352135,
+                "wakeRequested": false
+              }
+            },
+            {
+              "step": 179,
+              "counters": {
+                "pairs": 71562,
+                "contacts": 251641,
+                "manifolds": 69018,
+                "overflow": 0,
+                "clashes": 0,
+                "colors": 10
+              },
+              "sleep": {
+                "sleeping": 469266,
+                "wakeRequested": false
+              }
+            },
+            {
+              "step": 239,
+              "counters": {
+                "pairs": 43725,
+                "contacts": 104352,
+                "manifolds": 39834,
+                "overflow": 0,
+                "clashes": 0,
+                "colors": 10
+              },
+              "sleep": {
+                "sleeping": 484030,
+                "wakeRequested": false
+              }
+            },
+            {
+              "step": 299,
+              "counters": {
+                "pairs": 62162,
+                "contacts": 152692,
+                "manifolds": 57174,
+                "overflow": 0,
+                "clashes": 0,
+                "colors": 10
+              },
+              "sleep": {
+                "sleeping": 476625,
+                "wakeRequested": false
+              }
+            },
+            {
+              "step": 359,
+              "counters": {
+                "pairs": 78936,
+                "contacts": 196739,
+                "manifolds": 72821,
+                "overflow": 0,
+                "clashes": 0,
+                "colors": 10
+              },
+              "sleep": {
+                "sleeping": 470115,
+                "wakeRequested": false
+              }
+            },
+            {
+              "step": 419,
+              "counters": {
+                "pairs": 95326,
+                "contacts": 238038,
+                "manifolds": 88021,
+                "overflow": 0,
+                "clashes": 0,
+                "colors": 10
+              },
+              "sleep": {
+                "sleeping": 464070,
+                "wakeRequested": false
+              }
+            },
+            {
+              "step": 479,
+              "counters": {
+                "pairs": 112545,
+                "contacts": 287251,
+                "manifolds": 104389,
+                "overflow": 0,
+                "clashes": 0,
+                "colors": 10
+              },
+              "sleep": {
+                "sleeping": 457095,
+                "wakeRequested": false
+              }
+            }
+          ],
+          "belowFloor": 0,
+          "quatError": 1.5176199874566976e-7,
+          "roots": 986
+        },
+        {
+          "islands": false,
+          "awake": {
+            "mean": 52.961792,
+            "median": 53.390336,
+            "p95": 55.289856,
+            "n": 20
+          },
+          "settled": {
+            "mean": 54.92702800000001,
+            "median": 55.051264,
+            "p95": 55.936,
+            "n": 40
+          },
+          "sleep": {
+            "sleeping": 0,
+            "wakeRequested": true
+          },
+          "snapshots": [
+            {
+              "step": 59,
+              "counters": {
+                "pairs": 960415,
+                "contacts": 3888217,
+                "manifolds": 959213,
+                "overflow": 0,
+                "clashes": 0,
+                "colors": 9
+              },
+              "sleep": {
+                "sleeping": 0,
+                "wakeRequested": true
+              }
+            },
+            {
+              "step": 119,
+              "counters": {
+                "pairs": 980616,
+                "contacts": 4028381,
+                "manifolds": 978426,
+                "overflow": 0,
+                "clashes": 0,
+                "colors": 10
+              },
+              "sleep": {
+                "sleeping": 0,
+                "wakeRequested": false
+              }
+            },
+            {
+              "step": 179,
+              "counters": {
+                "pairs": 982198,
+                "contacts": 4048213,
+                "manifolds": 978654,
+                "overflow": 0,
+                "clashes": 0,
+                "colors": 11
+              },
+              "sleep": {
+                "sleeping": 0,
+                "wakeRequested": false
+              }
+            },
+            {
+              "step": 239,
+              "counters": {
+                "pairs": 986543,
+                "contacts": 4045807,
+                "manifolds": 981650,
+                "overflow": 0,
+                "clashes": 0,
+                "colors": 11
+              },
+              "sleep": {
+                "sleeping": 0,
+                "wakeRequested": false
+              }
+            },
+            {
+              "step": 299,
+              "counters": {
+                "pairs": 991670,
+                "contacts": 4048589,
+                "manifolds": 985379,
+                "overflow": 0,
+                "clashes": 0,
+                "colors": 11
+              },
+              "sleep": {
+                "sleeping": 0,
+                "wakeRequested": false
+              }
+            },
+            {
+              "step": 359,
+              "counters": {
+                "pairs": 995840,
+                "contacts": 4050159,
+                "manifolds": 988355,
+                "overflow": 0,
+                "clashes": 0,
+                "colors": 11
+              },
+              "sleep": {
+                "sleeping": 23241,
+                "wakeRequested": false
+              }
+            },
+            {
+              "step": 419,
+              "counters": {
+                "pairs": 1000457,
+                "contacts": 4051927,
+                "manifolds": 992167,
+                "overflow": 0,
+                "clashes": 0,
+                "colors": 11
+              },
+              "sleep": {
+                "sleeping": 0,
+                "wakeRequested": false
+              }
+            },
+            {
+              "step": 479,
+              "counters": {
+                "pairs": 979186,
+                "contacts": 3956069,
+                "manifolds": 970016,
+                "overflow": 0,
+                "clashes": 0,
+                "colors": 11
+              },
+              "sleep": {
+                "sleeping": 0,
+                "wakeRequested": true
+              }
+            }
+          ],
+          "belowFloor": 0,
+          "quatError": 1.4727782038370663e-7,
+          "roots": 0
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "hardware": "NVIDIA GeForce RTX 4070 Laptop GPU",
+  "driver": "32.0.16.1714",
+  "identification": "Current Windows GPU name uniquely matched to the WebGPU adapter vendor"
+}

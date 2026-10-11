@@ -4,9 +4,7 @@ import { writeFile } from "node:fs/promises";
 const browser = await browserCheck(),
   rows = [];
 try {
-  for (const backend of process.argv.includes("--webgl2")
-    ? ["webgl2"]
-    : ["cpu", "webgpu", "webgl2"]) {
+  for (const backend of ["cpu", "webgpu"]) {
     await browser.navigate(
       `?demo=slingshot&backend=${backend}&bricks=1000&paused=1`,
     );

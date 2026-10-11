@@ -1,0 +1,61 @@
+{
+  "passed": true,
+  "results": [
+    {
+      "scope": "main",
+      "renderer": "webgpu",
+      "id": 286,
+      "mouse": true,
+      "touch": true,
+      "restore": true,
+      "errors": []
+    },
+    {
+      "scope": "main",
+      "renderer": "babylon",
+      "id": 286,
+      "mouse": true,
+      "touch": true,
+      "restore": true,
+      "errors": []
+    },
+    {
+      "scope": "worker",
+      "renderer": "webgpu",
+      "id": 286,
+      "mouse": true,
+      "touch": true,
+      "restore": true,
+      "errors": []
+    },
+    {
+      "scope": "worker-sab",
+      "renderer": "webgpu",
+      "id": 286,
+      "mouse": true,
+      "touch": true,
+      "restore": true,
+      "errors": []
+    },
+    {
+      "scope": "worker",
+      "renderer": "babylon",
+      "id": 286,
+      "mouse": true,
+      "touch": true,
+      "restore": true,
+      "errors": []
+    },
+    {
+      "scope": "worker",
+      "backend": "cpu",
+      "renderer": "webgpu",
+      "id": 345,
+      "mouse": true,
+      "touch": true,
+      "restore": true,
+      "errors": []
+    }
+  ],
+  "screenshots": []
+}

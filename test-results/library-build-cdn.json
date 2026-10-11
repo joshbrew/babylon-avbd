@@ -17,12 +17,15 @@
     "reference/three-avbd/src/avbd3d/gpu/wgsl-collision.ts",
     "reference/three-avbd/src/avbd3d/gpu/wgsl-solve.ts",
     "reference/three-avbd/src/avbd3d/gpu/radii.ts",
-    "reference/three-avbd/src/avbd3d/gpu/solver.ts",
+    "src/vendor/three-avbd-lib/solver3D.ts",
     "src/gpu/gpuSolverKernels.js",
     "src/gpu/constraintFrames.wgsl",
+    "src/gpu/uniformUpload.js",
     "src/gpu/worldSleeping.wgsl",
+    "src/gpu/islandSleeping.wgsl",
     "src/gpu/bufferEdits.js",
     "src/gpu/worldSleeping.js",
+    "src/gpu/smallGroup3D.js",
     "src/gpu/springMaterial.js",
     "src/gpu/solverPolicy.js",
     "src/gpu/hplocpp.wgsl",
@@ -30,6 +33,7 @@
     "src/gpu/gpuHploc.js",
     "src/gpu/isolatedComputePass.js",
     "src/gpu/gpuSolverStep.js",
+    "src/gpu/colorBuckets.js",
     "src/gpu/gpuTopologyKernels.js",
     "src/gpu/sensors.js",
     "src/gpu/contactCache3D.js",
@@ -42,6 +46,10 @@
     "src/gpu/shapeQueries.wgsl",
     "src/gpu/shapeQueries.js",
     "src/gpu/passConstants.js",
+    "src/gpu/stepParams.js",
+    "src/gpu/packedAccumulator3D.js",
+    "src/gpu/compactBodies3D.js",
+    "src/gpu/parallelDual3D.js",
     "src/gpu/executionPolicy3D.js",
     "src/gpu/scalarPrimal3D.js",
     "src/gpu/portableContactSolve3D.js",
@@ -55,6 +63,7 @@
     "src/babylon/constraints.js",
     "src/gpu/bodyReadback.js",
     "src/vendor/three-avbd-lib/contacts.ts",
+    "src/native/terrain.js",
     "src/babylon/babylonAvbd.js",
     "reference/three-avbd/src/avbd2d/ref/body.ts",
     "reference/three-avbd/src/avbd2d/ref/math.ts",
@@ -100,17 +109,27 @@
     "src/native/pipelineRegistry.js",
     "src/native/pipeline.js",
     "src/native/scenes.js",
-    "src/index.js",
-    ".temp/temp_index.js"
+    "src/gpu/gpuTimer.js",
+    "src/gpu/bufferRecycler.js",
+    "src/gpu/surfaceParticles.wgsl",
+    "src/gpu/surfaceParticles.js",
+    "src/gpu/contactRender.wgsl",
+    "src/gpu/contactSample.js",
+    "src/gpu/constraintColoring.js",
+    "src/utils/gpuStepPass.js",
+    "src/utils/workerCanvas.js",
+    "src/utils/sharedInput.js",
+    "src/utilities.js",
+    "src/index.js"
   ],
   "output": {
     "dist/avbd.global.js": {
       "imports": [],
       "exports": [],
-      "entryPoint": ".temp/temp_index.js",
+      "entryPoint": "src/index.js",
       "inputs": {
         "src/index.js": {
-          "bytesInOutput": 284
+          "bytesInOutput": 640
         },
         "reference/three-avbd/src/avbd3d/ref/math.ts": {
           "bytesInOutput": 3984
@@ -128,7 +147,7 @@
           "bytesInOutput": 2586
         },
         "reference/three-avbd/src/avbd3d/hull.ts": {
-          "bytesInOutput": 7455
+          "bytesInOutput": 7534
         },
         "reference/three-avbd/src/avbd3d/shapes.ts": {
           "bytesInOutput": 728
@@ -160,8 +179,8 @@
         "reference/three-avbd/src/avbd3d/gpu/radii.ts": {
           "bytesInOutput": 346
         },
-        "reference/three-avbd/src/avbd3d/gpu/solver.ts": {
-          "bytesInOutput": 31245
+        "src/vendor/three-avbd-lib/solver3D.ts": {
+          "bytesInOutput": 31543
         },
         "src/gpu/gpuSolverKernels.js": {
           "bytesInOutput": 2739
@@ -169,14 +188,23 @@
         "src/gpu/constraintFrames.wgsl": {
           "bytesInOutput": 1478
         },
+        "src/gpu/uniformUpload.js": {
+          "bytesInOutput": 384
+        },
         "src/gpu/worldSleeping.wgsl": {
           "bytesInOutput": 3196
+        },
+        "src/gpu/islandSleeping.wgsl": {
+          "bytesInOutput": 5127
         },
         "src/gpu/bufferEdits.js": {
           "bytesInOutput": 2813
         },
         "src/gpu/worldSleeping.js": {
-          "bytesInOutput": 3340
+          "bytesInOutput": 3780
+        },
+        "src/gpu/smallGroup3D.js": {
+          "bytesInOutput": 2230
         },
         "src/gpu/springMaterial.js": {
           "bytesInOutput": 1434
@@ -185,22 +213,25 @@
           "bytesInOutput": 1004
         },
         "src/gpu/hplocpp.wgsl": {
-          "bytesInOutput": 7816
+          "bytesInOutput": 8211
         },
         "src/gpu/hplocSort.wgsl": {
           "bytesInOutput": 1625
         },
         "src/gpu/gpuHploc.js": {
-          "bytesInOutput": 7595
+          "bytesInOutput": 7714
         },
         "src/gpu/isolatedComputePass.js": {
           "bytesInOutput": 770
         },
         "src/gpu/gpuSolverStep.js": {
-          "bytesInOutput": 3927
+          "bytesInOutput": 4199
+        },
+        "src/gpu/colorBuckets.js": {
+          "bytesInOutput": 2137
         },
         "src/gpu/gpuTopologyKernels.js": {
-          "bytesInOutput": 971
+          "bytesInOutput": 981
         },
         "src/gpu/sensors.js": {
           "bytesInOutput": 1507
@@ -209,7 +240,7 @@
           "bytesInOutput": 1002
         },
         "src/gpu/restitution.js": {
-          "bytesInOutput": 6934
+          "bytesInOutput": 6931
         },
         "src/gpu/angularConstraints.js": {
           "bytesInOutput": 3578
@@ -233,7 +264,19 @@
           "bytesInOutput": 4593
         },
         "src/gpu/passConstants.js": {
-          "bytesInOutput": 1073
+          "bytesInOutput": 1097
+        },
+        "src/gpu/stepParams.js": {
+          "bytesInOutput": 1412
+        },
+        "src/gpu/packedAccumulator3D.js": {
+          "bytesInOutput": 1015
+        },
+        "src/gpu/compactBodies3D.js": {
+          "bytesInOutput": 2879
+        },
+        "src/gpu/parallelDual3D.js": {
+          "bytesInOutput": 1448
         },
         "src/gpu/executionPolicy3D.js": {
           "bytesInOutput": 115
@@ -248,16 +291,16 @@
           "bytesInOutput": 508
         },
         "src/gpu/appGpuSolver3D.js": {
-          "bytesInOutput": 18006
+          "bytesInOutput": 18730
         },
         "src/gpu/contactCheck3D.js": {
-          "bytesInOutput": 9525
+          "bytesInOutput": 9540
         },
         "src/gpu/device.js": {
           "bytesInOutput": 1166
         },
         "src/babylon/babylonAvbd.wgsl": {
-          "bytesInOutput": 1526
+          "bytesInOutput": 1784
         },
         "src/native/velocityBatch.js": {
           "bytesInOutput": 6917
@@ -274,8 +317,11 @@
         "src/vendor/three-avbd-lib/contacts.ts": {
           "bytesInOutput": 7981
         },
+        "src/native/terrain.js": {
+          "bytesInOutput": 3507
+        },
         "src/babylon/babylonAvbd.js": {
-          "bytesInOutput": 22479
+          "bytesInOutput": 25428
         },
         "reference/three-avbd/src/avbd2d/ref/body.ts": {
           "bytesInOutput": 726
@@ -320,10 +366,10 @@
           "bytesInOutput": 4768
         },
         "src/gpu/sleeping2D.js": {
-          "bytesInOutput": 3587
+          "bytesInOutput": 3562
         },
         "src/gpu/gpuSolverStep2D.ts": {
-          "bytesInOutput": 3305
+          "bytesInOutput": 3412
         },
         "src/gpu/angularLimits2D.js": {
           "bytesInOutput": 2191
@@ -341,7 +387,7 @@
           "bytesInOutput": 6262
         },
         "src/gpu/appGpuSolver2D.js": {
-          "bytesInOutput": 21806
+          "bytesInOutput": 22479
         },
         "src/native/runtime.js": {
           "bytesInOutput": 7524
@@ -401,13 +447,43 @@
           "bytesInOutput": 1274
         },
         "src/native/scenes.js": {
-          "bytesInOutput": 14863
+          "bytesInOutput": 15383
         },
-        ".temp/temp_index.js": {
-          "bytesInOutput": 80
+        "src/gpu/gpuTimer.js": {
+          "bytesInOutput": 1135
+        },
+        "src/utilities.js": {
+          "bytesInOutput": 0
+        },
+        "src/gpu/bufferRecycler.js": {
+          "bytesInOutput": 1137
+        },
+        "src/gpu/surfaceParticles.wgsl": {
+          "bytesInOutput": 4693
+        },
+        "src/gpu/surfaceParticles.js": {
+          "bytesInOutput": 5327
+        },
+        "src/gpu/contactRender.wgsl": {
+          "bytesInOutput": 1913
+        },
+        "src/gpu/contactSample.js": {
+          "bytesInOutput": 2216
+        },
+        "src/gpu/constraintColoring.js": {
+          "bytesInOutput": 632
+        },
+        "src/utils/gpuStepPass.js": {
+          "bytesInOutput": 893
+        },
+        "src/utils/workerCanvas.js": {
+          "bytesInOutput": 882
+        },
+        "src/utils/sharedInput.js": {
+          "bytesInOutput": 695
         }
       },
-      "bytes": 527539
+      "bytes": 574717
     }
   }
 }

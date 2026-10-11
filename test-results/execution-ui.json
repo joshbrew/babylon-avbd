@@ -1,0 +1,29 @@
+{
+  "passed": true,
+  "configured": {
+    "scene": "2d-stack",
+    "scope": "worker",
+    "worker": true
+  },
+  "measured": {
+    "rows": 1,
+    "scope": "worker",
+    "errors": []
+  },
+  "benchmark": {
+    "backend": "webgl2",
+    "scene": "2d-stack",
+    "preview": "webgl2",
+    "solver": "webgl2"
+  },
+  "naval": {
+    "bodies": 418,
+    "errors": []
+  },
+  "siege": {
+    "bodies": 1121,
+    "worker": true,
+    "sharedInput": true
+  },
+  "nonisolatedFallback": true
+}

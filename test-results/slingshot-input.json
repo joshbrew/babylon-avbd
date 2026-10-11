@@ -1,0 +1,118 @@
+{
+  "date": "2026-10-11T22:09:07.939Z",
+  "passed": true,
+  "results": [
+    {
+      "scope": "full",
+      "backend": "webgpu",
+      "renderer": "webgpu",
+      "input": "mouse",
+      "passed": true,
+      "shots": 2
+    },
+    {
+      "scope": "full",
+      "backend": "webgpu",
+      "renderer": "webgpu",
+      "input": "touch",
+      "passed": true,
+      "shots": 2
+    },
+    {
+      "scope": "full",
+      "backend": "webgpu",
+      "renderer": "babylon",
+      "input": "mouse",
+      "passed": true,
+      "shots": 2
+    },
+    {
+      "scope": "full",
+      "backend": "webgpu",
+      "renderer": "babylon",
+      "input": "touch",
+      "passed": true,
+      "shots": 2
+    },
+    {
+      "scope": "full",
+      "backend": "cpu",
+      "renderer": "canvas",
+      "input": "mouse",
+      "passed": true,
+      "shots": 2
+    },
+    {
+      "scope": "full",
+      "backend": "cpu",
+      "renderer": "canvas",
+      "input": "touch",
+      "passed": true,
+      "shots": 2
+    },
+    {
+      "scope": "main",
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "input": "mouse",
+      "passed": true,
+      "shots": 2
+    },
+    {
+      "scope": "main",
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "input": "touch",
+      "passed": true,
+      "shots": 2
+    },
+    {
+      "scope": "worker",
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "input": "mouse",
+      "passed": true,
+      "shots": 2
+    },
+    {
+      "scope": "worker",
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "input": "touch",
+      "passed": true,
+      "shots": 2
+    },
+    {
+      "scope": "worker-sab",
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "input": "mouse",
+      "passed": true,
+      "shots": 2
+    },
+    {
+      "scope": "worker-sab",
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "input": "touch",
+      "passed": true,
+      "shots": 2
+    },
+    {
+      "scope": "worker",
+      "backend": "gpu",
+      "renderer": "babylon",
+      "input": "mouse",
+      "passed": true,
+      "shots": 2
+    },
+    {
+      "scope": "worker",
+      "backend": "gpu",
+      "renderer": "babylon",
+      "input": "touch",
+      "passed": true,
+      "shots": 2
+    }
+  ]
+}

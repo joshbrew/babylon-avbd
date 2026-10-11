@@ -9,14 +9,15 @@
           "steps": 121,
           "bodies": 10003,
           "finite": true,
-          "minY": 0.4925483763217926,
+          "minY": 0.4923394024372101,
           "outside": 0,
           "stats": {
-            "pairs": 46825,
-            "contacts": 48153,
+            "pairs": 47209,
+            "contacts": 47773,
             "overflow": 0,
             "clashes": 0,
-            "colors": 8
+            "colors": 8,
+            "sleeping": 0
           },
           "errors": []
         },
@@ -24,14 +25,15 @@
           "steps": 241,
           "bodies": 10003,
           "finite": true,
-          "minY": 0.49578410387039185,
+          "minY": 0.49602729082107544,
           "outside": 0,
           "stats": {
-            "pairs": 43617,
-            "contacts": 52364,
+            "pairs": 43447,
+            "contacts": 49830,
             "overflow": 0,
             "clashes": 0,
-            "colors": 8
+            "colors": 8,
+            "sleeping": 0
           },
           "errors": []
         },
@@ -39,14 +41,15 @@
           "steps": 361,
           "bodies": 10003,
           "finite": true,
-          "minY": 0.4951299726963043,
+          "minY": 0.49626433849334717,
           "outside": 0,
           "stats": {
-            "pairs": 43811,
-            "contacts": 52993,
+            "pairs": 43613,
+            "contacts": 52169,
             "overflow": 0,
             "clashes": 0,
-            "colors": 8
+            "colors": 8,
+            "sleeping": 3136
           },
           "errors": []
         }
@@ -60,14 +63,15 @@
           "steps": 121,
           "bodies": 50003,
           "finite": true,
-          "minY": 0.49244752526283264,
+          "minY": 0.49221351742744446,
           "outside": 0,
           "stats": {
-            "pairs": 229558,
-            "contacts": 245823,
+            "pairs": 232672,
+            "contacts": 260574,
             "overflow": 0,
             "clashes": 0,
-            "colors": 9
+            "colors": 9,
+            "sleeping": 0
           },
           "errors": []
         },
@@ -75,14 +79,15 @@
           "steps": 241,
           "bodies": 50003,
           "finite": true,
-          "minY": 0.4952607750892639,
+          "minY": 0.49558138847351074,
           "outside": 0,
           "stats": {
-            "pairs": 211726,
-            "contacts": 254134,
+            "pairs": 212770,
+            "contacts": 250773,
             "overflow": 0,
             "clashes": 0,
-            "colors": 9
+            "colors": 9,
+            "sleeping": 2278
           },
           "errors": []
         },
@@ -90,14 +95,15 @@
           "steps": 361,
           "bodies": 50003,
           "finite": true,
-          "minY": 0.4944564998149872,
+          "minY": 0.4936816990375519,
           "outside": 0,
           "stats": {
-            "pairs": 214616,
-            "contacts": 268213,
+            "pairs": 215255,
+            "contacts": 267798,
             "overflow": 0,
             "clashes": 0,
-            "colors": 9
+            "colors": 9,
+            "sleeping": 0
           },
           "errors": []
         }
@@ -111,14 +117,15 @@
           "steps": 121,
           "bodies": 100003,
           "finite": true,
-          "minY": 0.4916593134403229,
+          "minY": 0.4917408525943756,
           "outside": 0,
           "stats": {
-            "pairs": 450757,
-            "contacts": 517290,
+            "pairs": 455125,
+            "contacts": 508233,
             "overflow": 0,
             "clashes": 0,
-            "colors": 9
+            "colors": 9,
+            "sleeping": 0
           },
           "errors": []
         },
@@ -126,14 +133,15 @@
           "steps": 241,
           "bodies": 100003,
           "finite": true,
-          "minY": 0.49487802386283875,
+          "minY": 0.49483722448349,
           "outside": 0,
           "stats": {
-            "pairs": 417695,
-            "contacts": 509204,
+            "pairs": 416663,
+            "contacts": 503938,
             "overflow": 0,
             "clashes": 0,
-            "colors": 9
+            "colors": 9,
+            "sleeping": 0
           },
           "errors": []
         },
@@ -141,14 +149,15 @@
           "steps": 361,
           "bodies": 100003,
           "finite": true,
-          "minY": 0.494242399930954,
+          "minY": 0.49428218603134155,
           "outside": 0,
           "stats": {
-            "pairs": 421884,
-            "contacts": 531879,
+            "pairs": 422646,
+            "contacts": 537762,
             "overflow": 0,
             "clashes": 0,
-            "colors": 9
+            "colors": 9,
+            "sleeping": 5865
           },
           "errors": []
         }

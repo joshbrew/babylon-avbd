@@ -1,5 +1,6 @@
 import { browserCheck } from "./browser-check.mjs";
-import { readFile, writeFile } from "node:fs/promises";
+import { readFile } from "node:fs/promises";
+import { writeAtomicFile as writeFile } from "./report-file.mjs";
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
 import { rendererReportHTML } from "../tests/renderer-performance-view.js";

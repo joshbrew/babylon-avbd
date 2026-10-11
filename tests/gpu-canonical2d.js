@@ -2,7 +2,7 @@ import { GpuSolver2D } from "../reference/three-avbd/src/avbd2d/gpu/solver.ts";
 import { buildScene2D } from "../reference/three-avbd/src/avbd2d/gpu/sim.ts";
 import { parallelParams } from "../reference/three-avbd/src/avbd2d/ref/solver.ts";
 import { assert } from "./helpers/gpu.js";
-import { gpuSceneParams2D } from "../demo/canonicalScenes.js";
+import { gpuSceneParams2D } from "../demo/lab/scenes.js";
 
 // The same physical thresholds as the pinned avbd2d-behavior suite, executed
 // against actual WebGPU buffers rather than the CPU colored approximation.

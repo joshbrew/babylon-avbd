@@ -14,7 +14,7 @@ const wait = async (expression) => {
 };
 try {
   await browser.navigate(
-    "?demo=canonical&scene=3d-ground&backend=gpu&paused=1",
+    "?demo=canonical&scope=main&scene=3d-ground&backend=gpu&paused=1",
   );
   await wait("globalThis.__AVBD_LAB__?.diagnostics.ready");
   for (const mode of ["optimized", "points", "standard", "auto"]) {

@@ -28,4 +28,7 @@ dist/assets/
 dist/index.*
 dist/demo*
 dist/performance*
+dist/workers*
+dist/simulation-worker*
+dist/experimental-webgl*
 dist/gpu-tests*

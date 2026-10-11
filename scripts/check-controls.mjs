@@ -10,7 +10,7 @@ const wait = async (expression) => {
   throw Error(`Timed out: ${expression}`);
 };
 try {
-  await b.navigate("?demo=gpu-stress");
+  await b.navigate("?demo=gpu-stress&scope=main");
   await wait("globalThis.__AVBD_LAB__?.diagnostics.ready");
   await b.evaluate("__AVBD_LAB__.pause(true)");
   for (const [kind, shape] of [

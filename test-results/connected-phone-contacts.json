@@ -4326,6 +4326,10 @@
           "passed": true
         },
         {
+          "name": "Package device preparation qualifies native 3D and reuses the result for Babylon",
+          "passed": true
+        },
+        {
           "name": "GPU 3D zero-torque motor leaves free angular motion unchanged",
           "passed": true
         },
@@ -4418,6 +4422,46 @@
           "passed": true
         },
         {
+          "name": "Babylon scene-style aggregate, automatic stepping and disposal",
+          "passed": true
+        },
+        {
+          "name": "Babylon aggregate preserves mass and GPU velocity / angular commands",
+          "passed": true
+        },
+        {
+          "name": "Babylon position-only teleports retain live rotation, mesh origins and queued rotations",
+          "passed": true
+        },
+        {
+          "name": "Babylon command batches reuse storage, auto-pack velocities and exclude stale records",
+          "passed": true
+        },
+        {
+          "name": "Babylon motion, properties, sleeping and bounce share one physics submission",
+          "passed": true
+        },
+        {
+          "name": "Babylon impulses combine on GPU without stale pose uploads",
+          "passed": true
+        },
+        {
+          "name": "Babylon teleport, collision filters and aggregate disposal preserve other slots",
+          "passed": true
+        },
+        {
+          "name": "Babylon off-centre impulses use the live GPU position without readback",
+          "passed": true
+        },
+        {
+          "name": "Babylon convex aggregate maintains the mesh centre and principal inertia frame",
+          "passed": true
+        },
+        {
+          "name": "Babylon API validates restitution and mesh synchronization at scale",
+          "passed": true
+        },
+        {
           "name": "GPU 3D portable hull contacts cover partial and multiple pair workgroups",
           "passed": true
         }
@@ -4448,6 +4492,10 @@
         },
         {
           "name": "GPU sleeping rejects an unsupported initial configuration",
+          "passed": true
+        },
+        {
+          "name": "Package device preparation qualifies native 3D and reuses the result for Babylon",
           "passed": true
         },
         {
@@ -4533,13 +4581,7 @@
       ]
     }
   ],
-  "errors": [
-    "CreateComputePipelines failed with VK_ERROR_UNKNOWN\n - While initializing [ComputePipeline \"narrowphase\"]\n - While calling [Device].CreateComputePipeline([ComputePipelineDescriptor \"\"narrowphase\"\"]).\n    at CheckVkSuccessImpl (../../third_party/dawn/src/dawn/native/vulkan/VulkanError.cpp:106)\n",
-    "CreateComputePipelines failed with VK_ERROR_UNKNOWN\n - While initializing [ComputePipeline \"narrowphase\"]\n - While calling [Device].CreateComputePipeline([ComputePipelineDescriptor \"\"narrowphase\"\"]).\n    at CheckVkSuccessImpl (../../third_party/dawn/src/dawn/native/vulkan/VulkanError.cpp:106)\n",
-    "CreateComputePipelines failed with VK_ERROR_UNKNOWN\n - While initializing [ComputePipeline \"narrowphase\"]\n - While calling [Device].CreateComputePipeline([ComputePipelineDescriptor \"\"narrowphase\"\"]).\n    at CheckVkSuccessImpl (../../third_party/dawn/src/dawn/native/vulkan/VulkanError.cpp:106)\n",
-    "CreateComputePipelines failed with VK_ERROR_UNKNOWN\n - While initializing [ComputePipeline \"narrowphase\"]\n - While calling [Device].CreateComputePipeline([ComputePipelineDescriptor \"\"narrowphase\"\"]).\n    at CheckVkSuccessImpl (../../third_party/dawn/src/dawn/native/vulkan/VulkanError.cpp:106)\n",
-    "CreateComputePipelines failed with VK_ERROR_UNKNOWN\n - While initializing [ComputePipeline \"narrowphase\"]\n - While calling [Device].CreateComputePipeline([ComputePipelineDescriptor \"\"narrowphase\"\"]).\n    at CheckVkSuccessImpl (../../third_party/dawn/src/dawn/native/vulkan/VulkanError.cpp:106)\n"
-  ],
+  "errors": [],
   "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Mobile Safari/537.36",
   "adapter": {
     "vendor": "",
@@ -4547,7 +4589,7 @@
     "device": "",
     "description": ""
   },
-  "passed": false,
+  "passed": true,
   "scope": "Physical connected Android phone, native GPU features using the device-qualified 3D contact path. Desktop performance is measured separately.",
-  "measuredAt": "2026-10-07T18:28:49.222Z"
+  "measuredAt": "2026-10-11T21:29:26.382Z"
 }

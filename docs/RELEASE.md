@@ -5,6 +5,12 @@ portable scene builders and the browser demos. The package ships ESM, the `AVBD`
 browser global, declarations, documentation and license notices. It has no runtime
 dependencies; Babylon 9 is an optional peer for the integration API.
 
+`avbd-babylon/utils` exposes the GPU timers, buffer recycler, surface particles,
+contact sampling, startup coloring, custom GPU step passes and worker input/canvas
+helpers used by the demos. These helpers are also available from the main entry.
+`npm run benchmark:particles` measures visible D20 particle capacity and updates
+the public report; its results are separate from AVBD rigid-body benchmarks.
+
 Native 2D and 3D worlds select WebGPU or CPU at initialization and share
 the scene and body APIs. The Babylon aggregate API uses WebGPU; native CPU
 worlds can use Babylon drawing with synchronized poses. The experimental
@@ -57,6 +63,14 @@ This checks physical-device floor contacts, 2D/3D package features and both 3D
 collision searches. It uses only the existing local demo tab and saves
 `test-results/connected-phone-contacts.json`. Mobile viewport tests and physical
 phone tests have separate reports.
+
+Run `npm run test:connected-demos` on the same connection for ten production
+scene checks, screenshots and short physics/rendering measurements on the phone.
+This includes 2D/3D hinges and sensors, terrain, tearable cloth and the 40,000-marble
+Galton board. The saved `connected-phone-demos.json` distinguishes GPU physics
+time from completion time. These short checks verify startup and motion; they
+do not replace long settling tests or the complete Galton distribution test.
+Sequential measurements can warm the phone and change its clock speeds.
 
 To compare PC performance with a saved package build, run
 `node scripts/check-contact-performance.mjs --baseline=/path/to/avbd.js`.
@@ -152,8 +166,9 @@ See the [feature table](../README.md#feature-coverage) for exact coverage.
 
 These remain useful follow-up work rather than supported 0.2 features:
 
-- **Concave mesh collisions:** custom hulls fill cavities. Terrain and hollow
-  objects need suitable convex pieces.
+- **Dynamic concave bodies:** moving hollow objects need convex pieces. Static
+  triangle meshes and heightfields are supported through terrain cooking, which
+  preserves caves and overhangs. A single convex hull fills its cavities.
 - **Continuous collision detection:** contacts are discrete. Use smaller
   timesteps for fast objects; sphere/circle casts are queries, not automatic CCD.
 - **Full Babylon Physics V2 integration:** use AVBD aggregates, not

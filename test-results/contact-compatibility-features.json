@@ -31,6 +31,10 @@
           "passed": true
         },
         {
+          "name": "Package device preparation qualifies native 3D and reuses the result for Babylon",
+          "passed": true
+        },
+        {
           "name": "GPU 3D zero-torque motor leaves free angular motion unchanged",
           "passed": true
         },
@@ -148,6 +152,10 @@
           "passed": true
         },
         {
+          "name": "Package device preparation qualifies native 3D and reuses the result for Babylon",
+          "passed": true
+        },
+        {
           "name": "GPU 3D zero-torque motor leaves free angular motion unchanged",
           "passed": true
         },
@@ -262,6 +270,10 @@
         },
         {
           "name": "GPU sleeping rejects an unsupported initial configuration",
+          "passed": true
+        },
+        {
+          "name": "Package device preparation qualifies native 3D and reuses the result for Babylon",
           "passed": true
         },
         {
@@ -380,6 +392,10 @@
         },
         {
           "name": "GPU sleeping rejects an unsupported initial configuration",
+          "passed": true
+        },
+        {
+          "name": "Package device preparation qualifies native 3D and reuses the result for Babylon",
           "passed": true
         },
         {
@@ -500,6 +516,10 @@
           "passed": true
         },
         {
+          "name": "Package device preparation qualifies native 3D and reuses the result for Babylon",
+          "passed": true
+        },
+        {
           "name": "GPU 3D zero-torque motor leaves free angular motion unchanged",
           "passed": true
         },
@@ -616,6 +636,10 @@
         },
         {
           "name": "GPU sleeping rejects an unsupported initial configuration",
+          "passed": true
+        },
+        {
+          "name": "Package device preparation qualifies native 3D and reuses the result for Babylon",
           "passed": true
         },
         {

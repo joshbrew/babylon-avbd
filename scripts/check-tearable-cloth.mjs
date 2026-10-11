@@ -14,7 +14,7 @@ const browser = await browserCheck();
 const snapshots = [];
 try {
   await browser.navigate(
-    "?demo=canonical&scene=3d-tearable-cloth&backend=gpu&paused=1",
+    "?demo=canonical&scope=main&scene=3d-tearable-cloth&backend=gpu&paused=1",
   );
   for (let i = 0; i < 400; i++) {
     if (await browser.evaluate("globalThis.__AVBD_LAB__?.diagnostics.ready"))

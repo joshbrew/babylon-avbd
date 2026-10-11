@@ -11,6 +11,7 @@ Physics V2 plugin interface or install through `scene.enablePhysics()`.
 
 - [Install the library](#install-the-library)
 - [A complete small scene](#a-complete-small-scene)
+- [Everyday body commands](#everyday-body-commands)
 - [Move, launch and reuse bodies](#move-launch-and-reuse-bodies)
 - [Choose a rendering path](#choose-a-rendering-path)
 - [Reproduce the collision and solver benchmarks](#reproduce-the-collision-and-solver-benchmarks)
@@ -19,10 +20,15 @@ Physics V2 plugin interface or install through `scene.enablePhysics()`.
 
 ## Install the library
 
-The package is named `avbd-babylon`. For a local build, run `npm install` and
-`npm run build` in this repository. From your
-Babylon project, run `npm install /absolute/path/to/avbd` or install the archive
-created by `npm pack`. Import from `avbd-babylon` using your normal bundler.
+Install AVBD and Babylon in your project:
+
+```sh
+npm install avbd-babylon @babylonjs/core
+```
+
+Import from `avbd-babylon` using your normal bundler. For a local development
+build, run `npm install` and `npm run build` in this repository, then install
+its directory or the archive created by `npm pack` into your project.
 The ESM output already contains the solver and shader strings. No TypeScript
 source compilation or WGSL loader is needed in your project. The package has
 no Babylon runtime imports; it uses the mesh objects your project provides.
@@ -33,11 +39,13 @@ browser tests. `npm start` builds the library and serves the lab together.
 Host that file yourself and load it with a normal script tag; use
 `const { AvbdPhysics, AvbdPhysicsAggregate, AvbdShapeType } = AVBD`.
 
-WebGPU
-needs a supported browser and localhost or HTTPS. The default world requests
-9 storage bindings, a 512 MiB storage binding limit and a 1 GiB buffer limit;
-unsupported adapters fail during creation. Babylon drawing can use either its
-WebGL or WebGPU engine when using the small-scene mesh bridge.
+WebGPU needs a supported browser and localhost or HTTPS. The world prefers up to
+9 storage bindings, a 512 MiB storage binding limit and a 1 GiB buffer limit,
+and adapts these requests to the adapter's available limits. Custom convex mesh
+shapes require 9 storage bindings. Creation checks 3D floor contacts once and
+selects a compatible GPU path when needed, including on supported mobile devices.
+Babylon drawing can use either its WebGL or WebGPU engine with the small-scene
+mesh bridge.
 
 For CPU physics, use the [native pipeline examples](../README.md#choose-a-solver-backend-once).
 Select the backend once; 2D and 3D scene builders, body commands, joints, triggers,
@@ -125,6 +133,36 @@ Mesh poses arrive asynchronously; do not await them in the render loop. `create(
 custom simulation loop, pass `autoAttach: false` and call `step()` yourself.
 `attachToScene()` is also available and does not attach a second observer when
 called again for the same scene.
+
+## Everyday body commands
+
+Keep the aggregate and use its `body` handle for movement. Babylon `Vector3`
+values work for velocity, impulses and forces; those calls also accept arrays.
+Teleporting accepts a `Vector3` and an optional `Quaternion`.
+
+| Task                           | Call                                                                              |
+| ------------------------------ | --------------------------------------------------------------------------------- |
+| Set movement or spin           | `body.setLinearVelocity(v)` / `body.setAngularVelocity(v)`                        |
+| Give a sudden push             | `body.applyImpulse(impulse, worldPoint)`; omit the point for a central push       |
+| Apply force for one fixed step | `body.applyForce(force, worldPoint)` / `body.applyTorque(torque)`                 |
+| Move instantly                 | `body.teleport(position, rotation)`; omit rotation to retain the live orientation |
+| Set bounce                     | `body.setRestitution(0.5)`                                                        |
+| Set collision masks            | `body.setCollisionGroups(group, collidesWith)`                                    |
+| Make an overlap sensor         | `body.setTrigger(true)`                                                           |
+| Allow sleeping or wake a body  | `body.setSleepEnabled(true)` / `body.wakeUp()`                                    |
+| Read live physics state        | `await body.readState()`                                                          |
+| Remove physics participation   | `aggregate.dispose()`; the mesh stays caller-owned                                |
+
+Commands made before the next fixed step are batched automatically. Ordinary
+per-body calls do not require a manual flush or pose download. State reads and
+queries are asynchronous because they return current GPU results. Create the
+world with `{ scene }` to attach stepping and disposal to Babylon's scene.
+
+For another renderer or CPU compatibility, use the
+[native 2D/3D examples](../README.md#native-physics-with-any-renderer). They use the
+same movement, impulse, bounce, trigger, mask and sleep method names, with
+two- or three-component coordinates. Native bulk edits and reusable packed
+batches are shown in [bulk edits](../README.md#bulk-edits-and-gpu-dispatches).
 
 ## Move, launch and reuse bodies
 
@@ -233,7 +271,7 @@ device stays alive when the world is disposed.
 Thin instances do not automatically create colliders. The aggregate API takes
 one mesh per physics body, which has a startup cost for very large scenes.
 For 100K bodies, the laboratory's native body/scene builders avoid creating
-100K Babylon mesh objects; see [canonicalScenes.js](../demo/canonicalScenes.js).
+100K Babylon mesh objects; see [scene registry](../demo/lab/scenes.js).
 Import `AvbdScene2D` or `AvbdScene3D` from `avbd-babylon/native` for the same
 renderer-independent integration. Both expose live body handles, bulk commands,
 packed velocity uploads, selected pose reads, triggers, masks, restitution,
@@ -242,9 +280,9 @@ sleeping and contact events. See the package README's
 The direct-buffer renderer and small-scene aggregate bridge are separate
 integration paths.
 
-See [canonicalRenderer.js](../demo/canonicalRenderer.js) and
-[canonicalRender.wgsl](../demo/canonicalRender.wgsl) for the direct rendering path,
-and [mixedColliderDemo.js](../demo/mixedColliderDemo.js) for the Babylon mesh bridge.
+See [canonicalRenderer.js](../demo/shared/rendering/canonicalRenderer.js) and
+[canonicalRender.wgsl](../demo/shared/rendering/canonicalRender.wgsl) for the direct rendering path,
+and [mixed collider demo](../demo/mixed-colliders/index.js) for the Babylon mesh bridge.
 The laboratory scene builders use z up; the Babylon adapter uses y up by
 default. Match your renderer's coordinates to the world you create.
 

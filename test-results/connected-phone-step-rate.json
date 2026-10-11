@@ -1,0 +1,68 @@
+{
+  "passed": true,
+  "hardware": "Samsung Galaxy S23 (SM-S911U1)",
+  "initial": {
+    "scene": "3d-voronoi-demolition",
+    "steps": 0,
+    "backend": "gpu",
+    "renderer": "webgpu",
+    "dimension": 3,
+    "bodies": 222,
+    "iterations": 10,
+    "timeStep": 0.008333333333333333,
+    "defaultStepRate": 240,
+    "adapter": {
+      "vendor": "",
+      "architecture": "",
+      "device": "",
+      "description": ""
+    },
+    "worker": true,
+    "sharedInput": false,
+    "bowling": false,
+    "sleepingEnabled": false
+  },
+  "changed": {
+    "scene": "3d-voronoi-demolition",
+    "steps": 0,
+    "backend": "gpu",
+    "renderer": "webgpu",
+    "dimension": 3,
+    "bodies": 222,
+    "iterations": 10,
+    "timeStep": 0.016666666666666666,
+    "defaultStepRate": 240,
+    "adapter": {
+      "vendor": "",
+      "architecture": "",
+      "device": "",
+      "description": ""
+    },
+    "worker": true,
+    "sharedInput": false,
+    "bowling": false,
+    "sleepingEnabled": false
+  },
+  "restored": {
+    "scene": "3d-voronoi-demolition",
+    "steps": 0,
+    "backend": "gpu",
+    "renderer": "webgpu",
+    "dimension": 3,
+    "bodies": 222,
+    "iterations": 10,
+    "timeStep": 0.004166666666666667,
+    "defaultStepRate": 240,
+    "adapter": {
+      "vendor": "",
+      "architecture": "",
+      "device": "",
+      "description": ""
+    },
+    "worker": true,
+    "sharedInput": false,
+    "bowling": false,
+    "sleepingEnabled": false
+  },
+  "errors": []
+}

@@ -35,6 +35,11 @@ import {
   storeShape2D,
 } from "../gpu/shapes2D.js";
 import { isSolverPipeline } from "./pipeline.js";
+import {
+  cookHeightfield,
+  cookStaticMesh,
+  createTerrainBodies,
+} from "./terrain.js";
 
 const vector = (v, n, name) => {
   const a = Array.from(v);
@@ -177,6 +182,43 @@ export class AvbdScene3D {
       ),
       options,
     );
+  }
+  addHeightfield(options) {
+    return this.addTerrain(cookHeightfield(options), options);
+  }
+  addStaticMesh(options) {
+    return this.addTerrain(cookStaticMesh(options), options);
+  }
+  /** Cook once, optionally in a worker; register before creating the solver. */
+  addTerrain(cooked, options = {}) {
+    this.assertEditable();
+    const firstIndex = this.ref.bodies.length;
+    const bodies = createTerrainBodies(this.ref, cooked, options);
+    bodies.forEach((body) => this.bodySet.add(body));
+    this.hulls = true;
+    let disposed = false;
+    return {
+      bodies,
+      triangleCount: cooked.triangleCount,
+      kind: cooked.kind,
+      dispose: () => {
+        if (disposed) return;
+        disposed = true;
+        bodies.forEach((b) => {
+          b.group = 0;
+          b.collidesWith = 0;
+        });
+        if (this.gpu && !this.gpu.destroyed) {
+          const ids = bodies.map((_, i) => this.gpu.gpuIndex(firstIndex + i));
+          this.gpu.setFilters(
+            ids,
+            ids.map(() => 0),
+            ids.map(() => 0),
+          );
+          this.gpu.wakeAll?.();
+        }
+      },
+    };
   }
   configure(b, options) {
     if (

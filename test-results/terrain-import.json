@@ -1,0 +1,38 @@
+{
+  "passed": true,
+  "results": [
+    {
+      "backend": "gpu",
+      "bodies": 122,
+      "renderer": "webgpu",
+      "errors": []
+    },
+    {
+      "backend": "cpu",
+      "bodies": 122,
+      "renderer": "webgl",
+      "errors": []
+    }
+  ],
+  "geometry": {
+    "surfaces": 2,
+    "capsules": 40,
+    "counts": [
+      28224,
+      12960
+    ],
+    "expected": [
+      28224,
+      12960
+    ],
+    "finite": true,
+    "errors": []
+  },
+  "worker": {
+    "sharedInput": true,
+    "bodies": 122
+  },
+  "screenshots": [
+    "screenshots/terrain-organic.png"
+  ]
+}

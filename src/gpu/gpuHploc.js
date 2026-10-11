@@ -36,6 +36,7 @@ ${nodeTypes}
 @compute @workgroup_size(64)
 fn findTreePairs(@builtin(global_invocation_id) gid:vec3u) {
   let i=gid.x; if(i>=params.bodyCount || build.root==0xffffffffu){return;}
+  let collisionFilter=filters[i];if(collisionFilter.x==0u || collisionFilter.y==0u){return;}
   let P=probeOf(i);
   // Static/kinematic leaves are found from dynamic queries. Traversing a
   // scene-wide ground slab would otherwise serialize an entire tree in one lane.
@@ -136,6 +137,7 @@ fn initializeLinks(@builtin(global_invocation_id) gid:vec3u){if(gid.x<build.esca
     this.pipes = Object.fromEntries(
       [
         "leaves",
+        "refitLeaves",
         "reduceBounds",
         "mortonCodes",
         "seedClusters",
@@ -292,10 +294,14 @@ fn initializeLinks(@builtin(global_invocation_id) gid:vec3u){if(gid.x<build.esca
       pass.setBindGroup(0, group);
       pass.dispatchWorkgroups(x);
     };
-    run("leaves", this.base.group, groups(this.count));
     const rebuilding =
       !this.built || this.stepsSinceBuild >= this.rebuildInterval;
     this.lastRebuilt = rebuilding;
+    run(
+      rebuilding ? "leaves" : "refitLeaves",
+      this.base.group,
+      groups(this.count),
+    );
     if (rebuilding) {
       run("initializeLinks", this.base.group, groups(this.nodeCapacity));
       for (const level of this.reductions)

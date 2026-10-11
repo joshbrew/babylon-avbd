@@ -88,6 +88,103 @@ export async function babylonGpuTests(device, test) {
         "GPU rotation reaches Babylon",
       );
     }));
+  await test("Babylon position-only teleports retain live rotation, mesh origins and queued rotations", () =>
+    withWorld(async (w, s) => {
+      const aggregates = [AvbdShapeType.BOX, AvbdShapeType.CONVEX_HULL].map(
+        (type, index) => {
+          const mesh = MeshBuilder.CreateBox(
+            "offset",
+            { width: 1, height: 2, depth: 3 },
+            s,
+          );
+          mesh.position.x = index * 30;
+          const vertices = mesh.getVerticesData("position");
+          for (let i = 0; i < vertices.length; i += 3) {
+            vertices[i] +=
+              (type === AvbdShapeType.CONVEX_HULL ? vertices[i + 1] * 0.3 : 0) +
+              0.8;
+            vertices[i + 1] += 0.3;
+            vertices[i + 2] -= 0.4;
+          }
+          mesh.setVerticesData("position", vertices);
+          mesh.refreshBoundingInfo();
+          return w.addAggregate(mesh, type, { mass: 2 });
+        },
+      );
+      for (const a of aggregates) {
+        const mesh = a.mesh;
+        a.body
+          .setLinearVelocity([0.3, 0.2, -0.1])
+          .setAngularVelocity([0.7, 1.3, 0.9]);
+        for (let i = 0; i < 30; i++) w.step();
+        const before = await a.body.readState();
+        assert(
+          Math.abs(
+            Quaternion.Dot(
+              mesh.rotationQuaternion.multiply(a.localRotation),
+              Quaternion.FromArray(before.rotation),
+            ),
+          ) < 0.99,
+          "renderer pose is deliberately stale",
+        );
+        const destination = new Vector3(10, 4, -2);
+        a.body.teleport(destination);
+        const after = await a.body.readState();
+        before.rotation.forEach((v, i) =>
+          close(after.rotation[i], v, 1e-6, "live orientation"),
+        );
+        before.linearVelocity.forEach((v, i) =>
+          close(after.linearVelocity[i], v, 1e-6, "retained velocity"),
+        );
+        before.angularVelocity.forEach((v, i) =>
+          close(after.angularVelocity[i], v, 1e-6, "retained spin"),
+        );
+        const offset = a.localCenter
+          .applyRotationQuaternion(a.localRotation.conjugate())
+          .applyRotationQuaternion(Quaternion.FromArray(before.rotation));
+        destination
+          .add(offset)
+          .asArray()
+          .forEach((v, i) =>
+            close(after.position[i], v, 2e-5, "live mass-centre offset"),
+          );
+        const q = Quaternion.RotationYawPitchRoll(0.4, 0.8, -0.2),
+          next = new Vector3(14, 6, 1);
+        a.body.teleport(destination, q).teleport(next);
+        const queued = await a.body.readState();
+        q.multiply(a.localRotation)
+          .asArray()
+          .forEach((v, i) =>
+            close(
+              queued.rotation[i],
+              v,
+              2e-6,
+              "preceding queued rotation retained",
+            ),
+          );
+        next
+          .add(a.localCenter.applyRotationQuaternion(q))
+          .asArray()
+          .forEach((v, i) =>
+            close(queued.position[i], v, 2e-5, "last destination wins"),
+          );
+        const reset = Quaternion.Identity();
+        a.body.teleport(destination).teleport(next, reset);
+        const explicit = await a.body.readState();
+        reset
+          .multiply(a.localRotation)
+          .asArray()
+          .forEach((v, i) =>
+            close(
+              explicit.rotation[i],
+              v,
+              2e-6,
+              "later explicit rotation wins",
+            ),
+          );
+        a.dispose();
+      }
+    }));
   await test("Babylon command batches reuse storage, auto-pack velocities and exclude stale records", () =>
     withWorld(async (w, s) => {
       const a = w.addAggregate(

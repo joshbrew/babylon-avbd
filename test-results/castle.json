@@ -31,11 +31,11 @@
       "colors": 7
     },
     "profile": {
-      "total": 3.324928,
-      "collision": 0.66048,
-      "adjacency": 0.059392,
-      "coloring": 0.397312,
-      "solve": 2.20672,
+      "total": 7.806976,
+      "collision": 1.21856,
+      "adjacency": 0.109568,
+      "coloring": 0.77824,
+      "solve": 5.699584,
       "broadphase": "grid",
       "bvhRebuilt": false
     },
@@ -73,11 +73,11 @@
       "colors": 7
     },
     "profile": {
-      "total": 2.6368,
-      "collision": 0.67072,
-      "adjacency": 0.06656,
-      "coloring": 0.141312,
-      "solve": 1.758208,
+      "total": 2.694144,
+      "collision": 0.613376,
+      "adjacency": 0.060416,
+      "coloring": 0.11264,
+      "solve": 1.907712,
       "broadphase": "grid",
       "bvhRebuilt": false
     },
@@ -115,11 +115,11 @@
       "colors": 7
     },
     "profile": {
-      "total": 3.013632,
-      "collision": 0.982016,
-      "adjacency": 0.069632,
-      "coloring": 0.116736,
-      "solve": 1.844224,
+      "total": 2.480128,
+      "collision": 0.60928,
+      "adjacency": 0.063488,
+      "coloring": 0.094208,
+      "solve": 1.713152,
       "broadphase": "grid",
       "bvhRebuilt": false
     },
@@ -157,11 +157,11 @@
       "colors": 7
     },
     "profile": {
-      "total": 3.15904,
-      "collision": 0.771072,
-      "adjacency": 0.402432,
-      "coloring": 0.140288,
-      "solve": 1.845248,
+      "total": 3.101696,
+      "collision": 1.197056,
+      "adjacency": 0.069632,
+      "coloring": 0.11776,
+      "solve": 1.717248,
       "broadphase": "grid",
       "bvhRebuilt": false
     },
@@ -224,11 +224,11 @@
         "colors": 7
       },
       "profile": {
-        "total": 3.324928,
-        "collision": 0.66048,
-        "adjacency": 0.059392,
-        "coloring": 0.397312,
-        "solve": 2.20672,
+        "total": 7.806976,
+        "collision": 1.21856,
+        "adjacency": 0.109568,
+        "coloring": 0.77824,
+        "solve": 5.699584,
         "broadphase": "grid",
         "bvhRebuilt": false
       },
@@ -266,11 +266,11 @@
         "colors": 7
       },
       "profile": {
-        "total": 2.6368,
-        "collision": 0.67072,
-        "adjacency": 0.06656,
-        "coloring": 0.141312,
-        "solve": 1.758208,
+        "total": 2.694144,
+        "collision": 0.613376,
+        "adjacency": 0.060416,
+        "coloring": 0.11264,
+        "solve": 1.907712,
         "broadphase": "grid",
         "bvhRebuilt": false
       },
@@ -308,11 +308,11 @@
         "colors": 7
       },
       "profile": {
-        "total": 2.656256,
-        "collision": 0.698368,
-        "adjacency": 0.070656,
-        "coloring": 0.130048,
-        "solve": 1.757184,
+        "total": 2.413568,
+        "collision": 0.63488,
+        "adjacency": 0.065536,
+        "coloring": 0.113376,
+        "solve": 1.599488,
         "broadphase": "grid",
         "bvhRebuilt": false
       },
@@ -350,11 +350,11 @@
         "colors": 7
       },
       "profile": {
-        "total": 3.013632,
-        "collision": 0.982016,
-        "adjacency": 0.069632,
-        "coloring": 0.116736,
-        "solve": 1.844224,
+        "total": 2.480128,
+        "collision": 0.60928,
+        "adjacency": 0.063488,
+        "coloring": 0.094208,
+        "solve": 1.713152,
         "broadphase": "grid",
         "bvhRebuilt": false
       },
@@ -392,11 +392,11 @@
         "colors": 7
       },
       "profile": {
-        "total": 3.15904,
-        "collision": 0.771072,
-        "adjacency": 0.402432,
-        "coloring": 0.140288,
-        "solve": 1.845248,
+        "total": 3.101696,
+        "collision": 1.197056,
+        "adjacency": 0.069632,
+        "coloring": 0.11776,
+        "solve": 1.717248,
         "broadphase": "grid",
         "bvhRebuilt": false
       },

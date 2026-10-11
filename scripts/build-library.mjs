@@ -1,8 +1,6 @@
-import {
-  bundleESM,
-  bundleBrowser,
-} from "tinybuild/tinybuild/esbuild/bundler.js";
-import { copyFile, mkdir, readFile, writeFile } from "node:fs/promises";
+import { build } from "esbuild";
+import { mkdir, readFile } from "node:fs/promises";
+import { writeAtomicFile as writeFile } from "./report-file.mjs";
 import library from "../tinybuild.config.js";
 import cdn from "../tinybuild.cdn.config.js";
 import { sourceMapsEnabled, removeStaleSourceMap } from "./source-maps.mjs";
@@ -12,21 +10,50 @@ const config = structuredClone(
 );
 config.sourcemap = sourceMapsEnabled;
 await removeStaleSourceMap(config.outfile);
-const built = await (
-  process.argv.includes("--cdn") ? bundleBrowser : bundleESM
-)({ ...config, defaultConfig: true, plugins: [], bundle: true }, false);
+// Read the tinybuild configs directly, as the web build does. Output is atomic;
+// no shared scratch directory or bundler-generated wrapper needs deletion.
+const built = await build({
+  entryPoints: config.entryPoints,
+  outfile: config.outfile,
+  bundle: true,
+  format: process.argv.includes("--cdn") ? "iife" : "esm",
+  ...(process.argv.includes("--cdn")
+    ? { globalName: `globalThis.${config.globalThis}` }
+    : {}),
+  platform: "browser",
+  target: config.target,
+  external: config.external,
+  loader: config.loader,
+  minify: config.minify,
+  sourcemap: config.sourcemap,
+  metafile: true,
+  write: false,
+});
+for (const file of built.outputFiles) await writeFile(file.path, file.contents);
 if (!built?.metafile)
   throw Error("Library build produced no dependency manifest");
 const unwanted = Object.keys(built.metafile.inputs).filter(
   (name) =>
     name.includes("node_modules/@babylonjs/") ||
     name.startsWith("src/webgl/") ||
+    name.startsWith("demo/") ||
     /(?:Demo|canonicalLab|gpuStress|avbd\.wgsl)/.test(name),
 );
 if (unwanted.length)
   throw Error(`Unexpected package dependencies: ${unwanted.join(", ")}`);
-await copyFile("src/babylon/babylonAvbd.d.ts", "dist/babylonAvbd.d.ts");
-await copyFile("src/gpu/device.d.ts", "dist/gpuDevice.d.ts");
+await writeFile(
+  "dist/utilities.js",
+  'export { GpuTimer, GPUBufferRecycler, GpuSurfaceParticles, PARTICLE_BYTE_STRIDE, GpuContactSample, sampledContactShader, seedConstraintColoring, addGpuStepPass, WorkerCanvas, INPUT_WORDS, createSharedInput, writeSharedInput, readSharedInput } from "./avbd.js";\n',
+);
+await writeFile("dist/utilities.d.ts", await readFile("src/utilities.d.ts"));
+await writeFile(
+  "dist/babylonAvbd.d.ts",
+  (await readFile("src/babylon/babylonAvbd.d.ts", "utf8")).replace(
+    "../native/scenes.js",
+    "./nativeScenes.js",
+  ),
+);
+await writeFile("dist/gpuDevice.d.ts", await readFile("src/gpu/device.d.ts"));
 await writeFile(
   "dist/solverPipeline.d.ts",
   (await readFile("src/native/pipeline.d.ts", "utf8"))
@@ -42,7 +69,7 @@ await writeFile(
 );
 await writeFile(
   "dist/native.js",
-  'export { AvbdScene2D, AvbdScene3D, createWebGPUDevice, prepareWebGPUDevice3D, createSolverPipeline } from "./avbd.js";\n',
+  'export { AvbdScene2D, AvbdScene3D, createWebGPUDevice, prepareWebGPUDevice3D, createSolverPipeline, cookHeightfield, cookStaticMesh } from "./avbd.js";\n',
 );
 await writeFile(
   "dist/native.d.ts",

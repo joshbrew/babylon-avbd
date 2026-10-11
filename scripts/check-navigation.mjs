@@ -16,7 +16,7 @@ try {
     "?demo=showcase",
     "?demo=rock",
     "?demo=cannon",
-    "?demo=gpu-stress",
+    "?demo=gpu-stress&scope=main",
     "tests/performance.html",
     "test-results/report.html",
     "test-results/solver-performance.html",

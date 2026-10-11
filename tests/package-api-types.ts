@@ -7,8 +7,63 @@ import {
   createWebGPUDevice,
   prepareWebGPUDevice3D,
   createSolverPipeline,
+  cookHeightfield,
+  cookStaticMesh,
 } from "avbd-babylon";
 import type { AvbdSolverBackend } from "avbd-babylon/native";
+import {
+  GpuSurfaceParticles,
+  GpuTimer,
+  GpuContactSample,
+  GPUBufferRecycler,
+  createSharedInput,
+  writeSharedInput,
+  readSharedInput,
+  addGpuStepPass,
+  WorkerCanvas,
+} from "avbd-babylon/utils";
+
+function useGpuUtilities(device: GPUDevice, encoder: GPUCommandEncoder) {
+  const scene2D = new AvbdScene2D();
+  scene2D.addCircle(0.5);
+  const gpu2D = scene2D.createSolver(device);
+  const detach2D = addGpuStepPass(gpu2D,{before(e,s){const b:GPUBuffer=s.bodyBuffer;e.clearBuffer(b,0,4);}});
+  detach2D();
+  const scene3D = new AvbdScene3D();
+  scene3D.addSphere(0.5);
+  const gpu3D = scene3D.createSolver(device);
+  const detach3D = addGpuStepPass(gpu3D,{after(e,s){const b:GPUBuffer=s.bodyBuffer;e.clearBuffer(b,0,4);}});
+  detach3D();
+  const surface = new WorkerCanvas(new OffscreenCanvas(100,100),100,100);
+  surface.resize(200,200);
+  const particles = new GpuSurfaceParticles(device, {
+    capacity: 100_000,
+    triangleCount: 1,
+  });
+  particles.writeTriangles(
+    new Float32Array([0, 0, 0, 0, 10, 0, 0, 0, 0, 10, 0, 0]),
+  );
+  particles.step({ dt: 1 / 60, count: 100_000 });
+  const poses: GPUBuffer = particles.particleBuffer;
+  const contacts = new GpuContactSample(device, { count: 1024 });
+  contacts.dispose();
+  const timer = new GpuTimer(device),
+    slot = timer.begin();
+  const pass = encoder.beginComputePass(timer.descriptor(slot));
+  pass.end();
+  timer.encode(encoder, slot);
+  const pool = new GPUBufferRecycler(device);
+  const storageUsage = 0x80; // GPUBufferUsage.STORAGE in the browser.
+  const buffer = pool.acquire(1024, storageUsage);
+  pool.release(buffer, 1024, storageUsage);
+  pool.destroy();
+  const shared = createSharedInput();
+  if (shared) {
+    writeSharedInput(shared, { clientX: 10, clientY: 20 });
+    readSharedInput(shared);
+  }
+  particles.destroy();
+}
 import type { Scene } from "@babylonjs/core/scene.js";
 import type { AbstractMesh } from "@babylonjs/core/Meshes/abstractMesh.js";
 async function usePipeline(backend: AvbdSolverBackend) {
@@ -18,6 +73,15 @@ async function usePipeline(backend: AvbdSolverBackend) {
   createSolverPipeline({ gl: {} });
   const pipeline = await createSolverPipeline({ backend });
   const scene3D = new AvbdScene3D();
+  const terrain = scene3D.addHeightfield({
+    heights: new Float32Array(9),
+    columns: 3,
+    rows: 3,
+    upAxis: 1,
+  });
+  const cooked = cookStaticMesh({ positions: [0, 2, 0, 0, 2, 1, 1, 2, 0] });
+  scene3D.addTerrain(cooked, { friction: 0.5 });
+  terrain.dispose();
   const box = scene3D.addBox([1, 1, 1]);
   const world3D = scene3D.createSolver(pipeline);
   const selected3D: AvbdSolverBackend = world3D.setLinearVelocity(
@@ -40,7 +104,16 @@ async function usePipeline(backend: AvbdSolverBackend) {
 async function useBabylon(scene: Scene, mesh: AbstractMesh) {
   const { device } = await createWebGPUDevice({ validate3D: true });
   await prepareWebGPUDevice3D(device);
-  const physics = await AvbdPhysics.create({ scene, sleeping: true });
+  const physics = await AvbdPhysics.create({
+    scene,
+    sleeping: { islands: true },
+    smallGroups: true,
+  });
+  const terrain = physics.addStaticMesh(mesh, { thickness: 0.1 });
+  physics.addTerrain(
+    cookHeightfield({ heights: [0, 0, 0, 0], columns: 2, rows: 2 }),
+  );
+  terrain.dispose();
   const aggregate = physics.addAggregate(mesh, AvbdShapeType.CAPSULE, {
     restitution: 0.7,
     allowSleep: true,

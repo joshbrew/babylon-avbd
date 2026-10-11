@@ -4,7 +4,12 @@ import { GpuTimer } from "./gpuTimer.js";
 // Sleeping is an app-level scheduling policy. Canonical constraint math and
 // upstream sources remain unchanged; sleeping bodies act as fixed supports.
 export class GpuSleep {
-  constructor(device, solver, gpu, { batchPasses = true } = {}) {
+  constructor(
+    device,
+    solver,
+    gpu,
+    { batchPasses = true, startAsleep = true } = {},
+  ) {
     this.device = device;
     this.gpu = gpu;
     this.batchPasses = batchPasses;
@@ -31,7 +36,7 @@ export class GpuSleep {
       const id = gpu.gpuIndex(i),
         o = id * 8;
       f[o] = b.mass;
-      u[o + 2] = i === this.count - 1 ? 1 : 0;
+      u[o + 2] = !startAsleep || i === this.count - 1 ? 1 : 0;
       u[o + 3] = i;
       u.fill(0xffffffff, o + 4, o + 8);
       if (b.mass <= 0 || i === this.count - 1) return;
@@ -71,6 +76,10 @@ export class GpuSleep {
     this.next = this.buffer(this.count * 4);
     this.state = this.buffer(state.byteLength, new Uint8Array(state));
     this.masses = Float32Array.from({ length: this.count }, (_, i) => f[i * 8]);
+    this.dynamicCount = this.masses.reduce(
+      (n, mass) => n + (mass > 0 ? 1 : 0),
+      0,
+    );
     const data = new ArrayBuffer(48),
       pf = new Float32Array(data),
       pu = new Uint32Array(data);
@@ -115,6 +124,7 @@ export class GpuSleep {
     this.pipelines = {};
     for (const entryPoint of [
       "initialize",
+      "wakeAll",
       "clear",
       "build",
       "wake",
@@ -158,6 +168,14 @@ export class GpuSleep {
     p.end();
   }
   before() {
+    if (this.dt !== this.gpu.params.dt) {
+      this.dt = this.gpu.params.dt;
+      this.device.queue.writeBuffer(
+        this.params,
+        28,
+        new Float32Array([this.dt]),
+      );
+    }
     const e = this.device.createCommandEncoder(),
       slot = this.timer.begin();
     this.physicsSlot = this.physicsTimer.begin();
@@ -251,6 +269,11 @@ export class GpuSleep {
       new Float32Array([mass]),
     );
     this.wakeBody(id);
+  }
+  wakeAll() {
+    const encoder = this.device.createCommandEncoder();
+    this.dispatch(encoder, "wakeAll", this.count);
+    this.device.queue.submit([encoder.finish()]);
   }
   dispose() {
     this.timer.destroy();

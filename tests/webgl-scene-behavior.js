@@ -1,5 +1,5 @@
-import { buildCanonicalScene } from "../demo/canonicalScenes.js";
-import { createWebglDemoWorld } from "../demo/webglWorld.js";
+import { buildCanonicalScene } from "../demo/lab/scenes.js";
+import { createWebglDemoWorld } from "../demo/shared/physics/webglWorld.js";
 import { AvbdScene2D } from "../src/index.js";
 import { createExperimentalWebglPipeline } from "../src/webgl/pipeline.js";
 

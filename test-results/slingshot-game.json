@@ -1,0 +1,33 @@
+{
+  "date": "2026-10-11T22:08:41.533Z",
+  "passed": true,
+  "results": [
+    {
+      "phase": "stability",
+      "count": 1000,
+      "displaced": 0,
+      "passed": true
+    },
+    {
+      "phase": "stability",
+      "count": 5000,
+      "displaced": 0,
+      "passed": true
+    },
+    {
+      "phase": "victory",
+      "count": 5000,
+      "shots": 6,
+      "targets": 16,
+      "destroyedBricks": 3728,
+      "passed": true
+    },
+    {
+      "phase": "stability",
+      "count": 10000,
+      "displaced": 0,
+      "passed": true
+    }
+  ],
+  "screenshots": []
+}

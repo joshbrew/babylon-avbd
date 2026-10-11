@@ -1,5 +1,5 @@
 import { browserCheck } from "./browser-check.mjs";
-import { writeFile } from "node:fs/promises";
+import { writeAtomicFile as writeFile } from "./report-file.mjs";
 const browser = await browserCheck();
 try {
   await browser.navigate("tests/performance.html");

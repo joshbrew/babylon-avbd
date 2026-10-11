@@ -1,5 +1,6 @@
 import { solverReportView } from "./solver-report-view.mjs";
-import { readFile, writeFile } from "node:fs/promises";
+import { readFile } from "node:fs/promises";
+import { writeAtomicFile as writeFile } from "./report-file.mjs";
 const read = (path) =>
   readFile(`test-results/${path}`, "utf8").then(JSON.parse);
 const catalog = await read("solver-scenes.json");
@@ -48,6 +49,7 @@ const report = {
 report.packageBenchmarks = await read("package-performance.json").catch(
   () => null,
 );
+report.connectedSleep = await read("connected-sleep-performance.json").catch(() => null);
 report.capsuleBenchmark = await read("capsule-performance.json").catch(
   () => null,
 );
@@ -230,6 +232,9 @@ report.paperMeasurements = {
   runs: paperRuns,
   errors: [],
 };
+report.workerBenchmarks = await read("worker-performance.json").catch(
+  () => null,
+);
 await writeFile(
   "test-results/solver-paper.json",
   JSON.stringify(report.paperMeasurements, null, 2),

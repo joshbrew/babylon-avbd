@@ -1,28 +1,32 @@
 # Repository organization
 
-The public library entry is `src/index.js`. Its Tinybuild config builds only
-the current GPU solver and Babylon adapter into `dist/avbd.js`. The CDN config
-builds the same API into `dist/avbd.global.js`. Neither output imports Babylon,
-demo pages or the old solver. The package file whitelist includes those two
-bundles, maps, types, documentation and the upstream notice.
+The library lives in `src/`. `scripts/build-library.mjs` uses the Tinybuild
+configs to create ESM modules, declarations and the `AVBD` browser global.
+The npm package contains the library, guides and license notices. Website
+bundles, screenshots, benchmark results and source maps are excluded.
 
-`index.js` is the separate application entry. It exposes the current laboratory,
-castle, mixed collider gallery and collision benchmark. Old cannon and reduced
-stress routes are no longer available. The website and browser benchmark share
-`scripts/build.mjs` and `tinybuild.web.config.js`.
+| Location           | Purpose                                                                                                                |
+| ------------------ | ---------------------------------------------------------------------------------------------------------------------- |
+| `src/index.js`     | Complete public package API.                                                                                           |
+| `src/native/`      | Renderer-independent 2D/3D worlds, scene builders and terrain.                                                         |
+| `src/babylon/`     | Babylon aggregate integration and direct GPU drawing support.                                                          |
+| `src/gpu/`         | WebGPU solvers, HPLOC collision tree, sleeping, buffer management, timers, contact sampling and surface particles.     |
+| `src/utils/`       | Shared input mailbox, worker canvas adapter and custom GPU step registration.                                          |
+| `src/utilities.js` | Public `avbd-babylon/utils` entry for reusable GPU and worker helpers.                                                 |
+| `src/vendor/`      | Attributed solver sources used by the library.                                                                         |
+| `src/webgl/`       | Experimental WebGL2 backend, excluded from the npm package.                                                            |
+| `demo/`            | Playable scenes organized by demo, with shared controls and renderers. See the [demo source guide](../demo/README.md). |
+| `tests/`           | GPU regressions and browser benchmark pages.                                                                           |
+| `tests/legacy/`    | Earlier implementations retained as active regression fixtures.                                                        |
+| `scripts/`         | Build, validation, benchmark and report tools.                                                                         |
+| `test-results/`    | Saved measurements and images used by the README and public reports.                                                   |
+| `reference/`       | Pinned upstream sources for attribution and verification.                                                              |
 
-The library lives under `src/`, the laboratory under `demo/`, and active GPU
-regression fixtures under `tests/legacy/`. The root contains package metadata, build
-configs and the website shell. Legacy files are excluded from the package
-and application routes.
+`index.js` is the website entry. `scripts/build.mjs` and
+`tinybuild.web.config.js` build it separately from the package, including
+the worker and browser benchmark entries. Reusable optimized helpers are
+imported from `src/` by both the demos and library consumers.
 
-| Destination     | Contents                                                                                                                                                                                                                                   |
-| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `src/babylon/`  | `babylonAvbd.js`, `.d.ts`, `.wgsl`                                                                                                                                                                                                         |
-| `src/gpu/`      | `device.js`, `appGpuSolver3D.js`, `gpuSolverOptions.js`, `gpuSolverKernels.js`, `gpuSolverStep.js`, `solverPolicy.js`, `gpuHploc.js`, `hplocpp.wgsl`, `hplocSort.wgsl`, `gpuTimer.js`, `gpuSleep.js`, `gpuSleep.wgsl`, `gpuClothSolver.js` |
-| `demo/`         | Laboratory controls, renderers, scene builders, styles, gallery, collision benchmark and visualization helpers                                                                                                                             |
-| `tests/legacy/` | `avbd.js`, `avbd.wgsl`, `gpuStressDemo.js`, `gpuStress.wgsl`, `gpuStressRender.wgsl`; used by active GPU regressions                                                                                                                       |
-
-Imports, builds, tests and documentation use the new paths. Pinned upstream
-sources are unchanged. Normal validation is GPU-first; host checks cover package
-files and source integrity, which cannot run as GPU shaders.
+`npm run clean:results` removes captures that are no longer linked by the
+README or public reports. `npm run clean:dist` removes obsolete build outputs
+while preserving the complete website and published library.

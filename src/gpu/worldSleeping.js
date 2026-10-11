@@ -1,4 +1,6 @@
+import { uniformData, uploadUniform } from "./uniformUpload.js";
 import shader from "./worldSleeping.wgsl";
+import islandShader from "./islandSleeping.wgsl";
 import { propertyEdits } from "./bufferEdits.js";
 export class WorldSleeping {
   constructor(world, options = {}) {
@@ -6,6 +8,14 @@ export class WorldSleeping {
     this.device = world.device;
     this.speed = options.speedThreshold ?? 0.03;
     this.delay = options.timeThreshold ?? 0.5;
+    if (options.islands !== undefined && typeof options.islands !== "boolean")
+      throw Error("Sleep islands must be a boolean");
+    this.islands =
+      options.islands ??
+      (world.gpu.bodyCount >= 4096 &&
+        world.gpu.jointCount === 0 &&
+        !world.gpu.portableContactMath &&
+        !world.gpu.dispatchIsolation);
     if (
       !Number.isFinite(this.speed) ||
       this.speed <= 0 ||
@@ -26,7 +36,9 @@ export class WorldSleeping {
       size: 48,
       usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST,
     });
-    const module = d.createShaderModule({ code: shader });
+    const module = d.createShaderModule({
+      code: this.islands ? islandShader : shader,
+    });
     this.layout = d.createBindGroupLayout({
       entries: [
         "storage",
@@ -44,7 +56,14 @@ export class WorldSleeping {
     });
     const layout = d.createPipelineLayout({ bindGroupLayouts: [this.layout] });
     this.pipelines = Object.fromEntries(
-      ["before", "clear", "contacts", "joints", "rest"].map((entryPoint) => [
+      [
+        "before",
+        "clear",
+        ...(this.islands ? ["connectContacts", "connectJoints"] : []),
+        "contacts",
+        "joints",
+        "rest",
+      ].map((entryPoint) => [
         entryPoint,
         d.createComputePipeline({ layout, compute: { module, entryPoint } }),
       ]),
@@ -57,6 +76,7 @@ export class WorldSleeping {
         data[slot] = a.rigid.mass;
         flags[slot + 4] =
           a.allowSleep === false || a.rigid.allowSleep === false ? 0 : 1;
+        if (this.islands) flags[slot + 5] = slot / 8;
       }
     d.queue.writeBuffer(this.state, 0, data);
     this.wakeRequested = false;
@@ -64,6 +84,7 @@ export class WorldSleeping {
   register(index, mass, allowSleep = true) {
     const data = new Float32Array([mass, 0, 0, 0, 0, 0, 0, 0]);
     new Uint32Array(data.buffer)[4] = allowSleep ? 1 : 0;
+    if (this.islands) new Uint32Array(data.buffer)[5] = index;
     const words = new Uint32Array(data.buffer),
       edits = propertyEdits(this.world.gpu);
     for (let k = 0; k < 8; k++) edits.uint(this.state, index * 8 + k, words[k]);
@@ -102,20 +123,21 @@ export class WorldSleeping {
   }
   before(encoder) {
     this.world.gpu.flushPropertyEdits(encoder);
-    const { gpu } = this.world,
-      storage = gpu.contactStorage;
-    const data = new ArrayBuffer(48),
-      u = new Uint32Array(data),
-      f = new Float32Array(data);
-    u.set([
-      gpu.bodyCount,
-      gpu.jointCount,
-      gpu.manifoldCapacity,
-      this.wakeRequested ? 1 : 0,
-    ]);
-    f.set([this.speed, this.delay, gpu.params.dt, gpu.params.gravity], 4);
-    f.set(gpu.params.up, 8);
-    this.device.queue.writeBuffer(this.params, 0, data);
+    const { gpu } = this.world;
+    const cache = (this.paramData ??= uniformData(12)),
+      { u, f } = cache;
+    u[0] = gpu.bodyCount;
+    u[1] = gpu.jointCount;
+    u[2] = gpu.manifoldCapacity;
+    u[3] = Number(this.wakeRequested);
+    f[4] = this.speed;
+    f[5] = this.delay;
+    f[6] = gpu.params.dt;
+    f[7] = gpu.params.gravity;
+    f[8] = gpu.params.up[0];
+    f[9] = gpu.params.up[1];
+    f[10] = gpu.params.up[2];
+    uploadUniform(this.device, this.params, cache);
     this.wakeRequested = false;
     // Contact and joint buffers can grow between steps.
     this.bindContacts();
@@ -128,12 +150,17 @@ export class WorldSleeping {
     );
   }
   after(encoder) {
-    const gpu = this.world.gpu,
-      storage = gpu.contactStorage;
+    const gpu = this.world.gpu;
     // Collision buffers ping-pong in step(); bind the newly generated contacts.
     this.bindContacts();
     this.run(
       [
+        ...(this.islands
+          ? [
+              ["connectContacts", gpu.manifoldCapacity],
+              ["connectJoints", gpu.jointCount],
+            ]
+          : []),
         ["contacts", gpu.manifoldCapacity],
         ["joints", gpu.jointCount],
         ["rest", gpu.bodyCount],

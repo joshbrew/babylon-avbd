@@ -1,6 +1,6 @@
 {
   "passed": true,
-  "snippets": 51,
+  "snippets": 60,
   "result": {
     "steps": 180,
     "y": 0.4871308505535126,
@@ -112,9 +112,9 @@
       "poseReads": 0,
       "finite": true,
       "counters": {
-        "pairs": 1377,
-        "contacts": 5508,
-        "manifolds": 1377,
+        "pairs": 1792,
+        "contacts": 7168,
+        "manifolds": 1792,
         "overflow": 0,
         "clashes": 0,
         "colors": 3
@@ -175,6 +175,34 @@
     },
     {
       "name": "portable-body-and-bulk-api",
+      "backend": "cpu",
+      "dimension": 2,
+      "bodies": 264,
+      "finite": true,
+      "selectedFloats": 8,
+      "velocity": [
+        -2.669460985741665,
+        -7.946702683267484
+      ],
+      "events": 4
+    },
+    {
+      "name": "portable-body-and-bulk-api",
+      "backend": "cpu",
+      "dimension": 3,
+      "bodies": 260,
+      "finite": true,
+      "selectedFloats": 16,
+      "velocity": [
+        58.509933704474975,
+        -1.129007797777093,
+        2.0614119017463695e-25
+      ],
+      "events": 4
+    },
+    {
+      "name": "portable-body-and-bulk-api",
+      "backend": "webgpu",
       "dimension": 2,
       "bodies": 264,
       "finite": true,
@@ -187,6 +215,7 @@
     },
     {
       "name": "portable-body-and-bulk-api",
+      "backend": "webgpu",
       "dimension": 3,
       "bodies": 260,
       "finite": true,

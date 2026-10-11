@@ -25,6 +25,7 @@ fn compression(a:Body,b:Body,pad:f32)->bool {
 @compute @workgroup_size(256) fn clear(@builtin(global_invocation_id) g:vec3u){if(g.x<params.cells){atomicStore(&heads[g.x],NONE);}if(g.x==0u){atomicStore(&heads[params.cells],0u);}}
 @compute @workgroup_size(256) fn build(@builtin(global_invocation_id) g:vec3u){let i=g.x;if(i>=params.count||i==params.projectile||snapshot[i].size.w<=0.){return;}let h=index(cell(snapshot[i].pos.xyz));next[i]=atomicExchange(&heads[h],i);}
 @compute @workgroup_size(256) fn initialize(@builtin(global_invocation_id) g:vec3u){let i=g.x;if(i>=params.count){return;}if(sleep[i].mass>0.&&sleep[i].awake==0u){bodies[i].size.w=0.;}}
+@compute @workgroup_size(256) fn wakeAll(@builtin(global_invocation_id) g:vec3u){let i=g.x;if(i>=params.count||sleep[i].mass<=0.){return;}sleep[i].awake=1u;sleep[i].quiet=0u;bodies[i].size.w=sleep[i].mass;}
 @compute @workgroup_size(256) fn wake(@builtin(global_invocation_id) g:vec3u){
  let i=g.x;if(i>=params.count||sleep[i].mass<=0.||sleep[i].awake!=0u){return;}
  let b=snapshot[i];let e=extent(b);var awake=false;
@@ -50,7 +51,7 @@ fn compression(a:Body,b:Body,pad:f32)->bool {
  // Once motion has remained small for a second, capture the supports at the
  // new resting pose. This lets debris sleep on other debris and preserves
  // the dependencies needed to wake it if that new support is removed.
- if(sleep[i].quiet>=60u){
+ if(sleep[i].quiet>=u32(ceil(1./params.dt))){
   let e=extent(b);var found=vec4u(NONE);var count=0u;
   for(var k=0u;k<4u;k++){let j=sleep[i].support[k];if(j==NONE){continue;}let o=snapshot[j];let oe=extent(o);if(abs(b.pos.x-o.pos.x)<e.x+oe.x-.01&&abs(b.pos.y-o.pos.y)<e.y+oe.y-.01&&abs(o.pos.z+oe.z-(b.pos.z-e.z))<.04&&o.pos.z<b.pos.z){found[count]=j;count++;}}
   let c=vec3i(cell(b.pos.xyz));
@@ -63,6 +64,6 @@ fn compression(a:Body,b:Body,pad:f32)->bool {
  // Re-sleep only at a supported pose, using the refreshed graph or floor.
  let e=extent(b);var supported=b.pos.z-e.z<=.015;
  for(var k=0u;k<4u;k++){let j=sleep[i].support[k];if(j==NONE){continue;}let o=snapshot[j];let oe=extent(o);supported=supported||(abs(b.pos.x-o.pos.x)<e.x+oe.x-.01&&abs(b.pos.y-o.pos.y)<e.y+oe.y-.01&&abs(o.pos.z+oe.z-(b.pos.z-e.z))<.04&&o.pos.z<b.pos.z);}
- if(sleep[i].quiet>=120u&&supported){sleep[i].awake=0u;bodies[i].size.w=0.;bodies[i].velocity.xyz=vec3f(0);bodies[i].angular.xyz=vec3f(0);}
+ if(sleep[i].quiet>=u32(ceil(2./params.dt))&&supported){sleep[i].awake=0u;bodies[i].size.w=0.;bodies[i].velocity.xyz=vec3f(0);bodies[i].angular.xyz=vec3f(0);}
 }
 @compute @workgroup_size(256) fn countAwake(@builtin(global_invocation_id) g:vec3u){let i=g.x;if(i<params.count&&sleep[i].mass>0.&&sleep[i].awake!=0u){atomicAdd(&heads[params.cells],1u);}}

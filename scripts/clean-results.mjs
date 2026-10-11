@@ -1,20 +1,45 @@
-import {
-  readdir,
-  readFile,
-  stat,
-  unlink,
-  rmdir,
-  writeFile,
-} from "node:fs/promises";
+import { readdir, readFile, stat, unlink, rmdir } from "node:fs/promises";
 import { resolve, relative, sep } from "node:path";
 import { fileURLToPath } from "node:url";
+import { writeAtomicFile as writeFile } from "./report-file.mjs";
 
 // Keep current validation summaries and report inputs. Follow report links to
-// retain their screenshots, including those linked from the main README;
-// experimental runs and unlinked captures can go.
+// retain screenshots used by published HTML and the README. Raw check summaries
+// keep their measurements, but do not retain every diagnostic capture.
 const root = fileURLToPath(new URL("../test-results/", import.meta.url));
 const within = (path) => resolve(path).startsWith(resolve(root) + sep);
 const roots = [
+  "playgrounds.json",
+  "galton-startup.json",
+  "galton-pegs.json",
+  "lab-timing.json",
+  "lab-step-rate.json",
+  "lab-sleep.json",
+  "siege-damage.json",
+  "demo-startup.json",
+  "slingshot-input.json",
+  "slingshot-game.json",
+  "naval.json",
+  "naval-performance.json",
+  "terrain-import.json",
+  "terrain.json",
+  "terrain-cooking.json",
+  "runtime-efficiency.json",
+  "hploc-refit-performance.json",
+  "webgpu-upload-performance.json",
+  "color-bucket-performance.json",
+  "movement-solve-performance.json",
+  "connected-sleep-performance.json",
+  "pipeline-batching-performance.json",
+  "small-group-performance.json",
+  "command-encoding-performance.json",
+  "scenes-static-terrain.json",
+  "workers.json",
+  "worker-cannon.json",
+  "execution-ui.json",
+  "worker-performance.json",
+  "particle-capacity.json",
+  "particle-capacity.html",
   "report.html",
   "solver-performance.html",
   "package-performance.html",
@@ -82,6 +107,9 @@ const roots = [
   "contact-compatibility-features.json",
   "connected-phone-floor.json",
   "connected-phone-contacts.json",
+  "connected-phone-demos.json",
+  "connected-phone-scene-comparison.json",
+  "connected-phone-step-rate.json",
   "package-report-check.json",
   "renderer-performance.json",
   "renderer-performance.html",
@@ -100,7 +128,6 @@ const retained = new Set(
     .map((name) => resolve(root, name))
     .filter((path) => available.has(path)),
 );
-const missingReferencedScreenshots = new Set();
 // README images refer directly to results so publishing needs no copied assets.
 const readme = await readFile(new URL("../README.md", import.meta.url), "utf8");
 const metadata = JSON.parse(
@@ -131,20 +158,6 @@ for (const match of readme.matchAll(/\[[^\]\n]*\]\(([^\s)]+)\)/g)) {
 for (const path of retained) {
   if (!within(path))
     throw Error(`Result path is outside the results folder: ${path}`);
-  if (path.endsWith(".json") && path !== resolve(root, "cleanup-results.json")) {
-    const values = [JSON.parse(await readFile(path, "utf8"))];
-    while (values.length) {
-      const value = values.pop();
-      if (value && typeof value === "object") values.push(...Object.values(value));
-      else if (typeof value === "string" && /^(?:(?:\/)?test-results\/)?screenshots\//.test(value)) {
-        const asset = value.replace(/^\/?test-results\//, "");
-        const linked = resolve(root, asset);
-        if (!within(linked)) throw Error(`Unsafe result screenshot: ${value}`);
-        if (available.has(linked)) retained.add(linked);
-        else missingReferencedScreenshots.add(asset);
-      }
-    }
-  }
   if (!path.endsWith(".html")) continue;
   const html = await readFile(path, "utf8");
   for (const match of html.matchAll(/(?:href|src)=["']([^"']+)["']/g)) {
@@ -167,6 +180,38 @@ for (const path of retained) {
     retained.add(linked);
   }
 }
+// Remove optional capture references when the image is not published. Numerical
+// evidence remains intact and saved summaries do not point at deleted files.
+const updatedSummaries = [];
+for (const path of retained) {
+  if (!path.endsWith(".json") || path === resolve(root, "cleanup-results.json"))
+    continue;
+  let changed = false;
+  const prune = (value) => {
+    if (
+      typeof value === "string" &&
+      /^(?:(?:\/)?test-results\/)?screenshots\//.test(value)
+    ) {
+      const linked = resolve(root, value.replace(/^\/?test-results\//, ""));
+      if (!within(linked)) throw Error(`Unsafe result screenshot: ${value}`);
+      if (!retained.has(linked)) {
+        changed = true;
+        return undefined;
+      }
+    }
+    if (Array.isArray(value))
+      return value.map(prune).filter((v) => v !== undefined);
+    if (value && typeof value === "object")
+      return Object.fromEntries(
+        Object.entries(value)
+          .map(([key, item]) => [key, prune(item)])
+          .filter(([, item]) => item !== undefined),
+      );
+    return value;
+  };
+  const value = prune(JSON.parse(await readFile(path, "utf8")));
+  if (changed) updatedSummaries.push({ path, value });
+}
 const obsolete = files.filter((path) => !retained.has(path));
 const removed = await Promise.all(
   obsolete.map(async (path) => ({
@@ -181,12 +226,16 @@ const report = {
   removedFiles: removed.length,
   removedBytes: removed.reduce((sum, item) => sum + item.bytes, 0),
   removed,
-  missingReferencedScreenshots: [...missingReferencedScreenshots].sort(),
+  prunedCaptureSummaries: updatedSummaries.map(({ path }) =>
+    relative(root, path).split(sep).join("/"),
+  ),
 };
 console.log(
   `${report.applied ? "Removing" : "Would remove"} ${report.removedFiles} obsolete files (${(report.removedBytes / 1024 / 1024).toFixed(1)} MiB); keeping ${report.retained} report assets and current summaries.`,
 );
 if (report.applied) {
+  for (const { path, value } of updatedSummaries)
+    await writeFile(path, JSON.stringify(value, null, 2));
   for (const path of obsolete) {
     if (!within(path))
       throw Error(`Deletion is outside the results folder: ${path}`);

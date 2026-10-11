@@ -56,8 +56,12 @@ export function sceneGpuSolverOptions(id) {
       "showcase-brick-ring-110k",
       "showcase-brick-ring-28k",
       "showcase-ragdolls-on-cloth-24k",
+      "3d-100k-rook-impact",
     ].includes(id)
-      ? { minimumColors: 16, minimumColorRounds: 16 }
+      ? {
+          minimumColors: 16,
+          minimumColorRounds: id === "3d-100k-rook-impact" ? 32 : 16,
+        }
       : {}),
     ...(dense ? { colorRounds: 32 } : {}),
   };

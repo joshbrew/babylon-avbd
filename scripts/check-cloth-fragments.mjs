@@ -4,7 +4,7 @@ const browser = await browserCheck(),
   snapshots = [];
 try {
   await browser.navigate(
-    "?demo=canonical&scene=3d-tearable-cloth&backend=gpu&paused=1",
+    "?demo=canonical&scope=main&scene=3d-tearable-cloth&backend=gpu&paused=1",
   );
   let ready = false;
   for (let i = 0; i < 400; i++) {

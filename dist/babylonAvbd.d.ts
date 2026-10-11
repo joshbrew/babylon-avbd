@@ -2,6 +2,18 @@ import type { Vector3, Quaternion } from "@babylonjs/core/Maths/math.vector.js";
 import type { AbstractMesh } from "@babylonjs/core/Meshes/abstractMesh.js";
 import type { Scene } from "@babylonjs/core/scene.js";
 import type { PhysicsShapeType } from "@babylonjs/core/Physics/v2/IPhysicsEnginePlugin.js";
+import type {
+  AvbdSleepOptions,
+  AvbdHeightfieldOptions,
+  AvbdCookedTerrain,
+  AvbdTerrainMaterial,
+} from "./nativeScenes.js";
+export interface AvbdTerrain {
+  readonly bodies: AvbdPhysicsBody[];
+  readonly triangleCount: number;
+  readonly kind: "heightfield" | "static-mesh";
+  dispose(): void;
+}
 export const AvbdShapeType: Readonly<{
   BOX: "box";
   SPHERE: "sphere";
@@ -31,9 +43,11 @@ export interface AvbdWorldOptions {
   maxSyncedBodies?: number;
   broadphase?: "auto" | "grid" | "hploc";
   solverMode?: AvbdSolverMode;
+  /** Automatically batch a closed jointless world of up to 32 bodies. */
+  smallGroups?: boolean;
   bvh?: { rebuildInterval?: number };
-  /** Optional conservative GPU sleeping. Impacts and edits wake the world. */
-  sleeping?: boolean | { speedThreshold?: number; timeThreshold?: number };
+  /** Optional GPU sleeping. Large worlds wake conservative connected groups on impact. */
+  sleeping?: boolean | AvbdSleepOptions;
   maxContactPairs?: number;
   maxContactEvents?: number;
 }
@@ -116,6 +130,17 @@ export class AvbdPhysicsConstraint {
   dispose(): void;
 }
 export class AvbdPhysics {
+  /** Register static collision pieces before initialize(); reserve body capacity. */
+  addHeightfield(options: AvbdHeightfieldOptions): AvbdTerrain;
+  /** Captures the mesh world transform; later mesh edits do not move terrain. */
+  addStaticMesh(
+    mesh: AbstractMesh,
+    options?: AvbdTerrainMaterial & { thickness?: number },
+  ): AvbdTerrain;
+  addTerrain(
+    cooked: AvbdCookedTerrain,
+    options?: AvbdTerrainMaterial,
+  ): AvbdTerrain;
   sphereCast(
     origin: AvbdVector,
     radius: number,
@@ -151,10 +176,9 @@ export class AvbdPhysics {
   readonly solverDecision: AvbdSolverDecision;
   setSolverMode(mode: AvbdSolverMode): AvbdSolverDecision;
   setGravity(gravity: AvbdVector): void;
-  enableSleeping(options?: {
-    speedThreshold?: number;
-    timeThreshold?: number;
-  }): this;
+  enableSleeping(options?: AvbdSleepOptions): this;
+  /** Wake all sleeping bodies and disable automatic sleeping. */
+  disableSleeping(): this;
   initialize(): void;
   step(): void;
   flushCommands(): void;
@@ -281,5 +305,6 @@ export class AvbdPhysicsBody {
     effectiveMass: number;
     sleeping: boolean;
   }>;
+  /** Mesh-origin position; preserves live rotation and velocities when omitted. */
   teleport(position: Vector3, rotation?: Quaternion): this;
 }

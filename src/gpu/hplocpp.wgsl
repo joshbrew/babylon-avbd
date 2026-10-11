@@ -41,6 +41,17 @@ fn bodyHalf(i: u32) -> vec3f {
     + abs(qrotate(b.rot, vec3f(0, 0, 1))) * h.z;
 }
 
+// Refit only consumes leaf bounds. Scene bounds and their workgroup reductions
+// are needed when Morton ordering is rebuilt, not on intervening steps.
+@compute @workgroup_size(128)
+fn refitLeaves(@builtin(global_invocation_id) gid: vec3u) {
+  let i = gid.x;
+  if (i >= build.count) { return; }
+  let h = bodyHalf(i);
+  let p = inputBodies[i].pos.xyz;
+  nodes[i] = Node(p - h, i, p + h, END);
+}
+
 @compute @workgroup_size(128)
 fn leaves(
   @builtin(global_invocation_id) gid: vec3u,

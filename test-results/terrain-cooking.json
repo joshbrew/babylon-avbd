@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "date": "2026-10-11T21:50:07.012Z",
+  "checkedPrisms": 246,
+  "benchmark": {
+    "triangles": 2000,
+    "repeats": 5,
+    "scope": "CPU terrain preparation only; no simulation or rendering",
+    "hullDiscoveryMs": [
+      71.85279999999995,
+      70.20709999999997,
+      74.99090000000001,
+      78.47799999999995,
+      80.27610000000004
+    ],
+    "knownTopologyMs": [
+      47.62549999999999,
+      48.84739999999999,
+      50.2127999999999,
+      51.22000000000003,
+      52.25339999999994
+    ],
+    "medianHullDiscoveryMs": 74.99090000000001,
+    "medianKnownTopologyMs": 50.2127999999999
+  }
+}

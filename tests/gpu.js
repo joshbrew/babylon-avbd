@@ -8,7 +8,8 @@ import {
   SHAPE_TRIANGLE,
   SHAPE_TRIANGLE_MESH,
 } from "./legacy/avbd.js";
-import { GPUAABBNeighborBuilder } from "../demo/gpuBroadphase.js";
+import { GPUAABBNeighborBuilder } from "./legacy/gpuBroadphase.js";
+import { utilityGpuTests } from "./gpu-utilities.js";
 import { assert, close, readBuffer } from "./helpers/gpu.js";
 import { stressTests } from "./gpu-stress.js";
 import { canonicalGpuTests } from "./gpu-canonical.js";
@@ -29,7 +30,13 @@ import {
 import { contactSchedulingGpuTests } from "./gpu-contact-scheduling.js";
 import { contactPortabilityGpuTests } from "./gpu-contact-portability.js";
 import { hplocGpuTests } from "./gpu-hploc.js";
+import { colorBucketGpuTests } from "./gpu-color-buckets.js";
 import { solverSelectionGpuTests } from "./gpu-solver-selection.js";
+import { movementBatchingGpuTests } from "./gpu-movement-batching.js";
+import { commandEncodingGpuTests } from "./gpu-command-encoding.js";
+import { featureUniformGpuTests } from "./gpu-feature-uniforms.js";
+import { islandSleepingGpuTests } from "./gpu-island-sleeping.js";
+import { smallGroupGpuTests } from "./gpu-small-groups.js";
 import { startGpuStressDemo } from "./legacy/gpuStressDemo.js";
 
 const output = document.querySelector("#results");
@@ -437,6 +444,7 @@ try {
       }
     }));
   await stressTests(device, test);
+  await utilityGpuTests(device, test);
   await canonicalGpuTests(device, test);
   await canonicalGpuTests(device, (name, fn) => test("Optimized " + name, fn), {
     solve: projectedContactSolve,
@@ -451,7 +459,13 @@ try {
   await contactSchedulingGpuTests(device, test);
   await contactPortabilityGpuTests(device, test);
   await hplocGpuTests(device, test);
+  await colorBucketGpuTests(device, test);
   await solverSelectionGpuTests(device, test);
+  await movementBatchingGpuTests(device, test);
+  await commandEncodingGpuTests(device, test);
+  await featureUniformGpuTests(device, test);
+  await islandSleepingGpuTests(device, test);
+  await smallGroupGpuTests(device, test);
   await canonicalGpu2DTests(device, test);
   await babylonGpuTests(device, test);
   await packageFeatureGpuTests(device, test);

@@ -1,23 +1,18 @@
 import { build } from "esbuild";
 import { createServer } from "node:http";
-import {
-  readFile,
-  mkdtemp,
-  rm,
-  access,
-  writeFile,
-  mkdir,
-} from "node:fs/promises";
+import { readFile, mkdtemp, rm, access, mkdir } from "node:fs/promises";
 import { spawn, execFile } from "node:child_process";
 import { promisify } from "node:util";
 import { tmpdir } from "node:os";
 import { resolve, join, extname, basename, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 import { sourceMapsEnabled, removeStaleSourceMap } from "./source-maps.mjs";
+import { writeAtomicFile as writeFile } from "./report-file.mjs";
 
 const root = fileURLToPath(new URL("../", import.meta.url));
+await mkdir(join(root, "dist"), { recursive: true });
 await removeStaleSourceMap(join(root, "dist/gpu-tests.js"));
-await build({
+const built = await build({
   entryPoints: [join(root, "tests/gpu.js")],
   outfile: join(root, "dist/gpu-tests.js"),
   bundle: true,
@@ -25,7 +20,9 @@ await build({
   minify: true,
   loader: { ".wgsl": "text" },
   sourcemap: sourceMapsEnabled,
+  write: false,
 });
+for (const file of built.outputFiles) await writeFile(file.path, file.contents);
 const candidates = process.env.AVBD_TEST_BROWSER
   ? [process.env.AVBD_TEST_BROWSER]
   : process.platform === "win32"

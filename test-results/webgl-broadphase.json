@@ -8,7 +8,7 @@
       "bodies": 0,
       "adjacencyEntries": 0,
       "overflowBodies": 0,
-      "submitAndDownloadMs": 477.5,
+      "submitAndDownloadMs": 1120.8949999809265,
       "passed": true
     },
     {
@@ -17,7 +17,7 @@
       "bodies": 1,
       "adjacencyEntries": 0,
       "overflowBodies": 0,
-      "submitAndDownloadMs": 34.59999990463257,
+      "submitAndDownloadMs": 12.420000076293945,
       "passed": true
     },
     {
@@ -26,7 +26,7 @@
       "bodies": 257,
       "adjacencyEntries": 418,
       "overflowBodies": 0,
-      "submitAndDownloadMs": 235.40000009536743,
+      "submitAndDownloadMs": 57.28999996185303,
       "passed": true
     },
     {
@@ -35,7 +35,7 @@
       "bodies": 64,
       "adjacencyEntries": 4032,
       "overflowBodies": 64,
-      "submitAndDownloadMs": 8.599999904632568,
+      "submitAndDownloadMs": 9.235000014305115,
       "passed": true
     },
     {
@@ -44,7 +44,7 @@
       "bodies": 64,
       "adjacencyEntries": 4032,
       "overflowBodies": 0,
-      "submitAndDownloadMs": 7.900000095367432,
+      "submitAndDownloadMs": 9.545000076293945,
       "passed": true
     },
     {
@@ -53,7 +53,7 @@
       "bodies": 4096,
       "adjacencyEntries": 11432,
       "overflowBodies": 0,
-      "submitAndDownloadMs": 18.100000023841858,
+      "submitAndDownloadMs": 19.264999985694885,
       "passed": true
     },
     {
@@ -62,7 +62,7 @@
       "bodies": 0,
       "adjacencyEntries": 0,
       "overflowBodies": 0,
-      "submitAndDownloadMs": 553.8999999761581,
+      "submitAndDownloadMs": 1189.2549999952316,
       "passed": true
     },
     {
@@ -71,7 +71,7 @@
       "bodies": 1,
       "adjacencyEntries": 0,
       "overflowBodies": 0,
-      "submitAndDownloadMs": 10.399999976158142,
+      "submitAndDownloadMs": 32.63499999046326,
       "passed": true
     },
     {
@@ -80,7 +80,7 @@
       "bodies": 257,
       "adjacencyEntries": 136,
       "overflowBodies": 0,
-      "submitAndDownloadMs": 19.40000009536743,
+      "submitAndDownloadMs": 17.020000100135803,
       "passed": true
     },
     {
@@ -89,7 +89,7 @@
       "bodies": 64,
       "adjacencyEntries": 4032,
       "overflowBodies": 64,
-      "submitAndDownloadMs": 13.299999952316284,
+      "submitAndDownloadMs": 134.00999999046326,
       "passed": true
     },
     {
@@ -98,7 +98,7 @@
       "bodies": 64,
       "adjacencyEntries": 4032,
       "overflowBodies": 0,
-      "submitAndDownloadMs": 8.300000071525574,
+      "submitAndDownloadMs": 19.15499997138977,
       "passed": true
     },
     {
@@ -107,7 +107,7 @@
       "bodies": 4096,
       "adjacencyEntries": 246,
       "overflowBodies": 0,
-      "submitAndDownloadMs": 12.5,
+      "submitAndDownloadMs": 23.515000104904175,
       "passed": true
     }
   ]

@@ -16,7 +16,13 @@ fn rotate(q:vec4f,v:vec3f)->vec3f {let t=2.*cross(q.xyz,v);return v+q.w*t+cross(
   let local=rotate(vec4f(-b.rot.xyz,b.rot.w),torque);
   b.angular=vec4f(b.angular.xyz+rotate(b.rot,local/max(b.moment.xyz,vec3f(1.e-10))),b.angular.w);
  }
- if((c.mask&8u)!=0u){b.pos=vec4f(c.position.xyz,b.pos.w);b.rot=c.rotation;}
+ if((c.mask&8u)!=0u){
+  if((c.mask&32u)!=0u){
+   // Position-only teleports preserve the live orientation, including the
+   // principal-frame offset of meshes whose origin is not their mass centre.
+   b.pos=vec4f(c.position.xyz+rotate(b.rot,c.rotation.xyz),b.pos.w);
+  }else{b.pos=vec4f(c.position.xyz,b.pos.w);b.rot=c.rotation;}
+ }
  if((c.mask&16u)!=0u){b.size.w=0.;b.moment=vec4f(vec3f(0),b.moment.w);b.velocity=vec4f(0);b.angular=vec4f(vec3f(0),b.angular.w);}
  bodies[c.index]=b;
 }

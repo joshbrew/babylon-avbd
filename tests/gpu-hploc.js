@@ -91,6 +91,23 @@ export async function hplocGpuTests(device, test) {
     for (let i = 0; i < 32; i++) new Rigid(ref, [1, 1, 1], 1, 0.7, [0, 0, 0]);
     await comparePairs(device, ref, 4);
   });
+  await test("H-PLOC excludes disabled queues and restores contacts when enabled", async () => {
+    const ref = new Solver();
+    ref.gravity = 0;
+    for (let i = 0; i < 128; i++)
+      sphere(ref, 0.1, 1, 0.5, [i * 0.11, 0, 0]);
+    await comparePairs(device, ref, 4,
+      (_, frame, solvers) => {
+        if (frame === 2)
+          for (const solver of solvers)
+            solver.setFilters([0, 1, 2], [1, 1, 1], [1, 1, 1]);
+      },
+      (solvers) => {
+        for (const solver of solvers)
+          solver.setFilters(ref.bodies.map((_, i) => i),
+            ref.bodies.map(() => 1), ref.bodies.map(() => 0));
+      });
+  });
   await test("H-PLOC matches grid for rotated mixed shapes, large statics and masks", async () => {
     const ref = new Solver();
     new Rigid(ref, [80, 80, 2], 0, 0.7, [0, 0, -1]);
@@ -284,12 +301,17 @@ export async function hplocGpuTests(device, test) {
           assert(
             b.profileDetailedNextStep((profile) => {
               clearTimeout(timeout);
-              assert(
-                profile.details.bodySolve >= 0 &&
-                  profile.details.contactUpdate >= 0,
-                "body and contact times available",
-              );
-              resolve();
+              try {
+                assert(
+                  profile.details.smallGroupSolve >= 0 ||
+                    (profile.details.bodySolve >= 0 &&
+                      profile.details.contactUpdate >= 0),
+                  "Combined small-group or separate body/contact timing available",
+                );
+                resolve();
+              } catch (error) {
+                reject(error);
+              }
             }),
             "timestamp support",
           );

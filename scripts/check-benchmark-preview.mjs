@@ -138,11 +138,15 @@ try {
     run.checks.length === 1 && run.checks[0].closed && run.checks[0].disposed,
     "Preview competed with benchmark",
   );
+  const movementTiming =
+    run.results[0]?.details?.smallGroupSolve ??
+    run.results[0]?.details?.bodySolve;
   assert(
     run.results.length === 1 &&
       run.results[0].passed &&
       run.results[0].broadphase === "hploc" &&
-      run.results[0].details.bodySolve.mean >= 0 &&
+      Number.isFinite(movementTiming?.mean) &&
+      movementTiming.mean >= 0 &&
       run.results[0].samples.length === 5,
     "Selected benchmark failed",
   );

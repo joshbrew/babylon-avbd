@@ -1,5 +1,21 @@
 # Babylon.js integration
 
+Static terrain can be added with `physics.addHeightfield(options)` or
+`physics.addStaticMesh(mesh, { thickness, friction, group, collidesWith })`.
+The mesh helper captures current world-space triangles, including parent transforms.
+Both return `{ bodies, triangleCount, kind, dispose() }`. Add terrain before
+`initialize()` or the first render, and reserve body capacity for its collision
+pieces. These pieces do not synchronize meshes each frame. `dispose()` disables
+their collisions while leaving the caller's mesh intact.
+
+Heightfields use two solid prisms per cell. Mesh terrain gives each triangle
+finite backing behind its winding; concavities and overhangs remain open. This
+uses the existing convex contact and grid/HPLOC pipelines. Internal tile edges
+can affect sliding, and a rendering mesh should usually have a simpler collision
+mesh. Terrain is static and does not track subsequent mesh transformations.
+See [terrain examples](../README.md#static-terrain-hills-caves-and-overhangs)
+for the native API, holes, coordinate conventions and worker cooking helpers.
+
 Start with the [integration README](README.md) for a complete scene, bundler setup,
 instance rendering examples and reproducible collision/solver benchmarks.
 
@@ -79,8 +95,10 @@ impacts below 1 m/s do not bounce. Use `body.setRestitution()` for live changes.
 `isTrigger:true` detects dynamic-body overlaps without contact forces;
 `body.setTrigger()` changes the mode. Events include `isTrigger`, and masks
 apply to sensors too. Static–static pairs are not scanned. CCD,
-arbitrary concave meshes and the full Physics V2 plugin
-interface are not implemented. Static bodies given velocity move kinematically.
+dynamic concave meshes and the full Physics V2 plugin
+interface are not implemented. Static triangle meshes and heightfields use
+`addStaticMesh()` and `addHeightfield()` terrain cooking, including caves and
+overhangs. Static bodies given velocity move kinematically.
 
 `addHinge(a,b,{axisA,axisB,anchorA,anchorB,minAngle,maxAngle,motor})` constrains
 rotation to one axis, with optional angle stops and a torque-limited motor.
@@ -129,18 +147,29 @@ reserve storage; `readContactEvents()` reports dropped events or a full pair
 table. End events do not retain an old position. Callbacks run asynchronously.
 
 `sleeping: true` or `{ speedThreshold: 0.03, timeThreshold: 0.5 }` enables an
-optional GPU policy. Supported quiet bodies sleep; impacts, moving joint
-endpoints and explicit edits wake the world conservatively. Unsupported bodies
+optional GPU policy. Supported quiet bodies sleep. Large jointless desktop 3D worlds
+automatically wake conservative connected groups on impact, keeping unrelated
+piles asleep; the shared static floor does not join them. `islands:true` opts
+into group waking in smaller worlds, and `islands:false` selects whole-world
+waking. Explicit edits wake the world and reset group history. Unsupported bodies
 under gravity stay awake. `wakeAll()`, `body.wakeUp()` and `readSleepStats()` are
 available. Suspended jointed objects are not guaranteed to sleep. Defaults and
 paper-comparison benchmarks keep sleeping disabled.
+
+Closed jointless 3D worlds with at most 32 bodies automatically batch movement
+iterations in one GPU workgroup. Body poses stay in shared memory, with the
+same contact order, reductions and equations. Adding a joint or exceeding the
+body limit selects the ordinary pipeline. Qualified mobile compatibility paths
+retain their existing execution policy. `smallGroups:false` disables batching
+for controlled comparisons.
 
 `body.setLinearVelocity()`, `setAngularVelocity()`, `applyImpulse()`,
 `applyAngularImpulse()` and `teleport(position, quaternion)` enqueue compact
 GPU commands. Commands for the same body are combined before submission;
 impulses use the current GPU mass, inertia and position. They never replace a
 body with a stale CPU pose. `teleport` retains velocity unless a velocity setter
-is also called. New aggregates can be added within reserved capacity after
+is also called. Omitting its quaternion preserves the live GPU rotation and
+places the mesh origin at the requested position. New aggregates can be added within reserved capacity after
 initialization; disposed body slots are not reused. For repeated spawning,
 reserve projectile bodies and teleport them. `applyForce()` and `applyTorque()`
 apply forces for one fixed step, using impulses on live GPU state.

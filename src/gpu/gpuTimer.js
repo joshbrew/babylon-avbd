@@ -44,7 +44,7 @@ export class GpuTimer {
   }
   resolve(slot) {
     if (!slot) return;
-    slot.read
+    slot.pending = slot.read
       .mapAsync(GPUMapMode.READ)
       .then(() => {
         const values = new BigUint64Array(slot.read.getMappedRange());
@@ -55,7 +55,14 @@ export class GpuTimer {
       .catch(() => {})
       .finally(() => {
         slot.busy = false;
+        slot.pending = null;
       });
+    return slot.pending;
+  }
+  // Benchmark callers can wait for timestamp maps as well as GPU submission.
+  // Interactive rendering keeps these readbacks asynchronous.
+  settled() {
+    return Promise.all(this.slots.map((slot) => slot.pending));
   }
   destroy() {
     this.disposed = true;

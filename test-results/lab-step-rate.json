@@ -1,0 +1,76 @@
+{
+  "passed": true,
+  "results": [
+    {
+      "scope": "main",
+      "backend": "gpu",
+      "scene": "3d-ground",
+      "defaultRate": 60,
+      "liveChange": true,
+      "unchangedPoses": true,
+      "restored": true,
+      "urlOverride": true
+    },
+    {
+      "scope": "worker",
+      "backend": "gpu",
+      "scene": "3d-ground",
+      "defaultRate": 60,
+      "liveChange": true,
+      "unchangedPoses": true,
+      "restored": true,
+      "urlOverride": true
+    },
+    {
+      "scope": "worker-sab",
+      "backend": "gpu",
+      "scene": "2d-ground",
+      "defaultRate": 60,
+      "liveChange": true,
+      "unchangedPoses": true,
+      "restored": true,
+      "urlOverride": true
+    },
+    {
+      "scope": "main",
+      "backend": "cpu",
+      "scene": "2d-ground",
+      "defaultRate": 60,
+      "liveChange": true,
+      "unchangedPoses": true,
+      "restored": true,
+      "urlOverride": true
+    },
+    {
+      "scope": "worker",
+      "backend": "cpu",
+      "scene": "3d-ground",
+      "defaultRate": 60,
+      "liveChange": true,
+      "unchangedPoses": true,
+      "restored": true,
+      "urlOverride": true
+    },
+    {
+      "scope": "worker",
+      "backend": "gpu",
+      "renderer": "babylon",
+      "scene": "3d-ground",
+      "defaultRate": 60,
+      "liveChange": true,
+      "unchangedPoses": true,
+      "restored": true,
+      "urlOverride": true
+    },
+    {
+      "scene": "3d-voronoi-demolition",
+      "defaultRate": 240,
+      "passed": true
+    },
+    {
+      "scene": "showcase-chain-mail-1.6k",
+      "defaultRate": 60,
+      "passed": true
+    }
+  ]
+}

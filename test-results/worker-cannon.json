@@ -1,0 +1,41 @@
+{
+  "passed": true,
+  "results": [
+    {
+      "demo": "cannon",
+      "scope": "worker",
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "passed": true,
+      "shapes": 4,
+      "aiming": true
+    },
+    {
+      "demo": "cannon",
+      "scope": "worker-sab",
+      "backend": "gpu",
+      "renderer": "babylon",
+      "passed": true,
+      "shapes": 4,
+      "aiming": true
+    },
+    {
+      "demo": "cannon",
+      "scope": "worker",
+      "backend": "cpu",
+      "renderer": "webgpu",
+      "passed": true,
+      "shapes": 4,
+      "aiming": true
+    },
+    {
+      "demo": "gpu-stress",
+      "scope": "worker",
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "passed": true,
+      "shapes": 4,
+      "aiming": false
+    }
+  ]
+}

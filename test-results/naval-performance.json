@@ -1,0 +1,254 @@
+{
+  "passed": true,
+  "date": "2026-10-11T05:15:23.202Z",
+  "method": "600 warmup steps, 120 sampled steps; automatic cannon fire disabled; same intact ships, cloth, waves and enhanced rendering. Stage times use GPU timestamps. Submission/draw/wait time includes browser scheduling and is not a frame-rate measurement.",
+  "results": [
+    {
+      "broadphase": "grid",
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "bodies": 418,
+      "timeStep": 0.008333333333333333,
+      "iterations": 5,
+      "colorCap": 10,
+      "counters": {
+        "pairs": 0,
+        "contacts": 0,
+        "manifolds": 0,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 7
+      },
+      "worst": {
+        "overflow": 0,
+        "clashes": 0
+      },
+      "ships": [
+        {
+          "tiltDegrees": 7.013564735275683,
+          "position": [
+            -8.8020658493042,
+            -1.3726840019226074,
+            -0.5166833996772766
+          ],
+          "mass": 8.470667800000085,
+          "centerOfMassHeight": 0.5334613684177245,
+          "solidVolume": 15.588677999999945
+        },
+        {
+          "tiltDegrees": 8.106571023451638,
+          "position": [
+            9.254278182983398,
+            1.5403058528900146,
+            -0.44369128346443176
+          ],
+          "mass": 8.470667800000085,
+          "centerOfMassHeight": 0.5334613684177245,
+          "solidVolume": 15.588677999999945
+        }
+      ],
+      "stages": {
+        "total": {
+          "median": 1.910784,
+          "p95": 2.69824,
+          "samples": 120
+        },
+        "collision": {
+          "median": 0.963584,
+          "p95": 1.24928,
+          "samples": 120
+        },
+        "adjacency": {
+          "median": 0.212992,
+          "p95": 0.423936,
+          "samples": 120
+        },
+        "coloring": {
+          "median": 0.14336,
+          "p95": 0.145408,
+          "samples": 120
+        },
+        "solve": {
+          "median": 0.5888,
+          "p95": 0.964608,
+          "samples": 120
+        }
+      },
+      "submitDrawAndWaitMs": {
+        "median": 7.634999990463257,
+        "p95": 9.620000004768372,
+        "samples": 120
+      },
+      "stepCpuSubmitMs": {
+        "median": 0.33000004291534424,
+        "p95": 0.5199999809265137,
+        "samples": 120
+      },
+      "waterGpuMs": {
+        "median": 0.123904,
+        "p95": 0.124928,
+        "samples": 120
+      },
+      "drawGpuMs": {
+        "median": 0.074752,
+        "p95": 0.3584,
+        "samples": 120
+      },
+      "waterMs": 0.123904,
+      "drawMs": 0.074752,
+      "errors": [],
+      "finite": true
+    },
+    {
+      "broadphase": "hploc",
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "bodies": 418,
+      "timeStep": 0.008333333333333333,
+      "iterations": 5,
+      "colorCap": 10,
+      "counters": {
+        "pairs": 0,
+        "contacts": 0,
+        "manifolds": 0,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 7
+      },
+      "worst": {
+        "overflow": 0,
+        "clashes": 0
+      },
+      "ships": [
+        {
+          "tiltDegrees": 7.013564735275683,
+          "position": [
+            -8.8020658493042,
+            -1.3726840019226074,
+            -0.5166833996772766
+          ],
+          "mass": 8.470667800000085,
+          "centerOfMassHeight": 0.5334613684177245,
+          "solidVolume": 15.588677999999945
+        },
+        {
+          "tiltDegrees": 8.106571023451638,
+          "position": [
+            9.254278182983398,
+            1.5403058528900146,
+            -0.44369128346443176
+          ],
+          "mass": 8.470667800000085,
+          "centerOfMassHeight": 0.5334613684177245,
+          "solidVolume": 15.588677999999945
+        }
+      ],
+      "stages": {
+        "total": {
+          "median": 1.323008,
+          "p95": 2.231296,
+          "samples": 120
+        },
+        "collision": {
+          "median": 0.139264,
+          "p95": 0.14848,
+          "samples": 120
+        },
+        "adjacency": {
+          "median": 0.238592,
+          "p95": 0.612352,
+          "samples": 120
+        },
+        "coloring": {
+          "median": 0.18432,
+          "p95": 0.188416,
+          "samples": 120
+        },
+        "solve": {
+          "median": 0.763904,
+          "p95": 1.470464,
+          "samples": 120
+        }
+      },
+      "submitDrawAndWaitMs": {
+        "median": 7.875,
+        "p95": 10.894999980926514,
+        "samples": 120
+      },
+      "stepCpuSubmitMs": {
+        "median": 0.3250000476837158,
+        "p95": 0.5900000333786011,
+        "samples": 120
+      },
+      "waterGpuMs": {
+        "median": 0.15872,
+        "p95": 0.160768,
+        "samples": 120
+      },
+      "drawGpuMs": {
+        "median": 0.095232,
+        "p95": 0.09728,
+        "samples": 120
+      },
+      "waterMs": 0.15872,
+      "drawMs": 0.095232,
+      "errors": [],
+      "finite": true
+    }
+  ],
+  "playback": [
+    {
+      "scope": "main",
+      "elapsedSeconds": 4.020955000000002,
+      "simulationStepsPerSecond": 119.87202045285257,
+      "displayedFrameRate": "60 FPS",
+      "counters": {
+        "pairs": 0,
+        "contacts": 0,
+        "manifolds": 0,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 7
+      },
+      "errors": []
+    },
+    {
+      "scope": "worker",
+      "elapsedSeconds": 4.012475500000001,
+      "simulationStepsPerSecond": 120.12534406752138,
+      "displayedFrameRate": "60 FPS",
+      "counters": {
+        "pairs": 0,
+        "contacts": 0,
+        "manifolds": 0,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 7
+      },
+      "errors": []
+    },
+    {
+      "scope": "worker-sab",
+      "elapsedSeconds": 4.0051445999999995,
+      "simulationStepsPerSecond": 119.84586024684354,
+      "displayedFrameRate": "60 FPS",
+      "counters": {
+        "pairs": 0,
+        "contacts": 0,
+        "manifolds": 0,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 7
+      },
+      "errors": []
+    }
+  ]
+}

@@ -1,6 +1,7 @@
-import { buildCanonicalScene } from "../demo/canonicalScenes.js";
-import { createWebglDemoWorld } from "../demo/webglWorld.js";
-import { CpuWorld } from "../demo/cpuWorld.js";
+import { PlayPhysics } from "../demo/shared/playground/physics.js";
+import { buildCanonicalScene } from "../demo/lab/scenes.js";
+import { createWebglDemoWorld } from "../demo/shared/physics/webglWorld.js";
+import { CpuWorld } from "../demo/shared/physics/cpuWorld.js";
 const summarize = (values) => {
   if (!values.length) return { mean: null, median: null, p95: null, n: 0 };
   const a = values.toSorted((a, b) => a - b);
@@ -15,12 +16,20 @@ export async function compatibilityPerformance(scene, backend, warmup, count) {
   const started = performance.now(),
     built = buildCanonicalScene(scene, "gpu"),
     sceneBuildMs = performance.now() - started;
-  let world, pipeline;
+  let world, pipeline, playground;
   try {
+    if (backend === "webgl2" && built.play)
+      throw Error(
+        "This interactive force/feed demo requires WebGPU or CPU physics. WebGL2 is a benchmark-only experiment.",
+      );
     if (backend === "webgl2")
       ({ world, pipeline } = await createWebglDemoWorld(built));
     else world = new CpuWorld(built, "ref");
     world.disableSleeping();
+    if (built.play) {
+      playground = new PlayPhysics(null, built, world);
+      playground.action("start");
+    }
     const setup = {
         sceneBuildMs,
         initializationMs: performance.now() - started - sceneBuildMs,
@@ -77,6 +86,8 @@ export async function compatibilityPerformance(scene, backend, warmup, count) {
       bodyCount: world.bodyCount,
       jointCount: world.jointCount,
       params: { dt: world.params.dt, iterations: world.params.iterations },
+      sceneAction: playground ? "start" : null,
+      galton: await playground?.feeder?.measure(true),
       rendering: false,
       sleeping: false,
       timingKind:
@@ -109,6 +120,7 @@ export async function compatibilityPerformance(scene, backend, warmup, count) {
       samples,
     };
   } finally {
+    playground?.destroy();
     world?.destroy();
     pipeline?.destroy();
   }

@@ -38,7 +38,7 @@ try {
   });
   for (const renderer of ["webgpu", "babylon"]) {
     await browser.navigate(
-      `?demo=canonical&scene=3d-sphere-contacts&backend=gpu&renderer=${renderer}&paused=1`,
+      `?demo=canonical&scope=main&scene=3d-sphere-contacts&backend=gpu&renderer=${renderer}&paused=1`,
     );
     for (let i = 0; i < 600; i++) {
       const state = await browser.evaluate(

@@ -64,12 +64,10 @@
   ],
   "screenshots": [
     {
-      "width": 1440,
-      "path": "test-results/screenshots/2d-mixed-shapes-settled-1440.png"
+      "width": 1440
     },
     {
-      "width": 390,
-      "path": "test-results/screenshots/2d-mixed-shapes-settled-390.png"
+      "width": 390
     }
   ],
   "preview": true,

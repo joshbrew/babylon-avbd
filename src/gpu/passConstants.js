@@ -39,10 +39,13 @@ export function writePassConstants(iterations, alphaFor) {
     cache.u32 = new Uint32Array(cache.data);
     cache.f32 = new Float32Array(cache.data);
   }
+  // Warm start still binds entry zero when the requested iteration count is zero.
+  cache.u32[2] = iterations;
   for (let it = 0; it < iterations; it++)
     for (let col = 0; col <= this.colorCap; col++) {
       const w = ((it * perIteration + col) * PASS_STRIDE) / 4;
       cache.u32[w] = col;
+      cache.u32[w + 2] = iterations;
       cache.f32[w + 1] = cache.alphas[it];
     }
   this.device.queue.writeBuffer(this.passBuffer, 0, cache.data, 0, bytes);

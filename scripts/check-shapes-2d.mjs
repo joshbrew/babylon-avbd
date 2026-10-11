@@ -11,7 +11,7 @@ const wait = async (expression) => {
 try {
   await mkdir("test-results/screenshots", { recursive: true });
   await browser.navigate(
-    "?demo=canonical&scene=2d-mixed-shapes&backend=gpu&paused=1",
+    "?demo=canonical&scope=main&scene=2d-mixed-shapes&backend=gpu&paused=1",
   );
   await wait("globalThis.__AVBD_LAB__?.diagnostics.ready");
   const checks = [];

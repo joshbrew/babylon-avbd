@@ -5,7 +5,7 @@ const b = await browserCheck();
 const rows = [];
 try {
   await b.navigate(
-    "?demo=canonical&scene=2d-mixed-shapes&backend=cpu&paused=1",
+    "?demo=canonical&scope=main&scene=2d-mixed-shapes&backend=cpu&paused=1",
   );
   for (let i = 0; i < 200; i++) {
     if (await b.evaluate("globalThis.__AVBD_LAB__?.diagnostics.ready")) break;
