@@ -308,7 +308,7 @@ export class GpuRenderer2D {
     });
     pass.setBindGroup(0, this.bind);
     pass.setPipeline(this.bodyPipeline);
-    pass.draw(6, this.sim.bodyCount);
+    if (this.sim.bodyCount) pass.draw(6, this.sim.bodyCount);
     if ((debug || this.drawLinks) && this.linkCount) {
       pass.setPipeline(this.linkPipeline);
       pass.draw(2, this.linkCount);

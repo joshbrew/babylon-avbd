@@ -1,0 +1,70 @@
+{
+  "date": "2026-10-12T04:14:50.518Z",
+  "hardware": "NVIDIA GeForce RTX 4070 Laptop GPU",
+  "renderer": "Direct WebGPU",
+  "scope": "Dedicated worker",
+  "quality": "Enhanced, 4x MSAA",
+  "viewport": [
+    1440,
+    900
+  ],
+  "marbles": 40000,
+  "bodies": 40747,
+  "iterations": 5,
+  "stepsPerSecond": 120,
+  "sleeping": false,
+  "comparison": {
+    "window": "Seconds 5–30 after release, same camera and settings",
+    "unindexed": {
+      "samples": 25,
+      "fps": 59.94035934245432,
+      "simulationRate": 0.9990009990009991,
+      "drawMs": 5.476352,
+      "physicsMs": 1.88928
+    },
+    "indexed": {
+      "samples": 25,
+      "fps": 59.94005994005994,
+      "simulationRate": 0.9990159692702701,
+      "drawMs": 2.27328,
+      "physicsMs": 1.833984
+    },
+    "drawTimeReductionPercent": 58.48915482423336
+  },
+  "sustained": {
+    "wallSeconds": 110,
+    "samples": 105,
+    "fps": 59.94005994005994,
+    "simulationRate": 0.9990159692702681,
+    "drawMs": 2.185216,
+    "physicsMs": 2.415616,
+    "last20Seconds": {
+      "samples": 20,
+      "fps": 59.94095815621609,
+      "simulationRate": 0.9990159692702681,
+      "drawMs": 2.172928,
+      "physicsMs": 2.742272
+    },
+    "counters": {
+      "pairs": 141346,
+      "contacts": 141284,
+      "manifolds": 141281,
+      "overflow": 0,
+      "clashes": 0,
+      "colors": 9
+    },
+    "finite": true,
+    "released": 39701,
+    "queued": 299,
+    "escaped": 0
+  },
+  "geometry": "Identical triangles, normals and colors; repeated vertices share indices.",
+  "pixelComparison": {
+    "identical": true,
+    "size": [
+      1140,
+      900
+    ]
+  },
+  "errors": []
+}

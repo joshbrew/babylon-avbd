@@ -7,6 +7,8 @@ const root = fileURLToPath(new URL("../", import.meta.url));
 await mkdir(new URL("../test-results/", import.meta.url), { recursive: true });
 const checks = [
   "build",
+  "check-indexed-mesh",
+  "check-render-batching",
   "check-terrain-cooking",
   "check-runtime-efficiency",
   "check-naval",

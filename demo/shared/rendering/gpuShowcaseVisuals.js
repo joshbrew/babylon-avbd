@@ -1,5 +1,6 @@
 import shader from "./gpuShowcaseRender.wgsl";
 import { chainRingScales } from "../geometry/ringGeometry.js";
+import { indexedMesh } from "../geometry/indexedMesh.js";
 import { isCapsule } from "../../../src/gpu/capsuleShape.js";
 import { tearableClothsOf } from "../../tearable-cloth/topology.js";
 import { TearableClothRenderer } from "../../tearable-cloth/renderer.js";
@@ -108,14 +109,17 @@ export class GpuShowcaseVisuals {
     });
     this.meshes = new Map();
     for (let kind = 1; kind <= 5; kind++) {
-      const data =
+      const triangles =
         kind <= 2
           ? roundedMesh(kind === 2)
           : ringMesh(kind === 3 ? RING.flat : RING.link);
+      const mesh = indexedMesh(triangles);
       this.meshes.set(kind, {
-        vertices: data,
-        buffer: this.buffer(data, GPUBufferUsage.VERTEX),
-        count: data.length / 6,
+        ...mesh,
+        buffer: this.buffer(mesh.vertices, GPUBufferUsage.VERTEX),
+        indexBuffer: this.buffer(mesh.indices, GPUBufferUsage.INDEX),
+        indexFormat: mesh.indices instanceof Uint16Array ? "uint16" : "uint32",
+        count: mesh.indices.length,
       });
     }
     this.refresh();
@@ -316,7 +320,8 @@ export class GpuShowcaseVisuals {
       pass.setPipeline(this.pipelines.get(group.kind));
       pass.setBindGroup(0, group.bind);
       pass.setVertexBuffer(0, mesh.buffer);
-      pass.draw(mesh.count, group.count);
+      pass.setIndexBuffer(mesh.indexBuffer, mesh.indexFormat);
+      pass.drawIndexed(mesh.count, group.count);
     }
     if (this.clothCount) {
       pass.setPipeline(this.clothPipeline);

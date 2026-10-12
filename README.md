@@ -3261,9 +3261,19 @@ Colors are copied again only when edited. Camera controls, contact overlays,
 shape sizes and cloth tearing use the viewer's existing geometry and shaders.
 
 The direct WebGPU viewer also batches unique hull geometry into a single draw.
-In scenes with many cloth particles or hidden collision pieces, its box draw
-contains only visible boxes. Box-only stress scenes use a contiguous
-instance layout.
+Both viewers avoid drawing large groups of cloth particles or hidden collision
+proxies as boxes. Spheres, capsules and rings share indexed geometry, reusing
+vertices across triangles while keeping the same surfaces and normals. All
+40,000 Galton marbles use one instanced draw. Box-only stress scenes use a
+contiguous instance layout. The mixed-collider gallery uses Babylon instances
+with ordinary materials and per-object physics aggregates.
+
+Run `node scripts/check-render-batching.mjs` after `npm run build:web` to check
+actual GPU draw calls across the scene catalogue and the naval demo. Its
+[results](test-results/render-batching.json) include body counts, draw counts
+and the geometry shared by each group of instances.
+The [Galton rendering check](test-results/galton-rendering.json) records GPU
+drawing time and live simulation speed on an RTX 4070 Laptop GPU.
 
 The [Babylon renderer source](demo/shared/rendering/babylonGpuRenderer.js) and
 [WGSL adapter](demo/shared/rendering/babylonShaders.js) show the integration. This is a custom

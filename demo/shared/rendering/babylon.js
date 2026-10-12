@@ -5,6 +5,7 @@ import { RegisterRenderTargetTexture } from "@babylonjs/core/Materials/Textures/
 // imports do not register this method; its optional stub silently skips it.
 RegisterRenderTargetTexture();
 import "@babylonjs/core/Rendering/edgesRenderer.js";
+import "@babylonjs/core/Meshes/instancedMesh.js";
 export { Engine } from "@babylonjs/core/Engines/engine.js";
 export { Scene } from "@babylonjs/core/scene.js";
 export { ArcRotateCamera } from "@babylonjs/core/Cameras/arcRotateCamera.js";

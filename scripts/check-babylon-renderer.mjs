@@ -16,6 +16,7 @@ try {
     : [
         "3d-voronoi-demolition",
         "3d-sphere-contacts",
+        "3d-marble-cascade",
         "2d-triggers-and-masks",
         "showcase-ragdolls-on-cloth-24k",
         "3d-tearable-cloth",

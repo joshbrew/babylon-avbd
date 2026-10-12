@@ -83,7 +83,8 @@ try {
   const live = await b.evaluate(`(async()=>{
     const lab=__AVBD_LAB__;lab.client.control('play','start');const before=await lab.client.getInfo(),start=performance.now();lab.pause(false);
     await new Promise(r=>setTimeout(r,4200));lab.pause(true);const after=await lab.client.getInfo(),wallSeconds=(performance.now()-start)/1000;
-    return {worker:after.worker,hz:1/after.timeStep,steps:after.steps-before.steps,wallSeconds,rate:(after.steps-before.steps)*after.timeStep/wallSeconds,errors:lab.diagnostics.errors};
+    const status=lab.status;
+    return {worker:after.worker,hz:1/after.timeStep,steps:after.steps-before.steps,wallSeconds,rate:(after.steps-before.steps)*after.timeStep/wallSeconds,fps:status?.fps,physicsMs:status?.profile?.total,drawMs:status?.drawMs,errors:lab.diagnostics.errors};
   })()`);
   console.log(JSON.stringify({ clocks, live }));
   assert.deepEqual(live.errors, []);

@@ -2,6 +2,13 @@
   "results": [
     {
       "name": "Mixed gallery",
+      "batching": {
+        "objects": 298,
+        "sources": 7,
+        "instances": 291,
+        "draws": 20,
+        "instancedDraws": 14
+      },
       "rotated": 245,
       "minY": 0.129008486866951,
       "maxQuaternionError": 1.0799586114274007e-7,
@@ -67,10 +74,11 @@
       "targetCount": 2000,
       "triangles": 20,
       "alive": 2000,
-      "hits": 29,
-      "collisionMs": 0.074752,
+      "hits": 4,
+      "collisionMs": 0.08704,
+      "spriteMs": 0.021504,
       "sprites": true,
-      "frame": 161,
+      "frame": 163,
       "errors": [],
       "rects": [
         [

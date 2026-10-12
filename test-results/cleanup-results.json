@@ -1,38 +1,57 @@
 {
-  "date": "2026-10-12T01:33:33.975Z",
+  "date": "2026-10-12T04:18:40.643Z",
   "applied": true,
-  "retained": 251,
-  "removedFiles": 6,
-  "removedBytes": 693978,
+  "retained": 254,
+  "removedFiles": 11,
+  "removedBytes": 2618673,
   "removed": [
     {
-      "path": "gpu-selected.json",
-      "bytes": 4644
+      "path": "screenshots/babylon-2d-triggers-and-masks.png",
+      "bytes": 105265
     },
     {
-      "path": "screenshots/babylon-2d-triggers-and-masks.png",
-      "bytes": 104137
+      "path": "screenshots/babylon-3d-marble-cascade.png",
+      "bytes": 267447
     },
     {
       "path": "screenshots/babylon-3d-voronoi-demolition.png",
-      "bytes": 136057
+      "bytes": 136381
     },
     {
       "path": "screenshots/babylon-slingshot.png",
-      "bytes": 104088
+      "bytes": 103990
     },
     {
-      "path": "screenshots/execution-worker.png",
-      "bytes": 61734
+      "path": "screenshots/galton-pegs-cpu-webgpu-worker.png",
+      "bytes": 275446
     },
     {
-      "path": "screenshots/galton-worker-startup.png",
-      "bytes": 283318
+      "path": "screenshots/galton-pegs-gpu-babylon-main.png",
+      "bytes": 282094
+    },
+    {
+      "path": "screenshots/galton-pegs-gpu-babylon-worker.png",
+      "bytes": 276994
+    },
+    {
+      "path": "screenshots/galton-pegs-gpu-webgpu-main.png",
+      "bytes": 281834
+    },
+    {
+      "path": "screenshots/galton-pegs-gpu-webgpu-worker-sab.png",
+      "bytes": 276156
+    },
+    {
+      "path": "screenshots/galton-pegs-gpu-webgpu-worker.png",
+      "bytes": 276156
+    },
+    {
+      "path": "screenshots/mixed-gallery-impact.png",
+      "bytes": 336910
     }
   ],
   "prunedCaptureSummaries": [
-    "galton-startup.json",
-    "execution-ui.json"
+    "galton-pegs.json"
   ],
   "removedDirectories": []
 }

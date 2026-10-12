@@ -10,8 +10,8 @@
         "matrixUpdates": 0,
         "draws": 3,
         "copiedBytes": 35520,
-        "cpuSubmitMs": 0.6999999284744263,
-        "gpuDrawMs": 0.101376,
+        "cpuSubmitMs": 1.8600000143051147,
+        "gpuDrawMs": 0.160768,
         "gpuCopyMs": 0.011264
       },
       "bodyCount": 222,
@@ -36,15 +36,40 @@
         "matrixUpdates": 0,
         "draws": 3,
         "copiedBytes": 37088,
-        "cpuSubmitMs": 0.5099999904632568,
-        "gpuDrawMs": 0.012288,
-        "gpuCopyMs": 0.021504
+        "cpuSubmitMs": 0.690000057220459,
+        "gpuDrawMs": 0.02048,
+        "gpuCopyMs": 0.017408
       },
       "bodyCount": 27,
       "stats": {
         "pairs": 0,
         "contacts": 0,
         "manifolds": 0,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 1
+      },
+      "finite": true,
+      "errors": []
+    },
+    {
+      "scene": "3d-marble-cascade",
+      "renderer": "babylon",
+      "renderStats": {
+        "renderer": "babylon",
+        "poseDownloads": 0,
+        "matrixUpdates": 0,
+        "draws": 3,
+        "copiedBytes": 6519520,
+        "cpuSubmitMs": 4.435000061988831,
+        "gpuDrawMs": 14.1824,
+        "gpuCopyMs": 0.055296
+      },
+      "bodyCount": 40747,
+      "stats": {
+        "pairs": 3,
+        "contacts": 12,
+        "manifolds": 3,
         "overflow": 0,
         "clashes": 0,
         "colors": 1
@@ -61,9 +86,9 @@
         "matrixUpdates": 0,
         "draws": 1,
         "copiedBytes": 395520,
-        "cpuSubmitMs": 0.3799999952316284,
-        "gpuDrawMs": 0.011264,
-        "gpuCopyMs": 0.017408
+        "cpuSubmitMs": 1.6799999475479126,
+        "gpuDrawMs": 0.023552,
+        "gpuCopyMs": 0.03584
       },
       "bodyCount": 24,
       "stats": {
@@ -73,7 +98,8 @@
         "clashes": 0,
         "colors": 1,
         "triggerEntries": 0,
-        "triggerOverlaps": 0
+        "triggerOverlaps": 0,
+        "sleeping": 0
       },
       "finite": true,
       "errors": []
@@ -87,9 +113,9 @@
         "matrixUpdates": 0,
         "draws": 4,
         "copiedBytes": 3778720,
-        "cpuSubmitMs": 1.4600000381469727,
-        "gpuDrawMs": 5.567488,
-        "gpuCopyMs": 0.032768
+        "cpuSubmitMs": 1.1700000762939453,
+        "gpuDrawMs": 1.506304,
+        "gpuCopyMs": 0.01648
       },
       "bodyCount": 23617,
       "stats": {
@@ -98,8 +124,7 @@
         "manifolds": 0,
         "overflow": 0,
         "clashes": 0,
-        "colors": 5,
-        "sleeping": 0
+        "colors": 5
       },
       "finite": true,
       "errors": []
@@ -113,9 +138,9 @@
         "matrixUpdates": 0,
         "draws": 3,
         "copiedBytes": 696896,
-        "cpuSubmitMs": 1.690000057220459,
-        "gpuDrawMs": 0.052224,
-        "gpuCopyMs": 0.01024
+        "cpuSubmitMs": 0.8200000524520874,
+        "gpuDrawMs": 0.033792,
+        "gpuCopyMs": 0.007584
       },
       "bodyCount": 1026,
       "stats": {
@@ -138,9 +163,9 @@
         "matrixUpdates": 0,
         "draws": 5,
         "copiedBytes": 256320,
-        "cpuSubmitMs": 0.7199999094009399,
-        "gpuDrawMs": 0.375808,
-        "gpuCopyMs": 0.008192
+        "cpuSubmitMs": 0.5399999618530273,
+        "gpuDrawMs": 0.301056,
+        "gpuCopyMs": 0.03072
       },
       "bodyCount": 1602,
       "stats": {
@@ -163,9 +188,9 @@
         "matrixUpdates": 0,
         "draws": 1,
         "copiedBytes": 16000160,
-        "cpuSubmitMs": 1.725000023841858,
-        "gpuDrawMs": 3.113984,
-        "gpuCopyMs": 0.145408
+        "cpuSubmitMs": 1.9300000667572021,
+        "gpuDrawMs": 1.183744,
+        "gpuCopyMs": 0.118176
       },
       "bodyCount": 100001,
       "stats": {
@@ -188,9 +213,9 @@
         "matrixUpdates": 0,
         "draws": 2,
         "copiedBytes": 745488,
-        "cpuSubmitMs": 0.6349999904632568,
-        "gpuDrawMs": 0.052224,
-        "gpuCopyMs": 0.014336
+        "cpuSubmitMs": 0.5150001049041748,
+        "gpuDrawMs": 0.038912,
+        "gpuCopyMs": 0.008416
       },
       "state": {
         "shots": 0,

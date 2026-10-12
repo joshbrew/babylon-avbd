@@ -1,0 +1,1442 @@
+{
+  "passed": true,
+  "results": [
+    {
+      "scene": "3d-tornado-town",
+      "bodies": 4530,
+      "draws": 2,
+      "calls": [
+        {
+          "method": "draw",
+          "count": 36,
+          "instances": 4530
+        },
+        {
+          "method": "drawIndexed",
+          "count": 1152,
+          "instances": 128
+        }
+      ],
+      "shapes": [
+        {
+          "kind": 1,
+          "instances": 128,
+          "vertices": 208,
+          "indices": 1152
+        }
+      ],
+      "errors": []
+    },
+    {
+      "scene": "3d-domino-spiral",
+      "bodies": 2049,
+      "draws": 1,
+      "calls": [
+        {
+          "method": "draw",
+          "count": 36,
+          "instances": 2049
+        }
+      ],
+      "shapes": [],
+      "errors": []
+    },
+    {
+      "scene": "3d-marble-cascade",
+      "bodies": 40747,
+      "draws": 3,
+      "calls": [
+        {
+          "method": "draw",
+          "count": 36,
+          "instances": 46
+        },
+        {
+          "method": "drawIndexed",
+          "count": 1248,
+          "instances": 700
+        },
+        {
+          "method": "drawIndexed",
+          "count": 1152,
+          "instances": 40000
+        }
+      ],
+      "shapes": [
+        {
+          "kind": 2,
+          "instances": 700,
+          "vertices": 225,
+          "indices": 1248
+        },
+        {
+          "kind": 1,
+          "instances": 40000,
+          "vertices": 208,
+          "indices": 1152
+        }
+      ],
+      "errors": []
+    },
+    {
+      "scene": "3d-static-terrain",
+      "bodies": 2416,
+      "draws": 4,
+      "calls": [
+        {
+          "method": "draw",
+          "count": 36,
+          "instances": 40
+        },
+        {
+          "method": "draw",
+          "count": 6864,
+          "instances": 1
+        },
+        {
+          "method": "drawIndexed",
+          "count": 1152,
+          "instances": 48
+        },
+        {
+          "method": "drawIndexed",
+          "count": 1248,
+          "instances": 40
+        }
+      ],
+      "shapes": [
+        {
+          "kind": 1,
+          "instances": 48,
+          "vertices": 208,
+          "indices": 1152
+        },
+        {
+          "kind": 2,
+          "instances": 40,
+          "vertices": 225,
+          "indices": 1248
+        }
+      ],
+      "errors": []
+    },
+    {
+      "scene": "3d-voronoi-demolition",
+      "bodies": 222,
+      "draws": 3,
+      "calls": [
+        {
+          "method": "draw",
+          "count": 36,
+          "instances": 222
+        },
+        {
+          "method": "draw",
+          "count": 12264,
+          "instances": 1
+        },
+        {
+          "method": "drawIndexed",
+          "count": 1152,
+          "instances": 1
+        }
+      ],
+      "shapes": [
+        {
+          "kind": 1,
+          "instances": 1,
+          "vertices": 208,
+          "indices": 1152
+        }
+      ],
+      "errors": []
+    },
+    {
+      "scene": "3d-limited-hinges",
+      "bodies": 13,
+      "draws": 2,
+      "calls": [
+        {
+          "method": "draw",
+          "count": 36,
+          "instances": 13
+        },
+        {
+          "method": "drawIndexed",
+          "count": 1152,
+          "instances": 4
+        }
+      ],
+      "shapes": [
+        {
+          "kind": 1,
+          "instances": 4,
+          "vertices": 208,
+          "indices": 1152
+        }
+      ],
+      "errors": []
+    },
+    {
+      "scene": "2d-triggers-and-masks",
+      "bodies": 24,
+      "draws": 1,
+      "calls": [
+        {
+          "method": "draw",
+          "count": 6,
+          "instances": 24
+        }
+      ],
+      "errors": []
+    },
+    {
+      "scene": "3d-triggers-and-masks",
+      "bodies": 28,
+      "draws": 2,
+      "calls": [
+        {
+          "method": "draw",
+          "count": 36,
+          "instances": 28
+        },
+        {
+          "method": "drawIndexed",
+          "count": 1152,
+          "instances": 21
+        }
+      ],
+      "shapes": [
+        {
+          "kind": 1,
+          "instances": 21,
+          "vertices": 208,
+          "indices": 1152
+        }
+      ],
+      "errors": []
+    },
+    {
+      "scene": "2d-sleeping-pile",
+      "bodies": 258,
+      "draws": 1,
+      "calls": [
+        {
+          "method": "draw",
+          "count": 6,
+          "instances": 258
+        }
+      ],
+      "errors": []
+    },
+    {
+      "scene": "2d-limited-hinges",
+      "bodies": 7,
+      "draws": 1,
+      "calls": [
+        {
+          "method": "draw",
+          "count": 6,
+          "instances": 7
+        }
+      ],
+      "errors": []
+    },
+    {
+      "scene": "2d-slingshot-siege",
+      "bodies": 5121,
+      "draws": 1,
+      "calls": [
+        {
+          "method": "draw",
+          "count": 6,
+          "instances": 5121
+        }
+      ],
+      "errors": []
+    },
+    {
+      "scene": "2d-mixed-shapes",
+      "bodies": 102,
+      "draws": 1,
+      "calls": [
+        {
+          "method": "draw",
+          "count": 6,
+          "instances": 102
+        }
+      ],
+      "errors": []
+    },
+    {
+      "scene": "3d-castle-siege",
+      "bodies": 3915,
+      "draws": 3,
+      "calls": [
+        {
+          "method": "draw",
+          "count": 36,
+          "instances": 3915
+        },
+        {
+          "method": "draw",
+          "count": 12660,
+          "instances": 1
+        },
+        {
+          "method": "drawIndexed",
+          "count": 1152,
+          "instances": 4
+        }
+      ],
+      "shapes": [
+        {
+          "kind": 1,
+          "instances": 4,
+          "vertices": 208,
+          "indices": 1152
+        }
+      ],
+      "errors": []
+    },
+    {
+      "scene": "3d-tearable-cloth",
+      "bodies": 1026,
+      "draws": 3,
+      "calls": [
+        {
+          "method": "draw",
+          "count": 36,
+          "instances": 1
+        },
+        {
+          "method": "draw",
+          "count": 34596,
+          "instances": 1
+        },
+        {
+          "method": "drawIndexed",
+          "count": 1152,
+          "instances": 1
+        }
+      ],
+      "shapes": [
+        {
+          "kind": 1,
+          "instances": 1,
+          "vertices": 208,
+          "indices": 1152
+        }
+      ],
+      "errors": []
+    },
+    {
+      "scene": "paper-walls-510k-3",
+      "bodies": 505923,
+      "draws": 2,
+      "calls": [
+        {
+          "method": "draw",
+          "count": 36,
+          "instances": 505923
+        },
+        {
+          "method": "drawIndexed",
+          "count": 1152,
+          "instances": 2
+        }
+      ],
+      "shapes": [
+        {
+          "kind": 1,
+          "instances": 2,
+          "vertices": 208,
+          "indices": 1152
+        }
+      ],
+      "errors": []
+    },
+    {
+      "scene": "paper-walls-510k-4",
+      "bodies": 505923,
+      "draws": 2,
+      "calls": [
+        {
+          "method": "draw",
+          "count": 36,
+          "instances": 505923
+        },
+        {
+          "method": "drawIndexed",
+          "count": 1152,
+          "instances": 2
+        }
+      ],
+      "shapes": [
+        {
+          "kind": 1,
+          "instances": 2,
+          "vertices": 208,
+          "indices": 1152
+        }
+      ],
+      "errors": []
+    },
+    {
+      "scene": "paper-cloth-35k",
+      "bodies": 45001,
+      "draws": 2,
+      "calls": [
+        {
+          "method": "draw",
+          "count": 36,
+          "instances": 45001
+        },
+        {
+          "method": "drawIndexed",
+          "count": 58806,
+          "instances": 1
+        }
+      ],
+      "shapes": [],
+      "errors": []
+    },
+    {
+      "scene": "2d-stress-pile-10k",
+      "bodies": 10003,
+      "draws": 1,
+      "calls": [
+        {
+          "method": "draw",
+          "count": 6,
+          "instances": 10003
+        }
+      ],
+      "errors": []
+    },
+    {
+      "scene": "2d-stress-pile-50k",
+      "bodies": 50003,
+      "draws": 1,
+      "calls": [
+        {
+          "method": "draw",
+          "count": 6,
+          "instances": 50003
+        }
+      ],
+      "errors": []
+    },
+    {
+      "scene": "2d-stress-pile-100k",
+      "bodies": 100003,
+      "draws": 1,
+      "calls": [
+        {
+          "method": "draw",
+          "count": 6,
+          "instances": 100003
+        }
+      ],
+      "errors": []
+    },
+    {
+      "scene": "showcase-brick-ring-28k",
+      "bodies": 28114,
+      "draws": 2,
+      "calls": [
+        {
+          "method": "draw",
+          "count": 36,
+          "instances": 28114
+        },
+        {
+          "method": "drawIndexed",
+          "count": 1152,
+          "instances": 1
+        }
+      ],
+      "shapes": [
+        {
+          "kind": 1,
+          "instances": 1,
+          "vertices": 208,
+          "indices": 1152
+        }
+      ],
+      "errors": []
+    },
+    {
+      "scene": "showcase-brick-ring-110k",
+      "bodies": 110442,
+      "draws": 2,
+      "calls": [
+        {
+          "method": "draw",
+          "count": 36,
+          "instances": 110442
+        },
+        {
+          "method": "drawIndexed",
+          "count": 1152,
+          "instances": 1
+        }
+      ],
+      "shapes": [
+        {
+          "kind": 1,
+          "instances": 1,
+          "vertices": 208,
+          "indices": 1152
+        }
+      ],
+      "errors": []
+    },
+    {
+      "scene": "showcase-brick-walls-27k",
+      "bodies": 26883,
+      "draws": 2,
+      "calls": [
+        {
+          "method": "draw",
+          "count": 36,
+          "instances": 26883
+        },
+        {
+          "method": "drawIndexed",
+          "count": 1152,
+          "instances": 2
+        }
+      ],
+      "shapes": [
+        {
+          "kind": 1,
+          "instances": 2,
+          "vertices": 208,
+          "indices": 1152
+        }
+      ],
+      "errors": []
+    },
+    {
+      "scene": "showcase-ragdolls-on-cloth-24k",
+      "bodies": 23617,
+      "draws": 4,
+      "calls": [
+        {
+          "method": "draw",
+          "count": 36,
+          "instances": 1
+        },
+        {
+          "method": "drawIndexed",
+          "count": 1248,
+          "instances": 12960
+        },
+        {
+          "method": "drawIndexed",
+          "count": 1152,
+          "instances": 1440
+        },
+        {
+          "method": "drawIndexed",
+          "count": 54150,
+          "instances": 1
+        }
+      ],
+      "shapes": [
+        {
+          "kind": 2,
+          "instances": 12960,
+          "vertices": 225,
+          "indices": 1248
+        },
+        {
+          "kind": 1,
+          "instances": 1440,
+          "vertices": 208,
+          "indices": 1152
+        }
+      ],
+      "errors": []
+    },
+    {
+      "scene": "showcase-flag-in-the-wind-1.5k",
+      "bodies": 1546,
+      "draws": 4,
+      "calls": [
+        {
+          "method": "draw",
+          "count": 36,
+          "instances": 2
+        },
+        {
+          "method": "drawIndexed",
+          "count": 1248,
+          "instances": 7
+        },
+        {
+          "method": "drawIndexed",
+          "count": 1152,
+          "instances": 1
+        },
+        {
+          "method": "drawIndexed",
+          "count": 8742,
+          "instances": 1
+        }
+      ],
+      "shapes": [
+        {
+          "kind": 2,
+          "instances": 7,
+          "vertices": 225,
+          "indices": 1248
+        },
+        {
+          "kind": 1,
+          "instances": 1,
+          "vertices": 208,
+          "indices": 1152
+        }
+      ],
+      "errors": []
+    },
+    {
+      "scene": "showcase-wall-smash-2k",
+      "bodies": 2002,
+      "draws": 2,
+      "calls": [
+        {
+          "method": "draw",
+          "count": 36,
+          "instances": 2002
+        },
+        {
+          "method": "drawIndexed",
+          "count": 1152,
+          "instances": 1
+        }
+      ],
+      "shapes": [
+        {
+          "kind": 1,
+          "instances": 1,
+          "vertices": 208,
+          "indices": 1152
+        }
+      ],
+      "errors": []
+    },
+    {
+      "scene": "showcase-breakable-wall-600",
+      "bodies": 602,
+      "draws": 2,
+      "calls": [
+        {
+          "method": "draw",
+          "count": 36,
+          "instances": 602
+        },
+        {
+          "method": "drawIndexed",
+          "count": 1152,
+          "instances": 1
+        }
+      ],
+      "shapes": [
+        {
+          "kind": 1,
+          "instances": 1,
+          "vertices": 208,
+          "indices": 1152
+        }
+      ],
+      "errors": []
+    },
+    {
+      "scene": "showcase-chain-mail-1.6k",
+      "bodies": 1602,
+      "draws": 5,
+      "calls": [
+        {
+          "method": "draw",
+          "count": 36,
+          "instances": 1
+        },
+        {
+          "method": "drawIndexed",
+          "count": 1152,
+          "instances": 400
+        },
+        {
+          "method": "drawIndexed",
+          "count": 1152,
+          "instances": 400
+        },
+        {
+          "method": "drawIndexed",
+          "count": 1152,
+          "instances": 400
+        },
+        {
+          "method": "drawIndexed",
+          "count": 1152,
+          "instances": 1
+        }
+      ],
+      "shapes": [
+        {
+          "kind": 3,
+          "instances": 400,
+          "vertices": 225,
+          "indices": 1152
+        },
+        {
+          "kind": 5,
+          "instances": 400,
+          "vertices": 225,
+          "indices": 1152
+        },
+        {
+          "kind": 4,
+          "instances": 400,
+          "vertices": 225,
+          "indices": 1152
+        },
+        {
+          "kind": 1,
+          "instances": 1,
+          "vertices": 208,
+          "indices": 1152
+        }
+      ],
+      "errors": []
+    },
+    {
+      "scene": "showcase-heavy-pendulum",
+      "bodies": 53,
+      "draws": 2,
+      "calls": [
+        {
+          "method": "draw",
+          "count": 36,
+          "instances": 53
+        },
+        {
+          "method": "drawIndexed",
+          "count": 1248,
+          "instances": 50
+        }
+      ],
+      "shapes": [
+        {
+          "kind": 2,
+          "instances": 50,
+          "vertices": 225,
+          "indices": 1248
+        }
+      ],
+      "errors": []
+    },
+    {
+      "scene": "showcase-box-pile-4k",
+      "bodies": 4001,
+      "draws": 1,
+      "calls": [
+        {
+          "method": "draw",
+          "count": 36,
+          "instances": 4001
+        }
+      ],
+      "shapes": [],
+      "errors": []
+    },
+    {
+      "scene": "showcase-box-pile-32k",
+      "bodies": 32001,
+      "draws": 1,
+      "calls": [
+        {
+          "method": "draw",
+          "count": 36,
+          "instances": 32001
+        }
+      ],
+      "shapes": [],
+      "errors": []
+    },
+    {
+      "scene": "showcase-jointed-drop-34k",
+      "bodies": 34097,
+      "draws": 2,
+      "calls": [
+        {
+          "method": "draw",
+          "count": 36,
+          "instances": 34097
+        },
+        {
+          "method": "drawIndexed",
+          "count": 23814,
+          "instances": 1
+        }
+      ],
+      "shapes": [],
+      "errors": []
+    },
+    {
+      "scene": "showcase-box-columns-100k",
+      "bodies": 100001,
+      "draws": 1,
+      "calls": [
+        {
+          "method": "draw",
+          "count": 36,
+          "instances": 100001
+        }
+      ],
+      "shapes": [],
+      "errors": []
+    },
+    {
+      "scene": "2d-empty",
+      "bodies": 0,
+      "draws": 0,
+      "calls": [],
+      "errors": []
+    },
+    {
+      "scene": "2d-ground",
+      "bodies": 1,
+      "draws": 1,
+      "calls": [
+        {
+          "method": "draw",
+          "count": 6,
+          "instances": 1
+        }
+      ],
+      "errors": []
+    },
+    {
+      "scene": "2d-dynamic-friction",
+      "bodies": 12,
+      "draws": 1,
+      "calls": [
+        {
+          "method": "draw",
+          "count": 6,
+          "instances": 12
+        }
+      ],
+      "errors": []
+    },
+    {
+      "scene": "2d-static-friction",
+      "bodies": 12,
+      "draws": 1,
+      "calls": [
+        {
+          "method": "draw",
+          "count": 6,
+          "instances": 12
+        }
+      ],
+      "errors": []
+    },
+    {
+      "scene": "2d-pyramid",
+      "bodies": 211,
+      "draws": 1,
+      "calls": [
+        {
+          "method": "draw",
+          "count": 6,
+          "instances": 211
+        }
+      ],
+      "errors": []
+    },
+    {
+      "scene": "2d-cards",
+      "bodies": 41,
+      "draws": 1,
+      "calls": [
+        {
+          "method": "draw",
+          "count": 6,
+          "instances": 41
+        }
+      ],
+      "errors": []
+    },
+    {
+      "scene": "2d-rope",
+      "bodies": 20,
+      "draws": 1,
+      "calls": [
+        {
+          "method": "draw",
+          "count": 6,
+          "instances": 20
+        }
+      ],
+      "errors": []
+    },
+    {
+      "scene": "2d-heavy-rope",
+      "bodies": 20,
+      "draws": 1,
+      "calls": [
+        {
+          "method": "draw",
+          "count": 6,
+          "instances": 20
+        }
+      ],
+      "errors": []
+    },
+    {
+      "scene": "2d-hanging-rope",
+      "bodies": 50,
+      "draws": 1,
+      "calls": [
+        {
+          "method": "draw",
+          "count": 6,
+          "instances": 50
+        }
+      ],
+      "errors": []
+    },
+    {
+      "scene": "2d-spring",
+      "bodies": 2,
+      "draws": 1,
+      "calls": [
+        {
+          "method": "draw",
+          "count": 6,
+          "instances": 2
+        }
+      ],
+      "errors": []
+    },
+    {
+      "scene": "2d-spring-ratio",
+      "bodies": 8,
+      "draws": 1,
+      "calls": [
+        {
+          "method": "draw",
+          "count": 6,
+          "instances": 8
+        }
+      ],
+      "errors": []
+    },
+    {
+      "scene": "2d-stack",
+      "bodies": 21,
+      "draws": 1,
+      "calls": [
+        {
+          "method": "draw",
+          "count": 6,
+          "instances": 21
+        }
+      ],
+      "errors": []
+    },
+    {
+      "scene": "2d-stack-ratio",
+      "bodies": 7,
+      "draws": 1,
+      "calls": [
+        {
+          "method": "draw",
+          "count": 6,
+          "instances": 7
+        }
+      ],
+      "errors": []
+    },
+    {
+      "scene": "2d-rod",
+      "bodies": 20,
+      "draws": 1,
+      "calls": [
+        {
+          "method": "draw",
+          "count": 6,
+          "instances": 20
+        }
+      ],
+      "errors": []
+    },
+    {
+      "scene": "2d-soft-body",
+      "bodies": 151,
+      "draws": 1,
+      "calls": [
+        {
+          "method": "draw",
+          "count": 6,
+          "instances": 151
+        }
+      ],
+      "errors": []
+    },
+    {
+      "scene": "2d-joint-grid",
+      "bodies": 625,
+      "draws": 1,
+      "calls": [
+        {
+          "method": "draw",
+          "count": 6,
+          "instances": 625
+        }
+      ],
+      "errors": []
+    },
+    {
+      "scene": "2d-net",
+      "bodies": 91,
+      "draws": 1,
+      "calls": [
+        {
+          "method": "draw",
+          "count": 6,
+          "instances": 91
+        }
+      ],
+      "errors": []
+    },
+    {
+      "scene": "2d-motor",
+      "bodies": 2,
+      "draws": 1,
+      "calls": [
+        {
+          "method": "draw",
+          "count": 6,
+          "instances": 2
+        }
+      ],
+      "errors": []
+    },
+    {
+      "scene": "2d-fracture",
+      "bodies": 29,
+      "draws": 1,
+      "calls": [
+        {
+          "method": "draw",
+          "count": 6,
+          "instances": 29
+        }
+      ],
+      "errors": []
+    },
+    {
+      "scene": "3d-empty",
+      "bodies": 0,
+      "draws": 0,
+      "calls": [],
+      "shapes": [],
+      "errors": []
+    },
+    {
+      "scene": "3d-ground",
+      "bodies": 2,
+      "draws": 1,
+      "calls": [
+        {
+          "method": "draw",
+          "count": 36,
+          "instances": 2
+        }
+      ],
+      "shapes": [],
+      "errors": []
+    },
+    {
+      "scene": "3d-dynamic-friction",
+      "bodies": 12,
+      "draws": 1,
+      "calls": [
+        {
+          "method": "draw",
+          "count": 36,
+          "instances": 12
+        }
+      ],
+      "shapes": [],
+      "errors": []
+    },
+    {
+      "scene": "3d-static-friction",
+      "bodies": 13,
+      "draws": 1,
+      "calls": [
+        {
+          "method": "draw",
+          "count": 36,
+          "instances": 13
+        }
+      ],
+      "shapes": [],
+      "errors": []
+    },
+    {
+      "scene": "3d-pyramid",
+      "bodies": 137,
+      "draws": 1,
+      "calls": [
+        {
+          "method": "draw",
+          "count": 36,
+          "instances": 137
+        }
+      ],
+      "shapes": [],
+      "errors": []
+    },
+    {
+      "scene": "3d-rope",
+      "bodies": 21,
+      "draws": 1,
+      "calls": [
+        {
+          "method": "draw",
+          "count": 36,
+          "instances": 21
+        }
+      ],
+      "shapes": [],
+      "errors": []
+    },
+    {
+      "scene": "3d-heavy-rope",
+      "bodies": 21,
+      "draws": 1,
+      "calls": [
+        {
+          "method": "draw",
+          "count": 36,
+          "instances": 21
+        }
+      ],
+      "shapes": [],
+      "errors": []
+    },
+    {
+      "scene": "3d-spring",
+      "bodies": 3,
+      "draws": 1,
+      "calls": [
+        {
+          "method": "draw",
+          "count": 36,
+          "instances": 3
+        }
+      ],
+      "shapes": [],
+      "errors": []
+    },
+    {
+      "scene": "3d-spring-ratio",
+      "bodies": 9,
+      "draws": 1,
+      "calls": [
+        {
+          "method": "draw",
+          "count": 36,
+          "instances": 9
+        }
+      ],
+      "shapes": [],
+      "errors": []
+    },
+    {
+      "scene": "3d-stack",
+      "bodies": 11,
+      "draws": 1,
+      "calls": [
+        {
+          "method": "draw",
+          "count": 36,
+          "instances": 11
+        }
+      ],
+      "shapes": [],
+      "errors": []
+    },
+    {
+      "scene": "3d-stack-ratio",
+      "bodies": 5,
+      "draws": 1,
+      "calls": [
+        {
+          "method": "draw",
+          "count": 36,
+          "instances": 5
+        }
+      ],
+      "shapes": [],
+      "errors": []
+    },
+    {
+      "scene": "3d-soft-body",
+      "bodies": 193,
+      "draws": 1,
+      "calls": [
+        {
+          "method": "draw",
+          "count": 36,
+          "instances": 193
+        }
+      ],
+      "shapes": [],
+      "errors": []
+    },
+    {
+      "scene": "3d-bridge",
+      "bodies": 91,
+      "draws": 1,
+      "calls": [
+        {
+          "method": "draw",
+          "count": 36,
+          "instances": 91
+        }
+      ],
+      "shapes": [],
+      "errors": []
+    },
+    {
+      "scene": "3d-breakable",
+      "bodies": 19,
+      "draws": 1,
+      "calls": [
+        {
+          "method": "draw",
+          "count": 36,
+          "instances": 19
+        }
+      ],
+      "shapes": [],
+      "errors": []
+    },
+    {
+      "scene": "3d-mixed-sizes-1k",
+      "bodies": 1001,
+      "draws": 2,
+      "calls": [
+        {
+          "method": "draw",
+          "count": 36,
+          "instances": 671
+        },
+        {
+          "method": "drawIndexed",
+          "count": 1152,
+          "instances": 330
+        }
+      ],
+      "shapes": [
+        {
+          "kind": 1,
+          "instances": 330,
+          "vertices": 208,
+          "indices": 1152
+        }
+      ],
+      "errors": []
+    },
+    {
+      "scene": "3d-mixed-sizes-10k",
+      "bodies": 10001,
+      "draws": 2,
+      "calls": [
+        {
+          "method": "draw",
+          "count": 36,
+          "instances": 6701
+        },
+        {
+          "method": "drawIndexed",
+          "count": 1152,
+          "instances": 3300
+        }
+      ],
+      "shapes": [
+        {
+          "kind": 1,
+          "instances": 3300,
+          "vertices": 208,
+          "indices": 1152
+        }
+      ],
+      "errors": []
+    },
+    {
+      "scene": "3d-mixed-sizes-50k",
+      "bodies": 50001,
+      "draws": 2,
+      "calls": [
+        {
+          "method": "draw",
+          "count": 36,
+          "instances": 33501
+        },
+        {
+          "method": "drawIndexed",
+          "count": 1152,
+          "instances": 16500
+        }
+      ],
+      "shapes": [
+        {
+          "kind": 1,
+          "instances": 16500,
+          "vertices": 208,
+          "indices": 1152
+        }
+      ],
+      "errors": []
+    },
+    {
+      "scene": "3d-100k-rook-impact",
+      "bodies": 100002,
+      "draws": 2,
+      "calls": [
+        {
+          "method": "draw",
+          "count": 36,
+          "instances": 100002
+        },
+        {
+          "method": "drawIndexed",
+          "count": 1152,
+          "instances": 1
+        }
+      ],
+      "shapes": [
+        {
+          "kind": 1,
+          "instances": 1,
+          "vertices": 208,
+          "indices": 1152
+        }
+      ],
+      "errors": []
+    },
+    {
+      "scene": "3d-sphere-contacts",
+      "bodies": 27,
+      "draws": 2,
+      "calls": [
+        {
+          "method": "draw",
+          "count": 36,
+          "instances": 27
+        },
+        {
+          "method": "drawIndexed",
+          "count": 1152,
+          "instances": 25
+        }
+      ],
+      "shapes": [
+        {
+          "kind": 1,
+          "instances": 25,
+          "vertices": 208,
+          "indices": 1152
+        }
+      ],
+      "errors": []
+    },
+    {
+      "scene": "3d-convex-hulls",
+      "bodies": 20,
+      "draws": 3,
+      "calls": [
+        {
+          "method": "draw",
+          "count": 36,
+          "instances": 20
+        },
+        {
+          "method": "draw",
+          "count": 360,
+          "instances": 1
+        },
+        {
+          "method": "drawIndexed",
+          "count": 1152,
+          "instances": 1
+        }
+      ],
+      "shapes": [
+        {
+          "kind": 1,
+          "instances": 1,
+          "vertices": 208,
+          "indices": 1152
+        }
+      ],
+      "errors": []
+    },
+    {
+      "scene": "naval",
+      "bodies": 418,
+      "draws": 6,
+      "calls": [
+        {
+          "method": "draw",
+          "count": 36,
+          "instances": 135
+        },
+        {
+          "method": "draw",
+          "count": 924,
+          "instances": 1
+        },
+        {
+          "method": "drawIndexed",
+          "count": 1152,
+          "instances": 16
+        },
+        {
+          "method": "drawIndexed",
+          "count": 1296,
+          "instances": 1
+        },
+        {
+          "method": "draw",
+          "count": 96774,
+          "instances": 1
+        },
+        {
+          "method": "draw",
+          "count": 6,
+          "instances": 320
+        }
+      ],
+      "shapes": [
+        {
+          "kind": 1,
+          "instances": 16,
+          "vertices": 208,
+          "indices": 1152
+        }
+      ],
+      "errors": []
+    }
+  ]
+}

@@ -306,12 +306,15 @@ class BabylonDraw {
         joints: r.joints,
         styles: r.visuals.styles,
       };
-      this.body = this.mesh(canonical, "vertexMain", "fragmentMain", {
-        vertices: r.cubeVertices,
-        ids: Uint32Array.from({ length: r.solver.bodies.length }, (_, i) => i),
-        buffers,
-        constants: { PRE_SCALED: 0, ENHANCED: Number(r.enhanced) },
-      });
+      // Draw only actual boxes; spheres, hulls and hidden cloth proxies have
+      // their own visuals. The IDs already refer to the live GPU body slots.
+      if (r.visuals.boxIds.length)
+        this.body = this.mesh(canonical, "vertexMain", "fragmentMain", {
+          vertices: r.cubeVertices,
+          ids: r.visuals.boxIds,
+          buffers,
+          constants: { PRE_SCALED: 0, ENHANCED: Number(r.enhanced) },
+        });
       // Unique hulls cannot share one instanced geometry. Merge their static
       // vertices instead; each vertex carries the GPU body slot for its hull.
       if (r.special.length) {
@@ -346,6 +349,7 @@ class BabylonDraw {
       for (const group of v.groups)
         this.mesh(showcase, "shapeMain", "shapeFragment", {
           vertices: v.meshes.get(group.kind).vertices,
+          indices: v.meshes.get(group.kind).indices,
           ids: Uint32Array.from({ length: group.count }, (_, i) => i),
           buffers: { ...buffers, instances: group.indices, cloth: v.dummy },
           constants: { KIND: group.kind },
@@ -384,6 +388,7 @@ class BabylonDraw {
     }
     this.signature =
       this.dimension === 2 ? r.sim.bodyCount : r.solver.bodies.length;
+    this.boxStyleVersion = r.visuals?.styleVersion;
     this.liveBuffers = this.sources();
   }
   sources() {
@@ -440,7 +445,8 @@ class BabylonDraw {
       this.signature !==
         (this.dimension === 2 ? r.sim.bodyCount : r.solver.bodies.length) ||
       sources.length !== this.liveBuffers.length ||
-      sources.some((buffer, i) => buffer !== this.liveBuffers[i])
+      sources.some((buffer, i) => buffer !== this.liveBuffers[i]) ||
+      (this.dimension === 3 && this.boxStyleVersion !== r.visuals.styleVersion)
     )
       this.refresh();
     const styleBuffer = this.dimension === 2 ? r.colors : r.visuals.styles;

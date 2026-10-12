@@ -19,6 +19,31 @@ try {
   await wait("!!globalThis.__MIXED_GALLERY__");
   await b.evaluate("__MIXED_GALLERY__.pause(true)");
   const before = await b.evaluate("__MIXED_GALLERY__.snapshot()");
+  const batching = await b.evaluate(`(()=>{
+    const s=__MIXED_GALLERY__.world.scene;
+    const calls=[],proto=WebGL2RenderingContext.prototype,originals=new Map();
+    try {
+      for(const name of ['drawElements','drawArrays','drawElementsInstanced','drawArraysInstanced']) {
+        const original=proto[name];originals.set(name,original);
+        proto[name]=function(...args){calls.push(name);return Reflect.apply(original,this,args);};
+      }
+      s.render();
+    }finally{for(const [name,original]of originals)proto[name]=original;}
+    const dynamic=s.meshes.filter(m=>/^(collider|wall-|projectile-)/.test(m.name));
+    return {objects:dynamic.length,sources:dynamic.filter(m=>!m.sourceMesh).length,instances:dynamic.filter(m=>m.sourceMesh).length,draws:calls.length,instancedDraws:calls.filter(n=>n.endsWith('Instanced')).length};
+  })()`);
+  assert(
+    batching.objects === 298 &&
+      batching.sources === 7 &&
+      batching.instances === 291,
+    "Gallery objects must share seven instanced shapes: " +
+      JSON.stringify(batching),
+  );
+  assert(
+    batching.instancedDraws >= 7 && batching.draws <= 32,
+    "Gallery main, shadow and postprocessing passes must remain batched: " +
+      JSON.stringify(batching),
+  );
   await b.evaluate("__MIXED_GALLERY__.step(360)");
   const after = await b.evaluate("__MIXED_GALLERY__.snapshot()");
   let rotated = 0,
@@ -99,6 +124,7 @@ try {
   await b.screenshot("test-results/screenshots/mixed-gallery-impact.png");
   results.push({
     name: "Mixed gallery",
+    batching,
     rotated,
     minY,
     maxQuaternionError,

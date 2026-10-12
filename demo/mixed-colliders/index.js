@@ -184,10 +184,19 @@ export async function startMixedColliderDemo({
     data.applyToMesh(mesh);
     return mesh;
   };
+  // Keep normal per-object aggregates while sharing Babylon geometry/draws.
+  const sources = new Map();
+  const instance = (kind, name, create) => {
+    const source = sources.get(kind);
+    if (source) return source.createInstance(name);
+    const mesh = create();
+    sources.set(kind, mesh);
+    return mesh;
+  };
   for (let i = 0; i < count; i++) {
     const kind = i % 5,
       name = `collider-${i}`;
-    const mesh =
+    const mesh = instance(kind, name, () =>
       kind === 0
         ? BABYLON.MeshBuilder.CreateSphere(
             name,
@@ -218,7 +227,8 @@ export async function startMixedColliderDemo({
                   { height: 0.9, diameter: 0.42, tessellation: 12 },
                   scene,
                 )
-              : makeWedge(name);
+              : makeWedge(name),
+    );
     // Spaced placement keeps initial colliders separate and reproducible.
     mesh.position.set(
       ((i % 10) - 4.5) * 1.1,
@@ -255,10 +265,13 @@ export async function startMixedColliderDemo({
   const wallBricks = [];
   for (let row = 0; row < 5; row++)
     for (let col = 0; col < 10; col++) {
-      const mesh = BABYLON.MeshBuilder.CreateBox(
-        `wall-${row}-${col}`,
-        { width: 0.6, height: 0.28, depth: 0.45 },
-        scene,
+      const name = `wall-${row}-${col}`;
+      const mesh = instance("wall-brick", name, () =>
+        BABYLON.MeshBuilder.CreateBox(
+          name,
+          { width: 0.6, height: 0.28, depth: 0.45 },
+          scene,
+        ),
       );
       mesh.position.set(
         (col - 4.5) * 0.61 + (row % 2) * 0.305,
@@ -284,10 +297,13 @@ export async function startMixedColliderDemo({
   // Reserve all projectile slots once; spawning performs only a small GPU command upload.
   const projectiles = [];
   for (let i = 0; i < 8; i++) {
-    const mesh = BABYLON.MeshBuilder.CreateSphere(
-      `projectile-${i}`,
-      { diameter: 0.8, segments: 16 },
-      scene,
+    const name = `projectile-${i}`;
+    const mesh = instance("projectile", name, () =>
+      BABYLON.MeshBuilder.CreateSphere(
+        name,
+        { diameter: 0.8, segments: 16 },
+        scene,
+      ),
     );
     mesh.position.set(-6, 0.45, -4.5 + i);
     mesh.material = materials[0];
