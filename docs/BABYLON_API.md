@@ -81,6 +81,12 @@ compatibility. These names identify internal implementations, not quality
 levels or paper results. Overrides preserve live GPU state; first use may
 compile pipelines. Start with the automatic default.
 
+For dense piles that gain many dynamic contacts at once, `minimumColors` reserves
+parallel solve groups (integer 0–64) and `minimumColorRounds` reserves coloring
+rounds (even integer 0–32). Pass them to `AvbdPhysics.create()` before initialization.
+The mixed collider gallery uses `32` for both. These control work scheduling;
+they do not change solver iterations or contact equations.
+
 Box, sphere and capsule collisions are native. Capsules use an exact rounded
 segment along local Y; height includes both caps and X/Z diameters must match.
 `CYLINDER` and `CONVEX_HULL` use a polygonal convex hull, with a 32-vertex limit. Mesh geometry,
@@ -147,7 +153,13 @@ reserve storage; `readContactEvents()` reports dropped events or a full pair
 table. End events do not retain an old position. Callbacks run asynchronously.
 
 `sleeping: true` or `{ speedThreshold: 0.03, timeThreshold: 0.5 }` enables an
-optional GPU policy. Supported quiet bodies sleep. Large desktop 3D worlds
+optional GPU policy. Supported quiet bodies sleep. Speed combines translation
+and radius-scaled rotation in world units/second; `0.03` is 3 cm/second if units
+are meters. The quiet timer resets above that speed. Thresholds remain manual
+so applications can choose values appropriate to their size and camera distance.
+Sleeping preserves the body's physical mass while skipping its movement solve;
+impacts and support removal restore dynamic participation.
+Large desktop 3D worlds
 automatically wake conservative connected groups on impact, keeping unrelated
 piles asleep; the shared static floor does not join them. `islands:true` opts
 into group waking in smaller worlds, and `islands:false` selects whole-world

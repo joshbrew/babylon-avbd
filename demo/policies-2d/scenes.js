@@ -88,7 +88,10 @@ export function buildPolicyScene2D(def) {
     gpuParams: { dt: 1 / 120, iterations: 12, gravity: -10 },
     gpuOptions2D: {
       bodyCapacity: s.bodyCount + 4096,
-      sleeping: def.id === "2d-sleeping-pile" ? { timeThreshold: 0.25 } : false,
+      sleeping:
+        def.id === "2d-sleeping-pile"
+          ? { speedThreshold: 0.03, timeThreshold: 0.25 }
+          : false,
     },
   };
 }

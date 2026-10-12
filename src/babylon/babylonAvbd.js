@@ -91,6 +91,8 @@ export class AvbdPhysics {
       broadphase = "auto",
       solverMode = "auto",
       smallGroups,
+      minimumColors,
+      minimumColorRounds,
       bvh = {},
       autoAttach = true,
       maxContactPairs = 8192,
@@ -111,7 +113,14 @@ export class AvbdPhysics {
     )
       throw Error("capacity and maxSyncedBodies must be valid integer counts");
     this.capacity = capacity;
-    this.collisionOptions = { broadphase, bvh, solverMode, smallGroups };
+    this.collisionOptions = {
+      broadphase,
+      bvh,
+      solverMode,
+      smallGroups,
+      minimumColors,
+      minimumColorRounds,
+    };
     this.ref = new Solver();
     this.ref.dt = positive(timeStep, "timeStep");
     if (!Number.isInteger(iterations) || iterations < 1)

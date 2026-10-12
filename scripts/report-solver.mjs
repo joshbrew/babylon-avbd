@@ -49,7 +49,9 @@ const report = {
 report.packageBenchmarks = await read("package-performance.json").catch(
   () => null,
 );
-report.connectedSleep = await read("connected-sleep-performance.json").catch(() => null);
+report.connectedSleep = await read("connected-sleep-performance.json").catch(
+  () => null,
+);
 report.capsuleBenchmark = await read("capsule-performance.json").catch(
   () => null,
 );
@@ -235,6 +237,19 @@ report.paperMeasurements = {
 report.workerBenchmarks = await read("worker-performance.json").catch(
   () => null,
 );
+const sceneSleeping = await read("scene-sleep-performance.json").catch(
+  () => null,
+);
+// Per-step samples remain in the linked source report, rather than duplicating
+// several megabytes in the combined report.
+report.sceneSleeping = sceneSleeping?.passed
+  ? {
+      hardware: sceneSleeping.hardware,
+      repeats: sceneSleeping.repeats,
+      seconds: sceneSleeping.seconds,
+      summary: sceneSleeping.summary,
+    }
+  : null;
 await writeFile(
   "test-results/solver-paper.json",
   JSON.stringify(report.paperMeasurements, null, 2),

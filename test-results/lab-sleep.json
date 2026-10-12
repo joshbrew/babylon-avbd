@@ -10,7 +10,7 @@
     },
     {
       "scene": "3d-stack",
-      "defaultSleeping": false,
+      "defaultSleeping": true,
       "toggle": true,
       "bowling": false,
       "errors": []

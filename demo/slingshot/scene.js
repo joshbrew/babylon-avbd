@@ -380,7 +380,7 @@ export function buildSlingshotScene2D(def = slingshotScene2D, count = 5000) {
       bodyCapacity: s.bodyCount + 64,
       minimumColors: 12,
       colorRounds: 32,
-      sleeping: { timeThreshold: 0.3 },
+      sleeping: { speedThreshold: 0.03, timeThreshold: 0.3 },
     },
   };
 }

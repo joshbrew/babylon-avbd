@@ -32,6 +32,7 @@ const roots = [
   "color-bucket-performance.json",
   "movement-solve-performance.json",
   "connected-sleep-performance.json",
+  "scene-sleep-performance.json",
   "pipeline-batching-performance.json",
   "small-group-performance.json",
   "command-encoding-performance.json",

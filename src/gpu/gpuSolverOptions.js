@@ -15,6 +15,8 @@ export function appGpuSolverOptions(ref, options = {}) {
 }
 
 export function sceneGpuCapacity(id) {
+  // Settling terrain bodies can touch more surface chunks after waking.
+  if (id === "3d-static-terrain") return { colors: 16 };
   if (id.startsWith("paper-walls-")) return { colors: 32 };
   if (id === "showcase-ragdolls-on-cloth-24k")
     return { contacts: 300_000, pairs: 300_000, manifolds: 100_000 };
@@ -35,7 +37,9 @@ export function sceneGpuCapacity(id) {
   if (id === "showcase-wall-smash-2k" || id === "3d-100k-rook-impact")
     return { colors: 32 };
   if (id === "showcase-box-pile-4k")
-    return { contacts: 48_000, pairs: 48_000, manifolds: 12_000 };
+    return { contacts: 48_000, pairs: 48_000, manifolds: 12_000, colors: 16 };
+  if (id === "showcase-box-pile-32k")
+    return { contacts: 400_000, pairs: 250_000, manifolds: 150_000 };
   return undefined;
 }
 
@@ -70,6 +74,12 @@ export function sceneGpuSolverOptions(id) {
         }
       : {}),
     ...(id === "showcase-jointed-drop-34k"
+      ? { minimumColors: 32, minimumColorRounds: 32 }
+      : {}),
+    ...(["3d-static-terrain", "showcase-box-pile-4k"].includes(id)
+      ? { minimumColors: 16, minimumColorRounds: 16 }
+      : {}),
+    ...(id === "showcase-wall-smash-2k"
       ? { minimumColors: 32, minimumColorRounds: 32 }
       : {}),
     ...(dense ? { colorRounds: 32 } : {}),

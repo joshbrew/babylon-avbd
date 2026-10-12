@@ -10,6 +10,7 @@ import "./style.css";
 import { SiegeDamage } from "./damage.js";
 import { mountExecutionScope } from "../shared/runtime/executionScope.js";
 import { clampPull, defaultPull, shotVelocity, trajectoryLine } from "./aim.js";
+import { sceneSleepPresets } from "../shared/runtime/sleepPresets.js";
 export async function startSlingshotDemo() {
   document.body.innerHTML = `<main class="siege"><header><div><a href="/">← Back to main page</a><h1>Slingshot siege</h1><p>Pull back the red ball. Release to bring the forts down.</p></div><div class="siege-tools"><label>Bricks <select id="siege-size"><option value="1000">1,000</option><option value="5000" selected>5,000</option><option value="10000">10,000</option></select></label><label><input id="siege-sleep" type="checkbox" checked> Sleeping</label><button id="siege-reset">Rebuild</button><button id="siege-pause">Pause</button><label>Target <select id="siege-aim-target" aria-label="Choose a target to aim at"></select></label><button id="siege-assist">Aim at target</button><button id="siege-shoot">Fire / Space</button><button id="siege-reload">Next ball</button><button id="siege-boost">Boost</button><label><input id="siege-bounce" type="checkbox"> Bouncy ball</label><label><input id="siege-machines" type="checkbox" checked> Powered gates</label></div></header><section class="siege-stage"><canvas id="siege-canvas" aria-label="Slingshot siege. Drag the red ball back and release to launch. Space also fires." tabindex="0"></canvas><svg id="siege-aim" aria-hidden="true"></svg><div class="siege-score"><span id="siege-shots">0 shots</span><strong id="siege-score">0 bricks moved</strong><span id="siege-targets">0 enemies knocked out</span><small id="siege-features"></small></div><details class="siege-metrics"><summary>GPU performance</summary><div id="siege-metrics"></div></details><p class="siege-hint">Drag the ball back · release to launch · Space to fire · R to rebuild · P to pause · Aim at target for a high arc · scroll to zoom · Shift-drag to pan</p></section><footer><span>2D AVBD physics and drawing stay on the GPU. Ropes, springs, hinged gates, breakable mortar and ragdolls are real physics. Impacts and sustained crushing consume health. Destroyed bricks and defeated enemies leave the simulation; green tint means resting.</span><a href="/tests/performance.html">Run GPU benchmarks ↗</a></footer><p id="siege-status" role="status"></p></main>`;
   const $ = (id) => document.getElementById(id),
@@ -17,6 +18,9 @@ export async function startSlingshotDemo() {
     overlay = $("siege-aim");
   const embedded = new URLSearchParams(location.search).get("embed") === "1";
   const query = new URLSearchParams(location.search);
+  $("siege-sleep").checked = query.has("sleeping")
+    ? query.get("sleeping") === "1"
+    : (sceneSleepPresets["2d-slingshot-siege"] ?? false);
   const backend =
     query.get("backend") === "cpu" || (!query.has("backend") && !navigator.gpu)
       ? "cpu"
@@ -705,7 +709,8 @@ export async function startSlingshotDemo() {
   };
   window.addEventListener("keydown", key);
   $("siege-sleep").onchange = () => {
-    if ($("siege-sleep").checked) gpu.enableSleeping({ timeThreshold: 0.3 });
+    if ($("siege-sleep").checked)
+      gpu.enableSleeping({ speedThreshold: 0.03, timeThreshold: 0.3 });
     else gpu.disableSleeping();
     collect();
   };

@@ -26,6 +26,7 @@ run on the host because they inspect files and JavaScript APIs.
 | `npm run test:fracture`             | Voronoi partition, breakable face bonds, wrecking-ball impact and persistent rubble                                                                                   |
 | `npm run test:reference`            | Explicitly requested upstream CPU comparison; excluded from normal validation                                                                                         |
 | `npm run benchmark:native`          | 2D/3D movement/spin, property edits, grouped queries, sleeping and selected reads; three repeats                                                                      |
+| `npm run benchmark:scene-sleep`     | Every demo scene: paired sleeping-on/off runs, complete physics timings during motion and later settling, and generated demo defaults |
 | `npm run benchmark:connected-sleep` | 505,923-body walls: all-awake overhead and later impacts with whole-world versus automatic connected-group waking; two alternating paired runs                        |
 | `npm run benchmark:small-groups`    | 9- and 32-body closed worlds: automatic workgroup movement versus separate dispatches, three paired runs and exact final body-state comparisons                       |
 | `npm run benchmark:native-edits`    | 100K motion updates, 10K property edits and 64 ray queries in 2D/3D; API overhead and GPU completion                                                                  |

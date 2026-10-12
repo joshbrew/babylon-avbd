@@ -77,7 +77,7 @@ JavaScript examples. Run `npm start`, then open the
 | Main thread versus dedicated worker and shared memory     | [Copyable worker example and commands](#worker-and-shared-memory-benchmarks), [worker page](tests/workers.html), [worker runner](scripts/benchmark-workers.mjs)                                              |
 | Batched body edits, pose reads and queries                | [Bulk-edit examples](#bulk-edits-and-gpu-dispatches), [measurement code](tests/native-edit-performance.js), [runner](scripts/check-native-performance.mjs)                                                   |
 | CPU compatibility versus WebGPU                           | [Settings and results](#backend-differences-and-benchmarks), [measurement code](tests/compatibility-performance.js), [runner](scripts/benchmark-backends.mjs)                                                |
-| Sleeping and waking in large connected scenes             | [Sleeping example](#queries-callbacks-and-sleeping), [connected-wall runner](scripts/benchmark-connected-sleep.mjs)                                                                                          |
+| Sleeping and waking in large connected scenes             | [Sleeping example](#queries-callbacks-and-sleeping), [per-scene on/off runner](scripts/benchmark-scene-sleep.mjs), [connected-wall runner](scripts/benchmark-connected-sleep.mjs)                                                                                          |
 | Sleeping stability while grabbing and settling            | [28K ring check](scripts/check-sleep-stability.mjs), [jointed-drop timing and view check](scripts/check-jointed-settling.mjs), [saved jointed-drop results](test-results/jointed-settling.json) |
 | Ships, buoyancy and water                                 | [Scene explanation](#ships-water-and-destruction), [scene builder](demo/naval/scene.js), [runner](scripts/benchmark-naval.mjs)                                                                               |
 | Grid versus HPLOC++ collisions                            | [Collision guide](docs/HPLOC.md), [paired scene measurements](tests/performance.js), [tree refit runner](scripts/benchmark-hploc-refit.mjs)                                                                  |
@@ -320,7 +320,12 @@ scene selector and controls stay on the page. Choose Main thread, or add
 are available through the scene editing link in the sidebar.
 
 Every AVBD example has a Sleeping toggle for comparing the same scene with and
-without sleeping. Large rigid scenes enable it by default. Add `sleeping=1` or
+without sleeping. Demo defaults use paired measurements of sleeping on and off;
+size alone does not mean sleeping is faster. The [per-scene results](test-results/solver-performance.html#scene-sleeping)
+show active and later physics costs on an RTX 4070 Laptop GPU. Run
+`npm run benchmark:scene-sleep` to repeat the comparison and regenerate the
+demo presets. These defaults affect the demos; package callers choose their
+world's sleeping policy. Add `sleeping=1` or
 `sleeping=0` to choose explicitly; moving water and wind still keep affected
 bodies awake. The half-million wall demos keep the original two-ball benchmark
 until you click **Bowl every row**, which launches balls into all sixteen lanes.
@@ -2207,6 +2212,27 @@ alwaysMovingBox.body.setSleepEnabled(false); // this body always stays awake
 fallingBox.body.wakeUp();
 console.log(await physics.readSleepStats());
 ```
+
+`speedThreshold` is the maximum motion allowed before the quiet timer resets.
+In 3D it combines linear speed with rotational speed at the body's radius, so a
+large spinning body stays awake. With meters as world units, `0.03` means about
+3 cm/second; `timeThreshold: 0.5` requires half a second of quiet motion.
+Choose a speed small enough to be visually negligible at your scene's scale.
+Contact forces can remain large: sleeping stacks still carry gravity and weight.
+Sleep permission, these thresholds and the demo Sleeping toggle stay manual;
+the demo presets only choose the initial on/off setting.
+The shared demo settings are in
+[sleepPolicy.js](demo/shared/runtime/sleepPolicy.js): `0.03` world units/second,
+with a `0.3` second quiet period in 3D and `0.5` seconds in 2D. Individual scenes
+can supply their own values; the 2D sleeping pile uses `0.25` seconds and the
+slingshot uses `0.3`. The rook's support-aware policy uses linear speed below
+`0.02`, angular speed below `0.04` radians/second and two seconds of quiet.
+
+For dense Babylon piles, `minimumColors` and `minimumColorRounds` can reserve
+additional parallel-solve scheduling headroom when many bodies wake together.
+The [mixed collider gallery](demo/mixed-colliders/index.js) sets both to `32`
+through `AvbdPhysics.create()`. These options preserve the timestep, iterations
+and contact equations; native 3D solvers accept them too.
 
 Impulses, teleports, body-property edits, new bodies and removed supports wake
 the world. Adding or removing constraints and updating grab anchors wake their

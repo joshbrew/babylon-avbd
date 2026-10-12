@@ -29,6 +29,7 @@ import {
   configureSceneSleeping,
 } from "../shared/runtime/sleepPolicy.js";
 import { readStepRate } from "../shared/runtime/stepRate.js";
+import { physicsStepsPerFrame } from "../shared/runtime/frameBudget.js";
 import { GaltonPegs } from "../galton-board/pegs.js";
 import {
   appGpuSolverOptions,
@@ -1787,7 +1788,8 @@ export async function startCanonicalLabDemo(root = document.body) {
       accumulator = Math.min(accumulator + elapsed, 100);
       let count = 0;
       const stepMs = (sim?.params.dt ?? solver.dt) * 1000;
-      while (accumulator + 1e-9 >= stepMs && count < 6) {
+        const stepBudget = physicsStepsPerFrame(gpuProfile);
+        while (accumulator + 1e-9 >= stepMs && count < stepBudget) {
         advance();
         accumulator = Math.max(0, accumulator - stepMs);
         count++;

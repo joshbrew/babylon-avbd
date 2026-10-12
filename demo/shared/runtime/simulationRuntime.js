@@ -1,5 +1,6 @@
 import { createSimulationSession } from "./simulationSession.js";
 import { readStepRate } from "./stepRate.js";
+import { physicsStepsPerFrame } from "./frameBudget.js";
 import {
   castleAim,
   createCastleProjectile,
@@ -138,7 +139,8 @@ export class SimulationRuntime {
         return;
       if (this.frames % 30 === 0)
         s.gpu.profileNextStep?.((p) => (this.profile = p));
-      for (let n = 0; this.accumulator + 1e-12 >= dt && n < 6; n++) {
+      const stepBudget = physicsStepsPerFrame(this.profile);
+      for (let n = 0; this.accumulator + 1e-12 >= dt && n < stepBudget; n++) {
         const start = performance.now();
         s.step();
         if (s.cpu) this.profile = { total: performance.now() - start };

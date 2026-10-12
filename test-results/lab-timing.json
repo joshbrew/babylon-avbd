@@ -82,6 +82,30 @@
       "remainder": 7.45931094670027e-17
     },
     {
+      "cost": 2,
+      "steps": 6,
+      "remainder": 1.0408340855860843e-17,
+      "overloaded": true
+    },
+    {
+      "cost": 8,
+      "steps": 2,
+      "remainder": 0.03333333333333334,
+      "overloaded": true
+    },
+    {
+      "cost": 20,
+      "steps": 1,
+      "remainder": 0.04166666666666667,
+      "overloaded": true
+    },
+    {
+      "cost": 90,
+      "steps": 1,
+      "remainder": 0.04166666666666667,
+      "overloaded": true
+    },
+    {
       "overloaded": true,
       "steps": 6,
       "remainder": 1.0408340855860843e-17
@@ -90,9 +114,9 @@
   "live": {
     "worker": true,
     "hz": 120,
-    "steps": 451,
-    "wallSeconds": 4.211064999938011,
-    "rate": 0.8924899837425112,
+    "steps": 449,
+    "wallSeconds": 4.207554999947548,
+    "rate": 0.8892733824544922,
     "errors": []
   }
 }

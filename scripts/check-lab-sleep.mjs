@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { browserCheck } from "./browser-check.mjs";
 import { writeAtomicFile } from "./report-file.mjs";
+import { sceneSleepPresets } from "../demo/shared/runtime/sleepPresets.js";
 const b = await browserCheck(),
   results = [];
 const screenshots = process.argv.includes("--screenshots");
@@ -33,16 +34,16 @@ try {
       await b.evaluate("document.querySelector('#lab-sleep-label').hidden"),
       false,
     );
-    assert.equal(
-      initial.sleepingEnabled,
-      scene !== "2d-stack" && scene !== "3d-stack",
-    );
+    assert.equal(initial.sleepingEnabled, sceneSleepPresets[scene]);
     async function rookMasses() {
       return b.evaluate(
         `(async()=>{const p=await __AVBD_LAB__.client.readSelectedBodies([20,40,100]);return [p[19],p[59],p[99]];})()`,
       );
     }
-    if (scene === "3d-100k-rook-impact" || scene.startsWith("paper-walls-"))
+    if (
+      initial.sleepingEnabled &&
+      (scene === "3d-100k-rook-impact" || scene.startsWith("paper-walls-"))
+    )
       assert.deepEqual(
         await rookMasses(),
         [0, 0, 0],

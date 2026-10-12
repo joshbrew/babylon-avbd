@@ -349,7 +349,7 @@
           "bytesInOutput": 3507
         },
         "src/babylon/babylonAvbd.js": {
-          "bytesInOutput": 25428
+          "bytesInOutput": 25502
         },
         "src/index.js": {
           "bytesInOutput": 0
@@ -514,7 +514,7 @@
           "bytesInOutput": 695
         }
       },
-      "bytes": 584471
+      "bytes": 584545
     }
   }
 }

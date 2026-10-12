@@ -1,4 +1,15 @@
 import { GpuSleep } from "../../../src/gpu/gpuSleep.js";
+import { sceneSleepPresets } from "./sleepPresets.js";
+
+/** Motion in world units/second; scene code can override either threshold. */
+export function sceneSleepingOptions(built) {
+  const policy = built.gpuOptions2D?.sleeping;
+  return {
+    speedThreshold: 0.03,
+    timeThreshold: built.def?.dimension === 2 ? 0.5 : 0.3,
+    ...(policy && typeof policy === "object" ? policy : {}),
+  };
+}
 
 /** Restore masses before disposing the rook's precomputed support graph. */
 export function configureSceneSleeping(
@@ -20,25 +31,20 @@ export function configureSceneSleeping(
     gpu.disableSleeping();
     return new GpuSleep(device, built.solver, gpu, { startAsleep: initial });
   }
-  if (enabled)
-    gpu.enableSleeping({
-      timeThreshold: 0.3,
-      startAsleep: initial && built.def?.id.startsWith("paper-walls-"),
-    });
-  else gpu.disableSleeping();
+  if (enabled) {
+    gpu.enableSleeping(
+      built.def?.dimension === 2
+        ? sceneSleepingOptions(built)
+        : {
+            ...sceneSleepingOptions(built),
+            startAsleep: initial && built.def?.id.startsWith("paper-walls-"),
+          },
+    );
+  } else gpu.disableSleeping();
   return null;
 }
 
 /** Defaults for interactive scenes; explicit URL/user settings take priority. */
 export function sceneSleepingDefault(built) {
-  if (built.gpuOptions2D?.sleeping) return true;
-  const count =
-    built.solver?.bodies.length ??
-    built.sim?.bodyCount ??
-    built.scene?.bodyCount ??
-    0;
-  return (
-    !!built.def?.benchmark ||
-    (count >= 10000 && !built.play && built.def?.solverKind !== "deformable")
-  );
+  return sceneSleepPresets[built.def?.id] ?? !!built.gpuOptions2D?.sleeping;
 }

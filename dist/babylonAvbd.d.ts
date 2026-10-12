@@ -45,6 +45,10 @@ export interface AvbdWorldOptions {
   solverMode?: AvbdSolverMode;
   /** Automatically batch a closed jointless world of up to 32 bodies. */
   smallGroups?: boolean;
+  /** Advanced: reserve 0–64 parallel solve groups for dense or waking contacts. */
+  minimumColors?: number;
+  /** Advanced: minimum coloring rounds, an even integer from 0–32. */
+  minimumColorRounds?: number;
   bvh?: { rebuildInterval?: number };
   /** Optional GPU sleeping. Large worlds wake conservative connected groups on impact. */
   sleeping?: boolean | AvbdSleepOptions;

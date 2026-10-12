@@ -4,6 +4,7 @@ import { sleepReportView } from "./sleep-report-view.mjs";
 import { capsuleReportView } from "./capsule-report-view.mjs";
 import { workerReportView } from "./worker-report-view.mjs";
 import { connectedSleepView } from "./connected-sleep-view.mjs";
+import { sceneSleepView } from "./scene-sleep-view.mjs";
 const ms = (v) => v.toFixed(2);
 const escape = (v) =>
   String(v)
@@ -56,7 +57,7 @@ export function solverReportView(report, rows, catalog, scheduling) {
   const catalogSection = accepted.length
     ? `<section class="panel"><h2>Which scenes were checked?</h2><p>${accepted.length}/${catalog.results.length} scenes completed the benchmark and passed its basic correctness checks. Longer checks of how scenes move are in the <a href="report.html">scene report</a>.</p><p><a href="../tests/performance.html">Play scenes or run your own benchmark ↗</a> · <a href="solver-scenes.json">Download measurements</a></p><details><summary>Check counts and timing settings</summary><p>Checks require valid positions and rotations, enough contact storage and no constraints shared by objects solved in the same group. ${accepted.reduce((n, r) => n + r.verifiedSteps, 0).toLocaleString()} checked steps and ${accepted.reduce((n, r) => n + r.samples.length, 0).toLocaleString()} separately measured GPU steps. Each scene keeps its own timestep and solving-round count. Runs use ${catalog.warmup} warmup steps and ${catalog.samples} measured steps. Compare times only when the scene, settings, hardware and method match.</p></details></section>`
     : "";
-  const sleepSection = sleepReportView(report.packageBenchmarks) + connectedSleepView(report.connectedSleep);
+  const sleepSection = sceneSleepView(report.sceneSleeping) + sleepReportView(report.packageBenchmarks) + connectedSleepView(report.connectedSleep);
   const scheduleSection =
     scheduling?.summary && !scheduling.errors.length
       ? `<section class="panel"><h2>Letting settled bricks rest</h2><p>Sleeping skips movement work for settled bricks until something disturbs them. Related sleeping work is sent to the GPU together. Physics and sleeping take ${ms(scheduling.summary.batched.mean)} ms in the recorded 100K-wall run. Drawing is excluded.</p><details><summary>Sleeping checks</summary><p>Tests check that sleeping retains physical mass and that impacts or lost supports wake the affected objects. <a href="solver-sleep-batching.json">Download measurements</a></p></details></section>`

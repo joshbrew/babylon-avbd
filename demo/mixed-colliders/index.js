@@ -1,4 +1,5 @@
 import * as BABYLON from "../shared/rendering/babylon.js";
+import { sceneSleepPresets } from "../shared/runtime/sleepPresets.js";
 import {
   AvbdPhysics,
   AvbdPhysicsAggregate,
@@ -15,6 +16,7 @@ const colors = [
 export async function startMixedColliderDemo({
   root = document.body,
   count = 240,
+  device,
 } = {}) {
   root.innerHTML = `<div class="mixed-demo"><canvas aria-label="Mixed collider gallery"></canvas><aside><a href="/">← Back to main page</a><h1>Mixed colliders</h1><p>Spheres, boxes, capsules, cylinder hulls and convex wedges.<br>All contacts and rotations run in the GPU rigid-body solver.</p><div><button>Pause</button><button>Reset</button><button>Burst</button><button>Shoot</button></div><p class="mixed-status">Loading…</p></aside></div>`;
   const container = root.firstElementChild,
@@ -23,8 +25,10 @@ export async function startMixedColliderDemo({
   const sleepLabel = document.createElement("label"),
     sleepToggle = document.createElement("input");
   sleepToggle.type = "checkbox";
-  sleepToggle.checked =
-    new URLSearchParams(location.search).get("sleeping") === "1";
+  const query = new URLSearchParams(location.search);
+  sleepToggle.checked = query.has("sleeping")
+    ? query.get("sleeping") === "1"
+    : (sceneSleepPresets["mixed-collider-gallery"] ?? false);
   sleepLabel.append(sleepToggle, " Sleeping · skip settled bodies");
   status.before(sleepLabel);
   Object.assign(container.style, {
@@ -113,10 +117,14 @@ export async function startMixedColliderDemo({
   floorMat.diffuseColor = new BABYLON.Color3(0.72, 0.77, 0.82);
   floorMat.specularColor = BABYLON.Color3.Black();
   const world = await AvbdPhysics.create({
+    device,
     autoAttach: false,
     scene,
     capacity: count + 100,
     iterations: 10,
+    // Mixed piles can gain many dynamic neighbors together when they wake.
+    minimumColors: 32,
+    minimumColorRounds: 32,
     syncMeshes: true,
   });
   const aggregates = [],
@@ -298,9 +306,12 @@ export async function startMixedColliderDemo({
     });
   }
   world.initialize();
-  if (sleepToggle.checked) world.enableSleeping();
+  if (sleepToggle.checked)
+    world.enableSleeping({ speedThreshold: 0.03, timeThreshold: 0.3 });
   sleepToggle.onchange = () =>
-    sleepToggle.checked ? world.enableSleeping() : world.disableSleeping();
+    sleepToggle.checked
+      ? world.enableSleeping({ speedThreshold: 0.03, timeThreshold: 0.3 })
+      : world.disableSleeping();
   const reset = () => {
     aggregates.forEach((a, i) =>
       a.body

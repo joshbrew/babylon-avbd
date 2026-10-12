@@ -22,19 +22,39 @@ try {
     const {SimulationRuntime}=await import('/.temp/clock-check.js'),rows=[];
     for(const fps of [30,60,90,144,240])for(const hz of [60,120]){
       const r=new SimulationRuntime({revision:0},{paused:false});let steps=0;
-      r.session={errors:[],gpu:{params:{dt:1/hz},step(){steps++;}},draw(){},destroy(){}};
+      r.session={errors:[],gpu:{params:{dt:1/hz}},step(){steps++;},draw(){},destroy(){}};
+      r.drawRevision=0;
       r.completed=()=>({catch:()=>({finally:f=>f()})});r.statusAt=Infinity;r.last=0;
       let zeroStepFrames=0,maxSteps=0;
       for(let i=1;i<=fps*2;i++){const before=steps;r.frame(i*1000/fps);cancelAnimationFrame(r.raf);maxSteps=Math.max(maxSteps,steps-before);if(steps===before)zeroStepFrames++;}
       rows.push({fps,hz,steps,zeroStepFrames,maxSteps,remainder:r.accumulator});r.destroy();
     }
+    for(const cost of [2,8,20,90]) {
+      const r=new SimulationRuntime({revision:0},{paused:false});let steps=0;
+      r.session={errors:[],gpu:{params:{dt:1/120}},step(){steps++;},draw(){},destroy(){}};
+      r.drawRevision=0;
+      r.completed=()=>({catch:()=>({finally:f=>f()})});r.statusAt=Infinity;r.last=0;r.profile={total:cost};
+      r.frame(50);cancelAnimationFrame(r.raf);
+      rows.push({cost,steps,remainder:r.accumulator,overloaded:true});r.destroy();
+    }
     const slow=new SimulationRuntime({revision:0},{paused:false});let steps=0;
-    slow.session={errors:[],gpu:{params:{dt:1/120},step(){steps++;}},draw(){},destroy(){}};slow.completed=()=>({catch:()=>({finally:f=>f()})});slow.statusAt=Infinity;slow.last=0;
+    slow.session={errors:[],gpu:{params:{dt:1/120}},step(){steps++;},draw(){},destroy(){}};slow.drawRevision=0;slow.completed=()=>({catch:()=>({finally:f=>f()})});slow.statusAt=Infinity;slow.last=0;
     slow.frame(10000);rows.push({overloaded:true,steps,remainder:slow.accumulator});slow.destroy();return rows;
   })()`);
   for (const r of clocks) {
     if (r.overloaded) {
       assert.ok(r.steps <= 6);
+      if (r.cost >= 20) {
+        assert.equal(
+          r.steps,
+          1,
+          "Expensive physics must not queue six catch-up steps before drawing",
+        );
+        assert.ok(
+          r.remainder > 0,
+          "Bounded catch-up time is retained for later frames",
+        );
+      }
       continue;
     }
     assert.equal(

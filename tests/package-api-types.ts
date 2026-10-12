@@ -108,6 +108,8 @@ async function useBabylon(scene: Scene, mesh: AbstractMesh) {
     scene,
     sleeping: { islands: true },
     smallGroups: true,
+    minimumColors: 32,
+    minimumColorRounds: 32,
   });
   const terrain = physics.addStaticMesh(mesh, { thickness: 0.1 });
   physics.addTerrain(

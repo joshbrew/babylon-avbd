@@ -1,6 +1,7 @@
 import "./style.css";
 
 import { createSimulationClient } from "../shared/runtime/simulationClient.js";
+import { sceneSleepPresets } from "../shared/runtime/sleepPresets.js";
 
 export async function startNavalDemo(root = document.body) {
   root.innerHTML = `<main class="naval-demo">
@@ -23,7 +24,9 @@ export async function startNavalDemo(root = document.body) {
   const $ = (selector) => root.querySelector(selector),
     canvas = $("#naval-canvas");
   const query = new URLSearchParams(location.search);
-  $("#naval-sleep").checked = query.get("sleeping") === "1";
+  $("#naval-sleep").checked = query.has("sleeping")
+    ? query.get("sleeping") === "1"
+    : (sceneSleepPresets.naval ?? false);
   $("#naval-sleep").onchange = (e) =>
     client?.control("sleeping", e.target.checked);
   if (["auto", "grid", "hploc"].includes(query.get("broadphase")))

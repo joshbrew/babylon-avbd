@@ -17,7 +17,11 @@ import { buildSlingshotScene2D } from "../../slingshot/scene.js";
 import { SlingshotControls2D } from "../../slingshot/controls2D.js";
 import { SiegeDamage } from "../../slingshot/damage.js";
 import { PaperBowling } from "../../paper-benchmarks/bowling.js";
-import { sceneSleepingDefault, configureSceneSleeping } from "./sleepPolicy.js";
+import {
+  sceneSleepingDefault,
+  sceneSleepingOptions,
+  configureSceneSleeping,
+} from "./sleepPolicy.js";
 import { GaltonPegs } from "../../galton-board/pegs.js";
 import { readStepRate } from "./stepRate.js";
 import { buildTerrainScene, terrainScene } from "../../terrain/scene.js";
@@ -27,10 +31,15 @@ export async function createSimulationSession(
   canvas,
   config,
   progress = () => {},
+  graphics,
 ) {
   progress("Building scene…");
   const naval = config.scene === "naval";
   const cpu = config.backend === "cpu";
+  if (graphics && (cpu || config.renderer === "babylon"))
+    throw Error(
+      "Shared graphics require the direct WebGPU renderer and solver",
+    );
   if (naval && cpu)
     throw Error("The naval water and buoyancy simulation requires WebGPU.");
   if (cpu && config.renderer === "babylon")
@@ -75,7 +84,10 @@ export async function createSimulationSession(
         canvas,
         config.enhanced ?? false,
       ));
-    else {
+    else if (graphics) {
+      device = graphics.device;
+      info = graphics.adapter.info;
+    } else {
       const created = await createWebGPUDevice({
         preferredLimits: {
           maxStorageBuffersPerShaderStage: 9,
@@ -167,7 +179,9 @@ export async function createSimulationSession(
           : new NativeGpuSolver2D(device, built.sim.solver, built.gpuOptions2D);
       if (!(config.sleeping ?? sceneSleepingDefault(built)))
         gpu.disableSleeping();
-      else gpu.enableSleeping(built.gpuOptions2D?.sleeping ?? {});
+      else {
+        gpu.enableSleeping(sceneSleepingOptions(built));
+      }
       // Drawing uses live buffers and needs no full-world picking readback.
       const sim = {
         solver: gpu,
@@ -264,7 +278,8 @@ export async function createSimulationSession(
     const defaultStepRate = 1 / gpu.params.dt;
     const stepRate = readStepRate(config.hz);
     if (stepRate !== undefined) gpu.params.dt = 1 / stepRate;
-    if (naval && config.sleeping) gpu.enableSleeping({ timeThreshold: 0.3 });
+    if (naval && config.sleeping)
+      gpu.enableSleeping(sceneSleepingOptions(built));
     if (built.play) playground = new PlayPhysics(device, built, gpu);
     await renderer.ready?.();
     if (built.play?.pegs)
@@ -341,7 +356,7 @@ export async function createSimulationSession(
         supportSleep?.dispose();
         gpu?.destroy();
         engine?.dispose();
-        device?.destroy();
+        if (!graphics) device?.destroy();
       },
     };
   } catch (error) {
@@ -354,7 +369,7 @@ export async function createSimulationSession(
     supportSleep?.dispose();
     gpu?.destroy();
     engine?.dispose();
-    device?.destroy();
+    if (!graphics) device?.destroy();
     throw error;
   }
 }

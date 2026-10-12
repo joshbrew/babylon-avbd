@@ -242,7 +242,9 @@ export interface AvbdGpuParameters2D extends AvbdGpuParameters {
 }
 /** 3D tracks current awake groups and retains sleeping support connections. */
 export interface AvbdSleepOptions {
+  /** Combined linear and radius-scaled angular motion, world units/second. Default 0.03. */
   speedThreshold?: number;
+  /** Seconds continuously below the speed threshold while supported. Default 0.5. */
   timeThreshold?: number;
   /** 3D: automatic for large desktop worlds; false selects whole-world waking. */
   islands?: boolean;
