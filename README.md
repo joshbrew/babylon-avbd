@@ -2221,6 +2221,10 @@ Choose a speed small enough to be visually negligible at your scene's scale.
 Contact forces can remain large: sleeping stacks still carry gravity and weight.
 Sleep permission, these thresholds and the demo Sleeping toggle stay manual;
 the demo presets only choose the initial on/off setting.
+Switching examples loads that example's preset. A manual toggle is remembered
+for that example during the visit; an explicit `sleeping=0` or `sleeping=1` URL
+overrides only the scene named in the URL. Automatic presets are not saved as
+URL overrides.
 The shared demo settings are in
 [sleepPolicy.js](demo/shared/runtime/sleepPolicy.js): `0.03` world units/second,
 with a `0.3` second quiet period in 3D and `0.5` seconds in 2D. Individual scenes

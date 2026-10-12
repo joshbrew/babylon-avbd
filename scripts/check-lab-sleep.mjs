@@ -17,6 +17,77 @@ async function ready() {
   throw Error("Lab startup timed out");
 }
 try {
+  const sceneSwitching = [];
+  for (const scope of ["worker", "main"]) {
+    await b.navigate(
+      `?demo=canonical&scene=3d-stack&backend=gpu&scope=${scope}&paused=1&quality=benchmark`,
+    );
+    await ready();
+    async function selection(expected, override = null) {
+      const state = await b.evaluate(
+        `({scene:__AVBD_LAB__.diagnostics.scene,checked:document.querySelector('#lab-sleep').checked,override:new URL(location.href).searchParams.get('sleeping'),errors:__AVBD_LAB__.diagnostics.errors})`,
+      );
+      assert.equal(
+        state.checked,
+        expected,
+        `${scope} ${state.scene} sleeping selection`,
+      );
+      assert.equal(
+        state.override,
+        override,
+        "Only manual overrides belong in the URL",
+      );
+      assert.deepEqual(state.errors, []);
+    }
+    async function select(scene) {
+      await b.evaluate(`__AVBD_LAB__.select(${JSON.stringify(scene)})`);
+      await ready();
+    }
+    async function toggle(enabled) {
+      await b.evaluate(
+        `(()=>{const e=document.querySelector('#lab-sleep');e.checked=${enabled};e.onchange({target:e});})()`,
+      );
+      // getInfo/step round trips ensure a worker has applied queued controls.
+      await b.evaluate("__AVBD_LAB__.step(1)");
+    }
+    await selection(true);
+    // Reloading an automatic preset must not turn it into a global override.
+    const reload = await b.evaluate("location.search");
+    await b.navigate(reload);
+    await ready();
+    await select("2d-stack");
+    await selection(false);
+    await select("3d-stack");
+    await toggle(false);
+    await selection(false, "0");
+    await b.evaluate("document.querySelector('#lab-reset').onclick()");
+    await ready();
+    await selection(false, "0");
+    await select("2d-stack");
+    await selection(false);
+    await toggle(true);
+    await selection(true, "1");
+    await select("3d-stack");
+    await selection(false, "0");
+    await select("2d-stack");
+    await selection(true, "1");
+    const manualUrl = await b.evaluate("location.search");
+    await b.navigate(manualUrl);
+    await ready();
+    await selection(true, "1");
+    await select("3d-stack");
+    await selection(true);
+    sceneSwitching.push({
+      scope,
+      defaults: true,
+      reload: true,
+      sceneOverrides: true,
+      reset: true,
+      errors: [],
+    });
+    console.log(JSON.stringify(sceneSwitching.at(-1)));
+    await b.evaluate("__AVBD_LAB__.dispose()");
+  }
   for (const scene of [
     "2d-stack",
     "3d-stack",
@@ -114,6 +185,7 @@ try {
     JSON.stringify(
       {
         passed: true,
+        sceneSwitching,
         results,
         screenshots: (screenshots ? results : [])
           .filter((r) => r.bowling)

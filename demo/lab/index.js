@@ -29,6 +29,7 @@ import {
   configureSceneSleeping,
 } from "../shared/runtime/sleepPolicy.js";
 import { readStepRate } from "../shared/runtime/stepRate.js";
+import { sceneSleepSelection } from "../shared/runtime/sceneSleepSelection.js";
 import { physicsStepsPerFrame } from "../shared/runtime/frameBudget.js";
 import { GaltonPegs } from "../galton-board/pegs.js";
 import {
@@ -200,6 +201,7 @@ export async function startCanonicalLabDemo(root = document.body) {
         : navigator.gpu
           ? "showcase-brick-ring-28k"
           : "3d-stack";
+  const sleepSelection = sceneSleepSelection(query, scene.value);
   let sim,
     solver,
     gpu,
@@ -941,9 +943,8 @@ export async function startCanonicalLabDemo(root = document.body) {
       await renderer?.ready?.();
       live = gpu ?? cpu;
       $("#lab-sleep-label").hidden = false;
-      $("#lab-sleep").checked = query.has("sleeping")
-        ? query.get("sleeping") === "1"
-        : sceneSleepingDefault(built);
+      $("#lab-sleep").checked =
+        sleepSelection.get(current.id) ?? sceneSleepingDefault(built);
       {
         sleep = configureSceneSleeping(
           built,
@@ -1091,6 +1092,7 @@ export async function startCanonicalLabDemo(root = document.body) {
       url.searchParams.set("renderer", $("#lab-renderer").value);
       url.searchParams.set("broadphase", $("#lab-broadphase").value);
       url.searchParams.set("solverMode", $("#lab-solver-mode").value);
+      sleepSelection.writeUrl(url, current.id);
       history.replaceState(null, "", url);
       // Compile the first rendered/compute passes before timing interactive
       // frames. This is one real, counted physics step, never a fake dry run.
@@ -1860,7 +1862,7 @@ export async function startCanonicalLabDemo(root = document.body) {
   $("#lab-shoot").onclick = () =>
     shoot().catch((e) => diagnostics.errors.push(e.message));
   $("#lab-sleep").onchange = (e) => {
-    query.set("sleeping", e.target.checked ? "1" : "0");
+    sleepSelection.set(current.id, e.target.checked);
     sleep = configureSceneSleeping(
       { def: current, solver },
       live,
@@ -1869,6 +1871,11 @@ export async function startCanonicalLabDemo(root = document.body) {
       e.target.checked,
     );
     if (renderer) renderer.sleep = sleep;
+    history.replaceState(
+      null,
+      "",
+      sleepSelection.writeUrl(new URL(location.href), current.id),
+    );
   };
   $("#lab-bowl").onclick = () => {
     try {

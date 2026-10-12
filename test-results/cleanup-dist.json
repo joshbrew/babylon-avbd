@@ -1,69 +1,17 @@
 {
-  "date": "2026-10-12T03:37:34.477Z",
+  "date": "2026-10-12T03:51:12.881Z",
   "applied": true,
   "retained": 226,
-  "removedFiles": 38,
-  "removedBytes": 584263,
+  "removedFiles": 17,
+  "removedBytes": 81097,
   "removed": [
     {
-      "path": "dist/chunks/chunk-ACNGJUGX.js",
-      "bytes": 61057
-    },
-    {
-      "path": "dist/chunks/chunk-DN533RQL.js",
-      "bytes": 129726
-    },
-    {
-      "path": "dist/chunks/chunk-GU25UCNA.js",
-      "bytes": 41489
-    },
-    {
-      "path": "dist/chunks/chunk-JGI6Y5ZE.js",
-      "bytes": 3740
-    },
-    {
-      "path": "dist/chunks/chunk-JQGH4GPC.js",
-      "bytes": 41458
-    },
-    {
-      "path": "dist/chunks/chunk-KGQFPS7L.js",
+      "path": "dist/chunks/chunk-GMUZ5XNF.js",
       "bytes": 18846
     },
     {
-      "path": "dist/chunks/chunk-QIDEDLCA.js",
-      "bytes": 18846
-    },
-    {
-      "path": "dist/chunks/chunk-QU3BTAWK.js",
-      "bytes": 4243
-    },
-    {
-      "path": "dist/chunks/chunk-SU3XBNLX.js",
-      "bytes": 12871
-    },
-    {
-      "path": "dist/chunks/chunk-SVQOFDPF.js",
-      "bytes": 33436
-    },
-    {
-      "path": "dist/chunks/chunk-TK4RYJPV.js",
-      "bytes": 4358
-    },
-    {
-      "path": "dist/chunks/chunk-W45R7LM2.js",
-      "bytes": 3740
-    },
-    {
-      "path": "dist/chunks/compatibility-performance-BY2V3KUE.js",
-      "bytes": 2740
-    },
-    {
-      "path": "dist/chunks/lab-73YJNZSP.js",
-      "bytes": 42210
-    },
-    {
-      "path": "dist/chunks/lab-BDZLF244.js",
-      "bytes": 42194
+      "path": "dist/chunks/lab-5JRLRRB2.js",
+      "bytes": 42238
     },
     {
       "path": "dist/chunks/lab-F3E5YBJL.css",
@@ -94,18 +42,6 @@
       "bytes": 1439
     },
     {
-      "path": "dist/chunks/mixed-colliders-SLEZGPYM.js",
-      "bytes": 7602
-    },
-    {
-      "path": "dist/chunks/naval-A6HU47LV.js",
-      "bytes": 8653
-    },
-    {
-      "path": "dist/chunks/naval-AA7GRKIJ.js",
-      "bytes": 8653
-    },
-    {
       "path": "dist/chunks/naval-WHC65I3A.css",
       "bytes": 3537
     },
@@ -122,10 +58,6 @@
       "bytes": 846
     },
     {
-      "path": "dist/chunks/performance-HQRT5TTC.js",
-      "bytes": 58810
-    },
-    {
       "path": "dist/chunks/rgbdEncode.fragment-KGKKJKOR.js",
       "bytes": 672
     },
@@ -134,27 +66,11 @@
       "bytes": 530
     },
     {
-      "path": "dist/chunks/simulationRuntime-4NZZ7HRS.js",
-      "bytes": 963
-    },
-    {
-      "path": "dist/chunks/simulationRuntime-7WG4WAD2.js",
-      "bytes": 963
-    },
-    {
       "path": "dist/chunks/slingshot-HVGXU3PQ.css",
       "bytes": 3062
     },
     {
-      "path": "dist/chunks/slingshot-RYGEKQAO.js",
-      "bytes": 17443
-    },
-    {
-      "path": "dist/chunks/workerView-GHGQ2YQC.js",
-      "bytes": 209
-    },
-    {
-      "path": "dist/chunks/workerView-HW7EYLJ3.js",
+      "path": "dist/chunks/workerView-2EBMU2ZO.js",
       "bytes": 209
     }
   ]

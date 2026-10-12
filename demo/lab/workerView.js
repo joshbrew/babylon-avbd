@@ -4,6 +4,7 @@ import { loadSceneCatalogue } from "./catalogue.js";
 import { createSimulationClient } from "../shared/runtime/simulationClient.js";
 import { galtonChart } from "../galton-board/statistics.js";
 import { readStepRate } from "../shared/runtime/stepRate.js";
+import { sceneSleepSelection } from "../shared/runtime/sceneSleepSelection.js";
 
 /** Keep the laboratory controls on the page while physics and drawing run offscreen. */
 export async function startWorkerLab(root, query) {
@@ -72,6 +73,7 @@ export async function startWorkerLab(root, query) {
       : query.get("demo") === "cannon"
         ? "3d-castle-siege"
         : "showcase-brick-ring-28k";
+  const sleepSelection = sceneSleepSelection(query, scene.value);
   backend.add(new Option("WebGPU · AVBD", "gpu"));
   backend.add(new Option("CPU · AVBD", "cpu"));
   backend.value = ["ref", "cpu"].includes(query.get("backend")) ? "cpu" : "gpu";
@@ -125,11 +127,10 @@ export async function startWorkerLab(root, query) {
       renderer: renderer.value,
       scope,
       broadphase: $("#lab-broadphase").value,
-      sleeping: $("#lab-sleep").checked ? "1" : "0",
       quality: $("#lab-enhanced").checked ? "enhanced" : "benchmark",
     }))
       u.searchParams.set(key, value);
-    return u;
+    return sleepSelection.writeUrl(u, scene.value);
   }
   const error = (e) => {
     diagnostics.errors.push(e.message ?? String(e));
@@ -218,9 +219,7 @@ export async function startWorkerLab(root, query) {
           hz: stepRateOverride,
           enhanced: $("#lab-enhanced").checked,
           broadphase: $("#lab-broadphase").value,
-          sleeping: query.has("sleeping")
-            ? query.get("sleeping") === "1"
-            : undefined,
+          sleeping: sleepSelection.get(scene.value),
         },
         notify,
       );
@@ -306,9 +305,10 @@ export async function startWorkerLab(root, query) {
   $("#lab-step-rate").onchange = (e) => changeStepRate(e.target.value);
   $("#lab-step-rate-default").onclick = () => changeStepRate(undefined);
   $("#lab-sleep").onchange = (e) => {
-    query.set("sleeping", e.target.checked ? "1" : "0");
+    sleepSelection.set(scene.value, e.target.checked);
     client.control("sleeping", e.target.checked);
     history.replaceState(null, "", url());
+    tools.href = url("main");
   };
   $("#lab-bowl").onclick = () => {
     client.control("bowl");
