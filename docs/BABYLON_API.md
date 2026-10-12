@@ -147,14 +147,28 @@ reserve storage; `readContactEvents()` reports dropped events or a full pair
 table. End events do not retain an old position. Callbacks run asynchronously.
 
 `sleeping: true` or `{ speedThreshold: 0.03, timeThreshold: 0.5 }` enables an
-optional GPU policy. Supported quiet bodies sleep. Large jointless desktop 3D worlds
+optional GPU policy. Supported quiet bodies sleep. Large desktop 3D worlds
 automatically wake conservative connected groups on impact, keeping unrelated
 piles asleep; the shared static floor does not join them. `islands:true` opts
 into group waking in smaller worlds, and `islands:false` selects whole-world
-waking. Explicit edits wake the world and reset group history. Unsupported bodies
+waking. Awake groups rebuild their connections from current contacts; sleeping
+groups retain the support connections omitted by collision detection. A group
+settles together after its eligible members stay quiet, so sleeping one course
+does not repeatedly disturb the courses above it. Contact waking checks closing
+speed at each contact point, including rotation. Updating a grab anchor wakes
+the held body; ordinary edits and changes to supports wake the world.
+Unsupported bodies
 under gravity stay awake. `wakeAll()`, `body.wakeUp()` and `readSleepStats()` are
 available. Suspended jointed objects are not guaranteed to sleep. Defaults and
 paper-comparison benchmarks keep sleeping disabled.
+
+For a 3D assembly placed at rest, use
+`{ islands: true, startAsleep: true }`. Native solver initialization takes one
+support-validation physics step and sleeps stationary groups connected to
+stationary solid support. Moving, floating and sleep-excluded groups stay awake.
+Babylon applies this check on its first physics step. This option is intended
+for assembled stacks, rather than objects already in motion. Interactive
+half-million walls use it; timing comparisons with the paper keep sleeping off.
 
 Closed jointless 3D worlds with at most 32 bodies automatically batch movement
 iterations in one GPU workgroup. Body poses stay in shared memory, with the

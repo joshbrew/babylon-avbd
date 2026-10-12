@@ -15,6 +15,8 @@ const roots = [
   "lab-timing.json",
   "lab-step-rate.json",
   "lab-sleep.json",
+  "sleep-stability.json",
+  "jointed-settling.json",
   "siege-damage.json",
   "demo-startup.json",
   "slingshot-input.json",

@@ -7,6 +7,29 @@
     <link rel="stylesheet" href="dist/index.css" />
   </head>
   <body>
-    <script src="dist/index.js"></script>
+    <div
+      role="status"
+      style="
+        position: fixed;
+        inset: 0;
+        display: grid;
+        place-content: center;
+        gap: 12px;
+        text-align: center;
+        background: #e9ebef;
+        color: #26303a;
+        font:
+          16px system-ui,
+          sans-serif;
+        padding: 24px;
+      "
+    >
+      <strong style="font-size: 24px">Loading AVBD Physics Lab…</strong>
+      <span
+        >Preparing the demos. Large scenes can take a moment on first
+        load.</span
+      >
+    </div>
+    <script src="dist/index.js" defer></script>
   </body>
 </html>

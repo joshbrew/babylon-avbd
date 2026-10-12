@@ -1,6 +1,6 @@
 {
   "done": true,
-  "passed": 247,
+  "passed": 253,
   "failed": 0,
   "cases": [
     {
@@ -165,6 +165,14 @@
     },
     {
       "name": "stress 100K wall impact stays local and rotates debris",
+      "passed": true
+    },
+    {
+      "name": "Package 2D custom GPU passes compose, detach and preserve physics",
+      "passed": true
+    },
+    {
+      "name": "Package 3D custom GPU passes compose, detach and preserve physics",
       "passed": true
     },
     {
@@ -457,6 +465,22 @@
     },
     {
       "name": "GPU feature uniforms 3D retain exact bounce, sleep and wake state",
+      "passed": true
+    },
+    {
+      "name": "GPU island sleep wakes on a rotating body's contact-point impact",
+      "passed": true
+    },
+    {
+      "name": "GPU island startup sleep keeps floating and moving groups awake",
+      "passed": true
+    },
+    {
+      "name": "GPU sleeping conservative anchor updates leave unrelated resting bodies asleep",
+      "passed": true
+    },
+    {
+      "name": "GPU sleeping island anchor updates leave unrelated resting bodies asleep",
       "passed": true
     },
     {
@@ -1004,26 +1028,26 @@
     "runs": [
       {
         "analytic": true,
-        "collisionMs": 0.116736,
-        "totalMs": 0.207872,
+        "collisionMs": 0.08192,
+        "totalMs": 0.146432,
         "contacts": 2048
       },
       {
         "analytic": false,
-        "collisionMs": 0.144384,
-        "totalMs": 0.20992,
+        "collisionMs": 0.121856,
+        "totalMs": 0.178176,
         "contacts": 2048
       },
       {
         "analytic": false,
-        "collisionMs": 0.137216,
-        "totalMs": 0.19968,
+        "collisionMs": 0.12288,
+        "totalMs": 0.1792,
         "contacts": 2048
       },
       {
         "analytic": true,
-        "collisionMs": 0.075776,
-        "totalMs": 0.135168,
+        "collisionMs": 0.072704,
+        "totalMs": 0.130048,
         "contacts": 2048
       }
     ],

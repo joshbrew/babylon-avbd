@@ -10,24 +10,35 @@ struct Params { count:u32,joints:u32,manifolds:u32,forceWake:u32,speed:f32,delay
 @group(0) @binding(5) var<storage,read_write> globals:array<atomic<u32>>;
 @group(0) @binding(6) var<uniform> params:Params;
 fn speed(i:u32)->f32 {return length(bodies[i].velocity.xyz)+length(bodies[i].angular.xyz)*bodies[i].moment.w;}
-fn wake(i:u32) {if(states[i].mass>0.){bodies[i].size.w=states[i].mass;states[i].asleep=0u;states[i].quiet=0.;}}
+fn wake(i:u32) {if(states[i].mass>0.){bodies[i].size.w=states[i].mass;states[i].asleep=0u;states[i].quiet=0.;states[i].pad2=0u;}}
 @compute @workgroup_size(64) fn before(@builtin(global_invocation_id) id:vec3u) {
   let i=id.x;if(i>=params.count){return;}
-  if(params.forceWake!=0u||atomicLoad(&globals[0])!=0u){wake(i);atomicStore(&states[i].parent,i);}
+  if((params.forceWake&1u)!=0u||atomicLoad(&globals[0])!=0u){wake(i);atomicStore(&states[i].parent,i);}
+  else if((states[i].pad2&2u)!=0u){wake(i);states[i].pad2|=2u;}
+  // Rebuild live connectivity after bodies wake or separate. Only sleeping
+  // subtrees need history, since their static/static contact pairs are omitted.
+  if(states[i].asleep==0u){atomicStore(&states[i].parent,i);}
+  if((params.forceWake&2u)!=0u && speed(i)<=params.speed && states[i].eligible!=0u){states[i].pad2|=4u;}
   atomicStore(&states[i].wake,0u);
   atomicStore(&states[i].support,0u);
 }
 @compute @workgroup_size(1) fn clear() {atomicStore(&globals[0],0u);atomicStore(&globals[1],0u);}
 fn impact(a:u32,b:u32) {
-  if(states[a].asleep!=0u && states[b].asleep==0u && speed(b)>2.*params.speed){let r=root(a);if(r<params.count){atomicStore(&states[r].wake,1u);}else{atomicStore(&globals[0],1u);}}
+  if(states[a].asleep!=0u && states[b].asleep==0u && speed(b)>2.*params.speed){signalWake(a);}
 }
+fn signalWake(i:u32){let r=root(i);if(r<params.count){atomicOr(&states[r].wake,1u);}else{atomicStore(&globals[0],1u);}}
 @compute @workgroup_size(64) fn contacts(@builtin(global_invocation_id) id:vec3u) {
   let i=id.x;if(i>=min(counters[6],params.manifolds)){return;}
   let m=manifolds[i];if((m.ids.w&15u)==0u || (m.ids.w&0x80000000u)!=0u){return;}
-  let a=m.ids.x;let b=m.ids.y;impact(a,b);impact(b,a);
+  let a=m.ids.x;let b=m.ids.y;
+  manifoldImpact(m);
   let up=dot(m.geo.xyz,params.up.xyz);
-  if(bodies[b].size.w==0. && up>0.3){atomicStore(&states[a].support,1u);}
-  if(bodies[a].size.w==0. && up < -0.3){atomicStore(&states[b].support,1u);}
+  if(up>0.3){support(a,b);}
+  if(up < -0.3){support(b,a);}
+  if((params.forceWake&2u)!=0u){
+    if(states[b].mass<=0. && speed(b)<=params.speed && up>0.3 && states[a].mass>0.){atomicOr(&states[root(a)].wake,2u);}
+    if(states[a].mass<=0. && speed(a)<=params.speed && up< -0.3 && states[b].mass>0.){atomicOr(&states[root(b)].wake,2u);}
+  }
 }
 @compute @workgroup_size(64) fn joints(@builtin(global_invocation_id) id:vec3u) {
   let i=id.x;if(i>=params.joints){return;}let j=info[i];if(j.x==0||j.y<0){return;}
@@ -37,20 +48,38 @@ fn impact(a:u32,b:u32) {
   let i=id.x;if(i>=params.count||states[i].mass<=0.){return;}
   if(states[i].eligible==0u){wake(i);return;}
   let r=root(i);
-  if(r>=params.count || atomicLoad(&states[min(r,params.count-1u)].wake)!=0u || atomicLoad(&globals[0])!=0u || counters[3]!=0u || counters[4]!=0u){wake(i);return;}
+  let flags=atomicLoad(&states[min(r,params.count-1u)].wake);
+  if(r>=params.count || (flags&1u)!=0u || atomicLoad(&globals[0])!=0u || counters[3]!=0u || counters[4]!=0u){wake(i);return;}
+  let initiallyQuiet=(states[i].pad2&4u)!=0u;
+  let held=(states[i].pad2&2u)!=0u;
+  states[i].pad2=select(0u,1u,speed(i)<=params.speed && (params.gravity==0. || atomicLoad(&states[i].support)!=0u));
   if(states[i].asleep==0u){
     if(speed(i)<=params.speed && (params.gravity==0. || atomicLoad(&states[i].support)!=0u)) {states[i].quiet+=params.dt;}
     else {states[i].quiet=0.;}
-    if(states[i].quiet>=params.delay){
+    if(!held && ((states[i].quiet>=params.delay && (flags&4u)==0u) || ((params.forceWake&2u)!=0u && initiallyQuiet && (flags&6u)==2u))){
       states[i].asleep=1u;bodies[i].size.w=0.;bodies[i].velocity=vec4f(0.);bodies[i].angular=vec4f(vec3f(0.),bodies[i].angular.w);
     }
   }
   if(states[i].asleep!=0u){atomicAdd(&globals[1],1u);}
 }
+// Startup sleep is restricted to contact islands connected to stationary solid
+// support, with no moving or sleep-excluded member. Floating groups stay awake.
+@compute @workgroup_size(64) fn activity(@builtin(global_invocation_id) id:vec3u){
+  let i=id.x;if(i>=params.count||states[i].mass<=0.){return;}
+  var busy=false;
+  if((params.forceWake&2u)!=0u){busy=(states[i].pad2&4u)==0u;}
+  else if(states[i].asleep==0u){
+    busy=speed(i)>params.speed;
+    if(states[i].eligible!=0u && (states[i].pad2&2u)==0u){
+      busy=busy || states[i].quiet+params.dt<params.delay || (params.gravity!=0. && atomicLoad(&states[i].support)==0u);
+    }
+  }
+  if(busy){let r=root(i);if(r<params.count){atomicOr(&states[r].wake,4u);}}
+}
 
 // Dynamic connectivity is conservative: unions persist while asleep because
-// collision detection intentionally omits pairs of sleeping bodies. Explicit
-// edits wake the world and reset this history. Shared static ground never joins
+// collision detection intentionally omits pairs of sleeping bodies. The
+// awake bodies rebuild their links each step. Shared static ground never joins
 // otherwise independent piles. No thread waits for another workgroup.
 fn root(index:u32)->u32 {
   var i=index;

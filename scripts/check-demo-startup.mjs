@@ -71,7 +71,7 @@ try {
         passed: true,
         ...(await gpuBenchmarkHardware(results[0]?.adapter)),
         method:
-          "One paused initialization per scene in a dedicated worker. Includes scene building, GPU contact qualification, physics and rendering setup; excludes simulation steps. Browser/driver caches may warm between scenes. These are startup times, not frame times.",
+          "One paused initialization per scene in a dedicated worker. Includes scene building, GPU contact qualification, physics and rendering setup, and any initial support-validation step used to start an assembled stack asleep. Browser/driver caches may warm between scenes. These are startup times, not frame times. startupPhases identifies the setup work; preparing the first frame records submission, not a GPU completion wait.",
         results,
       },
       null,

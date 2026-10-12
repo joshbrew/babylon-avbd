@@ -863,6 +863,7 @@ export class AppGpuSolver3D extends GpuSolver3D {
       },
       options,
     );
+    if (this.sleeping.initializing) this.step();
   }
   wakeAll() {
     if (this.sleeping) this.sleeping.wakeRequested = true;
@@ -917,7 +918,7 @@ export class AppGpuSolver3D extends GpuSolver3D {
       throw Error("A world joint and finite xyz anchor are required");
     for (let k = 0; k < 3; k++)
       propertyEdits(this).float(this.jointBuffer, slot * 32 + 24 + k, point[k]);
-    this.wakeAll();
+    this.sleeping?.wakeBody(this.info[slot * 4 + 2]);
   }
   disableConstraint(slot) {
     this.flushPropertyEdits();

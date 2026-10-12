@@ -12,6 +12,22 @@
 .canonical-lab [hidden] {
   display: none !important;
 }
+.lab-loading {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 32px;
+  text-align: center;
+  background: #e9ebeff5;
+  color: #26303a;
+}
+.lab-loading strong { font-size: 22px; }
+.lab-loading span { max-width: 420px; line-height: 1.6; }
 .lab-sidebar {
   background: #fcfcfd;
   border-right: 1px solid #d9dfe7;

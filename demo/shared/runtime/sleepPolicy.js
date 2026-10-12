@@ -20,7 +20,11 @@ export function configureSceneSleeping(
     gpu.disableSleeping();
     return new GpuSleep(device, built.solver, gpu, { startAsleep: initial });
   }
-  if (enabled) gpu.enableSleeping({ timeThreshold: 0.3 });
+  if (enabled)
+    gpu.enableSleeping({
+      timeThreshold: 0.3,
+      startAsleep: initial && built.def?.id.startsWith("paper-walls-"),
+    });
   else gpu.disableSleeping();
   return null;
 }

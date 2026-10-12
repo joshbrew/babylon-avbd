@@ -23,6 +23,7 @@
     "src/gpu/uniformUpload.js",
     "src/gpu/worldSleeping.wgsl",
     "src/gpu/islandSleeping.wgsl",
+    "src/gpu/sleepContact.wgsl",
     "src/gpu/bufferEdits.js",
     "src/gpu/worldSleeping.js",
     "src/gpu/smallGroup3D.js",
@@ -204,7 +205,7 @@
           "bytesInOutput": 346
         },
         "src/vendor/three-avbd-lib/solver3D.ts": {
-          "bytesInOutput": 31543
+          "bytesInOutput": 31541
         },
         "src/gpu/gpuSolverKernels.js": {
           "bytesInOutput": 2739
@@ -216,16 +217,19 @@
           "bytesInOutput": 384
         },
         "src/gpu/worldSleeping.wgsl": {
-          "bytesInOutput": 3196
+          "bytesInOutput": 3312
         },
         "src/gpu/islandSleeping.wgsl": {
-          "bytesInOutput": 5127
+          "bytesInOutput": 6851
+        },
+        "src/gpu/sleepContact.wgsl": {
+          "bytesInOutput": 1929
         },
         "src/gpu/bufferEdits.js": {
           "bytesInOutput": 2813
         },
         "src/gpu/worldSleeping.js": {
-          "bytesInOutput": 3780
+          "bytesInOutput": 4228
         },
         "src/gpu/smallGroup3D.js": {
           "bytesInOutput": 2230
@@ -315,7 +319,7 @@
           "bytesInOutput": 508
         },
         "src/gpu/appGpuSolver3D.js": {
-          "bytesInOutput": 18730
+          "bytesInOutput": 18797
         },
         "src/gpu/contactCheck3D.js": {
           "bytesInOutput": 9540
@@ -333,7 +337,7 @@
           "bytesInOutput": 160
         },
         "src/babylon/constraints.js": {
-          "bytesInOutput": 5757
+          "bytesInOutput": 5789
         },
         "src/gpu/bodyReadback.js": {
           "bytesInOutput": 2876
@@ -456,7 +460,7 @@
           "bytesInOutput": 1597
         },
         "src/native/cpu/cpuSolver2D.js": {
-          "bytesInOutput": 2842
+          "bytesInOutput": 2840
         },
         "src/native/cpu/queries.js": {
           "bytesInOutput": 3842
@@ -510,7 +514,7 @@
           "bytesInOutput": 695
         }
       },
-      "bytes": 574191
+      "bytes": 578503
     }
   }
 }

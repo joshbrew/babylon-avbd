@@ -1,86 +1,35 @@
 {
-  "date": "2026-10-11T23:33:02.355Z",
+  "date": "2026-10-12T00:29:46.028Z",
   "applied": true,
-  "retained": 249,
-  "removedFiles": 18,
-  "removedBytes": 2211431,
+  "retained": 251,
+  "removedFiles": 5,
+  "removedBytes": 1141470,
   "removed": [
     {
       "path": "gpu-selected.json",
-      "bytes": 1872
+      "bytes": 4514
     },
     {
-      "path": "screenshots/3d-domino-spiral-babylon-worker.png",
-      "bytes": 152110
+      "path": "screenshots/execution-worker.png",
+      "bytes": 61655
     },
     {
-      "path": "screenshots/3d-marble-cascade-babylon-worker.png",
-      "bytes": 105783
+      "path": "screenshots/galton-worker-startup.png",
+      "bytes": 283375
     },
     {
-      "path": "screenshots/3d-tornado-town-babylon-worker.png",
-      "bytes": 95559
+      "path": "screenshots/paper-walls-510k-3-all-lanes.png",
+      "bytes": 403912
     },
     {
-      "path": "screenshots/babylon-readme-example.png",
-      "bytes": 5854
-    },
-    {
-      "path": "screenshots/naval-1440.png",
-      "bytes": 239953
-    },
-    {
-      "path": "screenshots/naval-3000.png",
-      "bytes": 245513
-    },
-    {
-      "path": "screenshots/naval-720.png",
-      "bytes": 233729
-    },
-    {
-      "path": "screenshots/naval-floating-sails-later.png",
-      "bytes": 228012
-    },
-    {
-      "path": "screenshots/naval-floating-sails.png",
-      "bytes": 229011
-    },
-    {
-      "path": "screenshots/naval-grid.png",
-      "bytes": 232892
-    },
-    {
-      "path": "screenshots/naval-mobile-layout.png",
-      "bytes": 94311
-    },
-    {
-      "path": "screenshots/naval-settled.png",
-      "bytes": 229866
-    },
-    {
-      "path": "screenshots/readme-createBoxPileScene.png",
-      "bytes": 33613
-    },
-    {
-      "path": "screenshots/readme-createBrickWallScene.png",
-      "bytes": 16410
-    },
-    {
-      "path": "screenshots/readme-createHingeExample.png",
-      "bytes": 12121
-    },
-    {
-      "path": "screenshots/readme-createMaterialExamples.png",
-      "bytes": 20794
-    },
-    {
-      "path": "screenshots/readme-createMixedColliderScene.png",
-      "bytes": 34028
+      "path": "screenshots/paper-walls-510k-4-all-lanes.png",
+      "bytes": 388014
     }
   ],
   "prunedCaptureSummaries": [
-    "playgrounds.json",
-    "naval.json"
+    "galton-startup.json",
+    "lab-sleep.json",
+    "execution-ui.json"
   ],
   "removedDirectories": []
 }

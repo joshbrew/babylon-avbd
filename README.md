@@ -78,6 +78,7 @@ JavaScript examples. Run `npm start`, then open the
 | Batched body edits, pose reads and queries                | [Bulk-edit examples](#bulk-edits-and-gpu-dispatches), [measurement code](tests/native-edit-performance.js), [runner](scripts/check-native-performance.mjs)                                                   |
 | CPU compatibility versus WebGPU                           | [Settings and results](#backend-differences-and-benchmarks), [measurement code](tests/compatibility-performance.js), [runner](scripts/benchmark-backends.mjs)                                                |
 | Sleeping and waking in large connected scenes             | [Sleeping example](#queries-callbacks-and-sleeping), [connected-wall runner](scripts/benchmark-connected-sleep.mjs)                                                                                          |
+| Sleeping stability while grabbing and settling            | [28K ring check](scripts/check-sleep-stability.mjs), [jointed-drop timing and view check](scripts/check-jointed-settling.mjs), [saved jointed-drop results](test-results/jointed-settling.json) |
 | Ships, buoyancy and water                                 | [Scene explanation](#ships-water-and-destruction), [scene builder](demo/naval/scene.js), [runner](scripts/benchmark-naval.mjs)                                                                               |
 | Grid versus HPLOC++ collisions                            | [Collision guide](docs/HPLOC.md), [paired scene measurements](tests/performance.js), [tree refit runner](scripts/benchmark-hploc-refit.mjs)                                                                  |
 | D20 particle collisions                                   | [Capacity benchmark](#d20-particle-capacity), [runner](scripts/benchmark-particles.mjs), [reusable GPU particles](src/gpu/surfaceParticles.js), [collision shader](src/gpu/surfaceParticles.wgsl) |
@@ -110,6 +111,8 @@ disabled collision groups are excluded from the initial contact-capacity estimat
 The [startup check](scripts/check-demo-startup.mjs) initializes every demo in a
 paused worker with `--all` and records setup times separately from simulation
 performance. Shader caches, device checks and scene size affect those times.
+The scene view shows loading messages during setup, even with its performance
+panel collapsed. Worker startup reports also list the time spent in each setup phase.
 
 ## Install
 
@@ -217,8 +220,8 @@ portable 2D/3D APIs and a Babylon integration:
   step/sleep/bounce settings and skips repeated buffer bindings within a compute
   pass.
 - **Sleeping and live editing.** Per-body sleep permission, support checks and
-  impact checks allow resting objects to sleep and wake again. Large jointless desktop
-  3D worlds retain conservative connected groups so impacts can wake a wall
+  impact checks allow resting objects to sleep and wake again. Large desktop
+  3D worlds track connected groups so impacts can wake a wall
   without waking unrelated walls on the same floor. Velocities,
   impulses, teleports, filters and motor targets can change during simulation.
   Welds capture their rest rotation from live GPU poses, and released
@@ -2202,11 +2205,12 @@ console.log(await physics.readSleepStats());
 ```
 
 Impulses, teleports, constraint edits, new bodies and removed supports wake the
-world. Jointless desktop WebGPU worlds with at least 4,096 bodies automatically track conservative connected
+world. Desktop WebGPU worlds with at least 4,096 bodies automatically track connected
 groups, so an impact wakes the touched group while unrelated piles stay asleep.
-The static floor does not connect separate piles. Connections persist while
-bodies sleep and reset on explicit world edits; a group can therefore include
-objects that touched earlier. Smaller worlds and mobile compatibility paths use
+The static floor does not connect separate piles. Contact and joint connections
+let eligible members settle together. Awake groups rebuild their connections
+each step so separated debris can settle independently. Sleeping groups retain
+their support history. Moving a grab anchor wakes the held body. Smaller worlds and mobile compatibility paths use
 whole-world impact waking. Set `sleeping: { islands: true }` to opt into connected
 groups in a smaller 3D world, or `islands: false` to use whole-world waking. Under
 gravity, unsupported slow-moving bodies stay awake; supports extend upward
@@ -2216,6 +2220,13 @@ opts in with `allowSleep:true` or `setSleepEnabled(true)`. Enabling it on the
 world makes bodies eligible by default; `allowSleep:false` excludes a body.
 Paper comparisons keep sleeping disabled. Portable 3D solvers accept these
 same world and initial-body options.
+
+For stacks assembled at rest, native 3D solvers accept
+`world.createSolver(device, { sleeping: { islands: true, startAsleep: true } })`.
+Initialization takes one physics step to validate contacts, then sleeps stationary
+groups connected to stationary solid support. Floating, moving and sleep-excluded
+groups stay awake. The interactive half-million walls use this option; benchmark
+comparisons with the paper disable sleeping.
 
 Small jointless 3D worlds with up to 32 bodies also batch all movement iterations
 into one GPU workgroup. Body poses stay in shared memory; contacts remain in GPU

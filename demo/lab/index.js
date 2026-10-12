@@ -21,6 +21,7 @@ import { NativeGpuSolver2D as GpuSolver2D } from "../../src/native/solver2D.js";
 import { parallelParams } from "../../reference/three-avbd/src/avbd2d/ref/solver.ts";
 import { GpuRenderer2D } from "../shared/rendering/gpuRenderer2D.js";
 import { labMarkup } from "./view.js";
+import { sceneLoading, paintLoading } from "./loading.js";
 import { startWorkerLab } from "./workerView.js";
 import { PaperBowling } from "../paper-benchmarks/bowling.js";
 import {
@@ -725,6 +726,9 @@ export async function startCanonicalLabDemo(root = document.body) {
     const epoch = ++generation;
     diagnostics.ready = false;
     pending = true;
+    sceneLoading(root, "Building the scene and preparing physics…");
+    await paintLoading();
+    if (epoch !== generation) return;
     $("#lab-renderer").disabled = true;
     gpuFramesInFlight = 0;
     await collection;
@@ -1095,6 +1099,7 @@ export async function startCanonicalLabDemo(root = document.body) {
       }
       last = performance.now();
       diagnostics.ready = true;
+      sceneLoading(root, null);
       diagnostics.scene = current.id;
       diagnostics.backend = backend.value;
       draw();
@@ -1102,6 +1107,7 @@ export async function startCanonicalLabDemo(root = document.body) {
     } catch (e) {
       diagnostics.errorStack = e.stack;
       diagnostics.errors.push(e.message);
+      sceneLoading(root, e.message, true);
       $(".lab-status").textContent = e.message;
       $(".lab-status").classList.add("lab-error");
       throw e;

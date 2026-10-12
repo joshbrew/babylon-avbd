@@ -1,4 +1,5 @@
 import { labMarkup } from "./view.js";
+import { sceneLoading } from "./loading.js";
 import { canonicalScenes } from "./scenes.js";
 import { createSimulationClient } from "../shared/runtime/simulationClient.js";
 import { galtonChart } from "../galton-board/statistics.js";
@@ -132,6 +133,7 @@ export async function startWorkerLab(root, query) {
   const error = (e) => {
     diagnostics.errors.push(e.message ?? String(e));
     $(".lab-status").textContent = diagnostics.errors.at(-1);
+    if (!diagnostics.ready) sceneLoading(root, diagnostics.errors.at(-1), true);
   };
   function updatePause() {
     $("#lab-pause").textContent = paused ? "Resume" : "Pause";
@@ -144,6 +146,7 @@ export async function startWorkerLab(root, query) {
     }
     if (data.type === "loading") {
       $(".lab-status").textContent = data.message;
+      sceneLoading(root, data.message);
       return;
     }
     if (data.type !== "status") return;
@@ -180,6 +183,7 @@ export async function startWorkerLab(root, query) {
     loading = true;
     diagnostics.ready = false;
     diagnostics.errors.length = 0;
+    sceneLoading(root, "Starting the simulation worker…");
     samples.length = 0;
     const controls = [
       scene,
@@ -222,6 +226,7 @@ export async function startWorkerLab(root, query) {
       const info = client.info;
       $("#lab-sleep").checked = info.sleepingEnabled;
       diagnostics.ready = true;
+      sceneLoading(root, null);
       diagnostics.scene = info.scene;
       diagnostics.backend = info.backend;
       diagnostics.scope = execution.value;

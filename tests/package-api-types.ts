@@ -31,7 +31,7 @@ function useGpuUtilities(device: GPUDevice, encoder: GPUCommandEncoder) {
   detach2D();
   const scene3D = new AvbdScene3D();
   scene3D.addSphere(0.5);
-  const gpu3D = scene3D.createSolver(device);
+  const gpu3D = scene3D.createSolver(device, { sleeping: { islands: true, startAsleep: true } });
   const detach3D = addGpuStepPass(gpu3D,{after(e,s){const b:GPUBuffer=s.bodyBuffer;e.clearBuffer(b,0,4);}});
   detach3D();
   const surface = new WorkerCanvas(new OffscreenCanvas(100,100),100,100);

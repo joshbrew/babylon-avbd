@@ -7,6 +7,7 @@ run on the host because they inspect files and JavaScript APIs.
 | Command                             | Scope                                                                                                                                                                 |
 | ----------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `npm test`                          | GPU numerical and stability regressions                                                                                                                               |
+| `npm run test:sleeping`              | Local grab waking, rotating impacts, startup sleeping, long 28K-ring settling and the 34K jointed drop through landing and settling |
 | `npm run test:complete`             | GPU suite, shared pipeline contract, package, pinned-source integrity and live Babylon example                                                                        |
 | `npm run test:pipelines`            | Same 2D/3D package application calls on CPU and WebGPU: bulk edits, queries, joints, triggers, bounce, sleeping, scene attachment and disposal                        |
 | `npm run test:cpu`                  | CPU compatibility scene views, controls, screenshots and physics measurements                                                                                         |
@@ -46,7 +47,14 @@ poses with direct drawing, Babylon, shared-input workers and CPU compatibility.
 `check-lab-timing.mjs` checks fixed-step clocks at 30–240 display frames per second
 and bounded catch-up under load. `check-lab-sleep.mjs` checks live sleeping
 toggles, large-scene defaults and bowling balls in all sixteen wall lanes.
-These checks run through `test:playgrounds` and `test:web`.
+`check-sleep-stability.mjs --drag` follows the 28K brick ring for 900 steps and
+checks that repeated grab-anchor updates leave resting debris asleep.
+`check-jointed-settling.mjs` measures GPU collision and movement time while the
+34K jointed drop lands, comparing sleeping off, whole-world waking and automatic
+group sleeping. It checks contact capacity and solve-group conflicts on every
+step, then measures the rendered worker view separately. These longer checks run
+through `test:sleeping` and `test:web`; the live toggle checks also run through
+`test:playgrounds`.
 
 `check-lab-step-rate.mjs` checks live physics step-rate changes, retained poses,
 scene defaults and URL settings with CPU, WebGPU, Babylon and worker execution.

@@ -88,6 +88,7 @@ export const labMarkup = `
     <p>Source: <a href="https://github.com/sbobyn/three-avbd" target="_blank" rel="noopener">three-avbd</a> · pinned and verified</p>
   </aside>
   <section class="lab-view">
+    <div class="lab-loading" role="status" aria-live="polite"><strong>Loading scene…</strong><span>Preparing the simulation. Large scenes can take a moment on first load.</span></div>
     <div class="lab-title"><h2></h2><span></span></div>
     <details class="lab-metrics" open><summary>Performance</summary><div id="lab-readings"></div>
       <canvas class="lab-chart" width="290" height="60"></canvas>

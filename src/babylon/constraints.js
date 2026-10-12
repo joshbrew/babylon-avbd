@@ -193,7 +193,7 @@ export class AvbdPhysicsConstraint {
     this.anchorA = vector(value, "world anchor");
     if (this.world.gpu) this.world.gpu.setWorldAnchor(this.slot, this.anchorA);
     else this.force.rA.set(this.anchorA);
-    this.world.wakeAll?.();
+    this.world.sleepManager?.wakeBody(this.bodyB.gpuIndex);
     return this;
   }
   async readState() {

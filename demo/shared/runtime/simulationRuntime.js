@@ -37,15 +37,31 @@ export class SimulationRuntime {
     this.statusPending = false;
   }
   async init() {
+    this.startupPhases = [];
+    let phase,
+      phaseAt = performance.now();
+    const finishPhase = () => {
+      const now = performance.now();
+      if (phase) this.startupPhases.push({ phase, ms: now - phaseAt });
+      phaseAt = now;
+    };
     this.session = await createSimulationSession(
       this.canvas,
       this.config,
-      (message) => this.notify({ type: "loading", message }),
+      (message) => {
+        finishPhase();
+        phase = message;
+        this.notify({ type: "loading", message });
+      },
     );
+    finishPhase();
+    phase = "Preparing the first frame…";
+    this.notify({ type: "loading", message: phase });
     this.session.draw();
     this.publishAim();
     this.drawRevision = this.canvas.revision;
     this.dirty = false;
+    finishPhase();
     // Setup time is not simulated time or part of the live frame-rate window.
     this.last = this.frameAt = this.rateAt = this.statusAt = performance.now();
     this.frame = this.frame.bind(this);
@@ -79,6 +95,7 @@ export class SimulationRuntime {
         s.gpu.gpuIndex(s.built.solver.bodies.indexOf(b)),
       ),
       sleepingEnabled: s.sleepingEnabled,
+      startupPhases: this.startupPhases,
     };
   }
   frame(now) {

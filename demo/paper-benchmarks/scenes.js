@@ -79,6 +79,7 @@ export function buildPaperScene(def, solver) {
   solver.gravity = -10;
   if (def.id.startsWith("paper-walls")) {
     brickGables(solver);
+    for (const ball of solver.bodies.slice(-2)) ball.allowSleep = false;
     // The scene's ground represents solid terrain, not a one-metre platform.
     // Keep its top at z=.5 while giving fast impact debris a deep solid volume
     // to contact in this discrete collision solver. No body poses are clamped.

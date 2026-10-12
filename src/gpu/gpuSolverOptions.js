@@ -18,16 +18,21 @@ export function sceneGpuCapacity(id) {
   if (id.startsWith("paper-walls-")) return { colors: 32 };
   if (id === "showcase-ragdolls-on-cloth-24k")
     return { contacts: 300_000, pairs: 300_000, manifolds: 100_000 };
+  // The plates land before the first periodic capacity readback. Reserve their
+  // landing contacts so overflow protection never has to hold a falling frame.
+  if (id === "showcase-jointed-drop-34k")
+    return {
+      contacts: 400_000,
+      pairs: 250_000,
+      manifolds: 100_000,
+      colors: 32,
+    };
   // Reserve coloring headroom before dense rings acquire their first contacts.
   // Waiting for asynchronous counters can otherwise let the initial eight
   // groups run out, assigning adjacent bodies to the same solve group.
   if (id === "showcase-brick-ring-110k" || id === "showcase-brick-ring-28k")
     return { colors: 32 };
-  if (
-    id === "showcase-wall-smash-2k" ||
-    id === "showcase-jointed-drop-34k" ||
-    id === "3d-100k-rook-impact"
-  )
+  if (id === "showcase-wall-smash-2k" || id === "3d-100k-rook-impact")
     return { colors: 32 };
   if (id === "showcase-box-pile-4k")
     return { contacts: 48_000, pairs: 48_000, manifolds: 12_000 };
@@ -56,12 +61,16 @@ export function sceneGpuSolverOptions(id) {
       "showcase-brick-ring-110k",
       "showcase-brick-ring-28k",
       "showcase-ragdolls-on-cloth-24k",
+      "showcase-jointed-drop-34k",
       "3d-100k-rook-impact",
     ].includes(id)
       ? {
           minimumColors: 16,
           minimumColorRounds: id === "3d-100k-rook-impact" ? 32 : 16,
         }
+      : {}),
+    ...(id === "showcase-jointed-drop-34k"
+      ? { minimumColors: 32, minimumColorRounds: 32 }
       : {}),
     ...(dense ? { colorRounds: 32 } : {}),
   };

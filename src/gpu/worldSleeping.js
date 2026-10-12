@@ -1,6 +1,7 @@
 import { uniformData, uploadUniform } from "./uniformUpload.js";
 import shader from "./worldSleeping.wgsl";
 import islandShader from "./islandSleeping.wgsl";
+import contactShader from "./sleepContact.wgsl";
 import { propertyEdits } from "./bufferEdits.js";
 export class WorldSleeping {
   constructor(world, options = {}) {
@@ -8,14 +9,19 @@ export class WorldSleeping {
     this.device = world.device;
     this.speed = options.speedThreshold ?? 0.03;
     this.delay = options.timeThreshold ?? 0.5;
+    if (
+      options.startAsleep !== undefined &&
+      typeof options.startAsleep !== "boolean"
+    )
+      throw Error("startAsleep must be a boolean");
     if (options.islands !== undefined && typeof options.islands !== "boolean")
       throw Error("Sleep islands must be a boolean");
     this.islands =
       options.islands ??
       (world.gpu.bodyCount >= 4096 &&
-        world.gpu.jointCount === 0 &&
         !world.gpu.portableContactMath &&
         !world.gpu.dispatchIsolation);
+    this.initializing = !!options.startAsleep && this.islands;
     if (
       !Number.isFinite(this.speed) ||
       this.speed <= 0 ||
@@ -37,7 +43,7 @@ export class WorldSleeping {
       usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST,
     });
     const module = d.createShaderModule({
-      code: this.islands ? islandShader : shader,
+      code: `${this.islands ? islandShader : shader}\n${contactShader}`,
     });
     this.layout = d.createBindGroupLayout({
       entries: [
@@ -48,6 +54,7 @@ export class WorldSleeping {
         "read-only-storage",
         "storage",
         "uniform",
+        "read-only-storage",
       ].map((type, binding) => ({
         binding,
         visibility: GPUShaderStage.COMPUTE,
@@ -59,7 +66,9 @@ export class WorldSleeping {
       [
         "before",
         "clear",
-        ...(this.islands ? ["connectContacts", "connectJoints"] : []),
+        ...(this.islands
+          ? ["connectContacts", "connectJoints", "activity"]
+          : []),
         "contacts",
         "joints",
         "rest",
@@ -101,6 +110,7 @@ export class WorldSleeping {
       storage.counters,
       this.globals,
       this.params,
+      storage.contacts,
     ];
     let cached = this.groups?.find((entry) =>
       entry.buffers.every((buffer, i) => buffer === buffers[i]),
@@ -129,7 +139,7 @@ export class WorldSleeping {
     u[0] = gpu.bodyCount;
     u[1] = gpu.jointCount;
     u[2] = gpu.manifoldCapacity;
-    u[3] = Number(this.wakeRequested);
+    u[3] = Number(this.wakeRequested) | (this.initializing ? 2 : 0);
     f[4] = this.speed;
     f[5] = this.delay;
     f[6] = gpu.params.dt;
@@ -149,6 +159,16 @@ export class WorldSleeping {
       encoder,
     );
   }
+  wakeBody(index) {
+    if (
+      !Number.isInteger(index) ||
+      index < 0 ||
+      index >= this.world.gpu.bodyCount
+    )
+      throw Error("Sleeping wake requires a live GPU body index");
+    // Keep this in the normal property batch; before() consumes the local flag.
+    propertyEdits(this.world.gpu).uint(this.state, index * 8 + 7, 2);
+  }
   after(encoder) {
     const gpu = this.world.gpu;
     // Collision buffers ping-pong in step(); bind the newly generated contacts.
@@ -163,10 +183,12 @@ export class WorldSleeping {
           : []),
         ["contacts", gpu.manifoldCapacity],
         ["joints", gpu.jointCount],
+        ...(this.islands ? [["activity", gpu.bodyCount]] : []),
         ["rest", gpu.bodyCount],
       ],
       encoder,
     );
+    this.initializing = false;
   }
   run(entries, encoder) {
     const e = encoder ?? this.device.createCommandEncoder(),

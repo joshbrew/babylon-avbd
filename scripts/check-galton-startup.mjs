@@ -30,8 +30,9 @@ async function ready(expression) {
 }
 try {
   await b.call("Page.addScriptToEvaluateOnNewDocument", {
-    source:
-      "globalThis.__STARTUP_TICKS__=0;setInterval(()=>__STARTUP_TICKS__++,20)",
+    source: `globalThis.__STARTUP_TICKS__=0;setInterval(()=>__STARTUP_TICKS__++,20);
+       globalThis.__LOADING_VISIBLE__=false;
+       new MutationObserver(()=>{const p=document.querySelector('.lab-loading');if(p&&!p.hidden)__LOADING_VISIBLE__=true;}).observe(document,{childList:true,subtree:true,attributes:true,attributeFilter:['hidden']});`,
   });
   const started = performance.now();
   await b.navigate(
@@ -55,6 +56,30 @@ try {
   assert.equal(worker.fullControls, "main");
   assert.equal(worker.paused, true);
   assert.equal(worker.settingsEnabled, true);
+  async function checkLoading() {
+    assert.equal(
+      await b.evaluate("__LOADING_VISIBLE__"),
+      true,
+      "Scene setup has a visible loading panel",
+    );
+    assert.equal(
+      await b.evaluate("document.querySelector('.lab-loading').hidden"),
+      true,
+      "Loading panel disappears when ready",
+    );
+    assert.equal(
+      await b.evaluate(
+        "document.querySelector('.lab-view').getAttribute('aria-busy')",
+      ),
+      "false",
+    );
+  }
+  await checkLoading();
+  assert.ok(
+    worker.startupPhases.length >= 5 &&
+      worker.startupPhases.every((p) => Number.isFinite(p.ms) && p.ms >= 0),
+    "Worker setup phases have separate timings",
+  );
   assert.ok(
     worker.ticks > 0,
     "Page timers must run while the worker initializes",
@@ -78,6 +103,7 @@ try {
   );
   await ready("globalThis.__AVBD_LAB__?.diagnostics.ready");
   assert.equal(await b.evaluate("location.pathname"), "/");
+  await checkLoading();
   await b.evaluate("__AVBD_LAB__.dispose()");
   results.push({ mode: "explicit-main", passed: true });
 
@@ -90,6 +116,7 @@ try {
   );
   await ready("globalThis.__AVBD_LAB__?.diagnostics.ready");
   assert.equal(await b.evaluate("location.pathname"), "/");
+  await checkLoading();
   assert.equal(
     await b.evaluate(
       "document.querySelector('#lab-execution select [value=worker]').disabled",

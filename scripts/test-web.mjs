@@ -33,6 +33,8 @@ const checks = [
   "check-galton-pegs",
   "check-lab-timing",
   "check-lab-sleep",
+  "check-sleep-stability",
+  "check-jointed-settling",
   "check-demo-startup",
   "check-playgrounds",
   "check-babylon-renderer",
@@ -94,6 +96,7 @@ for (const name of checks.slice(report.checks.length)) {
   const start = performance.now();
   const args = [`scripts/${name}.mjs`];
   if (name === "check-babylon-renderer") args.push("--all");
+  if (name === "check-sleep-stability") args.push("--drag");
   const child = spawn(process.execPath, args, {
     cwd: root,
     stdio: "inherit",

@@ -41,12 +41,21 @@ try {
         `(async()=>{const p=await __AVBD_LAB__.client.readSelectedBodies([20,40,100]);return [p[19],p[59],p[99]];})()`,
       );
     }
-    if (scene === "3d-100k-rook-impact")
+    if (scene === "3d-100k-rook-impact" || scene.startsWith("paper-walls-"))
       assert.deepEqual(
         await rookMasses(),
         [0, 0, 0],
-        "Supported rook bricks start asleep",
+        "Supported bricks start asleep before the first interactive frame",
       );
+    if (initial.bowling) {
+      const masses = await b.evaluate(
+        `(async()=>{const p=await __AVBD_LAB__.client.readSelectedBodies(${JSON.stringify(initial.bowlingBalls)});return [p[19],p[59]];})()`,
+      );
+      assert.ok(
+        masses.every((m) => m > 0),
+        "Bowling balls remain awake at startup",
+      );
+    }
     for (const enabled of [true, false, true]) {
       const info = await b.evaluate(
         `(async()=>{const e=document.querySelector('#lab-sleep');e.checked=${enabled};e.onchange({target:e});await __AVBD_LAB__.step(2);return __AVBD_LAB__.client.getInfo();})()`,

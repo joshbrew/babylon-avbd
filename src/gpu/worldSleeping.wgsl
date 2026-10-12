@@ -13,23 +13,25 @@ struct Params { count:u32,joints:u32,manifolds:u32,forceWake:u32,speed:f32,delay
 @group(0) @binding(5) var<storage,read_write> globals:array<atomic<u32>>;
 @group(0) @binding(6) var<uniform> params:Params;
 fn speed(i:u32)->f32 {return length(bodies[i].velocity.xyz)+length(bodies[i].angular.xyz)*bodies[i].moment.w;}
-fn wake(i:u32) {if(states[i].mass>0.){bodies[i].size.w=states[i].mass;states[i].asleep=0u;states[i].quiet=0.;}}
+fn wake(i:u32) {if(states[i].mass>0.){bodies[i].size.w=states[i].mass;states[i].asleep=0u;states[i].quiet=0.;states[i].pad2=0u;}}
 @compute @workgroup_size(64) fn before(@builtin(global_invocation_id) id:vec3u) {
   let i=id.x;if(i>=params.count){return;}
-  if(params.forceWake!=0u||atomicLoad(&globals[0])!=0u){wake(i);}
+  if(params.forceWake!=0u||atomicLoad(&globals[0])!=0u||(states[i].pad2&2u)!=0u){wake(i);}
   atomicStore(&states[i].support,0u);
 }
 @compute @workgroup_size(1) fn clear() {atomicStore(&globals[0],0u);atomicStore(&globals[1],0u);}
 fn impact(a:u32,b:u32) {
   if(states[a].asleep!=0u && states[b].asleep==0u && speed(b)>2.*params.speed){atomicStore(&globals[0],1u);}
 }
+fn signalWake(i:u32){atomicStore(&globals[0],1u);}
 @compute @workgroup_size(64) fn contacts(@builtin(global_invocation_id) id:vec3u) {
   let i=id.x;if(i>=min(counters[6],params.manifolds)){return;}
   let m=manifolds[i];if((m.ids.w&15u)==0u || (m.ids.w&0x80000000u)!=0u){return;}
-  let a=m.ids.x;let b=m.ids.y;impact(a,b);impact(b,a);
+  let a=m.ids.x;let b=m.ids.y;
+  manifoldImpact(m);
   let up=dot(m.geo.xyz,params.up.xyz);
-  if(bodies[b].size.w==0. && up>0.3){atomicStore(&states[a].support,1u);}
-  if(bodies[a].size.w==0. && up < -0.3){atomicStore(&states[b].support,1u);}
+  if(up>0.3){support(a,b);}
+  if(up < -0.3){support(b,a);}
 }
 @compute @workgroup_size(64) fn joints(@builtin(global_invocation_id) id:vec3u) {
   let i=id.x;if(i>=params.joints){return;}let j=info[i];if(j.x==0||j.y<0){return;}
@@ -39,6 +41,7 @@ fn impact(a:u32,b:u32) {
   let i=id.x;if(i>=params.count||states[i].mass<=0.){return;}
   if(states[i].eligible==0u){wake(i);return;}
   if(atomicLoad(&globals[0])!=0u || counters[3]!=0u || counters[4]!=0u){wake(i);return;}
+  states[i].pad2=select(0u,1u,speed(i)<=params.speed && (params.gravity==0. || atomicLoad(&states[i].support)!=0u));
   if(states[i].asleep==0u){
     if(speed(i)<=params.speed && (params.gravity==0. || atomicLoad(&states[i].support)!=0u)) {states[i].quiet+=params.dt;}
     else {states[i].quiet=0.;}

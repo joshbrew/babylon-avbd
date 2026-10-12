@@ -240,12 +240,14 @@ export interface AvbdGpuParameters2D extends AvbdGpuParameters {
   vbd: boolean;
   vbdStiffness: number;
 }
-/** 3D can retain conservative connected groups between explicit world edits. */
+/** 3D tracks current awake groups and retains sleeping support connections. */
 export interface AvbdSleepOptions {
   speedThreshold?: number;
   timeThreshold?: number;
-  /** 3D: automatic for large jointless desktop worlds; false selects whole-world waking. */
+  /** 3D: automatic for large desktop worlds; false selects whole-world waking. */
   islands?: boolean;
+  /** 3D island mode: build contacts once and sleep stationary, supported groups at startup. */
+  startAsleep?: boolean;
 }
 export interface AvbdGpuOptions {
   bodyBuffer?: GPUBuffer;
