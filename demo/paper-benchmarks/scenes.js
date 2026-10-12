@@ -1,3 +1,9 @@
+/**
+ * Reproducible paper-scale workloads, separate from interactive controls.
+ * Three- and four-iteration walls are distinct test configurations. Preserve
+ * body counts, timestep and iteration count when comparing published timings;
+ * bowling.js adds the optional all-lanes action after the baseline is built.
+ */
 import { brickGables } from "../../reference/three-avbd/src/avbd3d/bench-scenes.ts";
 import { Rigid } from "../../reference/three-avbd/src/avbd3d/ref/body.ts";
 import {

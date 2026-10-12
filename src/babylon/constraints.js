@@ -37,6 +37,10 @@ function anchor(body, value) {
     .applyRotationQuaternion(a.localRotation.conjugate())
     .asArray();
 }
+/**
+ * Own one native constraint slot. A null A is a world anchor; springs need two
+ * bodies. Anchors and axes use mesh-local coordinates before frame conversion.
+ */
 export class AvbdPhysicsConstraint {
   constructor(world, a, b, options = {}) {
     world.assertAlive();
@@ -140,6 +144,10 @@ export class AvbdPhysicsConstraint {
     for (const body of [this.bodyA, this.bodyB])
       if (body) manager.wakeBody(body.gpuIndex);
   }
+  /**
+   * Capture weld orientation or unspecified spring rest length from live GPU poses.
+   * Flush earlier body commands first so the captured frame matches the requested pose.
+   */
   attach(slot, capture = true) {
     const gpu = this.world.gpu;
     if (slot !== undefined) this.slot = slot;
@@ -202,6 +210,7 @@ export class AvbdPhysicsConstraint {
     this.world.sleepManager?.wakeBody(this.bodyB.gpuIndex);
     return this;
   }
+  /** Download one constraint record for inspection; keep this out of per-body frame loops. */
   async readState() {
     this.assertAlive();
     this.world.initialize();

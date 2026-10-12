@@ -1,3 +1,9 @@
+/**
+ * Standalone siege page: DOM controls and trajectory overlay belong here;
+ * scene.js builds the world and controls2D.js owns its physics interactions.
+ * Keep pointer conversion in the controls module so worker and page input
+ * follow the same aiming and launch rules.
+ */
 import { createSolverPipeline } from "../../src/native/pipeline.js";
 import { CpuRenderer2D } from "../shared/rendering/cpuRenderer2D.js";
 import { buildSlingshotScene2D } from "./scene.js";

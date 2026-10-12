@@ -5,6 +5,7 @@ import type {
 } from "./pipeline.js";
 export type AvbdTuple3 = readonly [number, number, number];
 export type AvbdTuple2 = readonly [number, number];
+/** Queries return the nearest hit per ray/cast. Ignore lists contain live body slots. */
 export interface AvbdQueryOptions {
   maxDistance?: number;
   ignore?: number[];
@@ -94,21 +95,31 @@ export interface AvbdNativeState2D {
   moment: number;
   sleeping: boolean;
 }
+/**
+ * Lightweight live-body commands. Setters and impulses queue until step(),
+ * flushEdits() or a state query; creating a handle does not download a pose.
+ */
 export interface AvbdNativeBody<V, A, R, S> {
   /** Live GPU slot, including any initial spatial sorting. */
   readonly gpuIndex: number;
   setLinearVelocity(value: V): this;
   setAngularVelocity(value: A): this;
+  /** Impulse in world coordinates; an optional world point also changes angular velocity. */
   applyImpulse(value: V, worldPoint?: V): this;
   /** Force for one simulation step. Call each step for continuous force. */
   applyForce(value: V, worldPoint?: V): this;
   applyAngularImpulse(value: A): this;
+  /** Torque for one fixed step; call again each step for a sustained torque. */
   applyTorque(value: A): this;
   /** Centre-of-mass position. Preserves velocity and omitted rotation. */
   teleport(position: V, rotation?: R): this;
+  /** Detect overlaps without contact response; enable watchContacts() to read events. */
   setTrigger(enabled: boolean): this;
+  /** Bounce coefficient in [0, 1]; zero still resolves penetration and friction. */
   setRestitution(value: number): this;
+  /** Unsigned bitmasks. Both bodies must accept the other's group to interact. */
   setCollisionGroups(group: number, collidesWith?: number): this;
+  /** Per-body eligibility; enabling also enables the world sleep policy when needed. */
   setSleepEnabled(enabled: boolean): this;
   wakeUp(): this;
   /** Explicit asynchronous download of only this body's live state. */
@@ -126,6 +137,10 @@ export type AvbdNativeBody2D = AvbdNativeBody<
   number,
   AvbdNativeState2D
 >;
+/**
+ * One bulk edit record. Rotation requires position; worldPoint applies to force
+ * and impulse. Queue the iterable once instead of issuing many individual calls.
+ */
 export interface AvbdNativeBodyEdit<B, V, A, R> {
   body: B;
   position?: V;
@@ -145,12 +160,15 @@ export interface AvbdNativeBodyEdit<B, V, A, R> {
   allowSleep?: boolean;
 }
 export interface AvbdAdvanceOptions {
+  /** Maximum fixed steps per advance() call; default 6. Bounds overload catch-up. */
   maxSubSteps?: number;
+  /** Maximum elapsed seconds accepted per call; default 0.05. */
   maxFrameTime?: number;
 }
 export interface AvbdNativeContactOptions {
   maxPairs?: number;
   maxEvents?: number;
+  /** Watch only these live slots; omitted means all current bodies. */
   indices?: number[];
 }
 export interface AvbdNativeContactResult {
@@ -179,9 +197,12 @@ export interface AvbdNativeSceneBinding {
   };
 }
 export interface AvbdSceneOptions {
+  /** Signed acceleration along up; negative pulls downward. */
   gravity?: number;
+  /** Fixed-step duration in seconds. Frame/render rate is separate. */
   timeStep?: number;
   iterations?: number;
+  /** 3D unit up vector; defaults to [0, 1, 0]. */
   up?: AvbdTuple3;
 }
 export interface AvbdNativeBodyOptions {
@@ -242,7 +263,11 @@ export interface AvbdGpuParameters2D extends AvbdGpuParameters {
 }
 /** 3D tracks current awake groups and retains sleeping support connections. */
 export interface AvbdSleepOptions {
-  /** Combined linear and radius-scaled angular motion, world units/second. Default 0.03. */
+  /**
+   * Combined linear and radius-scaled angular motion, world units/second. Default 0.03.
+   *
+   * Dense 3D contact groups need every awake member quiet and supported before resting.
+   */
   speedThreshold?: number;
   /** Seconds continuously below the speed threshold while supported. Default 0.5. */
   timeThreshold?: number;
@@ -252,10 +277,15 @@ export interface AvbdSleepOptions {
   startAsleep?: boolean;
 }
 export interface AvbdGpuOptions {
+  /**
+   * Optional caller-owned storage. Share its GPUDevice with the renderer and
+   * keep it alive until the world and renderer have finished using it.
+   */
   bodyBuffer?: GPUBuffer;
   bodyCapacity?: number;
   colorRounds?: number;
   spatialSort?: boolean;
+  /** auto selects a spatial search from scene characteristics; grid/hploc force a choice. */
   broadphase?: "auto" | "grid" | "hploc";
   solverMode?: "auto" | "standard" | "optimized" | "points";
   /** 3D: automatically fuse closed jointless worlds of at most 32 bodies. */
@@ -278,6 +308,7 @@ export interface AvbdGpuSolver {
   readonly bodyCount: number;
   readonly jointCount: number;
   readonly params: AvbdGpuParameters;
+  /** Submit one fixed step without waiting for GPU completion or downloading poses. */
   step(): void;
   /** Elapsed seconds; fixed timestep with bounded catch-up. Returns steps submitted, never waits for GPU or downloads poses. */
   advance(elapsed: number, options?: AvbdAdvanceOptions): number;
@@ -303,6 +334,7 @@ export interface AvbdGpuSolver {
     indices: ArrayLike<number>,
     options?: { posesOnly?: boolean },
   ): Promise<Float32Array>;
+  /** Explicit full-world download in GPU slot order; prefer selected reads for gameplay. */
   readBodies(): Promise<Float32Array>;
   readJoints(): Promise<Float32Array>;
   readCounters(): Promise<AvbdGpuCounters>;
@@ -438,6 +470,7 @@ export interface AvbdGpuSolver2D extends AvbdGpuSolver {
     },
   ): this;
   detachFromScene(): this;
+  /** Full XY extents; density: 0 makes a static body. */
   addBox(size: AvbdTuple2, options?: AvbdNativeBodyOptions2D): number;
   addCircle(radius: number, options?: AvbdNativeBodyOptions2D): number;
   /** Local X axis; length includes both round caps. */
@@ -572,6 +605,10 @@ export interface AvbdNativeConstraint {
   dispose(): void;
   destroy(): void;
 }
+/**
+ * Build renderer-independent 3D topology before createSolver(). Body records are
+ * initial state; use live world handles for edits after upload. Defaults to Y up.
+ */
 export class AvbdScene3D {
   addHeightfield(options: AvbdHeightfieldOptions): AvbdNativeTerrain;
   addStaticMesh(options: AvbdStaticMeshOptions): AvbdNativeTerrain;
@@ -579,6 +616,7 @@ export class AvbdScene3D {
     cooked: AvbdCookedTerrain,
     options?: AvbdTerrainMaterial,
   ): AvbdNativeTerrain;
+  /** Torque-limited angular drive; axes are body-local, or world-space for null A. */
   addMotor(
     a: AvbdRigid | null,
     b: AvbdRigid,
@@ -602,6 +640,7 @@ export class AvbdScene3D {
   constructor(options?: AvbdSceneOptions);
   readonly bodies: AvbdRigid[];
   readonly constraints: AvbdNativeConstraint[];
+  /** Full XYZ extents; mass: 0 or density: 0 makes a static body. */
   addBox(size: AvbdTuple3, options?: AvbdNativeBodyOptions): AvbdRigid;
   addSphere(radius: number, options?: AvbdNativeBodyOptions): AvbdRigid;
   /** Exact rounded capsule along local Y; height includes both end caps. */
@@ -616,6 +655,7 @@ export class AvbdScene3D {
     points: ArrayLike<number>,
     options?: AvbdNativeBodyOptions,
   ): AvbdRigid;
+  /** Spherical collision sample with translation only, suitable for spring systems. */
   addPoint(
     position: AvbdTuple3,
     options?: { mass?: number; radius?: number; friction?: number },
@@ -654,6 +694,7 @@ export class AvbdScene3D {
     connections: AvbdNativeConstraint[];
     triangleConnections: Uint32Array;
   };
+  /** Rigid links laid out down Y from origin, regardless of the configured up vector. */
   addRope(options?: {
     segments?: number;
     length?: number;
@@ -661,11 +702,16 @@ export class AvbdScene3D {
     width?: number;
     endMass?: number;
   }): { anchor: AvbdRigid; links: AvbdRigid[] };
+  /** Y-up articulated rigid bodies; rotate/reposition parts for a different layout. */
   addRagdoll(options?: { origin?: AvbdTuple3; mass?: number }): {
     torso: AvbdRigid;
     head: AvbdRigid;
     bodies: AvbdRigid[];
   };
+  /**
+   * Body-local anchors; null A uses a world-space anchor. Default linear rows are
+   * hard and angular rows free; angularStiffness: Infinity makes a weld.
+   */
   addJoint(
     a: AvbdRigid | null,
     b: AvbdRigid,
@@ -678,6 +724,10 @@ export class AvbdScene3D {
       breakOnPull?: boolean;
     },
   ): AvbdNativeConstraint;
+  /**
+   * Two local anchors; rest: -1 captures initial separation. Finite tensile
+   * breakForce or breakStrain enables breaking.
+   */
   addSpring(
     a: AvbdRigid,
     b: AvbdRigid,
@@ -690,6 +740,10 @@ export class AvbdScene3D {
       breakForce?: number;
     },
   ): AvbdNativeConstraint;
+  /**
+   * Consume this builder once. Use world.body(handle) to resolve spatially sorted
+   * GPU slots; initial body records are not automatically updated from GPU poses.
+   */
   createSolver(device: GPUDevice, options?: AvbdGpuOptions): AvbdGpuSolver3D;
   createSolver(
     pipeline: AvbdSolverPipeline,
@@ -728,6 +782,10 @@ export type AvbdNativePlaneOptions2D = Omit<
   AvbdNativeBodyOptions2D,
   "position" | "angle" | "density"
 > & { density?: 0 };
+/**
+ * Build XY topology before createSolver(). Returns numeric body indices;
+ * world.body(index) provides the object-oriented command facade after upload.
+ */
 export class AvbdScene2D {
   constructor(
     options?: Omit<AvbdSceneOptions, "up"> & {
@@ -765,6 +823,10 @@ export class AvbdScene2D {
     size: readonly [number, number],
     options?: AvbdNativeBodyOptions2D,
   ): number;
+  /**
+   * Body-local anchors; A = -1 anchors to the world. stiffness is [X, Y, rotation];
+   * Infinity locks a row and zero frees it. Lock all rows for a 2D weld.
+   */
   addJoint(
     a: number,
     b: number,
@@ -772,6 +834,7 @@ export class AvbdScene2D {
     anchorB?: readonly [number, number],
     options?: { stiffness?: AvbdTuple3; breakForce?: number },
   ): AvbdNativeConstraint2D;
+  /** Connect two body-local anchors; rest is the unstretched length in world units. */
   addSpring(
     a: number,
     b: number,
@@ -779,6 +842,7 @@ export class AvbdScene2D {
     anchorB?: readonly [number, number],
     options?: { stiffness?: number; rest?: number },
   ): AvbdNativeConstraint2D;
+  /** Relative angular drive in radians/second; maxTorque bounds its effort. */
   addMotor(
     a: number,
     b: number,

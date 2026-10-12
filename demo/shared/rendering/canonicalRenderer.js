@@ -19,6 +19,7 @@ import {
   vec3,
 } from "../../../reference/three-avbd/src/avbd3d/ref/math.ts";
 
+/** Pack CPU/reference poses for rendering; GPU worlds draw their existing pose buffer. */
 export function packBodies(solver) {
   const f = new Float32Array(Math.max(1, solver.bodies.length) * 40);
   solver.bodies.forEach((b, i) => {
@@ -37,6 +38,11 @@ export function packBodies(solver) {
   return f;
 }
 
+/**
+ * Direct WebGPU drawing and picking in the scene's Z-up coordinate system.
+ * Shared geometry is instanced by GPU slot; topology/style buffers are setup
+ * data, while the solver owns the live body buffer. Debug readbacks are optional.
+ */
 export class CanonicalRenderer {
   constructor(
     device,
@@ -357,6 +363,7 @@ export class CanonicalRenderer {
     if (track) this.resources.push(b);
     return b;
   }
+  /** Update render metadata for a rewritten physics slot; refresh batches after shape changes. */
   replaceShape(index, body, refresh = true) {
     if (refresh) this.visuals.refresh();
     const id = this.gpu ? this.gpu.gpuIndex(index) : index,
@@ -580,6 +587,10 @@ export class CanonicalRenderer {
       d = b.subtract(a).normalize();
     return { origin: [a.x, a.z, a.y], direction: [d.x, d.z, d.y] };
   }
+  /**
+   * Fallback picking downloads a pose snapshot on the pointer action, then tests
+   * local box bounds. Keep this explicit readback out of the drawing loop.
+   */
   async pick(e) {
     const ray = this.ray(e),
       f = this.gpu ? await this.gpu.readBodies() : packBodies(this.solver);

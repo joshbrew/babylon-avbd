@@ -5,6 +5,7 @@ import {
   vec3,
 } from "../../../reference/three-avbd/src/avbd3d/ref/math.ts";
 
+/** Shared Z-up scene helpers. Sizes are full extents; mass: 0 makes scenery static. */
 export function createPlayground(def) {
   const scene = new AvbdScene3D({
     up: [0, 0, 1],
@@ -17,6 +18,8 @@ export function createPlayground(def) {
     paint(scene.addBox(size, { position, friction: 0.65, ...options }), color);
   const ball = (radius, position, color, options = {}) =>
     paint(scene.addSphere(radius, { position, ...options }), color);
+  // Weld helpers accept a world-space join point, then convert it to each
+  // body's local frame. Native joint anchors themselves are body-local.
   const local = (b, p) => {
     if (!b) return p;
     const out = vec3();
@@ -43,6 +46,7 @@ export function createPlayground(def) {
 
   return { scene, paint, box, ball, weld, play };
 }
+/** Return initial topology and runtime metadata; this does not allocate a GPU world. */
 export function finishPlayground(def, context, camera, gpuOptions = {}) {
   return {
     def,

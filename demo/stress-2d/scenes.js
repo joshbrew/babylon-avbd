@@ -1,3 +1,8 @@
+/**
+ * Large 2D pile workloads. Construction happens once on the CPU; the selected
+ * pipeline owns subsequent collisions and solving. Keep packing, timestep
+ * and iterations unchanged when comparing scene sizes or execution backends.
+ */
 import { Solver } from "../../reference/three-avbd/src/avbd2d/ref/solver.ts";
 import { Rigid } from "../../reference/three-avbd/src/avbd2d/ref/body.ts";
 import { SoaSolver2D } from "../../reference/three-avbd/src/avbd2d/soa/solver.ts";

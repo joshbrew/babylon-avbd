@@ -12,6 +12,7 @@ const normalCDF = (x) => {
       Math.exp(-z * z);
   return (1 + Math.sign(x) * erf) / 2;
 };
+/** Summarize the observed bins; the fitted curve is a comparison, not a target distribution. */
 export function galtonStatistics(bins) {
   const count = bins.reduce((a, b) => a + b, 0);
   if (!count)

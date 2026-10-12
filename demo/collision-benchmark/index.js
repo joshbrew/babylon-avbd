@@ -1,3 +1,9 @@
+/**
+ * Particle-versus-static-surface benchmark and UI. Particle-particle pairs
+ * are excluded, so this measures masked surface collisions rather than a
+ * dense rigid-body pile. CollisionSprites draws GPU particle state directly;
+ * keep rendering cost separate when finding the particle count for 60 FPS.
+ */
 import * as BABYLON from "../shared/rendering/babylon.js";
 import { mainPageLink } from "../shared/demoNavigation.js";
 import {

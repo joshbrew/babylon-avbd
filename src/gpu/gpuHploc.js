@@ -200,6 +200,10 @@ fn initializeLinks(@builtin(global_invocation_id) gid:vec3u){if(gid.x<build.esca
     this.uniforms.push(b);
     return b;
   }
+  /**
+   * Rebuild static tree metadata when the live body count changes; buffers are
+   * reserved from bodyCapacity so normal refits reuse their allocations.
+   */
   configure(count) {
     if (count === this.count) return;
     if (count > this.capacity) throw Error("H-PLOC body capacity exceeded");
@@ -288,6 +292,10 @@ fn initializeLinks(@builtin(global_invocation_id) gid:vec3u){if(gid.x<build.esca
     });
     this.broadBuffers = null;
   }
+  /**
+   * Encode Morton sorting/tree construction or a conservative bounds refit.
+   * Refitting every current bound preserves collision coverage between rebuilds.
+   */
   encodeBuild(pass) {
     const run = (entry, group, x) => {
       pass.setPipeline(this.pipes[entry]);
@@ -330,6 +338,10 @@ fn initializeLinks(@builtin(global_invocation_id) gid:vec3u){if(gid.x<build.esca
     }
     this.stepsSinceBuild++;
   }
+  /**
+   * Traverse the prepared tree into the solver's existing pair buffer. Pair
+   * filtering and capacity counters stay shared with the grid collision path.
+   */
   encodePairs(pass, solver, indirectArgs) {
     this.configure(solver.bodyCount);
     const buffers = [

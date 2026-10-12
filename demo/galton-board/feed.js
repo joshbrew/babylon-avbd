@@ -1,6 +1,11 @@
 import shader from "./feed.wgsl";
 
-/** Hold the visible hopper until opened; gravity handles the entire discharge. */
+/**
+ * Hold the visible hopper until opened; gravity handles the entire discharge.
+ *
+ * Holds the initial packing until release, then counts physical bin occupancy.
+ * GPU reductions download only the histogram; there is no scripted bin choice.
+ */
 export class GaltonFeed {
   constructor(device, built, gpu, index) {
     this.device = device;
@@ -165,6 +170,7 @@ export class GaltonFeed {
   get finished() {
     return this.activated;
   }
+  /** Encode before physics in its existing command buffer; do not submit here. */
   encode(encoder) {
     if (this.finished) return;
     this.f[0] = this.feed.outletHeight;

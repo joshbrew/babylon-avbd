@@ -1,3 +1,9 @@
+/**
+ * Shared command facade for renderer-independent 2D/3D worlds.
+ * Body handles are allocated only on request. editBodies() accepts handles or
+ * live slots and stages a whole batch; fixed-step integration and optional
+ * Babylon lifecycle binding are independent of how the world is rendered.
+ */
 import { BodyReadback } from "../gpu/bodyReadback.js";
 import { CommandStaging } from "../gpu/bodyCommands2D.js";
 import { VelocityBatch, MotionBatch } from "./velocityBatch.js";
@@ -25,6 +31,8 @@ export function components(value, count, name) {
   return a;
 }
 
+// Command kind order is shared with the body-command shaders. Keep holes in
+// this table aligned with the teleport opcode rather than renumbering fields.
 const editKeys = [
   "linearVelocity",
   "angularVelocity",
@@ -48,6 +56,10 @@ function editBodies(edits, dimension) {
     this.editInProgress = active;
   }
 }
+/**
+ * Validate into temporary staging before enqueueing. Repeated body records retain
+ * their order; within each record teleport precedes velocity replacements and forces.
+ */
 function stageEdits(edits, dimension, commands) {
   commands.count = 0;
   let properties;
@@ -236,6 +248,10 @@ function stepSettings(solver, { maxSubSteps = 6, maxFrameTime = 0.05 } = {}) {
     throw Error("Simulation timestep must be positive and finite");
   return { dt, maxSubSteps, maxFrameTime };
 }
+/**
+ * Advance elapsed seconds with a bounded fixed-step accumulator; returns submitted
+ * steps, not completed GPU work. afterStep is a synchronous encoding callback.
+ */
 function advanceSteps(solver, elapsed, options, afterStep) {
   if (solver.destroyed) throw Error("The solver has been destroyed");
   if (!Number.isFinite(elapsed) || elapsed < 0)
@@ -257,6 +273,10 @@ function advanceSteps(solver, elapsed, options, afterStep) {
 export function advance(elapsed, options) {
   return advanceSteps(this, elapsed, options);
 }
+/**
+ * Bind stepping and destruction to Babylon observables; do not also step manually
+ * in a render loop. This borrows the scene and does not change its renderer.
+ */
 export function attachToScene(scene, { afterStep, ...options } = {}) {
   if (this.destroyed) throw Error("The solver has been destroyed");
   if (
@@ -285,6 +305,7 @@ export function attachToScene(scene, { afterStep, ...options } = {}) {
   this.sceneBinding = { scene, before, dispose };
   return this;
 }
+/** Remove lifecycle observers without destroying the world; reset its elapsed-time debt. */
 export function detachFromScene() {
   const b = this.sceneBinding;
   if (b) {
@@ -296,6 +317,10 @@ export function detachFromScene() {
   return this;
 }
 
+/**
+ * Install common high-level commands on GPU or CPU execution. Lazy upload/readback
+ * helpers are owned by the world and released by its wrapped destroy().
+ */
 export function installNativeRuntime(gpu, scene, dimension, execution = {}) {
   gpu.advance = advance;
   let handles, indices;

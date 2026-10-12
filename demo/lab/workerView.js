@@ -6,7 +6,12 @@ import { galtonChart } from "../galton-board/statistics.js";
 import { readStepRate } from "../shared/runtime/stepRate.js";
 import { sceneSleepSelection } from "../shared/runtime/sceneSleepSelection.js";
 
-/** Keep the laboratory controls on the page while physics and drawing run offscreen. */
+/**
+ * Keep the laboratory controls on the page while physics and drawing run offscreen.
+ *
+ * Page-side worker view: keep UI callbacks here and send simulation commands
+ * through createSimulationClient instead of accessing worker-owned GPU objects.
+ */
 export async function startWorkerLab(root, query) {
   const canonicalScenes = await loadSceneCatalogue();
   root.innerHTML = labMarkup;

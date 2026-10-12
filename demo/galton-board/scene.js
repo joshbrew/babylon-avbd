@@ -1,3 +1,9 @@
+/**
+ * Z-up physical Galton board. Depth runs along Y; width and height are X/Z.
+ * This file builds the hopper, gate, pegs, bins and initial marble packing.
+ * feed.js holds/releases the marbles on the GPU, pegs.js handles peg edits,
+ * and statistics.js interprets bin counts without downloading all poses.
+ */
 import {
   createPlayground,
   finishPlayground,
@@ -117,6 +123,8 @@ export function buildScene(def = scene) {
       mass: 0,
     });
   const palette = [0xec7961, 0xe6c25b, 0x5da997, 0x65a9cc, 0xa18aca, 0xf3d5ac];
+  // Start with collisions disabled while feed.js holds this regular packing.
+  // Release enables the physical marbles together; the hopper meters their flow.
   for (let ordinal = 0; ordinal < count; ordinal++) {
     const lane = ordinal % lanes,
       column = Math.floor(ordinal / lanes) % hopperColumns,

@@ -14,6 +14,8 @@ class BodyCommands3D extends BodyCommands2D {
   constructor(solver) {
     super(solver, shader, 3);
   }
+  // Teleports invalidate warm-start contacts at their old locations. Velocity-only
+  // edits keep valid manifolds and avoid the extra invalidation dispatch.
   encodeAfterEdits(e, count) {
     if (!this.hasTeleports) return;
     const s = this.solver,
@@ -169,6 +171,7 @@ export class NativeGpuSolver3D extends AppGpuSolver3D {
     }
     return this.queueBodyCommand(index, 4, p, q, q !== undefined);
   }
+  /** Submit queued properties and body commands without advancing time or awaiting completion. */
   flushEdits() {
     if (this.destroyed) throw Error("The 3D solver has been destroyed");
     this.flushPropertyEdits();
@@ -179,6 +182,10 @@ export class NativeGpuSolver3D extends AppGpuSolver3D {
     this.flushEdits();
     return super.readBodies();
   }
+  /**
+   * Gather requested GPU slots only. Full records are 40 floats; posesOnly uses
+   * 8 floats per body. Awaiting the result synchronizes that copy, not the render loop.
+   */
   readSelectedBodies(indices, { posesOnly = false } = {}) {
     const selected =
       indices instanceof Uint32Array ? indices : Array.from(indices);
@@ -208,6 +215,10 @@ export class NativeGpuSolver3D extends AppGpuSolver3D {
     this.flushEdits();
     return super.sphereCastAll(...args);
   }
+  /**
+   * Allocate bounded contact-event storage on demand; indices restrict watched bodies.
+   * Drain events explicitly and check dropped/full before treating a log as complete.
+   */
   watchContacts({ maxPairs = 8192, maxEvents = 4096, indices } = {}) {
     if (this.destroyed) throw Error("The 3D solver has been destroyed");
     if (indices !== undefined) {
@@ -272,6 +283,7 @@ export class NativeGpuSolver3D extends AppGpuSolver3D {
     super.enableSleeping(ref, refOrOptions.bodies ? options : refOrOptions);
     return this;
   }
+  /** Restore dynamic masses before releasing sleep state; preserves current poses. */
   disableSleeping() {
     this.flushEdits();
     if (this.sleeping) {

@@ -1,3 +1,9 @@
+/**
+ * Z-up neighborhood assembly for the tornado playground. Buildings use
+ * breakable welds; shared/playground/physics.js applies the moving wind field.
+ * Visual funnel grains are separate from colliding house debris. The play
+ * metadata returned here selects which bodies receive each GPU force.
+ */
 import {
   createPlayground,
   finishPlayground,

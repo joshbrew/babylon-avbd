@@ -1,3 +1,9 @@
+/**
+ * Small API examples for limits, motors, triggers and collision masks.
+ * The common layout maps 2D XY positions to 3D XZ positions (Z up). Group
+ * constants are individual bits; both bodies must accept the other group.
+ * Feature metadata connects runtime controls and contact-driven highlighting.
+ */
 import { AvbdScene2D, AvbdScene3D } from "../../src/native/scenes.js";
 import { SoaSim } from "../../reference/three-avbd/src/avbd2d/sim.ts";
 import { setVisual } from "../../reference/three-avbd/src/avbd3d/visuals.ts";

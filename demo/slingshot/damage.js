@@ -70,6 +70,7 @@ export class SiegeDamage {
     gpu.externalAfterStep = this.after;
     renderer.dynamicColors = true;
   }
+  /** Begin damage accounting when play starts, keeping setup/settling out of the score. */
   arm() {
     this.armed = true;
   }

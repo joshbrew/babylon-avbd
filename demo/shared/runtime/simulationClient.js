@@ -4,7 +4,13 @@ import {
   writeSharedInput,
 } from "../../../src/utils/sharedInput.js";
 
-/** Shared lifecycle and input bridge for page/worker comparison. */
+/**
+ * Shared lifecycle and input bridge for page/worker comparison.
+ *
+ * Own the page-side input bridge and one runtime. Transfer the canvas once for a
+ * worker session; destroy this client before replacing its view. Shared memory
+ * is an optional input mailbox, while discrete controls remain ordered messages.
+ */
 export async function createSimulationClient(
   canvas,
   config,

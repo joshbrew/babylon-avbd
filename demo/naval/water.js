@@ -240,6 +240,10 @@ export class NavalWater {
     this.pendingFire.fill(false);
     this.device.queue.writeBuffer(this.settings, 0, this.settingsData);
   }
+  /**
+   * Advance the wave field and apply per-piece water forces before AVBD.
+   * All kernels share the solver submission; CPU status readback stays separate.
+   */
   encode(encoder) {
     this.tick++;
     if (this.auto) {
@@ -257,6 +261,8 @@ export class NavalWater {
     run("cannons", 1);
     run("damage", Math.ceil(this.scene.pieces.length / 64));
     run("support", Math.ceil(this.scene.pieces.length / 64));
+    // Wave state is ping-ponged: flip parity after writing the next field,
+    // then sample that new field for helm and buoyancy forces.
     run("waves", NAVAL_GRID / 8, NAVAL_GRID / 8);
     this.parity = 1 - this.parity;
     run("helm", 1);

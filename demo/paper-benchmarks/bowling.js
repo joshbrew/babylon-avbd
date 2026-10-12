@@ -16,6 +16,7 @@ export class PaperBowling {
       angularVelocity: Array.from(b.velocityAng),
     };
   }
+  /** Append missing lane balls once, then reset and launch the existing slots in a batch. */
   launch() {
     const { built, gpu, renderer } = this;
     if (this.balls.length === 2) {

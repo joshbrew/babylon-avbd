@@ -1,3 +1,9 @@
+/**
+ * Collision preparation for the ragdolls-on-rigid-net example.
+ * Run before GPU upload: changing plate dimensions also changes their inertia.
+ * This surface is made of jointed rigid plates; the tearable-cloth example
+ * uses a separate point-and-spring model.
+ */
 import { clothsOf } from "../../reference/three-avbd/src/avbd3d/visuals.ts";
 import { IgnoreCollision } from "../../reference/three-avbd/src/avbd3d/ref/forces.ts";
 

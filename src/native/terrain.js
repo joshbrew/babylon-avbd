@@ -1,3 +1,9 @@
+/**
+ * CPU preprocessing for static terrain shared by native and Babylon worlds.
+ * Each source triangle becomes a solid convex piece with bounded vertex count;
+ * the original mesh can remain continuous for rendering. Cooking is independent
+ * of GPUDevice and can run in a worker before registering bodies in a world.
+ */
 import {
   hullFromTriangles,
   hull,

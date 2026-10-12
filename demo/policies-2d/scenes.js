@@ -1,3 +1,8 @@
+/**
+ * Focused XY examples for 2D sleeping and limited hinges. Scene construction
+ * uses the native package API; runtime policy and interactive controls are
+ * applied by the shared session after the world is created.
+ */
 import { AvbdScene2D } from "../../src/native/scenes.js";
 import { SoaSim } from "../../reference/three-avbd/src/avbd2d/sim.ts";
 export const policyScenes2D = [

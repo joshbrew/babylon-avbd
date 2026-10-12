@@ -66,6 +66,11 @@ export class BodyReadback {
     this.jobs.clear();
     this.idle.length = 0;
   }
+  /**
+   * Gather slots in requested order before copying to a mapped staging buffer.
+   * Concurrent calls acquire separate jobs so mapping cannot race a later gather.
+   * Returned Float32Array owns its data; cached GPU staging is reused after unmap.
+   */
   async read(buffer, indices, posesOnly = false, bodyVec4s = 10) {
     if (!indices.length) return new Float32Array();
     const stride = posesOnly ? (bodyVec4s === 6 ? 1 : 2) : bodyVec4s,

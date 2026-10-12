@@ -1,3 +1,9 @@
+/**
+ * Castle geometry and breakable mortar, built in Z-up world coordinates.
+ * The builder creates bodies and constraints once; cannon controls replace the
+ * reserved projectile through the shared simulation runtime. Adjust masonry
+ * dimensions and bond strengths here without changing the renderer or worker.
+ */
 import { Solver } from "../../reference/three-avbd/src/avbd3d/ref/solver.ts";
 import { Rigid } from "../../reference/three-avbd/src/avbd3d/ref/body.ts";
 import { Joint } from "../../reference/three-avbd/src/avbd3d/ref/forces.ts";

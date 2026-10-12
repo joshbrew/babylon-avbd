@@ -1,3 +1,8 @@
+/**
+ * Naval page UI and launch options. Physics, water and rendering are owned by
+ * the shared simulation session so the same scene runs on the main thread
+ * or in a dedicated worker; DOM controls send commands through that boundary.
+ */
 import "./style.css";
 
 import { createSimulationClient } from "../shared/runtime/simulationClient.js";

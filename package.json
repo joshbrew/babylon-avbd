@@ -1,6 +1,6 @@
 {
   "name": "avbd-babylon",
-  "version": "0.4.3",
+  "version": "0.4.4",
   "description": "GPU AVBD rigid-body physics with a Babylon.js aggregate API",
   "main": "./dist/avbd.js",
   "types": "./dist/avbd.d.ts",

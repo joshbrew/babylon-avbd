@@ -1,3 +1,9 @@
+/**
+ * Z-up domino layout and initial body metadata. The start action applies an
+ * impulse to the first tile in shared/playground/physics.js; subsequent motion
+ * comes from rigid-body contacts. Spacing, dimensions and friction here
+ * determine whether the chain reaction can propagate.
+ */
 import {
   createPlayground,
   finishPlayground,

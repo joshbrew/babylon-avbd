@@ -1,3 +1,10 @@
+/**
+ * Renderer-independent scene construction. Build topology before createSolver();
+ * after upload, change live state through the returned world's command API.
+ * Native 3D defaults to Y up (demos may select Z up); 2D uses XY coordinates.
+ * Lengths and mass use caller-selected consistent units, time uses seconds,
+ * angles use radians, and quaternions are [x, y, z, w].
+ */
 import { Solver } from "../../reference/three-avbd/src/avbd3d/ref/solver.ts";
 import { Rigid } from "../../reference/three-avbd/src/avbd3d/ref/body.ts";
 import {
@@ -120,6 +127,7 @@ export class AvbdScene3D {
         "Build this scene before createSolver; use the solver's GPU edit methods afterwards",
       );
   }
+  /** Add a centered box with full XYZ extents. Zero mass or density makes it static. */
   addBox(size, options = {}) {
     this.assertEditable();
     validateBodyOptions3D(options);
@@ -148,6 +156,7 @@ export class AvbdScene3D {
       options,
     );
   }
+  /** Cook one convex collider from local XYZ triples; use static terrain for concave meshes. */
   addHull(points, options = {}) {
     this.assertEditable();
     validateBodyOptions3D(options);
@@ -168,6 +177,7 @@ export class AvbdScene3D {
       options,
     );
   }
+  /** Add an analytic capsule along local Y; height is the full tip-to-tip extent. */
   addCapsule(radius, height, options = {}) {
     this.assertEditable();
     validateBodyOptions3D(options);
@@ -261,12 +271,18 @@ export class AvbdScene3D {
     this.bodySet.add(b);
     return b;
   }
+  /** Add a spherical collision sample with translation only, for point/spring systems. */
   addPoint(position, { mass = 0.02, radius = 0.05, friction = 0.5 } = {}) {
     const b = this.addSphere(radius, { position, mass, friction });
     b.moment.fill(0);
     this.points = true;
     return b;
   }
+  /**
+   * Build a point-sampled spring sheet with stretch, shear and optional bending links.
+   * Pinning and material profiles are evaluated at construction. Collision samples
+   * are spheres at vertices; rendered triangle interiors are not collision surfaces.
+   */
   addFabric({
     columns = 16,
     rows = 16,
@@ -407,6 +423,10 @@ export class AvbdScene3D {
       triangleConnections: Uint32Array.from(triangleConnections),
     };
   }
+  /**
+   * Build linked rigid segments extending down local/world Y from the origin.
+   * This helper lays out Y-up geometry independently of the configured gravity up vector.
+   */
   addRope({
     segments = 12,
     length = 12,
@@ -446,6 +466,7 @@ export class AvbdScene3D {
     }
     return { anchor, links };
   }
+  /** Build a Y-up articulated rigid-body character; returns its named parts and body list. */
   addRagdoll({ origin = [0, 2, 0], mass = 10 } = {}) {
     const p = vector(origin, 3, "origin");
     positive(mass, "mass");
@@ -479,6 +500,11 @@ export class AvbdScene3D {
     }
     return { torso, head, bodies };
   }
+  /**
+   * Anchors are body-local; a null first body makes anchorA a world-space point.
+   * Linear rows default to hard constraints and angular rows to free rotation.
+   * Infinity locks a row, zero disables it, and finite stiffness makes it compliant.
+   */
   addJoint(
     a,
     b,
@@ -508,6 +534,10 @@ export class AvbdScene3D {
       ),
     );
   }
+  /**
+   * Connect two body-local anchors. rest: -1 uses their initial separation.
+   * Finite breakStrain/breakForce allows tensile failure; dispose releases the constraint.
+   */
   addSpring(
     a,
     b,
@@ -550,6 +580,10 @@ export class AvbdScene3D {
     setInitialAngularConstraint(force, material);
     return this.handle(force);
   }
+  /**
+   * Two separated ball joints define the axis; optional rows limit or drive twist.
+   * Anchors/axes are body-local, except the first endpoint when a is null.
+   */
   addHinge(a, b, options = {}) {
     this.assertEditable();
     this.checkBodies(a, b);
@@ -610,6 +644,11 @@ export class AvbdScene3D {
     this.handles.set(force, handle);
     return handle;
   }
+  /**
+   * Consume the builder once, using a GPUDevice or initialized solver pipeline.
+   * Spatial sorting can change body order: use world.body(handle) or bodyIndex()
+   * for live commands rather than indexing GPU buffers by the construction order.
+   */
   createSolver(device, options = {}) {
     if (isSolverPipeline(device)) return device.createSolver(this, options);
     this.assertEditable();
@@ -657,6 +696,10 @@ export class AvbdScene3D {
     return gpu;
   }
 }
+/**
+ * XY scene builder. Body handles are numeric indices; angles are radians.
+ * Finish construction before creating the world, then use its shared command API.
+ */
 export class AvbdScene2D {
   constructor(options = {}) {
     this.topology = new SoaSolver2D();
@@ -708,6 +751,7 @@ export class AvbdScene2D {
   addPlane(normal = [0, 1], offset = 0, options = {}) {
     return this.addShape(plane2D(normal, offset, options));
   }
+  /** Add a box with full XY extents. density: 0 is static; velocity is [vx, vy, omega]. */
   addBox(
     size,
     {
@@ -768,6 +812,11 @@ export class AvbdScene2D {
     )
       throw Error("Invalid 2D constraint endpoints");
   }
+  /**
+   * Body-local XY anchors; a = -1 anchors to the world. The stiffness tuple
+   * controls X translation, Y translation and rotation, respectively. Use hard
+   * linear rows and a free angular row for a pin, or lock all three for a weld.
+   */
   addJoint(
     a,
     b,
@@ -859,6 +908,7 @@ export class AvbdScene2D {
     };
     return result;
   }
+  /** Combine a pin joint with optional angle stops and a torque-limited motor. */
   addHinge(a, b, anchorA = [0, 0], anchorB = [0, 0], options = {}) {
     this.assertEditable();
     this.checkBodies(a, b);
@@ -895,6 +945,7 @@ export class AvbdScene2D {
     };
     return hinge;
   }
+  /** Consume this topology once; a pipeline selects WebGPU or CPU with the same world API. */
   createSolver(device, options = {}) {
     if (isSolverPipeline(device)) return device.createSolver(this, options);
     this.assertEditable();

@@ -1,3 +1,10 @@
+/**
+ * Z-up spring cloth with four fixed corner particles and spatially graded
+ * strength. Edge springs carry the tear state used by renderer.js; both
+ * diagonals resist shear. Torn pieces retain their particles and physics.
+ * Change materialAt-style reinforcement in tearableMaterialAt(), and keep
+ * the triangle-to-bond mapping aligned when editing the grid topology.
+ */
 import { Rigid } from "../../reference/three-avbd/src/avbd3d/ref/body.ts";
 import { Spring } from "../../reference/three-avbd/src/avbd3d/ref/forces.ts";
 import { clothSolve } from "../../src/gpu/gpuClothSolver.js";
@@ -50,6 +57,8 @@ export function buildTearableCloth(def, solver) {
         4,
       ]);
       point.mass = corner ? 0 : mass;
+      // Point particles have translation only; the sheet bends through springs,
+      // not through independent rigid rotations at each vertex.
       point.moment.fill(0);
       return point;
     }),
@@ -89,6 +98,8 @@ export function buildTearableCloth(def, solver) {
         d = grid[x + 1][y + 1];
       const diagonal = bond(b, c, stiffness / 2);
       bond(a, d, stiffness / 2);
+      // Record the three bounding springs for each visible triangle. The renderer
+      // uses their live break state instead of reconnecting geometry across a tear.
       triangles.push(
         {
           bodies: [a, b, c],

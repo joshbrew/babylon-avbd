@@ -1,3 +1,9 @@
+/**
+ * Build static terrain collisions from the same triangles drawn on screen.
+ * The demo uses Z up. Collision cooking produces small solid convex pieces;
+ * visual.js retains the continuous source mesh for smooth surface rendering.
+ * An imported mesh follows this same path instead of the procedural landscape.
+ */
 import { AvbdScene3D } from "../../src/native/scenes.js";
 import { setVisual } from "../../reference/three-avbd/src/avbd3d/visuals.ts";
 import { landscapeMesh, landscapeHeight, caveMesh } from "./mesh.js";

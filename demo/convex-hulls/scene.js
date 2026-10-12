@@ -1,3 +1,8 @@
+/**
+ * Convex-shape collision workload. Hull generation is scene setup work;
+ * the live solver receives cooked shapes and body poses. The renderer must
+ * draw each hull in its collision frame to keep contact locations aligned.
+ */
 import { Rigid } from "../../reference/three-avbd/src/avbd3d/ref/body.ts";
 import {
   sphere,

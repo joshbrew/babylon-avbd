@@ -1,3 +1,9 @@
+/**
+ * Main showcase page: scene selection, settings and report links.
+ * Execution views own the running session; this module owns the DOM and URL.
+ * Restart through the view lifecycle when a setting changes the pipeline
+ * so old workers, devices and canvas bindings are released together.
+ */
 import { galtonChart } from "../galton-board/statistics.js";
 import { PlayPhysics } from "../shared/playground/physics.js";
 import "./style.css";

@@ -1,3 +1,8 @@
+/**
+ * Sphere contact workload registered with the shared scene catalogue.
+ * Initial geometry and motion belong here; solver construction, rendering
+ * and timing use the same session path as the other laboratory examples.
+ */
 import { Solver } from "../../reference/three-avbd/src/avbd3d/ref/solver.ts";
 import { Rigid } from "../../reference/three-avbd/src/avbd3d/ref/body.ts";
 import {

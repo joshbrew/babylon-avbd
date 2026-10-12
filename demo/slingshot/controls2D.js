@@ -36,6 +36,7 @@ export class SlingshotControls2D {
     });
     canvas.addEventListener("pointercancel", () => this.cancel());
   }
+  /** Convert canvas-relative CSS pixels to XY world units; screen Y points downward. */
   world(e) {
     const { canvas: c, camera: k } = this;
     return [
@@ -75,6 +76,7 @@ export class SlingshotControls2D {
         .setLinearVelocity(this.bird, [0, 0]);
     }
   }
+  /** Release the hold constraint and apply the same launch velocity used by the preview. */
   launch() {
     if (!this.hold) return false;
     this.damage?.arm();

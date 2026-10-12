@@ -1,3 +1,9 @@
+/**
+ * The 100K-brick impact workload and its interchangeable projectile shapes.
+ * Construction uses Z up; the launch direction is +Y. Projectile factories
+ * return a separate initial body record for the runtime to upload into the
+ * existing projectile slot, keeping the large tower allocated between shots.
+ */
 import { Solver } from "../../reference/three-avbd/src/avbd3d/ref/solver.ts";
 import { Rigid } from "../../reference/three-avbd/src/avbd3d/ref/body.ts";
 import {

@@ -1,3 +1,9 @@
+/**
+ * Babylon aggregate integration example with shared source meshes/instances.
+ * This smaller gallery mirrors selected GPU poses back to Babylon meshes;
+ * large scenes instead draw pose buffers directly. Geometry, collider size
+ * and local center must agree, especially for spheres and rounded shapes.
+ */
 import * as BABYLON from "../shared/rendering/babylon.js";
 import { sceneSleepPresets } from "../shared/runtime/sleepPresets.js";
 import {

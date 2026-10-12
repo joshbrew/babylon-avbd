@@ -45,6 +45,10 @@ export interface AvbdSolver3D extends SharedMethods<
     },
   ): this;
 }
+/**
+ * Backend factory shared by multiple worlds. Destroy worlds individually or
+ * destroy the pipeline to release them together; supplied devices are borrowed.
+ */
 export interface AvbdSolverPipeline {
   readonly backend: AvbdSolverBackend;
   readonly device?: GPUDevice;
@@ -54,6 +58,10 @@ export interface AvbdSolverPipeline {
   /** Destroys its worlds and its own device. A supplied device remains caller-owned. */
   destroy(): void;
 }
+/**
+ * Initialize WebGPU or CPU once; scene builders and live world commands remain
+ * compatible. Direct drawing buffers are available only on the GPU backend.
+ */
 export function createSolverPipeline(
   options?: NonNullable<Parameters<typeof createWebGPUDevice>[0]> & {
     backend?: AvbdSolverBackend;

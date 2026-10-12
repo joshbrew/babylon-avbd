@@ -1,7 +1,13 @@
 import { GpuSleep } from "../../../src/gpu/gpuSleep.js";
 import { sceneSleepPresets } from "./sleepPresets.js";
 
-/** Motion in world units/second; scene code can override either threshold. */
+/**
+ * Motion in world units/second; scene code can override either threshold.
+ *
+ * Demo-scale motion thresholds, expressed in world units/second and seconds.
+ * 3D motion includes radius-scaled angular speed. A visually still dense pile
+ * can stay awake if a connected member is moving or lacks stable support.
+ */
 export function sceneSleepingOptions(built) {
   const policy = built.gpuOptions2D?.sleeping;
   return {
@@ -11,7 +17,12 @@ export function sceneSleepingOptions(built) {
   };
 }
 
-/** Restore masses before disposing the rook's precomputed support graph. */
+/**
+ * Restore masses before disposing the rook's precomputed support graph.
+ *
+ * Apply the interactive sleep policy. Startup sleep is for initial construction;
+ * a live toggle must preserve current motion and restore masses before disposal.
+ */
 export function configureSceneSleeping(
   built,
   gpu,

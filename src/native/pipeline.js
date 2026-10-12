@@ -4,7 +4,13 @@ import { NativeCpuSolver } from "./cpu/world.js";
 import { registerSolverPipeline } from "./pipelineRegistry.js";
 export { isSolverPipeline } from "./pipelineRegistry.js";
 
-/** Initialize execution once; scene builders and world commands stay unchanged. */
+/**
+ * Initialize execution once; scene builders and world commands stay unchanged.
+ *
+ * Initialize backend selection once. Worlds share this pipeline's device;
+ * destroy() releases its worlds and only a device created by this factory.
+ * CPU worlds expose the same simulation methods without GPU drawing buffers.
+ */
 export async function createSolverPipeline({
   backend = "webgpu",
   device,

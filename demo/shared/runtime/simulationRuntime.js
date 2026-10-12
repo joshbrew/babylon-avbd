@@ -18,6 +18,10 @@ const summary = (values) => {
     samples: values.length,
   };
 };
+/**
+ * DOM-free live loop and benchmark driver shared by main-thread and worker views.
+ * Live play follows elapsed time; benchmark() uses one measured step per frame.
+ */
 export class SimulationRuntime {
   constructor(canvas, config, notify = () => {}) {
     this.canvas = canvas;
@@ -139,6 +143,8 @@ export class SimulationRuntime {
         return;
       if (this.frames % 30 === 0)
         s.gpu.profileNextStep?.((p) => (this.profile = p));
+      // Bound catch-up work per frame instead of changing the selected timestep or
+      // solver iterations. The accumulator carries remaining elapsed time forward.
       const stepBudget = physicsStepsPerFrame(this.profile);
       for (let n = 0; this.accumulator + 1e-12 >= dt && n < stepBudget; n++) {
         const start = performance.now();
@@ -178,6 +184,7 @@ export class SimulationRuntime {
       this.session.device?.queue.onSubmittedWorkDone() ?? Promise.resolve()
     );
   }
+  /** Publish small UI summaries periodically; avoid full-body readback in the frame loop. */
   async status(now = performance.now()) {
     if (this.statusPending || this.disposed) return;
     this.statusPending = true;
@@ -414,6 +421,11 @@ export class SimulationRuntime {
         : {}),
     };
   }
+  /**
+   * Measure isolated step/draw costs after warmup, awaiting GPU completion per sample.
+   * This advances the current scene. One physics step per sample is intentional;
+   * these frame intervals are not the multi-step real-time play-loop throughput.
+   */
   async benchmark({ warmup = 30, samples = 120 } = {}) {
     this.assertActive();
     if (this.measuring) throw Error("A measurement is already running");

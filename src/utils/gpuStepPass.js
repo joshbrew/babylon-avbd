@@ -1,6 +1,12 @@
 const registrations = new WeakMap();
 
-/** Encode custom work in the solver's own submission, in registration order. */
+/**
+ * Encode custom work in the solver's own submission, in registration order.
+ *
+ * Callbacks synchronously encode into the supplied command encoder; they must
+ * not finish/submit it or wait for GPU work. Return value removes this registration.
+ * Use before for external forces and after for consumers of the solved state.
+ */
 export function addGpuStepPass(solver, { before, after } = {}) {
   if (!solver.bodyBuffer || typeof solver.step !== "function")
     throw Error("GPU step passes require a WebGPU solver");

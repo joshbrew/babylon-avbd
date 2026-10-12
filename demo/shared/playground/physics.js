@@ -14,6 +14,8 @@ export class PlayPhysics {
     this.shake = false;
     this.hideDust = false;
     this.opened = false;
+    // Spatial sorting can reorder bodies on upload. Resolve reference handles
+    // to GPU slots once; kernels and edit APIs address those live slots.
     const indices = new Map(
       built.solver.bodies.map((b, i) => [b, gpu.gpuIndex(i)]),
     );
@@ -76,6 +78,8 @@ export class PlayPhysics {
       this.feeder?.encode(encoder);
       this.encode(encoder);
     };
+    // Register on this world only. The returned remover is part of disposal,
+    // so restarting a scene cannot leave its force field installed.
     this.removeGpuPass = addGpuStepPass(gpu, { before: this.before });
   }
   storm() {

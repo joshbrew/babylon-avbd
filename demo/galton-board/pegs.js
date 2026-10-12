@@ -71,6 +71,8 @@ export class GaltonPegs {
     if (peg.extended === extended) return;
     peg.extended = extended;
     this.last = { id: peg.id, extended };
+    // Disable contacts while the peg slides through the board. Restore its mask
+    // only at the extended endpoint to avoid pushing marbles with a moving proxy.
     this.gpu.setFilters([peg.id], [0xffffffff], [0]);
     this.animations.set(peg.id, {
       peg,
@@ -111,6 +113,8 @@ export class GaltonPegs {
         if (a.peg.extended) ready.push(id);
       }
     }
+    // One batch covers every moving peg. Flush here so animation also works
+    // while physics is paused and no simulation step would otherwise apply edits.
     this.gpu.editBodies(edits);
     if (ready.length)
       this.gpu.setFilters(

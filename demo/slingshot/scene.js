@@ -1,3 +1,9 @@
+/**
+ * 2D siege construction: breakable masonry, rounded limbs, springs, motors
+ * and a world-anchored projectile. Coordinates are XY with Y up; angles and
+ * motor speeds use radians and radians/second. The returned body lists feed
+ * controls2D.js and damage.js so game logic need not scan every body on the CPU.
+ */
 import { AvbdScene2D } from "../../src/native/scenes.js";
 import { SoaSim } from "../../reference/three-avbd/src/avbd2d/sim.ts";
 export const slingshotScene2D = {

@@ -28,6 +28,7 @@ import {
   sampledContactShader,
 } from "../../../src/gpu/contactSample.js";
 
+/** Create the drawing engine first, then give physics its GPUDevice for buffer interop. */
 export async function createBabylonEngine(canvas, enhanced = true) {
   const adapter = await navigator.gpu.requestAdapter({
     powerPreference: "high-performance",
@@ -561,6 +562,10 @@ class BabylonDraw {
   }
 }
 
+/**
+ * Babylon drawing over the same live GPU world and camera controls as the native viewer.
+ * The adapter handles Z-up to Babylon Y-up conversion and batched shape geometry.
+ */
 export class BabylonRenderer3D extends CanonicalRenderer {
   constructor(device, canvas, solver, gpu, { engine, ...options }) {
     super(device, canvas, solver, gpu, {
@@ -600,6 +605,7 @@ export class BabylonRenderer3D extends CanonicalRenderer {
     };
   }
 }
+/** Babylon draw adapter for the same XY topology and GPU poses used by the 2D viewer. */
 export class BabylonRenderer2D extends GpuRenderer2D {
   constructor(device, canvas, sim, camera, { engine, ...options }) {
     super(device, canvas, sim, camera, {

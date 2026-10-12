@@ -1,3 +1,10 @@
+/**
+ * 3D sleep policy shared by native and Babylon worlds. speedThreshold is linear
+ * speed plus radius-scaled angular speed, measured in world units/second.
+ * Large desktop worlds use connected dynamic groups; one busy member can hold
+ * an entire rubble pile awake. Static ground does not merge separate piles.
+ * Sleeping preserves original masses in state and restores them on waking.
+ */
 import { uniformData, uploadUniform } from "./uniformUpload.js";
 import shader from "./worldSleeping.wgsl";
 import islandShader from "./islandSleeping.wgsl";
@@ -255,6 +262,8 @@ export class WorldSleeping {
           : []),
         ["contacts", gpu.manifoldCapacity],
         ["joints", gpu.jointCount],
+        // activity reduces per-body motion/support readiness to each connected root.
+        // rest runs afterwards, so a quiet brick cannot freeze inside an active group.
         ...(this.islands ? [["activity", gpu.bodyCount]] : []),
         ["rest", gpu.bodyCount],
       ],

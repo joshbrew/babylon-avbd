@@ -1,3 +1,8 @@
+/**
+ * Mixed-size rigid-body workloads for broadphase comparisons. Large and
+ * small colliders share one world, making spatial-search cost visible.
+ * Scene definitions are consumed by lab/scenes.js and the benchmark harness.
+ */
 // A deliberately varied collider workload: many small objects and long beams.
 // Beyond the grid's large-object budget, beams make its cells much larger than
 // most objects. Both collision paths simulate the same geometry and settings.

@@ -26,7 +26,13 @@ import { GaltonPegs } from "../../galton-board/pegs.js";
 import { readStepRate } from "./stepRate.js";
 import { buildTerrainScene, terrainScene } from "../../terrain/scene.js";
 
-/** The same scene/solver/renderer construction in a page or dedicated worker. */
+/**
+ * The same scene/solver/renderer construction in a page or dedicated worker.
+ *
+ * Construct one world, renderer and scene-specific controls for either execution scope.
+ * Optional graphics are borrowed by benchmark callers; session-owned resources
+ * are released together by destroy(), including on partial initialization failure.
+ */
 export async function createSimulationSession(
   canvas,
   config,

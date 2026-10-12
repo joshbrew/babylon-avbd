@@ -6,6 +6,10 @@ let runtime,
   shared,
   sequence = -1,
   wheel = 0;
+/**
+ * Consume the optional latest-state mailbox once per frame. Discrete pointer
+ * boundaries still arrive as messages so clicks cannot disappear between samples.
+ */
 function consumeInput() {
   if (!shared || !runtime) return;
   const result = readSharedInput(shared, sequence);

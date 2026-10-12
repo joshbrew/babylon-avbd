@@ -1,3 +1,10 @@
+/**
+ * Ship assembly, sail topology and material data for the WebGPU naval demo.
+ * Use consistent metres/seconds and water-density-relative mass throughout.
+ * Each hull member has its own displaced volume and density: welds share the
+ * load while intact, and detached parts keep their own buoyancy. water.js
+ * couples those bodies to the wave field before each fixed physics step.
+ */
 import { AvbdScene3D } from "../../src/native/scenes.js";
 import {
   setVisual,

@@ -1,3 +1,8 @@
+/**
+ * Native 2D shape examples in XY coordinates: circles, capsules, convex
+ * polygons and static boundary shapes. Build collider geometry here and pass
+ * its topology to the shared viewer; drawing should use the same shape data.
+ */
 import { AvbdScene2D } from "../../src/native/scenes.js";
 import { SoaSim } from "../../reference/three-avbd/src/avbd2d/sim.ts";
 export const shapeScene2D = {

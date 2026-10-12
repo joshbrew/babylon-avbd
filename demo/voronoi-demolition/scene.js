@@ -1,3 +1,9 @@
+/**
+ * Z-up demolition scene assembled from convex Voronoi cells and face welds.
+ * geometry.js computes the cells and shared faces once. Keep each collider
+ * in its computed principal frame and convert shared-face anchors into that
+ * body frame; using mesh coordinates directly misplaces welds and fragments.
+ */
 import { AvbdScene3D } from "../../src/native/scenes.js";
 import { convexHull } from "../../reference/three-avbd/src/avbd3d/shapes.ts";
 import {

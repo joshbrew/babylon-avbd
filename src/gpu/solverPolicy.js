@@ -7,6 +7,11 @@ export const solverModeLabels = {
   points: "GPU AVBD · shared contact points",
   custom: "GPU deformable solver",
 };
+/**
+ * Select a rigid-body work layout from body/constraint counts and scheduling.
+ * This changes execution layout, not timestep, iteration count or material values.
+ * A custom cloth shader remains selected when requested mode is auto.
+ */
 export function selectSolverMode({
   requested = "auto",
   bodyCount,

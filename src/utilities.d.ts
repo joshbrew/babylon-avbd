@@ -155,6 +155,10 @@ export function writeSharedInput(
   event: SharedPointerState,
   wheel?: number,
 ): void;
+/**
+ * Read a coherent latest-state snapshot, or null if unchanged or being written.
+ * Pass the last sequence to skip repeats; this is not a queue for discrete events.
+ */
 export function readSharedInput(
   view: Int32Array<SharedArrayBuffer>,
   previous?: number,

@@ -53,6 +53,10 @@ const positive = (value, name, zero = false) => {
 
 /** Familiar aggregate/body API over the actual GPU solver; not a Physics V2 plugin. */
 export class AvbdPhysics {
+  /**
+   * Create or borrow the GPUDevice and validate 3D support before world setup.
+   * With a scene, autoAttach defaults on; the world owns automatic stepping/disposal.
+   */
   static async create({ device, ...options } = {}) {
     if (options.scene && sceneWorlds.has(options.scene))
       throw Error("This scene already has an AVBD world");
@@ -184,6 +188,10 @@ export class AvbdPhysics {
     this.collisionOptions.solverMode = mode;
     return { ...decision };
   }
+  /**
+   * Lazily upload initial bodies and constraints. Reserve capacity before this point;
+   * GPU state becomes authoritative and reference records remain construction data.
+   */
   initialize() {
     this.assertAlive();
     if (this.gpu) return;
@@ -516,6 +524,10 @@ export class AvbdPhysics {
       h ? { ...h, body: this.byGpuIndex.get(h.index) ?? null } : null,
     );
   }
+  /**
+   * Borrow the live body buffer for a renderer on this same GPUDevice. All offsets
+   * and stride are bytes; do not destroy the buffer or use it after world disposal.
+   */
   getRenderBinding(device = this.device) {
     this.initialize();
     if (device !== this.device)
@@ -560,6 +572,11 @@ export class AvbdPhysics {
     this.wakeAll();
     return c;
   }
+  /**
+   * Coalesce per-body setters and additive impulses into a shared GPU update.
+   * An optional encoder joins an existing submission; otherwise submit immediately.
+   * step() flushes automatically. Flushing alone neither steps nor waits for physics.
+   */
   flushCommands(encoder) {
     this.initialize();
     this.gpu.flushPropertyEdits(encoder);
@@ -781,6 +798,10 @@ export class AvbdPhysics {
         .finally(() => (this.counterPending = false));
     }
   }
+  /**
+   * Download only aggregates with sync enabled and update their Babylon transforms.
+   * Large worlds should use syncMeshes: false and draw the shared GPU buffer instead.
+   */
   async syncMeshes() {
     this.initialize();
     this.flushCommands();
@@ -871,6 +892,11 @@ export class AvbdPhysics {
   }
 }
 
+/**
+ * Bind a Babylon mesh's captured geometry/transform to one AVBD rigid body.
+ * Mesh-origin and center-of-mass frames may differ for custom hulls; body commands
+ * handle that conversion. Shared mesh instances still have independent bodies.
+ */
 export class AvbdPhysicsAggregate {
   constructor(
     mesh,
@@ -1086,6 +1112,11 @@ function releaseCollider(collider) {
   world.wakeAll?.();
 }
 
+/**
+ * Object-oriented commands staged by the owning world, with no pose readback.
+ * Repeated setters replace pending values; impulses add. Use readState() explicitly
+ * when CPU code needs live state rather than the last mirrored mesh transform.
+ */
 export class AvbdPhysicsBody {
   constructor(aggregate) {
     this.aggregate = aggregate;
@@ -1140,6 +1171,7 @@ export class AvbdPhysicsBody {
     );
     return this;
   }
+  /** One fixed-step force, converted to impulse using dt at call time. Reapply each step for thrust. */
   applyForce(force, worldPoint) {
     return this.applyImpulse(
       xyz(force).map((x) => x * this.aggregate.world.ref.dt),
@@ -1213,6 +1245,10 @@ export class AvbdPhysicsBody {
     w.wakeAll();
     return this;
   }
+  /**
+   * Queue a mesh-origin pose. Omitted rotation preserves the live GPU orientation;
+   * teleporting does not clear velocity. Set velocity explicitly for a motionless reset.
+   */
   teleport(position, rotation) {
     this.assertAlive();
     if (this.aggregate.staticTerrain)

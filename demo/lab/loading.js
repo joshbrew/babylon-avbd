@@ -13,6 +13,7 @@ export function sceneLoading(root, message, failed = false) {
   }
 }
 
+/** Yield through a paint before synchronous scene construction or shader setup starts. */
 export const paintLoading = () =>
   new Promise((resolve) =>
     requestAnimationFrame(() => requestAnimationFrame(resolve)),

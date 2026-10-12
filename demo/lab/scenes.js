@@ -1,3 +1,9 @@
+/**
+ * Scene catalogue and builder routing used by the viewer and browser tests.
+ * Definitions describe the UI; builders return initial topology plus camera
+ * and solver options. Keep creation here independent of a canvas or DOM so
+ * worker sessions and benchmark sessions construct the same physics world.
+ */
 import { playScenes, buildPlayScene } from "../playgrounds/index.js";
 import { scenes as scenes2D } from "../../reference/three-avbd/src/avbd2d/ref/scenes.ts";
 import { createSim } from "../../reference/three-avbd/src/avbd2d/sim.ts";

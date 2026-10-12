@@ -30,6 +30,10 @@ export interface AvbdSolverDecision {
   bodyCount: number;
   constraintCount: number;
 }
+/**
+ * GPU world setup. Build aggregates before initialization and reserve enough
+ * capacity for later additions. A supplied GPUDevice remains caller-owned.
+ */
 export interface AvbdWorldOptions {
   device?: GPUDevice;
   scene?: Scene;
@@ -38,8 +42,11 @@ export interface AvbdWorldOptions {
   autoAttach?: boolean;
   timeStep?: number;
   iterations?: number;
+  /** Maximum body slots reserved at initialization; default 4096. */
   capacity?: number;
+  /** Mirror selected poses for ordinary Babylon meshes. Use false with direct GPU drawing. */
   syncMeshes?: boolean;
+  /** Guard against accidental large pose downloads; default 2048. */
   maxSyncedBodies?: number;
   broadphase?: "auto" | "grid" | "hploc";
   solverMode?: AvbdSolverMode;
@@ -62,7 +69,9 @@ export interface AvbdAggregateOptions {
   restitution?: number;
   /** Defaults to true when world sleeping is enabled. Explicit true enables sleeping. */
   allowSleep?: boolean;
+  /** Overlap sensor: contact events without physical contact response. */
   isTrigger?: boolean;
+  /** Include this aggregate in pose mirroring when world syncMeshes is enabled. */
   sync?: boolean;
   group?: number;
   collidesWith?: number;
@@ -72,11 +81,16 @@ export interface AvbdConstraintOptions {
   type?: "ball" | "fixed" | "spring" | "motor" | "limit";
   axisA?: AvbdVector;
   axisB?: AvbdVector;
+  /** Motor target angular speed in radians/second. */
   speed?: number;
   maxTorque?: number;
+  /** Lower relative hinge angle in radians. */
   minAngle?: number;
+  /** Upper relative hinge angle in radians. */
   maxAngle?: number;
+  /** Mesh-local anchor, or world-space when body A is null. */
   anchorA?: AvbdVector;
+  /** Anchor in body B's mesh-local coordinates. */
   anchorB?: AvbdVector;
   stiffness?: number;
   angularStiffness?: number;
@@ -151,6 +165,7 @@ export class AvbdPhysics {
     direction: AvbdVector,
     options?: AvbdRaycastOptions,
   ): Promise<AvbdSphereCastHit | null>;
+  /** Batch swept-sphere queries; one nearest hit or null per input cast. */
   sphereCastAll(
     casts: Array<{
       origin: AvbdVector;
@@ -170,6 +185,7 @@ export class AvbdPhysics {
     b: AvbdPhysicsBody,
     options?: AvbdHingeOptions,
   ): AvbdPhysicsHinge;
+  /** Create the GPU world; attaches to a supplied Babylon scene by default. */
   static create(options?: AvbdWorldOptions): Promise<AvbdPhysics>;
   readonly device: GPUDevice;
   readonly bodyBuffer: GPUBuffer;
@@ -183,14 +199,18 @@ export class AvbdPhysics {
   enableSleeping(options?: AvbdSleepOptions): this;
   /** Wake all sleeping bodies and disable automatic sleeping. */
   disableSleeping(): this;
+  /** Upload initial topology once; step(), queries and buffer access initialize lazily. */
   initialize(): void;
+  /** Submit one fixed step; do not also call manually when automatic scene stepping is attached. */
   step(): void;
+  /** Apply queued edits without stepping or waiting. step() also flushes them automatically. */
   flushCommands(): void;
   addAggregate(
     mesh: AbstractMesh,
     type: AvbdShape | PhysicsShapeType,
     options?: AvbdAggregateOptions,
   ): AvbdPhysicsAggregate;
+  /** Convenience construction of multiple aggregates; each retains its own body. */
   addAggregates(
     entries: Array<{
       mesh: AbstractMesh;
@@ -198,6 +218,7 @@ export class AvbdPhysics {
       options?: AvbdAggregateOptions;
     }>,
   ): AvbdPhysicsAggregate[];
+  /** Attach fixed-step updates and disposal to the scene; reuse the same scene idempotently. */
   attachToScene(scene?: Scene): this;
   addConstraint(
     a: AvbdPhysicsBody | null,
@@ -219,6 +240,7 @@ export class AvbdPhysics {
     b: AvbdPhysicsBody,
     options?: AvbdConstraintOptions,
   ): AvbdPhysicsConstraint;
+  /** Receive asynchronously downloaded begin/end events; returns an unsubscribe function. */
   onContact(callback: (event: AvbdContactEvent) => void): () => void;
   readContactEvents(): Promise<{
     events: AvbdContactEvent[];
@@ -230,6 +252,7 @@ export class AvbdPhysics {
     direction: AvbdVector,
     options?: AvbdRaycastOptions,
   ): Promise<AvbdRayHit | null>;
+  /** Batch rays in one query; returns the nearest hit or null for each input, in input order. */
   raycastAll(
     rays: Array<{
       origin: AvbdVector;
@@ -238,6 +261,10 @@ export class AvbdPhysics {
     }>,
     options?: AvbdRaycastOptions,
   ): Promise<Array<AvbdRayHit | null>>;
+  /**
+   * Borrow live poses on the same GPUDevice. Stride and offsets are bytes.
+   * The world owns this buffer; it is invalid after disposal.
+   */
   getRenderBinding(device?: GPUDevice): {
     device: GPUDevice;
     buffer: GPUBuffer;
@@ -250,6 +277,7 @@ export class AvbdPhysics {
   wakeAll(): void;
   readSleepStats(): Promise<{ sleeping: number; wakeRequested: boolean }>;
   readonly lastSyncBytes: number | undefined;
+  /** Explicitly mirror only sync-enabled aggregate poses; asynchronous GPU readback. */
   syncMeshes(): Promise<void>;
   /** With bodies: requested order, 40 floats each. Without: GPU slot order. */
   readBodies(bodies?: AvbdPhysicsBody[]): Promise<Float32Array>;
@@ -288,17 +316,22 @@ export class AvbdPhysicsAggregate {
 }
 export class AvbdPhysicsBody {
   readonly gpuIndex: number;
+  /** Queue world-space velocity replacement; repeated calls before flush keep the last value. */
   setLinearVelocity(velocity: AvbdVector): this;
   setAngularVelocity(velocity: AvbdVector): this;
+  /** Queue an additive world-space impulse; optional worldPoint also applies torque. */
   applyImpulse(impulse: AvbdVector, worldPoint?: AvbdVector): this;
   applyAngularImpulse(impulse: AvbdVector): this;
   /** Apply force for one fixed step (N), optionally at a world point. */
   applyForce(force: AvbdVector, worldPoint?: AvbdVector): this;
   applyTorque(torque: AvbdVector): this;
+  /** Unsigned bitmasks; both bodies must accept the other's group to interact. */
   setCollisionGroups(group: number, collidesWith?: number): this;
   wakeUp(): this;
+  /** Opt this body into/out of resting detection; true enables world sleeping if needed. */
   setSleepEnabled(enabled: boolean): this;
   setTrigger(enabled: boolean): this;
+  /** Bounce coefficient in [0, 1]. Zero retains ordinary solid contact response. */
   setRestitution(value: number): this;
   readState(): Promise<{
     position: number[];

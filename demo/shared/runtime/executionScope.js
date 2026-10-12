@@ -1,3 +1,4 @@
+/** Check the canvas-transfer prerequisites; GPU support is checked during initialization. */
 export function workersAvailable() {
   return (
     typeof Worker === "function" &&

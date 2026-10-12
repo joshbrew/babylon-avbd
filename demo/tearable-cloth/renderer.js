@@ -1,5 +1,10 @@
 import { tearableClothsOf } from "./topology.js";
 import shader from "./render.wgsl";
+/**
+ * Draw material patches from live particle poses and spring break state.
+ * A broken edge separates patches; the material remains attached to its particles
+ * instead of deleting fragments. Physics owns motion and the renderer owns visuals.
+ */
 export class TearableClothRenderer {
   constructor(renderer, texture, sampler) {
     this.renderer = renderer;

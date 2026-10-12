@@ -1,3 +1,9 @@
+/**
+ * Reusable packed velocity uploads for large body selections. Each invocation
+ * owns one unique live GPU slot, so input indices must be strictly ascending.
+ * These are replacements, not impulses. Validate and flush preceding commands
+ * before dispatch so bulk updates preserve the caller's edit order.
+ */
 /** Packed velocity uploads for frequent mass edits. One invocation per unique GPU slot. */
 export class VelocityBatch {
   constructor(solver, dimension, kind = "linear") {

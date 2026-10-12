@@ -10,6 +10,7 @@ export function landscapeHeight(x, y) {
     0.1 * Math.cos(y * 0.7 - x * 0.18)
   );
 }
+/** Generate render triangles and row-major heights from one surface function. */
 export function landscapeMesh() {
   const columns = 29,
     rows = 29,
