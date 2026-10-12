@@ -1,6 +1,6 @@
 {
   "done": true,
-  "passed": 254,
+  "passed": 258,
   "failed": 0,
   "cases": [
     {
@@ -465,6 +465,22 @@
     },
     {
       "name": "GPU feature uniforms 3D retain exact bounce, sleep and wake state",
+      "passed": true
+    },
+    {
+      "name": "GPU sleeping grid conservative resolves the first impact with restored dynamic mass",
+      "passed": true
+    },
+    {
+      "name": "GPU sleeping grid island resolves the first impact with restored dynamic mass",
+      "passed": true
+    },
+    {
+      "name": "GPU sleeping hploc conservative resolves the first impact with restored dynamic mass",
+      "passed": true
+    },
+    {
+      "name": "GPU sleeping hploc island resolves the first impact with restored dynamic mass",
       "passed": true
     },
     {
@@ -1032,26 +1048,26 @@
     "runs": [
       {
         "analytic": true,
-        "collisionMs": 0.091136,
-        "totalMs": 0.160768,
+        "collisionMs": 0.096256,
+        "totalMs": 0.172032,
         "contacts": 2048
       },
       {
         "analytic": false,
-        "collisionMs": 0.12288,
-        "totalMs": 0.180224,
+        "collisionMs": 0.132096,
+        "totalMs": 0.193536,
         "contacts": 2048
       },
       {
         "analytic": false,
-        "collisionMs": 0.12288,
-        "totalMs": 0.180224,
+        "collisionMs": 0.164864,
+        "totalMs": 0.24064,
         "contacts": 2048
       },
       {
         "analytic": true,
-        "collisionMs": 0.074752,
-        "totalMs": 0.132096,
+        "collisionMs": 0.098304,
+        "totalMs": 0.17408,
         "contacts": 2048
       }
     ],

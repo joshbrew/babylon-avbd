@@ -1,12 +1,12 @@
 struct Body { pos:vec4f,rot:vec4f,initialPos:vec4f,initialRot:vec4f,size:vec4f,moment:vec4f,inertialPos:vec4f,inertialRot:vec4f,velocity:vec4f,angular:vec4f }
 struct State { mass:f32, quiet:f32, asleep:u32, support:atomic<u32>, eligible:u32, parent:atomic<u32>, wake:atomic<u32>, pad2:u32 }
 struct Manifold { ids:vec4u, geo:vec4f }
-struct Params { count:u32,joints:u32,manifolds:u32,forceWake:u32,speed:f32,delay:f32,dt:f32,gravity:f32,up:vec4f }
+struct Params { count:u32,joints:u32,manifolds:u32,forceWake:u32,speed:f32,delay:f32,dt:f32,gravity:f32,up:vec3f,pairs:u32 }
 @group(0) @binding(0) var<storage,read_write> bodies:array<Body>;
 @group(0) @binding(1) var<storage,read_write> states:array<State>;
 @group(0) @binding(2) var<storage,read> info:array<vec4i>;
 @group(0) @binding(3) var<storage,read> manifolds:array<Manifold>;
-@group(0) @binding(4) var<storage,read> counters:array<u32>;
+@group(0) @binding(4) var<storage,read_write> counters:array<u32>;
 @group(0) @binding(5) var<storage,read_write> globals:array<atomic<u32>>;
 @group(0) @binding(6) var<uniform> params:Params;
 fn speed(i:u32)->f32 {return length(bodies[i].velocity.xyz)+length(bodies[i].angular.xyz)*bodies[i].moment.w;}
@@ -22,7 +22,7 @@ fn wake(i:u32) {if(states[i].mass>0.){bodies[i].size.w=states[i].mass;states[i].
   atomicStore(&states[i].wake,0u);
   atomicStore(&states[i].support,0u);
 }
-@compute @workgroup_size(1) fn clear() {atomicStore(&globals[0],0u);atomicStore(&globals[1],0u);}
+@compute @workgroup_size(1) fn clear() {atomicStore(&globals[0],0u);atomicStore(&globals[1],0u);atomicStore(&globals[2],0u);atomicStore(&globals[3],0u);}
 // Gather old roots before before() resets awake parents. Separate dispatches
 // prevent another workgroup from clearing a wake request before it is consumed.
 @compute @workgroup_size(64) fn requestWake(@builtin(global_invocation_id) id:vec3u){
@@ -36,18 +36,29 @@ fn wake(i:u32) {if(states[i].mass>0.){bodies[i].size.w=states[i].mass;states[i].
 fn impact(a:u32,b:u32) {
   if(states[a].asleep!=0u && states[b].asleep==0u && speed(b)>2.*params.speed){signalWake(a);}
 }
-fn signalWake(i:u32){let r=root(i);if(r<params.count){atomicOr(&states[r].wake,1u);}else{atomicStore(&globals[0],1u);}}
+fn signalWake(i:u32){atomicStore(&globals[3],1u);let r=root(i);if(r<params.count){atomicOr(&states[r].wake,1u);}else{atomicStore(&globals[0],1u);}}
 @compute @workgroup_size(64) fn contacts(@builtin(global_invocation_id) id:vec3u) {
   let i=id.x;if(i>=min(counters[6],params.manifolds)){return;}
   let m=manifolds[i];if((m.ids.w&15u)==0u || (m.ids.w&0x80000000u)!=0u){return;}
   let a=m.ids.x;let b=m.ids.y;
-  manifoldImpact(m);
+  manifoldImpact(m,false);
   let up=dot(m.geo.xyz,params.up.xyz);
   if(up>0.3){support(a,b);}
   if(up < -0.3){support(b,a);}
   if((params.forceWake&2u)!=0u){
     if(states[b].mass<=0. && speed(b)<=params.speed && up>0.3 && states[a].mass>0.){atomicOr(&states[root(a)].wake,2u);}
     if(states[a].mass<=0. && speed(a)<=params.speed && up< -0.3 && states[b].mass>0.){atomicOr(&states[root(b)].wake,2u);}
+  }
+}
+// Restore the complete old sleeping island before topology and warm starting.
+// The spatial structures retain every body, so only pair/contact generation
+// needs a conditional refresh when static sleepers become dynamic again.
+@compute @workgroup_size(64) fn applyImpact(@builtin(global_invocation_id) id:vec3u){
+  if(atomicLoad(&globals[3])==0u && atomicLoad(&globals[0])==0u){return;}
+  let i=id.x;if(i>=params.count || states[i].asleep==0u){return;}
+  let r=root(i);
+  if(r>=params.count || atomicLoad(&globals[0])!=0u || (atomicLoad(&states[min(r,params.count-1u)].wake)&1u)!=0u){
+    wake(i);atomicAdd(&globals[2],1u);
   }
 }
 @compute @workgroup_size(64) fn joints(@builtin(global_invocation_id) id:vec3u) {

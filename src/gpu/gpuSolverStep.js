@@ -106,6 +106,26 @@ export function encodeGpuSolverStep(s) {
   run("argsPairs", G.args, 1);
   indirect("narrowphase", G.contacts[cur], IA_PAIRS);
   run("argsContacts", G.args, 1);
+  if (s.sleeping) {
+    phase("impactWake", "collision");
+    s.sleeping.encodeImpact(pass, cur);
+    // Waking changes mass, not poses: reuse this step's grid/tree and last
+    // step's warm-start cache. GPU zero-sized dispatches skip the refresh if
+    // no sleeper woke. Regenerate all pairs so neighbors in a woken island
+    // retain their mutual contacts during this very first impact solve.
+    if (s.bvh) s.bvh.encodePairs(pass, s, s.sleeping.refreshArgs);
+    else {
+      pass.setPipeline(s.pipes.findPairs);
+      pass.setBindGroup(0, G.broad);
+      pass.dispatchWorkgroupsIndirect(s.sleeping.refreshArgs, 0);
+    }
+    s.sleeping.encodeRefreshArgs(pass);
+    pass.setPipeline(s.pipes.narrowphase);
+    pass.setBindGroup(0, G.contacts[cur]);
+    pass.dispatchWorkgroupsIndirect(s.sleeping.refreshArgs, 12);
+    boundGroup = undefined;
+    run("argsContacts", G.args, 1);
+  }
   phase("adjacency", "adjacency");
   run("degreeJoints", G.topo[cur], groups(J));
   indirect("degreeContacts", G.topo[cur], IA_CONTACTS);

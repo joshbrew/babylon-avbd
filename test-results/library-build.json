@@ -217,19 +217,19 @@
           "bytesInOutput": 384
         },
         "src/gpu/worldSleeping.wgsl": {
-          "bytesInOutput": 3312
+          "bytesInOutput": 3612
         },
         "src/gpu/islandSleeping.wgsl": {
-          "bytesInOutput": 7278
+          "bytesInOutput": 8017
         },
         "src/gpu/sleepContact.wgsl": {
-          "bytesInOutput": 2131
+          "bytesInOutput": 3598
         },
         "src/gpu/bufferEdits.js": {
           "bytesInOutput": 2813
         },
         "src/gpu/worldSleeping.js": {
-          "bytesInOutput": 4410
+          "bytesInOutput": 5736
         },
         "src/gpu/smallGroup3D.js": {
           "bytesInOutput": 2230
@@ -247,13 +247,13 @@
           "bytesInOutput": 1625
         },
         "src/gpu/gpuHploc.js": {
-          "bytesInOutput": 7714
+          "bytesInOutput": 7752
         },
         "src/gpu/isolatedComputePass.js": {
           "bytesInOutput": 770
         },
         "src/gpu/gpuSolverStep.js": {
-          "bytesInOutput": 4199
+          "bytesInOutput": 4629
         },
         "src/gpu/colorBuckets.js": {
           "bytesInOutput": 2137
@@ -514,7 +514,7 @@
           "bytesInOutput": 695
         }
       },
-      "bytes": 580171
+      "bytes": 584471
     }
   }
 }

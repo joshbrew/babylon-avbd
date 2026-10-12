@@ -15,7 +15,7 @@
     "test": "node scripts/test-gpu.mjs",
     "test:reference": "node --experimental-transform-types --test reference/three-avbd/tests/*.test.ts",
     "test:gpu": "node scripts/test-gpu.mjs",
-    "test:sleeping": "node scripts/build.mjs && node scripts/check-lab-sleep.mjs && node scripts/check-sleep-stability.mjs --drag && node scripts/check-jointed-settling.mjs",
+    "test:sleeping": "node scripts/build.mjs && node scripts/check-lab-sleep.mjs && node scripts/check-sleep-stability.mjs --drag && node scripts/check-sleeping-impact-scenes.mjs && node scripts/check-jointed-settling.mjs",
     "test:all": "node scripts/test-all.mjs",
     "test:complete": "node scripts/test-all.mjs --strict",
     "test:scenes": "node scripts/build.mjs && node scripts/check-scenes.mjs",

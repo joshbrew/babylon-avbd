@@ -101,576 +101,739 @@
     },
     {
       "step": 150,
-      "sleeping": 26,
+      "sleeping": 25,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 160,
-      "sleeping": 33,
+      "sleeping": 32,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 170,
-      "sleeping": 38,
+      "sleeping": 40,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 180,
-      "sleeping": 51,
+      "sleeping": 54,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 190,
-      "sleeping": 58,
+      "sleeping": 59,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 200,
-      "sleeping": 70,
+      "sleeping": 65,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 210,
-      "sleeping": 95,
+      "sleeping": 86,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 220,
-      "sleeping": 112,
+      "sleeping": 108,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 230,
-      "sleeping": 124,
+      "sleeping": 120,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 240,
-      "sleeping": 134,
+      "sleeping": 132,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 250,
-      "sleeping": 145,
+      "sleeping": 139,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 260,
-      "sleeping": 173,
+      "sleeping": 163,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 270,
-      "sleeping": 195,
+      "sleeping": 184,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 280,
-      "sleeping": 227,
+      "sleeping": 224,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 290,
-      "sleeping": 260,
+      "sleeping": 243,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 300,
-      "sleeping": 301,
+      "sleeping": 287,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 310,
-      "sleeping": 327,
+      "sleeping": 307,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 320,
-      "sleeping": 357,
+      "sleeping": 335,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 330,
-      "sleeping": 379,
+      "sleeping": 344,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 340,
-      "sleeping": 382,
+      "sleeping": 361,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 350,
-      "sleeping": 413,
+      "sleeping": 390,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 360,
-      "sleeping": 462,
+      "sleeping": 435,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 370,
-      "sleeping": 518,
+      "sleeping": 473,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 380,
-      "sleeping": 600,
+      "sleeping": 526,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 390,
-      "sleeping": 676,
+      "sleeping": 596,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 400,
-      "sleeping": 730,
+      "sleeping": 655,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 410,
-      "sleeping": 766,
+      "sleeping": 706,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 420,
-      "sleeping": 802,
+      "sleeping": 768,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 430,
-      "sleeping": 859,
+      "sleeping": 819,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 440,
-      "sleeping": 912,
+      "sleeping": 873,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 450,
-      "sleeping": 932,
+      "sleeping": 934,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 460,
-      "sleeping": 979,
+      "sleeping": 958,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 470,
-      "sleeping": 1007,
+      "sleeping": 1020,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 480,
-      "sleeping": 1044,
+      "sleeping": 1098,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 490,
-      "sleeping": 1084,
+      "sleeping": 1135,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 500,
-      "sleeping": 1122,
+      "sleeping": 1187,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 510,
-      "sleeping": 1150,
+      "sleeping": 1220,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 520,
-      "sleeping": 1186,
+      "sleeping": 1213,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 530,
-      "sleeping": 1226,
+      "sleeping": 1237,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 540,
-      "sleeping": 1307,
+      "sleeping": 1295,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 550,
-      "sleeping": 1332,
+      "sleeping": 1324,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 560,
-      "sleeping": 1363,
+      "sleeping": 1344,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 570,
-      "sleeping": 1380,
+      "sleeping": 1354,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 580,
-      "sleeping": 1395,
+      "sleeping": 1365,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 590,
-      "sleeping": 1440,
+      "sleeping": 1377,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 600,
-      "sleeping": 1464,
+      "sleeping": 1410,
+      "wakeRequested": false,
+      "overflow": 0,
+      "clashes": 0
+    },
+    {
+      "step": 601,
+      "sleeping": 1406,
+      "wakeRequested": false,
+      "overflow": 0,
+      "clashes": 0
+    },
+    {
+      "step": 602,
+      "sleeping": 1407,
+      "wakeRequested": false,
+      "overflow": 0,
+      "clashes": 0
+    },
+    {
+      "step": 603,
+      "sleeping": 1408,
+      "wakeRequested": false,
+      "overflow": 0,
+      "clashes": 0
+    },
+    {
+      "step": 604,
+      "sleeping": 1408,
+      "wakeRequested": false,
+      "overflow": 0,
+      "clashes": 0
+    },
+    {
+      "step": 605,
+      "sleeping": 1409,
+      "wakeRequested": false,
+      "overflow": 0,
+      "clashes": 0
+    },
+    {
+      "step": 606,
+      "sleeping": 1410,
+      "wakeRequested": false,
+      "overflow": 0,
+      "clashes": 0
+    },
+    {
+      "step": 607,
+      "sleeping": 1412,
+      "wakeRequested": false,
+      "overflow": 0,
+      "clashes": 0
+    },
+    {
+      "step": 608,
+      "sleeping": 1422,
+      "wakeRequested": false,
+      "overflow": 0,
+      "clashes": 0
+    },
+    {
+      "step": 609,
+      "sleeping": 1425,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 610,
-      "sleeping": 1472,
+      "sleeping": 1425,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 620,
-      "sleeping": 1498,
+      "sleeping": 1443,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 630,
-      "sleeping": 1499,
+      "sleeping": 1450,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 640,
-      "sleeping": 1510,
+      "sleeping": 1457,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 650,
-      "sleeping": 1518,
+      "sleeping": 1462,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 660,
-      "sleeping": 1529,
+      "sleeping": 1469,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 670,
-      "sleeping": 1534,
+      "sleeping": 1474,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 680,
-      "sleeping": 1533,
+      "sleeping": 1479,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 690,
-      "sleeping": 1539,
+      "sleeping": 1483,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 700,
-      "sleeping": 1542,
+      "sleeping": 1487,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 710,
-      "sleeping": 1542,
+      "sleeping": 1487,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 720,
-      "sleeping": 1547,
+      "sleeping": 1488,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 730,
-      "sleeping": 1547,
+      "sleeping": 1488,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 740,
-      "sleeping": 1549,
+      "sleeping": 1488,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 750,
-      "sleeping": 1549,
+      "sleeping": 1488,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 760,
-      "sleeping": 1549,
+      "sleeping": 1488,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 770,
-      "sleeping": 1549,
+      "sleeping": 1488,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 780,
-      "sleeping": 1549,
+      "sleeping": 1488,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 790,
-      "sleeping": 1549,
+      "sleeping": 1488,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 800,
-      "sleeping": 1549,
+      "sleeping": 1488,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 810,
-      "sleeping": 1549,
+      "sleeping": 1488,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 820,
-      "sleeping": 1549,
+      "sleeping": 1488,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 830,
-      "sleeping": 1544,
+      "sleeping": 1488,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 840,
-      "sleeping": 1544,
+      "sleeping": 1488,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 850,
-      "sleeping": 1544,
+      "sleeping": 1488,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 860,
-      "sleeping": 1544,
+      "sleeping": 1488,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 870,
-      "sleeping": 1544,
+      "sleeping": 1488,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 880,
-      "sleeping": 1544,
+      "sleeping": 1488,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 890,
-      "sleeping": 1544,
+      "sleeping": 1488,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 900,
-      "sleeping": 1550,
+      "sleeping": 1488,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     }
   ],
-  "roots": 1411,
+  "roots": 1354,
   "errors": [],
   "isolatedDrag": true,
+  "grabFrames": [
+    {
+      "step": 600,
+      "beforeGrab": true,
+      "sleeping": 1410,
+      "heldRoot": 773,
+      "connectedSleepers": 4
+    },
+    {
+      "step": 601,
+      "sleeping": 1406,
+      "woken": 4,
+      "wokenRoots": [
+        773
+      ],
+      "globalWake": false
+    },
+    {
+      "step": 602,
+      "sleeping": 1407,
+      "woken": 4,
+      "wokenRoots": [
+        773
+      ],
+      "globalWake": false
+    },
+    {
+      "step": 603,
+      "sleeping": 1408,
+      "woken": 4,
+      "wokenRoots": [
+        773
+      ],
+      "globalWake": false
+    },
+    {
+      "step": 604,
+      "sleeping": 1408,
+      "woken": 4,
+      "wokenRoots": [
+        773
+      ],
+      "globalWake": false
+    },
+    {
+      "step": 605,
+      "sleeping": 1409,
+      "woken": 4,
+      "wokenRoots": [
+        773
+      ],
+      "globalWake": false
+    },
+    {
+      "step": 606,
+      "sleeping": 1410,
+      "woken": 4,
+      "wokenRoots": [
+        773
+      ],
+      "globalWake": false
+    },
+    {
+      "step": 607,
+      "sleeping": 1412,
+      "woken": 4,
+      "wokenRoots": [
+        773
+      ],
+      "globalWake": false
+    },
+    {
+      "step": 608,
+      "sleeping": 1422,
+      "woken": 4,
+      "wokenRoots": [
+        773
+      ],
+      "globalWake": false
+    },
+    {
+      "step": 609,
+      "sleeping": 1425,
+      "woken": 4,
+      "wokenRoots": [
+        773
+      ],
+      "globalWake": false
+    },
+    {
+      "step": 610,
+      "sleeping": 1425,
+      "woken": 5,
+      "wokenRoots": [
+        773,
+        18107
+      ],
+      "globalWake": false
+    }
+  ],
   "groups": [
     {
       "root": 0,
-      "bodies": 26335,
-      "awake": 26334,
-      "unready": 144,
-      "unsupported": 34,
+      "bodies": 26397,
+      "awake": 26371,
+      "unready": 75,
+      "unsupported": 24,
       "flags": 4
     },
     {
-      "root": 26773,
-      "bodies": 12,
+      "root": 15040,
+      "bodies": 29,
       "awake": 0,
       "unready": 0,
       "unsupported": 0,
       "flags": 0
     },
     {
-      "root": 11053,
-      "bodies": 10,
+      "root": 1238,
+      "bodies": 19,
       "awake": 0,
       "unready": 0,
       "unsupported": 0,
       "flags": 0
     },
     {
-      "root": 19404,
-      "bodies": 10,
+      "root": 15034,
+      "bodies": 18,
       "awake": 0,
       "unready": 0,
       "unsupported": 0,
       "flags": 0
     },
     {
-      "root": 24845,
-      "bodies": 10,
+      "root": 15042,
+      "bodies": 13,
       "awake": 0,
       "unready": 0,
       "unsupported": 0,
@@ -678,11 +841,15 @@
     }
   ],
   "motion": {
-    "awake": 26563,
-    "belowThreshold": 26256,
-    "speedMedian": 0.00032305262992770136,
-    "speedP95": 0.0056895256956780785,
-    "quietLongEnough": 26190,
-    "unsupported": 261
+    "awake": 26625,
+    "belowThreshold": 26312,
+    "speedMedian": 0.00033079808523985845,
+    "speedP95": 0.006910995582497684,
+    "quietLongEnough": 26289,
+    "unsupported": 276
+  },
+  "startupGrab": {
+    "connectedWoken": 4920,
+    "disconnectedSleeperUnchanged": true
   }
 }

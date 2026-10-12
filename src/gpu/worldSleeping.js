@@ -3,6 +3,7 @@ import shader from "./worldSleeping.wgsl";
 import islandShader from "./islandSleeping.wgsl";
 import contactShader from "./sleepContact.wgsl";
 import { propertyEdits } from "./bufferEdits.js";
+import { IA_CONTACTS } from "../../reference/three-avbd/src/avbd2d/gpu/layout.ts";
 export class WorldSleeping {
   constructor(world, options = {}) {
     this.world = world;
@@ -37,7 +38,11 @@ export class WorldSleeping {
         GPUBufferUsage.COPY_DST |
         GPUBufferUsage.COPY_SRC;
     this.state = d.createBuffer({ size: world.capacity * 32, usage: storage });
-    this.globals = d.createBuffer({ size: 8, usage: storage });
+    this.globals = d.createBuffer({ size: 16, usage: storage });
+    this.refreshArgs = d.createBuffer({
+      size: 24,
+      usage: storage | GPUBufferUsage.INDIRECT,
+    });
     this.params = d.createBuffer({
       size: 48,
       usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST,
@@ -51,10 +56,11 @@ export class WorldSleeping {
         "storage",
         "read-only-storage",
         "read-only-storage",
-        "read-only-storage",
+        "storage",
         "storage",
         "uniform",
         "read-only-storage",
+        "storage",
       ].map((type, binding) => ({
         binding,
         visibility: GPUShaderStage.COMPUTE,
@@ -78,11 +84,22 @@ export class WorldSleeping {
         "contacts",
         "joints",
         "rest",
+        "impactContacts",
+        "impactJoints",
+        "prepareWake",
+        "preparePairs",
+        "prepareNarrowphase",
       ].map((entryPoint) => [
         entryPoint,
         d.createComputePipeline({ layout, compute: { module, entryPoint } }),
       ]),
     );
+    // A separate layout leaves the indirect argument buffer unbound while it
+    // drives this dispatch. No body scan is needed when no impact requested it.
+    this.pipelines.applyImpact = d.createComputePipeline({
+      layout: "auto",
+      compute: { module, entryPoint: "applyImpact" },
+    });
     const data = new Float32Array(world.capacity * 8);
     const flags = new Uint32Array(data.buffer);
     for (const a of world.aggregates)
@@ -105,9 +122,16 @@ export class WorldSleeping {
     for (let k = 0; k < 8; k++) edits.uint(this.state, index * 8 + k, words[k]);
     this.wakeRequested = true;
   }
-  bindContacts() {
+  bindContacts(parity) {
     const gpu = this.world.gpu,
-      storage = gpu.contactStorage;
+      storage =
+        parity === undefined
+          ? gpu.contactStorage
+          : {
+              manifolds: gpu.manifoldBuffers[parity],
+              contacts: gpu.contactBuffers[parity],
+              counters: gpu.counterBuffer,
+            };
     const buffers = [
       gpu.bodyBuffer,
       this.state,
@@ -117,6 +141,7 @@ export class WorldSleeping {
       this.globals,
       this.params,
       storage.contacts,
+      this.refreshArgs,
     ];
     let cached = this.groups?.find((entry) =>
       entry.buffers.every((buffer, i) => buffer === buffers[i]),
@@ -124,6 +149,13 @@ export class WorldSleeping {
     if (!cached) {
       cached = {
         buffers,
+        impactGroup: this.device.createBindGroup({
+          layout: this.pipelines.applyImpact.getBindGroupLayout(0),
+          entries: [0, 1, 5, 6].map((binding) => ({
+            binding,
+            resource: { buffer: buffers[binding] },
+          })),
+        }),
         group: this.device.createBindGroup({
           layout: this.layout,
           entries: buffers.map((buffer, binding) => ({
@@ -136,6 +168,7 @@ export class WorldSleeping {
       this.groups = [...(this.groups ?? []).slice(-1), cached];
     }
     this.group = cached.group;
+    this.impactGroup = cached.impactGroup;
   }
   before(encoder) {
     this.world.gpu.flushPropertyEdits(encoder);
@@ -153,6 +186,7 @@ export class WorldSleeping {
     f[8] = gpu.params.up[0];
     f[9] = gpu.params.up[1];
     f[10] = gpu.params.up[2];
+    u[11] = gpu.pairCapacity;
     uploadUniform(this.device, this.params, cache);
     this.wakeRequested = false;
     // Contact and joint buffers can grow between steps.
@@ -182,6 +216,30 @@ export class WorldSleeping {
     // Keep this in the normal property batch; before() consumes the local flag.
     propertyEdits(this.world.gpu).uint(this.state, index * 8 + 7, 2);
     this.localWakeRequested = true;
+  }
+  encodeImpact(pass, parity) {
+    const gpu = this.world.gpu;
+    this.bindContacts(parity);
+    pass.setBindGroup(0, this.group);
+    pass.setPipeline(this.pipelines.impactContacts);
+    pass.dispatchWorkgroupsIndirect(gpu.argsBuffer, IA_CONTACTS * 4);
+    if (gpu.jointCount) {
+      pass.setPipeline(this.pipelines.impactJoints);
+      pass.dispatchWorkgroups(Math.ceil(gpu.jointCount / 64));
+    }
+    pass.setPipeline(this.pipelines.prepareWake);
+    pass.dispatchWorkgroups(1);
+    pass.setBindGroup(0, this.impactGroup);
+    pass.setPipeline(this.pipelines.applyImpact);
+    pass.dispatchWorkgroupsIndirect(this.refreshArgs, 0);
+    pass.setBindGroup(0, this.group);
+    pass.setPipeline(this.pipelines.preparePairs);
+    pass.dispatchWorkgroups(1);
+  }
+  encodeRefreshArgs(pass) {
+    pass.setBindGroup(0, this.group);
+    pass.setPipeline(this.pipelines.prepareNarrowphase);
+    pass.dispatchWorkgroups(1);
   }
   after(encoder) {
     const gpu = this.world.gpu;
@@ -237,6 +295,7 @@ export class WorldSleeping {
     this.world.gpu.propertyEdits?.forget(this.state);
     this.state.destroy();
     this.globals.destroy();
+    this.refreshArgs.destroy();
     this.params.destroy();
   }
 }

@@ -2216,7 +2216,9 @@ The static floor does not connect separate piles. Contact and joint connections
 let eligible members settle together. Awake groups rebuild their connections
 each step so separated debris can settle independently. Sleeping groups retain
 their support history. Creating, moving or releasing a grab keeps unrelated
-sleeping groups asleep. A connected wall can remain awake while any of its
+sleeping groups asleep. Grabbing one brick wakes its connected group, which can
+include most of a wall. Impacts restore the group's normal masses and contacts
+before solving that same step. A connected wall can remain awake while any of its
 members are moving or losing support, even when most bricks look still.
 Smaller worlds and mobile compatibility paths use
 whole-world impact waking. Set `sleeping: { islands: true }` to opt into connected

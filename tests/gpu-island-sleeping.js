@@ -5,6 +5,99 @@ import { NativeGpuSolver3D } from "../src/native/solver3D.js";
 import { assert, readBuffer } from "./helpers/gpu.js";
 
 export async function islandSleepingGpuTests(device, test) {
+  for (const broadphase of ["grid", "hploc"])
+    for (const islands of [false, true])
+      await test(`GPU sleeping ${broadphase} ${islands ? "island" : "conservative"} resolves the first impact with restored dynamic mass`, async () => {
+        const make = () => {
+          const ref = new Solver();
+          ref.gravity = 0;
+          ref.iterations = 10;
+          new Rigid(ref, [1, 1, 1], 1, 0, [0, 0, 0]);
+          new Rigid(ref, [1, 1, 1], 1, 0, [1, 0, 0]);
+          new Rigid(ref, [1, 1, 1], 1, 0, [2, 0, 0]);
+          new Rigid(ref, [1, 1, 1], 1, 0, [8, 0, 0]);
+          sphere(ref, 0.5, 1, 0, [-2, 0, 0]).allowSleep = false;
+          return new NativeGpuSolver3D(device, ref, {
+            spatialSort: false,
+            broadphase,
+            smallGroups: false,
+          });
+        };
+        const awake = make(),
+          sleeping = make();
+        sleeping.enableSleeping({ islands, timeThreshold: 0.1 });
+        try {
+          for (let step = 0; step < 30; step++) {
+            awake.step();
+            sleeping.step();
+          }
+          assert(
+            (await sleeping.readSleepStats()).sleeping === 4,
+            "Targets settled",
+          );
+          // Put the projectile just inside contact, then compare one step with
+          // the same fully awake world. Zero gravity removes settling error.
+          for (const g of [awake, sleeping]) {
+            device.queue.writeBuffer(
+              g.bodyBuffer,
+              4 * 160,
+              new Float32Array([-0.999, 0, 0]),
+            );
+            device.queue.writeBuffer(
+              g.bodyBuffer,
+              4 * 160 + 128,
+              new Float32Array([6, 0, 0]),
+            );
+            g.step();
+          }
+          const [a, b] = await Promise.all([
+            awake.readBodies(),
+            sleeping.readBodies(),
+          ]);
+          assert(
+            b[32] > 0.5,
+            "The sleeping brick moves during the first impact step",
+          );
+          for (const body of [0, 1, 2, 4])
+            for (const offset of [0, 32])
+              assert(
+                Math.abs(a[body * 40 + offset] - b[body * 40 + offset]) < 1e-4,
+                "First-impact position and velocity match an awake target",
+              );
+          const c = await sleeping.readCounters();
+          assert(
+            !c.overflow && !c.clashes,
+            "Woken contacts are scheduled safely",
+          );
+          if (islands) {
+            const state = new Uint32Array(
+              await readBuffer(device, sleeping.sleeping.state),
+            );
+            assert(
+              state[26] !== 0,
+              "A separate island remains asleep on the impact frame",
+            );
+            assert(
+              [0, 1, 2].every((i) => !state[i * 8 + 2]),
+              "The complete struck island wakes",
+            );
+          }
+          const contacts = await sleeping.readContactList();
+          for (const [a, b] of [
+            [0, 1],
+            [1, 2],
+          ])
+            assert(
+              contacts.some(
+                (c) => (c.a === a && c.b === b) || (c.a === b && c.b === a),
+              ),
+              "Contacts within the newly woken island exist on the first impact frame",
+            );
+        } finally {
+          awake.destroy();
+          sleeping.destroy();
+        }
+      });
   await test("GPU island sleep ignores stale gravity prediction beside an awake resting body", async () => {
     const ref = new Solver();
     ref.iterations = 10;
@@ -134,7 +227,7 @@ export async function islandSleepingGpuTests(device, test) {
         for (let i = 0; i < 120; i++) {
           gpu.setWorldAnchor(slot, [-4, 0, 0.5]);
           gpu.step();
-          if (i % 10 === 9) {
+          if (i < 10 || i % 10 === 9) {
             const state = new Uint32Array(
               await readBuffer(device, gpu.sleeping.state),
             );
@@ -169,7 +262,8 @@ export async function islandSleepingGpuTests(device, test) {
       const ref = new Solver();
       ref.iterations = 5;
       new Rigid(ref, [40, 20, 1], 0, 0.6, [0, 0, -0.5]);
-      for (const x of [-3, 4])
+      // Keep the witness beyond the projectile's 70-step travel distance.
+      for (const x of [-3, 10])
         for (let z = 0; z < 3; z++)
           new Rigid(ref, [1, 1, 1], 1, 0.6, [
             mode === "grid-joint" && x === -3 && z === 2 ? -1 : x,
@@ -219,7 +313,6 @@ export async function islandSleepingGpuTests(device, test) {
         let sawGroupWake = false;
         for (let step = 0; step < 70; step++) {
           g.step();
-          if (step % 2 !== 1) continue;
           const state = new Uint32Array(
             await readBuffer(device, g.sleeping.state),
           );

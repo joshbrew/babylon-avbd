@@ -17,6 +17,11 @@ try {
   const result = await b.evaluate(
     `(async()=>{const {checkRingSleeping}=await import('/.temp/sleep-stability.js');return checkRingSleeping({drag:${process.argv.includes("--drag")}});})()`,
   );
+  if (process.argv.includes("--drag")) {
+    result.startupGrab = await b.evaluate(
+      `(async()=>{const {checkRingStartupGrab}=await import('/.temp/sleep-stability.js');return checkRingStartupGrab();})()`,
+    );
+  }
   const tail = result.samples.filter((s) => s.step >= 700);
   await writeAtomicFile(
     ".temp/sleep-stability-last.json",

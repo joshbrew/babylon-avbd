@@ -1,1 +1,1 @@
-import("./chunks/performance-JC3O5CGB.js").catch(t=>{let e=document.getElementById("status");e&&(e.textContent=`Unable to start benchmark: ${t.message}`),globalThis.__PERFORMANCE_SETUP_ERROR__=t.message});
+import("./chunks/performance-HQRT5TTC.js").catch(t=>{let e=document.getElementById("status");e&&(e.textContent=`Unable to start benchmark: ${t.message}`),globalThis.__PERFORMANCE_SETUP_ERROR__=t.message});

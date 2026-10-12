@@ -3,6 +3,7 @@ import { browserCheck } from "./browser-check.mjs";
 import { writeAtomicFile } from "./report-file.mjs";
 const b = await browserCheck(),
   results = [];
+const screenshots = process.argv.includes("--screenshots");
 async function ready() {
   for (let i = 0; i < 2400; i++) {
     const r = await b.evaluate(
@@ -91,7 +92,8 @@ try {
           motion[i * 40 + 1] > balls.poses[i * 40 + 1] + 10,
           "Every bowling lane must advance into its walls",
         );
-      await b.screenshot(`test-results/screenshots/${scene}-all-lanes.png`);
+      if (screenshots)
+        await b.screenshot(`test-results/screenshots/${scene}-all-lanes.png`);
     }
     const errors = await b.evaluate("__AVBD_LAB__.diagnostics.errors");
     assert.deepEqual(errors, []);
@@ -112,7 +114,7 @@ try {
       {
         passed: true,
         results,
-        screenshots: results
+        screenshots: (screenshots ? results : [])
           .filter((r) => r.bowling)
           .map((r) => `screenshots/${r.scene}-all-lanes.png`),
       },

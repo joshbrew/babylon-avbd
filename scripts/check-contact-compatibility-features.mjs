@@ -16,6 +16,7 @@ export {setGpuExecutionPolicy3D} from './src/gpu/executionPolicy3D.js';
 export {AppGpuSolver3D} from './src/gpu/appGpuSolver3D.js';
 export {canonicalGpuTests} from './tests/gpu-canonical.js';
 export {packageFeatureGpuTests} from './tests/gpu-package-features.js';
+export {islandSleepingGpuTests} from './tests/gpu-island-sleeping.js';
 `,
   },
 });
@@ -23,7 +24,7 @@ const browser = await browserCheck();
 try {
   await browser.navigate("test-results/solver-performance.html");
   const result = await browser.evaluate(`(async()=>{
-    const {createWebGPUDevice,setGpuExecutionPolicy3D,AppGpuSolver3D,canonicalGpuTests,packageFeatureGpuTests}=await import('/.temp/contact-compatibility-features.js');
+    const {createWebGPUDevice,setGpuExecutionPolicy3D,AppGpuSolver3D,canonicalGpuTests,packageFeatureGpuTests,islandSleepingGpuTests}=await import('/.temp/contact-compatibility-features.js');
     const {device}=await createWebGPUDevice({requiredLimits:{maxStorageBuffersPerShaderStage:9}});
     const errors=[],modes=[];device.addEventListener('uncapturederror',e=>errors.push(e.error.message));
     try {
@@ -48,6 +49,9 @@ try {
         };
         await canonicalGpuTests(device,test,undefined,AppGpuSolver3D);
         await packageFeatureGpuTests(device,test);
+        await islandSleepingGpuTests(device,async(name,run)=>{
+          if(name.includes('first impact'))await test(name,run);
+        });
         modes.push({...policy,cases,excluded});
       }
       return {modes,errors};

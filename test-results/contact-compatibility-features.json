@@ -113,6 +113,22 @@
         {
           "name": "Package 2D joints and motors and 3D fabric are available without demo imports",
           "passed": true
+        },
+        {
+          "name": "GPU sleeping grid conservative resolves the first impact with restored dynamic mass",
+          "passed": true
+        },
+        {
+          "name": "GPU sleeping grid island resolves the first impact with restored dynamic mass",
+          "passed": true
+        },
+        {
+          "name": "GPU sleeping hploc conservative resolves the first impact with restored dynamic mass",
+          "passed": true
+        },
+        {
+          "name": "GPU sleeping hploc island resolves the first impact with restored dynamic mass",
+          "passed": true
         }
       ],
       "excluded": [
@@ -234,6 +250,22 @@
         {
           "name": "Package 2D joints and motors and 3D fabric are available without demo imports",
           "passed": true
+        },
+        {
+          "name": "GPU sleeping grid conservative resolves the first impact with restored dynamic mass",
+          "passed": true
+        },
+        {
+          "name": "GPU sleeping grid island resolves the first impact with restored dynamic mass",
+          "passed": true
+        },
+        {
+          "name": "GPU sleeping hploc conservative resolves the first impact with restored dynamic mass",
+          "passed": true
+        },
+        {
+          "name": "GPU sleeping hploc island resolves the first impact with restored dynamic mass",
+          "passed": true
         }
       ],
       "excluded": [
@@ -354,6 +386,22 @@
         },
         {
           "name": "Package 2D joints and motors and 3D fabric are available without demo imports",
+          "passed": true
+        },
+        {
+          "name": "GPU sleeping grid conservative resolves the first impact with restored dynamic mass",
+          "passed": true
+        },
+        {
+          "name": "GPU sleeping grid island resolves the first impact with restored dynamic mass",
+          "passed": true
+        },
+        {
+          "name": "GPU sleeping hploc conservative resolves the first impact with restored dynamic mass",
+          "passed": true
+        },
+        {
+          "name": "GPU sleeping hploc island resolves the first impact with restored dynamic mass",
           "passed": true
         }
       ],
@@ -476,6 +524,22 @@
         },
         {
           "name": "Package 2D joints and motors and 3D fabric are available without demo imports",
+          "passed": true
+        },
+        {
+          "name": "GPU sleeping grid conservative resolves the first impact with restored dynamic mass",
+          "passed": true
+        },
+        {
+          "name": "GPU sleeping grid island resolves the first impact with restored dynamic mass",
+          "passed": true
+        },
+        {
+          "name": "GPU sleeping hploc conservative resolves the first impact with restored dynamic mass",
+          "passed": true
+        },
+        {
+          "name": "GPU sleeping hploc island resolves the first impact with restored dynamic mass",
           "passed": true
         }
       ],
@@ -598,6 +662,22 @@
         {
           "name": "Package 2D joints and motors and 3D fabric are available without demo imports",
           "passed": true
+        },
+        {
+          "name": "GPU sleeping grid conservative resolves the first impact with restored dynamic mass",
+          "passed": true
+        },
+        {
+          "name": "GPU sleeping grid island resolves the first impact with restored dynamic mass",
+          "passed": true
+        },
+        {
+          "name": "GPU sleeping hploc conservative resolves the first impact with restored dynamic mass",
+          "passed": true
+        },
+        {
+          "name": "GPU sleeping hploc island resolves the first impact with restored dynamic mass",
+          "passed": true
         }
       ],
       "excluded": [
@@ -720,6 +800,22 @@
         },
         {
           "name": "Package 2D joints and motors and 3D fabric are available without demo imports",
+          "passed": true
+        },
+        {
+          "name": "GPU sleeping grid conservative resolves the first impact with restored dynamic mass",
+          "passed": true
+        },
+        {
+          "name": "GPU sleeping grid island resolves the first impact with restored dynamic mass",
+          "passed": true
+        },
+        {
+          "name": "GPU sleeping hploc conservative resolves the first impact with restored dynamic mass",
+          "passed": true
+        },
+        {
+          "name": "GPU sleeping hploc island resolves the first impact with restored dynamic mass",
           "passed": true
         }
       ],

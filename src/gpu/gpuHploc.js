@@ -330,7 +330,7 @@ fn initializeLinks(@builtin(global_invocation_id) gid:vec3u){if(gid.x<build.esca
     }
     this.stepsSinceBuild++;
   }
-  encodePairs(pass, solver) {
+  encodePairs(pass, solver, indirectArgs) {
     this.configure(solver.bodyCount);
     const buffers = [
       solver.paramsBuffer,
@@ -358,7 +358,8 @@ fn initializeLinks(@builtin(global_invocation_id) gid:vec3u){if(gid.x<build.esca
     pass.setPipeline(this.traverse);
     pass.setBindGroup(0, this.broad);
     pass.setBindGroup(1, this.extra);
-    pass.dispatchWorkgroups(groups(this.count, 64));
+    if (indirectArgs) pass.dispatchWorkgroupsIndirect(indirectArgs, 0);
+    else pass.dispatchWorkgroups(groups(this.count, 64));
   }
   destroy() {
     this.scan.destroy();
