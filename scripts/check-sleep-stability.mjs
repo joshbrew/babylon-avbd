@@ -18,6 +18,10 @@ try {
     `(async()=>{const {checkRingSleeping}=await import('/.temp/sleep-stability.js');return checkRingSleeping({drag:${process.argv.includes("--drag")}});})()`,
   );
   const tail = result.samples.filter((s) => s.step >= 700);
+  await writeAtomicFile(
+    ".temp/sleep-stability-last.json",
+    JSON.stringify(result, null, 2),
+  );
   assert.ok(
     tail.every((s) => s.sleeping > 100),
     "Resting debris stays asleep during repeated anchor updates",

@@ -31,6 +31,7 @@ async function ready(expression) {
 try {
   await b.call("Page.addScriptToEvaluateOnNewDocument", {
     source: `globalThis.__STARTUP_TICKS__=0;setInterval(()=>__STARTUP_TICKS__++,20);
+       globalThis.Worker=new Proxy(Worker,{construct(target,args){globalThis.__WORKER_CREATED_AT__=performance.now();return Reflect.construct(target,args);}});
        globalThis.__LOADING_VISIBLE__=false;
        new MutationObserver(()=>{const p=document.querySelector('.lab-loading');if(p&&!p.hidden)__LOADING_VISIBLE__=true;}).observe(document,{childList:true,subtree:true,attributes:true,attributeFilter:['hidden']});`,
   });
@@ -43,6 +44,7 @@ try {
     ...__AVBD_LAB__.client.info,
     scope:document.querySelector('#lab-execution select').value,
     ticks:__STARTUP_TICKS__,
+    mainThreadScriptBytes:performance.getEntriesByType('resource').filter(r=>r.startTime<__WORKER_CREATED_AT__&&new URL(r.name).pathname.endsWith('.js')).reduce((n,r)=>n+r.decodedBodySize,0),
     fullControls:new URL([...document.querySelectorAll('a')].find(a=>a.textContent==='Open scene editing and diagnostic tools').href).searchParams.get('scope'),
     paused:document.getElementById('lab-pause').textContent==='Resume',
     settingsEnabled:!document.getElementById('lab-scene').disabled,
@@ -56,6 +58,9 @@ try {
   assert.equal(worker.fullControls, "main");
   assert.equal(worker.paused, true);
   assert.equal(worker.settingsEnabled, true);
+  // Chrome also lists worker module fetches in the owner's resource timeline.
+  // Count the page dependencies loaded before it starts the simulation worker.
+  assert.ok(worker.mainThreadScriptBytes < 250_000, "The worker showcase page must not download the physics or optional renderer bundles before starting its worker");
   async function checkLoading() {
     assert.equal(
       await b.evaluate("__LOADING_VISIBLE__"),

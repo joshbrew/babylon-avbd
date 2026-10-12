@@ -47,14 +47,26 @@ const modes = [
 ];
 /** Cached once per device. Successful compatibility paths keep identical physics. */
 export function checkGpuContacts3D(device) {
-  if (!checks.has(device)) checks.set(device, runGpuContactChecks3D(device));
+  if (!checks.has(device))
+    checks.set(
+      device,
+      runGpuContactChecks3D(device, undefined, { diagnostics: false }),
+    );
   return checks.get(device);
 }
 // configure is an internal fault-injection hook for real GPU fallback tests.
-export async function runGpuContactChecks3D(device, configure) {
+export async function runGpuContactChecks3D(
+  device,
+  configure,
+  { diagnostics = true } = {},
+) {
   const attempts = [];
   for (const mode of modes) {
-    const result = await attempt(device, mode, configure);
+    let result = await attempt(device, mode, configure, diagnostics);
+    // Compile and download the detailed canary only when qualification fails.
+    // Passing devices still verify known overlaps, impact and settled support.
+    if (!diagnostics && !result.passed)
+      result = await attempt(device, mode, configure, true);
     attempts.push(result);
     if (!result.passed) continue;
     setGpuExecutionPolicy3D(device, {
@@ -320,15 +332,16 @@ async function readParams(gpu) {
     output.destroy();
   }
 }
-async function attempt(device, mode, configure) {
+async function attempt(device, mode, configure, diagnostics) {
   const result = {
     mode: mode.name,
     passed: false,
-    steps: 180,
+    steps: diagnostics ? 180 : 90,
     cases: [],
     errors: [],
     contactCache: "normal-float-generations-v1",
-    diagnosticVersion: 4,
+    diagnosticVersion: 5,
+    detailed: diagnostics,
     limits: {
       storageBindings: device.limits.maxStorageBuffersPerShaderStage,
       workgroupStorageBytes: device.limits.maxComputeWorkgroupStorageSize,
@@ -359,15 +372,43 @@ async function attempt(device, mode, configure) {
     // Known overlaps locate pair generation versus narrowphase failures. This
     // is followed by a separate falling test, with no injected contacts.
     gpu = create(false);
-    result.pipeline = await pipelineTrace(gpu);
+    if (diagnostics) result.pipeline = await pipelineTrace(gpu);
+    else {
+      gpu.step();
+      const counters = await gpu.readCounters();
+      result.pipeline = {
+        expectedFloorPairs: 3,
+        counters,
+        solver: {
+          scalarPrimal: gpu.scalarPrimal,
+          portableContactMath: gpu.portableContactMath,
+          lanes: [...gpu.primalLanes],
+        },
+        stage:
+          counters.pairs < 3
+            ? "collision-pairs"
+            : counters.manifolds < 3
+              ? "contact-generation"
+              : "contacts-created",
+      };
+    }
     if (result.pipeline.stage !== "contacts-created") {
       result.reason =
         result.pipeline.stage === "collision-pairs"
           ? "The GPU did not find the three known overlapping floor pairs."
           : "The GPU found overlapping pairs but did not create all floor contacts.";
     } else {
-      gpu.destroy();
-      gpu = create(true);
+      if (diagnostics) {
+        gpu.destroy();
+        gpu = create(true);
+      } else {
+        // The overlap and falling fixtures share geometry and materials. Reset
+        // all body records, then discard the old contacts in the contact-free
+        // first falling step, reusing the already compiled general pipelines.
+        const falling = scene(true);
+        gpu.rewriteBodies([0, 1, 2, 3], falling.bodies);
+        gpu.params.gravity = falling.gravity;
+      }
       let contactSteps = 0;
       result.samples = [];
       for (let step = 0; step < result.steps; step++) {
@@ -405,7 +446,7 @@ async function attempt(device, mode, configure) {
       result.passed = contactSteps > 0 && result.cases.every((c) => c.passed);
       if (!result.passed)
         result.reason =
-          result.pipeline.solver.failure === "contact-evaluation"
+          result.pipeline.solver?.failure === "contact-evaluation"
             ? "The GPU created floor contacts but returned zero force where a push was required."
             : "The GPU did not keep all three falling shapes on the floor.";
     }

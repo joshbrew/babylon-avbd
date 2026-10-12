@@ -3,17 +3,30 @@ import { build, context } from "esbuild";
 import { fileURLToPath } from "node:url";
 import { createServer, request } from "node:http";
 import { mkdir, writeFile, rename, unlink } from "node:fs/promises";
-import { dirname } from "node:path";
+import { dirname, basename, resolve } from "node:path";
 import { setTimeout as delay } from "node:timers/promises";
 import web from "../tinybuild.web.config.js";
 import { sourceMapsEnabled, removeStaleSourceMap } from "./source-maps.mjs";
+import { buildSceneCatalogue } from "./build-scene-catalogue.mjs";
 // Resolve entries and outputs from this checkout, including direct script calls
 // made from another working directory.
 process.chdir(fileURLToPath(new URL("../", import.meta.url)));
 const options = {
-  entryPoints: web.bundler.entryPoints,
+  entryPoints: Object.fromEntries([
+    ...web.bundler.entryPoints.map((path) => [
+      basename(web.bundler.outfile, ".js"),
+      path,
+    ]),
+    ...web.additionalBundles.map((bundle) => [
+      basename(bundle.outfile, ".js"),
+      bundle.entryPoints[0],
+    ]),
+  ]),
   bundle: true,
-  outfile: web.bundler.outfile,
+  outdir: dirname(web.bundler.outfile),
+  format: "esm",
+  splitting: true,
+  chunkNames: "chunks/[name]-[hash]",
   loader: { ".wgsl": "text" },
   sourcemap: sourceMapsEnabled,
   minify: true,
@@ -24,7 +37,23 @@ const options = {
       setup(builder) {
         builder.onEnd(async (result) => {
           if (result.errors.length) return;
-          for (const file of result.outputFiles ?? []) {
+          const catalogue = {
+            path: fileURLToPath(
+              new URL("../dist/scene-catalogue.json", import.meta.url),
+            ),
+            contents: await buildSceneCatalogue(),
+          };
+          const entries = new Set(
+            [web.bundler, ...web.additionalBundles].map((bundle) =>
+              resolve(bundle.outfile),
+            ),
+          );
+          // Publish dependencies before entry files that point to them, so a
+          // reload during a watch build cannot request an unwritten new chunk.
+          const files = [...(result.outputFiles ?? []), catalogue].sort(
+            (a, b) => Number(entries.has(a.path)) - Number(entries.has(b.path)),
+          );
+          for (const file of files) {
             const temporary = `${file.path}.${process.pid}.tmp`;
             await mkdir(dirname(file.path), { recursive: true });
             try {
@@ -56,12 +85,11 @@ const options = {
     },
   ],
 };
-const bundles = [
-  options,
-  ...web.additionalBundles.map((bundle) => ({ ...options, ...bundle })),
-];
+const bundles = [options];
 await Promise.all(
-  bundles.map((bundle) => removeStaleSourceMap(bundle.outfile)),
+  [web.bundler, ...web.additionalBundles].map((bundle) =>
+    removeStaleSourceMap(bundle.outfile),
+  ),
 );
 if (process.argv.includes("--serve")) {
   const contexts = await Promise.all(bundles.map((bundle) => context(bundle)));

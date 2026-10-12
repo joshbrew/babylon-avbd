@@ -1,34 +1,37 @@
 {
-  "date": "2026-10-12T00:29:46.028Z",
+  "date": "2026-10-12T01:33:33.975Z",
   "applied": true,
   "retained": 251,
-  "removedFiles": 5,
-  "removedBytes": 1141470,
+  "removedFiles": 6,
+  "removedBytes": 693978,
   "removed": [
     {
       "path": "gpu-selected.json",
-      "bytes": 4514
+      "bytes": 4644
+    },
+    {
+      "path": "screenshots/babylon-2d-triggers-and-masks.png",
+      "bytes": 104137
+    },
+    {
+      "path": "screenshots/babylon-3d-voronoi-demolition.png",
+      "bytes": 136057
+    },
+    {
+      "path": "screenshots/babylon-slingshot.png",
+      "bytes": 104088
     },
     {
       "path": "screenshots/execution-worker.png",
-      "bytes": 61655
+      "bytes": 61734
     },
     {
       "path": "screenshots/galton-worker-startup.png",
-      "bytes": 283375
-    },
-    {
-      "path": "screenshots/paper-walls-510k-3-all-lanes.png",
-      "bytes": 403912
-    },
-    {
-      "path": "screenshots/paper-walls-510k-4-all-lanes.png",
-      "bytes": 388014
+      "bytes": 283318
     }
   ],
   "prunedCaptureSummaries": [
     "galton-startup.json",
-    "lab-sleep.json",
     "execution-ui.json"
   ],
   "removedDirectories": []

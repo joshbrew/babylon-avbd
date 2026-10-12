@@ -2,6 +2,9 @@ struct Contact {rA:vec3f,key:u32,rB:vec3f,c0x:f32,pen:vec3f,c0y:f32,lam:vec3f,c0
 @group(0) @binding(7) var<storage,read> contactPoints:array<Contact>;
 fn rotated(q:vec4f,r:vec3f)->vec3f {return r+2.*cross(q.xyz,cross(q.xyz,r)+q.w*r);}
 fn contactVelocity(i:u32,r:vec3f,previous:bool)->vec3f {
+  // Prediction is skipped while asleep. The last inertial target can retain
+  // gravity from the last awake step, which must not be counted as an impact.
+  if(states[i].asleep!=0u){return vec3f(0.);}
   var v=bodies[i].velocity.xyz;
   var w=bodies[i].angular.xyz;
   var q=bodies[i].rot;

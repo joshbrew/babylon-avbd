@@ -56,6 +56,10 @@ try {
       navigationMs: performance.now() - start,
       passed: true,
     };
+    // Drain status/drawing work before the next sample creates a device.
+    // Otherwise deferred driver work can be charged to the following scene.
+    await b.evaluate("__WORKER_BENCH__.client.step(0)");
+    result.firstFrameCompletedMs = performance.now() - start;
     results.push(result);
     console.log(
       `${scene}: ${info.bodies.toLocaleString()} bodies, ${(info.startupMs / 1000).toFixed(2)} s initialization`,
@@ -71,7 +75,7 @@ try {
         passed: true,
         ...(await gpuBenchmarkHardware(results[0]?.adapter)),
         method:
-          "One paused initialization per scene in a dedicated worker. Includes scene building, GPU contact qualification, physics and rendering setup, and any initial support-validation step used to start an assembled stack asleep. Browser/driver caches may warm between scenes. These are startup times, not frame times. startupPhases identifies the setup work; preparing the first frame records submission, not a GPU completion wait.",
+          "One paused initialization per scene in a dedicated worker. Includes scene building, GPU contact qualification, physics and rendering setup, and any initial support-validation step used to start an assembled stack asleep. Browser/driver caches may warm between scenes. These are startup times, not frame times. startupPhases identifies the setup work; preparing the first frame waits for GPU completion. firstFrameCompletedMs also includes page navigation and the final status check before the next scene starts.",
         results,
       },
       null,

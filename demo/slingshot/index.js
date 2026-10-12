@@ -3,10 +3,6 @@ import { CpuRenderer2D } from "../shared/rendering/cpuRenderer2D.js";
 import { buildSlingshotScene2D } from "./scene.js";
 import { GpuRenderer2D } from "../shared/rendering/gpuRenderer2D.js";
 import {
-  createBabylonEngine,
-  BabylonRenderer2D,
-} from "../shared/rendering/babylonGpuRenderer.js";
-import {
   JOINT_FLOATS,
   J_STIFF,
 } from "../../reference/three-avbd/src/avbd2d/gpu/layout.ts";
@@ -66,8 +62,13 @@ export async function startSlingshotDemo() {
   };
   document.body.classList.toggle("siege-embed", embedded);
   if (embedded) document.querySelector(".siege-metrics").open = false;
-  const session =
-    renderMode === "babylon" ? await createBabylonEngine(canvas, false) : {};
+  const babylon =
+    renderMode === "babylon"
+      ? await import("../shared/rendering/babylonGpuRenderer.js")
+      : null;
+  const session = babylon
+    ? await babylon.createBabylonEngine(canvas, false)
+    : {};
   const pipeline = await createSolverPipeline({
     backend,
     device: session.device,
@@ -348,7 +349,7 @@ export async function startSlingshotDemo() {
       const Render2D = cpu
         ? CpuRenderer2D
         : renderMode === "babylon"
-          ? BabylonRenderer2D
+          ? babylon.BabylonRenderer2D
           : GpuRenderer2D;
       renderer = new Render2D(device, canvas, sim, () => camera, {
         engine: session.engine,

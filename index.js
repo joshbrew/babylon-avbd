@@ -1,21 +1,42 @@
-import { startCollisionBenchmarkDemo } from "./demo/collision-benchmark/index.js";
-import { startMixedColliderDemo } from "./demo/mixed-colliders/index.js";
-import { startCanonicalLabDemo } from "./demo/lab/index.js";
-import { startSlingshotDemo } from "./demo/slingshot/index.js";
-import { startNavalDemo } from "./demo/naval/index.js";
+import "./demo/lab/style.css";
+import "./demo/slingshot/style.css";
+import "./demo/naval/style.css";
+
+const canonical = async () => {
+  const query = new URLSearchParams(location.search);
+  const { workersAvailable } =
+    await import("./demo/shared/runtime/executionScope.js");
+  if (
+    query.get("embed") !== "1" &&
+    query.get("scope") !== "main" &&
+    navigator.gpu &&
+    workersAvailable()
+  ) {
+    const { startWorkerLab } = await import("./demo/lab/workerView.js");
+    return startWorkerLab(document.body, query);
+  }
+  const { startCanonicalLabDemo } = await import("./demo/lab/index.js");
+  return startCanonicalLabDemo();
+};
 
 const demo =
   new URLSearchParams(window.location.search).get("demo") || "canonical";
 
 const starters = {
-  naval: startNavalDemo,
-  slingshot: startSlingshotDemo,
-  canonical: startCanonicalLabDemo,
-  cannon: startCanonicalLabDemo,
-  benchmark: startCollisionBenchmarkDemo,
-  showcase: startMixedColliderDemo,
-  rock: startMixedColliderDemo,
-  "gpu-stress": startCanonicalLabDemo,
+  naval: async () => (await import("./demo/naval/index.js")).startNavalDemo(),
+  slingshot: async () =>
+    (await import("./demo/slingshot/index.js")).startSlingshotDemo(),
+  canonical,
+  cannon: canonical,
+  benchmark: async () =>
+    (
+      await import("./demo/collision-benchmark/index.js")
+    ).startCollisionBenchmarkDemo(),
+  showcase: async () =>
+    (await import("./demo/mixed-colliders/index.js")).startMixedColliderDemo(),
+  rock: async () =>
+    (await import("./demo/mixed-colliders/index.js")).startMixedColliderDemo(),
+  "gpu-stress": canonical,
 };
 
 (starters[demo] || starters.canonical)().catch(showError);

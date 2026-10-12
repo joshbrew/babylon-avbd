@@ -11,11 +11,11 @@ import {
   CanonicalRenderer,
   packBodies,
 } from "../shared/rendering/canonicalRenderer.js";
-import {
-  createBabylonEngine,
-  BabylonRenderer3D,
-  BabylonRenderer2D,
-} from "../shared/rendering/babylonGpuRenderer.js";
+let createBabylonEngine, BabylonRenderer3D, BabylonRenderer2D;
+async function loadBabylonRenderer() {
+  ({ createBabylonEngine, BabylonRenderer3D, BabylonRenderer2D } =
+    await import("../shared/rendering/babylonGpuRenderer.js"));
+}
 import { GpuShapeSim2D as GpuSim } from "../shared/physics/gpuShapeSim2D.js";
 import { NativeGpuSolver2D as GpuSolver2D } from "../../src/native/solver2D.js";
 import { parallelParams } from "../../reference/three-avbd/src/avbd2d/ref/solver.ts";
@@ -652,6 +652,7 @@ export async function startCanonicalLabDemo(root = document.body) {
   async function getDevice() {
     if ($("#lab-renderer").value === "babylon" && !babylonEngine) {
       device?.destroy();
+      await loadBabylonRenderer();
       const created = await createBabylonEngine(
         canvas,
         current.dimension === 3 && $("#lab-enhanced").checked,

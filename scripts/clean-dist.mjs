@@ -18,6 +18,8 @@ const retained = new Set(
 const pages = [resolve(root, "index.html")];
 for (const bundle of web.additionalBundles)
   retained.add(resolve(root, bundle.outfile));
+for (const asset of web.additionalAssets ?? [])
+  retained.add(resolve(root, asset));
 const testEntries = await readdir(resolve(root, "tests"), {
   recursive: true,
   withFileTypes: true,
@@ -35,6 +37,21 @@ for (const page of pages) {
     if (url.origin !== "https://local.invalid") continue;
     const asset = resolve(root, "." + decodeURIComponent(url.pathname));
     if (inside(asset)) retained.add(asset);
+  }
+}
+// Follow emitted ESM imports so lazy renderers and worker/shared chunks stay
+// deployable. Hashed chunks from previous builds become ordinary unused assets.
+for (const path of retained) {
+  if (!path.endsWith(".js")) continue;
+  const code = await readFile(path, "utf8");
+  for (const match of code.matchAll(
+    /(?:\bfrom\s*|\bimport\s*\(|\bimport\s*)(["'])([^"']+)\1/g,
+  )) {
+    if (!match[2].startsWith(".")) continue;
+    const dependency = resolve(path, "..", match[2]);
+    if (!inside(dependency))
+      throw Error(`Browser import is outside dist: ${dependency}`);
+    retained.add(dependency);
   }
 }
 for (const path of retained) {

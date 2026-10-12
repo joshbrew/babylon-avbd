@@ -175,11 +175,17 @@ export async function contactPortabilityGpuTests(device, test) {
       "Known overlaps locate pair generation and contact creation separately",
     );
     assert(
-      result.pipeline.solver.adjacencyStarts[4] === 3,
+      result.detailed === false,
+      "Passing devices avoid compiling diagnostic-only kernels",
+    );
+    const detail = await runGpuContactChecks3D(device);
+    assert(detail.passed, JSON.stringify(detail));
+    assert(
+      detail.pipeline.solver.adjacencyStarts[4] === 3,
       "All three bodies receive a floor constraint",
     );
     assert(
-      result.pipeline.solver.serialSystems.every(
+      detail.pipeline.solver.serialSystems.every(
         (s) =>
           s.linearDiagonal.every((v) => Number.isFinite(v) && v > 0) &&
           s.angularDiagonal.every((v) => Number.isFinite(v) && v > 0),

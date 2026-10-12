@@ -155,8 +155,10 @@ waking. Awake groups rebuild their connections from current contacts; sleeping
 groups retain the support connections omitted by collision detection. A group
 settles together after its eligible members stay quiet, so sleeping one course
 does not repeatedly disturb the courses above it. Contact waking checks closing
-speed at each contact point, including rotation. Updating a grab anchor wakes
-the held body; ordinary edits and changes to supports wake the world.
+speed at each contact point, including rotation. Adding or removing constraints
+and updating a grab anchor wake their endpoints and sleeping connected groups;
+unrelated groups stay asleep. Ordinary body edits and changes to supports wake
+the world. A connected group can stay awake while any member moves or loses support.
 Unsupported bodies
 under gravity stay awake. `wakeAll()`, `body.wakeUp()` and `readSleepStats()` are
 available. Suspended jointed objects are not guaranteed to sleep. Defaults and

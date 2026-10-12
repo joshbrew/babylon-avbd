@@ -38,7 +38,8 @@ Set `AVBD_TEST_BROWSER` to a Chromium executable if browser discovery fails.
 
 `node scripts/check-galton-startup.mjs` measures startup of the 40,000-marble
 playground and verifies default worker execution, an explicit main-thread choice,
-and automatic fallback when workers are unavailable. `test:playgrounds` also
+and automatic fallback when workers are unavailable. It also checks that page
+dependencies stay small before starting the worker. `test:playgrounds` also
 checks that at least 99.5% of marbles reach the bins, compares GPU counts with real
 body positions, and measures the shape of the distribution.
 
@@ -48,7 +49,9 @@ poses with direct drawing, Babylon, shared-input workers and CPU compatibility.
 and bounded catch-up under load. `check-lab-sleep.mjs` checks live sleeping
 toggles, large-scene defaults and bowling balls in all sixteen wall lanes.
 `check-sleep-stability.mjs --drag` follows the 28K brick ring for 900 steps and
-checks that repeated grab-anchor updates leave resting debris asleep.
+checks that creating a grab and repeatedly updating its anchor leave a distant,
+disconnected sleeper asleep with unchanged poses. GPU regressions also check
+grab release and stale gravity predictions beside an awake resting body.
 `check-jointed-settling.mjs` measures GPU collision and movement time while the
 34K jointed drop lands, comparing sleeping off, whole-world waking and automatic
 group sleeping. It checks contact capacity and solve-group conflicts on every
@@ -60,6 +63,9 @@ through `test:sleeping` and `test:web`; the live toggle checks also run through
 scene defaults and URL settings with CPU, WebGPU, Babylon and worker execution.
 The showcase exposes steps per second beside solving iterations. Both settings
 remain fixed while a benchmark measurement runs.
+
+`check-runtime-efficiency.mjs` also checks that workers finish explicit GPU
+cleanup before termination, with a bounded fallback for an unresponsive worker.
 
 `node scripts/check-demo-startup.mjs --all` initializes every scene in a paused
 worker and saves setup times separately from frame performance. Browser and driver

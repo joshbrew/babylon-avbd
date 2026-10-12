@@ -1,6 +1,6 @@
 {
   "passed": true,
-  "date": "2026-10-12T00:25:07.973Z",
+  "date": "2026-10-12T01:28:09.800Z",
   "method": "Rendering only: 10 warmup draws and 20 alternating samples per path; same unmoved scene and pixel-identical images. Draw times use GPU timestamps; submission times measure CPU encoding. Paused input, sizing, backpressure and readback lifecycle checks.",
   "results": [
     {
@@ -28,6 +28,22 @@
       ]
     },
     {
+      "disposal": [
+        {
+          "acknowledge": true,
+          "released": true,
+          "terminated": true,
+          "ordered": true
+        },
+        {
+          "acknowledge": false,
+          "released": false,
+          "terminated": true,
+          "ordered": false
+        }
+      ]
+    },
+    {
       "scene": "3d-sphere-contacts",
       "bodies": 27,
       "boxInstances": 27,
@@ -38,10 +54,10 @@
       "afterInput": 1,
       "afterResize": 2,
       "identical": true,
-      "fullDrawMs": 0.014336,
-      "compactDrawMs": 0.014336,
-      "fullSubmitMs": 0.2099999189376831,
-      "compactSubmitMs": 0.17500007152557373,
+      "fullDrawMs": 0.008192,
+      "compactDrawMs": 0.008192,
+      "fullSubmitMs": 0.19999992847442627,
+      "compactSubmitMs": 0.20000004768371582,
       "counters": {
         "pairs": 0,
         "contacts": 0,
@@ -64,10 +80,10 @@
       "afterInput": 1,
       "afterResize": 2,
       "identical": true,
-      "fullDrawMs": 0.04608,
-      "compactDrawMs": 0.019456,
-      "fullSubmitMs": 0.16000008583068848,
-      "compactSubmitMs": 0.1799999475479126,
+      "fullDrawMs": 0.099328,
+      "compactDrawMs": 0.057344,
+      "fullSubmitMs": 0.16999995708465576,
+      "compactSubmitMs": 0.19000005722045898,
       "counters": {
         "pairs": 0,
         "contacts": 0,
@@ -90,10 +106,10 @@
       "afterInput": 1,
       "afterResize": 2,
       "identical": true,
-      "fullDrawMs": 0.05632,
-      "compactDrawMs": 0.050176,
-      "fullSubmitMs": 0.2200000286102295,
-      "compactSubmitMs": 0.1700000762939453,
+      "fullDrawMs": 0.055296,
+      "compactDrawMs": 0.054272,
+      "fullSubmitMs": 0.29499995708465576,
+      "compactSubmitMs": 0.18500006198883057,
       "counters": {
         "pairs": 112,
         "contacts": 0,
@@ -116,10 +132,10 @@
       "afterInput": 1,
       "afterResize": 2,
       "identical": true,
-      "fullDrawMs": 3.678208,
-      "compactDrawMs": 3.171328,
-      "fullSubmitMs": 0.22499990463256836,
-      "compactSubmitMs": 0.2349998950958252,
+      "fullDrawMs": 2.011136,
+      "compactDrawMs": 2.297856,
+      "fullSubmitMs": 0.21999990940093994,
+      "compactSubmitMs": 0.21500003337860107,
       "counters": {
         "pairs": 0,
         "contacts": 0,
@@ -142,10 +158,10 @@
       "afterInput": 1,
       "afterResize": 2,
       "identical": true,
-      "fullDrawMs": 2.297856,
-      "compactDrawMs": 2.297856,
-      "fullSubmitMs": 0.18000006675720215,
-      "compactSubmitMs": 0.17499995231628418,
+      "fullDrawMs": 2.706432,
+      "compactDrawMs": 2.23744,
+      "fullSubmitMs": 0.1950000524520874,
+      "compactSubmitMs": 0.19000005722045898,
       "counters": {
         "pairs": 100000,
         "contacts": 400000,

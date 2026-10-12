@@ -423,35 +423,35 @@
     },
     {
       "step": 610,
-      "sleeping": 0,
+      "sleeping": 1472,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 620,
-      "sleeping": 1320,
+      "sleeping": 1498,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 630,
-      "sleeping": 1487,
+      "sleeping": 1499,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 640,
-      "sleeping": 1507,
+      "sleeping": 1510,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 650,
-      "sleeping": 1516,
+      "sleeping": 1518,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
@@ -465,7 +465,7 @@
     },
     {
       "step": 670,
-      "sleeping": 1533,
+      "sleeping": 1534,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
@@ -570,42 +570,42 @@
     },
     {
       "step": 820,
-      "sleeping": 1543,
+      "sleeping": 1549,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 830,
-      "sleeping": 1543,
+      "sleeping": 1544,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 840,
-      "sleeping": 1543,
+      "sleeping": 1544,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 850,
-      "sleeping": 1543,
+      "sleeping": 1544,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 860,
-      "sleeping": 1543,
+      "sleeping": 1544,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     },
     {
       "step": 870,
-      "sleeping": 1543,
+      "sleeping": 1544,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
@@ -626,12 +626,63 @@
     },
     {
       "step": 900,
-      "sleeping": 1544,
+      "sleeping": 1550,
       "wakeRequested": false,
       "overflow": 0,
       "clashes": 0
     }
   ],
-  "roots": 1415,
-  "errors": []
+  "roots": 1411,
+  "errors": [],
+  "isolatedDrag": true,
+  "groups": [
+    {
+      "root": 0,
+      "bodies": 26335,
+      "awake": 26334,
+      "unready": 144,
+      "unsupported": 34,
+      "flags": 4
+    },
+    {
+      "root": 26773,
+      "bodies": 12,
+      "awake": 0,
+      "unready": 0,
+      "unsupported": 0,
+      "flags": 0
+    },
+    {
+      "root": 11053,
+      "bodies": 10,
+      "awake": 0,
+      "unready": 0,
+      "unsupported": 0,
+      "flags": 0
+    },
+    {
+      "root": 19404,
+      "bodies": 10,
+      "awake": 0,
+      "unready": 0,
+      "unsupported": 0,
+      "flags": 0
+    },
+    {
+      "root": 24845,
+      "bodies": 10,
+      "awake": 0,
+      "unready": 0,
+      "unsupported": 0,
+      "flags": 0
+    }
+  ],
+  "motion": {
+    "awake": 26563,
+    "belowThreshold": 26256,
+    "speedMedian": 0.00032305262992770136,
+    "speedP95": 0.0056895256956780785,
+    "quietLongEnough": 26190,
+    "unsupported": 261
+  }
 }

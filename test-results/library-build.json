@@ -220,16 +220,16 @@
           "bytesInOutput": 3312
         },
         "src/gpu/islandSleeping.wgsl": {
-          "bytesInOutput": 6851
+          "bytesInOutput": 7278
         },
         "src/gpu/sleepContact.wgsl": {
-          "bytesInOutput": 1929
+          "bytesInOutput": 2131
         },
         "src/gpu/bufferEdits.js": {
           "bytesInOutput": 2813
         },
         "src/gpu/worldSleeping.js": {
-          "bytesInOutput": 4228
+          "bytesInOutput": 4410
         },
         "src/gpu/smallGroup3D.js": {
           "bytesInOutput": 2230
@@ -319,10 +319,10 @@
           "bytesInOutput": 508
         },
         "src/gpu/appGpuSolver3D.js": {
-          "bytesInOutput": 18797
+          "bytesInOutput": 19060
         },
         "src/gpu/contactCheck3D.js": {
-          "bytesInOutput": 9540
+          "bytesInOutput": 10016
         },
         "src/gpu/device.js": {
           "bytesInOutput": 1166
@@ -337,7 +337,7 @@
           "bytesInOutput": 160
         },
         "src/babylon/constraints.js": {
-          "bytesInOutput": 5789
+          "bytesInOutput": 5907
         },
         "src/gpu/bodyReadback.js": {
           "bytesInOutput": 2876
@@ -514,7 +514,7 @@
           "bytesInOutput": 695
         }
       },
-      "bytes": 578503
+      "bytes": 580171
     }
   }
 }

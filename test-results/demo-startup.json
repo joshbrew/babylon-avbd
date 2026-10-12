@@ -1,91 +1,19 @@
 {
-  "date": "2026-10-11T22:10:50.296Z",
+  "date": "2026-10-12T01:31:34.270Z",
   "passed": true,
   "hardware": "NVIDIA GeForce RTX 4070 Laptop GPU",
   "driver": "32.0.16.1714",
   "identification": "Current Windows GPU name uniquely matched to the WebGPU adapter vendor",
-  "method": "One paused initialization per scene in a dedicated worker. Includes scene building, GPU contact qualification, physics and rendering setup; excludes simulation steps. Browser/driver caches may warm between scenes. These are startup times, not frame times.",
+  "method": "One paused initialization per scene in a dedicated worker. Includes scene building, GPU contact qualification, physics and rendering setup, and any initial support-validation step used to start an assembled stack asleep. Browser/driver caches may warm between scenes. These are startup times, not frame times. startupPhases identifies the setup work; preparing the first frame waits for GPU completion. firstFrameCompletedMs also includes page navigation and the final status check before the next scene starts.",
   "results": [
     {
-      "scene": "3d-ground",
+      "scene": "naval",
       "steps": 0,
       "backend": "gpu",
       "renderer": "webgpu",
       "dimension": 3,
-      "bodies": 2,
-      "iterations": 10,
-      "timeStep": 0.016666666666666666,
-      "defaultStepRate": 60,
-      "adapter": {
-        "vendor": "nvidia",
-        "architecture": "lovelace",
-        "device": "",
-        "description": ""
-      },
-      "worker": true,
-      "sharedInput": false,
-      "bowling": false,
-      "sleepingEnabled": false,
-      "startupMs": 915,
-      "navigationMs": 1012.5055000000002,
-      "passed": true
-    },
-    {
-      "scene": "2d-pyramid",
-      "steps": 0,
-      "backend": "gpu",
-      "renderer": "webgpu",
-      "dimension": 2,
-      "bodies": 211,
-      "iterations": 10,
-      "timeStep": 0.016666666666666666,
-      "defaultStepRate": 60,
-      "adapter": {
-        "vendor": "nvidia",
-        "architecture": "lovelace",
-        "device": "",
-        "description": ""
-      },
-      "worker": true,
-      "sharedInput": false,
-      "bowling": false,
-      "sleepingEnabled": false,
-      "startupMs": 133.52499997615814,
-      "navigationMs": 276.8095999999996,
-      "passed": true
-    },
-    {
-      "scene": "2d-stress-pile-100k",
-      "steps": 0,
-      "backend": "gpu",
-      "renderer": "webgpu",
-      "dimension": 2,
-      "bodies": 100003,
-      "iterations": 10,
-      "timeStep": 0.016666666666666666,
-      "defaultStepRate": 60,
-      "adapter": {
-        "vendor": "nvidia",
-        "architecture": "lovelace",
-        "device": "",
-        "description": ""
-      },
-      "worker": true,
-      "sharedInput": false,
-      "bowling": false,
-      "sleepingEnabled": true,
-      "startupMs": 880.7599999904633,
-      "navigationMs": 995.1629999999996,
-      "passed": true
-    },
-    {
-      "scene": "2d-slingshot-siege",
-      "steps": 0,
-      "backend": "gpu",
-      "renderer": "webgpu",
-      "dimension": 2,
-      "bodies": 5121,
-      "iterations": 16,
+      "bodies": 418,
+      "iterations": 5,
       "timeStep": 0.008333333333333333,
       "defaultStepRate": 120,
       "adapter": {
@@ -97,10 +25,163 @@
       "worker": true,
       "sharedInput": false,
       "bowling": false,
-      "sleepingEnabled": true,
-      "startupMs": 186.59499990940094,
-      "navigationMs": 301.8882000000003,
-      "passed": true
+      "sleepingEnabled": false,
+      "startupPhases": [
+        {
+          "phase": "Building scene…",
+          "ms": 14.945000052452087
+        },
+        {
+          "phase": "Starting the graphics device…",
+          "ms": 79.05999994277954
+        },
+        {
+          "phase": "Checking GPU contacts…",
+          "ms": 231.58000004291534
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 1662.804999947548
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 0.14499998092651367
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 250.38999998569489
+        }
+      ],
+      "startupMs": 2278.054999947548,
+      "navigationMs": 2367.0489000000002,
+      "passed": true,
+      "firstFrameCompletedMs": 2373.0400999999997
+    },
+    {
+      "scene": "3d-tornado-town",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 3,
+      "bodies": 4530,
+      "playActions": [
+        {
+          "id": "start",
+          "label": "Send in tornado"
+        },
+        {
+          "id": "stop",
+          "label": "Stop wind"
+        }
+      ],
+      "iterations": 5,
+      "timeStep": 0.008333333333333333,
+      "defaultStepRate": 120,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": false,
+      "startupPhases": [
+        {
+          "phase": "Building scene…",
+          "ms": 26.269999980926514
+        },
+        {
+          "phase": "Starting the graphics device…",
+          "ms": 86.49000000953674
+        },
+        {
+          "phase": "Checking GPU contacts…",
+          "ms": 256.9450000524521
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 76.2299998998642
+        },
+        {
+          "phase": "Preparing scene drawing…",
+          "ms": 22.725000023841858
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 3.475000023841858
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 28.37000000476837
+        }
+      ],
+      "startupMs": 541.7050000429153,
+      "navigationMs": 587.6172999999999,
+      "passed": true,
+      "firstFrameCompletedMs": 588.7056000000002
+    },
+    {
+      "scene": "3d-domino-spiral",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 3,
+      "bodies": 2049,
+      "playActions": [
+        {
+          "id": "start",
+          "label": "Tip first domino"
+        }
+      ],
+      "iterations": 5,
+      "timeStep": 0.008333333333333333,
+      "defaultStepRate": 120,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": false,
+      "startupPhases": [
+        {
+          "phase": "Building scene…",
+          "ms": 7.014999985694885
+        },
+        {
+          "phase": "Starting the graphics device…",
+          "ms": 89.97000002861023
+        },
+        {
+          "phase": "Checking GPU contacts…",
+          "ms": 231.54499995708466
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 27.019999980926514
+        },
+        {
+          "phase": "Preparing scene drawing…",
+          "ms": 13.259999990463257
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 1.3200000524520874
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 24.075000047683716
+        }
+      ],
+      "startupMs": 436.6399999856949,
+      "navigationMs": 522.0622000000003,
+      "passed": true,
+      "firstFrameCompletedMs": 524.6005000000005
     },
     {
       "scene": "3d-marble-cascade",
@@ -140,149 +221,40 @@
         "retracted": 0
       },
       "sleepingEnabled": false,
-      "startupMs": 7376.449999928474,
-      "navigationMs": 7470.0492,
-      "passed": true
-    },
-    {
-      "scene": "3d-tornado-town",
-      "steps": 0,
-      "backend": "gpu",
-      "renderer": "webgpu",
-      "dimension": 3,
-      "bodies": 4530,
-      "playActions": [
+      "startupPhases": [
         {
-          "id": "start",
-          "label": "Send in tornado"
+          "phase": "Building scene…",
+          "ms": 122.93499994277954
         },
         {
-          "id": "stop",
-          "label": "Stop wind"
-        }
-      ],
-      "iterations": 5,
-      "timeStep": 0.008333333333333333,
-      "defaultStepRate": 120,
-      "adapter": {
-        "vendor": "nvidia",
-        "architecture": "lovelace",
-        "device": "",
-        "description": ""
-      },
-      "worker": true,
-      "sharedInput": false,
-      "bowling": false,
-      "sleepingEnabled": false,
-      "startupMs": 646.8949999809265,
-      "navigationMs": 757.8119999999999,
-      "passed": true
-    },
-    {
-      "scene": "3d-domino-spiral",
-      "steps": 0,
-      "backend": "gpu",
-      "renderer": "webgpu",
-      "dimension": 3,
-      "bodies": 2049,
-      "playActions": [
+          "phase": "Starting the graphics device…",
+          "ms": 84.74500000476837
+        },
         {
-          "id": "start",
-          "label": "Tip first domino"
+          "phase": "Checking GPU contacts…",
+          "ms": 228.20500004291534
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 176.9099999666214
+        },
+        {
+          "phase": "Preparing scene drawing…",
+          "ms": 148.8200000524521
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 32.894999980926514
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 30.75499999523163
         }
       ],
-      "iterations": 5,
-      "timeStep": 0.008333333333333333,
-      "defaultStepRate": 120,
-      "adapter": {
-        "vendor": "nvidia",
-        "architecture": "lovelace",
-        "device": "",
-        "description": ""
-      },
-      "worker": true,
-      "sharedInput": false,
-      "bowling": false,
-      "sleepingEnabled": false,
-      "startupMs": 502.9800000190735,
-      "navigationMs": 638.9976999999999,
-      "passed": true
-    },
-    {
-      "scene": "showcase-ragdolls-on-cloth-24k",
-      "steps": 0,
-      "backend": "gpu",
-      "renderer": "webgpu",
-      "dimension": 3,
-      "bodies": 23617,
-      "iterations": 5,
-      "timeStep": 0.004166666666666667,
-      "defaultStepRate": 240,
-      "adapter": {
-        "vendor": "nvidia",
-        "architecture": "lovelace",
-        "device": "",
-        "description": ""
-      },
-      "worker": true,
-      "sharedInput": false,
-      "bowling": false,
-      "sleepingEnabled": true,
-      "startupMs": 867.1450001001358,
-      "navigationMs": 1003.0850999999984,
-      "passed": true
-    },
-    {
-      "scene": "showcase-box-columns-100k",
-      "steps": 0,
-      "backend": "gpu",
-      "renderer": "webgpu",
-      "dimension": 3,
-      "bodies": 100001,
-      "iterations": 5,
-      "timeStep": 0.016666666666666666,
-      "defaultStepRate": 60,
-      "adapter": {
-        "vendor": "nvidia",
-        "architecture": "lovelace",
-        "device": "",
-        "description": ""
-      },
-      "worker": true,
-      "sharedInput": false,
-      "bowling": false,
-      "sleepingEnabled": true,
-      "startupMs": 2052.0750000476837,
-      "navigationMs": 2178.8936000000012,
-      "passed": true
-    },
-    {
-      "scene": "paper-walls-510k-4",
-      "steps": 0,
-      "backend": "gpu",
-      "renderer": "webgpu",
-      "dimension": 3,
-      "bodies": 505923,
-      "iterations": 4,
-      "timeStep": 0.016666666666666666,
-      "defaultStepRate": 60,
-      "adapter": {
-        "vendor": "nvidia",
-        "architecture": "lovelace",
-        "device": "",
-        "description": ""
-      },
-      "worker": true,
-      "sharedInput": false,
-      "bowling": true,
-      "bowlingBalls": [
-        168845,
-        236512
-      ],
-      "sleepingEnabled": true,
-      "startupMs": 6691.600000023842,
-      "navigationMs": 6818.8897,
-      "passed": true
+      "startupMs": 869.1349999904633,
+      "navigationMs": 962.2564999999995,
+      "passed": true,
+      "firstFrameCompletedMs": 965.0394999999999
     },
     {
       "scene": "3d-static-terrain",
@@ -311,18 +283,104 @@
       "sharedInput": false,
       "bowling": false,
       "sleepingEnabled": false,
-      "startupMs": 3036.7799999713898,
-      "navigationMs": 3120.592200000003,
-      "passed": true
+      "startupPhases": [
+        {
+          "phase": "Building scene…",
+          "ms": 90.1949999332428
+        },
+        {
+          "phase": "Starting the graphics device…",
+          "ms": 82.7849999666214
+        },
+        {
+          "phase": "Checking GPU contacts…",
+          "ms": 219.85000002384186
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 67.23000001907349
+        },
+        {
+          "phase": "Preparing scene drawing…",
+          "ms": 2335.2849999666214
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 0.11000001430511475
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 18.02999997138977
+        }
+      ],
+      "startupMs": 2854.569999933243,
+      "navigationMs": 2925.5203999999994,
+      "passed": true,
+      "firstFrameCompletedMs": 2927.8328999999994
     },
     {
-      "scene": "naval",
+      "scene": "3d-voronoi-demolition",
       "steps": 0,
       "backend": "gpu",
       "renderer": "webgpu",
       "dimension": 3,
-      "bodies": 418,
-      "iterations": 5,
+      "bodies": 222,
+      "iterations": 10,
+      "timeStep": 0.004166666666666667,
+      "defaultStepRate": 240,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": false,
+      "startupPhases": [
+        {
+          "phase": "Building scene…",
+          "ms": 100.62000000476837
+        },
+        {
+          "phase": "Starting the graphics device…",
+          "ms": 92.39999997615814
+        },
+        {
+          "phase": "Checking GPU contacts…",
+          "ms": 235.61000001430511
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 18.225000023841858
+        },
+        {
+          "phase": "Preparing scene drawing…",
+          "ms": 27.115000009536743
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 0.16499996185302734
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 14.650000095367432
+        }
+      ],
+      "startupMs": 532.0149999856949,
+      "navigationMs": 584.4794000000002,
+      "passed": true,
+      "firstFrameCompletedMs": 585.7978000000003
+    },
+    {
+      "scene": "3d-limited-hinges",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 3,
+      "bodies": 13,
+      "iterations": 10,
       "timeStep": 0.008333333333333333,
       "defaultStepRate": 120,
       "adapter": {
@@ -335,9 +393,3572 @@
       "sharedInput": false,
       "bowling": false,
       "sleepingEnabled": false,
-      "startupMs": 2014.4250000715256,
-      "navigationMs": 2121.4240000000027,
-      "passed": true
+      "startupPhases": [
+        {
+          "phase": "Building scene…",
+          "ms": 1.1799999475479126
+        },
+        {
+          "phase": "Starting the graphics device…",
+          "ms": 81.7849999666214
+        },
+        {
+          "phase": "Checking GPU contacts…",
+          "ms": 198.55000007152557
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 2.4950000047683716
+        },
+        {
+          "phase": "Preparing scene drawing…",
+          "ms": 343.9299999475479
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 0.08500003814697266
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 14.684999942779541
+        }
+      ],
+      "startupMs": 681.9850000143051,
+      "navigationMs": 754.336800000001,
+      "passed": true,
+      "firstFrameCompletedMs": 758.0290000000005
+    },
+    {
+      "scene": "2d-triggers-and-masks",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 2,
+      "bodies": 24,
+      "iterations": 10,
+      "timeStep": 0.008333333333333333,
+      "defaultStepRate": 120,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": false,
+      "startupPhases": [
+        {
+          "phase": "Building scene…",
+          "ms": 1.5099999904632568
+        },
+        {
+          "phase": "Starting the graphics device…",
+          "ms": 92.06500005722046
+        },
+        {
+          "phase": "Checking GPU contacts…",
+          "ms": 0.039999961853027344
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 6.475000023841858
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 0.14499998092651367
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 7978.784999966621
+        }
+      ],
+      "startupMs": 8130.675000071526,
+      "navigationMs": 8240.5009,
+      "passed": true,
+      "firstFrameCompletedMs": 8241.802800000001
+    },
+    {
+      "scene": "3d-triggers-and-masks",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 3,
+      "bodies": 28,
+      "iterations": 10,
+      "timeStep": 0.008333333333333333,
+      "defaultStepRate": 120,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": false,
+      "startupPhases": [
+        {
+          "phase": "Building scene…",
+          "ms": 1.100000023841858
+        },
+        {
+          "phase": "Starting the graphics device…",
+          "ms": 92.27499997615814
+        },
+        {
+          "phase": "Checking GPU contacts…",
+          "ms": 242.12999999523163
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 5.050000071525574
+        },
+        {
+          "phase": "Preparing scene drawing…",
+          "ms": 838.579999923706
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 0.09500002861022949
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 25.94000005722046
+        }
+      ],
+      "startupMs": 1247.0049999952316,
+      "navigationMs": 1370.0913,
+      "passed": true,
+      "firstFrameCompletedMs": 1372.0635000000002
+    },
+    {
+      "scene": "2d-sleeping-pile",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 2,
+      "bodies": 258,
+      "iterations": 12,
+      "timeStep": 0.008333333333333333,
+      "defaultStepRate": 120,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": true,
+      "startupPhases": [
+        {
+          "phase": "Building scene…",
+          "ms": 2.575000047683716
+        },
+        {
+          "phase": "Starting the graphics device…",
+          "ms": 80.64999997615814
+        },
+        {
+          "phase": "Checking GPU contacts…",
+          "ms": 0.04499995708465576
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 6.725000023841858
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 0.07500004768371582
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 196.0699999332428
+        }
+      ],
+      "startupMs": 325.3400000333786,
+      "navigationMs": 389.6667000000016,
+      "passed": true,
+      "firstFrameCompletedMs": 393.3675000000003
+    },
+    {
+      "scene": "2d-limited-hinges",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 2,
+      "bodies": 7,
+      "iterations": 12,
+      "timeStep": 0.008333333333333333,
+      "defaultStepRate": 120,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": false,
+      "startupPhases": [
+        {
+          "phase": "Building scene…",
+          "ms": 1.5499999523162842
+        },
+        {
+          "phase": "Starting the graphics device…",
+          "ms": 92.04500007629395
+        },
+        {
+          "phase": "Checking GPU contacts…",
+          "ms": 0.029999971389770508
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 4.615000009536743
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 0.12999999523162842
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 75.45500004291534
+        }
+      ],
+      "startupMs": 213.29999995231628,
+      "navigationMs": 276.65369999999893,
+      "passed": true,
+      "firstFrameCompletedMs": 279.40810000000056
+    },
+    {
+      "scene": "2d-slingshot-siege",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 2,
+      "bodies": 5121,
+      "iterations": 16,
+      "timeStep": 0.008333333333333333,
+      "defaultStepRate": 120,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": true,
+      "startupPhases": [
+        {
+          "phase": "Building scene…",
+          "ms": 24.25
+        },
+        {
+          "phase": "Starting the graphics device…",
+          "ms": 81.23500001430511
+        },
+        {
+          "phase": "Checking GPU contacts…",
+          "ms": 0.034999966621398926
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 22.25
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 0.6150000095367432
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 194.59500002861023
+        }
+      ],
+      "startupMs": 364.2099999189377,
+      "navigationMs": 454.4595999999983,
+      "passed": true,
+      "firstFrameCompletedMs": 466.93559999999707
+    },
+    {
+      "scene": "2d-mixed-shapes",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 2,
+      "bodies": 102,
+      "iterations": 10,
+      "timeStep": 0.008333333333333333,
+      "defaultStepRate": 120,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": false,
+      "startupPhases": [
+        {
+          "phase": "Building scene…",
+          "ms": 2.340000033378601
+        },
+        {
+          "phase": "Starting the graphics device…",
+          "ms": 118.54499995708466
+        },
+        {
+          "phase": "Checking GPU contacts…",
+          "ms": 0.039999961853027344
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 9.740000009536743
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 0.2250000238418579
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 77.80000007152557
+        }
+      ],
+      "startupMs": 254.56499993801117,
+      "navigationMs": 327.40610000000015,
+      "passed": true,
+      "firstFrameCompletedMs": 330.3666999999987
+    },
+    {
+      "scene": "3d-castle-siege",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 3,
+      "bodies": 3915,
+      "iterations": 10,
+      "timeStep": 0.016666666666666666,
+      "defaultStepRate": 60,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "projectileGpuIndex": 2,
+      "sleepingEnabled": false,
+      "startupPhases": [
+        {
+          "phase": "Building scene…",
+          "ms": 82.46000003814697
+        },
+        {
+          "phase": "Starting the graphics device…",
+          "ms": 78.42999994754791
+        },
+        {
+          "phase": "Checking GPU contacts…",
+          "ms": 197.1800000667572
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 106.23500001430511
+        },
+        {
+          "phase": "Preparing scene drawing…",
+          "ms": 28.664999961853027
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 0.10500001907348633
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 9.284999966621399
+        }
+      ],
+      "startupMs": 541.8200000524521,
+      "navigationMs": 644.762999999999,
+      "passed": true,
+      "firstFrameCompletedMs": 647.8444999999992
+    },
+    {
+      "scene": "3d-tearable-cloth",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 3,
+      "bodies": 1026,
+      "iterations": 10,
+      "timeStep": 0.008333333333333333,
+      "defaultStepRate": 120,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": false,
+      "startupPhases": [
+        {
+          "phase": "Building scene…",
+          "ms": 10.014999985694885
+        },
+        {
+          "phase": "Starting the graphics device…",
+          "ms": 76.91999995708466
+        },
+        {
+          "phase": "Checking GPU contacts…",
+          "ms": 206.64000010490417
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 26.054999947547913
+        },
+        {
+          "phase": "Preparing scene drawing…",
+          "ms": 266.38499999046326
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 0.09000003337860107
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 72.75499999523163
+        }
+      ],
+      "startupMs": 698.829999923706,
+      "navigationMs": 766.3172999999988,
+      "passed": true,
+      "firstFrameCompletedMs": 768.1326000000008
+    },
+    {
+      "scene": "paper-walls-510k-3",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 3,
+      "bodies": 505923,
+      "iterations": 3,
+      "timeStep": 0.016666666666666666,
+      "defaultStepRate": 60,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": true,
+      "bowlingBalls": [
+        168845,
+        236512
+      ],
+      "sleepingEnabled": true,
+      "startupPhases": [
+        {
+          "phase": "Building scene…",
+          "ms": 822.4350000619888
+        },
+        {
+          "phase": "Starting the graphics device…",
+          "ms": 117.43999993801117
+        },
+        {
+          "phase": "Checking GPU contacts…",
+          "ms": 229.61500000953674
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 5015.850000023842
+        },
+        {
+          "phase": "Preparing scene drawing…",
+          "ms": 1173.8349999189377
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 0.21500003337860107
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 35.1800000667572
+        }
+      ],
+      "startupMs": 7439.549999952316,
+      "navigationMs": 7509.839599999999,
+      "passed": true,
+      "firstFrameCompletedMs": 7529.2912
+    },
+    {
+      "scene": "paper-walls-510k-4",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 3,
+      "bodies": 505923,
+      "iterations": 4,
+      "timeStep": 0.016666666666666666,
+      "defaultStepRate": 60,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": true,
+      "bowlingBalls": [
+        168845,
+        236512
+      ],
+      "sleepingEnabled": true,
+      "startupPhases": [
+        {
+          "phase": "Building scene…",
+          "ms": 652.3500000238419
+        },
+        {
+          "phase": "Starting the graphics device…",
+          "ms": 94.99500000476837
+        },
+        {
+          "phase": "Checking GPU contacts…",
+          "ms": 214.83500003814697
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 5247.4800000190735
+        },
+        {
+          "phase": "Preparing scene drawing…",
+          "ms": 577.9749999046326
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 0.1650000810623169
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 60.125
+        }
+      ],
+      "startupMs": 6895.174999952316,
+      "navigationMs": 7008.407999999999,
+      "passed": true,
+      "firstFrameCompletedMs": 7031.0448
+    },
+    {
+      "scene": "paper-cloth-35k",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 3,
+      "bodies": 45001,
+      "iterations": 10,
+      "timeStep": 0.016666666666666666,
+      "defaultStepRate": 60,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": false,
+      "startupPhases": [
+        {
+          "phase": "Building scene…",
+          "ms": 153.7149999141693
+        },
+        {
+          "phase": "Starting the graphics device…",
+          "ms": 92.0900000333786
+        },
+        {
+          "phase": "Checking GPU contacts…",
+          "ms": 241.12999999523163
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 642.5700000524521
+        },
+        {
+          "phase": "Preparing scene drawing…",
+          "ms": 149.89999997615814
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 0.125
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 35.355000019073486
+        }
+      ],
+      "startupMs": 1371.4599999189377,
+      "navigationMs": 1496.5948999999964,
+      "passed": true,
+      "firstFrameCompletedMs": 1498.7832999999955
+    },
+    {
+      "scene": "2d-stress-pile-10k",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 2,
+      "bodies": 10003,
+      "iterations": 10,
+      "timeStep": 0.016666666666666666,
+      "defaultStepRate": 60,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": true,
+      "startupPhases": [
+        {
+          "phase": "Building scene…",
+          "ms": 19.924999952316284
+        },
+        {
+          "phase": "Starting the graphics device…",
+          "ms": 90.82000005245209
+        },
+        {
+          "phase": "Checking GPU contacts…",
+          "ms": 0.034999966621398926
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 14.25
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 0.17499995231628418
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 131.39999997615814
+        }
+      ],
+      "startupMs": 307.39999997615814,
+      "navigationMs": 379.0619999999981,
+      "passed": true,
+      "firstFrameCompletedMs": 386.49469999999565
+    },
+    {
+      "scene": "2d-stress-pile-50k",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 2,
+      "bodies": 50003,
+      "iterations": 10,
+      "timeStep": 0.016666666666666666,
+      "defaultStepRate": 60,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": true,
+      "startupPhases": [
+        {
+          "phase": "Building scene…",
+          "ms": 99.45000004768372
+        },
+        {
+          "phase": "Starting the graphics device…",
+          "ms": 109.3199999332428
+        },
+        {
+          "phase": "Checking GPU contacts…",
+          "ms": 0.04500007629394531
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 35.389999985694885
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 0.2250000238418579
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 65.97500002384186
+        }
+      ],
+      "startupMs": 359.1449999809265,
+      "navigationMs": 438.19490000000224,
+      "passed": true,
+      "firstFrameCompletedMs": 443.68239999999787
+    },
+    {
+      "scene": "2d-stress-pile-100k",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 2,
+      "bodies": 100003,
+      "iterations": 10,
+      "timeStep": 0.016666666666666666,
+      "defaultStepRate": 60,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": true,
+      "startupPhases": [
+        {
+          "phase": "Building scene…",
+          "ms": 83.5550000667572
+        },
+        {
+          "phase": "Starting the graphics device…",
+          "ms": 125.93499994277954
+        },
+        {
+          "phase": "Checking GPU contacts…",
+          "ms": 0.039999961853027344
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 67.4650000333786
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 0.10000002384185791
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 73.31500005722046
+        }
+      ],
+      "startupMs": 388.8250000476837,
+      "navigationMs": 499.7057999999961,
+      "passed": true,
+      "firstFrameCompletedMs": 505.93889999999374
+    },
+    {
+      "scene": "showcase-brick-ring-28k",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 3,
+      "bodies": 28114,
+      "iterations": 4,
+      "timeStep": 0.016666666666666666,
+      "defaultStepRate": 60,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": true,
+      "startupPhases": [
+        {
+          "phase": "Building scene…",
+          "ms": 33.3050000667572
+        },
+        {
+          "phase": "Starting the graphics device…",
+          "ms": 82.95499992370605
+        },
+        {
+          "phase": "Checking GPU contacts…",
+          "ms": 269.63499999046326
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 687.9800000190735
+        },
+        {
+          "phase": "Preparing scene drawing…",
+          "ms": 37.25499999523163
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 0.16000008583068848
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 31.59499990940094
+        }
+      ],
+      "startupMs": 1186.1499999761581,
+      "navigationMs": 1262.8440999999948,
+      "passed": true,
+      "firstFrameCompletedMs": 1271.7137999999977
+    },
+    {
+      "scene": "showcase-brick-ring-110k",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 3,
+      "bodies": 110442,
+      "iterations": 4,
+      "timeStep": 0.016666666666666666,
+      "defaultStepRate": 60,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": true,
+      "startupPhases": [
+        {
+          "phase": "Building scene…",
+          "ms": 123.69999992847443
+        },
+        {
+          "phase": "Starting the graphics device…",
+          "ms": 87.17500007152557
+        },
+        {
+          "phase": "Checking GPU contacts…",
+          "ms": 265.63499999046326
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 3018.125
+        },
+        {
+          "phase": "Preparing scene drawing…",
+          "ms": 81.06499993801117
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 0.11000001430511475
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 19.56000006198883
+        }
+      ],
+      "startupMs": 3636.9950000047684,
+      "navigationMs": 3744.042500000003,
+      "passed": true,
+      "firstFrameCompletedMs": 3756.4032000000007
+    },
+    {
+      "scene": "showcase-brick-walls-27k",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 3,
+      "bodies": 26883,
+      "iterations": 3,
+      "timeStep": 0.016666666666666666,
+      "defaultStepRate": 60,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": true,
+      "startupPhases": [
+        {
+          "phase": "Building scene…",
+          "ms": 35.079999923706055
+        },
+        {
+          "phase": "Starting the graphics device…",
+          "ms": 84.06000006198883
+        },
+        {
+          "phase": "Checking GPU contacts…",
+          "ms": 262.9950000047684
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 243.21999990940094
+        },
+        {
+          "phase": "Preparing scene drawing…",
+          "ms": 33.49000000953674
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 0.24500000476837158
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 24.115000009536743
+        }
+      ],
+      "startupMs": 726.2949999570847,
+      "navigationMs": 803.5662999999986,
+      "passed": true,
+      "firstFrameCompletedMs": 811.0206000000035
+    },
+    {
+      "scene": "showcase-ragdolls-on-cloth-24k",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 3,
+      "bodies": 23617,
+      "iterations": 5,
+      "timeStep": 0.004166666666666667,
+      "defaultStepRate": 240,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": true,
+      "startupPhases": [
+        {
+          "phase": "Building scene…",
+          "ms": 88.32500004768372
+        },
+        {
+          "phase": "Starting the graphics device…",
+          "ms": 90.64999997615814
+        },
+        {
+          "phase": "Checking GPU contacts…",
+          "ms": 218.91499996185303
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 307.22000002861023
+        },
+        {
+          "phase": "Preparing scene drawing…",
+          "ms": 77.45500004291534
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 0.26499998569488525
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 23.350000023841858
+        }
+      ],
+      "startupMs": 848.9950000047684,
+      "navigationMs": 948.5732999999964,
+      "passed": true,
+      "firstFrameCompletedMs": 956.6604000000007
+    },
+    {
+      "scene": "showcase-flag-in-the-wind-1.5k",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 3,
+      "bodies": 1546,
+      "iterations": 10,
+      "timeStep": 0.016666666666666666,
+      "defaultStepRate": 60,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": false,
+      "startupPhases": [
+        {
+          "phase": "Building scene…",
+          "ms": 8.180000066757202
+        },
+        {
+          "phase": "Starting the graphics device…",
+          "ms": 74.37999999523163
+        },
+        {
+          "phase": "Checking GPU contacts…",
+          "ms": 224.15499997138977
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 31.68999993801117
+        },
+        {
+          "phase": "Preparing scene drawing…",
+          "ms": 19.875
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 0.08500003814697266
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 21.764999985694885
+        }
+      ],
+      "startupMs": 422.9249999523163,
+      "navigationMs": 525.351499999997,
+      "passed": true,
+      "firstFrameCompletedMs": 527.3439999999973
+    },
+    {
+      "scene": "showcase-wall-smash-2k",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 3,
+      "bodies": 2002,
+      "iterations": 10,
+      "timeStep": 0.016666666666666666,
+      "defaultStepRate": 60,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": false,
+      "startupPhases": [
+        {
+          "phase": "Building scene…",
+          "ms": 6.710000038146973
+        },
+        {
+          "phase": "Starting the graphics device…",
+          "ms": 78.97500002384186
+        },
+        {
+          "phase": "Checking GPU contacts…",
+          "ms": 249.16499996185303
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 45.450000047683716
+        },
+        {
+          "phase": "Preparing scene drawing…",
+          "ms": 12.024999976158142
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 0.09500002861022949
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 17.829999923706055
+        }
+      ],
+      "startupMs": 449.1299999952316,
+      "navigationMs": 519.1318000000028,
+      "passed": true,
+      "firstFrameCompletedMs": 520.8462
+    },
+    {
+      "scene": "showcase-breakable-wall-600",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 3,
+      "bodies": 602,
+      "iterations": 10,
+      "timeStep": 0.016666666666666666,
+      "defaultStepRate": 60,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": false,
+      "startupPhases": [
+        {
+          "phase": "Building scene…",
+          "ms": 3.825000047683716
+        },
+        {
+          "phase": "Starting the graphics device…",
+          "ms": 72.37000000476837
+        },
+        {
+          "phase": "Checking GPU contacts…",
+          "ms": 251.15499997138977
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 24.294999957084656
+        },
+        {
+          "phase": "Preparing scene drawing…",
+          "ms": 9.605000019073486
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 0.09500002861022949
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 21.2150000333786
+        }
+      ],
+      "startupMs": 427.02999997138977,
+      "navigationMs": 507.05599999999686,
+      "passed": true,
+      "firstFrameCompletedMs": 508.8776999999973
+    },
+    {
+      "scene": "showcase-chain-mail-1.6k",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 3,
+      "bodies": 1602,
+      "iterations": 10,
+      "timeStep": 0.016666666666666666,
+      "defaultStepRate": 60,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": false,
+      "startupPhases": [
+        {
+          "phase": "Building scene…",
+          "ms": 7.409999966621399
+        },
+        {
+          "phase": "Starting the graphics device…",
+          "ms": 79.31500005722046
+        },
+        {
+          "phase": "Checking GPU contacts…",
+          "ms": 246.6949999332428
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 32.47000002861023
+        },
+        {
+          "phase": "Preparing scene drawing…",
+          "ms": 16.875
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 0.1499999761581421
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 18.94000005722046
+        }
+      ],
+      "startupMs": 447.04499995708466,
+      "navigationMs": 523.0445000000036,
+      "passed": true,
+      "firstFrameCompletedMs": 525.9576000000015
+    },
+    {
+      "scene": "showcase-heavy-pendulum",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 3,
+      "bodies": 53,
+      "iterations": 10,
+      "timeStep": 0.016666666666666666,
+      "defaultStepRate": 60,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": false,
+      "startupPhases": [
+        {
+          "phase": "Building scene…",
+          "ms": 0.7699999809265137
+        },
+        {
+          "phase": "Starting the graphics device…",
+          "ms": 85.35000002384186
+        },
+        {
+          "phase": "Checking GPU contacts…",
+          "ms": 251.06499993801117
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 5.625
+        },
+        {
+          "phase": "Preparing scene drawing…",
+          "ms": 8.175000071525574
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 0.06999993324279785
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 27.62999999523163
+        }
+      ],
+      "startupMs": 425.90000009536743,
+      "navigationMs": 503.28169999999955,
+      "passed": true,
+      "firstFrameCompletedMs": 505.1929000000018
+    },
+    {
+      "scene": "showcase-box-pile-4k",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 3,
+      "bodies": 4001,
+      "iterations": 10,
+      "timeStep": 0.016666666666666666,
+      "defaultStepRate": 60,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": false,
+      "startupPhases": [
+        {
+          "phase": "Building scene…",
+          "ms": 8.394999980926514
+        },
+        {
+          "phase": "Starting the graphics device…",
+          "ms": 91.4650000333786
+        },
+        {
+          "phase": "Checking GPU contacts…",
+          "ms": 236.27499997615814
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 39.02500009536743
+        },
+        {
+          "phase": "Preparing scene drawing…",
+          "ms": 21.204999923706055
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 0.09000003337860107
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 11.975000023841858
+        }
+      ],
+      "startupMs": 448.8200000524521,
+      "navigationMs": 519.7137999999977,
+      "passed": true,
+      "firstFrameCompletedMs": 521.5991999999969
+    },
+    {
+      "scene": "showcase-box-pile-32k",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 3,
+      "bodies": 32001,
+      "iterations": 10,
+      "timeStep": 0.016666666666666666,
+      "defaultStepRate": 60,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": true,
+      "startupPhases": [
+        {
+          "phase": "Building scene…",
+          "ms": 39.28999996185303
+        },
+        {
+          "phase": "Starting the graphics device…",
+          "ms": 86.32500004768372
+        },
+        {
+          "phase": "Checking GPU contacts…",
+          "ms": 248.38999998569489
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 226.39999997615814
+        },
+        {
+          "phase": "Preparing scene drawing…",
+          "ms": 36.0349999666214
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 0.13999998569488525
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 17.325000047683716
+        }
+      ],
+      "startupMs": 692.7849999666214,
+      "navigationMs": 809.8706999999995,
+      "passed": true,
+      "firstFrameCompletedMs": 818.6621999999988
+    },
+    {
+      "scene": "showcase-jointed-drop-34k",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 3,
+      "bodies": 34097,
+      "iterations": 10,
+      "timeStep": 0.016666666666666666,
+      "defaultStepRate": 60,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": true,
+      "startupPhases": [
+        {
+          "phase": "Building scene…",
+          "ms": 96.06000006198883
+        },
+        {
+          "phase": "Starting the graphics device…",
+          "ms": 98.17499995231628
+        },
+        {
+          "phase": "Checking GPU contacts…",
+          "ms": 241.74000000953674
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 478.2850000858307
+        },
+        {
+          "phase": "Preparing scene drawing…",
+          "ms": 100.375
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 0.12999999523162842
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 12.620000004768372
+        }
+      ],
+      "startupMs": 1071.1049998998642,
+      "navigationMs": 1149.2899000000034,
+      "passed": true,
+      "firstFrameCompletedMs": 1157.2588000000032
+    },
+    {
+      "scene": "showcase-box-columns-100k",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 3,
+      "bodies": 100001,
+      "iterations": 5,
+      "timeStep": 0.016666666666666666,
+      "defaultStepRate": 60,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": true,
+      "startupPhases": [
+        {
+          "phase": "Building scene…",
+          "ms": 100.58999991416931
+        },
+        {
+          "phase": "Starting the graphics device…",
+          "ms": 96.97000002861023
+        },
+        {
+          "phase": "Checking GPU contacts…",
+          "ms": 214.83500003814697
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 945.6399999856949
+        },
+        {
+          "phase": "Preparing scene drawing…",
+          "ms": 559.7949999570847
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 0.13999998569488525
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 36.37999999523163
+        }
+      ],
+      "startupMs": 1998.2700001001358,
+      "navigationMs": 2055.0708000000013,
+      "passed": true,
+      "firstFrameCompletedMs": 2065.1140000000014
+    },
+    {
+      "scene": "2d-empty",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 2,
+      "bodies": 0,
+      "iterations": 10,
+      "timeStep": 0.016666666666666666,
+      "defaultStepRate": 60,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": false,
+      "startupPhases": [
+        {
+          "phase": "Building scene…",
+          "ms": 1.4499999284744263
+        },
+        {
+          "phase": "Starting the graphics device…",
+          "ms": 106.66000008583069
+        },
+        {
+          "phase": "Checking GPU contacts…",
+          "ms": 0.039999961853027344
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 4.919999957084656
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 0.09000003337860107
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 45.080000042915344
+        }
+      ],
+      "startupMs": 228.50999999046326,
+      "navigationMs": 330.3678,
+      "passed": true,
+      "firstFrameCompletedMs": 332.7694000000047
+    },
+    {
+      "scene": "2d-ground",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 2,
+      "bodies": 1,
+      "iterations": 10,
+      "timeStep": 0.016666666666666666,
+      "defaultStepRate": 60,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": false,
+      "startupPhases": [
+        {
+          "phase": "Building scene…",
+          "ms": 0.9800000190734863
+        },
+        {
+          "phase": "Starting the graphics device…",
+          "ms": 87.01999998092651
+        },
+        {
+          "phase": "Checking GPU contacts…",
+          "ms": 0.05500006675720215
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 5.924999952316284
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 0.10500001907348633
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 51.800000071525574
+        }
+      ],
+      "startupMs": 187.08000004291534,
+      "navigationMs": 270.27820000000065,
+      "passed": true,
+      "firstFrameCompletedMs": 272.4658000000054
+    },
+    {
+      "scene": "2d-dynamic-friction",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 2,
+      "bodies": 12,
+      "iterations": 10,
+      "timeStep": 0.016666666666666666,
+      "defaultStepRate": 60,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": false,
+      "startupPhases": [
+        {
+          "phase": "Building scene…",
+          "ms": 1.0750000476837158
+        },
+        {
+          "phase": "Starting the graphics device…",
+          "ms": 85.29999995231628
+        },
+        {
+          "phase": "Checking GPU contacts…",
+          "ms": 0.040000081062316895
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 8.004999995231628
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 0.25
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 56.68499994277954
+        }
+      ],
+      "startupMs": 193.17500007152557,
+      "navigationMs": 272.76780000000144,
+      "passed": true,
+      "firstFrameCompletedMs": 274.74550000000454
+    },
+    {
+      "scene": "2d-static-friction",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 2,
+      "bodies": 12,
+      "iterations": 10,
+      "timeStep": 0.016666666666666666,
+      "defaultStepRate": 60,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": false,
+      "startupPhases": [
+        {
+          "phase": "Building scene…",
+          "ms": 0.7200000286102295
+        },
+        {
+          "phase": "Starting the graphics device…",
+          "ms": 105.87999999523163
+        },
+        {
+          "phase": "Checking GPU contacts…",
+          "ms": 0.04500007629394531
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 5.519999980926514
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 0.16499996185302734
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 57.65499997138977
+        }
+      ],
+      "startupMs": 213.0899999141693,
+      "navigationMs": 325.2448000000004,
+      "passed": true,
+      "firstFrameCompletedMs": 326.9731000000029
+    },
+    {
+      "scene": "2d-pyramid",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 2,
+      "bodies": 211,
+      "iterations": 10,
+      "timeStep": 0.016666666666666666,
+      "defaultStepRate": 60,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": false,
+      "startupPhases": [
+        {
+          "phase": "Building scene…",
+          "ms": 1.9700000286102295
+        },
+        {
+          "phase": "Starting the graphics device…",
+          "ms": 84.625
+        },
+        {
+          "phase": "Checking GPU contacts…",
+          "ms": 0.04499995708465576
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 6.5350000858306885
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 0.125
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 43.75499999523163
+        }
+      ],
+      "startupMs": 177.17500007152557,
+      "navigationMs": 275.40269999999873,
+      "passed": true,
+      "firstFrameCompletedMs": 278.0745999999999
+    },
+    {
+      "scene": "2d-cards",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 2,
+      "bodies": 41,
+      "iterations": 10,
+      "timeStep": 0.016666666666666666,
+      "defaultStepRate": 60,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": false,
+      "startupPhases": [
+        {
+          "phase": "Building scene…",
+          "ms": 2.024999976158142
+        },
+        {
+          "phase": "Starting the graphics device…",
+          "ms": 97.5550000667572
+        },
+        {
+          "phase": "Checking GPU contacts…",
+          "ms": 0.029999971389770508
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 4.230000019073486
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 0.09000003337860107
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 42.83499991893768
+        }
+      ],
+      "startupMs": 191.31000006198883,
+      "navigationMs": 270.9821000000011,
+      "passed": true,
+      "firstFrameCompletedMs": 272.82680000000255
+    },
+    {
+      "scene": "2d-rope",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 2,
+      "bodies": 20,
+      "iterations": 10,
+      "timeStep": 0.016666666666666666,
+      "defaultStepRate": 60,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": false,
+      "startupPhases": [
+        {
+          "phase": "Building scene…",
+          "ms": 0.9850000143051147
+        },
+        {
+          "phase": "Starting the graphics device…",
+          "ms": 84.66499996185303
+        },
+        {
+          "phase": "Checking GPU contacts…",
+          "ms": 0.039999961853027344
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 5.340000033378601
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 0.13499999046325684
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 52.06000006198883
+        }
+      ],
+      "startupMs": 187.2150000333786,
+      "navigationMs": 278.1447000000044,
+      "passed": true,
+      "firstFrameCompletedMs": 280.29899999999907
+    },
+    {
+      "scene": "2d-heavy-rope",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 2,
+      "bodies": 20,
+      "iterations": 10,
+      "timeStep": 0.016666666666666666,
+      "defaultStepRate": 60,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": false,
+      "startupPhases": [
+        {
+          "phase": "Building scene…",
+          "ms": 1.100000023841858
+        },
+        {
+          "phase": "Starting the graphics device…",
+          "ms": 92.67499995231628
+        },
+        {
+          "phase": "Checking GPU contacts…",
+          "ms": 0.039999961853027344
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 7.680000066757202
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 0.08999991416931152
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 40.74500000476837
+        }
+      ],
+      "startupMs": 190.4299999475479,
+      "navigationMs": 273.3290999999954,
+      "passed": true,
+      "firstFrameCompletedMs": 276.1617999999944
+    },
+    {
+      "scene": "2d-hanging-rope",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 2,
+      "bodies": 50,
+      "iterations": 10,
+      "timeStep": 0.016666666666666666,
+      "defaultStepRate": 60,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": false,
+      "startupPhases": [
+        {
+          "phase": "Building scene…",
+          "ms": 2.040000081062317
+        },
+        {
+          "phase": "Starting the graphics device…",
+          "ms": 92.39499998092651
+        },
+        {
+          "phase": "Checking GPU contacts…",
+          "ms": 0.039999961853027344
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 9.379999995231628
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 0.21000003814697266
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 49.330000042915344
+        }
+      ],
+      "startupMs": 198.14999997615814,
+      "navigationMs": 270.2727999999988,
+      "passed": true,
+      "firstFrameCompletedMs": 271.93999999999505
+    },
+    {
+      "scene": "2d-spring",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 2,
+      "bodies": 2,
+      "iterations": 10,
+      "timeStep": 0.016666666666666666,
+      "defaultStepRate": 60,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": false,
+      "startupPhases": [
+        {
+          "phase": "Building scene…",
+          "ms": 1.0549999475479126
+        },
+        {
+          "phase": "Starting the graphics device…",
+          "ms": 79.45000004768372
+        },
+        {
+          "phase": "Checking GPU contacts…",
+          "ms": 0.04499995708465576
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 5.820000052452087
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 0.07499992847442627
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 42.894999980926514
+        }
+      ],
+      "startupMs": 169.8949999809265,
+      "navigationMs": 277.6563000000024,
+      "passed": true,
+      "firstFrameCompletedMs": 279.5671000000002
+    },
+    {
+      "scene": "2d-spring-ratio",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 2,
+      "bodies": 8,
+      "iterations": 10,
+      "timeStep": 0.016666666666666666,
+      "defaultStepRate": 60,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": false,
+      "startupPhases": [
+        {
+          "phase": "Building scene…",
+          "ms": 0.8899999856948853
+        },
+        {
+          "phase": "Starting the graphics device…",
+          "ms": 89.7849999666214
+        },
+        {
+          "phase": "Checking GPU contacts…",
+          "ms": 0.04499995708465576
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 7.760000109672546
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 0.2349998950958252
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 39.875
+        }
+      ],
+      "startupMs": 187.56000006198883,
+      "navigationMs": 275.0916999999972,
+      "passed": true,
+      "firstFrameCompletedMs": 277.1831999999995
+    },
+    {
+      "scene": "2d-stack",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 2,
+      "bodies": 21,
+      "iterations": 10,
+      "timeStep": 0.016666666666666666,
+      "defaultStepRate": 60,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": false,
+      "startupPhases": [
+        {
+          "phase": "Building scene…",
+          "ms": 2.6649999618530273
+        },
+        {
+          "phase": "Starting the graphics device…",
+          "ms": 109.82500004768372
+        },
+        {
+          "phase": "Checking GPU contacts…",
+          "ms": 0.0549999475479126
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 7.629999995231628
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 0.1950000524520874
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 44.30999994277954
+        }
+      ],
+      "startupMs": 206.34500002861023,
+      "navigationMs": 275.8290999999954,
+      "passed": true,
+      "firstFrameCompletedMs": 278.0248999999967
+    },
+    {
+      "scene": "2d-stack-ratio",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 2,
+      "bodies": 7,
+      "iterations": 10,
+      "timeStep": 0.016666666666666666,
+      "defaultStepRate": 60,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": false,
+      "startupPhases": [
+        {
+          "phase": "Building scene…",
+          "ms": 0.6200000047683716
+        },
+        {
+          "phase": "Starting the graphics device…",
+          "ms": 90.73000001907349
+        },
+        {
+          "phase": "Checking GPU contacts…",
+          "ms": 0.11000001430511475
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 5.554999947547913
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 0.10000002384185791
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 53.86500000953674
+        }
+      ],
+      "startupMs": 195.39999997615814,
+      "navigationMs": 273.02240000000165,
+      "passed": true,
+      "firstFrameCompletedMs": 274.8297999999995
+    },
+    {
+      "scene": "2d-rod",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 2,
+      "bodies": 20,
+      "iterations": 10,
+      "timeStep": 0.016666666666666666,
+      "defaultStepRate": 60,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": false,
+      "startupPhases": [
+        {
+          "phase": "Building scene…",
+          "ms": 1.1299999952316284
+        },
+        {
+          "phase": "Starting the graphics device…",
+          "ms": 95.92999994754791
+        },
+        {
+          "phase": "Checking GPU contacts…",
+          "ms": 0.04500007629394531
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 6.044999957084656
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 0.14499998092651367
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 42.81500005722046
+        }
+      ],
+      "startupMs": 191.79499995708466,
+      "navigationMs": 274.1955999999991,
+      "passed": true,
+      "firstFrameCompletedMs": 276.318299999999
+    },
+    {
+      "scene": "2d-soft-body",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 2,
+      "bodies": 151,
+      "iterations": 10,
+      "timeStep": 0.016666666666666666,
+      "defaultStepRate": 60,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": false,
+      "startupPhases": [
+        {
+          "phase": "Building scene…",
+          "ms": 3.0399999618530273
+        },
+        {
+          "phase": "Starting the graphics device…",
+          "ms": 89.28500008583069
+        },
+        {
+          "phase": "Checking GPU contacts…",
+          "ms": 0.059999942779541016
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 6.855000019073486
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 0.17499995231628418
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 45.075000047683716
+        }
+      ],
+      "startupMs": 182.99500000476837,
+      "navigationMs": 271.4925000000003,
+      "passed": true,
+      "firstFrameCompletedMs": 273.40239999999903
+    },
+    {
+      "scene": "2d-joint-grid",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 2,
+      "bodies": 625,
+      "iterations": 10,
+      "timeStep": 0.016666666666666666,
+      "defaultStepRate": 60,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": false,
+      "startupPhases": [
+        {
+          "phase": "Building scene…",
+          "ms": 10.690000057220459
+        },
+        {
+          "phase": "Starting the graphics device…",
+          "ms": 85.91999995708466
+        },
+        {
+          "phase": "Checking GPU contacts…",
+          "ms": 0.02499997615814209
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 8.600000023841858
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 0.09000003337860107
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 66.52999997138977
+        }
+      ],
+      "startupMs": 247.08500003814697,
+      "navigationMs": 338.50650000000314,
+      "passed": true,
+      "firstFrameCompletedMs": 341.28050000000076
+    },
+    {
+      "scene": "2d-net",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 2,
+      "bodies": 91,
+      "iterations": 10,
+      "timeStep": 0.016666666666666666,
+      "defaultStepRate": 60,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": false,
+      "startupPhases": [
+        {
+          "phase": "Building scene…",
+          "ms": 1.2200000286102295
+        },
+        {
+          "phase": "Starting the graphics device…",
+          "ms": 94.17999994754791
+        },
+        {
+          "phase": "Checking GPU contacts…",
+          "ms": 0.034999966621398926
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 4.855000019073486
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 0.13499999046325684
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 58.84500002861023
+        }
+      ],
+      "startupMs": 202.98499989509583,
+      "navigationMs": 271.832699999999,
+      "passed": true,
+      "firstFrameCompletedMs": 273.3862000000008
+    },
+    {
+      "scene": "2d-motor",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 2,
+      "bodies": 2,
+      "iterations": 10,
+      "timeStep": 0.016666666666666666,
+      "defaultStepRate": 60,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": false,
+      "startupPhases": [
+        {
+          "phase": "Building scene…",
+          "ms": 0.7700001001358032
+        },
+        {
+          "phase": "Starting the graphics device…",
+          "ms": 94.73999989032745
+        },
+        {
+          "phase": "Checking GPU contacts…",
+          "ms": 0.040000081062316895
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 7.959999918937683
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 0.18000006675720215
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 48.875
+        }
+      ],
+      "startupMs": 192.7300000190735,
+      "navigationMs": 276.3506000000052,
+      "passed": true,
+      "firstFrameCompletedMs": 278.48619999999937
+    },
+    {
+      "scene": "2d-fracture",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 2,
+      "bodies": 29,
+      "iterations": 10,
+      "timeStep": 0.016666666666666666,
+      "defaultStepRate": 60,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": false,
+      "startupPhases": [
+        {
+          "phase": "Building scene…",
+          "ms": 1.0199999809265137
+        },
+        {
+          "phase": "Starting the graphics device…",
+          "ms": 79.69999992847443
+        },
+        {
+          "phase": "Checking GPU contacts…",
+          "ms": 0.03000009059906006
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 4.849999904632568
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 0.14500010013580322
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 53.234999895095825
+        }
+      ],
+      "startupMs": 181.21999990940094,
+      "navigationMs": 285.77100000000064,
+      "passed": true,
+      "firstFrameCompletedMs": 288.184699999998
+    },
+    {
+      "scene": "3d-empty",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 3,
+      "bodies": 0,
+      "iterations": 10,
+      "timeStep": 0.016666666666666666,
+      "defaultStepRate": 60,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": false,
+      "startupPhases": [
+        {
+          "phase": "Building scene…",
+          "ms": 0.5299999713897705
+        },
+        {
+          "phase": "Starting the graphics device…",
+          "ms": 80.74500000476837
+        },
+        {
+          "phase": "Checking GPU contacts…",
+          "ms": 236.86000001430511
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 1.2350000143051147
+        },
+        {
+          "phase": "Preparing scene drawing…",
+          "ms": 8.894999980926514
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 0.11500000953674316
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 27.894999980926514
+        }
+      ],
+      "startupMs": 395.31500005722046,
+      "navigationMs": 455.90290000000095,
+      "passed": true,
+      "firstFrameCompletedMs": 457.69460000000254
+    },
+    {
+      "scene": "3d-ground",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 3,
+      "bodies": 2,
+      "iterations": 10,
+      "timeStep": 0.016666666666666666,
+      "defaultStepRate": 60,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": false,
+      "startupPhases": [
+        {
+          "phase": "Building scene…",
+          "ms": 0.2749999761581421
+        },
+        {
+          "phase": "Starting the graphics device…",
+          "ms": 86.83500003814697
+        },
+        {
+          "phase": "Checking GPU contacts…",
+          "ms": 261.58000004291534
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 2.3700000047683716
+        },
+        {
+          "phase": "Preparing scene drawing…",
+          "ms": 12.369999885559082
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 0.6850000619888306
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 33.59500002861023
+        }
+      ],
+      "startupMs": 441.0149999856949,
+      "navigationMs": 519.5873999999967,
+      "passed": true,
+      "firstFrameCompletedMs": 524.869399999996
+    },
+    {
+      "scene": "3d-dynamic-friction",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 3,
+      "bodies": 12,
+      "iterations": 10,
+      "timeStep": 0.016666666666666666,
+      "defaultStepRate": 60,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": false,
+      "startupPhases": [
+        {
+          "phase": "Building scene…",
+          "ms": 0.31499993801116943
+        },
+        {
+          "phase": "Starting the graphics device…",
+          "ms": 72.81000006198883
+        },
+        {
+          "phase": "Checking GPU contacts…",
+          "ms": 266.0149999856949
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 2.990000009536743
+        },
+        {
+          "phase": "Preparing scene drawing…",
+          "ms": 13.579999923706055
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 0.12999999523162842
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 27.600000023841858
+        }
+      ],
+      "startupMs": 440.53000009059906,
+      "navigationMs": 516.0998000000036,
+      "passed": true,
+      "firstFrameCompletedMs": 517.9906000000046
+    },
+    {
+      "scene": "3d-static-friction",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 3,
+      "bodies": 13,
+      "iterations": 10,
+      "timeStep": 0.016666666666666666,
+      "defaultStepRate": 60,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": false,
+      "startupPhases": [
+        {
+          "phase": "Building scene…",
+          "ms": 0.4249999523162842
+        },
+        {
+          "phase": "Starting the graphics device…",
+          "ms": 72.14999997615814
+        },
+        {
+          "phase": "Checking GPU contacts…",
+          "ms": 217.74500000476837
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 1.8650000095367432
+        },
+        {
+          "phase": "Preparing scene drawing…",
+          "ms": 9.690000057220459
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 0.09000003337860107
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 18.704999923706055
+        }
+      ],
+      "startupMs": 364.27499997615814,
+      "navigationMs": 460.57280000000173,
+      "passed": true,
+      "firstFrameCompletedMs": 463.4904999999999
+    },
+    {
+      "scene": "3d-pyramid",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 3,
+      "bodies": 137,
+      "iterations": 10,
+      "timeStep": 0.016666666666666666,
+      "defaultStepRate": 60,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": false,
+      "startupPhases": [
+        {
+          "phase": "Building scene…",
+          "ms": 0.5400000810623169
+        },
+        {
+          "phase": "Starting the graphics device…",
+          "ms": 76.88499999046326
+        },
+        {
+          "phase": "Checking GPU contacts…",
+          "ms": 216.54499995708466
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 5.480000019073486
+        },
+        {
+          "phase": "Preparing scene drawing…",
+          "ms": 13.860000014305115
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 0.11500000953674316
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 15.134999990463257
+        }
+      ],
+      "startupMs": 367.18499994277954,
+      "navigationMs": 457.81520000000455,
+      "passed": true,
+      "firstFrameCompletedMs": 461.2436000000016
+    },
+    {
+      "scene": "3d-rope",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 3,
+      "bodies": 21,
+      "iterations": 10,
+      "timeStep": 0.016666666666666666,
+      "defaultStepRate": 60,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": false,
+      "startupPhases": [
+        {
+          "phase": "Building scene…",
+          "ms": 0.41499996185302734
+        },
+        {
+          "phase": "Starting the graphics device…",
+          "ms": 70.74000000953674
+        },
+        {
+          "phase": "Checking GPU contacts…",
+          "ms": 202.31000006198883
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 6.139999985694885
+        },
+        {
+          "phase": "Preparing scene drawing…",
+          "ms": 12.97000002861023
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 0.0849999189376831
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 16.87999999523163
+        }
+      ],
+      "startupMs": 349.9500000476837,
+      "navigationMs": 458.99669999999605,
+      "passed": true,
+      "firstFrameCompletedMs": 461.52219999999943
+    },
+    {
+      "scene": "3d-heavy-rope",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 3,
+      "bodies": 21,
+      "iterations": 10,
+      "timeStep": 0.016666666666666666,
+      "defaultStepRate": 60,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": false,
+      "startupPhases": [
+        {
+          "phase": "Building scene…",
+          "ms": 0.4700000286102295
+        },
+        {
+          "phase": "Starting the graphics device…",
+          "ms": 69.6949999332428
+        },
+        {
+          "phase": "Checking GPU contacts…",
+          "ms": 215.40000009536743
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 5.274999976158142
+        },
+        {
+          "phase": "Preparing scene drawing…",
+          "ms": 10.019999980926514
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 0.1549999713897705
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 21.735000014305115
+        }
+      ],
+      "startupMs": 364.6200000047684,
+      "navigationMs": 469.68530000000464,
+      "passed": true,
+      "firstFrameCompletedMs": 471.8732000000018
+    },
+    {
+      "scene": "3d-spring",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 3,
+      "bodies": 3,
+      "iterations": 10,
+      "timeStep": 0.016666666666666666,
+      "defaultStepRate": 60,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": false,
+      "startupPhases": [
+        {
+          "phase": "Building scene…",
+          "ms": 0.309999942779541
+        },
+        {
+          "phase": "Starting the graphics device…",
+          "ms": 72.3400000333786
+        },
+        {
+          "phase": "Checking GPU contacts…",
+          "ms": 200.1799999475479
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 3.534999966621399
+        },
+        {
+          "phase": "Preparing scene drawing…",
+          "ms": 9.129999995231628
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 0.08000004291534424
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 23.0349999666214
+        }
+      ],
+      "startupMs": 346.4800000190735,
+      "navigationMs": 455.4334000000017,
+      "passed": true,
+      "firstFrameCompletedMs": 459.73649999999907
+    },
+    {
+      "scene": "3d-spring-ratio",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 3,
+      "bodies": 9,
+      "iterations": 10,
+      "timeStep": 0.016666666666666666,
+      "defaultStepRate": 60,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": false,
+      "startupPhases": [
+        {
+          "phase": "Building scene…",
+          "ms": 0.41499996185302734
+        },
+        {
+          "phase": "Starting the graphics device…",
+          "ms": 74.64999997615814
+        },
+        {
+          "phase": "Checking GPU contacts…",
+          "ms": 254.17000007629395
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 2.2699999809265137
+        },
+        {
+          "phase": "Preparing scene drawing…",
+          "ms": 11.919999957084656
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 0.08500003814697266
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 13.850000023841858
+        }
+      ],
+      "startupMs": 395.97500002384186,
+      "navigationMs": 455.5615000000107,
+      "passed": true,
+      "firstFrameCompletedMs": 456.90499999999884
+    },
+    {
+      "scene": "3d-stack",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 3,
+      "bodies": 11,
+      "iterations": 10,
+      "timeStep": 0.016666666666666666,
+      "defaultStepRate": 60,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": false,
+      "startupPhases": [
+        {
+          "phase": "Building scene…",
+          "ms": 0.8050000667572021
+        },
+        {
+          "phase": "Starting the graphics device…",
+          "ms": 84.08499991893768
+        },
+        {
+          "phase": "Checking GPU contacts…",
+          "ms": 264.69000005722046
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 3.0299999713897705
+        },
+        {
+          "phase": "Preparing scene drawing…",
+          "ms": 11.105000019073486
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 0.09000003337860107
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 24.37000000476837
+        }
+      ],
+      "startupMs": 428.7000000476837,
+      "navigationMs": 523.4141999999993,
+      "passed": true,
+      "firstFrameCompletedMs": 525.816799999986
+    },
+    {
+      "scene": "3d-stack-ratio",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 3,
+      "bodies": 5,
+      "iterations": 10,
+      "timeStep": 0.016666666666666666,
+      "defaultStepRate": 60,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": false,
+      "startupPhases": [
+        {
+          "phase": "Building scene…",
+          "ms": 0.30000007152557373
+        },
+        {
+          "phase": "Starting the graphics device…",
+          "ms": 69.32999992370605
+        },
+        {
+          "phase": "Checking GPU contacts…",
+          "ms": 216.25499999523163
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 1.600000023841858
+        },
+        {
+          "phase": "Preparing scene drawing…",
+          "ms": 12.125
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 0.07500004768371582
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 19.274999976158142
+        }
+      ],
+      "startupMs": 361.7849999666214,
+      "navigationMs": 461.5503999999928,
+      "passed": true,
+      "firstFrameCompletedMs": 464.2231999999931
+    },
+    {
+      "scene": "3d-soft-body",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 3,
+      "bodies": 193,
+      "iterations": 10,
+      "timeStep": 0.016666666666666666,
+      "defaultStepRate": 60,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": false,
+      "startupPhases": [
+        {
+          "phase": "Building scene…",
+          "ms": 1.8299999237060547
+        },
+        {
+          "phase": "Starting the graphics device…",
+          "ms": 78.24500000476837
+        },
+        {
+          "phase": "Checking GPU contacts…",
+          "ms": 231.8050000667572
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 14.490000009536743
+        },
+        {
+          "phase": "Preparing scene drawing…",
+          "ms": 8.875
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 0.0849999189376831
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 22.375
+        }
+      ],
+      "startupMs": 396.7900000810623,
+      "navigationMs": 455.9332999999897,
+      "passed": true,
+      "firstFrameCompletedMs": 457.52999999999884
+    },
+    {
+      "scene": "3d-bridge",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 3,
+      "bodies": 91,
+      "iterations": 10,
+      "timeStep": 0.016666666666666666,
+      "defaultStepRate": 60,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": false,
+      "startupPhases": [
+        {
+          "phase": "Building scene…",
+          "ms": 1.3700000047683716
+        },
+        {
+          "phase": "Starting the graphics device…",
+          "ms": 78.33500003814697
+        },
+        {
+          "phase": "Checking GPU contacts…",
+          "ms": 207.31499993801117
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 5.634999990463257
+        },
+        {
+          "phase": "Preparing scene drawing…",
+          "ms": 11.875
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 0.10500001907348633
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 12.894999980926514
+        }
+      ],
+      "startupMs": 356.4100000858307,
+      "navigationMs": 462.92110000000685,
+      "passed": true,
+      "firstFrameCompletedMs": 465.113400000002
+    },
+    {
+      "scene": "3d-breakable",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 3,
+      "bodies": 19,
+      "iterations": 10,
+      "timeStep": 0.016666666666666666,
+      "defaultStepRate": 60,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": false,
+      "startupPhases": [
+        {
+          "phase": "Building scene…",
+          "ms": 0.9350000619888306
+        },
+        {
+          "phase": "Starting the graphics device…",
+          "ms": 78.875
+        },
+        {
+          "phase": "Checking GPU contacts…",
+          "ms": 234.13499999046326
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 4.604999899864197
+        },
+        {
+          "phase": "Preparing scene drawing…",
+          "ms": 10.070000052452087
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 0.14499998092651367
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 23.899999976158142
+        }
+      ],
+      "startupMs": 399.13499999046326,
+      "navigationMs": 455.6218999999983,
+      "passed": true,
+      "firstFrameCompletedMs": 456.9118999999919
+    },
+    {
+      "scene": "3d-mixed-sizes-1k",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 3,
+      "bodies": 1001,
+      "iterations": 4,
+      "timeStep": 0.016666666666666666,
+      "defaultStepRate": 60,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": false,
+      "startupPhases": [
+        {
+          "phase": "Building scene…",
+          "ms": 2.375
+        },
+        {
+          "phase": "Starting the graphics device…",
+          "ms": 72.92500007152557
+        },
+        {
+          "phase": "Checking GPU contacts…",
+          "ms": 232.66999995708466
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 24.299999952316284
+        },
+        {
+          "phase": "Preparing scene drawing…",
+          "ms": 10.170000076293945
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 0.10000002384185791
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 22.22499990463257
+        }
+      ],
+      "startupMs": 411.52999997138977,
+      "navigationMs": 505.5359000000026,
+      "passed": true,
+      "firstFrameCompletedMs": 509.15699999999197
+    },
+    {
+      "scene": "3d-mixed-sizes-10k",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 3,
+      "bodies": 10001,
+      "iterations": 4,
+      "timeStep": 0.016666666666666666,
+      "defaultStepRate": 60,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": true,
+      "startupPhases": [
+        {
+          "phase": "Building scene…",
+          "ms": 17.140000104904175
+        },
+        {
+          "phase": "Starting the graphics device…",
+          "ms": 89.0349999666214
+        },
+        {
+          "phase": "Checking GPU contacts…",
+          "ms": 274.7549999952316
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 560.5649999380112
+        },
+        {
+          "phase": "Preparing scene drawing…",
+          "ms": 23.5
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 0.2950000762939453
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 27.605000019073486
+        }
+      ],
+      "startupMs": 1036.5499999523163,
+      "navigationMs": 1148.9572000000044,
+      "passed": true,
+      "firstFrameCompletedMs": 1153.8512000000046
+    },
+    {
+      "scene": "3d-mixed-sizes-50k",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 3,
+      "bodies": 50001,
+      "iterations": 4,
+      "timeStep": 0.016666666666666666,
+      "defaultStepRate": 60,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": true,
+      "startupPhases": [
+        {
+          "phase": "Building scene…",
+          "ms": 101.91499996185303
+        },
+        {
+          "phase": "Starting the graphics device…",
+          "ms": 112.04500007629395
+        },
+        {
+          "phase": "Checking GPU contacts…",
+          "ms": 241.27499997615814
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 3842.6599999666214
+        },
+        {
+          "phase": "Preparing scene drawing…",
+          "ms": 100.7150000333786
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 0.25999999046325684
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 44.544999957084656
+        }
+      ],
+      "startupMs": 4488.350000023842,
+      "navigationMs": 4600.115900000004,
+      "passed": true,
+      "firstFrameCompletedMs": 4616.66780000001
+    },
+    {
+      "scene": "3d-100k-rook-impact",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 3,
+      "bodies": 100002,
+      "iterations": 4,
+      "timeStep": 0.016666666666666666,
+      "defaultStepRate": 60,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "projectileGpuIndex": 0,
+      "sleepingEnabled": true,
+      "startupPhases": [
+        {
+          "phase": "Building scene…",
+          "ms": 129.125
+        },
+        {
+          "phase": "Starting the graphics device…",
+          "ms": 130.16499996185303
+        },
+        {
+          "phase": "Checking GPU contacts…",
+          "ms": 346.77999997138977
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 4033.350000023842
+        },
+        {
+          "phase": "Preparing scene drawing…",
+          "ms": 120.91999995708466
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 0.16000008583068848
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 148.27999997138977
+        }
+      ],
+      "startupMs": 4954.925000071526,
+      "navigationMs": 5041.304300000003,
+      "passed": true,
+      "firstFrameCompletedMs": 5053.200899999996
+    },
+    {
+      "scene": "3d-sphere-contacts",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 3,
+      "bodies": 27,
+      "iterations": 10,
+      "timeStep": 0.016666666666666666,
+      "defaultStepRate": 60,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": false,
+      "startupPhases": [
+        {
+          "phase": "Building scene…",
+          "ms": 0.6050000190734863
+        },
+        {
+          "phase": "Starting the graphics device…",
+          "ms": 74.37999999523163
+        },
+        {
+          "phase": "Checking GPU contacts…",
+          "ms": 251.9099999666214
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 1.9500000476837158
+        },
+        {
+          "phase": "Preparing scene drawing…",
+          "ms": 11.674999952316284
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 0.09000003337860107
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 22.554999947547913
+        }
+      ],
+      "startupMs": 406.09500002861023,
+      "navigationMs": 530.3701000000001,
+      "passed": true,
+      "firstFrameCompletedMs": 533.0124000000069
+    },
+    {
+      "scene": "3d-convex-hulls",
+      "steps": 0,
+      "backend": "gpu",
+      "renderer": "webgpu",
+      "dimension": 3,
+      "bodies": 20,
+      "iterations": 10,
+      "timeStep": 0.016666666666666666,
+      "defaultStepRate": 60,
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "lovelace",
+        "device": "",
+        "description": ""
+      },
+      "worker": true,
+      "sharedInput": false,
+      "bowling": false,
+      "sleepingEnabled": false,
+      "startupPhases": [
+        {
+          "phase": "Building scene…",
+          "ms": 3.7050000429153442
+        },
+        {
+          "phase": "Starting the graphics device…",
+          "ms": 86.75
+        },
+        {
+          "phase": "Checking GPU contacts…",
+          "ms": 242.18499994277954
+        },
+        {
+          "phase": "Preparing physics buffers and pipelines…",
+          "ms": 4.635000109672546
+        },
+        {
+          "phase": "Preparing scene drawing…",
+          "ms": 22.30999994277954
+        },
+        {
+          "phase": "Connecting scene controls…",
+          "ms": 0.09000003337860107
+        },
+        {
+          "phase": "Preparing the first frame…",
+          "ms": 36.90499997138977
+        }
+      ],
+      "startupMs": 444.56000006198883,
+      "navigationMs": 548.4254000000074,
+      "passed": true,
+      "firstFrameCompletedMs": 550.1199000000051
     }
   ]
 }

@@ -9,6 +9,7 @@ await build({
   stdin: {
     resolveDir: process.cwd(),
     contents: `export {SimulationRuntime} from './demo/shared/runtime/simulationRuntime.js';
+      export {createSimulationClient} from './demo/shared/runtime/simulationClient.js';
       export {WorkerCanvas} from './src/utils/workerCanvas.js';`,
   },
   bundle: true,
@@ -62,6 +63,35 @@ try {
     "Both dimensions must adapt capacity and scheduling from status counters",
   );
   results.push({ adaptation });
+  const disposal = await b.evaluate(`(async()=>{
+    const {createSimulationClient}=await import('/.temp/runtime-efficiency.js');
+    const originalWorker=globalThis.Worker,result=[];
+    try {
+      for(const acknowledge of [true,false]){
+        let released=false,terminated=false,ordered=false;
+        globalThis.Worker=class {
+          postMessage(data){
+            if(data.type==='init')queueMicrotask(()=>this.onmessage({data:{id:data.id,result:{}}}));
+            if(data.type==='dispose'&&acknowledge)setTimeout(()=>{
+              released=true;this.onmessage({data:{id:data.id}});
+            },20);
+          }
+          terminate(){terminated=true;ordered=released;}
+        };
+        const canvas=document.createElement('canvas');document.body.append(canvas);
+        try {
+          const client=await createSimulationClient(canvas,{scope:'worker'});
+          await client.destroy();result.push({acknowledge,released,terminated,ordered});
+        } finally {canvas.remove();}
+      }
+      return result;
+    } finally {globalThis.Worker=originalWorker;}
+  })()`);
+  assert.deepEqual(disposal, [
+    { acknowledge: true, released: true, terminated: true, ordered: true },
+    { acknowledge: false, released: false, terminated: true, ordered: false },
+  ], "Worker cleanup completes before termination; an unresponsive worker still terminates");
+  results.push({ disposal });
   for (const scene of [
     "3d-sphere-contacts",
     "3d-static-terrain",

@@ -112,7 +112,11 @@ The [startup check](scripts/check-demo-startup.mjs) initializes every demo in a
 paused worker with `--all` and records setup times separately from simulation
 performance. Shader caches, device checks and scene size affect those times.
 The scene view shows loading messages during setup, even with its performance
-panel collapsed. Worker startup reports also list the time spent in each setup phase.
+panel collapsed, and stays visible until the first GPU frame completes. Worker
+startup reports also list the time spent in each setup phase.
+The web demo loads the selected demo and renderer on demand. Worker controls use
+a small generated scene catalogue; scene construction and physics stay in the
+worker. First use still includes GPU device setup and shader compilation.
 
 ## Install
 
@@ -124,7 +128,7 @@ npm install avbd-babylon @babylonjs/core
 
 For local development, run `npm install` and `npm run build` in this repository,
 then run `npm install /absolute/path/to/avbd` in your Babylon project. `npm pack`
-creates an installable `avbd-babylon-0.2.0.tgz` archive too.
+creates an installable archive named for the current package version too.
 
 The package includes ESM, TypeScript declarations and a browser global build.
 Babylon 9 is an optional peer dependency; integration examples are checked with
@@ -2204,13 +2208,17 @@ fallingBox.body.wakeUp();
 console.log(await physics.readSleepStats());
 ```
 
-Impulses, teleports, constraint edits, new bodies and removed supports wake the
-world. Desktop WebGPU worlds with at least 4,096 bodies automatically track connected
+Impulses, teleports, body-property edits, new bodies and removed supports wake
+the world. Adding or removing constraints and updating grab anchors wake their
+connected bodies. Desktop WebGPU worlds with at least 4,096 bodies automatically track connected
 groups, so an impact wakes the touched group while unrelated piles stay asleep.
 The static floor does not connect separate piles. Contact and joint connections
 let eligible members settle together. Awake groups rebuild their connections
 each step so separated debris can settle independently. Sleeping groups retain
-their support history. Moving a grab anchor wakes the held body. Smaller worlds and mobile compatibility paths use
+their support history. Creating, moving or releasing a grab keeps unrelated
+sleeping groups asleep. A connected wall can remain awake while any of its
+members are moving or losing support, even when most bricks look still.
+Smaller worlds and mobile compatibility paths use
 whole-world impact waking. Set `sleeping: { islands: true }` to opt into connected
 groups in a smaller 3D world, or `islands: false` to use whole-world waking. Under
 gravity, unsupported slow-moving bodies stay awake; supports extend upward

@@ -1,5 +1,4 @@
 import { WorkerCanvas } from "../../../src/utils/workerCanvas.js";
-import { SimulationRuntime } from "./simulationRuntime.js";
 import {
   createSharedInput,
   writeSharedInput,
@@ -47,6 +46,7 @@ export async function createSimulationClient(
   });
   let info;
   if (scope === "main") {
+    const { SimulationRuntime } = await import("./simulationRuntime.js");
     const surface = new WorkerCanvas(
       canvas,
       dimensions().width,
@@ -226,11 +226,26 @@ export async function createSimulationClient(
       listeners.forEach((remove) => remove());
       cancelAnimationFrame(moveFrame);
       runtime?.destroy();
-      if (worker) {
-        worker.postMessage({ type: "dispose" });
-        worker.terminate();
-      }
       rejectPending("The simulation has been disposed");
+      if (worker) {
+        const id = ++next;
+        let timeout;
+        try {
+          // Let the worker release its GPU device and buffers before terminating
+          // its event loop. A stalled worker must not block scene switching.
+          await new Promise((resolve, reject) => {
+            pending.set(id, { resolve, reject });
+            timeout = setTimeout(resolve, 1000);
+            worker.postMessage({ id, type: "dispose" });
+          });
+        } catch {
+          // Termination also handles a worker that failed during cleanup.
+        } finally {
+          clearTimeout(timeout);
+          pending.delete(id);
+          worker.terminate();
+        }
+      }
     },
   };
 }

@@ -8,26 +8,26 @@
   "runs": [
     {
       "analytic": true,
-      "collisionMs": 0.08192,
-      "totalMs": 0.146432,
-      "contacts": 2048
-    },
-    {
-      "analytic": false,
-      "collisionMs": 0.121856,
-      "totalMs": 0.178176,
+      "collisionMs": 0.091136,
+      "totalMs": 0.160768,
       "contacts": 2048
     },
     {
       "analytic": false,
       "collisionMs": 0.12288,
-      "totalMs": 0.1792,
+      "totalMs": 0.180224,
+      "contacts": 2048
+    },
+    {
+      "analytic": false,
+      "collisionMs": 0.12288,
+      "totalMs": 0.180224,
       "contacts": 2048
     },
     {
       "analytic": true,
-      "collisionMs": 0.072704,
-      "totalMs": 0.130048,
+      "collisionMs": 0.074752,
+      "totalMs": 0.132096,
       "contacts": 2048
     }
   ],

@@ -3,8 +3,8 @@ export default {
   bundler: {
     entryPoints: ["index.js"],
     outfile: "dist/index.js",
-    bundleBrowser: true,
-    bundleESM: false,
+    bundleBrowser: false,
+    bundleESM: true,
     bundleTypes: false,
     bundleHTML: false,
     includeDefaultPlugins: false,
@@ -34,6 +34,7 @@ export default {
       format: "esm",
     },
   ],
+  additionalAssets: ["dist/scene-catalogue.json"],
   server: {
     host: "127.0.0.1",
     port: 8080,

@@ -328,7 +328,7 @@ export class CanonicalRenderer {
       this.pointerEpoch++;
       if (this.drag) {
         this.drag.joint?.destroy();
-        if (gpu) gpu.disableConstraint(this.drag.slot);
+        if (gpu) gpu.releaseJoints([this.drag.slot]);
         this.drag = null;
       }
     };

@@ -14,7 +14,7 @@ fn wake(i:u32) {if(states[i].mass>0.){bodies[i].size.w=states[i].mass;states[i].
 @compute @workgroup_size(64) fn before(@builtin(global_invocation_id) id:vec3u) {
   let i=id.x;if(i>=params.count){return;}
   if((params.forceWake&1u)!=0u||atomicLoad(&globals[0])!=0u){wake(i);atomicStore(&states[i].parent,i);}
-  else if((states[i].pad2&2u)!=0u){wake(i);states[i].pad2|=2u;}
+  else if((states[i].pad2&10u)!=0u){let held=states[i].pad2&2u;wake(i);states[i].pad2|=held;}
   // Rebuild live connectivity after bodies wake or separate. Only sleeping
   // subtrees need history, since their static/static contact pairs are omitted.
   if(states[i].asleep==0u){atomicStore(&states[i].parent,i);}
@@ -23,6 +23,16 @@ fn wake(i:u32) {if(states[i].mass>0.){bodies[i].size.w=states[i].mass;states[i].
   atomicStore(&states[i].support,0u);
 }
 @compute @workgroup_size(1) fn clear() {atomicStore(&globals[0],0u);atomicStore(&globals[1],0u);}
+// Gather old roots before before() resets awake parents. Separate dispatches
+// prevent another workgroup from clearing a wake request before it is consumed.
+@compute @workgroup_size(64) fn requestWake(@builtin(global_invocation_id) id:vec3u){
+  let i=id.x;if(i>=params.count || states[i].asleep==0u || (states[i].pad2&2u)==0u){return;}
+  let r=root(i);if(r<params.count){atomicOr(&states[r].wake,8u);}
+}
+@compute @workgroup_size(64) fn gatherWake(@builtin(global_invocation_id) id:vec3u){
+  let i=id.x;if(i>=params.count){return;}
+  let r=root(i);if(r<params.count && (atomicLoad(&states[r].wake)&8u)!=0u){states[i].pad2|=8u;}
+}
 fn impact(a:u32,b:u32) {
   if(states[a].asleep!=0u && states[b].asleep==0u && speed(b)>2.*params.speed){signalWake(a);}
 }

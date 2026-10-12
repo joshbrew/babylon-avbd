@@ -57,7 +57,13 @@ export class SimulationRuntime {
     finishPhase();
     phase = "Preparing the first frame…";
     this.notify({ type: "loading", message: phase });
-    this.session.draw();
+    try {
+      this.session.draw();
+      await this.completed();
+    } catch (error) {
+      this.destroy();
+      throw error;
+    }
     this.publishAim();
     this.drawRevision = this.canvas.revision;
     this.dirty = false;

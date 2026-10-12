@@ -1,12 +1,16 @@
 import { galtonChart } from "../demo/galton-board/statistics.js";
 import { createSimulationClient } from "../demo/shared/runtime/simulationClient.js";
-import { workerScenes } from "../demo/shared/runtime/simulationSession.js";
+import { loadSceneCatalogue } from "../demo/lab/catalogue.js";
 import { readImportedTerrain } from "../demo/terrain/mesh.js";
 import { trajectoryLine } from "../demo/slingshot/aim.js";
 
 const $ = (id) => document.getElementById(id),
   rows = [],
   errors = [];
+const workerScenes = [
+  { id: "naval", name: "Little ships · waves and sinking", dimension: 3 },
+  ...(await loadSceneCatalogue()),
+];
 let client,
   paused = new URLSearchParams(location.search).get("paused") === "1",
   busy = false;

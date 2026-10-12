@@ -9,11 +9,6 @@ import { sceneGpuSolverOptions } from "../../../src/gpu/gpuSolverOptions.js";
 import { buildCanonicalScene, canonicalScenes } from "../../lab/scenes.js";
 import { CanonicalRenderer } from "../rendering/canonicalRenderer.js";
 import { GpuRenderer2D } from "../rendering/gpuRenderer2D.js";
-import {
-  createBabylonEngine,
-  BabylonRenderer2D,
-  BabylonRenderer3D,
-} from "../rendering/babylonGpuRenderer.js";
 import { buildNavalScene, navalBroadphase } from "../../naval/scene.js";
 import { NavalWater } from "../../naval/water.js";
 import { CpuWorld } from "../physics/cpuWorld.js";
@@ -70,9 +65,13 @@ export async function createSimulationSession(
   let destroyed = false;
   const errors = [];
   try {
+    const babylon =
+      config.renderer === "babylon"
+        ? await import("../rendering/babylonGpuRenderer.js")
+        : null;
     if (cpu && dimension === 2) info = {};
     else if (config.renderer === "babylon")
-      ({ engine, device, info } = await createBabylonEngine(
+      ({ engine, device, info } = await babylon.createBabylonEngine(
         canvas,
         config.enhanced ?? false,
       ));
@@ -143,7 +142,7 @@ export async function createSimulationSession(
       progress("Preparing scene drawing…");
       renderer =
         config.renderer === "babylon"
-          ? new BabylonRenderer3D(device, canvas, built.solver, gpu, {
+          ? new babylon.BabylonRenderer3D(device, canvas, built.solver, gpu, {
               engine,
               enhanced: config.enhanced ?? false,
             })
@@ -216,7 +215,7 @@ export async function createSimulationSession(
             built.renderOptions2D,
           )
         : config.renderer === "babylon"
-          ? new BabylonRenderer2D(device, canvas, sim, () => camera, {
+          ? new babylon.BabylonRenderer2D(device, canvas, sim, () => camera, {
               ...built.renderOptions2D,
               engine,
             })

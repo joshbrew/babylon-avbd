@@ -67,7 +67,13 @@ export class WorldSleeping {
         "before",
         "clear",
         ...(this.islands
-          ? ["connectContacts", "connectJoints", "activity"]
+          ? [
+              "requestWake",
+              "gatherWake",
+              "connectContacts",
+              "connectJoints",
+              "activity",
+            ]
           : []),
         "contacts",
         "joints",
@@ -153,11 +159,18 @@ export class WorldSleeping {
     this.bindContacts();
     this.run(
       [
+        ...(this.islands && this.localWakeRequested
+          ? [
+              ["requestWake", gpu.bodyCount],
+              ["gatherWake", gpu.bodyCount],
+            ]
+          : []),
         ["before", gpu.bodyCount],
         ["clear", 1],
       ],
       encoder,
     );
+    this.localWakeRequested = false;
   }
   wakeBody(index) {
     if (
@@ -168,6 +181,7 @@ export class WorldSleeping {
       throw Error("Sleeping wake requires a live GPU body index");
     // Keep this in the normal property batch; before() consumes the local flag.
     propertyEdits(this.world.gpu).uint(this.state, index * 8 + 7, 2);
+    this.localWakeRequested = true;
   }
   after(encoder) {
     const gpu = this.world.gpu;

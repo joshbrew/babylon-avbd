@@ -108,7 +108,7 @@ try {
     try{
       qualification=await tests.checkGpuContacts3D(device);
       if(!qualification.passed)throw Error('Physical GPU floor-contact qualification failed');
-      const selected=qualification.attempts.find(a=>a.mode===qualification.selected).pipeline.solver;
+      const selected=qualification.attempts.find(a=>a.mode===qualification.selected).pipeline.solver ?? {};
       for(const broadphase of ['grid','hploc']){
         tests.setGpuExecutionPolicy3D(device,{
           portableContactMath:selected.portableContactMath,

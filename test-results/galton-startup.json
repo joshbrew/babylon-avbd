@@ -3,7 +3,7 @@
   "results": [
     {
       "mode": "default-worker",
-      "elapsedMs": 4572.872899999999,
+      "elapsedMs": 4350.7508,
       "scene": "3d-marble-cascade",
       "steps": 0,
       "backend": "gpu",
@@ -44,35 +44,36 @@
       "startupPhases": [
         {
           "phase": "Building scene…",
-          "ms": 105.73500001430511
+          "ms": 106.10000002384186
         },
         {
           "phase": "Starting the graphics device…",
-          "ms": 328.7150000333786
+          "ms": 337.20499992370605
         },
         {
           "phase": "Checking GPU contacts…",
-          "ms": 1897.1949999332428
+          "ms": 1579.9700000286102
         },
         {
           "phase": "Preparing physics buffers and pipelines…",
-          "ms": 183.45500004291534
+          "ms": 174.82500004768372
         },
         {
           "phase": "Preparing scene drawing…",
-          "ms": 217.49000000953674
+          "ms": 147.6599999666214
         },
         {
           "phase": "Connecting scene controls…",
-          "ms": 33.389999985694885
+          "ms": 32.5
         },
         {
           "phase": "Preparing the first frame…",
-          "ms": 1.2699999809265137
+          "ms": 293.8400000333786
         }
       ],
       "scope": "worker",
-      "ticks": 148,
+      "ticks": 158,
+      "mainThreadScriptBytes": 28712,
       "fullControls": "main",
       "paused": true,
       "settingsEnabled": true,

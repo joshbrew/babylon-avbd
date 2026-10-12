@@ -132,7 +132,13 @@ export class AvbdPhysicsConstraint {
     if (this.force && this.angularMaterial)
       setInitialAngularConstraint(this.force, this.angularMaterial);
     world.constraints.add(this);
-    world.wakeAll?.();
+    this.wakeEndpoints();
+  }
+  wakeEndpoints() {
+    const manager = this.world.sleepManager;
+    if (!manager) return;
+    for (const body of [this.bodyA, this.bodyB])
+      if (body) manager.wakeBody(body.gpuIndex);
   }
   attach(slot, capture = true) {
     const gpu = this.world.gpu;
@@ -244,7 +250,7 @@ export class AvbdPhysicsConstraint {
     if (!this.world.disposed) {
       if (this.world.gpu) this.world.gpu.releaseJoints([this.slot]);
       else this.force.destroy();
-      this.world.wakeAll?.();
+      this.wakeEndpoints();
     }
     this.world.constraints.delete(this);
     this.disposed = true;

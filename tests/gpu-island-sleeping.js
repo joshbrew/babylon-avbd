@@ -5,6 +5,46 @@ import { NativeGpuSolver3D } from "../src/native/solver3D.js";
 import { assert, readBuffer } from "./helpers/gpu.js";
 
 export async function islandSleepingGpuTests(device, test) {
+  await test("GPU island sleep ignores stale gravity prediction beside an awake resting body", async () => {
+    const ref = new Solver();
+    ref.iterations = 10;
+    new Rigid(ref, [12, 12, 1], 0, 0.6, [0, 0, -0.5]);
+    new Rigid(ref, [1, 1, 1], 1, 0.6, [0, 0, 0.5]);
+    const top = new Rigid(ref, [1, 1, 1], 1, 0.6, [0, 0, 1.5]);
+    top.allowSleep = false;
+    const gpu = new NativeGpuSolver3D(device, ref, { spatialSort: false });
+    gpu.enableSleeping({ islands: true, timeThreshold: 0.1 });
+    try {
+      for (let step = 0; step < 300; step++) {
+        gpu.step();
+        if (step >= 200 && step % 10 === 9) {
+          const state = new Uint32Array(
+            await readBuffer(device, gpu.sleeping.state),
+          );
+          assert(
+            state[10] !== 0,
+            "The supported box stays asleep under an awake resting neighbor",
+          );
+          assert(state[18] === 0, "The excluded box stays awake");
+        }
+      }
+      device.queue.writeBuffer(
+        gpu.bodyBuffer,
+        2 * 160 + 128,
+        new Float32Array([0, 0, -3]),
+      );
+      gpu.step();
+      const impact = new Uint32Array(
+        await readBuffer(device, gpu.sleeping.state),
+      );
+      assert(
+        impact[10] === 0,
+        "Actual incoming motion still wakes the supported box",
+      );
+    } finally {
+      gpu.destroy();
+    }
+  });
   await test("GPU island sleep wakes on a rotating body's contact-point impact", async () => {
     const ref = new Solver();
     ref.gravity = 0;
@@ -78,7 +118,6 @@ export async function islandSleepingGpuTests(device, test) {
       new Rigid(ref, [1, 1, 1], 1, 0.6, [-4, 0, 0.5]);
       new Rigid(ref, [1, 1, 1], 1, 0.6, [4, 0, 0.5]);
       const gpu = new NativeGpuSolver3D(device, ref, { spatialSort: false });
-      const slot = gpu.appendJoint(-1, 1, [-4, 0, 0.5], [0, 0, 0], 1000, 0);
       gpu.enableSleeping({ islands, timeThreshold: 0.1, speedThreshold: 0.1 });
       try {
         for (let i = 0; i < 120; i++) gpu.step();
@@ -86,6 +125,11 @@ export async function islandSleepingGpuTests(device, test) {
         assert(
           (await gpu.readSleepStats()).sleeping === 2,
           "Both bodies settled",
+        );
+        const slot = gpu.appendJoint(-1, 1, [-4, 0, 0.5], [0, 0, 0], 1000, 0);
+        assert(
+          !gpu.sleeping.wakeRequested,
+          "Creating the grab does not request a world wake",
         );
         for (let i = 0; i < 120; i++) {
           gpu.setWorldAnchor(slot, [-4, 0, 0.5]);
@@ -105,6 +149,15 @@ export async function islandSleepingGpuTests(device, test) {
         assert(
           initial.slice(80, 120).every((v, i) => v === after[80 + i]),
           "Resting body keeps its exact pose",
+        );
+        gpu.releaseJoints([slot]);
+        gpu.step();
+        const released = new Uint32Array(
+          await readBuffer(device, gpu.sleeping.state),
+        );
+        assert(
+          released[18] !== 0,
+          "Releasing the grab preserves unrelated sleep",
         );
       } finally {
         gpu.destroy();

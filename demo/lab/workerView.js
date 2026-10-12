@@ -1,12 +1,13 @@
 import { labMarkup } from "./view.js";
 import { sceneLoading } from "./loading.js";
-import { canonicalScenes } from "./scenes.js";
+import { loadSceneCatalogue } from "./catalogue.js";
 import { createSimulationClient } from "../shared/runtime/simulationClient.js";
 import { galtonChart } from "../galton-board/statistics.js";
 import { readStepRate } from "../shared/runtime/stepRate.js";
 
 /** Keep the laboratory controls on the page while physics and drawing run offscreen. */
 export async function startWorkerLab(root, query) {
+  const canonicalScenes = await loadSceneCatalogue();
   root.innerHTML = labMarkup;
   const $ = (selector) => root.querySelector(selector),
     scene = $("#lab-scene"),

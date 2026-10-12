@@ -839,17 +839,17 @@ export class AppGpuSolver3D extends GpuSolver3D {
       o[15] = sa.reduce((sum, v, i) => sum + (v + sb[i]) ** 2, 0);
       return [1, a, b];
     });
-    this.wakeAll();
+    this.wakeConstraint(slot);
     return slot;
   }
   appendJoints(...args) {
     const slots = super.appendJoints(...args);
-    this.wakeAll();
+    for (const slot of slots) this.wakeConstraint(slot);
     return slots;
   }
   appendSprings(...args) {
     const slots = super.appendSprings(...args);
-    this.wakeAll();
+    for (const slot of slots) this.wakeConstraint(slot);
     return slots;
   }
   enableSleeping(ref, options = {}) {
@@ -903,8 +903,9 @@ export class AppGpuSolver3D extends GpuSolver3D {
   }
   releaseJoints(slots) {
     this.flushPropertyEdits();
-    super.releaseJoints(slots);
-    this.wakeAll();
+    const released = Array.from(slots);
+    for (const slot of released) this.wakeConstraint(slot);
+    super.releaseJoints(released);
   }
   setWorldAnchor(slot, point) {
     if (
@@ -922,8 +923,19 @@ export class AppGpuSolver3D extends GpuSolver3D {
   }
   disableConstraint(slot) {
     this.flushPropertyEdits();
+    this.wakeConstraint(slot);
     super.disableConstraint(slot);
-    this.wakeAll();
+  }
+  wakeConstraint(slot) {
+    if (
+      !this.sleeping ||
+      slot < 0 ||
+      slot >= this.jointCount ||
+      !this.info[slot * 4]
+    )
+      return;
+    for (const index of this.info.subarray(slot * 4 + 1, slot * 4 + 3))
+      if (index >= 0) this.sleeping.wakeBody(index);
   }
   setFilters(indices, groups, collidesWith) {
     if (this.destroyed) throw Error("The 3D solver has been destroyed");
