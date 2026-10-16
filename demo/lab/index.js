@@ -1,3 +1,7 @@
+import {
+  sceneContactRecycling,
+  sceneContactRecyclingSelection,
+} from "../shared/runtime/contactRecyclingPolicy.js";
 /**
  * Main showcase page: scene selection, settings and report links.
  * Execution views own the running session; this module owns the DOM and URL.
@@ -143,6 +147,7 @@ export async function startCanonicalLabDemo(root = document.body) {
         renderer: $("#lab-renderer").value === "babylon" ? "babylon" : "webgpu",
         broadphase: $("#lab-broadphase").value,
         solverMode: $("#lab-solver-mode").value,
+        recycling: $("#lab-recycling").value,
         ...(stepRateOverride === undefined ? {} : { hz: stepRateOverride }),
         ...(scene.value === "3d-static-terrain" && importedTerrain
           ? { terrain: "uploaded" }
@@ -208,6 +213,7 @@ export async function startCanonicalLabDemo(root = document.body) {
           ? "showcase-brick-ring-28k"
           : "3d-stack";
   const sleepSelection = sceneSleepSelection(query, scene.value);
+  const recyclingSelection = sceneContactRecyclingSelection(query, scene.value);
   let sim,
     solver,
     gpu,
@@ -762,6 +768,7 @@ export async function startCanonicalLabDemo(root = document.body) {
     renderer = gpu = cpu = live = sim = solver = sleep = null;
     canvas?.remove();
     current = canonicalScenes.find((s) => s.id === scene.value);
+    $("#lab-recycling").value = recyclingSelection.get(current.id);
     $("#lab-enhanced").disabled = current.dimension !== 3;
     const previous =
       wanted === "cpu"
@@ -775,6 +782,12 @@ export async function startCanonicalLabDemo(root = document.body) {
     else
       backend.value =
         [...backend.options].find((o) => !o.disabled)?.value ?? "gpu";
+    const contactRecycling = sceneContactRecycling(
+      current.id,
+      recyclingSelection.get(current.id),
+      backend.value,
+    );
+    $("#lab-recycling").disabled = backend.value === "webgl2";
     const requestedRenderer = $("#lab-renderer").value;
     rendererOptions(
       backend.value === "gpu"
@@ -839,7 +852,7 @@ export async function startCanonicalLabDemo(root = document.body) {
         }
         cpu = created.world;
         glPipeline = created.pipeline;
-      } else cpu = new CpuWorld(built, backend.value);
+      } else cpu = new CpuWorld(built, backend.value, { contactRecycling });
       if (current.dimension === 2) sim = cpu.sim;
       else solver = cpu.solver;
       if (cpu.bodyCount > 10000) {
@@ -863,6 +876,7 @@ export async function startCanonicalLabDemo(root = document.body) {
           const options2D = {
             bodyCapacity: sim.bodyCount + 4096,
             ...built.gpuOptions2D,
+            contactRecycling,
           };
           sim = new GpuSim(
             built.scene
@@ -911,6 +925,7 @@ export async function startCanonicalLabDemo(root = document.body) {
             spatialSort: true,
             ...sceneGpuSolverOptions(current.id),
             ...built.gpuOptions,
+            contactRecycling,
             broadphase:
               $("#lab-broadphase").value === "auto"
                 ? (built.gpuOptions?.broadphase ?? "auto")
@@ -948,6 +963,9 @@ export async function startCanonicalLabDemo(root = document.body) {
       }
       await renderer?.ready?.();
       live = gpu ?? cpu;
+      diagnostics.contactRecyclingEnabled = !!live.contactRecycling;
+      $("#lab-recycling").options[0].textContent =
+        `Scene preset (${sceneContactRecycling(current.id, "auto", backend.value) ? "enabled" : "disabled"})`;
       $("#lab-sleep-label").hidden = false;
       $("#lab-sleep").checked =
         sleepSelection.get(current.id) ?? sceneSleepingDefault(built);
@@ -1099,6 +1117,7 @@ export async function startCanonicalLabDemo(root = document.body) {
       url.searchParams.set("broadphase", $("#lab-broadphase").value);
       url.searchParams.set("solverMode", $("#lab-solver-mode").value);
       sleepSelection.writeUrl(url, current.id);
+      recyclingSelection.writeUrl(url, current.id);
       history.replaceState(null, "", url);
       // Compile the first rendered/compute passes before timing interactive
       // frames. This is one real, counted physics step, never a fake dry run.
@@ -1796,8 +1815,8 @@ export async function startCanonicalLabDemo(root = document.body) {
       accumulator = Math.min(accumulator + elapsed, 100);
       let count = 0;
       const stepMs = (sim?.params.dt ?? solver.dt) * 1000;
-        const stepBudget = physicsStepsPerFrame(gpuProfile);
-        while (accumulator + 1e-9 >= stepMs && count < stepBudget) {
+      const stepBudget = physicsStepsPerFrame(gpuProfile);
+      while (accumulator + 1e-9 >= stepMs && count < stepBudget) {
         advance();
         accumulator = Math.max(0, accumulator - stepMs);
         count++;
@@ -1867,6 +1886,10 @@ export async function startCanonicalLabDemo(root = document.body) {
     benchmarkSteps().catch((e) => diagnostics.errors.push(e.message));
   $("#lab-shoot").onclick = () =>
     shoot().catch((e) => diagnostics.errors.push(e.message));
+  $("#lab-recycling").onchange = () => {
+    recyclingSelection.set(scene.value, $("#lab-recycling").value);
+    load(backend.value).catch((e) => diagnostics.errors.push(e.message));
+  };
   $("#lab-sleep").onchange = (e) => {
     sleepSelection.set(current.id, e.target.checked);
     sleep = configureSceneSleeping(

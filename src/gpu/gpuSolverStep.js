@@ -83,7 +83,7 @@ export function encodeGpuSolverStep(s) {
   };
   phase("contactCache", "collision");
   run("beginFrame", G.broad, 1);
-  if (p.reuseContacts) run("updateRefs", G.refs, groups(N));
+  if (p.reuseContacts && !s.contactRecycling) run("updateRefs", G.refs, groups(N));
   run("argsPrev", G.args, 1);
   indirect("hashInsert", G.contacts[cur], IA_PREV);
   phase("broadphaseBuild", "collision");

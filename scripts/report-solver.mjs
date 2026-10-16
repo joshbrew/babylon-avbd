@@ -250,6 +250,18 @@ report.sceneSleeping = sceneSleeping?.passed
       summary: sceneSleeping.summary,
     }
   : null;
+const recycling = await read("contact-recycling-performance.json").catch(
+  () => null,
+);
+report.contactRecycling = recycling?.passed
+  ? {
+      hardware: recycling.hardware,
+      seconds: recycling.seconds,
+      repeats: recycling.repeats,
+      summary: recycling.summary,
+      workloads: recycling.workloads,
+    }
+  : null;
 await writeFile(
   "test-results/solver-paper.json",
   JSON.stringify(report.paperMeasurements, null, 2),

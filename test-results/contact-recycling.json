@@ -1,0 +1,156 @@
+{
+  "passed": true,
+  "date": "2026-10-16T03:11:28.583Z",
+  "result": [
+    {
+      "backend": "cpu",
+      "dimension": 2,
+      "rounded": false,
+      "before": {
+        "recycledPairs": 89,
+        "evaluatedPairs": 1
+      },
+      "counters": {
+        "pairs": 1,
+        "contacts": 2,
+        "manifolds": 1,
+        "joints": 0,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 0,
+        "sleeping": 0
+      },
+      "teleportContacts": 0
+    },
+    {
+      "backend": "cpu",
+      "dimension": 2,
+      "rounded": true,
+      "before": {
+        "recycledPairs": 0,
+        "evaluatedPairs": 90
+      },
+      "counters": {
+        "pairs": 1,
+        "contacts": 1,
+        "manifolds": 1,
+        "joints": 0,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 0,
+        "sleeping": 0
+      },
+      "teleportContacts": 0
+    },
+    {
+      "backend": "cpu",
+      "dimension": 3,
+      "rounded": false,
+      "before": {
+        "recycledPairs": 84,
+        "evaluatedPairs": 6
+      },
+      "counters": {
+        "pairs": 1,
+        "contacts": 4,
+        "manifolds": 1,
+        "joints": 0,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 0,
+        "sleeping": 0
+      },
+      "teleportContacts": 0
+    },
+    {
+      "backend": "cpu",
+      "dimension": 3,
+      "rounded": true,
+      "before": {
+        "recycledPairs": 0,
+        "evaluatedPairs": 90
+      },
+      "counters": {
+        "pairs": 1,
+        "contacts": 1,
+        "manifolds": 1,
+        "joints": 0,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 0,
+        "sleeping": 0
+      },
+      "teleportContacts": 0
+    },
+    {
+      "backend": "webgpu",
+      "dimension": 2,
+      "rounded": false,
+      "before": {
+        "recycledPairs": 89,
+        "evaluatedPairs": 1
+      },
+      "counters": {
+        "pairs": 1,
+        "contacts": 2,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 1
+      },
+      "teleportContacts": 0
+    },
+    {
+      "backend": "webgpu",
+      "dimension": 2,
+      "rounded": true,
+      "before": {
+        "recycledPairs": 0,
+        "evaluatedPairs": 90
+      },
+      "counters": {
+        "pairs": 1,
+        "contacts": 1,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 1
+      },
+      "teleportContacts": 0
+    },
+    {
+      "backend": "webgpu",
+      "dimension": 3,
+      "rounded": false,
+      "before": {
+        "recycledPairs": 89,
+        "evaluatedPairs": 1
+      },
+      "counters": {
+        "pairs": 1,
+        "contacts": 4,
+        "manifolds": 1,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 1
+      },
+      "teleportContacts": 0
+    },
+    {
+      "backend": "webgpu",
+      "dimension": 3,
+      "rounded": true,
+      "before": {
+        "recycledPairs": 0,
+        "evaluatedPairs": 90
+      },
+      "counters": {
+        "pairs": 1,
+        "contacts": 1,
+        "manifolds": 1,
+        "overflow": 0,
+        "clashes": 0,
+        "colors": 1
+      },
+      "teleportContacts": 0
+    }
+  ]
+}

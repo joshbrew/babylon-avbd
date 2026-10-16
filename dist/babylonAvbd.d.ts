@@ -4,6 +4,7 @@ import type { Scene } from "@babylonjs/core/scene.js";
 import type { PhysicsShapeType } from "@babylonjs/core/Physics/v2/IPhysicsEnginePlugin.js";
 import type {
   AvbdSleepOptions,
+  AvbdContactRecyclingOptions,
   AvbdHeightfieldOptions,
   AvbdCookedTerrain,
   AvbdTerrainMaterial,
@@ -35,6 +36,8 @@ export interface AvbdSolverDecision {
  * capacity for later additions. A supplied GPUDevice remains caller-owned.
  */
 export interface AvbdWorldOptions {
+  /** Optional relative-motion contact recycling; defaults to false. */
+  contactRecycling?: boolean | AvbdContactRecyclingOptions;
   device?: GPUDevice;
   scene?: Scene;
   gravity?: Vector3 | readonly [number, number, number];

@@ -1,3 +1,9 @@
+import {
+  contactRecyclingOptions,
+  withContactRecycling2D,
+  invalidateContactRecycling,
+  readContactRecyclingStats,
+} from "./contactRecycling.js";
 import { GpuSolver2D } from "../../reference/three-avbd/src/avbd2d/gpu/solver.ts";
 import { Restitution2D } from "./restitution2D.js";
 import { protectStep2D, protectTopology2D } from "./protectStep2D.js";
@@ -113,6 +119,7 @@ export class AppGpuSolver2D extends GpuSolver2D {
     );
   }
   constructor(device, topology, options = {}) {
+    const recycling = contactRecyclingOptions(options.contactRecycling);
     if (
       options.minimumColors !== undefined &&
       (!Number.isInteger(options.minimumColors) ||
@@ -123,6 +130,15 @@ export class AppGpuSolver2D extends GpuSolver2D {
     if (options.sleeping !== undefined && options.sleeping !== false)
       sleepOptions2D(options.sleeping);
     super(device, topology, options);
+    this.contactRecycling = recycling;
+    this.contactRecyclingEpoch = 1;
+    if (recycling) {
+      const limit = this.recyclingContactLimit();
+      if (this.contactCapacity > limit)
+        this.allocateContacts(limit, this.pairCapacity);
+      else this.extendContactCache();
+      this.compileContacts();
+    }
     this.minimumColors = options.minimumColors ?? 4;
     this.colorCap = Math.max(this.colorCap, this.minimumColors);
     this.sleepEligible = new Map(topology.avbdSleepEligible ?? []);
@@ -278,6 +294,12 @@ export class AppGpuSolver2D extends GpuSolver2D {
         "if (j >= 0",
         "if (A.prevVel.w==0. && B.prevVel.w==0. && j >= 0",
       );
+    if (this.contactRecycling)
+      code = withContactRecycling2D(
+        code,
+        this.contactRecycling,
+        !!this.shapeBuffer,
+      );
     return code;
   }
   compileContacts() {
@@ -349,6 +371,7 @@ export class AppGpuSolver2D extends GpuSolver2D {
     this.bindFilters();
   }
   uploadBodies(first = 0, count = this.topology.bodyCount - first) {
+    invalidateContactRecycling(this);
     this.flushPropertyEdits();
     super.uploadBodies(first, count);
     for (let i = first; i < first + count; i++)
@@ -777,6 +800,7 @@ export class AppGpuSolver2D extends GpuSolver2D {
     return slot;
   }
   setFilters(indices, groups, collidesWith) {
+    invalidateContactRecycling(this);
     if (this.destroyed) throw Error("The 2D solver has been destroyed");
     if (
       indices.length !== groups.length ||
@@ -829,12 +853,69 @@ export class AppGpuSolver2D extends GpuSolver2D {
       ].map((buffer, binding) => ({ binding, resource: { buffer } })),
     });
   }
+  readContactRecyclingStats() {
+    return readContactRecyclingStats.call(this);
+  }
+  recyclingContactLimit() {
+    return Math.floor(
+      Math.min(
+        this.device.limits.maxStorageBufferBindingSize,
+        this.device.limits.maxBufferSize,
+      ) / 160,
+    );
+  }
+  capacityCanGrow(contacts, pairs) {
+    if (!this.contactRecycling) return super.capacityCanGrow(contacts, pairs);
+    return (
+      Math.min(contacts, this.recyclingContactLimit()) > this.contactCapacity ||
+      Math.min(
+        pairs,
+        Math.floor(this.device.limits.maxStorageBufferBindingSize / 8),
+      ) > this.pairCapacity
+    );
+  }
+  allocateContacts(requested, requestedPairs = 2 * requested) {
+    // On growth retain contact rows; refresh geometry rather than reading an old tail offset.
+    if (this.contactRecycling)
+      requested = Math.min(requested, this.recyclingContactLimit());
+    super.allocateContacts(requested, requestedPairs);
+    if (this.contactRecycling) this.extendContactCache();
+  }
+  extendContactCache() {
+    const d = this.device,
+      bytes = this.contactCapacity * 80;
+    if (
+      bytes * 2 >
+      Math.min(d.limits.maxStorageBufferBindingSize, d.limits.maxBufferSize)
+    )
+      throw Error(
+        "2D contact recycling exceeds GPU storage limits; reduce contact capacity",
+      );
+    const old = this.contactBuffers,
+      e = d.createCommandEncoder();
+    this.contactBuffers = old.map((buffer, i) => {
+      const next = d.createBuffer({
+        label: `2D contacts and recycling cache ${i}`,
+        size: bytes * 2,
+        usage:
+          GPUBufferUsage.STORAGE |
+          GPUBufferUsage.COPY_SRC |
+          GPUBufferUsage.COPY_DST,
+      });
+      e.copyBufferToBuffer(buffer, 0, next, 0, bytes);
+      return next;
+    });
+    d.queue.submit([e.finish()]);
+    old.forEach((buffer) => buffer.destroy());
+    this.rebuildBindings();
+  }
   rebuildBindings() {
     super.rebuildBindings();
     this.bindFilters();
     this.bindContacts();
   }
   setSensor(index, enabled) {
+    invalidateContactRecycling(this);
     this.liveIndex(index);
     if (typeof enabled !== "boolean")
       throw Error("Sensor flag must be boolean");

@@ -40,7 +40,7 @@ export const cpuNarrowphase2D = function () {
     const key = pairs[k];
     const a = Math.floor(key / PAIR_SHIFT);
     const b = key - a * PAIR_SHIFT;
-    const count = this.collideBodies(a, b, out);
+    const count = this.collideBodies(a, b, out, key);
     if (count === 0) continue;
 
     // Last step's contacts for this pair (sorted by key)

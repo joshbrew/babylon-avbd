@@ -1,0 +1,29 @@
+{
+  "passed": true,
+  "rows": [
+    {
+      "scope": "main",
+      "backend": "gpu",
+      "manualChoicePreserved": true,
+      "scenePresetsIndependent": true
+    },
+    {
+      "scope": "main",
+      "backend": "cpu",
+      "manualChoicePreserved": true,
+      "scenePresetsIndependent": true
+    },
+    {
+      "scope": "worker",
+      "backend": "gpu",
+      "manualChoicePreserved": true,
+      "scenePresetsIndependent": true
+    },
+    {
+      "scope": "worker",
+      "backend": "cpu",
+      "manualChoicePreserved": true,
+      "scenePresetsIndependent": true
+    }
+  ]
+}

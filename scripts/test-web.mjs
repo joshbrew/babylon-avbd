@@ -18,6 +18,8 @@ const checks = [
   "check-terrain",
   "check-terrain-import",
   "check-contact-portability",
+  "check-contact-recycling",
+  "check-contact-recycling-ui",
   "check-contact-compatibility-features",
   "check-scenes",
   "check-benchmark-scenes",

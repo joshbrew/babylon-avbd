@@ -9,6 +9,12 @@ import { writeAtomicFile as writeFile } from "./report-file.mjs";
 const root = fileURLToPath(new URL("../test-results/", import.meta.url));
 const within = (path) => resolve(path).startsWith(resolve(root) + sep);
 const roots = [
+  "contact-recycling.json",
+  "contact-recycling-package.json",
+  "contact-recycling-portable.json",
+  "contact-recycling-ui.json",
+  "contact-recycling-net.json",
+  "contact-recycling-performance.json",
   "playgrounds.json",
   "galton-startup.json",
   "galton-pegs.json",

@@ -34,7 +34,7 @@ try {
     for (let i = 0; i < 100; i++) {
       if (
         await browser.evaluate(
-          "document.querySelectorAll('article:not(.sleep-run)').length===4",
+          "document.querySelectorAll('article.solver-stage').length===4",
         )
       )
         break;
@@ -43,11 +43,11 @@ try {
     const result = await browser.evaluate(`(async()=>{
       for(const image of document.images) await image.decode();
       return {width:innerWidth,scroll:document.documentElement.scrollWidth,
-        cards:document.querySelectorAll('article:not(.sleep-run)').length,
+        cards:document.querySelectorAll('article.solver-stage').length,
         sleepCharts:document.querySelectorAll('.sleep-run').length,
         sleepBars:document.querySelectorAll('.sleep-run .bar span').length,
         images:[...document.images].every(image=>image.naturalWidth>0),
-        stages:document.querySelectorAll('article:not(.sleep-run) .bar span').length,
+        stages:document.querySelectorAll('article.solver-stage .bar span').length,
         namedHardware:document.body.textContent.includes('RTX 4070 Laptop GPU')&&!document.body.textContent.toLowerCase().includes('this laptop')};
     })()`);
     if (
@@ -60,6 +60,28 @@ try {
       result.scroll > result.width
     )
       throw Error(JSON.stringify(result));
+    if (data.contactRecycling?.summary?.length) {
+      const recycling = await browser.evaluate(
+        "({rows:document.querySelectorAll('#contact-recycling tbody:first-of-type tr').length,text:document.getElementById('contact-recycling').textContent})",
+      );
+      if (
+        !recycling.text.includes("RTX 4070 Laptop GPU") ||
+        recycling.rows < data.contactRecycling.summary.length
+      )
+        throw Error("Contact recycling comparison is incomplete");
+      await browser.evaluate(
+        "document.querySelector('#contact-recycling details').open=true",
+      );
+      if (
+        await browser.evaluate(
+          "document.documentElement.scrollWidth>innerWidth",
+        )
+      )
+        throw Error("Expanded recycling results overflow the page");
+      await browser.evaluate(
+        "document.querySelector('#contact-recycling details').open=false",
+      );
+    }
     if (
       data.workerBenchmarks?.passed &&
       !(await browser.evaluate(
@@ -70,7 +92,7 @@ try {
     const explanation = await browser.evaluate(`(()=>{
       const text=document.body.innerText;
       return {plain:text.includes('Smaller time = faster simulation.') && text.includes('Drawing is separate.') && text.includes('What is “Move + prepare”?'),
-        localVsPaper:[...document.querySelectorAll('article:not(.sleep-run)')].every(a=>a.textContent.includes('GPU AVBD') && a.textContent.includes('Physics per step')) && text.includes('separate native implementation on a desktop GPU'),
+        localVsPaper:[...document.querySelectorAll('article.solver-stage')].every(a=>a.textContent.includes('GPU AVBD') && a.textContent.includes('Physics per step')) && text.includes('separate native implementation on a desktop GPU'),
         automatic:!!document.querySelector('#solver-selection') && text.includes('rechecks the choice when objects or connections change'),
         unambiguous:!text.includes('Original math') && !text.includes('Streamlined math') && !text.includes('Standard WebGPU solver') && !text.includes('Optimized WebGPU solver'),
         paperScenes:['paper-walls-510k-3','paper-walls-510k-4','paper-cloth-35k'].every(id=>document.querySelector('a[href*="scene='+id+'"]')),
@@ -145,7 +167,7 @@ try {
         `({charts:document.querySelectorAll('.ragdoll-run').length,bars:document.querySelectorAll('.ragdoll-run .bar span').length,plain:document.querySelector('#gpu-tree').textContent.includes('this is not a frame-rate measurement')})`,
       );
       const fiveIterations = await browser.evaluate(
-        "document.querySelector('#gpu-tree').textContent.includes('five solver iterations') && [...document.querySelectorAll('article:not(.sleep-run)')].some(a=>a.textContent.includes('Ragdolls on a rigid net') && a.textContent.includes('5 solver iterations per step'))",
+        "document.querySelector('#gpu-tree').textContent.includes('five solver iterations') && [...document.querySelectorAll('article.solver-stage')].some(a=>a.textContent.includes('Ragdolls on a rigid net') && a.textContent.includes('5 solver iterations per step'))",
       );
       if (
         ragdolls.charts !== 2 ||

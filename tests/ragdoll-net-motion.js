@@ -203,7 +203,7 @@ export function netCrossings(poses, grid, ragdolls, gpu) {
     worst: worst.sort((a, b) => b.depth - a.depth).slice(0, 8),
   };
 }
-export async function measureRagdollNet(substeps, seconds = 30) {
+export async function measureRagdollNet(substeps, seconds = 30, options = {}) {
   // Confirm the probe detects a partial protrusion that a whole-body test misses.
   // This is geometry validation; the simulation below always runs on WebGPU.
   const fixture = new Float32Array(5 * 40),
@@ -264,11 +264,10 @@ export async function measureRagdollNet(substeps, seconds = 30) {
     ref = built.solver;
   if (substeps !== undefined) ref.dt = 1 / (60 * substeps);
   substeps = Math.round(1 / (60 * ref.dt));
-  const gpu = new AppGpuSolver3D(
-      device,
-      ref,
-      sceneGpuSolverOptions(built.def.id),
-    ),
+  const gpu = new AppGpuSolver3D(device, ref, {
+      ...sceneGpuSolverOptions(built.def.id),
+      ...options,
+    }),
     grid = clothsOf(ref)[0].map((row) => row.map((b) => ref.bodies.indexOf(b))),
     groups = [];
   if (

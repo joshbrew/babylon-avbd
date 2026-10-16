@@ -4,7 +4,7 @@ import { SoaSolver2D } from "../../../reference/three-avbd/src/avbd2d/soa/solver
 
 /** Lab adapter: production CPU execution plus renderer metadata. */
 export class CpuWorld extends NativeCpuSolver {
-  constructor(built, backend) {
+  constructor(built, backend, options = {}) {
     const dimension = built.def.dimension;
     let scene =
       built.scene ??
@@ -23,6 +23,7 @@ export class CpuWorld extends NativeCpuSolver {
       scene = { ...scene, topology };
     }
     super(scene, dimension, {
+      ...options,
       order: backend === "soa-colored" ? "colored" : "sequential",
     });
     Object.assign(this.params, built.gpuParams);

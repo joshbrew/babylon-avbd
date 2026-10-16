@@ -1,3 +1,4 @@
+import { capturePair2D, canRecycle2D } from "./contactRecycling.js";
 import {
   SoaSolver2D,
   CS,
@@ -56,13 +57,43 @@ export class CpuSolver2D extends SoaSolver2D {
   }
   narrowphase() {
     this.contactPairs = [];
+    if (this.contactRecycling) this.nextCollisionCache = new Map();
     cpuNarrowphase2D.call(this);
+    if (this.contactRecycling) this.collisionCache = this.nextCollisionCache;
   }
-  collideBodies(a, b, out) {
+  collideBodies(a, b, out, pairKey) {
     const A = this.filters.get(a) ?? [0xffffffff, 0xffffffff],
       B = this.filters.get(b) ?? [0xffffffff, 0xffffffff];
     if (!(A[0] & B[1]) || !(B[0] & A[1])) return 0;
-    const count = collideCpu2D(this, a, b, out);
+    let count;
+    if (!this.contactRecycling) count = collideCpu2D(this, a, b, out);
+    else {
+      const key = pairKey ?? `${a},${b}`,
+        shapes = shapesOf2D(this),
+        typeA = shapes?.get(a)?.[0] ?? 0,
+        typeB = shapes?.get(b)?.[0] ?? 0,
+        eligible =
+          this.contactRecycling &&
+          !this.sensors.has(a) &&
+          !this.sensors.has(b) &&
+          (typeA === 0 || typeA === 4) &&
+          (typeB === 0 || typeB === 4),
+        cache = eligible ? this.collisionCache?.get(key) : null;
+      if (eligible && canRecycle2D(cache, this, a, b)) {
+        count = cache.count;
+        out.set(cache.points);
+        this.nextCollisionCache.set(key, cache);
+        this.recyclingStats.recycledPairs++;
+      } else {
+        count = collideCpu2D(this, a, b, out);
+        if (this.contactRecycling) this.recyclingStats.evaluatedPairs++;
+        if (eligible && count)
+          this.nextCollisionCache.set(
+            key,
+            capturePair2D(this, a, b, count, out),
+          );
+      }
+    }
     if (count) {
       const n = [out[5], out[6]],
         ra = [0, 0],

@@ -1,3 +1,4 @@
+import { sceneContactRecycling } from "./contactRecyclingPolicy.js";
 import { PlayPhysics } from "../playground/physics.js";
 import {
   createWebGPUDevice,
@@ -42,6 +43,11 @@ export async function createSimulationSession(
   progress("Building scene…");
   const naval = config.scene === "naval";
   const cpu = config.backend === "cpu";
+  const contactRecycling = sceneContactRecycling(
+    config.scene,
+    config.contactRecycling,
+    config.backend,
+  );
   if (graphics && (cpu || config.renderer === "babylon"))
     throw Error(
       "Shared graphics require the direct WebGPU renderer and solver",
@@ -113,9 +119,10 @@ export async function createSimulationSession(
     progress("Checking GPU contacts…");
     if (dimension === 3 && !cpu) await prepareWebGPUDevice3D(device);
     progress("Preparing physics buffers and pipelines…");
-    if (cpu) gpu = new CpuWorld(built, "soa-seq");
+    if (cpu) gpu = new CpuWorld(built, "soa-seq", { contactRecycling });
     if (naval) {
       gpu = built.world.createSolver(device, {
+        contactRecycling,
         broadphase: navalBroadphase(config.broadphase),
         solverMode: config.solverMode ?? "auto",
         minimumColors: 8,
@@ -136,6 +143,7 @@ export async function createSimulationSession(
       const options = {
         ...sceneGpuSolverOptions(config.scene),
         ...built.gpuOptions,
+        contactRecycling,
         broadphase:
           !config.broadphase || config.broadphase === "auto"
             ? (built.gpuOptions?.broadphase ?? "auto")
@@ -181,8 +189,14 @@ export async function createSimulationSession(
     } else {
       if (!cpu)
         gpu = built.scene
-          ? built.scene.createSolver(device, built.gpuOptions2D)
-          : new NativeGpuSolver2D(device, built.sim.solver, built.gpuOptions2D);
+          ? built.scene.createSolver(device, {
+              ...built.gpuOptions2D,
+              contactRecycling,
+            })
+          : new NativeGpuSolver2D(device, built.sim.solver, {
+              ...built.gpuOptions2D,
+              contactRecycling,
+            });
       if (!(config.sleeping ?? sceneSleepingDefault(built)))
         gpu.disableSleeping();
       else {

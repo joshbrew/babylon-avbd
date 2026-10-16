@@ -44,6 +44,8 @@
     "benchmark:backends": "node scripts/build.mjs && node scripts/benchmark-backends.mjs",
     "benchmark:native": "node scripts/benchmark-package.mjs",
     "benchmark:sleeping": "node scripts/benchmark-package.mjs",
+    "test:contact-recycling": "node scripts/check-contact-recycling.mjs",
+    "benchmark:contact-recycling": "node scripts/benchmark-contact-recycling.mjs --update-presets && node scripts/build.mjs && node scripts/report-solver.mjs",
     "benchmark:scene-sleep": "node scripts/benchmark-scene-sleep.mjs && node scripts/build.mjs && node scripts/report-solver.mjs",
     "benchmark:connected-sleep": "node scripts/benchmark-connected-sleep.mjs",
     "benchmark:small-groups": "node scripts/benchmark-small-groups.mjs",

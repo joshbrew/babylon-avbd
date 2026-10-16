@@ -276,7 +276,16 @@ export interface AvbdSleepOptions {
   /** 3D island mode: build contacts once and sleep stationary, supported groups at startup. */
   startAsleep?: boolean;
 }
+/** Length uses scene units; rotation uses radians. Rounded shapes refresh geometry. */
+export interface AvbdContactRecyclingOptions {
+  /** Relative surface movement since fresh narrowphase. Default 0.01; capped to 5% of the smaller dynamic body's smallest side. */
+  distance?: number;
+  /** Maximum absolute rotation since fresh narrowphase. Default 0.01, maximum 0.1. */
+  maxAngle?: number;
+}
 export interface AvbdGpuOptions {
+  /** Optional relative-motion contact recycling on GPU and CPU. Default false. */
+  contactRecycling?: boolean | AvbdContactRecyclingOptions;
   /**
    * Optional caller-owned storage. Share its GPUDevice with the renderer and
    * keep it alive until the world and renderer have finished using it.
@@ -304,6 +313,8 @@ export interface AvbdGpuOptions {
   sleeping?: boolean | AvbdSleepOptions;
 }
 export interface AvbdGpuSolver {
+  /** Optional cumulative diagnostics; GPU call downloads two counters, never body poses. */
+  readContactRecyclingStats(): Promise<{ recycledPairs: number; evaluatedPairs: number }>;
   readonly bodyBuffer: GPUBuffer;
   readonly bodyCount: number;
   readonly jointCount: number;
@@ -864,13 +875,7 @@ export class AvbdScene2D {
   ): AvbdHinge2D;
   createSolver(
     device: GPUDevice,
-    options?: {
-      bodyBuffer?: GPUBuffer;
-      bodyCapacity?: number;
-      colorRounds?: number;
-      minimumColors?: number;
-      sleeping?: boolean | { speedThreshold?: number; timeThreshold?: number };
-    },
+    options?: AvbdGpuOptions,
   ): AvbdGpuSolver2D;
   createSolver(
     pipeline: AvbdSolverPipeline,

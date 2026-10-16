@@ -102,6 +102,7 @@ export class AvbdPhysics {
       maxContactPairs = 8192,
       maxContactEvents = 4096,
       sleeping = false,
+      contactRecycling = false,
     } = {},
   ) {
     this.device = device;
@@ -118,6 +119,7 @@ export class AvbdPhysics {
       throw Error("capacity and maxSyncedBodies must be valid integer counts");
     this.capacity = capacity;
     this.collisionOptions = {
+      contactRecycling,
       broadphase,
       bvh,
       solverMode,

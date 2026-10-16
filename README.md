@@ -43,6 +43,7 @@ the resulting poses; `AvbdPhysics` owns the physics world and its GPU solver.
 - [Ropes and ragdolls](#ropes-and-ragdolls)
 - [Tearable cloth](#tearable-cloth)
 - [Controlling bodies](#controlling-bodies)
+- [Contact recycling and paired benchmarks](#contact-recycling)
 - [Bounce, triggers, masks and sleeping](#bounce-triggers-masks-and-sleeping)
 - [3D hinges, angle stops and motors](#3d-hinges-angle-stops-and-motors)
 - [Queries, callbacks and sleeping](#queries-callbacks-and-sleeping)
@@ -83,6 +84,7 @@ JavaScript examples. Run `npm start`, then open the
 | Grid versus HPLOC++ collisions                            | [Collision guide](docs/HPLOC.md), [paired scene measurements](tests/performance.js), [tree refit runner](scripts/benchmark-hploc-refit.mjs)                                                                  |
 | D20 particle collisions                                   | [Capacity benchmark](#d20-particle-capacity), [runner](scripts/benchmark-particles.mjs), [reusable GPU particles](src/gpu/surfaceParticles.js), [collision shader](src/gpu/surfaceParticles.wgsl) |
 | Movement solver and GPU scheduling                        | [Movement runner](scripts/benchmark-movement-solve.mjs), [color-bucket runner](scripts/benchmark-color-buckets.mjs), [small-group runner](scripts/benchmark-small-groups.mjs)                                |
+| Relative-motion contact recycling | [Paired GPU scene runner](scripts/benchmark-contact-recycling.mjs), [behavior checks](scripts/check-contact-recycling.mjs), [saved comparison](test-results/solver-performance.html#contact-recycling) |
 | Uploads and command batching                              | [GPU upload runner](scripts/benchmark-webgpu-uploads.mjs), [command encoding runner](scripts/benchmark-command-encoding.mjs)                                                                                 |
 
 This README includes package-usage examples and benchmark console snippets;
@@ -282,6 +284,7 @@ and `scene.enablePhysics()`.
 | Hinges                                                 | Axis + angle limits   | Planar + angle limits       | `addHinge()` in both dimensions; optional angle bounds relative to creation.                                                                                                                                  |
 | Torque-limited motors                                  | Yes                   | Yes                         | Both dimensions expose motor handles and live `gpu.setMotor()` controls.                                                                                                                                      |
 | Elastic / tearable fabric                              | Yes                   | Build spring networks       | 3D `addFabric()` has point collisions and tensile fracture. The demo preserves material after tearing.                                                                                                        |
+| Relative-motion contact recycling | Yes, GPU and CPU | Yes, 2D and 3D | Boxes and convex hulls; rounded shapes refresh. Configurable distance and rotation limits; separation updates each step. |
 | Per-body sleeping / waking                             | Yes                   | Yes                         | World `sleeping`, body `allowSleep`, live `setSleepEnabled()`; supported bodies rest, impacts wake them.                                                                                                      |
 | Restitution / bounce                                   | Yes                   | Yes                         | Coefficient 0..1. Zero adds no bounce passes.                                                                                                                                                                 |
 | Collision masks                                        | Yes                   | Yes                         | Both bodies must allow the pair. Includes sensors.                                                                                                                                                            |
@@ -550,6 +553,7 @@ Reserve reusable bodies for objects you plan to launch later.
 | `maxSyncedBodies` | `2048`          | Guard against mirroring a huge scene one mesh at a time. |
 | `broadphase`      | `"auto"`        | Automatic, or explicit `"grid"` / `"hploc"`.             |
 | `solverMode`      | `"auto"`        | Automatic GPU implementation selection.                  |
+| `contactRecycling` | `false`         | Reuse barely moving contacts; `true` or `{ distance, maxAngle }`. |
 | `bvh`             | `{}`            | Tree options such as `{ rebuildInterval: 64 }`.          |
 | `device`          | Created by AVBD | Optional caller-owned GPUDevice.                         |
 
@@ -572,6 +576,83 @@ const spherePhysics = physics.addAggregate(
   { mass: 3, friction: 0.5 },
 );
 ```
+
+## Contact recycling
+
+Contact recycling skips geometric collision calculations for contact pairs whose
+surfaces have barely moved relative to each other. It can help an awake pile or
+objects traveling together. The movement solver still runs its selected timestep
+and iteration count, and contact separation is updated every step.
+
+The same option is available in Babylon, native WebGPU and native CPU worlds:
+
+```js
+const physics = await AvbdPhysics.create({
+  scene,
+  contactRecycling: { distance: 0.01, maxAngle: 0.01 },
+});
+
+const pipeline = await createSolverPipeline({ backend: "webgpu" }); // or "cpu"
+const builder = new AvbdScene3D(); // AvbdScene2D uses the same solver option
+builder.addBox([20, 1, 20], { mass: 0, position: [0, -0.5, 0] });
+builder.addBox([1, 1, 1], { position: [0, 3, 0] });
+const world = builder.createSolver(pipeline, {
+  contactRecycling: true, // uses the defaults above; false disables it
+});
+```
+
+`distance` uses your scene's length units and is additionally capped at 5% of the
+smaller dynamic body's smallest side. `maxAngle` is in radians, defaults to
+0.01, and accepts values up to 0.1. Compare against the configuration where the
+manifold was last computed; recycled steps never move that reference forward.
+An absolute rotation check limits error in the cached world normal. AVBD keeps
+its body-local anchors and recalculates their step-start separation. Circles,
+spheres, capsules and 2D lines/planes continue using fresh collision geometry.
+Teleports, collider edits, masks and trigger changes invalidate affected cache
+state. Ordinary velocity and impulse batches retain valid geometry.
+
+The package default is **disabled**. Disabled retains normal warm starting and
+our existing small-motion 3D contact cache; enabled adds relative-motion recycling
+in both dimensions. It adds cache memory and validation work;
+scenes that already have cheap collision checks may become slower. GPU cache
+storage shares the existing contact buffers, so it adds no storage bindings or
+per-step CPU readbacks. It reserves 64 bytes per 3D manifold per buffer, or one
+80-byte cache record per 2D contact per buffer; there are two alternating buffers.
+Small GPU storage limits can constrain the available contact capacity.
+
+The main scene browser offers **Scene preset / Enabled / Disabled**. The paired
+scene sweep enabled recycling for **Wall Smash (2K)**, reducing physics time
+from **3.00 to 2.64 ms/step (12%)** on the measured GPU. Other scene presets
+keep it disabled.
+
+Presets
+come from matching enabled/disabled runs on an **RTX 4070 Laptop GPU**, with
+sleeping held at that scene's normal preset. They require at least 10% less total
+physics time in both repeats, without over 15% more time during the first two
+seconds. These GPU presets apply to WebGPU; CPU presets keep recycling disabled.
+Manual choices belong to the selected scene. Add `recycling=on` or
+`recycling=off` to a demo URL for a direct comparison.
+
+```sh
+npm run test:contact-recycling
+npm run benchmark:contact-recycling
+# Measure a subset without replacing the saved full report or presets:
+node scripts/benchmark-contact-recycling.mjs --scene="box-pile|ragdolls"
+```
+
+[Paired results](test-results/solver-performance.html#contact-recycling) separate
+physics from rendering. [Raw measurements](test-results/contact-recycling-performance.json)
+include the initial activity, later settling, contact counts and validation
+checks. Hardware, scene scale and motion affect the result. To inspect use in
+an individual world, explicitly request the small cumulative counters:
+
+```js
+const { recycledPairs, evaluatedPairs } = await world.readContactRecyclingStats();
+```
+
+This implementation adapts the relative-motion validation described by
+[Erin Catto in Contact Recycling](https://box2d.org/posts/2026/10/contact-recycling/)
+to AVBD's contact and constraint storage.
 
 ## Mixed collider gallery
 

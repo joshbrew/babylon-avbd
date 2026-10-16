@@ -26,16 +26,33 @@ import {
 function useGpuUtilities(device: GPUDevice, encoder: GPUCommandEncoder) {
   const scene2D = new AvbdScene2D();
   scene2D.addCircle(0.5);
-  const gpu2D = scene2D.createSolver(device);
-  const detach2D = addGpuStepPass(gpu2D,{before(e,s){const b:GPUBuffer=s.bodyBuffer;e.clearBuffer(b,0,4);}});
+  const gpu2D = scene2D.createSolver(device, { contactRecycling: true });
+  const recycling2D: Promise<{
+    recycledPairs: number;
+    evaluatedPairs: number;
+  }> = gpu2D.readContactRecyclingStats();
+  const detach2D = addGpuStepPass(gpu2D, {
+    before(e, s) {
+      const b: GPUBuffer = s.bodyBuffer;
+      e.clearBuffer(b, 0, 4);
+    },
+  });
   detach2D();
   const scene3D = new AvbdScene3D();
   scene3D.addSphere(0.5);
-  const gpu3D = scene3D.createSolver(device, { sleeping: { islands: true, startAsleep: true } });
-  const detach3D = addGpuStepPass(gpu3D,{after(e,s){const b:GPUBuffer=s.bodyBuffer;e.clearBuffer(b,0,4);}});
+  const gpu3D = scene3D.createSolver(device, {
+    sleeping: { islands: true, startAsleep: true },
+    contactRecycling: { distance: 0.01, maxAngle: 0.01 },
+  });
+  const detach3D = addGpuStepPass(gpu3D, {
+    after(e, s) {
+      const b: GPUBuffer = s.bodyBuffer;
+      e.clearBuffer(b, 0, 4);
+    },
+  });
   detach3D();
-  const surface = new WorkerCanvas(new OffscreenCanvas(100,100),100,100);
-  surface.resize(200,200);
+  const surface = new WorkerCanvas(new OffscreenCanvas(100, 100), 100, 100);
+  surface.resize(200, 200);
   const particles = new GpuSurfaceParticles(device, {
     capacity: 100_000,
     triangleCount: 1,
@@ -83,14 +100,16 @@ async function usePipeline(backend: AvbdSolverBackend) {
   scene3D.addTerrain(cooked, { friction: 0.5 });
   terrain.dispose();
   const box = scene3D.addBox([1, 1, 1]);
-  const world3D = scene3D.createSolver(pipeline);
+  const world3D = scene3D.createSolver(pipeline, { contactRecycling: true });
+  await world3D.readContactRecyclingStats();
   const selected3D: AvbdSolverBackend = world3D.setLinearVelocity(
     world3D.body(box).gpuIndex,
     [1, 0, 0],
   ).backend;
   const scene2D = new AvbdScene2D();
   const circle = scene2D.addCircle(0.5);
-  const world2D = pipeline.createSolver(scene2D);
+  const world2D = pipeline.createSolver(scene2D, { contactRecycling: true });
+  await world2D.readContactRecyclingStats();
   const selected2D: AvbdSolverBackend = world2D.setAngularVelocity(
     circle,
     1,
@@ -108,6 +127,7 @@ async function useBabylon(scene: Scene, mesh: AbstractMesh) {
     scene,
     sleeping: { islands: true },
     smallGroups: true,
+    contactRecycling: true,
     minimumColors: 32,
     minimumColorRounds: 32,
   });

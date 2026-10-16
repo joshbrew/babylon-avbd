@@ -106,6 +106,7 @@ export class SimulationRuntime {
         s.gpu.gpuIndex(s.built.solver.bodies.indexOf(b)),
       ),
       sleepingEnabled: s.sleepingEnabled,
+      contactRecyclingEnabled: !!s.gpu.contactRecycling,
       startupPhases: this.startupPhases,
     };
   }

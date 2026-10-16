@@ -1,57 +1,85 @@
 {
-  "date": "2026-10-12T04:18:40.643Z",
+  "date": "2026-10-16T03:28:00.223Z",
   "applied": true,
-  "retained": 254,
-  "removedFiles": 11,
-  "removedBytes": 2618673,
+  "retained": 260,
+  "removedFiles": 18,
+  "removedBytes": 1049138,
   "removed": [
     {
-      "path": "screenshots/babylon-2d-triggers-and-masks.png",
-      "bytes": 105265
+      "path": "screenshots/solver-capsules-1440.png",
+      "bytes": 78733
     },
     {
-      "path": "screenshots/babylon-3d-marble-cascade.png",
-      "bytes": 267447
+      "path": "screenshots/solver-capsules-390.png",
+      "bytes": 48775
     },
     {
-      "path": "screenshots/babylon-3d-voronoi-demolition.png",
-      "bytes": 136381
+      "path": "screenshots/solver-connected-sleep-390.png",
+      "bytes": 47155
     },
     {
-      "path": "screenshots/babylon-slingshot.png",
-      "bytes": 103990
+      "path": "screenshots/solver-contacts-1440.png",
+      "bytes": 97066
     },
     {
-      "path": "screenshots/galton-pegs-cpu-webgpu-worker.png",
-      "bytes": 275446
+      "path": "screenshots/solver-contacts-390.png",
+      "bytes": 51596
     },
     {
-      "path": "screenshots/galton-pegs-gpu-babylon-main.png",
-      "bytes": 282094
+      "path": "screenshots/solver-paper-1440.png",
+      "bytes": 87897
     },
     {
-      "path": "screenshots/galton-pegs-gpu-babylon-worker.png",
-      "bytes": 276994
+      "path": "screenshots/solver-paper-390.png",
+      "bytes": 46172
     },
     {
-      "path": "screenshots/galton-pegs-gpu-webgpu-main.png",
-      "bytes": 281834
+      "path": "screenshots/solver-ragdoll-collisions-1440.png",
+      "bytes": 79713
     },
     {
-      "path": "screenshots/galton-pegs-gpu-webgpu-worker-sab.png",
-      "bytes": 276156
+      "path": "screenshots/solver-ragdoll-collisions-390.png",
+      "bytes": 33945
     },
     {
-      "path": "screenshots/galton-pegs-gpu-webgpu-worker.png",
-      "bytes": 276156
+      "path": "screenshots/solver-report-1440.png",
+      "bytes": 79713
     },
     {
-      "path": "screenshots/mixed-gallery-impact.png",
-      "bytes": 336910
+      "path": "screenshots/solver-report-390.png",
+      "bytes": 33945
+    },
+    {
+      "path": "screenshots/solver-sleeping-1440.png",
+      "bytes": 55985
+    },
+    {
+      "path": "screenshots/solver-sleeping-2d-1440.png",
+      "bytes": 55741
+    },
+    {
+      "path": "screenshots/solver-sleeping-2d-390.png",
+      "bytes": 37815
+    },
+    {
+      "path": "screenshots/solver-sleeping-390.png",
+      "bytes": 38000
+    },
+    {
+      "path": "screenshots/solver-tree-1440.png",
+      "bytes": 90580
+    },
+    {
+      "path": "screenshots/solver-tree-390.png",
+      "bytes": 41751
+    },
+    {
+      "path": "screenshots/solver-workers-390.png",
+      "bytes": 44556
     }
   ],
   "prunedCaptureSummaries": [
-    "galton-pegs.json"
+    "solver-report-check.json"
   ],
   "removedDirectories": []
 }

@@ -60,7 +60,7 @@ function timedStep(w) {
 /** Fresh paired scenes alternate execution order, at identical simulation ages. */
 export async function benchmarkSceneSleeping(
   scene,
-  { seconds = 8, repeat = 0 } = {},
+  { seconds = 8, repeat = 0, policy = "sleeping" } = {},
 ) {
   const worlds = [];
   const graphics = await createWebGPUDevice({
@@ -113,7 +113,9 @@ export async function benchmarkSceneSleeping(
             backend: "gpu",
             renderer: "webgpu",
             enhanced: false,
-            sleeping,
+            sleeping: policy === "sleeping" ? sleeping : undefined,
+            contactRecycling:
+              policy === "contactRecycling" ? sleeping : undefined,
           },
           undefined,
           graphics,
@@ -181,6 +183,10 @@ export async function benchmarkSceneSleeping(
       runs.push({
         sleeping: w.sleeping,
         finite: poses.every(Number.isFinite),
+        recycling:
+          policy === "contactRecycling"
+            ? await w.s.gpu.readContactRecyclingStats()
+            : undefined,
         errors: [...w.errors, ...w.s.errors],
         total: summarizeWindow((s) => s.seconds > 0.2),
         active: summarizeWindow((s) => s.seconds > 0.2 && s.seconds <= 2),

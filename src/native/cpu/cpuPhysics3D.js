@@ -1,3 +1,4 @@
+import { capturePair3D, canRecycle3D } from "./contactRecycling.js";
 import { Manifold } from "../../../reference/three-avbd/src/avbd3d/ref/manifold.ts";
 import {
   Force,
@@ -75,24 +76,51 @@ export class CpuManifold3D extends Manifold {
     const old = this.contacts;
     const rolling = isSphere(a) || isSphere(b) || isCapsule(a) || isCapsule(b);
     this.friction = Math.sqrt(a.friction * b.friction);
-    this.contacts = collideCpu3D(
-      a,
-      b,
-      this.basis,
-      this.solver.cpuGeometry.get(a),
-      this.solver.cpuGeometry.get(b),
-    ).map((c) => {
-      const prev = old.find((o) => o.feature === c.feature);
-      return {
-        feature: c.feature,
-        rA: prev?.stick && !rolling ? prev.rA : c.rA,
-        rB: prev?.stick && !rolling ? prev.rB : c.rB,
-        C0: vec3(),
-        penalty: prev ? prev.penalty.slice() : vec3(),
-        lambda: prev ? prev.lambda.slice() : vec3(),
-        stick: prev?.stick ?? false,
-      };
-    });
+    const options = this.solver.contactRecycling;
+    const recycled =
+      options &&
+      !rolling &&
+      !a.isTrigger &&
+      !b.isTrigger &&
+      canRecycle3D(
+        this.recycleCache,
+        a,
+        b,
+        options,
+        this.solver.contactRecyclingEpoch,
+      );
+    if (recycled) this.solver.recyclingStats.recycledPairs++;
+    else if (options) this.solver.recyclingStats.evaluatedPairs++;
+    if (options && !recycled && (rolling || hullOf(a) || hullOf(b)))
+      for (const body of [a, b])
+        if (
+          (isSphere(body) || isCapsule(body) || hullOf(body)) &&
+          !this.solver.cpuGeometry.has(body)
+        )
+          this.solver.cpuGeometry.set(body, geometry3D(body));
+    if (!recycled)
+      this.contacts = collideCpu3D(
+        a,
+        b,
+        this.basis,
+        this.solver.cpuGeometry.get(a),
+        this.solver.cpuGeometry.get(b),
+      ).map((c) => {
+        const prev = old.find((o) => o.feature === c.feature);
+        return {
+          feature: c.feature,
+          rA: prev?.stick && !rolling ? prev.rA : c.rA,
+          rB: prev?.stick && !rolling ? prev.rB : c.rB,
+          C0: vec3(),
+          penalty: prev ? prev.penalty.slice() : vec3(),
+          lambda: prev ? prev.lambda.slice() : vec3(),
+          stick: prev?.stick ?? false,
+        };
+      });
+    if (options && !recycled)
+      this.recycleCache = this.contacts.length
+        ? capturePair3D(a, b, this.solver.contactRecyclingEpoch)
+        : null;
     for (const c of this.contacts) {
       c.C0.set(basisVector(this.basis, sub(world(a, c.rA), world(b, c.rB))));
       c.C0[0] += COLLISION_MARGIN;
@@ -277,7 +305,7 @@ export function cpuBroadphase3D(solver) {
   const bodies = solver.bodies;
   solver.cpuGeometry = new Map();
   for (const b of bodies)
-    if (isSphere(b) || isCapsule(b) || hullOf(b))
+    if (!solver.contactRecycling && (isSphere(b) || isCapsule(b) || hullOf(b)))
       solver.cpuGeometry.set(b, geometry3D(b));
   const radii = bodies
       .filter((b) => b.mass > 0)

@@ -1,3 +1,7 @@
+import {
+  contactRecyclingOptions,
+  invalidateContactRecycling,
+} from "../../gpu/contactRecycling.js";
 import { CpuSolver3D } from "./cpuSolver3D.ts";
 import { CpuSolver2D } from "./cpuSolver2D.js";
 import { prepareCpuForces3D, captureCpuFrame3D } from "./cpuPhysics3D.js";
@@ -44,6 +48,7 @@ import {
 /** CPU execution of the native scene contract. No renderer or graphics device. */
 export class NativeCpuSolver {
   constructor(scene, dimension, options = {}) {
+    this.contactRecycling = contactRecyclingOptions(options.contactRecycling);
     this.backend = "cpu";
     this.dimension = dimension;
     this.scene = scene;
@@ -81,6 +86,9 @@ export class NativeCpuSolver {
         },
       );
     }
+    this.solver.contactRecycling = this.contactRecycling;
+    this.solver.contactRecyclingEpoch = 1;
+    this.solver.recyclingStats = { recycledPairs: 0, evaluatedPairs: 0 };
     this.params = dimension === 3 ? this.solver : this.solver.params;
     installNativeRuntime(
       this,
@@ -229,6 +237,7 @@ export class NativeCpuSolver {
         if (b) b.velocityAng.set(f.subarray(o + 4, o + 7));
         else s.velocity[id * 4 + 2] = f[o + 4];
       } else if (kind === 4) {
+        invalidateContactRecycling(s);
         position.set(f.subarray(o + 4, o + 4 + n));
         if (b) {
           if (point) b.positionAng.set(f.subarray(o + 8, o + 12));
@@ -285,7 +294,12 @@ export class NativeCpuSolver {
   detachFromScene() {
     return detachFromScene.call(this);
   }
+  async readContactRecyclingStats() {
+    if (this.destroyed) throw Error("The solver has been destroyed");
+    return { ...this.solver.recyclingStats };
+  }
   setFilters(indices, groups, masks) {
+    invalidateContactRecycling(this.solver);
     const ids = Array.from(indices),
       g = Array.from(groups),
       m = Array.from(masks);
@@ -306,6 +320,7 @@ export class NativeCpuSolver {
     this.wakeAll();
   }
   setSensor(id, enabled) {
+    invalidateContactRecycling(this.solver);
     this.liveIndex(id);
     if (typeof enabled !== "boolean")
       throw Error("Trigger flag must be boolean");

@@ -1,13 +1,237 @@
 {
-  "date": "2026-10-12T04:43:20.681Z",
+  "date": "2026-10-16T03:26:47.175Z",
   "applied": true,
   "retained": 226,
-  "removedFiles": 14,
-  "removedBytes": 19804,
+  "removedFiles": 93,
+  "removedBytes": 4612571,
   "removed": [
+    {
+      "path": "dist/net-motion.js",
+      "bytes": 864660
+    },
+    {
+      "path": "dist/chunks/chunk-3HWQYVDM.js",
+      "bytes": 4429
+    },
+    {
+      "path": "dist/chunks/chunk-55YFRD65.js",
+      "bytes": 41619
+    },
+    {
+      "path": "dist/chunks/chunk-5WU45H5L.js",
+      "bytes": 85912
+    },
+    {
+      "path": "dist/chunks/chunk-6BGJHUS4.js",
+      "bytes": 41828
+    },
+    {
+      "path": "dist/chunks/chunk-7WJ23F5M.js",
+      "bytes": 19080
+    },
+    {
+      "path": "dist/chunks/chunk-BJNTZD3L.js",
+      "bytes": 131297
+    },
+    {
+      "path": "dist/chunks/chunk-BT6FS2FT.js",
+      "bytes": 129745
+    },
+    {
+      "path": "dist/chunks/chunk-D5KWTKFP.js",
+      "bytes": 4429
+    },
+    {
+      "path": "dist/chunks/chunk-DACHOUPC.js",
+      "bytes": 19825
+    },
+    {
+      "path": "dist/chunks/chunk-EFNUJPVI.js",
+      "bytes": 486229
+    },
+    {
+      "path": "dist/chunks/chunk-ERL32Z3H.js",
+      "bytes": 61076
+    },
+    {
+      "path": "dist/chunks/chunk-F5NXQLGL.js",
+      "bytes": 867
+    },
+    {
+      "path": "dist/chunks/chunk-G3OIHRS5.js",
+      "bytes": 41828
+    },
+    {
+      "path": "dist/chunks/chunk-G6RBT6PL.js",
+      "bytes": 486229
+    },
+    {
+      "path": "dist/chunks/chunk-GFPY4ACI.js",
+      "bytes": 3740
+    },
+    {
+      "path": "dist/chunks/chunk-GRV4EGYV.js",
+      "bytes": 10771
+    },
+    {
+      "path": "dist/chunks/chunk-H7FY3AS2.js",
+      "bytes": 61076
+    },
+    {
+      "path": "dist/chunks/chunk-IHUPIDG4.js",
+      "bytes": 13184
+    },
+    {
+      "path": "dist/chunks/chunk-JCYNAG7W.js",
+      "bytes": 8337
+    },
+    {
+      "path": "dist/chunks/chunk-JJO3SOJF.js",
+      "bytes": 33551
+    },
+    {
+      "path": "dist/chunks/chunk-JNXK3HHZ.js",
+      "bytes": 19825
+    },
+    {
+      "path": "dist/chunks/chunk-JVAWBDGC.js",
+      "bytes": 4429
+    },
+    {
+      "path": "dist/chunks/chunk-KJ76HJ73.js",
+      "bytes": 3740
+    },
+    {
+      "path": "dist/chunks/chunk-KW4G7IG2.js",
+      "bytes": 131297
+    },
+    {
+      "path": "dist/chunks/chunk-L3OWYXNY.js",
+      "bytes": 256519
+    },
+    {
+      "path": "dist/chunks/chunk-L6UEZA67.js",
+      "bytes": 3740
+    },
+    {
+      "path": "dist/chunks/chunk-LIMNJ3RE.js",
+      "bytes": 10771
+    },
+    {
+      "path": "dist/chunks/chunk-M32VNRMQ.js",
+      "bytes": 131297
+    },
+    {
+      "path": "dist/chunks/chunk-M6BXG4BO.js",
+      "bytes": 256595
+    },
+    {
+      "path": "dist/chunks/chunk-O3J4CZ6P.js",
+      "bytes": 19766
+    },
+    {
+      "path": "dist/chunks/chunk-O6ZJNRZJ.js",
+      "bytes": 146
+    },
+    {
+      "path": "dist/chunks/chunk-OR3VGG27.js",
+      "bytes": 33551
+    },
+    {
+      "path": "dist/chunks/chunk-Q3PTFXS4.js",
+      "bytes": 61076
+    },
+    {
+      "path": "dist/chunks/chunk-S5PWM3ST.js",
+      "bytes": 41828
+    },
+    {
+      "path": "dist/chunks/chunk-SJBGTMI6.js",
+      "bytes": 82753
+    },
+    {
+      "path": "dist/chunks/chunk-UNU6MXPM.js",
+      "bytes": 33510
+    },
+    {
+      "path": "dist/chunks/chunk-UUNFPVBL.js",
+      "bytes": 857
+    },
+    {
+      "path": "dist/chunks/chunk-W2MC2IZP.js",
+      "bytes": 13184
+    },
+    {
+      "path": "dist/chunks/chunk-W6ITTN3G.js",
+      "bytes": 13184
+    },
+    {
+      "path": "dist/chunks/chunk-WZEGFSYX.js",
+      "bytes": 255727
+    },
+    {
+      "path": "dist/chunks/chunk-XKXDPECH.js",
+      "bytes": 3740
+    },
+    {
+      "path": "dist/chunks/chunk-YOGXO54L.js",
+      "bytes": 61076
+    },
+    {
+      "path": "dist/chunks/collision-benchmark-4PUZGSIB.js",
+      "bytes": 17613
+    },
+    {
+      "path": "dist/chunks/collision-benchmark-JSXEJU5Z.js",
+      "bytes": 17613
+    },
+    {
+      "path": "dist/chunks/collision-benchmark-MHTQ4BSX.js",
+      "bytes": 17613
+    },
+    {
+      "path": "dist/chunks/compatibility-performance-N5V52KQ5.js",
+      "bytes": 2740
+    },
+    {
+      "path": "dist/chunks/compatibility-performance-PY26YBEX.js",
+      "bytes": 2740
+    },
+    {
+      "path": "dist/chunks/compatibility-performance-S4F3OYCA.js",
+      "bytes": 2740
+    },
+    {
+      "path": "dist/chunks/compatibility-performance-SYQA7D7N.js",
+      "bytes": 2740
+    },
+    {
+      "path": "dist/chunks/cpuWorld-LS44Y4SR.js",
+      "bytes": 254
+    },
+    {
+      "path": "dist/chunks/cpuWorld-MZFHETBY.js",
+      "bytes": 254
+    },
+    {
+      "path": "dist/chunks/lab-6YVUDNPT.js",
+      "bytes": 42313
+    },
     {
       "path": "dist/chunks/lab-F3E5YBJL.css",
       "bytes": 4338
+    },
+    {
+      "path": "dist/chunks/lab-HBQNL7AW.js",
+      "bytes": 42759
+    },
+    {
+      "path": "dist/chunks/lab-KFHHQ4NH.js",
+      "bytes": 42862
+    },
+    {
+      "path": "dist/chunks/lab-QC5XRY46.js",
+      "bytes": 42862
     },
     {
       "path": "dist/chunks/lod.fragment-M3UGARYR.js",
@@ -34,6 +258,34 @@
       "bytes": 1439
     },
     {
+      "path": "dist/chunks/mixed-colliders-EVA5ON7B.js",
+      "bytes": 7999
+    },
+    {
+      "path": "dist/chunks/mixed-colliders-RBSGVUZC.js",
+      "bytes": 7999
+    },
+    {
+      "path": "dist/chunks/mixed-colliders-ZJ7LGW5U.js",
+      "bytes": 7999
+    },
+    {
+      "path": "dist/chunks/naval-5KF55UMX.js",
+      "bytes": 8723
+    },
+    {
+      "path": "dist/chunks/naval-DDBHQ6N6.js",
+      "bytes": 8723
+    },
+    {
+      "path": "dist/chunks/naval-NK566NF2.js",
+      "bytes": 8723
+    },
+    {
+      "path": "dist/chunks/naval-V26JRG2Q.js",
+      "bytes": 8723
+    },
+    {
       "path": "dist/chunks/naval-WHC65I3A.css",
       "bytes": 3537
     },
@@ -50,6 +302,22 @@
       "bytes": 846
     },
     {
+      "path": "dist/chunks/performance-5QJSBZNA.js",
+      "bytes": 58810
+    },
+    {
+      "path": "dist/chunks/performance-AFCVHJHU.js",
+      "bytes": 58810
+    },
+    {
+      "path": "dist/chunks/performance-CDTS7K3B.js",
+      "bytes": 58810
+    },
+    {
+      "path": "dist/chunks/performance-J354LGDJ.js",
+      "bytes": 58810
+    },
+    {
       "path": "dist/chunks/rgbdEncode.fragment-KGKKJKOR.js",
       "bytes": 672
     },
@@ -58,8 +326,56 @@
       "bytes": 530
     },
     {
+      "path": "dist/chunks/simulationRuntime-IQYQKSLW.js",
+      "bytes": 991
+    },
+    {
+      "path": "dist/chunks/simulationRuntime-QBGR5S3D.js",
+      "bytes": 991
+    },
+    {
+      "path": "dist/chunks/simulationRuntime-VJLZ6OG2.js",
+      "bytes": 991
+    },
+    {
+      "path": "dist/chunks/simulationRuntime-YAR54OOI.js",
+      "bytes": 991
+    },
+    {
       "path": "dist/chunks/slingshot-HVGXU3PQ.css",
       "bytes": 3062
+    },
+    {
+      "path": "dist/chunks/slingshot-ITHRY4MJ.js",
+      "bytes": 17603
+    },
+    {
+      "path": "dist/chunks/slingshot-PKUTDROE.js",
+      "bytes": 17603
+    },
+    {
+      "path": "dist/chunks/slingshot-RUVD5X2M.js",
+      "bytes": 17603
+    },
+    {
+      "path": "dist/chunks/slingshot-TMR2GGQT.js",
+      "bytes": 17603
+    },
+    {
+      "path": "dist/chunks/workerView-5D7SWZ2I.js",
+      "bytes": 209
+    },
+    {
+      "path": "dist/chunks/workerView-BR4ZJHIH.js",
+      "bytes": 209
+    },
+    {
+      "path": "dist/chunks/workerView-EO4JYJVY.js",
+      "bytes": 209
+    },
+    {
+      "path": "dist/chunks/workerView-SASQRBWS.js",
+      "bytes": 209
     }
   ]
 }

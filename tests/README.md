@@ -346,3 +346,27 @@ Drawing and sleeping are disabled. GPU elapsed time and JavaScript CPU time are
 reported separately from submission, initialization and completed-step waiting.
 The raw runs and combined summaries are saved in `test-results/backend-comparison.json`;
 the README compares the mean physics times side by side.
+
+
+## Contact recycling
+
+`npm run test:contact-recycling` exercises 2D/3D CPU and GPU support, separation
+updates, shared translation, accumulated movement, rotation limits, rounded
+contacts, teleports, masks, triggers and growing contact storage. Shader
+validation errors fail the check.
+
+After building, `node scripts/check-contact-recycling.mjs --package` checks the
+bundled native API. `--portable` exercises the 3D portable contact kernel;
+`node scripts/check-contact-recycling-ui.mjs` checks scene controls in main and
+worker scopes. `node scripts/check-ragdoll-net.mjs --recycling` runs the existing
+30-second limb-penetration check with recycling enabled.
+
+`npm run benchmark:contact-recycling` compares all 73 shared demo scenes with
+the feature enabled and disabled at matching simulation ages. It keeps timestep,
+iterations, actions and each scene's sleeping preset unchanged. Two paired runs
+measure initial activity and later settling, plus CPU and moving-platform
+workloads. Only repeated total-physics savings of at least 10%, with no initial
+regression over 15%, enable a scene preset. The generated results appear in the
+[solver report](../test-results/solver-performance.html#contact-recycling).
+Subset runs (`--scene="box-pile|ragdolls"`) leave presets unchanged unless
+`--update-presets` is explicitly requested.

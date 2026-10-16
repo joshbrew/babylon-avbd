@@ -154,6 +154,8 @@ export interface GpuSolverOptions {
   shaders?: { contacts?: string; solve?: string; refs?: string; topology?: string };
   /** Collide hull shapes as hulls (default: when the device can bind nine storage buffers per stage; see GpuSolver3D.hulls). */
   hulls?: boolean;
+  /** App-owned cache tail bytes per manifold; zero keeps the pinned layout. */
+  contactCacheBytes?: number;
 }
 
 /** Per-body static data the host needs: broadphase radius and whether the body moves. */
@@ -510,7 +512,10 @@ export class GpuSolver3D {
   private timingBusy = false;
   private destroyed = false;
 
+  private readonly contactCacheBytes: number;
+
   constructor(device: GPUDevice, ref: Solver, options: GpuSolverOptions = {}) {
+    this.contactCacheBytes = options.contactCacheBytes ?? 0;
     this.device = device;
     const { dt, gravity, iterations, alpha, betaLin, betaAng, gamma } = ref;
     Object.assign(this.params, { dt, gravity, iterations, alpha, betaLin, betaAng, gamma, up: REF_UP });
@@ -682,10 +687,10 @@ export class GpuSolver3D {
   private allocateContacts(requestedContacts: number, requestedPairs: number, requestedManifolds: number): void {
     const d = this.device;
     const maxBinding = d.limits.maxStorageBufferBindingSize;
-    const capacity = Math.min(Math.ceil(requestedContacts), Math.floor(maxBinding / (CONTACT_WORDS * 4)));
+    const capacity = Math.min(Math.ceil(requestedContacts), Math.floor(maxBinding / (CONTACT_WORDS * 4 + this.contactCacheBytes)));
     const pairCapacity = Math.min(Math.ceil(requestedPairs), Math.floor(maxBinding / 8));
     // Every manifold comes from a broadphase pair
-    const manifoldCapacity = Math.min(Math.ceil(requestedManifolds), pairCapacity, Math.floor(maxBinding / (MANIFOLD_WORDS * 4)));
+    const manifoldCapacity = Math.min(Math.ceil(requestedManifolds), pairCapacity, ...(this.contactCacheBytes ? [capacity] : []), Math.floor(maxBinding / (MANIFOLD_WORDS * 4)));
     const old = { contacts: this.contactBuffers, manifolds: this.manifoldBuffers, contactCapacity: this.contactCapacity, manifoldCapacity: this.manifoldCapacity };
     for (const b of [this.pairBuffer, this.tableBuffer]) b?.destroy();
     this.contactCapacity = capacity;
@@ -696,7 +701,7 @@ export class GpuSolver3D {
     this.pairBuffer = d.createBuffer({ label: 'pairs', size: pairCapacity * 8, usage: storageUsage() });
     this.tableBuffer = d.createBuffer({ label: 'manifold hash', size: this.hashSize * 4, usage: storageUsage() });
     this.contactBuffers = [0, 1].map((i) =>
-      d.createBuffer({ label: `contacts 3d ${i}`, size: capacity * CONTACT_WORDS * 4, usage: storageUsage() }),
+      d.createBuffer({ label: `contacts 3d ${i}`, size: capacity * CONTACT_WORDS * 4 + manifoldCapacity * this.contactCacheBytes, usage: storageUsage() }),
     ) as [GPUBuffer, GPUBuffer];
     this.manifoldBuffers = [0, 1].map((i) =>
       d.createBuffer({ label: `manifolds 3d ${i}`, size: manifoldCapacity * MANIFOLD_WORDS * 4, usage: storageUsage() }),
@@ -707,6 +712,10 @@ export class GpuSolver3D {
       const manifoldBytes = Math.min(old.manifoldCapacity, manifoldCapacity) * MANIFOLD_WORDS * 4;
       old.contacts.forEach((buffer, i) => encoder.copyBufferToBuffer(buffer, 0, this.contactBuffers[i], 0, contactBytes));
       old.manifolds.forEach((buffer, i) => encoder.copyBufferToBuffer(buffer, 0, this.manifoldBuffers[i], 0, manifoldBytes));
+      if (this.contactCacheBytes) old.contacts.forEach((buffer, i) =>
+        encoder.copyBufferToBuffer(buffer, old.contactCapacity * CONTACT_WORDS * 4,
+          this.contactBuffers[i], capacity * CONTACT_WORDS * 4,
+          Math.min(old.manifoldCapacity, manifoldCapacity) * this.contactCacheBytes));
       d.queue.submit([encoder.finish()]);
       [...old.contacts, ...old.manifolds].forEach((buffer) => buffer.destroy());
     }
@@ -1349,7 +1358,7 @@ export class GpuSolver3D {
     // Collision
     beginPhase();
     run('beginFrame', G.broad, 1);
-    if (p.reuseContacts) run('updateRefs', G.refs, groups(N));
+    if (p.reuseContacts && !this.contactCacheBytes) run('updateRefs', G.refs, groups(N));
     run('argsPrev', G.args, 1);
     runIndirect('hashInsert', G.contacts[cur], IA_PREV);
     run('gridCount', G.broad, groups(N));
@@ -1543,9 +1552,9 @@ export class GpuSolver3D {
   private capacityCanGrow(contacts: number, pairs: number, manifolds: number): boolean {
     const maxBinding = this.device.limits.maxStorageBufferBindingSize;
     return (
-      Math.min(contacts, maxBinding / (CONTACT_WORDS * 4)) > this.contactCapacity ||
+      Math.min(contacts, Math.floor(maxBinding / (CONTACT_WORDS * 4 + this.contactCacheBytes))) > this.contactCapacity ||
       Math.min(pairs, maxBinding / 8) > this.pairCapacity ||
-      Math.min(manifolds, pairs, maxBinding / (MANIFOLD_WORDS * 4)) > this.manifoldCapacity
+      Math.min(manifolds, pairs, ...(this.contactCacheBytes ? [this.contactCapacity] : []), Math.floor(maxBinding / (MANIFOLD_WORDS * 4))) > this.manifoldCapacity
     );
   }
 

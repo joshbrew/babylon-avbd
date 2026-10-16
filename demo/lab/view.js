@@ -13,6 +13,9 @@ export const labMarkup = `
     <label for="lab-renderer">RENDERER</label><select id="lab-renderer"><option value="webgpu">Direct WebGPU</option><option value="babylon">Babylon WebGPU · thin instances</option></select>
     <p id="lab-renderer-help">Changing solver or renderer restarts the scene.</p>
     <div id="lab-execution"></div>
+    <label for="lab-recycling">CONTACT RECYCLING</label>
+    <select id="lab-recycling"><option value="auto">Scene preset</option><option value="on">Enabled</option><option value="off">Disabled</option></select>
+    <p>Reuse contact points while surfaces barely move. Scene presets use measured results; you can compare both settings.</p>
     <label id="lab-sleep-label" hidden><input id="lab-sleep" type="checkbox" checked> Sleeping</label>
     <p>Sleeping skips settled, supported bodies. Turn it off to compare with every body awake. Motors and moving bodies keep working.</p>
     <button id="lab-bowl" hidden>Bowl through every lane</button>

@@ -1,3 +1,9 @@
+import {
+  contactRecyclingOptions,
+  withContactRecycling3D,
+  invalidateContactRecycling,
+  readContactRecyclingStats,
+} from "./contactRecycling.js";
 import { GpuSolver3D } from "../vendor/three-avbd-lib/solver3D.ts";
 import {
   protectSolverStep,
@@ -80,6 +86,9 @@ export class AppGpuSolver3D extends GpuSolver3D {
     writePassConstants.call(this, iterations, alpha);
   }
   constructor(device, ref, options = {}) {
+    const recycling = contactRecyclingOptions(options.contactRecycling);
+    if (recycling && options.shaders?.contacts)
+      throw Error("Contact recycling requires the built-in contact kernel");
     if (
       options.smallGroups !== undefined &&
       typeof options.smallGroups !== "boolean"
@@ -181,10 +190,12 @@ export class AppGpuSolver3D extends GpuSolver3D {
       if (initialCapsules) code = withCapsuleContacts(code);
       if (initialSensors) code = sensorContacts(code);
       code = portableContactCache(code);
+      if (recycling) code = withContactRecycling3D(code, recycling);
       return portableContactMath ? portableHullContacts3D(code) : code;
     };
     super(device, ref, {
       ...options,
+      contactCacheBytes: recycling ? 64 : 0,
       shaders: {
         ...options.shaders,
         // Compile the complete initial contact kernel once. Installing cache,
@@ -203,6 +214,8 @@ export class AppGpuSolver3D extends GpuSolver3D {
           (initialSensors ? sensorTopology() : undefined),
       },
     });
+    this.contactRecycling = recycling;
+    this.contactRecyclingEpoch = 1;
     this.solverPolicy = policy;
     this.scalarPrimal = scalarPrimal;
     this.portableContactMath = portableContactMath;
@@ -586,6 +599,7 @@ export class AppGpuSolver3D extends GpuSolver3D {
     this.solvePipelineCache.set(selected, pipelines);
   }
   setSensor(index, enabled) {
+    invalidateContactRecycling(this);
     if (this.destroyed) throw Error("The 3D solver has been destroyed");
     if (
       !Number.isInteger(index) ||
@@ -888,7 +902,11 @@ export class AppGpuSolver3D extends GpuSolver3D {
         );
     return first;
   }
+  readContactRecyclingStats() {
+    return readContactRecyclingStats.call(this);
+  }
   rewriteBodies(indices, bodies) {
+    invalidateContactRecycling(this);
     this.flushPropertyEdits();
     super.rewriteBodies(indices, bodies);
     for (let k = 0; k < indices.length; k++)
@@ -938,6 +956,7 @@ export class AppGpuSolver3D extends GpuSolver3D {
       if (index >= 0) this.sleeping.wakeBody(index);
   }
   setFilters(indices, groups, collidesWith) {
+    invalidateContactRecycling(this);
     if (this.destroyed) throw Error("The 3D solver has been destroyed");
     if (
       indices.length !== groups.length ||

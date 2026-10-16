@@ -1,5 +1,12 @@
 # Babylon.js integration
 
+`AvbdPhysics.create({ scene, contactRecycling: true })` enables relative-motion
+contact recycling. Use `{ distance: 0.01, maxAngle: 0.01 }` to tune scene-unit
+movement and radian rotation limits, or `false` (the default) to keep normal
+contact handling. Native 2D/3D worlds accept the same option on WebGPU and CPU.
+[Examples and paired benchmarks](../README.md#contact-recycling) explain memory
+cost, rounded-shape handling and demo presets.
+
 Static terrain can be added with `physics.addHeightfield(options)` or
 `physics.addStaticMesh(mesh, { thickness, friction, group, collidesWith })`.
 The mesh helper captures current world-space triangles, including parent transforms.

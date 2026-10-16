@@ -59,6 +59,7 @@ export function writeStepParams2D(alpha, postStabilize) {
     (postStabilize ? FLAG_POST_STABILIZE : 0) |
     (p.matchNearest ? NEAREST_2D : 0);
   topology(this, f, u);
+  u[29] = this.contactRecycling ? this.contactRecyclingEpoch : 0;
   uploadUniform(this.device, this.paramsBuffer, cache);
 }
 export function writeStepParams3D() {
@@ -90,6 +91,7 @@ export function writeStepParams3D() {
   f[34] = 0;
   f[35] = p.windPressure;
   f[36] = p.windGust;
+  f[37] = this.contactRecycling ? this.contactRecyclingEpoch : 0;
   f[40] = p.up[0];
   f[41] = p.up[1];
   f[42] = p.up[2];

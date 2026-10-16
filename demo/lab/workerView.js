@@ -1,3 +1,7 @@
+import {
+  sceneContactRecycling,
+  sceneContactRecyclingSelection,
+} from "../shared/runtime/contactRecyclingPolicy.js";
 import { labMarkup } from "./view.js";
 import { sceneLoading } from "./loading.js";
 import { loadSceneCatalogue } from "./catalogue.js";
@@ -79,6 +83,7 @@ export async function startWorkerLab(root, query) {
         ? "3d-castle-siege"
         : "showcase-brick-ring-28k";
   const sleepSelection = sceneSleepSelection(query, scene.value);
+  const recyclingSelection = sceneContactRecyclingSelection(query, scene.value);
   backend.add(new Option("WebGPU · AVBD", "gpu"));
   backend.add(new Option("CPU · AVBD", "cpu"));
   backend.value = ["ref", "cpu"].includes(query.get("backend")) ? "cpu" : "gpu";
@@ -135,6 +140,7 @@ export async function startWorkerLab(root, query) {
       quality: $("#lab-enhanced").checked ? "enhanced" : "benchmark",
     }))
       u.searchParams.set(key, value);
+    recyclingSelection.writeUrl(u, scene.value);
     return sleepSelection.writeUrl(u, scene.value);
   }
   const error = (e) => {
@@ -198,6 +204,7 @@ export async function startWorkerLab(root, query) {
       renderer,
       execution,
       $("#lab-reset"),
+      $("#lab-recycling"),
       $("#lab-iterations"),
       $("#lab-step-rate"),
       $("#lab-step-rate-default"),
@@ -211,6 +218,7 @@ export async function startWorkerLab(root, query) {
       canvas.tabIndex = 0;
       view.prepend(canvas);
       const def = canonicalScenes.find((s) => s.id === scene.value);
+      $("#lab-recycling").value = recyclingSelection.get(scene.value);
       $("#lab-sleep-label").hidden = false;
       if (backend.value === "cpu") renderer.value = "webgpu";
       client = await createSimulationClient(
@@ -225,11 +233,15 @@ export async function startWorkerLab(root, query) {
           enhanced: $("#lab-enhanced").checked,
           broadphase: $("#lab-broadphase").value,
           sleeping: sleepSelection.get(scene.value),
+          contactRecycling: recyclingSelection.get(scene.value),
         },
         notify,
       );
       const info = client.info;
       $("#lab-sleep").checked = info.sleepingEnabled;
+      $("#lab-recycling").options[0].textContent =
+        `Scene preset (${sceneContactRecycling(scene.value, "auto", backend.value) ? "enabled" : "disabled"})`;
+      diagnostics.contactRecyclingEnabled = info.contactRecyclingEnabled;
       diagnostics.ready = true;
       sceneLoading(root, null);
       diagnostics.scene = info.scene;
@@ -286,6 +298,10 @@ export async function startWorkerLab(root, query) {
     $("#lab-enhanced"),
   ])
     control.onchange = () => load();
+  $("#lab-recycling").onchange = () => {
+    recyclingSelection.set(scene.value, $("#lab-recycling").value);
+    void load();
+  };
   execution.onchange = () =>
     execution.value === "main" ? location.assign(url("main")) : load();
   $("#lab-reset").onclick = load;
@@ -349,6 +365,7 @@ export async function startWorkerLab(root, query) {
   $("#lab-benchmark").onclick = async () => {
     const button = $("#lab-benchmark");
     const settings = [
+      $("#lab-recycling"),
       $("#lab-iterations"),
       $("#lab-step-rate"),
       $("#lab-step-rate-default"),

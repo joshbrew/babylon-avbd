@@ -12,7 +12,7 @@ const browser = await browserCheck();
 try {
   await browser.navigate("test-results/package-performance.html");
   const result = await browser.evaluate(
-    `(async()=>{const {measureRagdollNet}=await import('/dist/net-motion.js');return measureRagdollNet();})()`,
+    `(async()=>{const {measureRagdollNet}=await import('/dist/net-motion.js');return measureRagdollNet(undefined,30,${JSON.stringify({ contactRecycling: process.argv.includes("--recycling") })});})()`,
   );
   const passed = !(
     result.timeStep !== 1 / 240 ||
@@ -29,7 +29,9 @@ try {
     browser.errors.length
   );
   await writeFile(
-    "test-results/ragdoll-net.json",
+    process.argv.includes("--recycling")
+      ? "test-results/contact-recycling-net.json"
+      : "test-results/ragdoll-net.json",
     JSON.stringify({ passed, ...result, errors: browser.errors }, null, 2),
   );
   if (!passed) throw Error(JSON.stringify({ result, errors: browser.errors }));
