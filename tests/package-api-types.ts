@@ -50,6 +50,10 @@ function useGpuUtilities(device: GPUDevice, encoder: GPUCommandEncoder) {
       e.clearBuffer(b, 0, 4);
     },
   });
+  void gpu3D.sphereCast([0, 0, 0], 0.1, [1, 0, 0], {
+    membership: 8,
+    collidesWith: 32,
+  });
   detach3D();
   const surface = new WorkerCanvas(new OffscreenCanvas(100, 100), 100, 100);
   surface.resize(200, 200);
@@ -206,6 +210,11 @@ async function usePortable(device: Parameters<AvbdScene3D["createSolver"]>[0]) {
     { body: nativeBody, torque: [0, 0, 1] },
   ]);
   gpu3D.flushEdits();
+  gpu3D.setPoses(
+    new Uint32Array([nativeBody.gpuIndex]),
+    new Float32Array([0, 2, 0]),
+    new Float32Array([0, 0, 0, 1]),
+  );
   gpu3D.setLinearVelocities(
     new Uint32Array([nativeBody.gpuIndex]),
     new Float32Array([1, 0, 0]),
@@ -213,6 +222,9 @@ async function usePortable(device: Parameters<AvbdScene3D["createSolver"]>[0]) {
   gpu3D.advance(1 / 60);
   await gpu3D.readSelectedBodies([nativeBody.gpuIndex], { posesOnly: true });
   gpu3D.watchContacts({ indices: [nativeBody.gpuIndex] });
+  gpu3D.resetContactHistory(new Uint32Array([nativeBody.gpuIndex]));
+  const contactReadbackAllocations: number = gpu3D.contactReadbackAllocations;
+  void contactReadbackAllocations;
   const nativeEvents = await gpu3D.readContactEvents();
   const triggerEvent: boolean | undefined = nativeEvents.events[0]?.isTrigger;
   gpu3D.attachToScene({} as Scene).detachFromScene();

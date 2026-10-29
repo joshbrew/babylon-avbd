@@ -470,10 +470,18 @@ export class AvbdPhysics {
   }
   async sphereCastAll(
     casts,
-    { ignore = [], collidesWith = 0xffffffff, includeTriggers = true } = {},
+    {
+      ignore = [],
+      collidesWith = 0xffffffff,
+      membership,
+      maxDistance,
+      includeTriggers = true,
+    } = {},
   ) {
     this.assertAlive();
     mask(collidesWith);
+    if (membership !== undefined) mask(membership);
+    if (maxDistance !== undefined) positive(maxDistance, "maxDistance", true);
     this.initialize();
     this.flushCommands();
     for (const body of ignore)
@@ -487,7 +495,13 @@ export class AvbdPhysics {
         origin: xyz(c.origin),
         direction: xyz(c.direction),
       })),
-      { ignore: ignore.map((b) => b.gpuIndex), collidesWith, includeTriggers },
+      {
+        ignore: ignore.map((b) => b.gpuIndex),
+        collidesWith,
+        membership,
+        maxDistance,
+        includeTriggers,
+      },
     );
     return hits.map((hit) =>
       hit ? { ...hit, body: this.byGpuIndex.get(hit.index) ?? null } : null,
@@ -495,9 +509,17 @@ export class AvbdPhysics {
   }
   async raycastAll(
     rays,
-    { ignore = [], collidesWith = 0xffffffff, includeTriggers = true } = {},
+    {
+      ignore = [],
+      collidesWith = 0xffffffff,
+      membership,
+      maxDistance,
+      includeTriggers = true,
+    } = {},
   ) {
     mask(collidesWith);
+    if (membership !== undefined) mask(membership);
+    if (maxDistance !== undefined) positive(maxDistance, "maxDistance", true);
     this.initialize();
     this.flushCommands();
     const checked = rays.map((r) => {
@@ -520,6 +542,8 @@ export class AvbdPhysics {
     const hits = await this.gpu.raycastAll(checked, {
       ignore: ignore.map((b) => b.gpuIndex),
       collidesWith,
+      membership,
+      maxDistance,
       includeTriggers,
     });
     return hits.map((h) =>

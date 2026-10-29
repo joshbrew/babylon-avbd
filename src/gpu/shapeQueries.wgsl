@@ -1,7 +1,7 @@
 // GPU queries against current poses. Rounded box/hull sweeps test offset faces
 // and rounded edges, so expanding a bounding box cannot create corner hits.
 struct Query { origin:vec4f, direction:vec4f }
-struct Params { head:vec4u, flags:vec4u, ignored:array<vec4u,4> }
+struct Params { head:vec4u, flags:vec4u, ignored:array<vec4u,4>, queryFilter:vec4u }
 struct Hit { t:f32, n:vec3f }
 @group(0) @binding(0) var<storage,read> bodies:array<vec4f>;
 @group(0) @binding(1) var<storage,read> hulls:array<vec4u>;
@@ -141,6 +141,10 @@ fn trace(index:u32,query:Query)->Hit{
 }
 fn ignored(index:u32)->bool{
  if(params.flags.y!=0u&&(filters[index].x&params.head.w)==0u){return true;}
+ if(params.queryFilter.y!=0u){
+  if(params.queryFilter.x==0u){return true;}
+  if(params.flags.y!=0u&&(filters[index].y&params.queryFilter.x)==0u){return true;}
+ }
  if(params.flags.y==0u&&params.head.w==0u){return true;}
  let sensor=select(bodies[index*STRIDE+2u].w,bodies[index*STRIDE+1u].w,DIM==2u);
  if(params.flags.x!=0u&&params.flags.z!=0u&&sensor!=0.){return true;}

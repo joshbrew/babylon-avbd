@@ -5,9 +5,9 @@
 // with a body that reports contacts. Each such pair goes into this step's hash set; one missing
 // from last step's set began touching (with where, the normal and how hard), and one in last
 // step's set missing from this one's stopped. So only the changes come back, a few bytes each,
-// with the next readback; a pile resting quietly costs a pass, not a readback. (A pair is its
-// two slots: a reporting body removed and its slot filled, in one step, by a body touching the
-// same one reads as the same pair still touching.)
+// with the next readback; a pile resting quietly costs a pass, not a readback.
+// Application extension: watch words include a lifetime epoch. A reused body
+// slot can begin a new contact even when it replaces an overlapping old body.
 
 import { B_POS, B_ROT, BODY_FLOATS, C_MANIFOLDS } from '../../../reference/three-avbd/src/avbd3d/gpu/layout.ts';
 
@@ -31,6 +31,7 @@ struct Params { prev: u32, now: u32, mask: u32, capacity: u32, pairs: u32, step:
 @group(0) @binding(5) var<storage, read_write> table: array<atomic<u32>>;   // head, then two sets: per slot a + 1, b
 @group(0) @binding(6) var<storage, read_write> events: array<vec4f>;
 @group(0) @binding(7) var<uniform> params: Params;
+@group(0) @binding(8) var<storage, read> previousWatch: array<u32>;
 
 const STRIDE = ${BODY_FLOATS / 4}u;
 
@@ -94,9 +95,9 @@ fn touching(@builtin(global_invocation_id) id: vec3u) {
   let count = mf.ids.w & 15u;
   let a = mf.ids.x;
   let b = mf.ids.y;
-  if (count == 0u || (watch[a] | watch[b]) == 0u) { return; }
+  if (count == 0u || ((watch[a] | watch[b]) & 1u) == 0u) { return; }
   insert(params.now, a, b);
-  if (has(params.prev, a, b)) { return; }
+  if (has(params.prev, a, b) && watch[a] == previousWatch[a] && watch[b] == previousWatch[b]) { return; }
   // Where (the points' average, on a) and how hard (the normal force over the step)
   let pA = bodies[a * STRIDE + ${B_POS / 4}u].xyz;
   let qA = bodies[a * STRIDE + ${B_ROT / 4}u];
@@ -118,6 +119,7 @@ fn ended(@builtin(global_invocation_id) id: vec3u) {
   let k = atomicLoad(&table[s]);
   if (k == 0u) { return; }
   let b = atomicLoad(&table[s + 1u]);
+  if (watch[k - 1u] != previousWatch[k - 1u] || watch[b] != previousWatch[b]) { return; }
   if (!has(params.now, k - 1u, b)) { emit(${END}u, k - 1u, b, vec3f(0.0), 0.0, vec3f(0.0)); }
 }
 `;
@@ -131,9 +133,9 @@ const WGSL_2D = WGSL
 @compute @workgroup_size(64) fn touching(@builtin(global_invocation_id) id:vec3u){
   let m=id.x;let count=min(counters[1u],params.pairs);if(m>=count){return;}
   let c=manifolds[m];let a=c.ids.x;let b=c.ids.y;
-  if((watch[a]|watch[b])==0u){return;}
+  if(((watch[a]|watch[b])&1u)==0u){return;}
   if(m>0u && all(manifolds[m-1u].ids.xy==c.ids.xy)){return;}
-  insert(params.now,a,b);if(has(params.prev,a,b)){return;}
+  insert(params.now,a,b);if(has(params.prev,a,b)&&watch[a]==previousWatch[a]&&watch[b]==previousWatch[b]){return;}
   let pose=bodies[a*STRIDE];let cs=cos(pose.z);let sn=sin(pose.z);
   let r=c.anchors.xy;let point=pose.xy+vec2f(cs*r.x-sn*r.y,sn*r.x+cs*r.y);
   emit(${BEGIN}u,a,b,vec3f(point,0.),abs(c.pl.z)*params.dt,vec3f(c.geo.zw,0.));
@@ -158,9 +160,17 @@ export class ContactWatch {
   private readonly layout: GPUBindGroupLayout;
   /** Per body: reports its contacts (1) or not. */
   private readonly watch: GPUBuffer;
+  private readonly previousWatch: GPUBuffer;
+  private readonly watchWords: Uint32Array;
+  private readback: GPUBuffer | null = null;
+  private readPending: Promise<{ events: RawContactEvent[]; dropped: number; full: boolean }> | null = null;
+  private destroyed = false;
+  readbackAllocations = 0;
   private readonly table: GPUBuffer;
   private readonly events: GPUBuffer;
   private readonly params: GPUBuffer;
+  private readonly paramWords = new Uint32Array(8);
+  private readonly paramFloats = new Float32Array(this.paramWords.buffer);
   /** Slots per set (a power of two). */
   private readonly setSlots: number;
   readonly capacity: number;
@@ -176,13 +186,15 @@ export class ContactWatch {
     this.capacity = capacity;
     this.setSlots = 2 ** Math.ceil(Math.log2(Math.max(64, 2 * pairs)));
     const module = device.createShaderModule({ label: 'contact events', code: dimension===2 ? WGSL_2D : WGSL });
-    const types: GPUBufferBindingType[] = ['read-only-storage', 'read-only-storage', 'read-only-storage', 'read-only-storage', 'read-only-storage', 'storage', 'storage', 'uniform'];
+    const types: GPUBufferBindingType[] = ['read-only-storage', 'read-only-storage', 'read-only-storage', 'read-only-storage', 'read-only-storage', 'storage', 'storage', 'uniform', 'read-only-storage'];
     this.layout = device.createBindGroupLayout({ label: 'contact events', entries: types.map((type, binding) => ({ binding, visibility: GPUShaderStage.COMPUTE, buffer: { type } })) });
     const layout = device.createPipelineLayout({ bindGroupLayouts: [this.layout] });
     const make = (entryPoint: string) => device.createComputePipeline({ label: `contact events ${entryPoint}`, layout, compute: { module, entryPoint } });
     this.pipelines = { touching: make('touching'), ended: make('ended') };
     const storage = GPUBufferUsage.STORAGE | GPUBufferUsage.COPY_DST | GPUBufferUsage.COPY_SRC;
     this.watch = device.createBuffer({ label: 'contact watch', size: Math.max(16, maxBodies * 4), usage: storage });
+    this.previousWatch = device.createBuffer({ label: 'previous contact lifetimes', size: Math.max(16, maxBodies * 4), usage: storage });
+    this.watchWords = new Uint32Array(Math.max(4, maxBodies));
     this.table = device.createBuffer({ label: 'contact sets', size: (HEAD_WORDS + 4 * this.setSlots) * 4, usage: storage });
     this.events = device.createBuffer({ label: 'contact events', size: capacity * EVENT_VEC4S * 16, usage: storage });
     this.params = device.createBuffer({ label: 'contact params', size: 32, usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST });
@@ -193,26 +205,50 @@ export class ContactWatch {
     // Upload contiguous selections together. Initializing a large scene should
     // not issue one queue write per body. Gaps retain their previous selection.
     const entries = indices.map((index, k) => [index, on[k] ? 1 : 0]).sort((a, b) => a[0] - b[0]);
+    for (const [index, enabled] of entries) this.watchWords[index] = ((this.watchWords[index] & 0xfffffffe) | enabled) >>> 0;
     for (let first = 0; first < entries.length;) {
       let end = first + 1;
       while (end < entries.length && entries[end][0] === entries[end - 1][0] + 1) end++;
-      this.device.queue.writeBuffer(this.watch, entries[first][0] * 4, Uint32Array.from(entries.slice(first, end), e => e[1]));
+      this.device.queue.writeBuffer(this.watch, entries[first][0] * 4,
+        this.watchWords.subarray(entries[first][0], entries[end - 1][0] + 1));
       first = end;
     }
+  }
+
+  /** Start new body lifetimes without clearing unrelated contact pairs.
+   * Call with sorted unique slots before the next simulation step. Already
+   * queued events retain their original step; callers still gate old lifetimes.
+   */
+  resetBodies(indices: Uint32Array): void {
+    if (this.destroyed) throw Error('Contact watch is destroyed');
+    let previous = -1;
+    for (const index of indices) {
+      if (index <= previous || index >= this.watchWords.length) throw Error('Contact reset slots must be unique, ascending and in range');
+      previous = index;
+    }
+    if (!indices.length) return;
+    for (const index of indices) this.watchWords[index] = (this.watchWords[index] + 2) >>> 0;
+    // One upload for a scattered activation batch, rather than a write per body.
+    if (indices[indices.length - 1] - indices[0] + 1 <= indices.length * 4) {
+      const first = indices[0], end = indices[indices.length - 1] + 1;
+      this.device.queue.writeBuffer(this.watch, first * 4, this.watchWords.subarray(first, end));
+    } else this.device.queue.writeBuffer(this.watch, 0, this.watchWords);
   }
 
   /** After a step: its pairs against the last step's. */
   run(storage: { manifolds: GPUBuffer; contacts: GPUBuffer; counters: GPUBuffer }, pairs: number, step: number, dt: number): void {
     const d = this.device;
-    const buffers = [this.bodies, storage.manifolds, storage.contacts, storage.counters, this.watch, this.table, this.events, this.params];
+    const buffers = [this.bodies, storage.manifolds, storage.contacts, storage.counters, this.watch, this.table, this.events, this.params, this.previousWatch];
     if (!this.group || buffers.some((b, k) => b !== this.bound[k])) {
       this.bound = buffers;
       this.group = d.createBindGroup({ layout: this.layout, entries: buffers.map((buffer, binding) => ({ binding, resource: { buffer } })) });
     }
     this.flip = 1 - this.flip;
     const [old, now] = this.flip ? [0, this.setSlots] : [this.setSlots, 0];
-    const params = new Uint32Array([old, now, this.setSlots - 1, this.capacity, pairs, step, 0, 0]);
-    new Float32Array(params.buffer)[6] = dt;
+    const params = this.paramWords;
+    params[0] = old; params[1] = now; params[2] = this.setSlots - 1;
+    params[3] = this.capacity; params[4] = pairs; params[5] = step;
+    this.paramFloats[6] = dt;
     d.queue.writeBuffer(this.params, 0, params);
     const encoder = d.createCommandEncoder({ label: 'contact events' });
     encoder.clearBuffer(this.table, (HEAD_WORDS + 2 * now) * 4, 2 * this.setSlots * 4);
@@ -223,45 +259,62 @@ export class ContactWatch {
     pass.setPipeline(this.pipelines.ended);
     pass.dispatchWorkgroups(Math.ceil(this.setSlots / 64));
     pass.end();
+    encoder.copyBufferToBuffer(this.watch, 0, this.previousWatch, 0, this.watchWords.byteLength);
     d.queue.submit([encoder.finish()]);
   }
 
   /** The events since the last read (and how many didn't fit), clearing them. */
-  async read(): Promise<{ events: RawContactEvent[]; dropped: number; full: boolean }> {
+  read(): Promise<{ events: RawContactEvent[]; dropped: number; full: boolean }> {
+    if (this.destroyed) return Promise.reject(Error('Contact watch is destroyed'));
+    if (!this.readPending) this.readPending = this.readNow().finally(() => { this.readPending = null; });
+    return this.readPending;
+  }
+  private async readNow(): Promise<{ events: RawContactEvent[]; dropped: number; full: boolean }> {
     const d = this.device;
     const size = 16 + this.capacity * EVENT_VEC4S * 16;
-    const staging = d.createBuffer({ size, usage: GPUBufferUsage.MAP_READ | GPUBufferUsage.COPY_DST });
+    if (!this.readback) {
+      this.readback = d.createBuffer({ size, usage: GPUBufferUsage.MAP_READ | GPUBufferUsage.COPY_DST });
+      this.readbackAllocations++;
+    }
+    const staging = this.readback;
     const encoder = d.createCommandEncoder({ label: 'read contact events' });
     encoder.copyBufferToBuffer(this.table, 0, staging, 0, 16);
     encoder.copyBufferToBuffer(this.events, 0, staging, 16, size - 16);
     encoder.clearBuffer(this.table, 0, 16);
     d.queue.submit([encoder.finish()]);
     await staging.mapAsync(GPUMapMode.READ);
-    const bytes = staging.getMappedRange().slice(0);
-    staging.unmap();
-    staging.destroy();
-    const u = new Uint32Array(bytes);
-    const f = new Float32Array(bytes);
-    const n = Math.min(u[0], this.capacity);
-    const events: RawContactEvent[] = [];
-    for (let e = 0; e < n; e++) {
-      const o = 4 + e * EVENT_VEC4S * 4;
-      events.push({
-        kind: u[o] as typeof BEGIN | typeof END,
-        a: u[o + 1],
-        b: u[o + 2],
-        step: u[o + 3],
-        point: [f[o + 4], f[o + 5], f[o + 6]],
-        impulse: f[o + 7],
-        normal: [f[o + 8], f[o + 9], f[o + 10]],
-      });
+    try {
+      const bytes = staging.getMappedRange();
+      const u = new Uint32Array(bytes);
+      const f = new Float32Array(bytes);
+      const n = Math.min(u[0], this.capacity);
+      const events: RawContactEvent[] = [];
+      for (let e = 0; e < n; e++) {
+        const o = 4 + e * EVENT_VEC4S * 4;
+        events.push({
+          kind: u[o] as typeof BEGIN | typeof END,
+          a: u[o + 1],
+          b: u[o + 2],
+          step: u[o + 3],
+          point: [f[o + 4], f[o + 5], f[o + 6]],
+          impulse: f[o + 7],
+          normal: [f[o + 8], f[o + 9], f[o + 10]],
+        });
+      }
+      // In step order (within a step, as the GPU wrote them).
+      events.sort((x, y) => x.step - y.step);
+      return { events, dropped: u[0] - n, full: u[1] !== 0 };
+    } finally {
+      // Keep the reusable staging buffer usable even if event decoding fails.
+      staging.unmap();
     }
-    // In step order (within a step, as the GPU wrote them)
-    events.sort((x, y) => x.step - y.step);
-    return { events, dropped: u[0] - n, full: u[1] !== 0 };
   }
 
   destroy(): void {
-    for (const b of [this.watch, this.table, this.events, this.params]) b.destroy();
+    if (this.destroyed) return;
+    this.destroyed = true;
+    for (const b of [this.watch, this.previousWatch, this.table, this.events, this.params]) b.destroy();
+    if (this.readPending) void this.readPending.catch(() => {}).finally(() => this.readback?.destroy());
+    else this.readback?.destroy();
   }
 }

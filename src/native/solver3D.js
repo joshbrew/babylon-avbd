@@ -2,6 +2,7 @@ import { AppGpuSolver3D } from "../gpu/appGpuSolver3D.js";
 import { BodyCommands2D } from "../gpu/bodyCommands2D.js";
 import shader from "./bodyCommands3D.wgsl";
 import { BodyReadback } from "../gpu/bodyReadback.js";
+import { validatePackedPoses, writePackedPose } from "./packedPoses.js";
 import { ContactWatch, BEGIN } from "../vendor/three-avbd-lib/contacts.ts";
 import {
   attachToScene,
@@ -13,6 +14,19 @@ import {
 class BodyCommands3D extends BodyCommands2D {
   constructor(solver) {
     super(solver, shader, 3);
+  }
+  enqueuePackedPose(index, positions, offset, rotations, rotationOffset) {
+    const slot = this.slot(index, 4) * 12;
+    writePackedPose(
+      this.queue.words,
+      this.queue.u32,
+      slot,
+      index,
+      positions,
+      offset,
+      rotations,
+      rotationOffset,
+    );
   }
   // Teleports invalidate warm-start contacts at their old locations. Velocity-only
   // edits keep valid manifolds and avoid the extra invalidation dispatch.
@@ -171,6 +185,26 @@ export class NativeGpuSolver3D extends AppGpuSolver3D {
     }
     return this.queueBodyCommand(index, 4, p, q, q !== undefined);
   }
+  /** Packed teleports, without per-body edit objects, arrays or readbacks.
+   * Unique ascending live GPU slots; xyz positions and optional xyzw rotations.
+   * Preserves velocities, masks, sensor flags and command order. All inputs are
+   * validated before enqueueing; step()/flushEdits() submits the reusable batch.
+   */
+  setPoses(indices, positions, rotations) {
+    validatePackedPoses(this, indices, positions, rotations);
+    if (!indices.length) return this;
+    const commands = this.prepareBodyCommands();
+    commands.queue.reserve(commands.queue.count + indices.length);
+    for (let i = 0; i < indices.length; i++)
+      commands.enqueuePackedPose(
+        indices[i],
+        positions,
+        i * 3,
+        rotations,
+        i * 4,
+      );
+    return this;
+  }
   /** Submit queued properties and body commands without advancing time or awaiting completion. */
   flushEdits() {
     if (this.destroyed) throw Error("The 3D solver has been destroyed");
@@ -261,6 +295,19 @@ export class NativeGpuSolver3D extends AppGpuSolver3D {
       })),
     };
   }
+  resetContactHistory(indices) {
+    if (!(indices instanceof Uint32Array)) throw Error("Contact resets require Uint32 GPU slots");
+    let previous = -1;
+    for (const index of indices) {
+      this.liveIndex(index);
+      if (index <= previous) throw Error("Contact reset slots must be unique and ascending");
+      previous = index;
+    }
+    this.watchContacts();
+    this.contactWatch.resetBodies(indices);
+    return this;
+  }
+  get contactReadbackAllocations() { return this.contactWatch?.readbackAllocations ?? 0; }
   setSensor(index, enabled) {
     super.setSensor(index, enabled);
     this.triggers ??= new Set();

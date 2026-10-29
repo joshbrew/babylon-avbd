@@ -119,6 +119,8 @@ export interface AvbdRaycastOptions {
   maxDistance?: number;
   ignore?: AvbdPhysicsBody[];
   collidesWith?: number;
+  /** Optional query group for bilateral filtering against each target's collidesWith mask. */
+  membership?: number;
 }
 export interface AvbdRayHit {
   body: AvbdPhysicsBody | null;

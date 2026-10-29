@@ -19,6 +19,7 @@ import { Solver } from "../reference/three-avbd/src/avbd3d/ref/solver.ts";
 import { Rigid } from "../reference/three-avbd/src/avbd3d/ref/body.ts";
 import { sphere } from "../reference/three-avbd/src/avbd3d/shapes.ts";
 import { projectedContactSolve } from "../src/gpu/gpuSolverKernels.js";
+import { queryMasksContract } from "./query-masks-contract.js";
 
 export async function babylonGpuTests(device, test) {
   const withWorld = async (fn) => {
@@ -39,6 +40,47 @@ export async function babylonGpuTests(device, test) {
       engine.dispose();
     }
   };
+  await test("Babylon query membership and batch distance reach the GPU", () =>
+    withWorld(async (w, s) => {
+      const add = (x, collidesWith) => {
+        const mesh = MeshBuilder.CreateSphere("queryMask", { diameter: 1 }, s);
+        mesh.position.x = x;
+        return w.addAggregate(mesh, AvbdShapeType.SPHERE, {
+          mass: 0,
+          group: 4,
+          collidesWith,
+        });
+      };
+      const refs = {
+        marker: add(-4, 0),
+        friendlyOnly: add(0, 2),
+        hostileOnly: add(4, 8),
+      };
+      const bySlot = new Map(
+        Object.values(refs).map((aggregate) => [
+          aggregate.body.gpuIndex,
+          aggregate.body,
+        ]),
+      );
+      await queryMasksContract(
+        {
+          raycast: w.raycast.bind(w),
+          raycastAll: w.raycastAll.bind(w),
+          sphereCast: w.sphereCast.bind(w),
+          sphereCastAll: w.sphereCastAll.bind(w),
+          setFilters(ids, groups, masks) {
+            for (let i = 0; i < ids.length; i++)
+              bySlot.get(ids[i]).setCollisionGroups(groups[i], masks[i]);
+          },
+        },
+        Object.fromEntries(
+          Object.entries(refs).map(([key, aggregate]) => [
+            key,
+            aggregate.body.gpuIndex,
+          ]),
+        ),
+      );
+    }));
   await test("Babylon scene-style aggregate, automatic stepping and disposal", () =>
     withWorld(async (w, s) => {
       const mesh = MeshBuilder.CreateBox("automatic", { size: 1 }, s);

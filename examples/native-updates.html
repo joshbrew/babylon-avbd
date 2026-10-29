@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <meta charset="utf-8" /><meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  />
+  <title>Packed updates, pooled contacts and query masks</title>
+  <style>
+    body {
+      font: 16px/1.6 system-ui;
+      max-width: 900px;
+      margin: 32px auto;
+      padding: 20px;
+      background: #101826;
+      color: #e2edf8;
+    }
+    button {
+      padding: 12px;
+      margin-right: 10px;
+    }
+    pre {
+      white-space: pre-wrap;
+      background: #18253a;
+      padding: 16px;
+    }
+    a {
+      color: #83d5ff;
+    }
+  </style>
+  <h1>Native update and contact examples</h1>
+  <p>
+    Renderer-independent examples of packed 3D transforms, recycled overlap
+    lifetimes, and optional two-way query masks. The same code runs with
+    explicit WebGPU or CPU compatibility backends.
+  </p>
+  <p>
+    <a href="./native-updates.js">Example source</a> ·
+    <a href="./README.md">Usage guide</a>
+  </p>
+  <button id="gpu">Run WebGPU example</button
+  ><button id="cpu">Run CPU compatibility example</button>
+  <p id="status" role="status">
+    Ready. WebGPU requires a supported browser on localhost or HTTPS.
+  </p>
+  <pre id="output"></pre>
+  <script type="importmap">
+    { "imports": { "avbd-babylon/native": "../dist/native.js" } }
+  </script>
+  <script type="module">
+    import { runNativeUpdatesExample } from "./native-updates.js";
+    const buttons = [...document.querySelectorAll("button")],
+      status = document.querySelector("#status"),
+      output = document.querySelector("#output");
+    for (const button of buttons)
+      button.onclick = async () => {
+        buttons.forEach((item) => (item.disabled = true));
+        output.textContent = "";
+        const backend = button.id === "gpu" ? "webgpu" : "cpu";
+        status.textContent = `Running ${backend} example…`;
+        try {
+          const result = await runNativeUpdatesExample({
+            backend,
+            log: (message) => {
+              output.textContent += message + "\n";
+            },
+          });
+          output.textContent += "\n" + JSON.stringify(result, null, 2);
+          status.textContent = `Passed · ${backend} · packed poses, pooled contacts and masked queries`;
+        } catch (error) {
+          status.textContent = `Failed · ${error.message}`;
+          output.textContent += "\n" + (error.stack || error);
+        } finally {
+          buttons.forEach((item) => (item.disabled = false));
+        }
+      };
+  </script>
+</html>

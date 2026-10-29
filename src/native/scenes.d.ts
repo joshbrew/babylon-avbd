@@ -10,6 +10,8 @@ export interface AvbdQueryOptions {
   maxDistance?: number;
   ignore?: number[];
   collidesWith?: number;
+  /** Optional query group. When set, targets must also accept these bits in their collidesWith mask. */
+  membership?: number;
   includeTriggers?: boolean;
 }
 export interface AvbdNativeRay<V> {
@@ -314,7 +316,10 @@ export interface AvbdGpuOptions {
 }
 export interface AvbdGpuSolver {
   /** Optional cumulative diagnostics; GPU call downloads two counters, never body poses. */
-  readContactRecyclingStats(): Promise<{ recycledPairs: number; evaluatedPairs: number }>;
+  readContactRecyclingStats(): Promise<{
+    recycledPairs: number;
+    evaluatedPairs: number;
+  }>;
   readonly bodyBuffer: GPUBuffer;
   readonly bodyCount: number;
   readonly jointCount: number;
@@ -354,6 +359,16 @@ export interface AvbdGpuSolver {
   destroy(): void;
 }
 export interface AvbdGpuSolver3D extends AvbdGpuSolver {
+  /** Start new lifetimes for reused slots; queued old events retain their old step. Suppresses old-lifetime end events. */
+  resetContactHistory(indices: Uint32Array): this;
+  /** Diagnostic: persistent GPU contact-readback buffers allocated; CPU backend returns zero. */
+  readonly contactReadbackAllocations: number;
+  /** Packed teleports; ascending unique live GPU slots. Reuses staging, preserves velocities/filters, validates atomically. */
+  setPoses(
+    indices: Uint32Array,
+    positions: Float32Array,
+    rotations?: Float32Array,
+  ): this;
   /** Prefer a scene-builder body; numeric arguments are GPU slots, not reference indices. Handles are created on demand. */
   body(body: AvbdRigid | number): AvbdNativeBody3D;
   bodyIndex(body: AvbdRigid | AvbdNativeBody3D | number): number;
@@ -873,10 +888,7 @@ export class AvbdScene2D {
       motor?: { speed?: number; maxTorque?: number };
     },
   ): AvbdHinge2D;
-  createSolver(
-    device: GPUDevice,
-    options?: AvbdGpuOptions,
-  ): AvbdGpuSolver2D;
+  createSolver(device: GPUDevice, options?: AvbdGpuOptions): AvbdGpuSolver2D;
   createSolver(
     pipeline: AvbdSolverPipeline,
     options?: AvbdGpuOptions,

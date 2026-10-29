@@ -3,6 +3,7 @@ import {
   invalidateContactRecycling,
 } from "../../gpu/contactRecycling.js";
 import { CpuSolver3D } from "./cpuSolver3D.ts";
+import { validatePackedPoses, writePackedPose } from "../packedPoses.js";
 import { CpuSolver2D } from "./cpuSolver2D.js";
 import { prepareCpuForces3D, captureCpuFrame3D } from "./cpuPhysics3D.js";
 import { turn, cross } from "./cpuContacts3D.js";
@@ -161,6 +162,25 @@ export class NativeCpuSolver {
   }
   teleport(index, position, rotation) {
     return this.editBodies([{ body: index, position, rotation }]);
+  }
+  setPoses(indices, positions, rotations) {
+    if (this.dimension !== 3) throw Error("Packed poses require a 3D world");
+    validatePackedPoses(this, indices, positions, rotations);
+    if (!indices.length) return this;
+    this.wakeAll();
+    this.pending.reserve(this.pending.count + indices.length);
+    for (let i = 0; i < indices.length; i++)
+      writePackedPose(
+        this.pending.words,
+        this.pending.u32,
+        this.pending.count++ * 12,
+        indices[i],
+        positions,
+        i * 3,
+        rotations,
+        i * 4,
+      );
+    return this;
   }
   setPackedVelocities(indices, values) {
     const ids = Array.from(indices),
@@ -695,6 +715,21 @@ export class NativeCpuSolver {
     this.maxPairs = maxPairs;
     return this;
   }
+  resetContactHistory(indices) {
+    this.assertLive();
+    if (this.dimension !== 3 || !(indices instanceof Uint32Array))
+      throw Error("Contact resets require Uint32 3D body slots");
+    let previous = -1;
+    for (const index of indices) {
+      this.liveIndex(index);
+      if (index <= previous) throw Error("Contact reset slots must be unique and ascending");
+      previous = index;
+    }
+    const selected = new Set(indices);
+    for (const [key, pair] of this.previous) if (selected.has(pair.a) || selected.has(pair.b)) this.previous.delete(key);
+    return this;
+  }
+  get contactReadbackAllocations() { return 0; }
   captureEvents() {
     if (!this.watched) return;
     const ids =

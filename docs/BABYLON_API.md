@@ -1,5 +1,31 @@
 # Babylon.js integration
 
+Runnable new-feature examples: [browser page](../examples/native-updates.html),
+[source](../examples/native-updates.js), and [usage guide](../examples/README.md).
+After `npm start`, open `examples/native-updates.html`; use
+`npm run example:native-updates` for the terminal CPU compatibility example.
+
+For frequently animated colliders on the native 3D API,
+`solver.setPoses(indices, positions, rotations?)` queues packed teleports in
+reused staging storage. Supply ascending unique live GPU slots as `Uint32Array`,
+xyz positions as `Float32Array`, and optionally xyzw rotations as `Float32Array`.
+It validates the complete batch before enqueueing, normalizes rotations, and
+preserves velocities, collision filters and trigger flags. Omitted rotations
+preserve live orientations. `step()` or `flushEdits()` submits the batch without
+pose downloads or completion waits. It is available on GPU and CPU native 3D
+worlds. These are teleports, not CCD or velocity-based kinematic integration;
+they invalidate old contact warm starts just like individual `teleport()` calls.
+
+Before reusing native 3D body slots for new pooled objects, call
+`solver.resetContactHistory(indices)` with sorted unique `Uint32Array` GPU slots.
+A new lifetime can then begin a fresh contact even if the old object occupied
+the same overlap. This does not reset unrelated pairs or discard already queued
+events: retain the new object's birth step and reject older events when routing
+asynchronous damage. Old-lifetime end events are suppressed. The CPU compatibility
+backend implements the same lifecycle reset. Contact drains reuse one mapped
+readback buffer, coalesce overlapping reads, and parse only emitted records;
+`contactReadbackAllocations` reports allocations (zero on CPU).
+
 `AvbdPhysics.create({ scene, contactRecycling: true })` enables relative-motion
 contact recycling. Use `{ distance: 0.01, maxAngle: 0.01 }` to tune scene-unit
 movement and radian rotation limits, or `false` (the default) to keep normal
@@ -122,13 +148,24 @@ and motor `speed` is radians/second and `maxTorque` is N·m. Change the drive wi
 
 `raycast()` / `raycastAll()` query current poses. `sphereCast(origin,radius,direction,options)`
 and `sphereCastAll()` sweep a sphere against rounded target geometry, including
-box and hull corners. Queries accept `maxDistance`, `collidesWith`, `ignore`
+box and hull corners. Queries accept `maxDistance`, `collidesWith`, `membership`, `ignore`
 (body handles) and `includeTriggers` (default true). Results include distance,
 body, normal and target contact point; sphere casts also include the center at
 impact. Batched queries return one nearest hit per input. Initial overlaps return
 zero distance and a normal opposite travel. Queries are separate from simulation
 CCD. Portable solvers expose the same queries using numeric ignored body indices;
 2D uses `circleCast()` and two-component coordinates.
+
+`collidesWith` selects target membership bits. Optionally supply `membership`
+to require that each target also accepts the query's group in its own
+`collidesWith` mask. For example, a payload sweep uses
+`{ membership: PAYLOAD, collidesWith: RECEIVER }` with application-defined bits.
+Omitting `membership` preserves one-way scene-probe behavior (useful for
+non-colliding markers); explicitly passing zero produces no hits. Both fields
+are unsigned 32-bit masks. The same rules apply to batched queries, native
+2D/3D, CPU compatibility, and the Babylon wrapper. Queries are GPU scans, not
+simulation CCD: batch them and budget their count rather than launching an
+unbounded sweep per projectile per frame.
 
 `addJoint(a, b, options)` connects ball-socket anchors; a null `a` makes a world
 anchor. `addWeld()` also locks angular motion and captures the relative rotation

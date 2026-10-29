@@ -94,6 +94,7 @@
     "src/native/runtime.js",
     "src/native/solver2D.js",
     "src/native/bodyCommands3D.wgsl",
+    "src/native/packedPoses.js",
     "src/native/solver3D.js",
     "src/gpu/gpuClothSolver.js",
     "src/native/cpu/contactRecycling.js",
@@ -291,10 +292,10 @@
           "bytesInOutput": 3820
         },
         "src/gpu/shapeQueries.wgsl": {
-          "bytesInOutput": 10217
+          "bytesInOutput": 10399
         },
         "src/gpu/shapeQueries.js": {
-          "bytesInOutput": 4593
+          "bytesInOutput": 4763
         },
         "src/gpu/passConstants.js": {
           "bytesInOutput": 1097
@@ -348,13 +349,13 @@
           "bytesInOutput": 2876
         },
         "src/vendor/three-avbd-lib/contacts.ts": {
-          "bytesInOutput": 7981
+          "bytesInOutput": 9728
         },
         "src/native/terrain.js": {
           "bytesInOutput": 3507
         },
         "src/babylon/babylonAvbd.js": {
-          "bytesInOutput": 25543
+          "bytesInOutput": 25757
         },
         "src/index.js": {
           "bytesInOutput": 0
@@ -434,8 +435,11 @@
         "src/native/bodyCommands3D.wgsl": {
           "bytesInOutput": 2883
         },
+        "src/native/packedPoses.js": {
+          "bytesInOutput": 1005
+        },
         "src/native/solver3D.js": {
-          "bytesInOutput": 6220
+          "bytesInOutput": 6903
         },
         "src/gpu/gpuClothSolver.js": {
           "bytesInOutput": 2365
@@ -471,13 +475,13 @@
           "bytesInOutput": 3460
         },
         "src/native/cpu/queries.js": {
-          "bytesInOutput": 3842
+          "bytesInOutput": 4071
         },
         "src/native/cpu/sleeping.js": {
           "bytesInOutput": 1892
         },
         "src/native/cpu/world.js": {
-          "bytesInOutput": 16124
+          "bytesInOutput": 16854
         },
         "src/native/pipelineRegistry.js": {
           "bytesInOutput": 81
@@ -522,7 +526,7 @@
           "bytesInOutput": 695
         }
       },
-      "bytes": 596627
+      "bytes": 601587
     }
   }
 }

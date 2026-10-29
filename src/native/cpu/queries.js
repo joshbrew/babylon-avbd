@@ -187,6 +187,7 @@ export function cpuCast(
     maxDistance = 1e30,
     ignore = [],
     collidesWith = 0xffffffff,
+    membership,
     includeTriggers = true,
   } = {},
 ) {
@@ -210,6 +211,11 @@ export function cpuCast(
     collidesWith > 0xffffffff
   )
     throw Error("Collision masks must be unsigned 32-bit integers");
+  if (
+    membership !== undefined &&
+    (!Number.isInteger(membership) || membership < 0 || membership > 0xffffffff)
+  )
+    throw Error("Query membership must be an unsigned 32-bit integer");
   const ignored = new Set(ignore);
   for (const id of ignored) world.liveIndex(id);
   const d = v.map((x) => x / len);
@@ -220,8 +226,12 @@ export function cpuCast(
     const group = b
         ? (b.group ?? 0xffffffff)
         : (world.solver.filters.get(i)?.[0] ?? 0xffffffff),
-      trigger = b ? b.isTrigger : world.solver.sensors.has(i);
+      trigger = b ? b.isTrigger : world.solver.sensors.has(i),
+      mask = b
+        ? (b.collidesWith ?? 0xffffffff)
+        : (world.solver.filters.get(i)?.[1] ?? 0xffffffff);
     if (!(group & collidesWith) || (!includeTriggers && trigger)) continue;
+    if (membership !== undefined && !(mask & membership)) continue;
     let hit;
     if (n === 2) hit = shape2(cpuGeometry2D(world.solver, i), o, d, radius);
     else {

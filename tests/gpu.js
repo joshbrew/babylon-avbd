@@ -22,6 +22,7 @@ import { hullGpu2DTests } from "./gpu-hulls2d.js";
 import { releaseApiGpuTests } from "./gpu-release-api.js";
 import { nativeConvenienceGpuTests } from "./gpu-native-convenience.js";
 import { editBatchingGpuTests } from "./gpu-edit-batching.js";
+import { packedPoseGpuTests } from "./gpu-packed-poses.js";
 import { policyGpu2DTests } from "./gpu-policy2d.js";
 import {
   projectedContactSolve,
@@ -474,6 +475,7 @@ try {
   await hullGpu2DTests(device, test);
   await nativeConvenienceGpuTests(device, test);
   await editBatchingGpuTests(device, test);
+  await packedPoseGpuTests(device, test);
   await releaseApiGpuTests(device, test);
   await policyGpu2DTests(device, test);
   await test("100K application renders, resets and switches every projectile collider", async () => {

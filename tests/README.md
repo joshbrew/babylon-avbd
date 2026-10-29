@@ -14,6 +14,9 @@ run on the host because they inspect files and JavaScript APIs.
 | `npm run test:web`                  | All GPU scene views, benchmarks, motion, controls, screenshots and reports                                                                                            |
 | `npm run test:package`              | ESM/global bundles, declarations and production dependencies                                                                                                          |
 | `npm run test:types`                | Public declarations with real Babylon types and portable API consumers                                                                                                |
+| `npm run test:packed-poses`         | Packed 3D transform validation, command ordering, CPU compatibility and recycled contact lifetimes |
+| `npm run test:query-masks`          | Optional two-way query masks and batch/per-input distance limits on CPU 2D/3D; GPU counterparts are registered in `npm test` |
+| `npm run example:native-updates`    | Runnable terminal CPU example; [browser examples](../examples/native-updates.html) run the same code with CPU or WebGPU |
 | `npm run test:playgrounds`          | Tornado debris and mortar breakage, domino chain propagation, 40,000-marble normal-distribution checks, worker/rendering controls, stable forts and slingshot victory |
 | `npm run test:castle`               | Mortar settling, local impacts, rotating debris and responsive layout                                                                                                 |
 | `npm run test:cloth`                | Thirty-second limb/net checks, central cloth tearing and screenshots                                                                                                  |
@@ -34,6 +37,15 @@ run on the host because they inspect files and JavaScript APIs.
 The [benchmark source index](../README.md#benchmark-sample-code) links to the
 copyable examples, scene builders and measurement runners. The
 [demo source guide](../demo/README.md) shows where each demo is configured and initialized.
+
+The [2026-10-28 native API recheck](../test-results/native-api-recheck-2026-10-28.json)
+compares the original revision with the working packed-pose/lifetime/query-mask
+extension on the same NVIDIA adapter. It includes frame-by-frame paired physics,
+contact reporting, 100K body updates, queries and full pose copies. Its uncertainty
+windows account for observed GPU timestamp quantization. No material slowdown
+was detected in these sampled workloads; this is not a complete all-demo or
+all-hardware performance guarantee. Earlier separate-batch timing outliers are
+retained as diagnostics, not presented as confirmed regressions.
 
 Set `AVBD_TEST_BROWSER` to a Chromium executable if browser discovery fails.
 

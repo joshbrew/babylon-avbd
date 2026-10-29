@@ -1,0 +1,469 @@
+{
+  "date": "2026-10-28T21:22:07.332Z",
+  "adapter": {
+    "vendor": "nvidia",
+    "architecture": "lovelace"
+  },
+  "samplesPerRevision": [
+    {
+      "workload": "2D 10K box stack",
+      "samples": 120
+    },
+    {
+      "workload": "3D 4096 box columns",
+      "samples": 120
+    },
+    {
+      "workload": "3D 2048 masked contact pairs",
+      "samples": 120
+    },
+    {
+      "workload": "2D 100K API objects",
+      "samples": 60
+    },
+    {
+      "workload": "2D 100K API packed",
+      "samples": 60
+    },
+    {
+      "workload": "2D 100K API queries",
+      "samples": 60
+    },
+    {
+      "workload": "3D 100K API objects",
+      "samples": 60
+    },
+    {
+      "workload": "3D 100K API packed",
+      "samples": 60
+    },
+    {
+      "workload": "3D 100K API full-copy",
+      "samples": 60
+    },
+    {
+      "workload": "3D 100K API queries",
+      "samples": 60
+    }
+  ],
+  "method": "Same-device alternating pairs. Circular moving-block bootstrap of paired log timing ratios, block length 10, 4,000 resamples, 95% interval. GPU windows additionally allow two observed timestamp quanta, avoiding false zero-width precision. Positive is slower. Windows describe this run, not all hardware/workloads.",
+  "materialThreshold": "CI lower bound >5% and median absolute increase >0.1ms GPU / >0.15ms CPU or completion.",
+  "correctnessPassed": true,
+  "rows": [
+    {
+      "workload": "2D 10K box stack",
+      "metric": "gpu",
+      "baselineMedianMs": 1.114112,
+      "workingMedianMs": 1.114112,
+      "pairedMedianChangePercent": 0,
+      "blockBootstrap95Percent": [
+        0,
+        0
+      ],
+      "observedTimestampQuantumMs": 0.06553599999999982,
+      "conservativeUncertaintyWindowPercent": [
+        -11.764705882352908,
+        11.764705882352908
+      ],
+      "consistentSlowdown": false,
+      "materialSlowdown": false
+    },
+    {
+      "workload": "2D 10K box stack",
+      "metric": "cpu",
+      "baselineMedianMs": 0.09500002861022949,
+      "workingMedianMs": 0.09000003337860107,
+      "pairedMedianChangePercent": -6.24999068677925,
+      "blockBootstrap95Percent": [
+        -9.52379871117751,
+        -0.0001324547170389323
+      ],
+      "observedTimestampQuantumMs": null,
+      "conservativeUncertaintyWindowPercent": [
+        -9.52379871117751,
+        -0.0001324547170389323
+      ],
+      "consistentSlowdown": false,
+      "materialSlowdown": false
+    },
+    {
+      "workload": "2D 10K box stack",
+      "metric": "completion",
+      "baselineMedianMs": 5.549999952316284,
+      "workingMedianMs": 5.580000042915344,
+      "pairedMedianChangePercent": 0.2904182965142388,
+      "blockBootstrap95Percent": [
+        -1.872964329066329,
+        3.1632671704743265
+      ],
+      "observedTimestampQuantumMs": null,
+      "conservativeUncertaintyWindowPercent": [
+        -1.872964329066329,
+        3.1632671704743265
+      ],
+      "consistentSlowdown": false,
+      "materialSlowdown": false
+    },
+    {
+      "workload": "3D 4096 box columns",
+      "metric": "gpu",
+      "baselineMedianMs": 1.769472,
+      "workingMedianMs": 1.769472,
+      "pairedMedianChangePercent": 0,
+      "blockBootstrap95Percent": [
+        0,
+        0
+      ],
+      "observedTimestampQuantumMs": 0.06553599999999982,
+      "conservativeUncertaintyWindowPercent": [
+        -7.407407407407387,
+        7.407407407407387
+      ],
+      "consistentSlowdown": false,
+      "materialSlowdown": false
+    },
+    {
+      "workload": "3D 4096 box columns",
+      "metric": "cpu",
+      "baselineMedianMs": 0.10000002384185791,
+      "workingMedianMs": 0.10000002384185791,
+      "pairedMedianChangePercent": 0,
+      "blockBootstrap95Percent": [
+        -4.54544961945148,
+        5.555688010448034
+      ],
+      "observedTimestampQuantumMs": null,
+      "conservativeUncertaintyWindowPercent": [
+        -4.54544961945148,
+        5.555688010448034
+      ],
+      "consistentSlowdown": false,
+      "materialSlowdown": false
+    },
+    {
+      "workload": "3D 4096 box columns",
+      "metric": "completion",
+      "baselineMedianMs": 5.110000014305115,
+      "workingMedianMs": 5.134999990463257,
+      "pairedMedianChangePercent": -0.000002339730886813385,
+      "blockBootstrap95Percent": [
+        -2.1920647327850373,
+        2.2660100188418797
+      ],
+      "observedTimestampQuantumMs": null,
+      "conservativeUncertaintyWindowPercent": [
+        -2.1920647327850373,
+        2.2660100188418797
+      ],
+      "consistentSlowdown": false,
+      "materialSlowdown": false
+    },
+    {
+      "workload": "3D 2048 masked contact pairs",
+      "metric": "gpu",
+      "baselineMedianMs": 1.245184,
+      "workingMedianMs": 1.245184,
+      "pairedMedianChangePercent": 0,
+      "blockBootstrap95Percent": [
+        0,
+        0
+      ],
+      "observedTimestampQuantumMs": 0.06553599999999982,
+      "conservativeUncertaintyWindowPercent": [
+        -10.526315789473655,
+        10.526315789473655
+      ],
+      "consistentSlowdown": false,
+      "materialSlowdown": false
+    },
+    {
+      "workload": "3D 2048 masked contact pairs",
+      "metric": "cpu",
+      "baselineMedianMs": 0.4500000476837158,
+      "workingMedianMs": 0.4500000476837158,
+      "pairedMedianChangePercent": 1.0989002351698307,
+      "blockBootstrap95Percent": [
+        0,
+        2.439022262772772
+      ],
+      "observedTimestampQuantumMs": null,
+      "conservativeUncertaintyWindowPercent": [
+        0,
+        2.439022262772772
+      ],
+      "consistentSlowdown": false,
+      "materialSlowdown": false
+    },
+    {
+      "workload": "3D 2048 masked contact pairs",
+      "metric": "completion",
+      "baselineMedianMs": 5.384999990463257,
+      "workingMedianMs": 5.740000009536743,
+      "pairedMedianChangePercent": 2.19895329000539,
+      "blockBootstrap95Percent": [
+        -0.09999990463256392,
+        8.547794641314589
+      ],
+      "observedTimestampQuantumMs": null,
+      "conservativeUncertaintyWindowPercent": [
+        -0.09999990463256392,
+        8.547794641314589
+      ],
+      "consistentSlowdown": false,
+      "materialSlowdown": false
+    },
+    {
+      "workload": "2D 100K API objects",
+      "metric": "cpu",
+      "baselineMedianMs": 10.940000057220459,
+      "workingMedianMs": 10.43999993801117,
+      "pairedMedianChangePercent": -3.8875874820306633,
+      "blockBootstrap95Percent": [
+        -4.878048616836194,
+        -3.144939947586378
+      ],
+      "observedTimestampQuantumMs": null,
+      "conservativeUncertaintyWindowPercent": [
+        -4.878048616836194,
+        -3.144939947586378
+      ],
+      "consistentSlowdown": false,
+      "materialSlowdown": false
+    },
+    {
+      "workload": "2D 100K API objects",
+      "metric": "completion",
+      "baselineMedianMs": 14.034999966621399,
+      "workingMedianMs": 13.789999961853027,
+      "pairedMedianChangePercent": -3.171247680543432,
+      "blockBootstrap95Percent": [
+        -5.455201450177571,
+        -1.51802691914944
+      ],
+      "observedTimestampQuantumMs": null,
+      "conservativeUncertaintyWindowPercent": [
+        -5.455201450177571,
+        -1.51802691914944
+      ],
+      "consistentSlowdown": false,
+      "materialSlowdown": false
+    },
+    {
+      "workload": "2D 100K API packed",
+      "metric": "cpu",
+      "baselineMedianMs": 2.0049999952316284,
+      "workingMedianMs": 1.9950000047683716,
+      "pairedMedianChangePercent": 1.2755028807289293,
+      "blockBootstrap95Percent": [
+        -2.2443868923529453,
+        2.5773170536872003
+      ],
+      "observedTimestampQuantumMs": null,
+      "conservativeUncertaintyWindowPercent": [
+        -2.2443868923529453,
+        2.5773170536872003
+      ],
+      "consistentSlowdown": false,
+      "materialSlowdown": false
+    },
+    {
+      "workload": "2D 100K API packed",
+      "metric": "completion",
+      "baselineMedianMs": 5.009999990463257,
+      "workingMedianMs": 4.984999895095825,
+      "pairedMedianChangePercent": 0.10493169457794771,
+      "blockBootstrap95Percent": [
+        -0.9950239314132636,
+        3.4303551564486945
+      ],
+      "observedTimestampQuantumMs": null,
+      "conservativeUncertaintyWindowPercent": [
+        -0.9950239314132636,
+        3.4303551564486945
+      ],
+      "consistentSlowdown": false,
+      "materialSlowdown": false
+    },
+    {
+      "workload": "2D 100K API queries",
+      "metric": "cpu",
+      "baselineMedianMs": 0.05500006675720215,
+      "workingMedianMs": 0.05500006675720215,
+      "pairedMedianChangePercent": 0,
+      "blockBootstrap95Percent": [
+        -0.00023841823804104934,
+        6.666497124673754
+      ],
+      "observedTimestampQuantumMs": null,
+      "conservativeUncertaintyWindowPercent": [
+        -0.00023841823804104934,
+        6.666497124673754
+      ],
+      "consistentSlowdown": false,
+      "materialSlowdown": false
+    },
+    {
+      "workload": "2D 100K API queries",
+      "metric": "completion",
+      "baselineMedianMs": 3.0350000858306885,
+      "workingMedianMs": 3.149999976158142,
+      "pairedMedianChangePercent": 2.871618846021873,
+      "blockBootstrap95Percent": [
+        -3.5830661770361982,
+        10.139858755332476
+      ],
+      "observedTimestampQuantumMs": null,
+      "conservativeUncertaintyWindowPercent": [
+        -3.5830661770361982,
+        10.139858755332476
+      ],
+      "consistentSlowdown": false,
+      "materialSlowdown": false
+    },
+    {
+      "workload": "3D 100K API objects",
+      "metric": "cpu",
+      "baselineMedianMs": 18.71999990940094,
+      "workingMedianMs": 15.825000047683716,
+      "pairedMedianChangePercent": -15.727571140589136,
+      "blockBootstrap95Percent": [
+        -16.96094150668028,
+        -12.88770096088424
+      ],
+      "observedTimestampQuantumMs": null,
+      "conservativeUncertaintyWindowPercent": [
+        -16.96094150668028,
+        -12.88770096088424
+      ],
+      "consistentSlowdown": false,
+      "materialSlowdown": false
+    },
+    {
+      "workload": "3D 100K API objects",
+      "metric": "completion",
+      "baselineMedianMs": 22.31499993801117,
+      "workingMedianMs": 19.2150000333786,
+      "pairedMedianChangePercent": -14.088647704755076,
+      "blockBootstrap95Percent": [
+        -15.574263786344034,
+        -10.818181796507398
+      ],
+      "observedTimestampQuantumMs": null,
+      "conservativeUncertaintyWindowPercent": [
+        -15.574263786344034,
+        -10.818181796507398
+      ],
+      "consistentSlowdown": false,
+      "materialSlowdown": false
+    },
+    {
+      "workload": "3D 100K API packed",
+      "metric": "cpu",
+      "baselineMedianMs": 1.7600001096725464,
+      "workingMedianMs": 1.7549999952316284,
+      "pairedMedianChangePercent": -0.2816898570697446,
+      "blockBootstrap95Percent": [
+        -1.1204537352442645,
+        0.8174378955344563
+      ],
+      "observedTimestampQuantumMs": null,
+      "conservativeUncertaintyWindowPercent": [
+        -1.1204537352442645,
+        0.8174378955344563
+      ],
+      "consistentSlowdown": false,
+      "materialSlowdown": false
+    },
+    {
+      "workload": "3D 100K API packed",
+      "metric": "completion",
+      "baselineMedianMs": 5.009999990463257,
+      "workingMedianMs": 5.014999985694885,
+      "pairedMedianChangePercent": -0.9871682321956898,
+      "blockBootstrap95Percent": [
+        -8.493426951559757,
+        0.8032120823258326
+      ],
+      "observedTimestampQuantumMs": null,
+      "conservativeUncertaintyWindowPercent": [
+        -8.493426951559757,
+        0.8032120823258326
+      ],
+      "consistentSlowdown": false,
+      "materialSlowdown": false
+    },
+    {
+      "workload": "3D 100K API full-copy",
+      "metric": "cpu",
+      "baselineMedianMs": 0.08000004291534424,
+      "workingMedianMs": 0.0849999189376831,
+      "pairedMedianChangePercent": 0,
+      "blockBootstrap95Percent": [
+        0,
+        6.250149011754047
+      ],
+      "observedTimestampQuantumMs": null,
+      "conservativeUncertaintyWindowPercent": [
+        0,
+        6.250149011754047
+      ],
+      "consistentSlowdown": false,
+      "materialSlowdown": false
+    },
+    {
+      "workload": "3D 100K API full-copy",
+      "metric": "completion",
+      "baselineMedianMs": 13.509999990463257,
+      "workingMedianMs": 13.540000081062317,
+      "pairedMedianChangePercent": 1.1574072200357,
+      "blockBootstrap95Percent": [
+        -2.612646932896656,
+        4.5230770111083896
+      ],
+      "observedTimestampQuantumMs": null,
+      "conservativeUncertaintyWindowPercent": [
+        -2.612646932896656,
+        4.5230770111083896
+      ],
+      "consistentSlowdown": false,
+      "materialSlowdown": false
+    },
+    {
+      "workload": "3D 100K API queries",
+      "metric": "cpu",
+      "baselineMedianMs": 0.0549999475479126,
+      "workingMedianMs": 0.0549999475479126,
+      "pairedMedianChangePercent": 0,
+      "blockBootstrap95Percent": [
+        0,
+        9.090909090909083
+      ],
+      "observedTimestampQuantumMs": null,
+      "conservativeUncertaintyWindowPercent": [
+        0,
+        9.090909090909083
+      ],
+      "consistentSlowdown": false,
+      "materialSlowdown": false
+    },
+    {
+      "workload": "3D 100K API queries",
+      "metric": "completion",
+      "baselineMedianMs": 3.0199999809265137,
+      "workingMedianMs": 3.049999952316284,
+      "pairedMedianChangePercent": 0.6249994039535522,
+      "blockBootstrap95Percent": [
+        -0.16638919266430685,
+        3.010034551556573
+      ],
+      "observedTimestampQuantumMs": null,
+      "conservativeUncertaintyWindowPercent": [
+        -0.16638919266430685,
+        3.010034551556573
+      ],
+      "consistentSlowdown": false,
+      "materialSlowdown": false
+    }
+  ],
+  "materialSlowdowns": []
+}

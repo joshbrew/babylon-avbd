@@ -1,6 +1,6 @@
 {
   "name": "avbd-babylon",
-  "version": "0.4.6",
+  "version": "0.4.7",
   "description": "GPU AVBD rigid-body physics with a Babylon.js aggregate API",
   "main": "./dist/avbd.js",
   "types": "./dist/avbd.d.ts",
@@ -36,6 +36,9 @@
     "test:published": "node scripts/check-published.mjs",
     "test:mobile-contacts": "node scripts/build.mjs && node scripts/check-contact-portability.mjs && node scripts/check-contact-compatibility-features.mjs",
     "test:types": "tsc --noEmit --strict --skipLibCheck --module nodenext --target es2022 tests/package-api-types.ts",
+    "test:packed-poses": "node scripts/build-library.mjs && node tests/packed-poses.cpu.mjs && node tests/contact-lifetimes.cpu.mjs",
+    "test:query-masks": "node scripts/build-library.mjs && node tests/query-masks.cpu.mjs",
+    "example:native-updates": "node scripts/build-library.mjs && node examples/native-updates.cli.mjs",
     "test:cpu": "node scripts/build.mjs && node scripts/check-cpu-demos.mjs && node scripts/check-cpu-features.mjs && node scripts/check-cpu-slingshot.mjs",
     "test:webgl-collisions": "node scripts/check-webgl-broadphase.mjs && node --experimental-transform-types scripts/check-webgl-contacts.mjs",
     "test:webgl": "npm run test:webgl-collisions && node scripts/check-webgl-coloring.mjs && node --experimental-transform-types scripts/check-webgl-solve.mjs && node --experimental-transform-types scripts/check-webgl-world.mjs && node --experimental-transform-types scripts/check-webgl-edits.mjs && node --experimental-transform-types scripts/check-webgl-bounce.mjs && node --experimental-transform-types scripts/check-webgl-sleeping.mjs && node scripts/check-webgl-scene-behavior.mjs && node scripts/check-backend-contract.mjs --webgl2",

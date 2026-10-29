@@ -37,6 +37,7 @@ the resulting poses; `AvbdPhysics` owns the physics world and its GPU solver.
 - [Native 3D world](#native-3d-world)
 - [Native 2D world](#native-2d-world)
 - [Bulk edits and GPU dispatches](#bulk-edits-and-gpu-dispatches)
+- [Packed updates and pooled-contact examples](examples/README.md)
 - [Reading selected bodies and contacts](#reading-selected-bodies-and-contacts)
 - [Joints, welds, springs, ropes and ragdolls](#joints-welds-springs-ropes-and-ragdolls)
 - [Ball joints, welds and springs](#ball-joints-welds-and-springs)
@@ -92,6 +93,12 @@ each benchmark snippet names the page where it runs. Files under `tests/`
 implement the browser measurements; files under `scripts/` run those measurements
 and save results. [tests/README.md](tests/README.md) lists the validation and
 benchmark commands. Saved reports and screenshots live in `test-results/`.
+
+For packed 3D pose uploads, safe overlapping slot reuse, and two-way query masks,
+see the [runnable native API examples](examples/README.md). They run on WebGPU
+or the CPU compatibility backend without a renderer. `npm run example:native-updates`
+runs the terminal CPU example; after `npm start`, open
+[examples/native-updates.html](examples/native-updates.html) for both browser backends.
 
 ## Demo source and initialization
 

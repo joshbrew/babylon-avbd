@@ -61,7 +61,7 @@ export class ShapeQueries {
           capacity * 32,
           GPUBufferUsage.STORAGE | GPUBufferUsage.COPY_SRC,
         ],
-        ["uniform", 96, GPUBufferUsage.UNIFORM],
+        ["uniform", 112, GPUBufferUsage.UNIFORM],
         ["read", capacity * 32, GPUBufferUsage.MAP_READ],
       ]) {
         job[name]?.destroy();
@@ -74,7 +74,7 @@ export class ShapeQueries {
       job.buffers = null;
       job.data = new Float32Array(capacity * 8);
       job.initial = new Uint32Array(capacity * 2);
-      job.params = new Uint32Array(24);
+      job.params = new Uint32Array(28);
     }
     this.jobs.add(job);
     return job;
@@ -99,6 +99,7 @@ export class ShapeQueries {
     {
       ignore = [],
       collidesWith = 0xffffffff,
+      membership,
       includeTriggers = true,
       maxDistance: batchMaxDistance,
     } = {},
@@ -115,6 +116,13 @@ export class ShapeQueries {
       throw Error("Query mask must be an unsigned 32-bit integer");
     if (typeof includeTriggers !== "boolean")
       throw Error("includeTriggers must be boolean");
+    if (
+      membership !== undefined &&
+      (!Number.isInteger(membership) ||
+        membership < 0 ||
+        membership > 0xffffffff)
+    )
+      throw Error("Query membership must be an unsigned 32-bit integer");
     if (
       ignore.length > 16 ||
       ignore.some((i) => !Number.isInteger(i) || i < 0 || i >= s.bodyCount)
@@ -187,6 +195,10 @@ export class ShapeQueries {
         dim === 2 && s.shapeBuffer ? 1 : 0,
       ]);
       params.set(ignore, 8);
+      // Optional bilateral filtering. Omission preserves the old one-way query
+      // convention, including queries of non-colliding target markers.
+      params[24] = membership ?? 0;
+      params[25] = membership === undefined ? 0 : 1;
       const initial = job.initial;
       for (let i = 0; i < count; i++)
         initial.set([0x7f800000, 0xffffffff], i * 2);
